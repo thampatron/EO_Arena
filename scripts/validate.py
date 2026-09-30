@@ -71,4 +71,4 @@ if errors:
     print(f"{len(errors)} problem(s) found:\n")
     print("\n".join(errors))
     sys.exit(1)
-print(f"OK: {len(datasets)} datasets, {len(facets)} facets, all values in the vocabulary.")
+print(f"OK: {len(datasets)} datasets, {len(facets)} filters, all values in the vocabulary.")

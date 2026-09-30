@@ -12,9 +12,9 @@ Open an issue with:
 ## Adding or editing a dataset
 
 1. Edit `data/datasets.json`. Copy an existing record as a template.
-2. Use only values listed in `data/vocabulary.json`. Facets that can take several values: task family, sensor, resolution, ability. All others take exactly one.
+2. Use only values listed in `data/vocabulary.json`. Filters that can take several values: task family, sensor, resolution, ability. All others take exactly one.
 3. Give at least one source URL, preferably the paper and the official data page.
-4. For `licence`, quote the dataset's own licence (e.g. "CC BY 4.0"). Set the `tier` facet:
+4. For `licence`, quote the dataset's own licence (e.g. "CC BY 4.0"). Set the `tier` tag:
    - `open`: public domain, CC0, CC BY, CC BY-SA, ODbL, or an open agency policy;
    - `reg`: free, but with the provider's own terms (registration, no redistribution);
    - `nc`: non-commercial licences (CC BY-NC and similar);
@@ -53,7 +53,7 @@ Open an issue with:
 
 ## Changing the vocabulary
 
-New facet values (for example a new sensor or task family) change how everything is grouped. Propose them in an issue first so they can be discussed before records use them.
+New filter values (for example a new sensor or task family) change how everything is grouped. Propose them in an issue first so they can be discussed before records use them.
 
 ## What counts as a dataset here
 

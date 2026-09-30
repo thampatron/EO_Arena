@@ -107,7 +107,7 @@ const lab=(k,v)=>F[k].values[v]??v;
   readURL();
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
   const gaps=subs.filter(s=>s.status==='gap').length;
-  $('stats').innerHTML=[[DATA.length,'datasets'],[subs.length,'subdomains'],[gaps,'subdomains with no benchmark task'],[V.length,'facets']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('stats').innerHTML=[[DATA.length,'datasets'],[subs.length,'subdomains'],[gaps,'subdomains with no benchmark task'],[V.length,'filters']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   buildSelects(); render();
 })();
 
@@ -142,7 +142,7 @@ function renderMatrix(rows){const R=F[st.mxr],C=F[st.mxc];const rv=Object.keys(R
   let max=1;rv.forEach(a=>cv.forEach(b=>max=Math.max(max,cnt(a,b))));
   $('out').innerHTML=`<div class="mx-legend"><span>Datasets per cell</span><i class="hm1"></i><i class="hm2"></i><i class="hm3"></i><i class="hm4"></i><i class="hm5"></i><span>1 → ${max}</span><span>· dashed = none · click a cell to list it</span></div>
   <div class="card mx-wrap"><table class="mx"><thead><tr><th></th>${cv.map(b=>`<th>${esc(lab(C.key,b))}</th>`).join('')}<th>All</th></tr></thead><tbody>${rv.map(a=>`<tr><th>${esc(lab(R.key,a))}</th>${cv.map(b=>{const n=cnt(a,b);return `<td class="cell ${hm(n,max)}" ${n?`tabindex="0" data-a="${esc(a)}" data-b="${esc(b)}"`:''} data-tip="${esc(lab(R.key,a))} × ${esc(lab(C.key,b))}: ${n}">${n||''}</td>`}).join('')}<td class="tot">${rows.filter(d=>d.f[R.key].includes(a)).length}</td></tr>`).join('')}</tbody></table></div>
-  <p class="small muted" style="margin-top:10px">Multi-valued facets (task, sensor, resolution, ability) count a dataset in each of its values.</p>`;}
+  <p class="small muted" style="margin-top:10px">Filters that allow several values (task, sensor, resolution, ability) count a dataset once for each value.</p>`;}
 function buildSelects(){const o=cur=>V.map(f=>`<option value="${f.key}" ${f.key===cur?'selected':''}>${f.name}</option>`).join('');$('grp').innerHTML=o(st.grp);$('mxr').innerHTML=o(st.mxr);$('mxc').innerHTML=o(st.mxc);}
 function render(){renderFacets();renderActive();const rows=DATA.filter(d=>match(d));
   $('count').textContent=`${rows.length} of ${DATA.length} datasets`;
