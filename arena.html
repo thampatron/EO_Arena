@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOArena Expert Arena</title>
+<meta name="description" content="Blind, pairwise expert comparisons of geospatial foundation model outputs, for Earth observation needs that no labelled dataset covers.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;counter-reset:s}
+.steps .card{padding:16px 18px;display:grid;gap:6px;align-content:start}
+.steps .card::before{counter-increment:s;content:counter(s);font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1}
+.steps b{font-size:15.5px}
+.steps span{font-size:14px;color:var(--fg-2)}
+.vs{padding:18px;display:grid;gap:14px}
+.vs-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.panel p{font-size:13px;font-weight:600;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.panel svg{display:block;width:100%;height:auto}
+.vote{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.vote button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-size:14.5px;color:var(--fg-3);cursor:not-allowed}
+.formula{padding:18px 20px;display:grid;gap:12px}
+.eq{font-family:var(--serif);font-size:19px;background:var(--surface-2);border-radius:10px;padding:14px 16px;overflow-x:auto;white-space:nowrap}
+.eq var{font-style:italic}
+.tbd{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--warn);background:var(--warn-bg);border-radius:999px;padding:2px 9px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.opts .card{padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:14px;color:var(--fg-2)}
+.opts .card b{color:var(--fg);font-size:15px}
+.arenas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.arenas a{padding:14px 16px;display:grid;gap:4px;color:var(--fg)}
+.arenas a:hover{text-decoration:none;border-color:var(--line-2)}
+.arenas small{color:var(--fg-3);font-size:13px}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <h1>The Arena</h1>
+    <p class="sub">For the needs no labelled dataset covers, experts judge models directly: two anonymous outputs, side by side, and a vote on which is better.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="section">
+    <h2>Why an arena</h2>
+    <p class="lead">Leaderboards need labels. The domain audit found subdomains with no open labelled data at all, and many datasets whose labels are another model's output. Expert judgement is the reference that remains. Pairwise votes are easier and more consistent to give than absolute scores, and ratings computed from many votes rank models without any ground-truth map. This follows the approach LMArena uses for language models.</p>
+  </section>
+
+  <section class="section">
+    <h2>How a comparison works</h2>
+    <div class="steps">
+      <div class="card"><b>Draw a case</b><span>A region, date and task are sampled from an arena, for example thaw slumps on the Tibetan Plateau.</span></div>
+      <div class="card"><b>Run two models</b><span>Two models, chosen at random and kept anonymous, produce outputs from the same inputs.</span></div>
+      <div class="card"><b>Expert votes</b><span>A domain expert sees both over the imagery and picks A, B, a tie, or both unusable.</span></div>
+      <div class="card"><b>Update ratings</b><span>Votes are pooled into model ratings with uncertainty. Identities are revealed only after the vote.</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card vs">
+      <div class="vs-top"><h3 style="font-size:19px">Preview</h3><span class="small muted">Illustrative only. Voting is not open yet.</span></div>
+      <p class="small muted">Task: map retrogressive thaw slumps · Region: sampled tile · Input: PlanetScope, 3 m</p>
+      <div class="pair">
+        <div class="panel"><p>Model A</p><svg viewBox="0 0 320 200" aria-label="Schematic output of model A"><rect width="320" height="200" fill="var(--h1)"/><path d="M0 140 C60 120 110 150 170 128 S270 110 320 124 V200 H0Z" fill="var(--h2)"/><path d="M92 62 q24 -18 46 2 q12 24 -8 40 q-26 10 -40 -8 q-10 -20 2 -34Z" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M200 70 q18 -10 32 4 q6 18 -10 26 q-18 4 -24 -10Z" fill="none" stroke="var(--accent)" stroke-width="3"/></svg></div>
+        <div class="panel"><p>Model B</p><svg viewBox="0 0 320 200" aria-label="Schematic output of model B"><rect width="320" height="200" fill="var(--h1)"/><path d="M0 140 C60 120 110 150 170 128 S270 110 320 124 V200 H0Z" fill="var(--h2)"/><path d="M84 56 q32 -20 58 6 q14 30 -12 46 q-30 12 -46 -12 q-12 -22 0 -40Z" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M40 150 q10 -8 22 0 q4 10 -8 14 q-12 0 -14 -14Z" fill="none" stroke="var(--accent)" stroke-width="3"/></svg></div>
+      </div>
+      <div class="vote" aria-label="Vote options (disabled in preview)"><button disabled>A is better</button><button disabled>Tie</button><button disabled>B is better</button><button disabled>Both unusable</button></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="dhead"><h2>First arenas</h2><span class="small muted">Subdomains with no task in any audited benchmark suite</span></div>
+    <div class="arenas" id="arenas"></div>
+  </section>
+
+  <section class="section">
+    <h2>Rating formula</h2>
+    <div class="card formula">
+      <div class="vs-top"><h3 style="font-size:19px">Arena rating</h3><span class="tbd">TO BE DECIDED</span></div>
+      <div class="eq">P(<var>A</var> beats <var>B</var>) = <var>f</var>(<var>θ</var><sub>A</sub>, <var>θ</var><sub>B</sub>) &nbsp;·&nbsp; <var>θ</var> estimated from all votes &nbsp;·&nbsp; uncertainty: <span class="tbd">TBD</span></div>
+      <div class="opts">
+        <div class="card"><b>Bradley–Terry</b>P(A beats B) = 1 / (1 + e<sup>θ<sub>B</sub> − θ<sub>A</sub></sup>), fitted by maximum likelihood over all votes; confidence intervals by bootstrap. LMArena moved to this from online Elo.</div>
+        <div class="card"><b>Elo</b>Ratings updated after each vote. Simple and familiar, but depends on vote order and gives no clean uncertainty.</div>
+        <div class="card"><b>Extensions to decide</b>How to count ties and "both unusable"; whether to weight votes by expert domain; how to correct for left–right position bias; how many votes per pair before a rating is shown.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Combining labelled tasks</h2>
+    <div class="card formula">
+      <div class="vs-top"><h3 style="font-size:19px">Leaderboard score</h3><span class="tbd">TO BE DECIDED</span></div>
+      <div class="eq"><var>S</var><sub>m</sub> = Σ<sub>t</sub> <var>w</var><sub>t</sub> · <var>r</var><sub>m,t</sub> / Σ<sub>t</sub> <var>w</var><sub>t</sub> &nbsp;·&nbsp; <var>r</var><sub>m,t</sub> = rank of model <var>m</var> on task <var>t</var> &nbsp;·&nbsp; <var>w</var><sub>t</sub> = <span class="tbd">TBD</span></div>
+      <ul class="clean">
+        <li>The current draft weights each task by the standard deviation of model performance, so tasks that separate models count more.</li>
+        <li>Open issue: a large spread can come from noise. A weight based on the spread between models relative to the spread across seeds of the same model would reward tasks that separate models reliably.</li>
+        <li>How arena ratings and labelled-task scores combine, if at all, is also open.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script src="assets/site.js"></script>
+<script>
+(async function(){
+  const [doms,data]=await loadJSON('domains','datasets');
+  const gaps=doms.flatMap(d=>d.subdomains.filter(s=>s.code&&s.status==='gap').map(s=>({...s,dom:d.name.replace(/^\d · /,'')})));
+  document.getElementById('stats').innerHTML=[[gaps.length,'candidate arenas'],[data.filter(d=>d.facets.p[0]==='model').length,'datasets with model-derived labels']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  document.getElementById('arenas').innerHTML=gaps.map(s=>`<a class="card" href="domains.html#${s.code}"><small>${esc(s.dom)}</small><b>${s.code} ${esc(s.name)}</b></a>`).join('');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+{
+ "sentinel-2-msi": {
+  "name": "Sentinel-2 MSI",
+  "type": "optical",
+  "bands": [
+   {
+    "name": "B01",
+    "common_name": "coastal",
+    "center_wavelength_um": 0.443,
+    "fwhm_um": 0.027,
+    "gsd_m": 60
+   },
+   {
+    "name": "B02",
+    "common_name": "blue",
+    "center_wavelength_um": 0.49,
+    "fwhm_um": 0.098,
+    "gsd_m": 10
+   },
+   {
+    "name": "B03",
+    "common_name": "green",
+    "center_wavelength_um": 0.56,
+    "fwhm_um": 0.045,
+    "gsd_m": 10
+   },
+   {
+    "name": "B04",
+    "common_name": "red",
+    "center_wavelength_um": 0.665,
+    "fwhm_um": 0.038,
+    "gsd_m": 10
+   },
+   {
+    "name": "B05",
+    "common_name": "rededge1",
+    "center_wavelength_um": 0.704,
+    "fwhm_um": 0.019,
+    "gsd_m": 20
+   },
+   {
+    "name": "B06",
+    "common_name": "rededge2",
+    "center_wavelength_um": 0.74,
+    "fwhm_um": 0.018,
+    "gsd_m": 20
+   },
+   {
+    "name": "B07",
+    "common_name": "rededge3",
+    "center_wavelength_um": 0.783,
+    "fwhm_um": 0.028,
+    "gsd_m": 20
+   },
+   {
+    "name": "B08",
+    "common_name": "nir",
+    "center_wavelength_um": 0.842,
+    "fwhm_um": 0.145,
+    "gsd_m": 10
+   },
+   {
+    "name": "B8A",
+    "common_name": "nir08",
+    "center_wavelength_um": 0.865,
+    "fwhm_um": 0.033,
+    "gsd_m": 20
+   },
+   {
+    "name": "B09",
+    "common_name": "nir09",
+    "center_wavelength_um": 0.945,
+    "fwhm_um": 0.026,
+    "gsd_m": 60
+   },
+   {
+    "name": "B10",
+    "common_name": "cirrus",
+    "center_wavelength_um": 1.3735,
+    "fwhm_um": 0.075,
+    "gsd_m": 60
+   },
+   {
+    "name": "B11",
+    "common_name": "swir16",
+    "center_wavelength_um": 1.61,
+    "fwhm_um": 0.143,
+    "gsd_m": 20
+   },
+   {
+    "name": "B12",
+    "common_name": "swir22",
+    "center_wavelength_um": 2.19,
+    "fwhm_um": 0.242,
+    "gsd_m": 20
+   }
+  ],
+  "source": "stactools-sentinel2 0.8.0 constants (center wavelength, FWHM, native GSD)"
+ },
+ "landsat-8-9-oli": {
+  "name": "Landsat 8/9 OLI (Collection 2 L2 surface reflectance)",
+  "type": "optical",
+  "bands": [
+   {
+    "name": "OLI_B1",
+    "common_name": "coastal",
+    "center_wavelength_um": 0.44,
+    "fwhm_um": 0.02,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B2",
+    "common_name": "blue",
+    "center_wavelength_um": 0.48,
+    "fwhm_um": 0.06,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B3",
+    "common_name": "green",
+    "center_wavelength_um": 0.56,
+    "fwhm_um": 0.06,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B4",
+    "common_name": "red",
+    "center_wavelength_um": 0.65,
+    "fwhm_um": 0.04,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B5",
+    "common_name": "nir08",
+    "center_wavelength_um": 0.87,
+    "fwhm_um": 0.03,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B6",
+    "common_name": "swir16",
+    "center_wavelength_um": 1.61,
+    "fwhm_um": 0.09,
+    "gsd_m": 30
+   },
+   {
+    "name": "OLI_B7",
+    "common_name": "swir22",
+    "center_wavelength_um": 2.2,
+    "fwhm_um": 0.19,
+    "gsd_m": 30
+   }
+  ],
+  "source": "stactools-landsat 0.5.0 oli_tirs/sr-eo-bands.json; 30 m per USGS"
+ },
+ "sentinel-1-iw": {
+  "name": "Sentinel-1 C-SAR, IW mode",
+  "type": "sar",
+  "frequency_ghz": 5.405,
+  "bands": [
+   {
+    "name": "VV",
+    "polarization": "VV",
+    "gsd_m": 10
+   },
+   {
+    "name": "VH",
+    "polarization": "VH",
+    "gsd_m": 10
+   }
+  ],
+  "source": "ESA Sentinel-1 IW mode user guide: C-band 5.405 GHz; single-look 5\u00d720 m; GRD posted at 10 m",
+  "source_url": "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/interferometric-wide-swath"
+ }
+}

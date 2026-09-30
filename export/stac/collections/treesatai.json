@@ -1,0 +1,110 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "treesatai",
+ "title": "TreeSatAI",
+ "description": "Species / genus multi-label. Inputs: Aerial CIR 0.2 m, S1, S2. Geography: Lower Saxony, Germany. Size: 50,381 triplets. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.4 Vegetation structure and species",
+  "Aerial / drone",
+  "Measured (in situ, lidar, surveys)",
+  "Multi-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     5.99,
+     47.3,
+     15.02,
+     54.98
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER",
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "V",
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "DEU"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2",
+   "FoMo-Bench",
+   "AnySat",
+   "OmniSat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./treesatai.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/records/6598391",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

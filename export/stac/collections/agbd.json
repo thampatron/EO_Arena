@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "agbd",
+ "title": "AGBD",
+ "description": "AGB regression at GEDI footprints. Inputs: S2, PALSAR-2, DEM. Geography: 11 regions, 2019–20. Size: ~16M patches. Licence as stated by the provider: CC BY-NC 4.0.",
+ "license": "CC-BY-NC-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.3 Biomass and carbon stocks",
+  "Elevation",
+  "L-band SAR",
+  "Model-derived",
+  "Regression",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "LB",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "PQ",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./agbd.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2406.04928",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

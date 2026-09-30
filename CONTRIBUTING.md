@@ -20,9 +20,12 @@ Open an issue with:
    - `nc`: non-commercial licences (CC BY-NC and similar);
    - `closed`: paid, quota or restricted access;
    - `unk`: you could not find the licence (write UNVERIFIED in `licence`).
-5. List `benchmark_suites` only if the dataset is actually used in that benchmark's published task list.
-6. Run `python3 scripts/validate.py`. It must print `OK`.
-7. Open a pull request describing the change and its source.
+
+   For `p` (label source), use `model` whenever the labels come from another model or product (for example a biomass map or a MODIS fire product). These are shown as model-derived.
+5. Set `footprint.scope` to `countries` (and list ISO 3166-1 alpha-3 codes), `region` (and name it in `footprint.region`), `global`, or `unknown`. Use only what the dataset's own documentation states.
+6. List `benchmark_suites` only if the dataset is actually used in that benchmark's published task list.
+7. Run `python3 scripts/validate.py`. It must print `OK`. Then run `python3 scripts/export.py` to refresh the STAC and Croissant exports.
+8. Open a pull request describing the change and its source.
 
 ## Record format
 
@@ -39,8 +42,9 @@ Open an issue with:
   "facets": {
     "task": ["SS"], "unit": ["P"], "val": ["C"], "tmp": ["T"],
     "sen": ["S2", "S1"], "res": ["M"], "p": ["measured"],
-    "tier": ["open"], "covk": ["c4"], "ab": ["TD", "FU"]
+    "tier": ["open"], "ab": ["TD", "FU"]
   },
+  "footprint": {"scope": "countries", "countries": ["FRA"]},
   "licence": "CC BY 4.0",
   "benchmark_suites": ["PANGAEA"],
   "sources": [{"label": "Paper", "url": "https://..."}]
@@ -54,3 +58,7 @@ New facet values (for example a new sensor or task family) change how everything
 ## What counts as a dataset here
 
 A labelled dataset that uses remote sensing inputs (satellite, aerial or drone) and has a public paper or data page. Map products without released training or reference labels are listed in the domain audit, not as datasets.
+
+## Task cards
+
+`data/tasks.json` holds task cards: the exact inputs (sensors, bands with centre wavelength, FWHM and resolution), image size, time steps, output classes, metric, split and protocol. Take values from a benchmark's published configuration or the dataset paper, and mark anything not stated there as UNVERIFIED. Band specifications for Sentinel-2, Landsat 8/9 and Sentinel-1 live in `data/sensor_specs.json`.

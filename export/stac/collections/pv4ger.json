@@ -1,0 +1,102 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "pv4ger",
+ "title": "PV4GER",
+ "description": "Solar classification / segmentation. Inputs: Aerial 0.1 m. Geography: Germany. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "8.3 Energy and industry",
+  "Aerial / drone",
+  "Human annotated",
+  "Human systems",
+  "Scene / single-label classification",
+  "Semantic segmentation",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     5.99,
+     47.3,
+     15.02,
+     54.98
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "DEU"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./pv4ger.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2306.03831",
+   "title": "GEO-Bench",
+   "type": "text/html"
+  }
+ ]
+}

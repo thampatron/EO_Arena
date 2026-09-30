@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "kenya-crop-type",
+ "title": "Kenya crop type",
+ "description": "Classification. Inputs: S2. Geography: 3 Kenyan counties, 2017. Size: 5,693 fields; 9 classes. Licence as stated by the provider: CC BY-SA 4.0 (per TorchGeo).",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     33.89,
+     -4.68,
+     41.86,
+     5.51
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "KEN"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "SustainBench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./kenya-crop-type.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_type_mapping_kenya.html",
+   "title": "SustainBench",
+   "type": "text/html"
+  }
+ ]
+}

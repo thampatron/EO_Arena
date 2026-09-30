@@ -1,0 +1,67 @@
+{
+ "@context": {
+  "@language": "en",
+  "@vocab": "https://schema.org/",
+  "citeAs": "cr:citeAs",
+  "column": "cr:column",
+  "conformsTo": "dct:conformsTo",
+  "cr": "http://mlcommons.org/croissant/",
+  "rai": "http://mlcommons.org/croissant/RAI/",
+  "data": {
+   "@id": "cr:data",
+   "@type": "@json"
+  },
+  "dataType": {
+   "@id": "cr:dataType",
+   "@type": "@vocab"
+  },
+  "dct": "http://purl.org/dc/terms/",
+  "examples": {
+   "@id": "cr:examples",
+   "@type": "@json"
+  },
+  "extract": "cr:extract",
+  "field": "cr:field",
+  "fileProperty": "cr:fileProperty",
+  "fileObject": "cr:fileObject",
+  "fileSet": "cr:fileSet",
+  "format": "cr:format",
+  "includes": "cr:includes",
+  "isLiveDataset": "cr:isLiveDataset",
+  "jsonPath": "cr:jsonPath",
+  "key": "cr:key",
+  "md5": "cr:md5",
+  "parentField": "cr:parentField",
+  "path": "cr:path",
+  "recordSet": "cr:recordSet",
+  "references": "cr:references",
+  "regex": "cr:regex",
+  "repeated": "cr:repeated",
+  "replace": "cr:replace",
+  "sc": "https://schema.org/",
+  "separator": "cr:separator",
+  "source": "cr:source",
+  "subField": "cr:subField",
+  "transform": "cr:transform",
+  "samplingRate": "cr:samplingRate",
+  "equivalentProperty": "cr:equivalentProperty"
+ },
+ "@type": "sc:Dataset",
+ "conformsTo": "http://mlcommons.org/croissant/1.0",
+ "name": "SpaceNet 7",
+ "description": "Multi-temporal building tracking. Inputs: Planet 4 m. Geography: >100 AOIs. Size: >11M annotations. Licence as stated by the provider: CC BY-SA 4.0.",
+ "url": "https://arxiv.org/abs/2102.04420",
+ "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+ "keywords": [
+  "2–5 m",
+  "8.1 Settlements and buildings",
+  "Change detection",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "PlanetScope",
+  "Time series"
+ ],
+ "sameAs": [],
+ "isAccessibleForFree": true
+}

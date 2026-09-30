@@ -1,0 +1,104 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sickle",
+ "title": "SICKLE",
+ "description": "Segmentation + yield + phenology dates. Inputs: S2, S1, Landsat-8. Geography: Cauvery Delta, India; 2018–21. Size: 388 plots; 351 yield samples. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "1.2 Crop condition and yield",
+  "10–60 m",
+  "Agriculture",
+  "Landsat",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     68.18,
+     7.97,
+     97.4,
+     35.49
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "IND"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sickle.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2312.00069",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

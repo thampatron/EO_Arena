@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cropnet",
+ "title": "CropNet",
+ "description": "County yield regression. Inputs: S2 + HRRR weather. Geography: ~2,200 US counties; 2017–22. Size: ~2.4 TB. Licence as stated by the provider: CC BY-NC 4.0.",
+ "license": "CC-BY-NC-4.0",
+ "keywords": [
+  "1.2 Crop condition and yield",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Sentinel-2",
+  "Time series",
+  "Weather / reanalysis"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "WX"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cropnet.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2406.06081",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

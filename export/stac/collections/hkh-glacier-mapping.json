@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "hkh-glacier-mapping",
+ "title": "HKH Glacier Mapping",
+ "description": "Clean-ice / debris-covered segmentation. Inputs: Landsat 7 + SRTM. Geography: Hindu Kush Himalaya. Size: 14,190 patches. Licence as stated by the provider: CDLA-Permissive (labels).",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "5.2 Glaciers and ice sheets",
+  "Cryosphere",
+  "Elevation",
+  "Human annotated",
+  "Landsat",
+  "Semantic segmentation",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Hindu Kush Himalaya",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./hkh-glacier-mapping.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://lila.science/datasets/hkh-glacier-mapping",
+   "title": "LILA",
+   "type": "text/html"
+  }
+ ]
+}

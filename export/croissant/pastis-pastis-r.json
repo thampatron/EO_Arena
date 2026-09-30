@@ -1,0 +1,68 @@
+{
+ "@context": {
+  "@language": "en",
+  "@vocab": "https://schema.org/",
+  "citeAs": "cr:citeAs",
+  "column": "cr:column",
+  "conformsTo": "dct:conformsTo",
+  "cr": "http://mlcommons.org/croissant/",
+  "rai": "http://mlcommons.org/croissant/RAI/",
+  "data": {
+   "@id": "cr:data",
+   "@type": "@json"
+  },
+  "dataType": {
+   "@id": "cr:dataType",
+   "@type": "@vocab"
+  },
+  "dct": "http://purl.org/dc/terms/",
+  "examples": {
+   "@id": "cr:examples",
+   "@type": "@json"
+  },
+  "extract": "cr:extract",
+  "field": "cr:field",
+  "fileProperty": "cr:fileProperty",
+  "fileObject": "cr:fileObject",
+  "fileSet": "cr:fileSet",
+  "format": "cr:format",
+  "includes": "cr:includes",
+  "isLiveDataset": "cr:isLiveDataset",
+  "jsonPath": "cr:jsonPath",
+  "key": "cr:key",
+  "md5": "cr:md5",
+  "parentField": "cr:parentField",
+  "path": "cr:path",
+  "recordSet": "cr:recordSet",
+  "references": "cr:references",
+  "regex": "cr:regex",
+  "repeated": "cr:repeated",
+  "replace": "cr:replace",
+  "sc": "https://schema.org/",
+  "separator": "cr:separator",
+  "source": "cr:source",
+  "subField": "cr:subField",
+  "transform": "cr:transform",
+  "samplingRate": "cr:samplingRate",
+  "equivalentProperty": "cr:equivalentProperty"
+ },
+ "@type": "sc:Dataset",
+ "conformsTo": "http://mlcommons.org/croissant/1.0",
+ "name": "PASTIS / PASTIS-R",
+ "description": "Semantic + panoptic segmentation, time series. Inputs: S2 (+S1). Geography: France. Size: 2,433 patches; 124k parcels; 18 classes. Licence as stated by the provider: CC BY 4.0 (data); MIT (code).",
+ "url": "https://github.com/VSainteuf/pastis-benchmark",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Instance / panoptic / polygon extraction",
+  "Measured (in situ, lidar, surveys)",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "sameAs": [],
+ "isAccessibleForFree": true
+}

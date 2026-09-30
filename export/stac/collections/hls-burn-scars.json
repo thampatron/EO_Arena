@@ -1,0 +1,146 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "hls-burn-scars",
+ "title": "HLS Burn Scars",
+ "description": "Burn scar segmentation. Inputs: HLS. Geography: CONUS, 2018–21. Size: 804 scenes. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.6 Fire",
+  "HLS",
+  "Model-derived",
+  "Semantic segmentation",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "HLS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "TerraMind"
+  ],
+  "eo:bands": [
+   {
+    "name": "B02",
+    "common_name": "blue",
+    "center_wavelength": 0.49,
+    "full_width_half_max": 0.098
+   },
+   {
+    "name": "B03",
+    "common_name": "green",
+    "center_wavelength": 0.56,
+    "full_width_half_max": 0.045
+   },
+   {
+    "name": "B04",
+    "common_name": "red",
+    "center_wavelength": 0.665,
+    "full_width_half_max": 0.038
+   },
+   {
+    "name": "B8A",
+    "common_name": "nir08",
+    "center_wavelength": 0.865,
+    "full_width_half_max": 0.033
+   },
+   {
+    "name": "B11",
+    "common_name": "swir16",
+    "center_wavelength": 1.61,
+    "full_width_half_max": 0.143
+   },
+   {
+    "name": "B12",
+    "common_name": "swir22",
+    "center_wavelength": 2.19,
+    "full_width_half_max": 0.242
+   }
+  ],
+  "eoarena:tasks": [
+   "pangaea-hlsburnscars"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./hls-burn-scars.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+   "title": "Hugging Face",
+   "type": "text/html"
+  }
+ ],
+ "stac_extensions": [
+  "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "qtec-thaw-slump-inventory",
+ "title": "QTEC thaw-slump inventory",
+ "description": "Retrogressive thaw slump polygons. Inputs: PlanetScope 3 m (2019). Geography: Qinghai–Tibet corridor. Size: 875 slumps. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2–5 m",
+  "5.4 Permafrost",
+  "Cryosphere",
+  "Human annotated",
+  "Instance / panoptic / polygon extraction",
+  "PlanetScope",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     73.68,
+     18.2,
+     135.03,
+     53.46
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "CHN"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./qtec-thaw-slump-inventory.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://essd.copernicus.org/articles/14/3875/2022/",
+   "title": "ESSD",
+   "type": "text/html"
+  }
+ ]
+}

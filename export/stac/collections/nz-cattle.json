@@ -1,0 +1,101 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "nz-cattle",
+ "title": "NZ cattle",
+ "description": "Detection / segmentation. Inputs: RGB aerial 0.1 m. Geography: New Zealand. Size: 2 classes. Licence as stated by the provider: CC BY 4.0 (per GEO-Bench-2).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "1.4 Rangeland and livestock",
+  "Aerial / drone",
+  "Agriculture",
+  "Human annotated",
+  "Object detection",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     166.51,
+     -46.64,
+     178.52,
+     -34.45
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "NZL"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./nz-cattle.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2306.03831",
+   "title": "GEO-Bench",
+   "type": "text/html"
+  }
+ ]
+}

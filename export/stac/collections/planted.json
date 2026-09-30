@@ -1,0 +1,108 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "planted",
+ "title": "PLANTED",
+ "description": "Tree species. Inputs: S2, L7, MODIS, S1, ALOS-2. Geography: Global. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.4 Vegetation structure and species",
+  "L-band SAR",
+  "Landsat",
+  "MODIS",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Terrestrial ecosystems",
+  "Time series",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "LS",
+    "MOD",
+    "S1",
+    "LB"
+   ],
+   "res": [
+    "M",
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "AnySat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./planted.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/gastruc/AnySat",
+   "title": "AnySat",
+   "type": "text/html"
+  }
+ ]
+}

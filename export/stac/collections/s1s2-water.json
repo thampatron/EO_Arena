@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "s1s2-water",
+ "title": "S1S2-Water",
+ "description": "Water segmentation. Inputs: S1 + S2 + Copernicus DEM. Geography: Global (S2 tile grid). Size: 65 scene triplets. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "3.1 Surface water, rivers and wetlands",
+  "Elevation",
+  "Human annotated",
+  "Inland water",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./s1s2-water.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/records/11278238",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

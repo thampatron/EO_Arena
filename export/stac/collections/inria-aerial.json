@@ -1,0 +1,110 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "inria-aerial",
+ "title": "Inria Aerial",
+ "description": "Building segmentation. Inputs: Aerial 0.3 m. Geography: US, Austria. Size: 810 km². Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "8.1 Settlements and buildings",
+  "Aerial / drone",
+  "Human annotated",
+  "Human systems",
+  "Semantic segmentation",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     16.98,
+     71.36
+    ],
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ],
+    [
+     9.48,
+     46.43,
+     16.98,
+     49.04
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA",
+    "AUT"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./inria-aerial.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://project.inria.fr/aerialimagelabeling/",
+   "title": "Inria",
+   "type": "text/html"
+  }
+ ]
+}

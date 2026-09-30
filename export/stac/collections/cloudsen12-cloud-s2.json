@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cloudsen12-cloud-s2",
+ "title": "CloudSEN12 (Cloud-S2)",
+ "description": "Cloud, shadow, snow segmentation. Inputs: S2 (+S1). Geography: Global except Antarctica; 2018–20. Size: 49,400 patches. Licence as stated by the provider: CC0 (per GEO-Bench-2).",
+ "license": "CC0-1.0",
+ "keywords": [
+  "10–60 m",
+  "6.3 Clouds and smoke",
+  "Atmosphere",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2",
+   "Copernicus-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cloudsen12-cloud-s2.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-022-01878-2",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

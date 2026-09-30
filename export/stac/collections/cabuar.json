@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cabuar",
+ "title": "CaBuAr",
+ "description": "Burned area from pre/post. Inputs: S2. Geography: California. Size: 104 GB. Licence as stated by the provider: CDLA-Permissive-2.0 (Hugging Face) vs OpenRAIL (TorchGeo): conflicting.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.6 Fire",
+  "Change detection",
+  "Measured (in situ, lidar, surveys)",
+  "Sentinel-2",
+  "Terrestrial ecosystems",
+  "Two or a few dates"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cabuar.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2401.11519",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

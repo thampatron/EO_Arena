@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "agrifieldnet-india",
+ "title": "AgriFieldNet India",
+ "description": "Segmentation. Inputs: S2. Geography: 4 Indian states. Size: 7,081 samples. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     68.18,
+     7.97,
+     97.4,
+     35.49
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "IND"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./agrifieldnet-india.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://source.coop/radiantearth",
+   "title": "Source Coop",
+   "type": "text/html"
+  }
+ ]
+}

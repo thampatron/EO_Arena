@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "timesen2crop",
+ "title": "TimeSen2Crop",
+ "description": "Crop type classification. Inputs: S2 time series. Geography: Slovenia. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     13.7,
+     45.45,
+     16.56,
+     46.85
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "SVN"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "AnySat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./timesen2crop.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/gastruc/AnySat",
+   "title": "AnySat",
+   "type": "text/html"
+  }
+ ]
+}

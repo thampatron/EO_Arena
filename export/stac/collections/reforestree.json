@@ -1,0 +1,103 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "reforestree",
+ "title": "ReforesTree",
+ "description": "Detection + carbon regression. Inputs: Aerial. Geography: Ecuador. Size: UNVERIFIED. Licence as stated by the provider: CC BY 4.0 (per TorchGeo).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.3 Biomass and carbon stocks",
+  "Aerial / drone",
+  "Measured (in situ, lidar, surveys)",
+  "Object detection",
+  "Regression",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -80.97,
+     -4.96,
+     -75.23,
+     1.38
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "ECU"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "FoMo-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./reforestree.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2312.10114",
+   "title": "FoMo-Bench",
+   "type": "text/html"
+  }
+ ]
+}

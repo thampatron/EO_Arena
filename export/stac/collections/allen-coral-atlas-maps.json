@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "allen-coral-atlas-maps",
+ "title": "Allen Coral Atlas maps",
+ "description": "Geomorphic and benthic segmentation. Inputs: PlanetScope (commercial imagery). Geography: Tropical reefs 30°N–30°S. Size: 60–90% overall accuracy. Licence as stated by the provider: CC BY 4.0 (maps only).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2–5 m",
+  "4.1 Coastal ecosystems",
+  "Model-derived",
+  "Oceans and coasts",
+  "PlanetScope",
+  "Semantic segmentation",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./allen-coral-atlas-maps.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://allencoralatlas.org/methods/",
+   "title": "Methods",
+   "type": "text/html"
+  }
+ ]
+}

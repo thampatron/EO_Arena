@@ -1,0 +1,95 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "fluxnet2015",
+ "title": "FLUXNET2015",
+ "description": "GPP / NEE regression. Inputs: Eddy covariance towers. Geography: 212 sites. Size: >1,500 site-years. Licence as stated by the provider: CC BY 4.0 (206 sites).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.5 Ecosystem function (phenology, productivity)",
+  "In situ",
+  "Measured (in situ, lidar, surveys)",
+  "Not imagery",
+  "Regression",
+  "Terrestrial ecosystems",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "INS"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "PQ",
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./fluxnet2015.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-020-0534-3",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

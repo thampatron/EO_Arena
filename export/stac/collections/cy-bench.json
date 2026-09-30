@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cy-bench",
+ "title": "CY-Bench",
+ "description": "Subnational yield forecasting. Inputs: MODIS NDVI, JRC FAPAR, weather. Geography: Multi-continent. Size: Maize, wheat. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "1.2 Crop condition and yield",
+  "Agriculture",
+  "Forecasting",
+  "MODIS",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Time series",
+  "Weather / reanalysis",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "FC",
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "MOD",
+    "WX"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cy-bench.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/WUR-AI/AgML-CY-Bench",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

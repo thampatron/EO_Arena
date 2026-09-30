@@ -10,9 +10,12 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 
 | Page | What it shows |
 |---|---|
-| `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL, so views can be shared. |
-| `domains.html` | 8 domains and 32 subdomains: framework anchors, open sensors, datasets, benchmark status, gaps and proposed changes. |
-| `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence and use in GeoFM benchmarks. |
+| `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
+| `map.html` | Where labels exist versus where the need is, by country, with World Bank need proxies. |
+| `tasks.html` | Task cards: exact inputs, bands, outputs, metric, split and protocol. |
+| `arena.html` | The expert arena: blind pairwise comparisons for needs without labels. Rating formula to be decided. |
+| `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
+| `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |
 | `about.html` | Method, facet definitions and how to contribute. |
 
 ## Data
@@ -22,12 +25,16 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/vocabulary.json`: the facets and every allowed value (the controlled vocabulary).
 - `data/datasets.json`: one record per dataset, with its facet tags, licence, benchmark suites and sources.
 - `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
+- `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
+- `data/need.json` and `data/countries.geojson`: World Bank need proxies and Natural Earth boundaries for the map.
+
+`scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
 
 `scripts/validate.py` checks every record against the vocabulary. It runs automatically on each pull request.
 
 ### Facets
 
-Domain · Subdomain · Task family · Output unit · Output value · Time structure · Sensor · Resolution · Label source · Licence · Benchmark use · Coverage · Ability tested (hypothesis)
+Domain · Subdomain · Task family · Output unit · Output value · Time structure · Sensor · Resolution · Label source · Licence · Benchmark use · Footprint · Ability tested (hypothesis)
 
 The ability facet records which capability a task is expected to test (spectral, spatial, temporal, physical quantity, fusion). It is a hypothesis to be tested against how models rank across tasks, not an established fact.
 

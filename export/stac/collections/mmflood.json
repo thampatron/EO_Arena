@@ -1,0 +1,96 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "mmflood",
+ "title": "MMFlood",
+ "description": "Flood segmentation. Inputs: S1 + DEM + hydrography. Geography: 95 events, 42 countries; 2014–21. Size: 1,748 pairs. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "3.1 Surface water, rivers and wetlands",
+  "Elevation",
+  "Human annotated",
+  "Inland water",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./mmflood.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/record/6534637",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "aquasat",
+ "title": "AquaSat",
+ "description": "Chl-a, TSS, DOC, Secchi regression. Inputs: Landsat matchups. Geography: Continental, inland. Size: >600,000 matchups. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "3.2 Water quality",
+  "Inland water",
+  "Landsat",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./aquasat.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://doi.org/10.1029/2019WR024883",
+   "title": "WRR 2019",
+   "type": "text/html"
+  }
+ ]
+}

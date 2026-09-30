@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>About EOArena Taxonomy</title>
 <meta name="description" content="What the EOArena taxonomy is, how it was built, its facets, and how to contribute.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 .prose{display:grid;gap:14px;max-width:70ch;color:var(--fg-2);font-size:17px}
@@ -27,7 +25,7 @@
 
   <section class="section">
     <div class="prose">
-      <p>EOArena aims to benchmark geospatial foundation models on the tasks EO is actually needed for. This taxonomy is its first step. It starts from existing frameworks that define where EO matters (UN SDG indicators, GEOGLAM Essential Agricultural Variables, GCOS Essential Climate Variables, GEO BON Essential Biodiversity Variables, the Sendai Framework), then records which labelled datasets exist for each need and whether any benchmark tests them.</p>
+      <p>EOArena aims to benchmark geospatial foundation models on the tasks EO is actually needed for. This taxonomy is its first step. It starts from existing frameworks that define where EO matters (UN SDG indicators, GEOGLAM Essential Agricultural Variables, GCOS Essential Climate Variables, GEO BON Essential Biodiversity Variables, the Sendai Framework), then records which labelled datasets exist for each need and whether any benchmark tests them. Where no labels exist, the <a href="arena.html">Arena</a> will let domain experts compare model outputs directly.</p>
       <p>Every fact was checked against the provider's documentation, the dataset paper or an official catalogue, and the riskiest claims (dates, licences, benchmark membership) were re-checked in a separate pass. Anything that could not be confirmed is marked <span class="flag">UNVERIFIED</span>. Facet tags are a first pass and are under review.</p>
     </div>
   </section>
@@ -49,7 +47,7 @@
 <script src="assets/site.js"></script>
 <script>
 document.getElementById('repo1').href=REPO; document.getElementById('repo2').href=REPO+'/blob/main/CONTRIBUTING.md';
-const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","covk"]],["Hypothesis",["ab"]]];
+const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","fp"]],["Hypothesis",["ab"]]];
 (async function(){
   const [voc]=await loadJSON('vocabulary'); const F=Object.fromEntries(voc.facets.map(f=>[f.key,f]));
   document.getElementById('facets').innerHTML=GROUPS.map(([g,keys])=>`<p class="gl">${g}</p><div class="fcards">${keys.map(k=>{const f=F[k];const vals=Object.values(f.values);

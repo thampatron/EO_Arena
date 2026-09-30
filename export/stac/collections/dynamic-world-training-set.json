@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "dynamic-world-training-set",
+ "title": "Dynamic World training set",
+ "description": "Segmentation, 9 classes. Inputs: S2. Geography: Global, 2019. Size: ~24k tiles + 409 validation. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.1 Land cover and land degradation",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./dynamic-world-training-set.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://doi.pangaea.de/10.1594/PANGAEA.933475",
+   "title": "PANGAEA data",
+   "type": "text/html"
+  }
+ ]
+}

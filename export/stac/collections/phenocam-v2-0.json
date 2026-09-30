@@ -1,0 +1,95 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "phenocam-v2-0",
+ "title": "PhenoCam v2.0",
+ "description": "Phenology transition dates. Inputs: Near-surface cameras (pair with satellite). Geography: Mostly North America; 2000–18. Size: 393 cameras. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.5 Ecosystem function (phenology, productivity)",
+  "In situ",
+  "Measured (in situ, lidar, surveys)",
+  "Not imagery",
+  "Regression",
+  "Terrestrial ecosystems",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "INS"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "North America",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./phenocam-v2-0.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-019-0229-9",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

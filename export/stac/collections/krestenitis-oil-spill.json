@@ -1,0 +1,95 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "krestenitis-oil-spill",
+ "title": "Krestenitis oil spill",
+ "description": "Oil / look-alike segmentation. Inputs: S1. Geography: European waters, 2015–17. Size: ~1,110 images. Licence as stated by the provider: Access by application.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "4.4 Marine pollution",
+  "Measured (in situ, lidar, surveys)",
+  "Oceans and coasts",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "closed"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Europe",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./krestenitis-oil-spill.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://m4d.iti.gr/oil-spill-detection-dataset/",
+   "title": "M4D",
+   "type": "text/html"
+  }
+ ]
+}

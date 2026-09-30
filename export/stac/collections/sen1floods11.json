@@ -1,0 +1,189 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sen1floods11",
+ "title": "Sen1Floods11",
+ "description": "Flood and water segmentation. Inputs: S1 + S2. Geography: 11 events, 6 continents. Size: 4,831 chips (446 hand-labelled). Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "3.1 Surface water, rivers and wetlands",
+  "Human annotated",
+  "Inland water",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA",
+   "Galileo",
+   "AnySat",
+   "TerraMind"
+  ],
+  "eo:bands": [
+   {
+    "name": "B01",
+    "common_name": "coastal",
+    "center_wavelength": 0.443,
+    "full_width_half_max": 0.027
+   },
+   {
+    "name": "B02",
+    "common_name": "blue",
+    "center_wavelength": 0.49,
+    "full_width_half_max": 0.098
+   },
+   {
+    "name": "B03",
+    "common_name": "green",
+    "center_wavelength": 0.56,
+    "full_width_half_max": 0.045
+   },
+   {
+    "name": "B04",
+    "common_name": "red",
+    "center_wavelength": 0.665,
+    "full_width_half_max": 0.038
+   },
+   {
+    "name": "B05",
+    "common_name": "rededge1",
+    "center_wavelength": 0.704,
+    "full_width_half_max": 0.019
+   },
+   {
+    "name": "B06",
+    "common_name": "rededge2",
+    "center_wavelength": 0.74,
+    "full_width_half_max": 0.018
+   },
+   {
+    "name": "B07",
+    "common_name": "rededge3",
+    "center_wavelength": 0.783,
+    "full_width_half_max": 0.028
+   },
+   {
+    "name": "B08",
+    "common_name": "nir",
+    "center_wavelength": 0.842,
+    "full_width_half_max": 0.145
+   },
+   {
+    "name": "B8A",
+    "common_name": "nir08",
+    "center_wavelength": 0.865,
+    "full_width_half_max": 0.033
+   },
+   {
+    "name": "B09",
+    "common_name": "nir09",
+    "center_wavelength": 0.945,
+    "full_width_half_max": 0.026
+   },
+   {
+    "name": "B10",
+    "common_name": "cirrus",
+    "center_wavelength": 1.3735,
+    "full_width_half_max": 0.075
+   },
+   {
+    "name": "B11",
+    "common_name": "swir16",
+    "center_wavelength": 1.61,
+    "full_width_half_max": 0.143
+   },
+   {
+    "name": "B12",
+    "common_name": "swir22",
+    "center_wavelength": 2.19,
+    "full_width_half_max": 0.242
+   }
+  ],
+  "eoarena:tasks": [
+   "pangaea-sen1floods11"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sen1floods11.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/cloudtostreet/Sen1Floods11",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ],
+ "stac_extensions": [
+  "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+ ]
+}

@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "zuericrop",
+ "title": "ZueriCrop",
+ "description": "Segmentation. Inputs: S2. Geography: Zurich/Thurgau. Size: 28k patches; 48 classes. Licence as stated by the provider: CC BY-NC 4.0.",
+ "license": "CC-BY-NC-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Instance / panoptic / polygon extraction",
+  "Measured (in situ, lidar, surveys)",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     6.02,
+     45.78,
+     10.44,
+     47.83
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "IS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "CHE"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./zuericrop.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2102.08820",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

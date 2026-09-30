@@ -1,5 +1,5 @@
 {
- "version": "0.1-draft",
+ "version": "0.2-draft",
  "facets": [
   {
    "key": "dom",
@@ -156,12 +156,12 @@
   {
    "key": "p",
    "name": "Label source",
-   "description": "How the labels were made. Decides how far to trust a score.",
+   "description": "How the labels were made. Model-derived labels come from another model or product, so a score measures agreement with it, not accuracy.",
    "hypothesis": false,
    "values": {
     "human": "Human annotated",
     "measured": "Measured (in situ, lidar, surveys)",
-    "model": "Another model's product"
+    "model": "Model-derived"
    }
   },
   {
@@ -190,15 +190,16 @@
    }
   },
   {
-   "key": "covk",
-   "name": "Coverage",
-   "description": "Geographic spread of the labels.",
+   "key": "fp",
+   "name": "Footprint",
+   "description": "Where the labels are, from each dataset's documented geography. Shown on the map page.",
    "hypothesis": false,
+   "derived": "from footprint.scope",
    "values": {
-    "c1": "Global",
-    "c2": "Multi-continent or global sample",
-    "c3": "Regional / multi-country",
-    "c4": "National or local"
+    "countries": "Named countries",
+    "region": "Named region",
+    "global": "Global or multi-continent",
+    "unknown": "Not documented"
    }
   },
   {

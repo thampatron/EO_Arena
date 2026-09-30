@@ -1,0 +1,127 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "spacenet-2",
+ "title": "SpaceNet 2",
+ "description": "Building footprints. Inputs: WorldView. Geography: Las Vegas, Paris, Shanghai, Khartoum. Size: 14.1k chips. Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "8.1 Settlements and buildings",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     2.05,
+     135.03,
+     71.36
+    ],
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ],
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ],
+    [
+     73.68,
+     18.2,
+     135.03,
+     53.46
+    ],
+    [
+     21.94,
+     8.23,
+     38.41,
+     22
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA",
+    "FRA",
+    "CHN",
+    "SDN"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./spacenet-2.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://docs.torchgeo.org/en/stable/api/datasets.html",
+   "title": "TorchGeo",
+   "type": "text/html"
+  }
+ ]
+}

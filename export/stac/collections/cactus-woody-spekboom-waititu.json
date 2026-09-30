@@ -1,0 +1,129 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cactus-woody-spekboom-waititu",
+ "title": "Cactus, Woody, Spekboom, Waititu",
+ "description": "Classification / segmentation. Inputs: Aerial. Geography: Mexico, Chile, South Africa, New Zealand. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "2.4 Vegetation structure and species",
+  "Aerial / drone",
+  "Human annotated",
+  "Scene / single-label classification",
+  "Semantic segmentation",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -117.13,
+     -55.61,
+     178.52,
+     32.72
+    ],
+    [
+     -117.13,
+     14.54,
+     -86.81,
+     32.72
+    ],
+    [
+     -75.64,
+     -55.61,
+     -66.96,
+     -17.58
+    ],
+    [
+     16.34,
+     -34.82,
+     32.83,
+     -22.09
+    ],
+    [
+     166.51,
+     -46.64,
+     178.52,
+     -34.45
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "MEX",
+    "CHL",
+    "ZAF",
+    "NZL"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "FoMo-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cactus-woody-spekboom-waititu.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2312.10114",
+   "title": "FoMo-Bench",
+   "type": "text/html"
+  }
+ ]
+}

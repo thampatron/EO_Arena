@@ -1,0 +1,117 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "eurocropsml",
+ "title": "EuroCropsML",
+ "description": "Few-shot parcel classification. Inputs: S2. Geography: Estonia, Latvia, Portugal; 2021. Size: 706,683 parcels; 176 classes. Licence as stated by the provider: MIT.",
+ "license": "MIT",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -9.53,
+     36.84,
+     28.18,
+     59.61
+    ],
+    [
+     23.34,
+     57.47,
+     28.13,
+     59.61
+    ],
+    [
+     21.06,
+     55.62,
+     28.18,
+     57.97
+    ],
+    [
+     -9.53,
+     36.84,
+     -6.39,
+     42.28
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "EST",
+    "LVA",
+    "PRT"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./eurocropsml.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://doi.org/10.1038/s41597-025-04952-7",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

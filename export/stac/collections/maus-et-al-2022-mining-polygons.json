@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "maus-et-al-2022-mining-polygons",
+ "title": "Maus et al. 2022 mining polygons",
+ "description": "Mine-area segmentation labels. Inputs: S2 mosaic 10 m, 2019. Geography: 145 countries. Size: 44,929 polygons. Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "10–60 m",
+  "8.3 Energy and industry",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./maus-et-al-2022-mining-polygons.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-022-01547-4",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

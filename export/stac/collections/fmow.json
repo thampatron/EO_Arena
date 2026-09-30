@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "fmow",
+ "title": "fMoW",
+ "description": "Functional land-use classification, 63 classes. Inputs: DigitalGlobe. Geography: >200 countries. Size: >1M images. Licence as stated by the provider: fMoW Challenge Public License.",
+ "license": "other",
+ "keywords": [
+  "8.4 Objects and activity",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Scene / single-label classification",
+  "Time series",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "SatlasPretrain"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./fmow.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/fMoW/dataset",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

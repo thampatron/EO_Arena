@@ -1,0 +1,119 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sds-benchmark",
+ "title": "SDS_Benchmark",
+ "description": "Shoreline position time series. Inputs: Landsat, S2. Geography: 4 beaches (Narrabeen, Duck, Truc Vert, Torrey Pines). Size: In-situ surveys. Licence as stated by the provider: GPL-3.0.",
+ "license": "GPL-3.0-only",
+ "keywords": [
+  "10–60 m",
+  "4.2 Shoreline and coastal change",
+  "Landsat",
+  "Measured (in situ, lidar, surveys)",
+  "Oceans and coasts",
+  "Regression",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     -43.63,
+     153.57,
+     71.36
+    ],
+    [
+     113.34,
+     -43.63,
+     153.57,
+     -10.67
+    ],
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ],
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "LS",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "AUS",
+    "USA",
+    "FRA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sds-benchmark.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/kvos/SDS_Benchmark",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

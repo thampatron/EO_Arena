@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "xview3-sar",
+ "title": "xView3-SAR",
+ "description": "Dark-vessel detection, fishing, length. Inputs: S1. Geography: European and West African waters. Size: 991 scenes; 243,018 objects. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "8.4 Objects and activity",
+  "Human systems",
+  "Measured (in situ, lidar, surveys)",
+  "Object detection",
+  "Regression",
+  "Sentinel-1",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Europe and West Africa (waters)",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./xview3-sar.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2206.00897",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

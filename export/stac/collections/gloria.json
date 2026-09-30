@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "gloria",
+ "title": "GLORIA",
+ "description": "Chl-a, TSS, CDOM, Secchi from reflectance. Inputs: In-situ hyperspectral (convolvable to any sensor). Geography: 450 water bodies. Size: 7,572 spectra. Licence as stated by the provider: \"Open and free\"; exact licence UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "3.2 Water quality",
+  "Hyperspectral",
+  "In situ",
+  "Inland water",
+  "Measured (in situ, lidar, surveys)",
+  "Not imagery",
+  "Regression",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "INS",
+    "HYP"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./gloria.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-023-01973-y",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

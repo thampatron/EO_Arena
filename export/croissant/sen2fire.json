@@ -1,0 +1,67 @@
+{
+ "@context": {
+  "@language": "en",
+  "@vocab": "https://schema.org/",
+  "citeAs": "cr:citeAs",
+  "column": "cr:column",
+  "conformsTo": "dct:conformsTo",
+  "cr": "http://mlcommons.org/croissant/",
+  "rai": "http://mlcommons.org/croissant/RAI/",
+  "data": {
+   "@id": "cr:data",
+   "@type": "@json"
+  },
+  "dataType": {
+   "@id": "cr:dataType",
+   "@type": "@vocab"
+  },
+  "dct": "http://purl.org/dc/terms/",
+  "examples": {
+   "@id": "cr:examples",
+   "@type": "@json"
+  },
+  "extract": "cr:extract",
+  "field": "cr:field",
+  "fileProperty": "cr:fileProperty",
+  "fileObject": "cr:fileObject",
+  "fileSet": "cr:fileSet",
+  "format": "cr:format",
+  "includes": "cr:includes",
+  "isLiveDataset": "cr:isLiveDataset",
+  "jsonPath": "cr:jsonPath",
+  "key": "cr:key",
+  "md5": "cr:md5",
+  "parentField": "cr:parentField",
+  "path": "cr:path",
+  "recordSet": "cr:recordSet",
+  "references": "cr:references",
+  "regex": "cr:regex",
+  "repeated": "cr:repeated",
+  "replace": "cr:replace",
+  "sc": "https://schema.org/",
+  "separator": "cr:separator",
+  "source": "cr:source",
+  "subField": "cr:subField",
+  "transform": "cr:transform",
+  "samplingRate": "cr:samplingRate",
+  "equivalentProperty": "cr:equivalentProperty"
+ },
+ "@type": "sc:Dataset",
+ "conformsTo": "http://mlcommons.org/croissant/1.0",
+ "name": "Sen2Fire",
+ "description": "Active fire segmentation. Inputs: S2 + S5P aerosol. Geography: New South Wales, 2019–20. Size: 2,466 patches. Licence as stated by the provider: CC BY 4.0.",
+ "url": "https://arxiv.org/abs/2403.17884",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "keywords": [
+  "10–60 m",
+  "2.6 Fire",
+  "Model-derived",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Sentinel-5P",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "sameAs": [],
+ "isAccessibleForFree": true
+}

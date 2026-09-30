@@ -1,0 +1,110 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "flair-flair-2",
+ "title": "FLAIR / FLAIR 2",
+ "description": "Segmentation. Inputs: Aerial RGBN + DEM (+S2). Geography: France. Size: UNVERIFIED. Licence as stated by the provider: Etalab Open Licence 2.0 (FLAIR 2, per GEO-Bench-2).",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.1 Land cover and land degradation",
+  "Aerial / drone",
+  "Elevation",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Terrestrial ecosystems",
+  "Time series",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "AER",
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "V",
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "FRA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2",
+   "FoMo-Bench",
+   "AnySat",
+   "OmniSat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./flair-flair-2.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2511.15658",
+   "title": "GEO-Bench-2",
+   "type": "text/html"
+  }
+ ]
+}

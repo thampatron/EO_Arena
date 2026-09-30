@@ -16,7 +16,8 @@ datasets = json.loads((ROOT / "data" / "datasets.json").read_text(encoding="utf-
 facets = {f["key"]: f for f in vocab["facets"]}
 TAGGED = [k for k, f in facets.items() if not f.get("derived")]  # facets stored per record
 REQUIRED = ["id", "name", "domain", "subdomain", "task_description", "sensors_description",
-            "geography", "size", "facets", "licence", "benchmark_suites", "sources"]
+            "geography", "size", "facets", "licence", "benchmark_suites", "sources", "footprint"]
+COUNTRIES = {f["id"] for f in json.loads((ROOT / "data" / "countries.geojson").read_text(encoding="utf-8"))["features"]}
 MULTI_OK = {"task", "sen", "res", "ab"}  # facets that may hold several values
 
 errors = []
@@ -55,6 +56,14 @@ for i, d in enumerate(datasets):
     for s in d.get("sources", []):
         if not str(s.get("url", "")).startswith(("https://", "http://")):
             errors.append(f"{where}: source '{s.get('label')}' needs an http(s) URL")
+    fp = d.get("footprint", {})
+    if fp.get("scope") not in facets["fp"]["values"]:
+        errors.append(f"{where}: footprint.scope must be one of {list(facets['fp']['values'])}")
+    if fp.get("scope") == "countries" and not fp.get("countries"):
+        errors.append(f"{where}: footprint scope 'countries' needs a countries list (ISO 3166-1 alpha-3)")
+    for c in fp.get("countries", []):
+        if c not in COUNTRIES:
+            errors.append(f"{where}: unknown country code '{c}' (use ISO 3166-1 alpha-3 as in data/countries.geojson)")
     if not isinstance(d.get("benchmark_suites", []), list):
         errors.append(f"{where}: benchmark_suites must be a list")
 

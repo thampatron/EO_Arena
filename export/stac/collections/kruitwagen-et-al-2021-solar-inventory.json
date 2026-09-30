@@ -1,0 +1,98 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "kruitwagen-et-al-2021-solar-inventory",
+ "title": "Kruitwagen et al. 2021 solar inventory",
+ "description": "Solar farm polygons. Inputs: S2 + SPOT 6/7. Geography: Global, to 2018. Size: 68,661 facilities. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "8.3 Energy and industry",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "Sentinel-2",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "VHR"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./kruitwagen-et-al-2021-solar-inventory.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41586-021-03957-7",
+   "title": "Nature",
+   "type": "text/html"
+  }
+ ]
+}

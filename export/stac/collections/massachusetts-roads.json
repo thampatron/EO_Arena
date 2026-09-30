@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "massachusetts-roads",
+ "title": "Massachusetts Roads",
+ "description": "Road segmentation. Inputs: Aerial. Geography: Massachusetts. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "8.2 Transport",
+  "Aerial / drone",
+  "Human annotated",
+  "Human systems",
+  "Semantic segmentation",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "SatlasPretrain"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./massachusetts-roads.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.cs.toronto.edu/~vmnih/data/",
+   "title": "Toronto",
+   "type": "text/html"
+  }
+ ]
+}

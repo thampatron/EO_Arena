@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "fields-of-the-world",
+ "title": "Fields of The World",
+ "description": "Field boundary instance segmentation. Inputs: S2, two dates. Geography: 24 countries, 4 continents. Size: 70,484 chips; 1.63M polygons. Licence as stated by the provider: Mixed by country: CC BY, CC0, Etalab, DL-DE, but also CC BY-NC(-SA) and GPL.",
+ "license": "other",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Human annotated",
+  "Instance / panoptic / polygon extraction",
+  "Sentinel-2",
+  "Two or a few dates"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./fields-of-the-world.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2409.16252",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

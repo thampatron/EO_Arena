@@ -1,0 +1,101 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "next-day-wildfire-spread",
+ "title": "Next Day Wildfire Spread",
+ "description": "Next-day fire mask. Inputs: MODIS fire mask + drivers. Geography: US. Size: UNVERIFIED. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.6 Fire",
+  "Elevation",
+  "Forecast (future)",
+  "Forecasting",
+  "MODIS",
+  "Model-derived",
+  "Terrestrial ecosystems",
+  "Weather / reanalysis",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "FC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "F"
+   ],
+   "sen": [
+    "MOD",
+    "WX",
+    "DEM"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./next-day-wildfire-spread.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2112.02447",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

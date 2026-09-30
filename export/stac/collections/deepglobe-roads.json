@@ -1,0 +1,117 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "deepglobe-roads",
+ "title": "DeepGlobe Roads",
+ "description": "Road segmentation. Inputs: DigitalGlobe 0.5 m. Geography: Thailand, Indonesia, India. Size: 8,570 images. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "8.2 Transport",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Semantic segmentation",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     68.18,
+     -10.36,
+     141.03,
+     35.49
+    ],
+    [
+     97.38,
+     5.69,
+     105.59,
+     20.42
+    ],
+    [
+     95.29,
+     -10.36,
+     141.03,
+     5.48
+    ],
+    [
+     68.18,
+     7.97,
+     97.4,
+     35.49
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "THA",
+    "IDN",
+    "IND"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./deepglobe-roads.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/1805.06561",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

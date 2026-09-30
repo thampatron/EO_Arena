@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "ai4boundaries",
+ "title": "AI4Boundaries",
+ "description": "Field boundary segmentation. Inputs: S2 monthly + 1 m orthophotos. Geography: 7 EU countries/regions, 2019. Size: 7,831 samples; 2.5M parcels. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Aerial / drone",
+  "Agriculture",
+  "Instance / panoptic / polygon extraction",
+  "Measured (in situ, lidar, surveys)",
+  "Sentinel-2",
+  "Time series",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "AER"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Europe",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./ai4boundaries.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://essd.copernicus.org/articles/15/317/2023/",
+   "title": "ESSD",
+   "type": "text/html"
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sen2fire",
+ "title": "Sen2Fire",
+ "description": "Active fire segmentation. Inputs: S2 + S5P aerosol. Geography: New South Wales, 2019–20. Size: 2,466 patches. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.6 Fire",
+  "Model-derived",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Sentinel-5P",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     113.34,
+     -43.63,
+     153.57,
+     -10.67
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S5P"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "AUS"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sen2fire.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2403.17884",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "global-mangrove-watch-v3-v4",
+ "title": "Global Mangrove Watch v3/v4",
+ "description": "Mangrove extent and change. Inputs: L-band SAR, Landsat. Geography: Tropics; 1996–2020. Size: 11 epochs. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "4.1 Coastal ecosystems",
+  "Change detection",
+  "L-band SAR",
+  "Landsat",
+  "Model-derived",
+  "Oceans and coasts",
+  "Semantic segmentation",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "LB",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./global-mangrove-watch-v3-v4.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/records/6894273",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

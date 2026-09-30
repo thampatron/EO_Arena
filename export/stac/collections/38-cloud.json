@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "38-cloud",
+ "title": "38-Cloud",
+ "description": "Cloud segmentation. Inputs: Landsat 8. Geography: 38 scenes. Size: 17.6k patches. Licence as stated by the provider: Apache-2.0.",
+ "license": "Apache-2.0",
+ "keywords": [
+  "10–60 m",
+  "6.3 Clouds and smoke",
+  "Atmosphere",
+  "Human annotated",
+  "Landsat",
+  "Semantic segmentation",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./38-cloud.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/SorourMo/38-Cloud-A-Cloud-Segmentation-Dataset",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

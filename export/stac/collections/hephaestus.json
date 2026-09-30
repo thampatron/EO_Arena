@@ -1,0 +1,96 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "hephaestus",
+ "title": "Hephaestus",
+ "description": "Deformation classification, segmentation, captioning. Inputs: S1 interferograms (COMET-LiCS). Geography: 44 volcanoes; 2014–21. Size: 19,919 labelled interferograms. Licence as stated by the provider: MIT.",
+ "license": "MIT",
+ "keywords": [
+  "10–60 m",
+  "7.1 Surface deformation",
+  "Human annotated",
+  "Scene / single-label classification",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Single date",
+  "Solid Earth"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./hephaestus.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/Orion-AI-Lab/Hephaestus",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

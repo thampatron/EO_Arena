@@ -1,0 +1,96 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "quakeset",
+ "title": "QuakeSet",
+ "description": "Earthquake classification + magnitude. Inputs: S1. Geography: UNVERIFIED. Size: 3,327. Licence as stated by the provider: OpenRAIL.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "7.1 Surface deformation",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Scene / single-label classification",
+  "Sentinel-1",
+  "Solid Earth",
+  "Two or a few dates"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "RG"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./quakeset.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://docs.torchgeo.org/en/stable/api/datasets.html",
+   "title": "TorchGeo",
+   "type": "text/html"
+  }
+ ]
+}

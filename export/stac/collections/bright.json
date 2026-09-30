@@ -1,0 +1,98 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "bright",
+ "title": "BRIGHT",
+ "description": "Building damage, optical pre / SAR post. Inputs: Maxar/NAIP + Capella/Umbra. Geography: 14 events, 23 regions. Size: 3,239 tiles. Licence as stated by the provider: Mixed; Maxar parts CC BY-NC.",
+ "license": "other",
+ "keywords": [
+  "Aerial / drone",
+  "Change detection",
+  "Commercial VHR satellite",
+  "Disasters",
+  "Human annotated",
+  "Other SAR (X/C archive, commercial)",
+  "Post-event damage and hazard extent",
+  "Two or a few dates",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR",
+    "AER",
+    "SAR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./bright.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/ChenHongruixuan/BRIGHT",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

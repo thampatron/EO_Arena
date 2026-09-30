@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "spacenet-3-5",
+ "title": "SpaceNet 3 / 5",
+ "description": "Road networks (+ travel time). Inputs: WorldView-3. Geography: Cities (UNVERIFIED). Size: 3,477 / 2,588 chips. Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "8.2 Transport",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./spacenet-3-5.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://spacenet.ai/datasets/",
+   "title": "SpaceNet",
+   "type": "text/html"
+  }
+ ]
+}

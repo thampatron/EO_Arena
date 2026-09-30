@@ -1,0 +1,95 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "open-cities-ai",
+ "title": "Open Cities AI",
+ "description": "Building segmentation. Inputs: Drone 2–20 cm. Geography: 10 African cities. Size: ~790k buildings. Licence as stated by the provider: CC BY 4.0 (weakly stated).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "8.1 Settlements and buildings",
+  "Aerial / drone",
+  "Human annotated",
+  "Human systems",
+  "Semantic segmentation",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Africa",
+   "scope": "region"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./open-cities-ai.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.drivendata.org/competitions/60/building-segmentation-disaster-resilience/page/151/",
+   "title": "DrivenData",
+   "type": "text/html"
+  }
+ ]
+}

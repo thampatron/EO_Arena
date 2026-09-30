@@ -1,0 +1,98 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "bradd-s1ts",
+ "title": "BraDD-S1TS",
+ "description": "Deforestation detection. Inputs: S1 time series. Geography: Amazon. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.2 Forest extent and change",
+  "Change detection",
+  "Model-derived",
+  "Sentinel-1",
+  "Terrestrial ecosystems",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "South America (Amazon)",
+   "scope": "region"
+  },
+  "eoarena:benchmark_suites": [
+   "AnySat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./bradd-s1ts.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/gastruc/AnySat",
+   "title": "AnySat",
+   "type": "text/html"
+  }
+ ]
+}

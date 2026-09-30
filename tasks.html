@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOArena Task Cards</title>
+<meta name="description" content="Task cards: the exact inputs, outputs and evaluation settings a model is compared on.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.anatomy{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.anatomy .card{padding:14px 16px;display:grid;gap:4px}
+.anatomy b{font-size:15px}
+.anatomy span{font-size:13.5px;color:var(--fg-2)}
+.bands{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.bands th{text-align:left;font-weight:600;color:var(--fg-3);font-size:12px;padding:6px 8px;border-bottom:1px solid var(--line)}
+.bands td{padding:6px 8px;border-bottom:1px solid var(--line)}
+.bands tr:last-child td{border-bottom:0}
+.btbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm)}
+.sensor-h{font-weight:600;font-size:14.5px;margin:4px 0 6px}
+.exports{display:flex;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <h1>Task cards</h1>
+    <p class="sub">A dataset becomes a benchmark task only once its inputs, outputs and evaluation are fixed. Each card states them exactly, so models are compared on the same thing.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="section">
+    <h2>What a card fixes</h2>
+    <div class="anatomy">
+      <div class="card"><b>Inputs</b><span>Sensors, bands with wavelengths and resolution, image size, time steps</span></div>
+      <div class="card"><b>Output</b><span>Prediction type, classes, ignored labels</span></div>
+      <div class="card"><b>Split</b><span>Train, validation and test regions; spatial or random</span></div>
+      <div class="card"><b>Metric</b><span>How a prediction is scored</span></div>
+      <div class="card"><b>Protocol</b><span>What is trained: frozen encoder with a probe, or fine-tuning</span></div>
+    </div>
+    <p class="lead small">The first cards come directly from PANGAEA's published configuration files. Fields those files do not state are marked <span class="flag">UNVERIFIED</span>; the split type is the most important of these. Band wavelengths and resolutions come from the stactools band tables for Sentinel-2 and Landsat and from ESA for Sentinel-1.</p>
+    <div class="exports"><a class="btn" id="dl-stac" href="#">STAC catalogue</a><a class="btn" id="dl-cro" href="#">Croissant records</a><a class="btn" id="dl-json" href="data/tasks.json">tasks.json</a></div>
+  </section>
+
+  <section class="section">
+    <div class="dhead"><h2>Cards</h2><span class="small muted" id="note"></span></div>
+    <div class="list" id="cards"></div>
+  </section>
+</main>
+<script src="assets/site.js"></script>
+<script>
+document.getElementById('dl-stac').href=REPO+'/tree/main/export/stac';
+document.getElementById('dl-cro').href=REPO+'/tree/main/export/croissant';
+(async function(){
+  const [tasks,data,specs]=await loadJSON('tasks','datasets','sensor_specs');
+  const byId=Object.fromEntries(data.map(d=>[d.id,d]));
+  document.getElementById('stats').innerHTML=[[tasks.length,'task cards'],[new Set(tasks.map(t=>t.dataset_id)).size,'datasets with cards'],[data.length-new Set(tasks.map(t=>t.dataset_id)).size,'datasets still without a card']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  document.getElementById('note').textContent='Source: PANGAEA configs';
+  const sname=s=>specs[s]?specs[s].name:s;
+  const bandTable=s=>{const opt=s.bands.some(b=>'center_wavelength_um' in b);
+    return `<p class="sensor-h">${esc(sname(s.sensor))}${s.bands.length?` · ${s.bands.length} layer${s.bands.length>1?'s':''}`:''}</p>${s.note?`<p class="small muted" style="margin-bottom:6px">${flag(esc(s.note))}</p>`:''}
+    <div class="btbl"><table class="bands"><thead><tr><th>Band</th>${opt?'<th>Name</th><th>Centre (µm)</th><th>FWHM (µm)</th>':''}<th>GSD (m)</th></tr></thead><tbody>${s.bands.map(b=>`<tr><td>${esc(b.name)}</td>${opt?`<td>${esc(b.common_name||b.note||'')}</td><td>${b.center_wavelength_um??''}</td><td>${b.fwhm_um??''}</td>`:''}<td>${b.gsd_m??(b.note?'':'<span class="flag">UNVERIFIED</span>')}</td></tr>`).join('')}</tbody></table></div>`;};
+  document.getElementById('cards').innerHTML=tasks.map(t=>{const d=byId[t.dataset_id];const o=t.output;
+    return `<details class="acc"><summary>${chev}<span class="summ">${esc(t.title)}<small>${esc(d.subdomain)}</small></span><span class="meta">${esc(t.task_type)} · ${esc(t.evaluation.metric)}</span>${tierChip(d.facets.tier[0])}</summary>
+    <div class="acc-body">
+      <dl class="kv">
+        <div><dt>Image size</dt><dd>${t.input.image_size_px} × ${t.input.image_size_px} px</dd></div>
+        <div><dt>Time steps</dt><dd>${t.input.time_steps}${t.input.multimodal?' · multimodal':''}</dd></div>
+        <div><dt>Output</dt><dd>${esc(o.type)}${o.num_classes!=null?` · ${o.num_classes} class${o.num_classes===1?' (binary)':'es'}`:''}${o.ignore_index!=null?` · ignore index ${o.ignore_index}`:''}</dd></div>
+        <div><dt>Metric</dt><dd>${esc(t.evaluation.metric)}</dd></div>
+        <div><dt>Split</dt><dd>${flag(esc(t.evaluation.split))}</dd></div>
+        <div><dt>Protocol</dt><dd>${flag(esc(t.evaluation.protocol))}</dd></div>
+      </dl>
+      ${t.input.sensors.map(bandTable).join('')}
+      ${o.classes?`<p class="small muted">Classes: ${o.classes.map(esc).join(', ')}</p>`:''}
+      <p class="small"><a href="${esc(t.provenance.config_url)}" target="_blank" rel="noopener">PANGAEA config ↗</a> &nbsp; <a href="index.html?q=${encodeURIComponent(d.name)}">Dataset in the explorer →</a></p>
+    </div></details>`}).join('');
+})();
+</script>
+</body>
+</html>

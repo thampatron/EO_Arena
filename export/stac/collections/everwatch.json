@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "everwatch",
+ "title": "EverWatch",
+ "description": "Bird species detection (fauna). Inputs: Aerial RGB. Geography: UNVERIFIED. Size: UNVERIFIED. Licence as stated by the provider: CC0 (per GEO-Bench-2).",
+ "license": "CC0-1.0",
+ "keywords": [
+  "2.4 Vegetation structure and species",
+  "Aerial / drone",
+  "Human annotated",
+  "Object detection",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./everwatch.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2511.15658",
+   "title": "GEO-Bench-2",
+   "type": "text/html"
+  }
+ ]
+}

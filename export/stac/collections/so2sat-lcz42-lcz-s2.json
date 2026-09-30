@@ -1,0 +1,103 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "so2sat-lcz42-lcz-s2",
+ "title": "So2Sat LCZ42 (LCZ-S2)",
+ "description": "Local climate zone classification. Inputs: S1 + S2. Geography: Global cities. Size: UNVERIFIED. Licence as stated by the provider: CC BY 4.0 (per GEO-Bench-2).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "8.1 Settlements and buildings",
+  "Human annotated",
+  "Human systems",
+  "Scene / single-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2",
+   "Copernicus-Bench",
+   "Galileo"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./so2sat-lcz42-lcz-s2.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2306.03831",
+   "title": "GEO-Bench",
+   "type": "text/html"
+  }
+ ]
+}

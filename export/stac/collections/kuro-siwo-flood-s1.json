@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "kuro-siwo-flood-s1",
+ "title": "Kuro Siwo (Flood-S1)",
+ "description": "Flood segmentation, change. Inputs: S1 GRD and SLC. Geography: 43 events, global. Size: 33 bn m² labelled. Licence as stated by the provider: CC BY.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "3.1 Surface water, rivers and wetlands",
+  "Change detection",
+  "Human annotated",
+  "Inland water",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Two or a few dates"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2",
+   "Copernicus-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./kuro-siwo-flood-s1.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2311.12056",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

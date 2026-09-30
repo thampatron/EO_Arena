@@ -1,0 +1,102 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "xbd-xview2",
+ "title": "xBD / xView2",
+ "description": "Building damage, 4 levels, bi-temporal. Inputs: Maxar <0.8 m. Geography: 19 events (mostly US). Size: 850,736 buildings. Licence as stated by the provider: CC BY-NC-SA 4.0.",
+ "license": "CC-BY-NC-SA-4.0",
+ "keywords": [
+  "Change detection",
+  "Commercial VHR satellite",
+  "Disasters",
+  "Human annotated",
+  "Instance / panoptic / polygon extraction",
+  "Post-event damage and hazard extent",
+  "Two or a few dates",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD",
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA"
+  ],
+  "eoarena:tasks": [
+   "pangaea-xview2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./xbd-xview2.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/1911.09296",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

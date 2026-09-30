@@ -1,0 +1,103 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "south-africa-crop-type",
+ "title": "South Africa crop type",
+ "description": "Segmentation. Inputs: S2 (+S1). Geography: South Africa. Size: 10 classes. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     16.34,
+     -34.82,
+     32.83,
+     -22.09
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "ZAF"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "Galileo"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./south-africa-crop-type.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://source.coop/radiantearth",
+   "title": "Source Coop",
+   "type": "text/html"
+  }
+ ]
+}

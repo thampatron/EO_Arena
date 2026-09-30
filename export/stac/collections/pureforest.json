@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "pureforest",
+ "title": "PureForest",
+ "description": "Species classification. Inputs: ALS + aerial. Geography: France, 449 stands. Size: 271k samples. Licence as stated by the provider: Etalab 2.0.",
+ "license": "other",
+ "keywords": [
+  "2.4 Vegetation structure and species",
+  "Aerial / drone",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "FRA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./pureforest.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://huggingface.co/datasets/IGNF/PureForest",
+   "title": "Hugging Face",
+   "type": "text/html"
+  }
+ ]
+}

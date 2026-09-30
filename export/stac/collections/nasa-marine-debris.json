@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "nasa-marine-debris",
+ "title": "NASA Marine Debris",
+ "description": "Object detection. Inputs: PlanetScope 3 m. Geography: UNVERIFIED. Size: 707 images. Licence as stated by the provider: Apache-2.0.",
+ "license": "Apache-2.0",
+ "keywords": [
+  "2–5 m",
+  "4.4 Marine pollution",
+  "Human annotated",
+  "Object detection",
+  "Oceans and coasts",
+  "PlanetScope",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./nasa-marine-debris.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://docs.torchgeo.org/en/stable/api/datasets.html",
+   "title": "TorchGeo",
+   "type": "text/html"
+  }
+ ]
+}

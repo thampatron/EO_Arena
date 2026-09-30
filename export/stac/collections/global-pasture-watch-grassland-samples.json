@@ -1,0 +1,94 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "global-pasture-watch-grassland-samples",
+ "title": "Global Pasture Watch grassland samples",
+ "description": "Grassland classification. Inputs: Landsat (labels from VHR interpretation). Geography: Global to 60.5°N; 2000–22. Size: >2.3M samples. Licence as stated by the provider: Maps CC BY; samples UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "1.4 Rangeland and livestock",
+  "10–60 m",
+  "Agriculture",
+  "Human annotated",
+  "Landsat",
+  "Scene / single-label classification",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./global-pasture-watch-grassland-samples.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://www.nature.com/articles/s41597-024-04139-6",
+   "title": "Sci Data",
+   "type": "text/html"
+  }
+ ]
+}

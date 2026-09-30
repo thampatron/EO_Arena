@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "dfc2020",
+ "title": "DFC2020",
+ "description": "Segmentation. Inputs: S1 + S2. Geography: Global sites. Size: UNVERIFIED. Licence as stated by the provider: Contest terms.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.1 Land cover and land degradation",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "Copernicus-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./dfc2020.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://ieee-dataport.org/competitions/2020-ieee-grss-data-fusion-contest",
+   "title": "IEEE DataPort",
+   "type": "text/html"
+  }
+ ]
+}

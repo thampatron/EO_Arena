@@ -1,0 +1,118 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "ai4arctic-autoice",
+ "title": "AI4Arctic / AutoICE",
+ "description": "Sea-ice concentration, stage, floe size. Inputs: S1 + AMSR2 + ERA5. Geography: Canadian and Greenland Arctic; 2018–21. Size: 533 scenes. Licence as stated by the provider: CC BY 4.0 (Hugging Face rehost).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "5.3 Sea and lake ice",
+  "Cryosphere",
+  "Human annotated",
+  "Passive microwave",
+  "Regression",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Single date",
+  "Weather / reanalysis",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -141.0,
+     41.68,
+     -12.21,
+     83.65
+    ],
+    [
+     -141.0,
+     41.68,
+     -52.65,
+     83.23
+    ],
+    [
+     -73.3,
+     60.04,
+     -12.21,
+     83.65
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "MW",
+    "WX"
+   ],
+   "res": [
+    "M",
+    "C"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "CAN",
+    "GRL"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./ai4arctic-autoice.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://tc.copernicus.org/articles/18/3471/2024/",
+   "title": "TC 2024",
+   "type": "text/html"
+  }
+ ]
+}

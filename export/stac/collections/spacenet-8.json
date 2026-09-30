@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "spacenet-8",
+ "title": "SpaceNet 8",
+ "description": "Flooded roads and buildings. Inputs: Maxar 0.3–0.8 m. Geography: Germany (+ US site UNVERIFIED). Size: 1,289. Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "Change detection",
+  "Commercial VHR satellite",
+  "Disasters",
+  "Human annotated",
+  "Post-event damage and hazard extent",
+  "Semantic segmentation",
+  "Two or a few dates",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     5.99,
+     47.3,
+     15.02,
+     54.98
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "DEU"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./spacenet-8.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://docs.torchgeo.org/en/stable/api/datasets.html",
+   "title": "TorchGeo",
+   "type": "text/html"
+  }
+ ]
+}

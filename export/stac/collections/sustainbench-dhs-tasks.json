@@ -1,0 +1,101 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sustainbench-dhs-tasks",
+ "title": "SustainBench DHS tasks",
+ "description": "Asset wealth, health, education regression. Inputs: Landsat + nightlights + street-level. Geography: 48–56 countries. Size: ~87k–117k clusters per task. Licence as stated by the provider: SustainBench CC BY-SA 4.0; DHS terms UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "8.5 Socioeconomic conditions",
+  "Human systems",
+  "Landsat",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Single date",
+  "Street-level",
+  "VIIRS / nightlights"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS",
+    "VIIRS",
+    "STR"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "SustainBench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sustainbench-dhs-tasks.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://sustainlab-group.github.io/sustainbench/docs/datasets/dhs.html",
+   "title": "SustainBench",
+   "type": "text/html"
+  }
+ ]
+}

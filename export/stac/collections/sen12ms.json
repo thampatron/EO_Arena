@@ -1,0 +1,101 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sen12ms",
+ "title": "SEN12MS",
+ "description": "Classification, segmentation. Inputs: S1 + S2. Geography: Global. Size: 180,662 triplets. Licence as stated by the provider: CC BY 4.0 (per GEO-Bench-2 / TorchGeo).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "2.1 Land cover and land degradation",
+  "Model-derived",
+  "Scene / single-label classification",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "FoMo-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sen12ms.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/1906.07789",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

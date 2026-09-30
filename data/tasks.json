@@ -1,0 +1,1105 @@
+[
+ {
+  "id": "pangaea-pastis",
+  "dataset_id": "pastis-pastis-r",
+  "title": "Crop type segmentation (PASTIS-R, PANGAEA protocol)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B05",
+       "common_name": "rededge1",
+       "center_wavelength_um": 0.704,
+       "fwhm_um": 0.019,
+       "gsd_m": 20
+      },
+      {
+       "name": "B06",
+       "common_name": "rededge2",
+       "center_wavelength_um": 0.74,
+       "fwhm_um": 0.018,
+       "gsd_m": 20
+      },
+      {
+       "name": "B07",
+       "common_name": "rededge3",
+       "center_wavelength_um": 0.783,
+       "fwhm_um": 0.028,
+       "gsd_m": 20
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 20
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 20
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 20
+      }
+     ]
+    },
+    {
+     "sensor": "sentinel-1-iw",
+     "bands": [
+      {
+       "name": "VV",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "VH",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "VV-VH",
+       "note": "Derived SAR layer as named in PANGAEA config"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 128,
+   "time_steps": 6,
+   "multimodal": true
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 20,
+   "classes": [
+    "Background",
+    "Meadow",
+    "Soft Winter Wheat",
+    "Corn",
+    "Winter Barley",
+    "Winter Rapeseed",
+    "Spring Barley",
+    "Sunflower",
+    "Grapevine",
+    "Beet",
+    "Winter Triticale",
+    "Winter Durum Wheat",
+    "Fruits, Vegetables, Flowers",
+    "Potatoes",
+    "Leguminous Fodder",
+    "Soybeans",
+    "Orchard",
+    "Mixed Cereal",
+    "Sorghum",
+    "Void Label"
+   ],
+   "ignore_index": 19
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/pastis.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-croptypemapping",
+  "dataset_id": "croptypemapping-ghana-south-sudan",
+  "title": "Crop type segmentation, South Sudan (PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B05",
+       "common_name": "rededge1",
+       "center_wavelength_um": 0.704,
+       "fwhm_um": 0.019,
+       "gsd_m": 20
+      },
+      {
+       "name": "B06",
+       "common_name": "rededge2",
+       "center_wavelength_um": 0.74,
+       "fwhm_um": 0.018,
+       "gsd_m": 20
+      },
+      {
+       "name": "B07",
+       "common_name": "rededge3",
+       "center_wavelength_um": 0.783,
+       "fwhm_um": 0.028,
+       "gsd_m": 20
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 20
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 20
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 20
+      }
+     ]
+    },
+    {
+     "sensor": "sentinel-1-iw",
+     "bands": [
+      {
+       "name": "VV",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "VH",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 64,
+   "time_steps": 6,
+   "multimodal": true
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 4,
+   "classes": [
+    "Sorghum",
+    "Maize",
+    "Rice",
+    "Groundnut"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/croptypemapping.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-ai4smallfarms",
+  "dataset_id": "ai4smallfarms",
+  "title": "Field boundary segmentation (AI4SmallFarms, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      }
+     ]
+    }
+   ],
+   "image_size_px": 496,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 1,
+   "classes": [
+    "Background",
+    "Crop Field"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/ai4smallfarms.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-biomassters",
+  "dataset_id": "biomassters",
+  "title": "Above-ground biomass regression (BioMassters, PANGAEA)",
+  "task_type": "regression",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B05",
+       "common_name": "rededge1",
+       "center_wavelength_um": 0.704,
+       "fwhm_um": 0.019,
+       "gsd_m": 20
+      },
+      {
+       "name": "B06",
+       "common_name": "rededge2",
+       "center_wavelength_um": 0.74,
+       "fwhm_um": 0.018,
+       "gsd_m": 20
+      },
+      {
+       "name": "B07",
+       "common_name": "rededge3",
+       "center_wavelength_um": 0.783,
+       "fwhm_um": 0.028,
+       "gsd_m": 20
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 20
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 20
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 20
+      },
+      {
+       "name": "CLP",
+       "note": "Auxiliary layer (not a spectral band)"
+      }
+     ]
+    },
+    {
+     "sensor": "sentinel-1-iw",
+     "bands": [
+      {
+       "name": "VV",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "VH",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "DSC_VV",
+       "note": "Derived SAR layer as named in PANGAEA config"
+      },
+      {
+       "name": "DSC_VH",
+       "note": "Derived SAR layer as named in PANGAEA config"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 256,
+   "time_steps": 12,
+   "multimodal": true
+  },
+  "output": {
+   "type": "per-pixel continuous value",
+   "num_classes": 1,
+   "classes": [
+    "regression"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "MSE",
+   "model_selection_metric": "MSE",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/biomassters.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-hlsburnscars",
+  "dataset_id": "hls-burn-scars",
+  "title": "Burn scar segmentation (HLS Burn Scars, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "HLS v2 (S30/L30)",
+     "note": "Band names follow Sentinel-2 in the PANGAEA config; HLS harmonises Landsat 8/9 OLI and Sentinel-2 MSI to 30 m.",
+     "bands": [
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 30
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 30
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 30
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 30
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 30
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 30
+      }
+     ]
+    }
+   ],
+   "image_size_px": 512,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 2,
+   "classes": [
+    "Not burned",
+    "Burn scar"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/hlsburnscars.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-sen1floods11",
+  "dataset_id": "sen1floods11",
+  "title": "Flood segmentation (Sen1Floods11, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B01",
+       "common_name": "coastal",
+       "center_wavelength_um": 0.443,
+       "fwhm_um": 0.027,
+       "gsd_m": 60
+      },
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B05",
+       "common_name": "rededge1",
+       "center_wavelength_um": 0.704,
+       "fwhm_um": 0.019,
+       "gsd_m": 20
+      },
+      {
+       "name": "B06",
+       "common_name": "rededge2",
+       "center_wavelength_um": 0.74,
+       "fwhm_um": 0.018,
+       "gsd_m": 20
+      },
+      {
+       "name": "B07",
+       "common_name": "rededge3",
+       "center_wavelength_um": 0.783,
+       "fwhm_um": 0.028,
+       "gsd_m": 20
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 20
+      },
+      {
+       "name": "B09",
+       "common_name": "nir09",
+       "center_wavelength_um": 0.945,
+       "fwhm_um": 0.026,
+       "gsd_m": 60
+      },
+      {
+       "name": "B10",
+       "common_name": "cirrus",
+       "center_wavelength_um": 1.3735,
+       "fwhm_um": 0.075,
+       "gsd_m": 60
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 20
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 20
+      }
+     ]
+    },
+    {
+     "sensor": "sentinel-1-iw",
+     "bands": [
+      {
+       "name": "VV",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      },
+      {
+       "name": "VH",
+       "note": "Sentinel-1 C-band (5.405 GHz)"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 512,
+   "time_steps": 1,
+   "multimodal": true
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 2,
+   "classes": [
+    "Not Water",
+    "Water"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/sen1floods11.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-mados",
+  "dataset_id": "mados",
+  "title": "Marine debris and oil segmentation (MADOS, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "sentinel-2-msi",
+     "bands": [
+      {
+       "name": "B01",
+       "common_name": "coastal",
+       "center_wavelength_um": 0.443,
+       "fwhm_um": 0.027,
+       "gsd_m": 60
+      },
+      {
+       "name": "B02",
+       "common_name": "blue",
+       "center_wavelength_um": 0.49,
+       "fwhm_um": 0.098,
+       "gsd_m": 10
+      },
+      {
+       "name": "B03",
+       "common_name": "green",
+       "center_wavelength_um": 0.56,
+       "fwhm_um": 0.045,
+       "gsd_m": 10
+      },
+      {
+       "name": "B04",
+       "common_name": "red",
+       "center_wavelength_um": 0.665,
+       "fwhm_um": 0.038,
+       "gsd_m": 10
+      },
+      {
+       "name": "B05",
+       "common_name": "rededge1",
+       "center_wavelength_um": 0.704,
+       "fwhm_um": 0.019,
+       "gsd_m": 20
+      },
+      {
+       "name": "B06",
+       "common_name": "rededge2",
+       "center_wavelength_um": 0.74,
+       "fwhm_um": 0.018,
+       "gsd_m": 20
+      },
+      {
+       "name": "B07",
+       "common_name": "rededge3",
+       "center_wavelength_um": 0.783,
+       "fwhm_um": 0.028,
+       "gsd_m": 20
+      },
+      {
+       "name": "B08",
+       "common_name": "nir",
+       "center_wavelength_um": 0.842,
+       "fwhm_um": 0.145,
+       "gsd_m": 10
+      },
+      {
+       "name": "B8A",
+       "common_name": "nir08",
+       "center_wavelength_um": 0.865,
+       "fwhm_um": 0.033,
+       "gsd_m": 20
+      },
+      {
+       "name": "B11",
+       "common_name": "swir16",
+       "center_wavelength_um": 1.61,
+       "fwhm_um": 0.143,
+       "gsd_m": 20
+      },
+      {
+       "name": "B12",
+       "common_name": "swir22",
+       "center_wavelength_um": 2.19,
+       "fwhm_um": 0.242,
+       "gsd_m": 20
+      }
+     ]
+    }
+   ],
+   "image_size_px": 240,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 15,
+   "classes": [
+    "Marine Debris",
+    "Dense Sargassum",
+    "Sparse Floating Algae",
+    "Natural Organic Material",
+    "Ship",
+    "Oil Spill",
+    "Marine Water",
+    "Sediment-Laden Water",
+    "Foam",
+    "Turbid Water",
+    "Shallow Water",
+    "Waves & Wakes",
+    "Oil Platform",
+    "Jellyfish",
+    "Sea snot"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/mados.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-fivebillionpixels",
+  "dataset_id": "five-billion-pixels",
+  "title": "Land cover segmentation (Five Billion Pixels, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "Gaofen-2",
+     "note": "PANGAEA labels these bands with Sentinel-2 names for alignment; actual Gaofen-2 wavelengths differ and are UNVERIFIED here.",
+     "bands": [
+      {
+       "name": "B8"
+      },
+      {
+       "name": "B4"
+      },
+      {
+       "name": "B3"
+      },
+      {
+       "name": "B2"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 520,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 25,
+   "classes": [
+    "unlabeled",
+    "industrial area",
+    "paddy field",
+    "irrigated field",
+    "dry cropland",
+    "garden land",
+    "arbor forest",
+    "shrub forest",
+    "park",
+    "natural meadow",
+    "artificial meadow",
+    "river",
+    "urban residential",
+    "lake",
+    "pond",
+    "fish pond",
+    "snow",
+    "bareland",
+    "rural residential",
+    "stadium",
+    "square",
+    "road",
+    "overpass",
+    "railway station",
+    "airport"
+   ],
+   "ignore_index": 0
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/fivebillionpixels.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-dynamicen",
+  "dataset_id": "dynamicearthnet",
+  "title": "Monthly land cover segmentation (DynamicEarthNet, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "PlanetScope",
+     "note": "PANGAEA labels these bands with Sentinel-2 names for alignment; actual PlanetScope wavelengths differ and are UNVERIFIED here.",
+     "bands": [
+      {
+       "name": "B2"
+      },
+      {
+       "name": "B3"
+      },
+      {
+       "name": "B4"
+      },
+      {
+       "name": "B5"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 1024,
+   "time_steps": 6,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 6,
+   "classes": [
+    "impervious surface",
+    "agriculture",
+    "forest & other vegetation",
+    "wetlands",
+    "soil",
+    "water"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/dynamicen.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-spacenet7",
+  "dataset_id": "spacenet-7",
+  "title": "Building segmentation (SpaceNet 7, PANGAEA)",
+  "task_type": "semantic segmentation",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "PlanetScope",
+     "note": "PANGAEA labels these bands with Sentinel-2 names for alignment; actual PlanetScope wavelengths differ and are UNVERIFIED here.",
+     "bands": [
+      {
+       "name": "B4"
+      },
+      {
+       "name": "B3"
+      },
+      {
+       "name": "B2"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 256,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel class",
+   "num_classes": 1,
+   "classes": [
+    "Background",
+    "Building"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/spacenet7.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-spacenet7cd",
+  "dataset_id": "spacenet-7",
+  "title": "Building change detection (SpaceNet 7, PANGAEA)",
+  "task_type": "change detection",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "PlanetScope",
+     "note": "PANGAEA labels these bands with Sentinel-2 names for alignment; actual PlanetScope wavelengths differ and are UNVERIFIED here.",
+     "bands": [
+      {
+       "name": "B4"
+      },
+      {
+       "name": "B3"
+      },
+      {
+       "name": "B2"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 256,
+   "time_steps": 2,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel change class",
+   "num_classes": 1,
+   "classes": [
+    "No Change",
+    "Change"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/spacenet7cd.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ },
+ {
+  "id": "pangaea-xview2",
+  "dataset_id": "xbd-xview2",
+  "title": "Building damage change detection (xView2, PANGAEA)",
+  "task_type": "change detection",
+  "input": {
+   "sensors": [
+    {
+     "sensor": "Maxar WorldView",
+     "note": "PANGAEA labels these bands with Sentinel-2 names for alignment; actual Maxar WorldView wavelengths differ and are UNVERIFIED here.",
+     "bands": [
+      {
+       "name": "B4"
+      },
+      {
+       "name": "B3"
+      },
+      {
+       "name": "B2"
+      }
+     ]
+    }
+   ],
+   "image_size_px": 1024,
+   "time_steps": 1,
+   "multimodal": false
+  },
+  "output": {
+   "type": "per-pixel change class",
+   "num_classes": 5,
+   "classes": [
+    "No building",
+    "No damage",
+    "Minor damage",
+    "Major damage",
+    "Destroyed"
+   ],
+   "ignore_index": -1
+  },
+  "evaluation": {
+   "metric": "mIoU",
+   "model_selection_metric": "mIoU",
+   "split": "Dataset's official split as used by PANGAEA; spatial or random: UNVERIFIED",
+   "protocol": "PANGAEA fine-tuning of a task head, 80 epochs (configs/task); encoder freezing: UNVERIFIED"
+  },
+  "provenance": {
+   "benchmark": "PANGAEA",
+   "config_url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/xview2.yaml",
+   "task_config_url": "https://github.com/VMarsocci/pangaea-bench/tree/main/configs/task"
+  },
+  "status": "parameters from benchmark config"
+ }
+]

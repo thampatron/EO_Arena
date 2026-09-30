@@ -1,0 +1,119 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "magicbathynet",
+ "title": "MagicBathyNet",
+ "description": "Bathymetry + seabed classification. Inputs: S2, SPOT-6, aerial. Geography: 2 sites (Cyprus, Poland). Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "4.1 Coastal ecosystems",
+  "Aerial / drone",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Oceans and coasts",
+  "Regression",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     14.07,
+     34.57,
+     34.0,
+     54.85
+    ],
+    [
+     32.26,
+     34.57,
+     34.0,
+     35.17
+    ],
+    [
+     14.07,
+     49.03,
+     24.03,
+     54.85
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "VHR",
+    "AER"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "CYP",
+    "POL"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./magicbathynet.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/pagraf/MagicBathyNet",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

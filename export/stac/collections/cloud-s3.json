@@ -1,0 +1,97 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cloud-s3",
+ "title": "Cloud-S3",
+ "description": "Cloud segmentation. Inputs: Sentinel-3 OLCI. Geography: UNVERIFIED. Size: UNVERIFIED. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "6.3 Clouds and smoke",
+  "Atmosphere",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-3",
+  "Single date",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S3"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "unknown"
+  },
+  "eoarena:benchmark_suites": [
+   "Copernicus-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cloud-s3.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/zhu-xlab/Copernicus-FM",
+   "title": "Copernicus-FM",
+   "type": "text/html"
+  }
+ ]
+}

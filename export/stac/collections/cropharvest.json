@@ -1,0 +1,104 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "cropharvest",
+ "title": "CropHarvest",
+ "description": "Pixel time-series classification. Inputs: S1, S2, SRTM, ERA5. Geography: Multi-country (21 source datasets). Size: 95,186 points. Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Elevation",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Time series",
+  "Weather / reanalysis"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "DEM",
+    "WX"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "Galileo"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./cropharvest.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/nasaharvest/cropharvest",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

@@ -1,0 +1,104 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "dynamicearthnet",
+ "title": "DynamicEarthNet",
+ "description": "Monthly land cover change. Inputs: PlanetScope. Geography: 75 AOIs worldwide. Size: 75 AOIs. Licence as stated by the provider: CC BY 4.0 (per GEO-Bench-2).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.1 Land cover and land degradation",
+  "2–5 m",
+  "Change detection",
+  "Human annotated",
+  "PlanetScope",
+  "Semantic segmentation",
+  "Terrestrial ecosystems",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "TerraMind"
+  ],
+  "eoarena:tasks": [
+   "pangaea-dynamicen"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./dynamicearthnet.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2203.12560",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

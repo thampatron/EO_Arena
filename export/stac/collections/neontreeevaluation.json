@@ -1,0 +1,103 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "neontreeevaluation",
+ "title": "NeonTreeEvaluation",
+ "description": "Tree crown detection. Inputs: RGB, lidar, hyperspectral. Geography: 22 US NEON sites. Size: 30,975 crowns. Licence as stated by the provider: CC BY 4.0 (data); CC0 (repo).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.4 Vegetation structure and species",
+  "Aerial / drone",
+  "Human annotated",
+  "Hyperspectral",
+  "Object detection",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER",
+    "HYP"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "FoMo-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./neontreeevaluation.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/weecology/NeonTreeEvaluation",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ]
+}

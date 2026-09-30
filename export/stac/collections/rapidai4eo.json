@@ -1,0 +1,102 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "rapidai4eo",
+ "title": "RapidAI4EO",
+ "description": "Multi-label classification. Inputs: Planet + S2. Geography: Europe. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "2.2 Forest extent and change",
+  "2–5 m",
+  "Model-derived",
+  "Multi-label classification",
+  "PlanetScope",
+  "Sentinel-2",
+  "Terrestrial ecosystems",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "PL",
+    "S2"
+   ],
+   "res": [
+    "H",
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Europe",
+   "scope": "region"
+  },
+  "eoarena:benchmark_suites": [
+   "FoMo-Bench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./rapidai4eo.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2312.10114",
+   "title": "FoMo-Bench",
+   "type": "text/html"
+  }
+ ]
+}

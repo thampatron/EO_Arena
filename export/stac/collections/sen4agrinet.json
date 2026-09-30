@@ -1,0 +1,112 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sen4agrinet",
+ "title": "Sen4AgriNet",
+ "description": "Classification, segmentation. Inputs: S2. Geography: Catalonia, France; 2016–20. Size: 42.5M parcels (LPIS). Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ],
+    [
+     -9.39,
+     35.95,
+     3.04,
+     43.75
+    ],
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "ESP",
+    "FRA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sen4agrinet.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2204.00951",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

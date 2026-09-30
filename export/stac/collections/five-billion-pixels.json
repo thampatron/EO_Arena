@@ -1,0 +1,104 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "five-billion-pixels",
+ "title": "Five Billion Pixels",
+ "description": "Segmentation. Inputs: Gaofen-2. Geography: China. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "2.1 Land cover and land degradation",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Semantic segmentation",
+  "Single date",
+  "Terrestrial ecosystems",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     73.68,
+     18.2,
+     135.03,
+     53.46
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "CHN"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA",
+   "TerraMind"
+  ],
+  "eoarena:tasks": [
+   "pangaea-fivebillionpixels"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./five-billion-pixels.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2412.04204",
+   "title": "PANGAEA",
+   "type": "text/html"
+  }
+ ]
+}

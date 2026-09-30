@@ -1,0 +1,118 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "caffe",
+ "title": "CaFFe",
+ "description": "Calving-front segmentation. Inputs: ERS, Envisat, RADARSAT-1, ALOS, TSX/TDX, S1. Geography: 7 glaciers; 1995–2020. Size: 681 images. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "10–60 m",
+  "5.2 Glaciers and ice sheets",
+  "Cryosphere",
+  "Human annotated",
+  "L-band SAR",
+  "Other SAR (X/C archive, commercial)",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -12.21,
+     83.65
+    ],
+    [
+     -73.3,
+     60.04,
+     -12.21,
+     83.65
+    ],
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "SAR",
+    "LB",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "GRL",
+    "USA"
+   ],
+   "region": "Antarctica",
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench-2"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./caffe.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://essd.copernicus.org/articles/14/4287/2022/",
+   "title": "ESSD",
+   "type": "text/html"
+  }
+ ]
+}

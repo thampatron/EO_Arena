@@ -1,0 +1,105 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "bigearthnet-v1-v2-reben",
+ "title": "BigEarthNet v1 / v2 (reBEN)",
+ "description": "Multi-label classification. Inputs: S1 + S2. Geography: Europe. Size: 549,488 pairs (v2). Licence as stated by the provider: CDLA-Permissive-1.0.",
+ "license": "CDLA-Permissive-1.0",
+ "keywords": [
+  "10–60 m",
+  "2.1 Land cover and land degradation",
+  "Model-derived",
+  "Multi-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Single date",
+  "Terrestrial ecosystems"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "region": "Europe",
+   "scope": "region"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2",
+   "Copernicus-Bench",
+   "FoMo-Bench",
+   "Galileo"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./bigearthnet-v1-v2-reben.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2407.03653",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

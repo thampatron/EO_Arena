@@ -1,0 +1,101 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "wildfirespreadts",
+ "title": "WildfireSpreadTS",
+ "description": "Multi-day fire spread. Inputs: VIIRS + weather, fuel, topography. Geography: US, 2018–21. Size: 607 fires. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.6 Fire",
+  "Elevation",
+  "Forecast (future)",
+  "Forecasting",
+  "Model-derived",
+  "Terrestrial ecosystems",
+  "VIIRS / nightlights",
+  "Weather / reanalysis",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "FC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "F"
+   ],
+   "sen": [
+    "VIIRS",
+    "WX",
+    "DEM"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./wildfirespreadts.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/records/8006177",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

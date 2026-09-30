@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "mars-s2l",
+ "title": "MARS-S2L",
+ "description": "Plume detection, segmentation, flux. Inputs: S2 + Landsat. Geography: Global. Size: ~87k pairs; >5,600 plumes. Licence as stated by the provider: CC BY-NC-SA 4.0.",
+ "license": "CC-BY-NC-SA-4.0",
+ "keywords": [
+  "10–60 m",
+  "6.1 Greenhouse gas point sources",
+  "Atmosphere",
+  "Human annotated",
+  "Landsat",
+  "Regression",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Two or a few dates"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./mars-s2l.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://huggingface.co/datasets/UNEP-IMEO/MARS-S2L",
+   "title": "Hugging Face",
+   "type": "text/html"
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "landslide4sense",
+ "title": "Landslide4Sense",
+ "description": "Binary segmentation. Inputs: S2 + ALOS PALSAR DEM. Geography: 4 events (Iburi, Kodagu, Gorkha, Taiwan). Size: 4,844 patches. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "7.2 Landslides and mass movement",
+  "Elevation",
+  "Human annotated",
+  "Semantic segmentation",
+  "Sentinel-2",
+  "Single date",
+  "Solid Earth"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     68.18,
+     7.97,
+     145.54,
+     45.55
+    ],
+    [
+     129.41,
+     31.03,
+     145.54,
+     45.55
+    ],
+    [
+     68.18,
+     7.97,
+     97.4,
+     35.49
+    ],
+    [
+     80.09,
+     26.4,
+     88.17,
+     30.42
+    ],
+    [
+     120.11,
+     21.97,
+     121.95,
+     25.3
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "JPN",
+    "IND",
+    "NPL",
+    "TWN"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./landslide4sense.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2206.00515",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

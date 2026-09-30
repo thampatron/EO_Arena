@@ -1,0 +1,121 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sustainbench-crop-yield",
+ "title": "SustainBench crop yield",
+ "description": "County yield regression. Inputs: MODIS histograms. Geography: US, Argentina, Brazil; 2005–16. Size: 11,048 county-years (soybean). Licence as stated by the provider: CC BY-SA 4.0.",
+ "license": "CC-BY-SA-4.0",
+ "keywords": [
+  "1.2 Crop condition and yield",
+  "Agriculture",
+  "MODIS",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Time series",
+  "≥100 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     -55.25,
+     -34.73,
+     71.36
+    ],
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ],
+    [
+     -73.42,
+     -55.25,
+     -53.63,
+     -21.83
+    ],
+    [
+     -73.99,
+     -33.77,
+     -34.73,
+     5.24
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "MOD"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA",
+    "ARG",
+    "BRA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "SustainBench"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sustainbench-crop-yield.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_yield.html",
+   "title": "SustainBench",
+   "type": "text/html"
+  }
+ ]
+}

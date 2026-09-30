@@ -1,0 +1,105 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "sickle-paddy-classification",
+ "title": "SICKLE (paddy classification)",
+ "description": "Paddy / non-paddy classification. Inputs: S2, S1, Landsat-8. Geography: Cauvery Delta, India. Size: 388 plots. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Landsat",
+  "Measured (in situ, lidar, surveys)",
+  "Scene / single-label classification",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     68.18,
+     7.97,
+     97.4,
+     35.49
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "IND"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "AnySat"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./sickle-paddy-classification.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2312.00069",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

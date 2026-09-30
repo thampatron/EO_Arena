@@ -1,0 +1,99 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "starcop",
+ "title": "STARCOP",
+ "description": "Plume segmentation. Inputs: AVIRIS-NG + simulated WorldView-3. Geography: Permian Basin, 2019. Size: 1,878 plumes. Licence as stated by the provider: CC BY-NC 4.0.",
+ "license": "CC-BY-NC-4.0",
+ "keywords": [
+  "2–5 m",
+  "6.1 Greenhouse gas point sources",
+  "Atmosphere",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Hyperspectral",
+  "Semantic segmentation",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -171.79,
+     18.92,
+     -66.96,
+     71.36
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "HYP",
+    "VHR"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "USA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./starcop.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://zenodo.org/records/7863343",
+   "title": "Zenodo",
+   "type": "text/html"
+  }
+ ]
+}

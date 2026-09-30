@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>EOArena Taxonomy Explorer</title>
 <meta name="description" content="Filterable taxonomy of Earth observation tasks and datasets for benchmarking geospatial foundation models.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 .shell{display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;align-items:start}
@@ -39,7 +37,7 @@ details.facet > summary .hy{font-size:11px;font-weight:600;color:var(--fg-3);bor
   aside.filters{position:fixed;inset:0;z-index:45;max-height:none;background:var(--bg);padding:0 20px 40px;transform:translateY(102%);transition:transform .25s}
   aside.filters.on{transform:none}
   .sheet-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg);padding:16px 0 10px;z-index:1}
-  .sheet-head b{font-family:var(--serif);font-size:22px;font-weight:500}
+  .sheet-head b{font-family:var(--serif);font-size:22px;font-weight:600}
 }
 .mx-wrap{overflow-x:auto}
 table.mx{border-collapse:separate;border-spacing:3px;font-size:13px}
@@ -54,6 +52,7 @@ td.tot{color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
 .mx-legend i{width:22px;height:12px;border-radius:4px;display:inline-block}
 .tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;padding:6px 10px;border-radius:8px;z-index:50;max-width:300px}
 .empty{padding:48px 20px;text-align:center;color:var(--fg-3)}
+.md{display:inline-block;vertical-align:1px;font-size:11px;font-weight:600;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:999px;padding:0 7px;margin-left:6px}
 </style>
 </head>
 <body>
@@ -92,7 +91,7 @@ td.tot{color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
 
 <script src="assets/site.js"></script>
 <script>
-const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","covk"]],["Hypothesis",["ab"]]];
+const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","fp"]],["Hypothesis",["ab"]]];
 const OPEN=new Set(["dom","task","tmp","sen","tier"]);
 const MULTI_SHORT={task:1,sen:1};
 let V,F,DATA,DOMS;
@@ -103,7 +102,7 @@ const lab=(k,v)=>F[k].values[v]??v;
 (async function(){
   const [voc,raw,doms]=await loadJSON('vocabulary','datasets','domains');
   V=voc.facets; F=Object.fromEntries(V.map(f=>[f.key,f])); DOMS=doms;
-  DATA=raw.map(r=>({...r,f:{...r.facets,dom:[r.domain],sub:[r.subdomain],use:[r.benchmark_suites.length>=2?'u2':r.benchmark_suites.length===1?'u1':'u0']}}));
+  DATA=raw.map(r=>({...r,f:{...r.facets,dom:[r.domain],sub:[r.subdomain],fp:[r.footprint.scope],use:[r.benchmark_suites.length>=2?'u2':r.benchmark_suites.length===1?'u1':'u0']}}));
   V.forEach(f=>st.sel[f.key]=new Set());
   readURL();
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
@@ -133,7 +132,7 @@ function renderFacets(){
 function renderActive(){const p=[];V.forEach(f=>st.sel[f.key].forEach(v=>p.push(`<span class="pill">${esc(lab(f.key,v))}<button type="button" data-k="${f.key}" data-v="${esc(v)}" aria-label="Remove ${esc(lab(f.key,v))}">×</button></span>`)));
   $('active').innerHTML=p.length?p.join('')+'<button class="btn ghost" type="button" id="clear">Clear all</button>':'';}
 function short(d,k,max){const v=d.f[k].map(x=>lab(k,x));return v.length>max?v.slice(0,max).join(', ')+` +${v.length-max}`:v.join(', ');}
-function row(d,i){return `<button type="button" class="row" data-i="${i}"><span class="nm">${esc(d.name)}<small>${esc(d.subdomain)}</small></span><span class="c2">${short(d,'task',2)} · ${lab('tmp',d.f.tmp[0])}</span><span class="c3">${short(d,'sen',3)}</span><span>${tierChip(d.f.tier[0])}</span></button>`;}
+function row(d,i){return `<button type="button" class="row" data-i="${i}"><span class="nm">${esc(d.name)}${d.f.p[0]==='model'?' <span class="md">Model-derived labels</span>':''}<small>${esc(d.subdomain)}</small></span><span class="c2">${short(d,'task',2)} · ${lab('tmp',d.f.tmp[0])}</span><span class="c3">${short(d,'sen',3)}</span><span>${tierChip(d.f.tier[0])}</span></button>`;}
 function renderList(rows){const f=F[st.grp];const out=[];
   Object.keys(f.values).forEach(v=>{const r=rows.filter(d=>d.f[f.key].includes(v));if(r.length)out.push(`<div class="ghead"><b>${esc(lab(f.key,v))}</b><span>${r.length}</span></div><div class="list">${r.map(d=>row(d,DATA.indexOf(d))).join('')}</div>`)});
   $('out').innerHTML=out.join('')||'<p class="empty">No dataset matches. That combination is a gap in the audited data.</p>';}
@@ -154,9 +153,9 @@ function render(){renderFacets();renderActive();const rows=DATA.filter(d=>match(
 function openDrawer(i){const d=DATA[i];
   $('d-head').innerHTML=`<p class="small muted">${esc(d.subdomain)}</p><h2>${esc(d.name)}</h2>`;
   const tags=k=>d.f[k].map(v=>`<span class="tag${F[k].hypothesis?' hyp':''}">${esc(lab(k,v))}</span>`).join('');
-  const rowsF=[["task","Task"],["unit","Output unit"],["val","Output value"],["tmp","Time"],["sen","Sensors"],["res","Resolution"],["p","Labels"],["covk","Coverage"],["ab","Ability (hypothesis)"]];
+  const rowsF=[["task","Task"],["unit","Output unit"],["val","Output value"],["tmp","Time"],["sen","Sensors"],["res","Resolution"],["p","Labels"],["fp","Footprint"],["ab","Ability (hypothesis)"]];
   $('d-body').innerHTML=`<p>${flag(d.task_description)}. ${flag(d.sensors_description)}.</p>
-  <dl class="facet-grid"><dt>Geography</dt><dd>${flag(d.geography)}</dd><dt>Size</dt><dd>${flag(d.size)}</dd><dt>Licence</dt><dd>${tierChip(d.f.tier[0])} <span class="small muted">${flag(esc(d.licence))}</span></dd><dt>Benchmarks</dt><dd>${d.benchmark_suites.length?d.benchmark_suites.map(s=>`<span class="tag">${esc(s)}</span>`).join(''):'<span class="muted small">In no audited benchmark suite</span>'}</dd></dl>
+  <dl class="facet-grid"><dt>Geography</dt><dd>${flag(d.geography)}${d.footprint.countries?`<br><span class="small muted">Mapped to: ${d.footprint.countries.join(', ')}</span>`:''}${d.footprint.region?`<br><span class="small muted">Region: ${esc(d.footprint.region)}</span>`:''}</dd><dt>Size</dt><dd>${flag(d.size)}</dd><dt>Licence</dt><dd>${tierChip(d.f.tier[0])} <span class="small muted">${flag(esc(d.licence))}</span></dd><dt>Benchmarks</dt><dd>${d.benchmark_suites.length?d.benchmark_suites.map(s=>`<span class="tag">${esc(s)}</span>`).join(''):'<span class="muted small">In no audited benchmark suite</span>'}</dd></dl>
   <dl class="facet-grid">${rowsF.map(([k,l])=>`<dt>${l}</dt><dd>${tags(k)}</dd>`).join('')}</dl>
   <div><p class="small muted" style="margin-bottom:6px">Sources</p>${d.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join(' &nbsp; ')}</div>
   <p class="small"><a href="domains.html#${encodeURIComponent(d.subdomain.split(' ')[0])}">See this subdomain in the domain audit →</a></p>`;

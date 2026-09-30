@@ -1,0 +1,102 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "brick-kilns",
+ "title": "Brick kilns",
+ "description": "Binary classification. Inputs: S2. Geography: Bangladesh. Size: UNVERIFIED. Licence as stated by the provider: UNVERIFIED.",
+ "license": "other",
+ "keywords": [
+  "10–60 m",
+  "8.3 Energy and industry",
+  "Human annotated",
+  "Human systems",
+  "Scene / single-label classification",
+  "Sentinel-2",
+  "Single date"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     88.08,
+     20.67,
+     92.67,
+     26.45
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "BGD"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "GEO-Bench",
+   "SustainBench",
+   "Galileo"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./brick-kilns.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://sustainlab-group.github.io/sustainbench/docs/datasets/",
+   "title": "SustainBench",
+   "type": "text/html"
+  }
+ ]
+}

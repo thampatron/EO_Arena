@@ -1,0 +1,100 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "open-canopy",
+ "title": "Open-Canopy",
+ "description": "Canopy height + change regression. Inputs: SPOT 1.5 m. Geography: France, >87,000 km². Size: UNVERIFIED. Licence as stated by the provider: CC BY 4.0.",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "2.4 Vegetation structure and species",
+  "Change detection",
+  "Commercial VHR satellite",
+  "Measured (in situ, lidar, surveys)",
+  "Regression",
+  "Terrestrial ecosystems",
+  "Two or a few dates",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "RG",
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "PQ",
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "FRA"
+   ],
+   "scope": "countries"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./open-canopy.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://arxiv.org/abs/2407.09392",
+   "title": "arXiv",
+   "type": "text/html"
+  }
+ ]
+}

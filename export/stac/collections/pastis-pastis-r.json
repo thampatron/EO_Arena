@@ -1,0 +1,178 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "pastis-pastis-r",
+ "title": "PASTIS / PASTIS-R",
+ "description": "Semantic + panoptic segmentation, time series. Inputs: S2 (+S1). Geography: France. Size: 2,433 patches; 124k parcels; 18 classes. Licence as stated by the provider: CC BY 4.0 (data); MIT (code).",
+ "license": "CC-BY-4.0",
+ "keywords": [
+  "1.1 Cropland and crop type",
+  "10–60 m",
+  "Agriculture",
+  "Instance / panoptic / polygon extraction",
+  "Measured (in situ, lidar, surveys)",
+  "Semantic segmentation",
+  "Sentinel-1",
+  "Sentinel-2",
+  "Time series"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -54.52,
+     2.05,
+     9.56,
+     51.15
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "SS",
+    "IS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "eoarena:footprint": {
+   "countries": [
+    "FRA"
+   ],
+   "scope": "countries"
+  },
+  "eoarena:benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "Galileo",
+   "AnySat",
+   "OmniSat",
+   "TerraMind"
+  ],
+  "eo:bands": [
+   {
+    "name": "B02",
+    "common_name": "blue",
+    "center_wavelength": 0.49,
+    "full_width_half_max": 0.098
+   },
+   {
+    "name": "B03",
+    "common_name": "green",
+    "center_wavelength": 0.56,
+    "full_width_half_max": 0.045
+   },
+   {
+    "name": "B04",
+    "common_name": "red",
+    "center_wavelength": 0.665,
+    "full_width_half_max": 0.038
+   },
+   {
+    "name": "B05",
+    "common_name": "rededge1",
+    "center_wavelength": 0.704,
+    "full_width_half_max": 0.019
+   },
+   {
+    "name": "B06",
+    "common_name": "rededge2",
+    "center_wavelength": 0.74,
+    "full_width_half_max": 0.018
+   },
+   {
+    "name": "B07",
+    "common_name": "rededge3",
+    "center_wavelength": 0.783,
+    "full_width_half_max": 0.028
+   },
+   {
+    "name": "B08",
+    "common_name": "nir",
+    "center_wavelength": 0.842,
+    "full_width_half_max": 0.145
+   },
+   {
+    "name": "B8A",
+    "common_name": "nir08",
+    "center_wavelength": 0.865,
+    "full_width_half_max": 0.033
+   },
+   {
+    "name": "B11",
+    "common_name": "swir16",
+    "center_wavelength": 1.61,
+    "full_width_half_max": 0.143
+   },
+   {
+    "name": "B12",
+    "common_name": "swir22",
+    "center_wavelength": 2.19,
+    "full_width_half_max": 0.242
+   }
+  ],
+  "eoarena:tasks": [
+   "pangaea-pastis"
+  ]
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./pastis-pastis-r.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://github.com/VSainteuf/pastis-benchmark",
+   "title": "GitHub",
+   "type": "text/html"
+  }
+ ],
+ "stac_extensions": [
+  "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+ ]
+}

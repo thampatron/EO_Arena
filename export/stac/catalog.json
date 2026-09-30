@@ -1,0 +1,732 @@
+{
+ "type": "Catalog",
+ "stac_version": "1.0.0",
+ "id": "eoarena-taxonomy",
+ "title": "EOArena task taxonomy",
+ "description": "Metadata-only catalogue of labelled Earth observation datasets, tagged with the EOArena taxonomy facets.",
+ "links": [
+  {
+   "rel": "root",
+   "href": "./catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "about",
+   "href": "https://thampatron.github.io/EO_Arena/",
+   "type": "text/html"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/pastis-pastis-r.json",
+   "type": "application/json",
+   "title": "PASTIS / PASTIS-R"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/fields-of-the-world.json",
+   "type": "application/json",
+   "title": "Fields of The World"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/south-africa-crop-type.json",
+   "type": "application/json",
+   "title": "South Africa crop type"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/croptypemapping-ghana-south-sudan.json",
+   "type": "application/json",
+   "title": "CropTypeMapping Ghana / South Sudan"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cashew-plantation.json",
+   "type": "application/json",
+   "title": "Cashew plantation"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/breizhcrops.json",
+   "type": "application/json",
+   "title": "BreizhCrops"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sickle-paddy-classification.json",
+   "type": "application/json",
+   "title": "SICKLE (paddy classification)"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/timesen2crop.json",
+   "type": "application/json",
+   "title": "TimeSen2Crop"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cropharvest.json",
+   "type": "application/json",
+   "title": "CropHarvest"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/ai4smallfarms.json",
+   "type": "application/json",
+   "title": "AI4SmallFarms"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/kenya-crop-type.json",
+   "type": "application/json",
+   "title": "Kenya crop type"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/ai4boundaries.json",
+   "type": "application/json",
+   "title": "AI4Boundaries"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/eurocropsml.json",
+   "type": "application/json",
+   "title": "EuroCropsML"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sen4agrinet.json",
+   "type": "application/json",
+   "title": "Sen4AgriNet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/agrifieldnet-india.json",
+   "type": "application/json",
+   "title": "AgriFieldNet India"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/zuericrop.json",
+   "type": "application/json",
+   "title": "ZueriCrop"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sustainbench-crop-yield.json",
+   "type": "application/json",
+   "title": "SustainBench crop yield"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sickle.json",
+   "type": "application/json",
+   "title": "SICKLE"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cy-bench.json",
+   "type": "application/json",
+   "title": "CY-Bench"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cropnet.json",
+   "type": "application/json",
+   "title": "CropNet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/nz-cattle.json",
+   "type": "application/json",
+   "title": "NZ cattle"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/global-pasture-watch-grassland-samples.json",
+   "type": "application/json",
+   "title": "Global Pasture Watch grassland samples"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/bigearthnet-v1-v2-reben.json",
+   "type": "application/json",
+   "title": "BigEarthNet v1 / v2 (reBEN)"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/flair-flair-2.json",
+   "type": "application/json",
+   "title": "FLAIR / FLAIR 2"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/eurosat.json",
+   "type": "application/json",
+   "title": "EuroSAT"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/dynamicearthnet.json",
+   "type": "application/json",
+   "title": "DynamicEarthNet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/lc100-classification-segmentation.json",
+   "type": "application/json",
+   "title": "LC100 classification / segmentation"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/dfc2020.json",
+   "type": "application/json",
+   "title": "DFC2020"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sen12ms.json",
+   "type": "application/json",
+   "title": "SEN12MS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/chesapeake-land-cover.json",
+   "type": "application/json",
+   "title": "Chesapeake land cover"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/five-billion-pixels.json",
+   "type": "application/json",
+   "title": "Five Billion Pixels"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/dynamic-world-training-set.json",
+   "type": "application/json",
+   "title": "Dynamic World training set"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/multisenge.json",
+   "type": "application/json",
+   "title": "MultiSenGE"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/openearthmap.json",
+   "type": "application/json",
+   "title": "OpenEarthMap"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/loveda.json",
+   "type": "application/json",
+   "title": "LoveDA"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/forestnet.json",
+   "type": "application/json",
+   "title": "ForestNet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/bradd-s1ts.json",
+   "type": "application/json",
+   "title": "BraDD-S1TS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/rapidai4eo.json",
+   "type": "application/json",
+   "title": "RapidAI4EO"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/biomassters.json",
+   "type": "application/json",
+   "title": "BioMassters"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/biomass-s3.json",
+   "type": "application/json",
+   "title": "Biomass-S3"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/reforestree.json",
+   "type": "application/json",
+   "title": "ReforesTree"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/agbd.json",
+   "type": "application/json",
+   "title": "AGBD"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/treesatai.json",
+   "type": "application/json",
+   "title": "TreeSatAI"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/neontreeevaluation.json",
+   "type": "application/json",
+   "title": "NeonTreeEvaluation"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/tallos.json",
+   "type": "application/json",
+   "title": "TalloS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/planted.json",
+   "type": "application/json",
+   "title": "PLANTED"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cactus-woody-spekboom-waititu.json",
+   "type": "application/json",
+   "title": "Cactus, Woody, Spekboom, Waititu"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/everwatch.json",
+   "type": "application/json",
+   "title": "EverWatch"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/open-canopy.json",
+   "type": "application/json",
+   "title": "Open-Canopy"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/pureforest.json",
+   "type": "application/json",
+   "title": "PureForest"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/phenocam-v2-0.json",
+   "type": "application/json",
+   "title": "PhenoCam v2.0"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/fluxnet2015.json",
+   "type": "application/json",
+   "title": "FLUXNET2015"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/hls-burn-scars.json",
+   "type": "application/json",
+   "title": "HLS Burn Scars"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sen2fire.json",
+   "type": "application/json",
+   "title": "Sen2Fire"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/wildfirespreadts.json",
+   "type": "application/json",
+   "title": "WildfireSpreadTS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/next-day-wildfire-spread.json",
+   "type": "application/json",
+   "title": "Next Day Wildfire Spread"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cabuar.json",
+   "type": "application/json",
+   "title": "CaBuAr"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sen1floods11.json",
+   "type": "application/json",
+   "title": "Sen1Floods11"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/kuro-siwo-flood-s1.json",
+   "type": "application/json",
+   "title": "Kuro Siwo (Flood-S1)"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/s1s2-water.json",
+   "type": "application/json",
+   "title": "S1S2-Water"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/mmflood.json",
+   "type": "application/json",
+   "title": "MMFlood"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/worldfloods-v2.json",
+   "type": "application/json",
+   "title": "WorldFloods v2"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/swed.json",
+   "type": "application/json",
+   "title": "SWED"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/aquasat.json",
+   "type": "application/json",
+   "title": "AquaSat"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/gloria.json",
+   "type": "application/json",
+   "title": "GLORIA"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/global-mangrove-watch-v3-v4.json",
+   "type": "application/json",
+   "title": "Global Mangrove Watch v3/v4"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/allen-coral-atlas-maps.json",
+   "type": "application/json",
+   "title": "Allen Coral Atlas maps"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/magicbathynet.json",
+   "type": "application/json",
+   "title": "MagicBathyNet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sds-benchmark.json",
+   "type": "application/json",
+   "title": "SDS_Benchmark"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/mados.json",
+   "type": "application/json",
+   "title": "MADOS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/marida.json",
+   "type": "application/json",
+   "title": "MARIDA"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/nasa-marine-debris.json",
+   "type": "application/json",
+   "title": "NASA Marine Debris"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/krestenitis-oil-spill.json",
+   "type": "application/json",
+   "title": "Krestenitis oil spill"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/caffe.json",
+   "type": "application/json",
+   "title": "CaFFe"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/hkh-glacier-mapping.json",
+   "type": "application/json",
+   "title": "HKH Glacier Mapping"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/ai4arctic-autoice.json",
+   "type": "application/json",
+   "title": "AI4Arctic / AutoICE"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/qtec-thaw-slump-inventory.json",
+   "type": "application/json",
+   "title": "QTEC thaw-slump inventory"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/emit-l2b-ch-plumes.json",
+   "type": "application/json",
+   "title": "EMIT L2B CH₄ plumes"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/ch4net.json",
+   "type": "application/json",
+   "title": "CH4Net"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/mars-s2l.json",
+   "type": "application/json",
+   "title": "MARS-S2L"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/methanes2cm.json",
+   "type": "application/json",
+   "title": "MethaneS2CM"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/starcop.json",
+   "type": "application/json",
+   "title": "STARCOP"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/aq-no-s5p-aq-o-s5p.json",
+   "type": "application/json",
+   "title": "AQ-NO₂-S5P, AQ-O₃-S5P"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cloudsen12-cloud-s2.json",
+   "type": "application/json",
+   "title": "CloudSEN12 (Cloud-S2)"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cloud-s3.json",
+   "type": "application/json",
+   "title": "Cloud-S3"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/s2-cloud-mask-catalogue.json",
+   "type": "application/json",
+   "title": "S2 Cloud Mask Catalogue"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sparcs.json",
+   "type": "application/json",
+   "title": "SPARCS"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/38-cloud.json",
+   "type": "application/json",
+   "title": "38-Cloud"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/hephaestus.json",
+   "type": "application/json",
+   "title": "Hephaestus"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/quakeset.json",
+   "type": "application/json",
+   "title": "QuakeSet"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/cas-landslide.json",
+   "type": "application/json",
+   "title": "CAS Landslide"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/landslide4sense.json",
+   "type": "application/json",
+   "title": "Landslide4Sense"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/so2sat-lcz42-lcz-s2.json",
+   "type": "application/json",
+   "title": "So2Sat LCZ42 (LCZ-S2)"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/spacenet-7.json",
+   "type": "application/json",
+   "title": "SpaceNet 7"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/spacenet-2.json",
+   "type": "application/json",
+   "title": "SpaceNet 2"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/massachusetts-buildings.json",
+   "type": "application/json",
+   "title": "Massachusetts Buildings"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/globalbuildingmap.json",
+   "type": "application/json",
+   "title": "GlobalBuildingMap"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/open-cities-ai.json",
+   "type": "application/json",
+   "title": "Open Cities AI"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/inria-aerial.json",
+   "type": "application/json",
+   "title": "Inria Aerial"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/massachusetts-roads.json",
+   "type": "application/json",
+   "title": "Massachusetts Roads"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/phileo-roads.json",
+   "type": "application/json",
+   "title": "PhilEO roads"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/spacenet-3-5.json",
+   "type": "application/json",
+   "title": "SpaceNet 3 / 5"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/deepglobe-roads.json",
+   "type": "application/json",
+   "title": "DeepGlobe Roads"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/brick-kilns.json",
+   "type": "application/json",
+   "title": "Brick kilns"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/substations.json",
+   "type": "application/json",
+   "title": "Substations"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/pv4ger.json",
+   "type": "application/json",
+   "title": "PV4GER"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/kruitwagen-et-al-2021-solar-inventory.json",
+   "type": "application/json",
+   "title": "Kruitwagen et al. 2021 solar inventory"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/maus-et-al-2022-mining-polygons.json",
+   "type": "application/json",
+   "title": "Maus et al. 2022 mining polygons"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/fmow.json",
+   "type": "application/json",
+   "title": "fMoW"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/airbus-ships.json",
+   "type": "application/json",
+   "title": "Airbus Ships"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/xview3-sar.json",
+   "type": "application/json",
+   "title": "xView3-SAR"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/xview.json",
+   "type": "application/json",
+   "title": "xView"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/dota-v2-isaid.json",
+   "type": "application/json",
+   "title": "DOTA v2 / iSAID"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/sustainbench-dhs-tasks.json",
+   "type": "application/json",
+   "title": "SustainBench DHS tasks"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/yeh-et-al-2020.json",
+   "type": "application/json",
+   "title": "Yeh et al. 2020"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/xbd-xview2.json",
+   "type": "application/json",
+   "title": "xBD / xView2"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/bright.json",
+   "type": "application/json",
+   "title": "BRIGHT"
+  },
+  {
+   "rel": "child",
+   "href": "./collections/spacenet-8.json",
+   "type": "application/json",
+   "title": "SpaceNet 8"
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "type": "Collection",
+ "stac_version": "1.0.0",
+ "id": "dota-v2-isaid",
+ "title": "DOTA v2 / iSAID",
+ "description": "Oriented detection / instance segmentation. Inputs: Google Earth, GF-2, aerial. Geography: Global. Size: 5,229 / 2,806 images. Licence as stated by the provider: Academic use only.",
+ "license": "other",
+ "keywords": [
+  "8.4 Objects and activity",
+  "Aerial / drone",
+  "Commercial VHR satellite",
+  "Human annotated",
+  "Human systems",
+  "Instance / panoptic / polygon extraction",
+  "Object detection",
+  "Single date",
+  "≤2 m"
+ ],
+ "extent": {
+  "spatial": {
+   "bbox": [
+    [
+     -180,
+     -90,
+     180,
+     90
+    ]
+   ]
+  },
+  "temporal": {
+   "interval": [
+    [
+     null,
+     null
+    ]
+   ]
+  }
+ },
+ "summaries": {
+  "eoarena:facets": {
+   "task": [
+    "OD",
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR",
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "eoarena:footprint": {
+   "scope": "global"
+  }
+ },
+ "links": [
+  {
+   "rel": "root",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "parent",
+   "href": "../catalog.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "self",
+   "href": "./dota-v2-isaid.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "describedby",
+   "href": "https://captain-whu.github.io/DOTA/dataset.html",
+   "title": "DOTA",
+   "type": "text/html"
+  }
+ ]
+}
