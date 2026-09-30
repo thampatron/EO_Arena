@@ -1,0 +1,6195 @@
+[
+ {
+  "id": "pastis-pastis-r",
+  "name": "PASTIS / PASTIS-R",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Semantic + panoptic segmentation, time series",
+  "sensors_description": "S2 (+S1)",
+  "geography": "France",
+  "size": "2,433 patches; 124k parcels; 18 classes",
+  "facets": {
+   "task": [
+    "SS",
+    "IS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0 (data); MIT (code)",
+  "benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "Galileo",
+   "AnySat",
+   "OmniSat",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/VSainteuf/pastis-benchmark"
+   }
+  ]
+ },
+ {
+  "id": "fields-of-the-world",
+  "name": "Fields of The World",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Field boundary instance segmentation",
+  "sensors_description": "S2, two dates",
+  "geography": "24 countries, 4 continents",
+  "size": "70,484 chips; 1.63M polygons",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Mixed by country: CC BY, CC0, Etalab, DL-DE, but also CC BY-NC(-SA) and GPL",
+  "benchmark_suites": [
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2409.16252"
+   }
+  ]
+ },
+ {
+  "id": "south-africa-crop-type",
+  "name": "South Africa crop type",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Segmentation",
+  "sensors_description": "S2 (+S1)",
+  "geography": "South Africa",
+  "size": "10 classes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "Source Coop",
+    "url": "https://source.coop/radiantearth"
+   }
+  ]
+ },
+ {
+  "id": "croptypemapping-ghana-south-sudan",
+  "name": "CropTypeMapping Ghana / South Sudan",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Segmentation",
+  "sensors_description": "S1, S2, PlanetScope",
+  "geography": "Ghana, South Sudan; 2016–17",
+  "size": "4 crops per country",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "PL"
+   ],
+   "res": [
+    "M",
+    "H"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "PANGAEA",
+   "SustainBench",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "SustainBench",
+    "url": "https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_type_mapping_ghana-ss.html"
+   }
+  ]
+ },
+ {
+  "id": "cashew-plantation",
+  "name": "Cashew plantation",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Segmentation (perennial crop)",
+  "sensors_description": "S2",
+  "geography": "Benin",
+  "size": "7 classes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench",
+    "url": "https://arxiv.org/abs/2306.03831"
+   }
+  ]
+ },
+ {
+  "id": "breizhcrops",
+  "name": "BreizhCrops",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Pixel time-series classification",
+  "sensors_description": "S2",
+  "geography": "Brittany, France",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "Galileo",
+    "url": "https://arxiv.org/abs/2502.09356"
+   }
+  ]
+ },
+ {
+  "id": "sickle-paddy-classification",
+  "name": "SICKLE (paddy classification)",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Paddy / non-paddy classification",
+  "sensors_description": "S2, S1, Landsat-8",
+  "geography": "Cauvery Delta, India",
+  "size": "388 plots",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "AnySat"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2312.00069"
+   }
+  ]
+ },
+ {
+  "id": "timesen2crop",
+  "name": "TimeSen2Crop",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Crop type classification",
+  "sensors_description": "S2 time series",
+  "geography": "Slovenia",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "AnySat"
+  ],
+  "sources": [
+   {
+    "label": "AnySat",
+    "url": "https://github.com/gastruc/AnySat"
+   }
+  ]
+ },
+ {
+  "id": "cropharvest",
+  "name": "CropHarvest",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Pixel time-series classification",
+  "sensors_description": "S1, S2, SRTM, ERA5",
+  "geography": "Multi-country (21 source datasets)",
+  "size": "95,186 points",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "DEM",
+    "WX"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/nasaharvest/cropharvest"
+   }
+  ]
+ },
+ {
+  "id": "ai4smallfarms",
+  "name": "AI4SmallFarms",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Field boundary segmentation",
+  "sensors_description": "S2",
+  "geography": "Cambodia, Vietnam",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "PANGAEA",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "PANGAEA guide",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/DATASET_GUIDE.md"
+   }
+  ]
+ },
+ {
+  "id": "kenya-crop-type",
+  "name": "Kenya crop type",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Classification",
+  "sensors_description": "S2",
+  "geography": "3 Kenyan counties, 2017",
+  "size": "5,693 fields; 9 classes",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY-SA 4.0 (per TorchGeo)",
+  "benchmark_suites": [
+   "SustainBench"
+  ],
+  "sources": [
+   {
+    "label": "SustainBench",
+    "url": "https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_type_mapping_kenya.html"
+   }
+  ]
+ },
+ {
+  "id": "ai4boundaries",
+  "name": "AI4Boundaries",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Field boundary segmentation",
+  "sensors_description": "S2 monthly + 1 m orthophotos",
+  "geography": "7 EU countries/regions, 2019",
+  "size": "7,831 samples; 2.5M parcels",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "AER"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "ESSD",
+    "url": "https://essd.copernicus.org/articles/15/317/2023/"
+   }
+  ]
+ },
+ {
+  "id": "eurocropsml",
+  "name": "EuroCropsML",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Few-shot parcel classification",
+  "sensors_description": "S2",
+  "geography": "Estonia, Latvia, Portugal; 2021",
+  "size": "706,683 parcels; 176 classes",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "MIT",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://doi.org/10.1038/s41597-025-04952-7"
+   }
+  ]
+ },
+ {
+  "id": "sen4agrinet",
+  "name": "Sen4AgriNet",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Classification, segmentation",
+  "sensors_description": "S2",
+  "geography": "Catalonia, France; 2016–20",
+  "size": "42.5M parcels (LPIS)",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2204.00951"
+   }
+  ]
+ },
+ {
+  "id": "agrifieldnet-india",
+  "name": "AgriFieldNet India",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Segmentation",
+  "sensors_description": "S2",
+  "geography": "4 Indian states",
+  "size": "7,081 samples",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Source Coop",
+    "url": "https://source.coop/radiantearth"
+   }
+  ]
+ },
+ {
+  "id": "zuericrop",
+  "name": "ZueriCrop",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.1 Cropland and crop type",
+  "task_description": "Segmentation",
+  "sensors_description": "S2",
+  "geography": "Zurich/Thurgau",
+  "size": "28k patches; 48 classes",
+  "facets": {
+   "task": [
+    "SS",
+    "IS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2102.08820"
+   }
+  ]
+ },
+ {
+  "id": "sustainbench-crop-yield",
+  "name": "SustainBench crop yield",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.2 Crop condition and yield",
+  "task_description": "County yield regression",
+  "sensors_description": "MODIS histograms",
+  "geography": "US, Argentina, Brazil; 2005–16",
+  "size": "11,048 county-years (soybean)",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "MOD"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [
+   "SustainBench"
+  ],
+  "sources": [
+   {
+    "label": "SustainBench",
+    "url": "https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_yield.html"
+   }
+  ]
+ },
+ {
+  "id": "sickle",
+  "name": "SICKLE",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.2 Crop condition and yield",
+  "task_description": "Segmentation + yield + phenology dates",
+  "sensors_description": "S2, S1, Landsat-8",
+  "geography": "Cauvery Delta, India; 2018–21",
+  "size": "388 plots; 351 yield samples",
+  "facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "S1",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2312.00069"
+   }
+  ]
+ },
+ {
+  "id": "cy-bench",
+  "name": "CY-Bench",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.2 Crop condition and yield",
+  "task_description": "Subnational yield forecasting",
+  "sensors_description": "MODIS NDVI, JRC FAPAR, weather",
+  "geography": "Multi-continent",
+  "size": "Maize, wheat",
+  "facets": {
+   "task": [
+    "FC",
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "MOD",
+    "WX"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/WUR-AI/AgML-CY-Bench"
+   }
+  ]
+ },
+ {
+  "id": "cropnet",
+  "name": "CropNet",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.2 Crop condition and yield",
+  "task_description": "County yield regression",
+  "sensors_description": "S2 + HRRR weather",
+  "geography": "~2,200 US counties; 2017–22",
+  "size": "~2.4 TB",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "WX"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2406.06081"
+   }
+  ]
+ },
+ {
+  "id": "nz-cattle",
+  "name": "NZ cattle",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.4 Rangeland and livestock",
+  "task_description": "Detection / segmentation",
+  "sensors_description": "RGB aerial 0.1 m",
+  "geography": "New Zealand",
+  "size": "2 classes",
+  "facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0 (per GEO-Bench-2)",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench",
+    "url": "https://arxiv.org/abs/2306.03831"
+   }
+  ]
+ },
+ {
+  "id": "global-pasture-watch-grassland-samples",
+  "name": "Global Pasture Watch grassland samples",
+  "domain": "1 · Agriculture",
+  "subdomain": "1.4 Rangeland and livestock",
+  "task_description": "Grassland classification",
+  "sensors_description": "Landsat (labels from VHR interpretation)",
+  "geography": "Global to 60.5°N; 2000–22",
+  "size": "&gt;2.3M samples",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "Maps CC BY; samples UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-024-04139-6"
+   }
+  ]
+ },
+ {
+  "id": "bigearthnet-v1-v2-reben",
+  "name": "BigEarthNet v1 / v2 (reBEN)",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Multi-label classification",
+  "sensors_description": "S1 + S2",
+  "geography": "Europe",
+  "size": "549,488 pairs (v2)",
+  "facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "CDLA-Permissive-1.0",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2",
+   "Copernicus-Bench",
+   "FoMo-Bench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2407.03653"
+   }
+  ]
+ },
+ {
+  "id": "flair-flair-2",
+  "name": "FLAIR / FLAIR 2",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "Aerial RGBN + DEM (+S2)",
+  "geography": "France",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "AER",
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "V",
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH",
+    "FU"
+   ]
+  },
+  "licence": "Etalab Open Licence 2.0 (FLAIR 2, per GEO-Bench-2)",
+  "benchmark_suites": [
+   "GEO-Bench-2",
+   "FoMo-Bench",
+   "AnySat",
+   "OmniSat"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench-2",
+    "url": "https://arxiv.org/abs/2511.15658"
+   }
+  ]
+ },
+ {
+  "id": "eurosat",
+  "name": "EuroSAT",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Scene classification",
+  "sensors_description": "S2 (and S1 version)",
+  "geography": "Europe",
+  "size": "27,000",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "MIT",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "Copernicus-Bench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/phelber/EuroSAT"
+   }
+  ]
+ },
+ {
+  "id": "dynamicearthnet",
+  "name": "DynamicEarthNet",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Monthly land cover change",
+  "sensors_description": "PlanetScope",
+  "geography": "75 AOIs worldwide",
+  "size": "75 AOIs",
+  "facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0 (per GEO-Bench-2)",
+  "benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2203.12560"
+   }
+  ]
+ },
+ {
+  "id": "lc100-classification-segmentation",
+  "name": "LC100 classification / segmentation",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Classification, segmentation",
+  "sensors_description": "Sentinel-3 OLCI",
+  "geography": "Global",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S3"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "Copernicus-FM",
+    "url": "https://github.com/zhu-xlab/Copernicus-FM"
+   }
+  ]
+ },
+ {
+  "id": "dfc2020",
+  "name": "DFC2020",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "S1 + S2",
+  "geography": "Global sites",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "Contest terms",
+  "benchmark_suites": [
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "IEEE DataPort",
+    "url": "https://ieee-dataport.org/competitions/2020-ieee-grss-data-fusion-contest"
+   }
+  ]
+ },
+ {
+  "id": "sen12ms",
+  "name": "SEN12MS",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Classification, segmentation",
+  "sensors_description": "S1 + S2",
+  "geography": "Global",
+  "size": "180,662 triplets",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0 (per GEO-Bench-2 / TorchGeo)",
+  "benchmark_suites": [
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/1906.07789"
+   }
+  ]
+ },
+ {
+  "id": "chesapeake-land-cover",
+  "name": "Chesapeake land cover",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "1 m RGBN (NAIP)",
+  "geography": "Chesapeake Bay, US",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC0 (per TorchGeo)",
+  "benchmark_suites": [
+   "GEO-Bench"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench",
+    "url": "https://arxiv.org/abs/2306.03831"
+   }
+  ]
+ },
+ {
+  "id": "five-billion-pixels",
+  "name": "Five Billion Pixels",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "Gaofen-2",
+  "geography": "China",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "PANGAEA",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "PANGAEA",
+    "url": "https://arxiv.org/abs/2412.04204"
+   }
+  ]
+ },
+ {
+  "id": "dynamic-world-training-set",
+  "name": "Dynamic World training set",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation, 9 classes",
+  "sensors_description": "S2",
+  "geography": "Global, 2019",
+  "size": "~24k tiles + 409 validation",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "PANGAEA data",
+    "url": "https://doi.pangaea.de/10.1594/PANGAEA.933475"
+   }
+  ]
+ },
+ {
+  "id": "multisenge",
+  "name": "MultiSenGE",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "S1 + S2 time series",
+  "geography": "Grand-Est, France",
+  "size": "8,157 patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/6375466"
+   }
+  ]
+ },
+ {
+  "id": "openearthmap",
+  "name": "OpenEarthMap",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation, 8 classes",
+  "sensors_description": "0.25–0.5 m RGB",
+  "geography": "97 regions, 44 countries",
+  "size": "5,000 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR",
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Mostly CC BY-NC-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/7223446"
+   }
+  ]
+ },
+ {
+  "id": "loveda",
+  "name": "LoveDA",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.1 Land cover and land degradation",
+  "task_description": "Segmentation",
+  "sensors_description": "0.3 m RGB",
+  "geography": "3 Chinese cities",
+  "size": "5,987 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-NC-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/5706578"
+   }
+  ]
+ },
+ {
+  "id": "forestnet",
+  "name": "ForestNet",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.2 Forest extent and change",
+  "task_description": "Deforestation driver classification",
+  "sensors_description": "Landsat-8",
+  "geography": "Indonesia",
+  "size": "2,756",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2",
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2011.05479"
+   }
+  ]
+ },
+ {
+  "id": "bradd-s1ts",
+  "name": "BraDD-S1TS",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.2 Forest extent and change",
+  "task_description": "Deforestation detection",
+  "sensors_description": "S1 time series",
+  "geography": "Amazon",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "AnySat"
+  ],
+  "sources": [
+   {
+    "label": "AnySat",
+    "url": "https://github.com/gastruc/AnySat"
+   }
+  ]
+ },
+ {
+  "id": "rapidai4eo",
+  "name": "RapidAI4EO",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.2 Forest extent and change",
+  "task_description": "Multi-label classification",
+  "sensors_description": "Planet + S2",
+  "geography": "Europe",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "PL",
+    "S2"
+   ],
+   "res": [
+    "H",
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "FoMo-Bench",
+    "url": "https://arxiv.org/abs/2312.10114"
+   }
+  ]
+ },
+ {
+  "id": "biomassters",
+  "name": "BioMassters",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.3 Biomass and carbon stocks",
+  "task_description": "Pixel AGB regression",
+  "sensors_description": "S1 + S2, 12 months",
+  "geography": "Finland",
+  "size": "~13k chips; ~201 GB",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "PQ",
+    "FU",
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/nascetti-a/BioMassters"
+   }
+  ]
+ },
+ {
+  "id": "biomass-s3",
+  "name": "Biomass-S3",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.3 Biomass and carbon stocks",
+  "task_description": "AGB regression",
+  "sensors_description": "Sentinel-3 OLCI",
+  "geography": "Global",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S3"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "PQ"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2503.11849"
+   }
+  ]
+ },
+ {
+  "id": "reforestree",
+  "name": "ReforesTree",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.3 Biomass and carbon stocks",
+  "task_description": "Detection + carbon regression",
+  "sensors_description": "Aerial",
+  "geography": "Ecuador",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "OD",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY 4.0 (per TorchGeo)",
+  "benchmark_suites": [
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "FoMo-Bench",
+    "url": "https://arxiv.org/abs/2312.10114"
+   }
+  ]
+ },
+ {
+  "id": "agbd",
+  "name": "AGBD",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.3 Biomass and carbon stocks",
+  "task_description": "AGB regression at GEDI footprints",
+  "sensors_description": "S2, PALSAR-2, DEM",
+  "geography": "11 regions, 2019–20",
+  "size": "~16M patches",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "LB",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "PQ",
+    "FU"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2406.04928"
+   }
+  ]
+ },
+ {
+  "id": "treesatai",
+  "name": "TreeSatAI",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Species / genus multi-label",
+  "sensors_description": "Aerial CIR 0.2 m, S1, S2",
+  "geography": "Lower Saxony, Germany",
+  "size": "50,381 triplets",
+  "facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER",
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "V",
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "GEO-Bench-2",
+   "FoMo-Bench",
+   "AnySat",
+   "OmniSat"
+  ],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/6598391"
+   }
+  ]
+ },
+ {
+  "id": "neontreeevaluation",
+  "name": "NeonTreeEvaluation",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Tree crown detection",
+  "sensors_description": "RGB, lidar, hyperspectral",
+  "geography": "22 US NEON sites",
+  "size": "30,975 crowns",
+  "facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER",
+    "HYP"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0 (data); CC0 (repo)",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/weecology/NeonTreeEvaluation"
+   }
+  ]
+ },
+ {
+  "id": "tallos",
+  "name": "TalloS",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Tree species multi-label",
+  "sensors_description": "S1, S2, DEM, ERA5",
+  "geography": "Global",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "ML"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "DEM",
+    "WX"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "FoMo-Bench",
+    "url": "https://github.com/RolnickLab/FoMo-Bench"
+   }
+  ]
+ },
+ {
+  "id": "planted",
+  "name": "PLANTED",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Tree species",
+  "sensors_description": "S2, L7, MODIS, S1, ALOS-2",
+  "geography": "Global",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "S2",
+    "LS",
+    "MOD",
+    "S1",
+    "LB"
+   ],
+   "res": [
+    "M",
+    "C"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "AnySat"
+  ],
+  "sources": [
+   {
+    "label": "AnySat",
+    "url": "https://github.com/gastruc/AnySat"
+   }
+  ]
+ },
+ {
+  "id": "cactus-woody-spekboom-waititu",
+  "name": "Cactus, Woody, Spekboom, Waititu",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Classification / segmentation",
+  "sensors_description": "Aerial",
+  "geography": "Mexico, Chile, South Africa, New Zealand",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "FoMo-Bench"
+  ],
+  "sources": [
+   {
+    "label": "FoMo-Bench",
+    "url": "https://arxiv.org/abs/2312.10114"
+   }
+  ]
+ },
+ {
+  "id": "everwatch",
+  "name": "EverWatch",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Bird species detection (fauna)",
+  "sensors_description": "Aerial RGB",
+  "geography": "UNVERIFIED",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC0 (per GEO-Bench-2)",
+  "benchmark_suites": [
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench-2",
+    "url": "https://arxiv.org/abs/2511.15658"
+   }
+  ]
+ },
+ {
+  "id": "open-canopy",
+  "name": "Open-Canopy",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Canopy height + change regression",
+  "sensors_description": "SPOT 1.5 m",
+  "geography": "France, &gt;87,000 km²",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "RG",
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "PQ",
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2407.09392"
+   }
+  ]
+ },
+ {
+  "id": "pureforest",
+  "name": "PureForest",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.4 Vegetation structure and species",
+  "task_description": "Species classification",
+  "sensors_description": "ALS + aerial",
+  "geography": "France, 449 stands",
+  "size": "271k samples",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Etalab 2.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/IGNF/PureForest"
+   }
+  ]
+ },
+ {
+  "id": "phenocam-v2-0",
+  "name": "PhenoCam v2.0",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.5 Ecosystem function (phenology, productivity)",
+  "task_description": "Phenology transition dates",
+  "sensors_description": "Near-surface cameras (pair with satellite)",
+  "geography": "Mostly North America; 2000–18",
+  "size": "393 cameras",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "INS"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-019-0229-9"
+   }
+  ]
+ },
+ {
+  "id": "fluxnet2015",
+  "name": "FLUXNET2015",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.5 Ecosystem function (phenology, productivity)",
+  "task_description": "GPP / NEE regression",
+  "sensors_description": "Eddy covariance towers",
+  "geography": "212 sites",
+  "size": "&gt;1,500 site-years",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "INS"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "PQ",
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0 (206 sites)",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-020-0534-3"
+   }
+  ]
+ },
+ {
+  "id": "hls-burn-scars",
+  "name": "HLS Burn Scars",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.6 Fire",
+  "task_description": "Burn scar segmentation",
+  "sensors_description": "HLS",
+  "geography": "CONUS, 2018–21",
+  "size": "804 scenes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "HLS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars"
+   }
+  ]
+ },
+ {
+  "id": "sen2fire",
+  "name": "Sen2Fire",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.6 Fire",
+  "task_description": "Active fire segmentation",
+  "sensors_description": "S2 + S5P aerosol",
+  "geography": "New South Wales, 2019–20",
+  "size": "2,466 patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S5P"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2403.17884"
+   }
+  ]
+ },
+ {
+  "id": "wildfirespreadts",
+  "name": "WildfireSpreadTS",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.6 Fire",
+  "task_description": "Multi-day fire spread",
+  "sensors_description": "VIIRS + weather, fuel, topography",
+  "geography": "US, 2018–21",
+  "size": "607 fires",
+  "facets": {
+   "task": [
+    "FC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "F"
+   ],
+   "sen": [
+    "VIIRS",
+    "WX",
+    "DEM"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/8006177"
+   }
+  ]
+ },
+ {
+  "id": "next-day-wildfire-spread",
+  "name": "Next Day Wildfire Spread",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.6 Fire",
+  "task_description": "Next-day fire mask",
+  "sensors_description": "MODIS fire mask + drivers",
+  "geography": "US",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "FC"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "F"
+   ],
+   "sen": [
+    "MOD",
+    "WX",
+    "DEM"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2112.02447"
+   }
+  ]
+ },
+ {
+  "id": "cabuar",
+  "name": "CaBuAr",
+  "domain": "2 · Terrestrial ecosystems",
+  "subdomain": "2.6 Fire",
+  "task_description": "Burned area from pre/post",
+  "sensors_description": "S2",
+  "geography": "California",
+  "size": "104 GB",
+  "facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CDLA-Permissive-2.0 (Hugging Face) vs OpenRAIL (TorchGeo): conflicting",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2401.11519"
+   }
+  ]
+ },
+ {
+  "id": "sen1floods11",
+  "name": "Sen1Floods11",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Flood and water segmentation",
+  "sensors_description": "S1 + S2",
+  "geography": "11 events, 6 continents",
+  "size": "4,831 chips (446 hand-labelled)",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "PANGAEA",
+   "Galileo",
+   "AnySat",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/cloudtostreet/Sen1Floods11"
+   }
+  ]
+ },
+ {
+  "id": "kuro-siwo-flood-s1",
+  "name": "Kuro Siwo (Flood-S1)",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Flood segmentation, change",
+  "sensors_description": "S1 GRD and SLC",
+  "geography": "43 events, global",
+  "size": "33 bn m² labelled",
+  "facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "CC BY",
+  "benchmark_suites": [
+   "GEO-Bench-2",
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2311.12056"
+   }
+  ]
+ },
+ {
+  "id": "s1s2-water",
+  "name": "S1S2-Water",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Water segmentation",
+  "sensors_description": "S1 + S2 + Copernicus DEM",
+  "geography": "Global (S2 tile grid)",
+  "size": "65 scene triplets",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/11278238"
+   }
+  ]
+ },
+ {
+  "id": "mmflood",
+  "name": "MMFlood",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Flood segmentation",
+  "sensors_description": "S1 + DEM + hydrography",
+  "geography": "95 events, 42 countries; 2014–21",
+  "size": "1,748 pairs",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/record/6534637"
+   }
+  ]
+ },
+ {
+  "id": "worldfloods-v2",
+  "name": "WorldFloods v2",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Flood, water, cloud segmentation",
+  "sensors_description": "S2",
+  "geography": "Global",
+  "size": "509 pairs",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/isp-uv-es/WorldFloodsv2"
+   }
+  ]
+ },
+ {
+  "id": "swed",
+  "name": "SWED",
+  "domain": "3 · Inland water",
+  "subdomain": "3.1 Surface water, rivers and wetlands",
+  "task_description": "Coastal water-edge segmentation",
+  "sensors_description": "S2",
+  "geography": "Global",
+  "size": "~18 GB",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "closed"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UK licence, no redistribution",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "UKHO",
+    "url": "https://openmldata.ukho.gov.uk/"
+   }
+  ]
+ },
+ {
+  "id": "aquasat",
+  "name": "AquaSat",
+  "domain": "3 · Inland water",
+  "subdomain": "3.2 Water quality",
+  "task_description": "Chl-a, TSS, DOC, Secchi regression",
+  "sensors_description": "Landsat matchups",
+  "geography": "Continental, inland",
+  "size": "&gt;600,000 matchups",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "WRR 2019",
+    "url": "https://doi.org/10.1029/2019WR024883"
+   }
+  ]
+ },
+ {
+  "id": "gloria",
+  "name": "GLORIA",
+  "domain": "3 · Inland water",
+  "subdomain": "3.2 Water quality",
+  "task_description": "Chl-a, TSS, CDOM, Secchi from reflectance",
+  "sensors_description": "In-situ hyperspectral (convolvable to any sensor)",
+  "geography": "450 water bodies",
+  "size": "7,572 spectra",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "T"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "INS",
+    "HYP"
+   ],
+   "res": [
+    "NA"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "licence": "\"Open and free\"; exact licence UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-023-01973-y"
+   }
+  ]
+ },
+ {
+  "id": "global-mangrove-watch-v3-v4",
+  "name": "Global Mangrove Watch v3/v4",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.1 Coastal ecosystems",
+  "task_description": "Mangrove extent and change",
+  "sensors_description": "L-band SAR, Landsat",
+  "geography": "Tropics; 1996–2020",
+  "size": "11 epochs",
+  "facets": {
+   "task": [
+    "SS",
+    "CD"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "LB",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/6894273"
+   }
+  ]
+ },
+ {
+  "id": "allen-coral-atlas-maps",
+  "name": "Allen Coral Atlas maps",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.1 Coastal ecosystems",
+  "task_description": "Geomorphic and benthic segmentation",
+  "sensors_description": "PlanetScope (commercial imagery)",
+  "geography": "Tropical reefs 30°N–30°S",
+  "size": "60–90% overall accuracy",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0 (maps only)",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Methods",
+    "url": "https://allencoralatlas.org/methods/"
+   }
+  ]
+ },
+ {
+  "id": "magicbathynet",
+  "name": "MagicBathyNet",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.1 Coastal ecosystems",
+  "task_description": "Bathymetry + seabed classification",
+  "sensors_description": "S2, SPOT-6, aerial",
+  "geography": "2 sites (Cyprus, Poland)",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "RG",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "VHR",
+    "AER"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/pagraf/MagicBathyNet"
+   }
+  ]
+ },
+ {
+  "id": "sds-benchmark",
+  "name": "SDS_Benchmark",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.2 Shoreline and coastal change",
+  "task_description": "Shoreline position time series",
+  "sensors_description": "Landsat, S2",
+  "geography": "4 beaches (Narrabeen, Duck, Truc Vert, Torrey Pines)",
+  "size": "In-situ surveys",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "LS",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "GPL-3.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/kvos/SDS_Benchmark"
+   }
+  ]
+ },
+ {
+  "id": "mados",
+  "name": "MADOS",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.4 Marine pollution",
+  "task_description": "Debris, oil, sargassum, ship segmentation",
+  "sensors_description": "S2",
+  "geography": "Global, 174 scenes",
+  "size": "2,803 patches; 15 classes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "PANGAEA",
+   "Galileo",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/10664073"
+   }
+  ]
+ },
+ {
+  "id": "marida",
+  "name": "MARIDA",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.4 Marine pollution",
+  "task_description": "Marine debris segmentation",
+  "sensors_description": "S2",
+  "geography": "11 countries; 2015–21",
+  "size": "1,381 patches (3,339 debris pixels)",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/5151941"
+   }
+  ]
+ },
+ {
+  "id": "nasa-marine-debris",
+  "name": "NASA Marine Debris",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.4 Marine pollution",
+  "task_description": "Object detection",
+  "sensors_description": "PlanetScope 3 m",
+  "geography": "UNVERIFIED",
+  "size": "707 images",
+  "facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Apache-2.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ },
+ {
+  "id": "krestenitis-oil-spill",
+  "name": "Krestenitis oil spill",
+  "domain": "4 · Oceans and coasts",
+  "subdomain": "4.4 Marine pollution",
+  "task_description": "Oil / look-alike segmentation",
+  "sensors_description": "S1",
+  "geography": "European waters, 2015–17",
+  "size": "~1,110 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "closed"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Access by application",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "M4D",
+    "url": "https://m4d.iti.gr/oil-spill-detection-dataset/"
+   }
+  ]
+ },
+ {
+  "id": "caffe",
+  "name": "CaFFe",
+  "domain": "5 · Cryosphere",
+  "subdomain": "5.2 Glaciers and ice sheets",
+  "task_description": "Calving-front segmentation",
+  "sensors_description": "ERS, Envisat, RADARSAT-1, ALOS, TSX/TDX, S1",
+  "geography": "7 glaciers; 1995–2020",
+  "size": "681 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "SAR",
+    "LB",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "ESSD",
+    "url": "https://essd.copernicus.org/articles/14/4287/2022/"
+   }
+  ]
+ },
+ {
+  "id": "hkh-glacier-mapping",
+  "name": "HKH Glacier Mapping",
+  "domain": "5 · Cryosphere",
+  "subdomain": "5.2 Glaciers and ice sheets",
+  "task_description": "Clean-ice / debris-covered segmentation",
+  "sensors_description": "Landsat 7 + SRTM",
+  "geography": "Hindu Kush Himalaya",
+  "size": "14,190 patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CDLA-Permissive (labels)",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "LILA",
+    "url": "https://lila.science/datasets/hkh-glacier-mapping"
+   }
+  ]
+ },
+ {
+  "id": "ai4arctic-autoice",
+  "name": "AI4Arctic / AutoICE",
+  "domain": "5 · Cryosphere",
+  "subdomain": "5.3 Sea and lake ice",
+  "task_description": "Sea-ice concentration, stage, floe size",
+  "sensors_description": "S1 + AMSR2 + ERA5",
+  "geography": "Canadian and Greenland Arctic; 2018–21",
+  "size": "533 scenes",
+  "facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "MW",
+    "WX"
+   ],
+   "res": [
+    "M",
+    "C"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0 (Hugging Face rehost)",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "TC 2024",
+    "url": "https://tc.copernicus.org/articles/18/3471/2024/"
+   }
+  ]
+ },
+ {
+  "id": "qtec-thaw-slump-inventory",
+  "name": "QTEC thaw-slump inventory",
+  "domain": "5 · Cryosphere",
+  "subdomain": "5.4 Permafrost",
+  "task_description": "Retrogressive thaw slump polygons",
+  "sensors_description": "PlanetScope 3 m (2019)",
+  "geography": "Qinghai–Tibet corridor",
+  "size": "875 slumps",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "ESSD",
+    "url": "https://essd.copernicus.org/articles/14/3875/2022/"
+   }
+  ]
+ },
+ {
+  "id": "emit-l2b-ch-plumes",
+  "name": "EMIT L2B CH₄ plumes",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.1 Greenhouse gas point sources",
+  "task_description": "Plume complexes",
+  "sensors_description": "EMIT 60 m",
+  "geography": "52°N–52°S; 2022–",
+  "size": "Manually reviewed plumes",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "HYP"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "NASA open",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "LP DAAC",
+    "url": "https://lpdaac.usgs.gov/products/emitl2bch4plmv001/"
+   }
+  ]
+ },
+ {
+  "id": "ch4net",
+  "name": "CH4Net",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.1 Greenhouse gas point sources",
+  "task_description": "Plume segmentation",
+  "sensors_description": "S2",
+  "geography": "23 sites, Turkmenistan; 2017–21",
+  "size": "10,046 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "AMT 2024",
+    "url": "https://amt.copernicus.org/articles/17/2583/2024/"
+   }
+  ]
+ },
+ {
+  "id": "mars-s2l",
+  "name": "MARS-S2L",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.1 Greenhouse gas point sources",
+  "task_description": "Plume detection, segmentation, flux",
+  "sensors_description": "S2 + Landsat",
+  "geography": "Global",
+  "size": "~87k pairs; &gt;5,600 plumes",
+  "facets": {
+   "task": [
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S2",
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY-NC-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/UNEP-IMEO/MARS-S2L"
+   }
+  ]
+ },
+ {
+  "id": "methanes2cm",
+  "name": "MethaneS2CM",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.1 Greenhouse gas point sources",
+  "task_description": "Classification, segmentation, rate",
+  "sensors_description": "S2 + Carbon Mapper labels",
+  "geography": "Global",
+  "size": "317,663 patches",
+  "facets": {
+   "task": [
+    "SC",
+    "SS",
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "PQ"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Hugging Face",
+    "url": "https://huggingface.co/datasets/H1deaki/MethaneS2CM"
+   }
+  ]
+ },
+ {
+  "id": "starcop",
+  "name": "STARCOP",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.1 Greenhouse gas point sources",
+  "task_description": "Plume segmentation",
+  "sensors_description": "AVIRIS-NG + simulated WorldView-3",
+  "geography": "Permian Basin, 2019",
+  "size": "1,878 plumes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "HYP",
+    "VHR"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/7863343"
+   }
+  ]
+ },
+ {
+  "id": "aq-no-s5p-aq-o-s5p",
+  "name": "AQ-NO₂-S5P, AQ-O₃-S5P",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.2 Aerosols and air quality",
+  "task_description": "Regression",
+  "sensors_description": "Sentinel-5P, 1 km",
+  "geography": "UNVERIFIED",
+  "size": "2,467 samples each",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S5P"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "PQ"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "Copernicus-FM",
+    "url": "https://github.com/zhu-xlab/Copernicus-FM"
+   }
+  ]
+ },
+ {
+  "id": "cloudsen12-cloud-s2",
+  "name": "CloudSEN12 (Cloud-S2)",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.3 Clouds and smoke",
+  "task_description": "Cloud, shadow, snow segmentation",
+  "sensors_description": "S2 (+S1)",
+  "geography": "Global except Antarctica; 2018–20",
+  "size": "49,400 patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC0 (per GEO-Bench-2)",
+  "benchmark_suites": [
+   "GEO-Bench-2",
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-022-01878-2"
+   }
+  ]
+ },
+ {
+  "id": "cloud-s3",
+  "name": "Cloud-S3",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.3 Clouds and smoke",
+  "task_description": "Cloud segmentation",
+  "sensors_description": "Sentinel-3 OLCI",
+  "geography": "UNVERIFIED",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S3"
+   ],
+   "res": [
+    "C"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "Copernicus-Bench"
+  ],
+  "sources": [
+   {
+    "label": "Copernicus-FM",
+    "url": "https://github.com/zhu-xlab/Copernicus-FM"
+   }
+  ]
+ },
+ {
+  "id": "s2-cloud-mask-catalogue",
+  "name": "S2 Cloud Mask Catalogue",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.3 Clouds and smoke",
+  "task_description": "Cloud / shadow segmentation",
+  "sensors_description": "S2 L1C",
+  "geography": "Global random, 2018",
+  "size": "513 subscenes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Zenodo",
+    "url": "https://zenodo.org/records/4172871"
+   }
+  ]
+ },
+ {
+  "id": "sparcs",
+  "name": "SPARCS",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.3 Clouds and smoke",
+  "task_description": "Cloud, shadow, snow/ice, water",
+  "sensors_description": "Landsat 8",
+  "geography": "UNVERIFIED",
+  "size": "80 subscenes",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "USGS public",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "USGS",
+    "url": "https://www.usgs.gov/landsat-missions/spatial-procedures-automated-removal-cloud-and-shadow-sparcs-validation-data"
+   }
+  ]
+ },
+ {
+  "id": "38-cloud",
+  "name": "38-Cloud",
+  "domain": "6 · Atmosphere",
+  "subdomain": "6.3 Clouds and smoke",
+  "task_description": "Cloud segmentation",
+  "sensors_description": "Landsat 8",
+  "geography": "38 scenes",
+  "size": "17.6k patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SP"
+   ]
+  },
+  "licence": "Apache-2.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/SorourMo/38-Cloud-A-Cloud-Segmentation-Dataset"
+   }
+  ]
+ },
+ {
+  "id": "hephaestus",
+  "name": "Hephaestus",
+  "domain": "7 · Solid Earth",
+  "subdomain": "7.1 Surface deformation",
+  "task_description": "Deformation classification, segmentation, captioning",
+  "sensors_description": "S1 interferograms (COMET-LiCS)",
+  "geography": "44 volcanoes; 2014–21",
+  "size": "19,919 labelled interferograms",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "MIT",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/Orion-AI-Lab/Hephaestus"
+   }
+  ]
+ },
+ {
+  "id": "quakeset",
+  "name": "QuakeSet",
+  "domain": "7 · Solid Earth",
+  "subdomain": "7.1 Surface deformation",
+  "task_description": "Earthquake classification + magnitude",
+  "sensors_description": "S1",
+  "geography": "UNVERIFIED",
+  "size": "3,327",
+  "facets": {
+   "task": [
+    "SC",
+    "RG"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "TD"
+   ]
+  },
+  "licence": "OpenRAIL",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ },
+ {
+  "id": "cas-landslide",
+  "name": "CAS Landslide",
+  "domain": "7 · Solid Earth",
+  "subdomain": "7.2 Landslides and mass movement",
+  "task_description": "Binary segmentation",
+  "sensors_description": "S2, Landsat, Planet, UAV (0.2–5 m)",
+  "geography": "9 regions",
+  "size": "20,865 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "LS",
+    "PL",
+    "AER"
+   ],
+   "res": [
+    "M",
+    "H",
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-NC 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-023-02847-z"
+   }
+  ]
+ },
+ {
+  "id": "landslide4sense",
+  "name": "Landslide4Sense",
+  "domain": "7 · Solid Earth",
+  "subdomain": "7.2 Landslides and mass movement",
+  "task_description": "Binary segmentation",
+  "sensors_description": "S2 + ALOS PALSAR DEM",
+  "geography": "4 events (Iburi, Kodagu, Gorkha, Taiwan)",
+  "size": "4,844 patches",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "DEM"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SP",
+    "FU"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2206.00515"
+   }
+  ]
+ },
+ {
+  "id": "so2sat-lcz42-lcz-s2",
+  "name": "So2Sat LCZ42 (LCZ-S2)",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Local climate zone classification",
+  "sensors_description": "S1 + S2",
+  "geography": "Global cities",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1",
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH",
+    "FU"
+   ]
+  },
+  "licence": "CC BY 4.0 (per GEO-Bench-2)",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "GEO-Bench-2",
+   "Copernicus-Bench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench",
+    "url": "https://arxiv.org/abs/2306.03831"
+   }
+  ]
+ },
+ {
+  "id": "spacenet-7",
+  "name": "SpaceNet 7",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Multi-temporal building tracking",
+  "sensors_description": "Planet 4 m",
+  "geography": "&gt;100 AOIs",
+  "size": "&gt;11M annotations",
+  "facets": {
+   "task": [
+    "IS",
+    "CD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH",
+    "TD"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [
+   "PANGAEA",
+   "GEO-Bench-2",
+   "TerraMind"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2102.04420"
+   }
+  ]
+ },
+ {
+  "id": "spacenet-2",
+  "name": "SpaceNet 2",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Building footprints",
+  "sensors_description": "WorldView",
+  "geography": "Las Vegas, Paris, Shanghai, Khartoum",
+  "size": "14.1k chips",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ },
+ {
+  "id": "massachusetts-buildings",
+  "name": "Massachusetts Buildings",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Building segmentation",
+  "sensors_description": "Aerial",
+  "geography": "Massachusetts",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "SatlasPretrain"
+  ],
+  "sources": [
+   {
+    "label": "Toronto",
+    "url": "https://www.cs.toronto.edu/~vmnih/data/"
+   }
+  ]
+ },
+ {
+  "id": "globalbuildingmap",
+  "name": "GlobalBuildingMap",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Building masks",
+  "sensors_description": "PlanetScope 3 m",
+  "geography": "Global",
+  "size": "180k",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "PL"
+   ],
+   "res": [
+    "H"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ },
+ {
+  "id": "open-cities-ai",
+  "name": "Open Cities AI",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Building segmentation",
+  "sensors_description": "Drone 2–20 cm",
+  "geography": "10 African cities",
+  "size": "~790k buildings",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0 (weakly stated)",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "DrivenData",
+    "url": "https://www.drivendata.org/competitions/60/building-segmentation-disaster-resilience/page/151/"
+   }
+  ]
+ },
+ {
+  "id": "inria-aerial",
+  "name": "Inria Aerial",
+  "domain": "8 · Human systems",
+  "subdomain": "8.1 Settlements and buildings",
+  "task_description": "Building segmentation",
+  "sensors_description": "Aerial 0.3 m",
+  "geography": "US, Austria",
+  "size": "810 km²",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Inria",
+    "url": "https://project.inria.fr/aerialimagelabeling/"
+   }
+  ]
+ },
+ {
+  "id": "massachusetts-roads",
+  "name": "Massachusetts Roads",
+  "domain": "8 · Human systems",
+  "subdomain": "8.2 Transport",
+  "task_description": "Road segmentation",
+  "sensors_description": "Aerial",
+  "geography": "Massachusetts",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "SatlasPretrain"
+  ],
+  "sources": [
+   {
+    "label": "Toronto",
+    "url": "https://www.cs.toronto.edu/~vmnih/data/"
+   }
+  ]
+ },
+ {
+  "id": "phileo-roads",
+  "name": "PhilEO roads",
+  "domain": "8 · Human systems",
+  "subdomain": "8.2 Transport",
+  "task_description": "Road segmentation",
+  "sensors_description": "S2",
+  "geography": "UNVERIFIED",
+  "size": "part of 400 GB set",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "PhilEO"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2401.04464"
+   }
+  ]
+ },
+ {
+  "id": "spacenet-3-5",
+  "name": "SpaceNet 3 / 5",
+  "domain": "8 · Human systems",
+  "subdomain": "8.2 Transport",
+  "task_description": "Road networks (+ travel time)",
+  "sensors_description": "WorldView-3",
+  "geography": "Cities (UNVERIFIED)",
+  "size": "3,477 / 2,588 chips",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "SpaceNet",
+    "url": "https://spacenet.ai/datasets/"
+   }
+  ]
+ },
+ {
+  "id": "deepglobe-roads",
+  "name": "DeepGlobe Roads",
+  "domain": "8 · Human systems",
+  "subdomain": "8.2 Transport",
+  "task_description": "Road segmentation",
+  "sensors_description": "DigitalGlobe 0.5 m",
+  "geography": "Thailand, Indonesia, India",
+  "size": "8,570 images",
+  "facets": {
+   "task": [
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/1805.06561"
+   }
+  ]
+ },
+ {
+  "id": "brick-kilns",
+  "name": "Brick kilns",
+  "domain": "8 · Human systems",
+  "subdomain": "8.3 Energy and industry",
+  "task_description": "Binary classification",
+  "sensors_description": "S2",
+  "geography": "Bangladesh",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "GEO-Bench",
+   "SustainBench",
+   "Galileo"
+  ],
+  "sources": [
+   {
+    "label": "SustainBench",
+    "url": "https://sustainlab-group.github.io/sustainbench/docs/datasets/"
+   }
+  ]
+ },
+ {
+  "id": "substations",
+  "name": "Substations",
+  "domain": "8 · Human systems",
+  "subdomain": "8.3 Energy and industry",
+  "task_description": "Instance segmentation",
+  "sensors_description": "S2 + OSM",
+  "geography": "UNVERIFIED",
+  "size": "27k",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "model"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [
+   "GEO-Bench-2"
+  ],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ },
+ {
+  "id": "pv4ger",
+  "name": "PV4GER",
+  "domain": "8 · Human systems",
+  "subdomain": "8.3 Energy and industry",
+  "task_description": "Solar classification / segmentation",
+  "sensors_description": "Aerial 0.1 m",
+  "geography": "Germany",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "SC",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "GEO-Bench"
+  ],
+  "sources": [
+   {
+    "label": "GEO-Bench",
+    "url": "https://arxiv.org/abs/2306.03831"
+   }
+  ]
+ },
+ {
+  "id": "kruitwagen-et-al-2021-solar-inventory",
+  "name": "Kruitwagen et al. 2021 solar inventory",
+  "domain": "8 · Human systems",
+  "subdomain": "8.3 Energy and industry",
+  "task_description": "Solar farm polygons",
+  "sensors_description": "S2 + SPOT 6/7",
+  "geography": "Global, to 2018",
+  "size": "68,661 facilities",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2",
+    "VHR"
+   ],
+   "res": [
+    "M",
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Nature",
+    "url": "https://www.nature.com/articles/s41586-021-03957-7"
+   }
+  ]
+ },
+ {
+  "id": "maus-et-al-2022-mining-polygons",
+  "name": "Maus et al. 2022 mining polygons",
+  "domain": "8 · Human systems",
+  "subdomain": "8.3 Energy and industry",
+  "task_description": "Mine-area segmentation labels",
+  "sensors_description": "S2 mosaic 10 m, 2019",
+  "geography": "145 countries",
+  "size": "44,929 polygons",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S2"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Sci Data",
+    "url": "https://www.nature.com/articles/s41597-022-01547-4"
+   }
+  ]
+ },
+ {
+  "id": "fmow",
+  "name": "fMoW",
+  "domain": "8 · Human systems",
+  "subdomain": "8.4 Objects and activity",
+  "task_description": "Functional land-use classification, 63 classes",
+  "sensors_description": "DigitalGlobe",
+  "geography": "&gt;200 countries",
+  "size": "&gt;1M images",
+  "facets": {
+   "task": [
+    "SC"
+   ],
+   "unit": [
+    "S"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "T"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "reg"
+   ],
+   "covk": [
+    "c1"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "fMoW Challenge Public License",
+  "benchmark_suites": [
+   "SatlasPretrain"
+  ],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/fMoW/dataset"
+   }
+  ]
+ },
+ {
+  "id": "airbus-ships",
+  "name": "Airbus Ships",
+  "domain": "8 · Human systems",
+  "subdomain": "8.4 Objects and activity",
+  "task_description": "Ship instance segmentation",
+  "sensors_description": "Airbus VHR",
+  "geography": "UNVERIFIED",
+  "size": "UNVERIFIED",
+  "facets": {
+   "task": [
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "X"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [
+   "SatlasPretrain"
+  ],
+  "sources": [
+   {
+    "label": "SatlasPretrain",
+    "url": "https://arxiv.org/abs/2211.15660"
+   }
+  ]
+ },
+ {
+  "id": "xview3-sar",
+  "name": "xView3-SAR",
+  "domain": "8 · Human systems",
+  "subdomain": "8.4 Objects and activity",
+  "task_description": "Dark-vessel detection, fishing, length",
+  "sensors_description": "S1",
+  "geography": "European and West African waters",
+  "size": "991 scenes; 243,018 objects",
+  "facets": {
+   "task": [
+    "OD",
+    "RG"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "S1"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/2206.00897"
+   }
+  ]
+ },
+ {
+  "id": "xview",
+  "name": "xView",
+  "domain": "8 · Human systems",
+  "subdomain": "8.4 Objects and activity",
+  "task_description": "Object detection, 60 classes",
+  "sensors_description": "WorldView-3 0.3 m",
+  "geography": "Global",
+  "size": "~1M objects",
+  "facets": {
+   "task": [
+    "OD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-NC-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/1802.07856"
+   }
+  ]
+ },
+ {
+  "id": "dota-v2-isaid",
+  "name": "DOTA v2 / iSAID",
+  "domain": "8 · Human systems",
+  "subdomain": "8.4 Objects and activity",
+  "task_description": "Oriented detection / instance segmentation",
+  "sensors_description": "Google Earth, GF-2, aerial",
+  "geography": "Global",
+  "size": "5,229 / 2,806 images",
+  "facets": {
+   "task": [
+    "OD",
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "VHR",
+    "AER"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "Academic use only",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "DOTA",
+    "url": "https://captain-whu.github.io/DOTA/dataset.html"
+   }
+  ]
+ },
+ {
+  "id": "sustainbench-dhs-tasks",
+  "name": "SustainBench DHS tasks",
+  "domain": "8 · Human systems",
+  "subdomain": "8.5 Socioeconomic conditions",
+  "task_description": "Asset wealth, health, education regression",
+  "sensors_description": "Landsat + nightlights + street-level",
+  "geography": "48–56 countries",
+  "size": "~87k–117k clusters per task",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS",
+    "VIIRS",
+    "STR"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "SustainBench CC BY-SA 4.0; DHS terms UNVERIFIED",
+  "benchmark_suites": [
+   "SustainBench"
+  ],
+  "sources": [
+   {
+    "label": "SustainBench",
+    "url": "https://sustainlab-group.github.io/sustainbench/docs/datasets/dhs.html"
+   }
+  ]
+ },
+ {
+  "id": "yeh-et-al-2020",
+  "name": "Yeh et al. 2020",
+  "domain": "8 · Human systems",
+  "subdomain": "8.5 Socioeconomic conditions",
+  "task_description": "Asset wealth regression",
+  "sensors_description": "Landsat + nightlights",
+  "geography": "23 African countries",
+  "size": "~19,669 villages",
+  "facets": {
+   "task": [
+    "RG"
+   ],
+   "unit": [
+    "R"
+   ],
+   "val": [
+    "N"
+   ],
+   "tmp": [
+    "1"
+   ],
+   "sen": [
+    "LS",
+    "VIIRS"
+   ],
+   "res": [
+    "M"
+   ],
+   "p": [
+    "measured"
+   ],
+   "tier": [
+    "unk"
+   ],
+   "covk": [
+    "c3"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "UNVERIFIED",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "Nat Comms",
+    "url": "https://www.nature.com/articles/s41467-020-16185-w"
+   }
+  ]
+ },
+ {
+  "id": "xbd-xview2",
+  "name": "xBD / xView2",
+  "domain": "Disasters",
+  "subdomain": "Post-event damage and hazard extent",
+  "task_description": "Building damage, 4 levels, bi-temporal",
+  "sensors_description": "Maxar &lt;0.8 m",
+  "geography": "19 events (mostly US)",
+  "size": "850,736 buildings",
+  "facets": {
+   "task": [
+    "CD",
+    "IS"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-NC-SA 4.0",
+  "benchmark_suites": [
+   "PANGAEA"
+  ],
+  "sources": [
+   {
+    "label": "arXiv",
+    "url": "https://arxiv.org/abs/1911.09296"
+   }
+  ]
+ },
+ {
+  "id": "bright",
+  "name": "BRIGHT",
+  "domain": "Disasters",
+  "subdomain": "Post-event damage and hazard extent",
+  "task_description": "Building damage, optical pre / SAR post",
+  "sensors_description": "Maxar/NAIP + Capella/Umbra",
+  "geography": "14 events, 23 regions",
+  "size": "3,239 tiles",
+  "facets": {
+   "task": [
+    "CD"
+   ],
+   "unit": [
+    "O"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR",
+    "AER",
+    "SAR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "nc"
+   ],
+   "covk": [
+    "c2"
+   ],
+   "ab": [
+    "FU"
+   ]
+  },
+  "licence": "Mixed; Maxar parts CC BY-NC",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "GitHub",
+    "url": "https://github.com/ChenHongruixuan/BRIGHT"
+   }
+  ]
+ },
+ {
+  "id": "spacenet-8",
+  "name": "SpaceNet 8",
+  "domain": "Disasters",
+  "subdomain": "Post-event damage and hazard extent",
+  "task_description": "Flooded roads and buildings",
+  "sensors_description": "Maxar 0.3–0.8 m",
+  "geography": "Germany (+ US site UNVERIFIED)",
+  "size": "1,289",
+  "facets": {
+   "task": [
+    "CD",
+    "SS"
+   ],
+   "unit": [
+    "P"
+   ],
+   "val": [
+    "C"
+   ],
+   "tmp": [
+    "M2"
+   ],
+   "sen": [
+    "VHR"
+   ],
+   "res": [
+    "V"
+   ],
+   "p": [
+    "human"
+   ],
+   "tier": [
+    "open"
+   ],
+   "covk": [
+    "c4"
+   ],
+   "ab": [
+    "SH"
+   ]
+  },
+  "licence": "CC BY-SA 4.0",
+  "benchmark_suites": [],
+  "sources": [
+   {
+    "label": "TorchGeo",
+    "url": "https://docs.torchgeo.org/en/stable/api/datasets.html"
+   }
+  ]
+ }
+]

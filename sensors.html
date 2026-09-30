@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Audit of open Earth observation sensors by type, licence and use in GeoFM benchmarks.">
+<title>Open EO Sensor Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column for findings, then full-width sourced tables grouped by sensor type; license tier is the one colour-coded signal. */
+:root{
+  --bg:#F4F6F5; --panel:#FFFFFF; --fg:#18201D; --muted:#56635D; --line:#D6DDD9; --head:#EBF0ED;
+  --accent:#1F6A74;
+  --t-open:#2E7D4F; --t-open-bg:#DFF1E6;
+  --t-reg:#28608F; --t-reg-bg:#DDEAF6;
+  --t-nc:#9A6212; --t-nc-bg:#F6E8CF;
+  --t-closed:#A43D3A; --t-closed-bg:#F6DEDC;
+  --display:"Archivo",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27;
+    --accent:#6CC0CB;
+    --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A;
+    --t-nc:#E4AE5C; --t-nc-bg:#372B17; --t-closed:#E58681; --t-closed-bg:#3C2422;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27;
+  --accent:#6CC0CB;
+  --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A;
+  --t-nc:#E4AE5C; --t-nc-bg:#372B17; --t-closed:#E58681; --t-closed-bg:#3C2422;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:36px 80px}
+.col{max-width:78ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,3.4vw,38px);font-weight:600;font-stretch:85%;line-height:1.1}
+h2{font-size:23px;font-weight:600;font-stretch:90%}
+h3{font-size:17px;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:10px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.lede{color:var(--muted);font-size:17px}
+section{padding-block:32px;border-bottom:1px solid var(--line);display:grid;gap:14px}
+section:last-of-type{border-bottom:0}
+.note{color:var(--muted);font-size:15px}
+ol.find,ul.plain{margin:0;padding-left:22px;display:grid;gap:10px}
+ol.find li{padding-left:4px}
+ol.find b{font-weight:600}
+.tiers{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14.5px;color:var(--muted)}
+.tiers span{display:inline-flex;gap:8px;align-items:center}
+.chip{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.open{color:var(--t-open);background:var(--t-open-bg)}
+.reg{color:var(--t-reg);background:var(--t-reg-bg)}
+.nc{color:var(--t-nc);background:var(--t-nc-bg)}
+.closed{color:var(--t-closed);background:var(--t-closed-bg)}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 8px}
+nav.toc a{font-family:var(--mono);font-size:12.5px;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:4px 9px;background:var(--panel);color:var(--fg)}
+nav.toc a:hover{border-color:var(--accent)}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.group{display:grid;gap:10px;scroll-margin-top:16px}
+.group-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.group-head .count{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.group-head p{flex-basis:100%;color:var(--muted);font-size:15px;max-width:90ch}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:1120px;font-size:14px;line-height:1.4}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;background:var(--head);padding:9px 10px;border-bottom:1px solid var(--line);position:sticky;top:0}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.m{font-weight:600;min-width:150px}
+td.m small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+td.st{min-width:210px}
+td.src{font-size:12.5px;min-width:110px}
+td.src a{display:inline-block;margin-right:6px}
+.flag{font-family:var(--mono);font-size:11px;color:var(--t-nc);font-weight:500}
+.num{font-variant-numeric:tabular-nums}
+.corr{display:grid;gap:0;border:1px solid var(--line);border-radius:8px;background:var(--panel);overflow:hidden}
+.corr div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:14.5px}
+.corr div:last-child{border-bottom:0}
+.corr .was{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--t-closed)}
+.corr .hd{background:var(--head);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.corr .hd span{text-decoration:none}
+@media (max-width:640px){ .corr div{grid-template-columns:1fr;gap:4px} }
+.use{min-width:150px}
+.use .ul{display:block;font-size:12.5px;font-weight:600;margin-top:3px}
+.use small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--accent);display:block}
+.dots i.on{background:var(--accent)}
+.lic{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.lic div{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:12px 14px;display:grid;gap:6px;align-content:start;font-size:14.5px}
+.lic div p{color:var(--muted)}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<style>
+.sitebar{background:var(--panel);border-bottom:1px solid var(--line);padding-inline:20px}
+.sitebar-in{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding-block:10px}
+.sitebar .brand{font-family:var(--display);font-weight:700;font-stretch:85%;font-size:18px;color:var(--fg);text-decoration:none;margin-right:8px}
+.sitebar nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+.sitebar nav a{font-size:14.5px;color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+.sitebar nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.sitebar nav a:hover{color:var(--fg)}
+.sitebar nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.draft{background:var(--t-nc-bg);color:var(--fg);font-size:14px;padding:8px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.draft b{color:var(--t-nc)}
+footer.sf{max-width:1320px;margin:0 auto;padding:24px 20px 48px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="draft"><b>Draft v0.1.</b> Tags, licences and the ability facet are under review by the Earth Intelligence Lab. Items marked UNVERIFIED are not confirmed. <a href="https://github.com/thampatron/EO_Arena/issues">Report a correction</a>.</div><header class="sitebar"><div class="sitebar-in"><a class="brand" href="index.html">EOArena Taxonomy</a><nav aria-label="Site"><a href="index.html">Explorer</a><a href="domains.html">Domain audit</a><a href="sensors.html" aria-current="page">Sensor audit</a><a href="https://github.com/thampatron/EO_Arena/blob/main/CONTRIBUTING.md">Contribute</a><a href="https://github.com/thampatron/EO_Arena">GitHub</a></nav></div></header>
+<div class="wrap">
+<header>
+  <p class="eyebrow">EOArena · Task 3.1 · sensor audit · status as of 29 Sep 2026</p>
+  <h1>Which open EO sensors can a benchmark actually use?</h1>
+  <p class="lede col">Every row below is checked against the operator's own documentation or an official data catalogue (Copernicus, USGS, NASA DAACs, JAXA, EUMETSAT, Earth Engine, Planetary Computer, AWS Open Data). Facts that could not be confirmed from a fetched source are marked <span class="flag">UNVERIFIED</span>. "Open" here means the imagery can be obtained at no cost; the licence tier says what a public benchmark may do with it.</p>
+  <p class="note col">Within each sensor type, rows are ordered by (1) how widely they are used in the audited GeoFM benchmark suites (PANGAEA, GEO-Bench, GEO-Bench-2, Copernicus-Bench, SustainBench, FoMo-Bench, PhilEO, SatlasPretrain, and the Galileo, AnySat, OmniSat and TerraMind evaluations), then (2) licence tier, then (3) coverage, from global to local. Sensor types are ordered the same way.</p>
+  <div class="tiers">
+    <span><span class="chip open">Open</span> public domain, CC BY, Copernicus or NASA open policy: redistributable</span>
+    <span><span class="chip reg">Free + terms</span> no cost, registration or agency terms (e.g. JAXA, DLR)</span>
+    <span><span class="chip nc">Non-commercial</span> research use only; redistribution limited</span>
+    <span><span class="chip closed">Not open</span> commercial, quota, or government-only access</span>
+  </div>
+</header>
+
+<section id="licences">
+  <div class="group-head"><h2>Free, open and non-commercial are different things</h2><p>"Free" is about price. "Open" and "non-commercial" are about what the licence lets you do after you have the data. For a public benchmark the second question decides whether we can host, redistribute and let companies evaluate on a task.</p></div>
+  <div class="lic">
+    <div><span class="chip open">Open</span><b>Anyone may use, modify and redistribute, for any purpose, including commercial.</b><p>At most requires attribution (CC BY) or share-alike (CC BY-SA, ODbL). Public domain, CC0, CC BY, the Copernicus and NASA data policies. This is the Open Knowledge Foundation's "Open Definition" sense of open.</p></div>
+    <div><span class="chip reg">Free + terms</span><b>No cost, but you accept the provider's own terms.</b><p>Usually registration, attribution and limits on redistribution. EnMAP (©DLR, no redistribution of editable data), JAXA mosaics, Bhoonidhi. Free to obtain is not the same as free to republish: each needs a licence check before we host derived tasks.</p></div>
+    <div><span class="chip nc">Non-commercial</span><b>Free and often redistributable, but commercial use is forbidden.</b><p>CC BY-NC and CC BY-NC-SA, PRISMA, NICFI, STARCOP, MARS-S2L, FABDEM. Not "open" under the Open Definition. A leaderboard where companies (Google, IBM, commercial labs) submit models is arguably commercial use, so NC tasks may need a separate track or explicit permission.</p></div>
+    <div><span class="chip closed">Not open</span><b>Paid, quota-based, or restricted to named user groups.</b><p>Commercial SAR and optical, NASA CSDA (US-government-funded users), Norway orthophotos. Cannot be part of a public benchmark without a data agreement.</p></div>
+  </div>
+  <p class="note col">Share-alike (SA) matters too: a task built from CC BY-SA or ODbL data must be released under the same licence.</p>
+</section>
+
+<section>
+  <h2>What the audit changes for the taxonomy</h2>
+  <ol class="find col">
+    <li><b>Licence tier decides what a public benchmark can host.</b> Only the green tier can be redistributed without conditions. Hyperspectral (PRISMA, EnMAP), the methane label sets (STARCOP, MARS-S2L, Carbon Mapper) and the bare-earth and TanDEM-X DEMs are all non-commercial or bespoke-licence. Tasks built on them need a licence field and possibly a separate hosting path.</li>
+    <li><b>The core constellation changed in 2025–26, and time-series tasks will see it.</b> Sentinel-1A retired on 29–30 Jun 2026 and Sentinel-1C and 1D now fly as the pair, back to a 6-day revisit after a 12-day period from Dec 2021 to Mar 2025. Sentinel-2C replaced 2A in Jan 2025. Landsat 7 was decommissioned on 4 Jun 2025. NISAR L-band science products became public in 2026.</li>
+    <li><b>Several long records are ending now.</b> Suomi NPP data delivery ends 1 Nov 2026 (the standard Black Marble nightlights product is built from it). Aqua MODIS was planned to end in Aug 2026. ASTER's thermal subsystem was switched off on 16 Jan 2026. The DMSP SSMIS microwave record is expected to end this month. MethaneSAT was lost on 20 Jun 2025.</li>
+    <li><b>Open sub-metre imagery is wall-to-wall only in the US and parts of Europe.</b> Exceptions exist (Uruguay at 0.32 m under an open licence; South Africa at 0.25 m, supplied free but with no formal licence found), and Satellogic EarthView gives 1 m CC BY samples worldwide. The free NICFI tropical basemaps ended their original phase in Jan 2025. Tasks that need very high resolution in the Global South therefore depend on non-open data.</li>
+    <li><b>Imaging spectroscopy is open but not systematic.</b> EnMAP and PRISMA are tasked, and EMIT, HISUI and DESIS follow the ISS orbit (roughly ±52°). There is no wall-to-wall hyperspectral archive, which limits where atmosphere and geology tasks can be sampled.</li>
+    <li><b>The "2015 cutoff" coincides with Sentinel-2A (launched 23 Jun 2015).</b> The Sentinel-2 half of HLS starts 28 Nov 2015. If the cutoff is meant as "tasks answerable with the current open constellation", this is its justification.</li>
+  </ol>
+  <nav class="toc" aria-label="Sensor types" id="toc"></nav>
+</section>
+
+<section id="tables"></section>
+
+<section id="methane">
+  <div class="group-head"><h2>Open labelled methane-plume datasets</h2><p>Relevant to the Atmosphere → greenhouse gas point sources subdomain. Most are non-commercial.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Dataset</th><th>Sensor</th><th>Size and scope</th><th>Licence</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td class="m">STARCOP</td><td>AVIRIS-NG (Permian Basin, Sep–Nov 2019) + simulated WorldView-3</td><td class="num">1,878 plume + 1,878 background chips from 300 flight lines; 60.8 GB</td><td><span class="chip nc">CC BY-NC 4.0</span></td><td class="src"><a href="https://zenodo.org/records/7863343">Zenodo</a><a href="https://www.nature.com/articles/s41598-023-44918-6">Sci Rep 2023</a></td></tr>
+      <tr><td class="m">CH4Net</td><td>Sentinel-2</td><td class="num">23 sites in Turkmenistan, 10,046 images (925 with plumes), 2017–2021, hand-drawn masks</td><td><span class="chip open">CC BY 4.0</span> per paper</td><td class="src"><a href="https://doi.org/10.57967/hf/2117">Hugging Face</a><a href="https://amt.copernicus.org/articles/17/2583/2024/">AMT 2024</a></td></tr>
+      <tr><td class="m">MARS-S2L</td><td>Sentinel-2 + Landsat</td><td class="num">~87k image pairs, &gt;5,600 manually verified plumes, ~100 GB</td><td><span class="chip nc">CC BY-NC-SA 4.0</span></td><td class="src"><a href="https://huggingface.co/datasets/UNEP-IMEO/MARS-S2L">Hugging Face</a><a href="https://arxiv.org/abs/2511.21777">arXiv</a></td></tr>
+      <tr><td class="m">EMIT L2B CH4PLM</td><td>EMIT</td><td>Manually reviewed plume complexes, 60 m COG + GeoJSON, Aug 2022 onward</td><td><span class="chip open">NASA open</span></td><td class="src"><a href="https://lpdaac.usgs.gov/products/emitl2bch4plmv001/">LP DAAC</a><a href="https://developers.google.com/earth-engine/datasets/catalog/NASA_EMIT_L2B_CH4PLM">GEE</a></td></tr>
+      <tr><td class="m">Carbon Mapper portal</td><td>Tanager-1, EMIT, AVIRIS, GAO</td><td>Plume and source detections (products, not training chips); API needs registration</td><td><span class="chip nc">Non-commercial</span></td><td class="src"><a href="https://carbonmapper.org/data">Carbon Mapper</a></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note col">Sentinel-2 detection of methane uses bands B11/B12 and reaches about 3 t/h under favourable, homogeneous surfaces; detection rates vary strongly by site (93% in Algeria vs 40% in Turkmenistan). <a href="https://amt.copernicus.org/articles/14/2771/2021/">Varon et al. 2021, AMT</a>.</p>
+</section>
+
+<section id="open">
+  <div class="group-head"><h2>Still unverified</h2><p>These could not be confirmed from a primary source during the audit. Treat them as open questions.</p></div>
+  <ul class="plain col">
+    <li>Aqua MODIS operating status on 29 Sep 2026, and how Black Marble continues after Suomi NPP ends on 1 Nov 2026.</li>
+    <li>Whether GEDI is collecting now (released data end 10 Jul 2025; WMO OSCAR lists end of life ≥2030).</li>
+    <li>Operational status of Sentinel-4 and Sentinel-5; TEMPO and EMIT beyond Sep 2026; GOSAT-2 FTS-2.</li>
+    <li>Extension end dates for SMOS, CryoSat-2, Jason-3 and SWOT; Sentinel-6B taking over as reference mission.</li>
+    <li>2026 status of Amazonia-1, Resourcesat-2/2A, SAOCOM and HISUI; Sentinel-2D launch date.</li>
+    <li>Licence text for HLS, Denmark orthophotos, GEMS, FY-4 and INSAT; Vantor Open Data resolution.</li>
+    <li>The exact 17/17 membership of the SDG compendium list (reconstruction above is an inference from factsheet colours).</li>
+  </ul>
+</section>
+</div>
+
+<script>
+const T = {open:["open","Open"], reg:["reg","Free + terms"], nc:["nc","Non-commercial"], closed:["closed","Not open"]};
+const U = '<span class="flag">UNVERIFIED</span>';
+const L = (label,url)=>[label,url];
+
+const GROUPS = [
+{ id:"optical", name:"Multispectral optical", note:"The backbone of GeoFM pretraining. Landsat gives the long record; Sentinel-2 the 10 m, 5-day record from 2015.",
+rows:[
+ ["Sentinel-2A/B/C MSI","ESA · Copernicus","10/20/60 m · 13 bands, 443–2190 nm · 290 km swath","5 d at equator (2 satellites); 10 d each","Jun 2015 →","2B and 2C operational (2C replaced 2A on 21 Jan 2025). 2A in an extension campaign to 31 Dec 2026. 2D launch date "+U,"Land and coast, 56°S–82.8°N","open","CDSE, GEE, Planetary Computer (from 27 Jun 2015), AWS",[L("SentiWiki","https://sentiwiki.copernicus.eu/web/s2-mission"),L("2A extension","https://sentinels.copernicus.eu/-/sentinel-2a-extension-campaign-prolonged-until-the-end-of-2026"),L("eoPortal","https://www.eoportal.org/satellite-missions/copernicus-sentinel-2")]],
+ ["Landsat 8/9 OLI/TIRS","NASA · USGS","30 m (15 m pan; thermal 100 m) · 9 OLI + 2 TIRS bands · 185 km","16 d each; 8 d combined","L8 Feb 2013; L9 Sep 2021 →","Both operating","Global","open","USGS Collection 2 L1/L2, GEE, Planetary Computer, AWS (requester pays)",[L("USGS L8","https://www.usgs.gov/landsat-missions/landsat-8"),L("USGS L9","https://www.usgs.gov/landsat-missions/landsat-9")]],
+ ["Landsat 7 ETM+","NASA · USGS","30 m (15 m pan; thermal 60 m) · 8 bands","16 d","Apr 1999 → 2024","Scan-line corrector failed 31 May 2003 (gapped scenes after). Science acquisitions suspended Jan 2024; decommissioned 4 Jun 2025","Global","open","Collection 2, GEE, Planetary Computer, AWS",[L("USGS L7","https://www.usgs.gov/landsat-missions/landsat-7"),L("Farewell","https://www.usgs.gov/landsat-missions/news/a-final-farewell-landsat-7")]],
+ ["Landsat 4–5 TM","NASA · USGS","30 m (thermal 120 m) · 7 bands","16 d","Jul 1982 → Nov 2011","Ended. Collection 2 surface reflectance and temperature from 1982","Global","open","Collection 2 L1/L2, GEE, Planetary Computer",[L("USGS L5","https://www.usgs.gov/landsat-missions/landsat-5"),L("Collection 2","https://www.usgs.gov/landsat-missions/landsat-collection-2")]],
+ ["Landsat 1–5 MSS","NASA · USGS","57×79 m native · 4 bands, 0.5–1.1 µm","18 d (L1–3); 16 d (L4–5)","Jul 1972 → Jan 2013","Ended. Level-1 only (no surface reflectance)","Global","open","Collection 2 L1, Planetary Computer",[L("USGS L1","https://www.usgs.gov/landsat-missions/landsat-1"),L("MPC","https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l1")]],
+ ["HLS v2.0 (product)","NASA LP DAAC","30 m harmonised surface reflectance from Landsat (L30) and Sentinel-2 (S30)","1.6 d (NASA, incl. S2C); 2–3 d (LP DAAC pages)","L30 Apr 2013; S30 Nov 2015 →","Operating; vegetation-index products added Feb 2025","Global land except Antarctica","open","LP DAAC cloud, GEE; Planetary Computer from 2020 only. Licence text "+U,[L("HLSL30","https://lpdaac.usgs.gov/products/hlsl30v002/"),L("HLSS30","https://lpdaac.usgs.gov/products/hlss30v002/"),L("HLS","https://www.earthdata.nasa.gov/data/projects/hls")]],
+ ["MODIS Terra / Aqua","NASA","250 m (bands 1–2), 500 m, 1 km · 36 bands, 0.4–14.4 µm · 2330 km","~daily","Terra Feb 2000; Aqua 2002 →","Terra operating but drifting (9:06 am crossing). Aqua end of mission planned Aug 2026; current status "+U,"Global","open","LP DAAC, LAADS, GEE, Planetary Computer",[L("Specs","https://modis.gsfc.nasa.gov/about/specifications.php"),L("Aqua plan","https://lpdaac.usgs.gov/news/aqua-modis-acquisition-plan-through-august-2026/")]],
+ ["VIIRS (S-NPP, NOAA-20, NOAA-21)","NASA · NOAA","375 m (I-bands), 750 m (M-bands) + Day/Night Band · 22 bands · ~3000 km","daily","S-NPP Oct 2011 →","NOAA-21 primary. S-NPP data delivery ends 1 Nov 2026. Black Marble nightlights (VNP46, 500 m) built from S-NPP; continuation "+U,"Global","open","LAADS, GEE, NOAA",[L("LAADS","https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/viirs/"),L("S-NPP end","https://www.nesdis.noaa.gov/news/cessation-of-suomi-national-polar-orbiting-partnership-s-npp-data-users-onafter-november-01-2026")]],
+ ["Sentinel-3 OLCI / SLSTR","ESA · EUMETSAT","OLCI 300 m, 21 bands · SLSTR 500 m VIS/SWIR, 1 km thermal","OLCI <1.9 d; SLSTR <0.9 d (2 satellites)","Feb 2016 →","3A and 3B operating. 3C launched 15 Sep 2026, in commissioning","Global","open","CDSE, GEE, Planetary Computer",[L("SentiWiki S3","https://sentiwiki.copernicus.eu/web/s3-mission"),L("3C launch","https://defence-industry-space.ec.europa.eu/successful-launch-eu-copernicus-sentinel-3c-monitor-our-changing-planet-2026-09-15_en")]],
+ ["CBERS-4 / 4A","INPE · CRESDA","4: 5 m pan / 10 m MS, 20 m, 64 m · 4A: 2 m pan / 8 m MS, 16 m, 55 m","Wide-field cameras ~5 d","Dec 2014 / Dec 2019 →","Still acquiring (INPE catalogue to Sep 2026)","INPE archive; extent "+U,"open","INPE STAC / Brazil Data Cube, AWS (CC BY-SA 3.0)",[L("CEOS","https://database.eohandbook.com/database/missionsummary.aspx?missionID=393"),L("AWS","https://registry.opendata.aws/cbers/"),L("eoPortal 4A","https://www.eoportal.org/satellite-missions/cbers-4a")]],
+ ["Amazonia-1 WFI","INPE","64 m · 4 bands, 0.45–0.89 µm · 850 km","5 d","Feb 2021 →","2026 status "+U,"Brazil-focused","open","AWS, Brazil Data Cube (CC BY-SA 3.0)",[L("INPE","https://data.inpe.br/dados/amazonia-1/"),L("AWS","https://registry.opendata.aws/amazonia/")]],
+ ["Resourcesat-2/2A","ISRO · NRSC","LISS-IV 5.8 m · LISS-III 23.5 m · AWiFS 56 m","5 d (2 + 2A)","Apr 2011 / Dec 2016 →","2026 status "+U,"India and surroundings","reg","Bhoonidhi only: data at 5 m and coarser open to all users; licence text "+U,[L("ISRO RS-2A","https://www.isro.gov.in/RESOURCESAT_2A.html"),L("Bhoonidhi","https://www.nrsc.gov.in/nrscnew/assets/pdf/brochures/Bhoonidhi_Brochure_2025.pdf")]],
+]},
+{ id:"thermal", name:"Thermal", note:"Landsat thermal (TM 120 m, ETM+ 60 m, TIRS 100 m) is covered in the Landsat rows.",
+rows:[
+ ["ECOSTRESS (ISS)","NASA JPL","70 m · 1 SWIR + 5 TIR bands (two TIR bands missing 15 May 2019 – 28 Apr 2023; now alternates 5- and 3-band collection) · ~384 km","Variable (ISS orbit)","Jun 2018 →","Operating; end date "+U,"53.6°N–53.6°S","open","LP DAAC, AppEEARS",[L("LP DAAC","https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/ecostress-overview/"),L("Bands","https://www.earthdata.nasa.gov/data/instruments/ecostress/spectral-bands")]],
+ ["ASTER (Terra)","NASA · METI","VNIR 15 m (3 bands) remains; SWIR 30 m and TIR 90 m lost","16 d; tasked","Mar 2000 →","SWIR unusable since Apr 2008. TIR permanently off 16 Jan 2026. Only VNIR operating","Global, tasked","open","LP DAAC, GEE (to Dec 2025)",[L("TIR off","https://www.earthdata.nasa.gov/data/alerts-outages/terra-asters-tir-instrument-permanently-turned-off-vnir-data-collection-resumes"),L("SWIR","https://www.earthdata.nasa.gov/data/alerts-outages/aster-swir-anomaly")]],
+]},
+{ id:"aerial", name:"Open aerial orthophotos (sub-metre)", note:"National programmes. Wall-to-wall open coverage is concentrated in the US and Europe; Uruguay and South Africa are the exceptions found.",
+rows:[
+ ["NAIP","USDA","0.6 m (2018+), 1 m before · RGB or RGBN","≤3 yr (leaf-on)","2003 →","Ongoing; newest year in catalogues is 2023","Conterminous US","open","GEE, Planetary Computer (public domain)",[L("USGS","https://www.usgs.gov/centers/eros/science/usgs-eros-archive-aerial-photography-national-agriculture-imagery-program-naip"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/USDA_NAIP_DOQQ")]],
+ ["Spain PNOA","IGN · CNIG","25 cm (older 50 cm) · RGB + false-colour IR","2–3 yr","2004 →","Ongoing","National","open","CNIG download, WMS (CC BY 4.0)",[L("datos.gob.es","https://datos.gob.es/en/catalogo/e00125901-spaignpnoama")]],
+ ["France BD ORTHO","IGN","20 cm · RGB + colour IR","Yearly flights; full cycle 3–6 yr","2000 →","Ongoing","Metropolitan and most overseas France","open","data.gouv.fr, WMTS (Licence Ouverte 2.0)",[L("data.gouv","https://www.data.gouv.fr/datasets/bd-ortho-r")]],
+ ["Netherlands","Beeldmateriaal NL · PDOK","25 cm summer; 8 cm / 5 cm winter · RGB, CIR","Twice yearly","2016 →","Ongoing (2021 missing)","National","open","PDOK WMS/WMTS (CC BY 4.0)",[L("PDOK","https://www.pdok.nl/introductie/-/article/pdok-luchtfoto-rgb-open-")]],
+ ["Switzerland SWISSIMAGE","swisstopo","10 cm (plains) / 25 cm (Alps) · RGB","3 yr","2017 → (free)","Ongoing","National","open","swisstopo download, GEE 2017–21 (OGD, attribution)",[L("swisstopo","https://www.swisstopo.admin.ch/en/orthoimage-swissimage-10"),L("OGD FAQ","https://www.swisstopo.admin.ch/en/faq-free-geodata")]],
+ ["Denmark spring orthophoto","Klimadatastyrelsen","10–12.5 cm · RGBNIR","Yearly","2004 →","Ongoing","National","reg","Dataforsyningen; free, licence text "+U,[L("Datafordeler","https://datafordeler.dk/dataoversigt/geodanmark-ortofoto/ortofoto-foraar-wms/")]],
+ ["Flanders","Digitaal Vlaanderen","15 cm · RGB","Yearly","→ 2025 edition","Ongoing","Flanders + Brussels","open","WMS/WMTS, download (free-reuse model licence)",[L("metadata","https://metadata.vlaanderen.be/srv/api/records/f5304d6d-0dd4-43fd-a726-427af31e8d61")]],
+ ["Finland","Maanmittauslaitos","0.5 m · RGB, false colour","3 yr","—","Ongoing","National","open","WMTS/WCS (CC BY 4.0)",[L("NLS","https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/orthophotos")]],
+ ["UK EA Vertical Aerial Photography","Environment Agency","10 cm and 50 cm · RGB, NIR","Project-based","2006 →","Ongoing; not wall-to-wall","England, partial","open","Defra Data Services (OGL v3)",[L("data.gov.uk","https://www.data.gov.uk/dataset/4921f8a1-d47e-458b-873b-2a489b1c8165/vertical-aerial-photography")]],
+ ["Uruguay IDE","IDE Uruguay","0.32 m national; 0.10 m for 86 urban centres","One-off","2017–18","Static","National","open","Open data catalogue (Uruguay Open Data Licence)",[L("catalogue","https://catalogodatos.gub.uy/dataset/ide-ortoimagen-mdt-de-cobertura-nacional")]],
+ ["South Africa NGI","CD:NGI","0.25 m (2017+); 0.5 m (2008–16)","Continuous re-flying","1930s archive","Ongoing","National","reg","Supplied free; no formal licence found",[L("NGI","https://ngi.dlrrd.gov.za/index.php/what-we-do/aerial-photography-and-imagery")]],
+ ["Norway Norge i bilder","Kartverket","—","—","1935 →","Ongoing","National","closed","Free to view; downloads for Norge digitalt partners only",[L("Kartverket","https://www.kartverket.no/en/about-kartverket/nyheter/geodataarbeid/2026/juli/norge-i-bilder-er-oppgradert")]],
+]},
+{ id:"commercial", name:"Commercial imagery with open or research access", note:"Open subsets of commercial constellations. Open commercial SAR (Capella, Umbra, ICEYE) is in the SAR group.",
+rows:[
+ ["NICFI Planet basemaps","Norway · Planet","4.77 m · RGBN mosaics","Biannual Dec 2015–Aug 2020; monthly from Sep 2020","Dec 2015 →","Original free phase ended 23 Jan 2025; Level 0/1 access extended temporarily. GEE lists mosaics to Aug 2026. New sign-ups "+U,"Tropics 30°N–30°S","nc","GEE (sign-up, non-commercial)",[L("NICFI","https://www.nicfi.no/2025/01/28/nicfi-satellite-data-program-enters-new-phase/"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/projects_planet-nicfi_assets_basemaps_africa"),L("CEO","https://www.collect.earth/planet-imagery-via-nicfi-is-no-longer-available-on-ceo/")]],
+ ["Satellogic EarthView","Satellogic","1 m · RGBN TOA, 384 m chips","Some sites revisited","2020 →","Released May 2024","~3M chip locations worldwide (sample)","open","AWS, Hugging Face (CC BY 4.0)",[L("AWS","https://registry.opendata.aws/satellogic-earthview/")]],
+ ["Vantor (ex-Maxar) Open Data","Vantor","VHR; resolution "+U,"Event-driven","—","Active","Pre/post imagery of sudden-onset disasters","nc","AWS STAC (CC BY-NC 4.0; page also says public domain)",[L("Vantor","https://vantor.com/company/open-data-program/"),L("AWS","https://registry.opendata.aws/maxar-open-data/")]],
+ ["NASA CSDA","NASA (multiple vendors)","Vendor-dependent (Planet, Maxar, MDA, …)","—","—","Active","Archive and tasked","closed","Mostly US-government-funded researchers; EULA tiers; no redistribution",[L("FAQ","https://science.nasa.gov/earth-science/csda/faqs/"),L("EULAs","https://science.nasa.gov/earth-science/csda/end-user-license-agreements/")]],
+]},
+{ id:"sar", name:"Synthetic aperture radar", note:"C-band (Sentinel-1) is the only systematic global open SAR record; NISAR adds open L-band from 2026.",
+rows:[
+ ["Sentinel-1C / 1D","ESA · Copernicus","C-band · IW 5×20 m single-look (GRD posted 10 m) · 250 km · dual-pol","6 d (C + D since Jun 2026)","1A Apr 2014; 1C Dec 2024; 1D Nov 2025","1A retired 29–30 Jun 2026; 1B failed 23 Dec 2021 (12-day revisit until 1C data opened 26 Mar 2025). 1D data open 17 Apr 2026","Global, systematic","open","CDSE, GEE (from Oct 2014), ASF, Planetary Computer",[L("IW mode","https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/acquisition-modes/interferometric-wide-swath"),L("1A end","https://dataspace.copernicus.eu/news/2026-6-30-copernicus-sentinel-1a-satellite-end-operations-after-12-years-service"),L("1D open","https://sentinels.copernicus.eu/-/sentinel-1d-user-data-opening-from-17-april-2026"),L("Reconfig","https://sentinels.copernicus.eu/-/sentinel-1-orbital-reconfiguration-dates")]],
+ ["NISAR L-SAR","NASA · ISRO","L-band · 3–10 m by mode (GCOV posted 10/20 m) · 242 km · quad/dual/compact","12 d repeat; ~6 d with asc + desc","Launched 30 Jul 2025","Beta L1–L3 for a subset (17 Oct 2025 – 20 Jan 2026) public 27 Feb 2026. Provisional L0B–L3 public since 20 Jul 2026 (acquisitions from 17 Jun 2026). Validated reprocessing expected by end 2026","Global land and ice","open","ASF DAAC",[L("ASF","https://asf.alaska.edu/notices/nisar-l-band-data-now-publicly-available/"),L("Availability","https://nisar-docs.asf.alaska.edu/availability-overview/"),L("NASA","https://science.nasa.gov/mission/nisar/mission-overview/")]],
+ ["NISAR S-SAR","ISRO","S-band · 3–24 m","12 d","Daily processing from 8 Jul 2026","Products released on Bhoonidhi (release dated 24 Jul 2026)","India plus cal/val sites","reg","Bhoonidhi (registration; licence "+U+")",[L("ISRO","https://www.isro.gov.in/NISARS_Band_SAR_Data_Products_Release.html")]],
+ ["ALOS-2 PALSAR-2","JAXA","L-band · open products: 25 m annual mosaics (HH/HV); 25 m ScanSAR CARD4L","Mosaics annual; ScanSAR monthly (42-day lag)","Mosaics 2015–2025","Operating (extended). Individual scenes not open","Global mosaics; ScanSAR on AWS","reg","GEE (2015–2024), AWS, JAXA EORC (©JAXA attribution)",[L("JAXA EORC","https://www.eorc.jaxa.jp/ALOS/en/dataset/fnf_e.htm"),L("AWS","https://registry.opendata.aws/jaxa-alos-palsar2-scansar/")]],
+ ["ALOS PALSAR (archive)","JAXA · ASF","L-band · RTC products at 12.5 m; 25 m mosaics 2007–2010","—","2006 → 2011","Archive; restrictions lifted","Global archive","open","ASF (free registration)",[L("Earthdata","https://www.earthdata.nasa.gov/news/feature-articles/unrestricted-view-palsar-data-nasas-alaska-satellite-facility-asf-distributed")]],
+ ["ERS-1/2 · Envisat ASAR","ESA","C-band · 30 m image mode","35 d","Jul 1991 → Apr 2012","Archive","Station-dependent","open","ASF, ESA (EO Sign In)",[L("ESA ERS","https://earth.esa.int/eogateway/missions/ers"),L("ASF","https://asf.alaska.edu/news-and-notes/ers-free-and-open/")]],
+ ["RADARSAT Constellation (RCM)","CSA","C-band · 3 m to 100 m, compact pol","4 d exact repeat","Jun 2019 →","Operating. Public: ≥16 m over Canadian land and inland water, 100 m maritime","Canada-focused","reg","EODMS (Government of Canada licence)",[L("CSA","https://www.asc-csa.gc.ca/eng/satellites/radarsat/access-to-data/about.asp")]],
+ ["RADARSAT-1 (archive)","CSA","C-band","—","1995 → 2013","36,500 images released 2019","Canada-focused","open","EODMS (OGL-Canada)",[L("CSA","https://www.canada.ca/en/space-agency/news/2019/03/open-data-over-36000-historical-radarsat-1-satellite-images-of-the-earth-now-available-to-the-public.html")]],
+ ["Capella · Umbra · ICEYE open data","Commercial","X-band · Umbra spotlight 16 cm–1 m; others "+U,"Curated additions","—","Active","Curated sites and events","open","AWS (CC BY 4.0)",[L("Capella","https://registry.opendata.aws/capella_opendata/"),L("Umbra","https://registry.opendata.aws/umbra-open-data/"),L("ICEYE","https://registry.opendata.aws/iceye-opendata/")]],
+ ["OPERA RTC-S1 / DISP-S1 (products)","NASA JPL · ASF","30 m backscatter (RTC); 30 m displacement (DISP)","Follows Sentinel-1","RTC systematic 2022 (on demand to 2016); DISP Jul 2016","Ongoing","RTC: land north of 60°S. DISP: North America only","open","ASF, AWS (DISP CC BY 4.0)",[L("RTC guide","https://hyp3-docs.asf.alaska.edu/guides/opera_rtc_product_guide/"),L("DISP","https://registry.opendata.aws/nasa-operal3disp-s1v1/")]],
+ ["ALOS-4 · SAOCOM · RADARSAT-2 · COSMO-SkyMed · TerraSAR-X","JAXA · CONAE · MDA · ASI · DLR/Airbus","L-, C- and X-band, metre-scale","Tasked","various","Operating","Tasked","closed","Commercial, agreements, or science-proposal quotas",[L("ALOS-4","https://www.eorc.jaxa.jp/ALOS/en/alos-4/a4_data_e.htm"),L("SAOCOM","https://catalogos.conae.gov.ar/catalogo/catalogoSatSaocomInfo.html"),L("COSMO","https://www.asi.it/bandi_e_concorsi/cosmo-skymed-constellation-data-utilization/")]],
+]},
+{ id:"hyper", name:"Imaging spectroscopy (hyperspectral)", note:"None acquire systematically: tasked or limited to ISS latitudes.",
+rows:[
+ ["EnMAP","DLR","30 m · 91 VNIR + 131 SWIR bands, 420–2450 nm · 30 km","Tasked; 4 d with ±30° tilt","Apr 2022 →","Operating","Global, tasked","reg","DLR portals (©DLR; commercial use allowed; no redistribution of editable data)",[L("DLR","https://www.dlr.de/en/rb/research-operation/missions/earth-observation-science/enmap-environmental-mapping-program"),L("Licence","https://www.enmap.org/data/resources/EnMAP_Data_License.pdf")]],
+ ["EMIT (ISS)","NASA JPL","60 m · 285 bands, 381–2493 nm · ~75 km","ISS orbit, not tasked","Jul 2022 →","Extended \"through at least 2026\"","52°N–52°S","open","LP DAAC, GEE",[L("Earthdata","https://www.earthdata.nasa.gov/data/instruments/emit-imaging-spectrometer"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/NASA_EMIT_L2A_RFL")]],
+ ["PRISMA","ASI","30 m (5 m pan) · 66 VNIR + 173 SWIR, 400–2505 nm · 30 km","Tasked; 7 d with roll","Mar 2019 →","Operating (extended). Second generation planned ~2031","Global, tasked","nc","ASI portal (registration; non-commercial; no redistribution)",[L("eoPortal","https://www.eoportal.org/satellite-missions/prisma-hyperspectral"),L("Licence","https://prismauserregistration.asi.it/LICENCE_TO_USE_PRISMA_DATA.pdf")]],
+ ["HISUI (ISS)","METI · JAXA","20×30 m · 185 bands, 0.4–2.5 µm · 20 km","ISS orbit","Dec 2019 →","2026 status "+U,"ISS latitudes","reg","Tellus (research; by application)",[L("HISUI","https://www.hisui.go.jp/en/index.html")]],
+ ["DESIS (ISS)","DLR · Teledyne","~30 m · VNIR 400–1000 nm","Pointable","Jun 2018 → Dec 2023","Ended; archive","ISS latitudes","closed","Teledyne commercial rights; DLR science archive (licence "+U+")",[L("DLR","https://www.dlr.de/en/eoc/research-transfer/projects-missions/desis/mission")]],
+ ["Tanager-1","Planet · Carbon Mapper","30 m · >400 bands, 400–2500 nm · 18 km","Tasked","Aug 2024 →","Operating","Tasked","nc","Commercial; >150 open scenes CC BY via Planet",[L("Planet","https://www.planet.com/pulse/announcing-the-tanager-open-data-competition/")]],
+ ["PACE OCI","NASA","~1–1.2 km · hyperspectral UV to 895 nm + 7 SWIR bands · ~2,700 km","2-day global","Feb 2024 →","Operating","Global (ocean colour)","open","OB.DAAC, Earthdata Cloud",[L("PACE","https://pace.oceansciences.org/oci.htm")]],
+]},
+{ id:"atmos", name:"Atmospheric composition and greenhouse gases", note:"Kilometre-scale except point-source imagers. Point-source methane relies mostly on Sentinel-2, Landsat and hyperspectral imagers.",
+rows:[
+ ["Sentinel-5P TROPOMI","ESA · Copernicus","5.5×3.5 km (7×3.5 before 6 Aug 2019); CH₄/CO 5.5×7 km · UV–SWIR · 2,600 km","Daily","Oct 2017 →","Operating beyond design life","Global","open","CDSE, GEE (L3), GES DISC",[L("Res. change","https://sentinels.copernicus.eu/-/copernicus-sentinel-5p-increased-spatial-resolution-change-now-operational"),L("SentiWiki","https://sentiwiki.copernicus.eu/web/s5p-mission")]],
+ ["Sentinel-4 (GEO) · Sentinel-5 (MetOp-SG)","ESA · EUMETSAT","S4 ~8 km, hourly over Europe · S5 7 km, daily global","Hourly / daily","Jul 2025 / Aug 2025","Commissioning or test data; operational status "+U,"Europe / global","open","EUMETSAT",[L("S4","https://www.eumetsat.int/sentinel-4"),L("S5","https://www.eumetsat.int/sentinel-5")]],
+ ["TEMPO (GEO)","NASA · SAO","A few square miles (exact figure "+U+") · UV–VIS","Hourly, daytime","2023 →","Extended through at least Sep 2026","North America","open","NASA ASDC",[L("NASA","https://www.nasa.gov/missions/tempo/nasa-mission-monitoring-air-quality-from-space-extended/")]],
+ ["GEMS (GEO)","NIER Korea","7×8 km · 300–500 nm","8× per day","Feb 2020 →","Operating","East and Southeast Asia","reg","NIER ESC (licence "+U+")",[L("NIER","https://nesc.nier.go.kr/en/html/cntnts/73/satellite/introduction.do")]],
+ ["OCO-2 / OCO-3","NASA (operated by Caltech)","1.29×2.25 km footprints (OCO-2) · CO₂ bands 0.76, 1.61, 2.06 µm","16 d repeat (OCO-2); ISS + target mode (OCO-3)","Jul 2014 / May 2019 →","Operating. FY26 budget proposed termination; Caltech agreement for up to 5 yr signed 14 Aug 2026","Global, sparse","open","GES DISC",[L("NASA","https://science.nasa.gov/blogs/oco-2/2026/08/24/nasa-caltech-partner-on-two-earth-science-missions/")]],
+ ["GOSAT · GOSAT-2 · GOSAT-GW","JAXA · NIES · MOE","GOSAT 10.5 km footprints · GOSAT-GW 10 km wide / 1–3 km focus mode, 911 km","3 d","Jan 2009 / Oct 2018 / Jun 2025 →","GOSAT operating with suspensions; GOSAT-2 status uncertain; GOSAT-GW data release date "+U,"Global","reg","NIES archives (free; terms "+U+")",[L("GOSAT-GW","https://gosat-gw.nies.go.jp/en/gosat-gw02.html"),L("JAXA","https://www.eorc.jaxa.jp/GOSAT/index.html")]],
+ ["MethaneSAT","EDF","46 m L3 grid; 4×4 km area-source L4","Targeted","2024 → Jun 2025","Contact lost 20 Jun 2025; archive being released","Targeted regions","nc","GEE public preview by request (custom licence)",[L("EDF","https://www.methanesat.org/project-updates/results-anomaly-investigation-loss-communication-methanesat"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/projects_edf-methanesat-ee_assets_public-preview_L3concentration")]],
+ ["GHGSat","GHGSat Inc.","25 m; ~100 kg/h detection threshold","Tasked","2016 →","Operating","Tasked","closed","Commercial; research quota via ESA Third Party Missions",[L("GHGSat–ESA","https://www.ghgsat.com/partners/esa-data-access/")]],
+ ["UNEP IMEO MARS","UNEP","Detections from multiple satellites","—","—","Public 30 days after detection or notification","Global","reg","Eye on Methane portal (UNEP terms; data licence "+U+")",[L("UNEP","https://methanedata.unep.org/methane-alert-response-system")]],
+]},
+{ id:"micro", name:"Passive microwave and scatterometry", note:"All-weather, coarse resolution. The source for soil moisture, sea ice and snow.",
+rows:[
+ ["SMAP radiometer","NASA","L-band · 36 km native; enhanced product posted at 9 km · 1000 km swath","2–3 d "+U,"Jan 2015 →","Operating; radar failed Jul 2015","Global","open","NSIDC, GEE",[L("JPL","https://smap.jpl.nasa.gov/observatory/instrument/"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/NASA_SMAP_SPL3SMP_E_006")]],
+ ["SMOS","ESA","L-band · 35 km","1–3 d","Nov 2009 →","Extended beyond 2025; end date "+U,"Global","open","CDSE",[L("ESA","https://earth.esa.int/eogateway/missions/smos")]],
+ ["ASCAT (Metop)","EUMETSAT · H SAF","C-band scatterometer · soil moisture 12.5 km (6.25 km product)","~daily","2007 →","Operating","Global","open","EUMETSAT H SAF",[L("ESSD 2026","https://essd.copernicus.org/articles/18/4393/2026/")]],
+ ["AMSR2 (GCOM-W)","JAXA","6.9–89 GHz · 3×5 km (89 GHz) to 35×62 km (6.9 GHz) · 1450 km","~daily "+U,"2012 →","Operating; NSIDC's primary sea-ice source since 31 Jul 2025. NOAA ends AMSR2 near-real-time products Sep 2026, moving to AMSR3","Global","reg","JAXA G-Portal (registration)",[L("NSIDC","https://nsidc.org/sea-ice-today/analyses/ssmis-sunsets-amsr2-rises"),L("NOAA","https://www.nesdis.noaa.gov/news/decommissioning-of-advanced-microwave-scanning-radiometer-amsr2-products-and-transition-amsr3-products")]],
+ ["AMSR3 (GOSAT-GW)","JAXA","6.9–183 GHz, 21 channels · ~1500 km","99.9% of globe in 3 d","Jun 2025 →","Standard products released 30 Jun 2026; JMA operational use from 8 Sep 2026","Global","reg","JAXA G-Portal",[L("JAXA Jun 2026","https://global.jaxa.jp/press/2026/06/20260630-1_e.html"),L("JAXA 2025","https://global.jaxa.jp/press/2025/09/20250905-1_e.html")]],
+ ["GPM GMI / IMERG","NASA · JAXA","IMERG 0.1° (~11 km) merged precipitation","30 min (IMERG)","IMERG 1998 →; GPM Feb 2014","Operating; orbit raised Nov 2023, end expected early 2030s","Global (GMI to 65°)","open","GEE, GES DISC",[L("GPM","https://gpm.nasa.gov/missions/GPM/core-observatory"),L("GEE","https://developers.google.com/earth-engine/datasets/catalog/NASA_GPM_L3_IMERG_V07")]],
+ ["SSMIS (DMSP)","US DoD · NOAA","—","~daily","SSM/I–SSMIS record Jul 1987 →","Data of opportunity since Jul 2025; expected to end around Sep 2026","Global","open","NOAA, NSIDC",[L("NSIDC","https://nsidc.org/data/user-resources/data-announcements/user-notice-ssmis-processing-will-now-continue-through-september-2026")]],
+]},
+{ id:"alt", name:"Altimetry, lidar and gravity", note:"Profiles and footprints, not images. Useful as labels (canopy height, water level) more than as model inputs.",
+rows:[
+ ["Sentinel-3 SRAL","ESA · EUMETSAT","Ku/C altimeter · ~300 m along-track (SAR mode)","27 d per satellite","Feb 2016 →","3A, 3B operating; 3C launched Sep 2026","Near-polar, nadir track","open","CDSE",[L("SentiWiki","https://sentiwiki.copernicus.eu/web/s3-mission")]],
+ ["Sentinel-6 MF / 6B · Jason-3","EUMETSAT · NASA · NOAA · CNES","Nadir altimeters","~10 d (reference orbit)","Jason-3 Jan 2016; S6-MF Nov 2020; 6B Nov 2025","6B in tandem calibration with MF since Dec 2025; Jason-3 moved to a long-repeat orbit Jun 2025","±66°","open","EUMETSAT Data Store, PO.DAAC (CC BY 4.0)",[L("EUMETSAT","https://www.eumetsat.int/copernicus-sentinel-6b-delivers-first-altimeter-images-and-reaches-final-orbit"),L("NOAA","https://www.ospo.noaa.gov/data/messages/2025/06/MSG_20250617_1637.html")]],
+ ["CryoSat-2","ESA","SAR/interferometric altimeter · 250 m along-track","369 d (30 d sub-cycle)","Apr 2010 →","Current extension "+U,"To 88°","open","ESA",[L("ESA","https://earth.esa.int/eogateway/missions/cryosat")]],
+ ["SWOT KaRIn","NASA · CNES","Ka-band swath altimeter · 120 km swath (20 km nadir gap) · land rasters 100/250 m","21 d","Dec 2022 →","Producing data; extension beyond nominal phase "+U,"77.6° inclination","open","PO.DAAC on AWS",[L("PO.DAAC","https://podaac.jpl.nasa.gov/SWOT"),L("JPL","https://swot.jpl.nasa.gov/mission/overview/")]],
+ ["GEDI (ISS)","NASA · UMD","Full-waveform lidar · 25 m footprints, 8 tracks","No fixed repeat","Science data 2019 →","Gap 17 Mar 2023 – 26 Apr 2024. Released data end 10 Jul 2025 (V3, Jul 2026). Current collection "+U,"±51.6°","open","LP DAAC, GEE, AWS",[L("UMD","https://gedi.umd.edu/category/mission-status/"),L("V3","https://www.earthdata.nasa.gov/data/alerts-outages/gedi-version-3-data-products-released")]],
+ ["ICESat-2 ATLAS","NASA","Photon-counting lidar · 11 m footprint, 0.7 m spacing, 6 beams","91 d","Sep 2018 →","Operating","±88°","open","NSIDC",[L("NASA","https://icesat-2.gsfc.nasa.gov/science/specs")]],
+ ["ICESat GLAS (archive)","NASA","60–70 m footprint","—","Feb 2003 → Oct 2009","Archive","±86°","open","NSIDC",[L("NSIDC","https://nsidc.org/data/icesat")]],
+ ["GRACE / GRACE-FO","NASA · GFZ","~300 km","Monthly","2002 →","GRACE-FO 2026 status "+U,"Global","open","PO.DAAC",[L("JPL","https://gracefo.jpl.nasa.gov/mission/overview/")]],
+]},
+{ id:"geo", name:"Geostationary imagers", note:"Minutes-scale revisit at km scale: the operational source for active fire, smoke and clouds.",
+rows:[
+ ["GOES-19 / 18 ABI","NOAA","0.5 km best band · 16 bands","Full disk 10 min; US 5 min; mesoscale 30–60 s","GOES-16 2017 →","GOES-19 is GOES-East since Apr 2025; GOES-18 is GOES-West","Americas","open","AWS noaa-goes buckets",[L("goes-r.gov","https://www.goes-r.gov/users/transitionToOperations19.html"),L("AWS","https://registry.opendata.aws/noaa-goes/")]],
+ ["Himawari-9 AHI","JMA","Best band "+U,"Full disk 10 min; Japan 2.5 min; targets 30 s","2015 →","Himawari-9 prime since Dec 2022","East Asia, West Pacific","open","AWS noaa-himawari",[L("JMA","https://www.data.jma.go.jp/mscweb/en/general/himawari89plan.html"),L("AWS","https://registry.opendata.aws/noaa-himawari/")]],
+ ["MTG FCI (Meteosat-12) · MSG SEVIRI","EUMETSAT","FCI 0.5–2 km · SEVIRI 3 km (1 km HRV)","FCI 10 min; SEVIRI 15 min","SEVIRI 2002 →; FCI operational Dec 2024","Meteosat-12 prime 0° since Jun 2025","Europe, Africa","reg","Hourly Level 1 is CC BY 4.0. Full rate free to research users; under 1 h latency non-commercial, no redistribution",[L("EUMETSAT policy","https://www-cdn.eumetsat.int/files/2026-01/45173%20-%20Data_Policy.pdf"),L("eoPortal","https://www.eoportal.org/satellite-missions/meteosat-third-generation")]],
+ ["GK-2A AMI","KMA","0.5 km visible, 2 km IR","10 min; regional 2 min","Jul 2019 →","Operating","Asia-Pacific","open","AWS noaa-gk2a-pds",[L("AWS","https://registry.opendata.aws/noaa-gk2a-pds/")]],
+ ["FY-4A/B AGRI · INSAT-3D/3DR/3DS","CMA · ISRO","AGRI 0.5–4 km · INSAT 1 km vis, 4 km IR","15 min · ~25 min","various","Operating","Asia · Indian Ocean","reg","NSMC and MOSDAC portals (terms "+U+")",[L("NSMC","https://www.nsmc.org.cn/nsmc/en/satellite/FY4.html"),L("MOSDAC","https://www.mosdac.gov.in/insat-3dr-payloads")]],
+]},
+{ id:"dem", name:"Global elevation models", note:"Static inputs for terrain, hydrology and solid-Earth tasks.",
+rows:[
+ ["Copernicus DEM GLO-30 / GLO-90","ESA · Airbus","30 / 90 m surface model","Static","TanDEM-X data 2011–2015","Released","Global","open","AWS, CDSE (free worldwide licence)",[L("CDSE","https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"),L("AWS","https://registry.opendata.aws/copernicus-dem/")]],
+ ["NASADEM / SRTM","NASA","30 m","Static","Feb 2000","Released","60°N–56°S","open","GEE",[L("GEE","https://developers.google.com/earth-engine/datasets/catalog/NASA_NASADEM_HGT_001")]],
+ ["ASTER GDEM v3","NASA · METI","~30 m","Static","2000–2013","Released","83°N–83°S","open","LP DAAC",[L("Earthdata","https://www.earthdata.nasa.gov/data/catalog/lpcloud-astgtm-003")]],
+ ["ALOS AW3D30 v4.1","JAXA","~30 m surface model","Static","2006–2011","Released","Global except Antarctica","reg","GEE (JAXA terms)",[L("GEE","https://developers.google.com/earth-engine/datasets/catalog/JAXA_ALOS_AW3D30_V4_1")]],
+ ["TanDEM-X 90 m / 30 m EDEM","DLR","90 m; 30 m (EDEM, Nov 2023)","Static","2010–2015","Released","Global","nc","DLR Geoservice (scientific use only)",[L("TDM90","https://geoservice.dlr.de/web/dataguide/tdm90/"),L("EDEM","https://geoservice.dlr.de/web/datasets/tdm30_edem")]],
+ ["FABDEM","Univ. Bristol · Fathom","30 m bare-earth (trees and buildings removed)","Static","2022 (V1-2 Jan 2023)","Released","Global","nc","data.bris (CC BY-NC-SA 4.0)",[L("data.bris","https://data.bris.ac.uk/data/dataset/s5hqmjcdj8yo2ibzi9b4ew3sn")]],
+]},
+];
+
+
+// Ordering: (1) use in audited GeoFM benchmark suites, (2) licence tier, (3) coverage.
+// use: 3 = in 2+ suites; 2 = in 1 suite; 1 = open labelled ML dataset exists but in no suite; 0 = none found.
+// cov: 1 global systematic; 2 global but tasked, sparse or sampled; 3 regional/continental; 4 national or local.
+const META = {
+"Sentinel-2A/B/C MSI":[3,1,"PANGAEA, GEO-Bench, GEO-Bench-2, Copernicus-Bench, SustainBench, FoMo-Bench, PhilEO, Galileo"],
+"Sentinel-1C / 1D":[3,1,"PANGAEA, GEO-Bench-2, Copernicus-Bench, FoMo-Bench, SustainBench, AnySat"],
+"Landsat 8/9 OLI/TIRS":[3,1,"GEO-Bench, GEO-Bench-2, FoMo-Bench (ForestNet); SustainBench"],
+"HLS v2.0 (product)":[3,1,"PANGAEA, GEO-Bench-2, TerraMind (HLS Burn Scars)"],
+"MODIS Terra / Aqua":[3,1,"SustainBench (crop yield, land cover); AnySat (PLANTED)"],
+"France BD ORTHO":[3,4,"FLAIR in GEO-Bench-2, FoMo-Bench, AnySat, OmniSat"],
+"Landsat 7 ETM+":[2,1,"SustainBench (DHS poverty); HKH glacier dataset"],
+"Landsat 4–5 TM":[2,1,"SustainBench (DHS poverty)"],
+"VIIRS (S-NPP, NOAA-20, NOAA-21)":[2,1,"SustainBench (nightlights)"],
+"Sentinel-3 OLCI / SLSTR":[2,1,"Copernicus-Bench (4 tasks)"],
+"NAIP":[2,4,"GEO-Bench (Chesapeake land cover)"],
+"Vantor (ex-Maxar) Open Data":[2,2,"PANGAEA (xView2 / xBD)"],
+"ALOS-2 PALSAR-2":[2,1,"AnySat (PLANTED)"],
+"ALOS PALSAR (archive)":[2,2,"GEO-Bench-2 (CaFFe)"],
+"ERS-1/2 · Envisat ASAR":[2,3,"GEO-Bench-2 (CaFFe)"],
+"RADARSAT-1 (archive)":[2,3,"GEO-Bench-2 (CaFFe)"],
+"ALOS-4 · SAOCOM · RADARSAT-2 · COSMO-SkyMed · TerraSAR-X":[2,2,"GEO-Bench-2 (CaFFe uses TerraSAR-X/TanDEM-X)"],
+"Sentinel-5P TROPOMI":[2,1,"Copernicus-Bench (NO₂, O₃)"],
+"NICFI Planet basemaps":[1,3,"Rwanda field boundaries (TorchGeo)"],
+"Satellogic EarthView":[1,2,"EarthView pretraining corpus"],
+"Capella · Umbra · ICEYE open data":[1,2,"BRIGHT (building damage)"],
+"EMIT (ISS)":[1,2,"EMIT CH₄ plume product"],
+"Tanager-1":[1,2,"Carbon Mapper plume products"],
+"UNEP IMEO MARS":[1,1,"MARS-S2L dataset"],
+"AMSR2 (GCOM-W)":[1,1,"AI4Arctic sea-ice dataset"],
+"GEDI (ISS)":[1,2,"AGBD; canopy-height training (Lang et al.)"],
+"Copernicus DEM GLO-30 / GLO-90":[1,1,"S1S2-Water"],
+"NASADEM / SRTM":[1,1,"HKH glacier dataset"],
+"Landsat 1–5 MSS":[0,1],"CBERS-4 / 4A":[0,3],"Amazonia-1 WFI":[0,3],"Resourcesat-2/2A":[0,3],
+"ECOSTRESS (ISS)":[0,2],"ASTER (Terra)":[0,2],
+"Spain PNOA":[0,4],"Netherlands":[0,4],"Switzerland SWISSIMAGE":[0,4],"Denmark spring orthophoto":[0,4],"Flanders":[0,4],"Finland":[0,4],"UK EA Vertical Aerial Photography":[0,4],"Uruguay IDE":[0,4],"South Africa NGI":[0,4],"Norway Norge i bilder":[0,4],
+"NASA CSDA":[0,2],"NISAR L-SAR":[0,1],"NISAR S-SAR":[0,4],"RADARSAT Constellation (RCM)":[0,3],"OPERA RTC-S1 / DISP-S1 (products)":[0,1],
+"EnMAP":[0,2],"PRISMA":[0,2],"HISUI (ISS)":[0,3],"DESIS (ISS)":[0,3],"PACE OCI":[0,1],
+"Sentinel-4 (GEO) · Sentinel-5 (MetOp-SG)":[0,1],"TEMPO (GEO)":[0,3],"GEMS (GEO)":[0,3],"OCO-2 / OCO-3":[0,2],"GOSAT · GOSAT-2 · GOSAT-GW":[0,2],"MethaneSAT":[0,3],"GHGSat":[0,2],
+"SMAP radiometer":[0,1],"SMOS":[0,1],"ASCAT (Metop)":[0,1],"AMSR3 (GOSAT-GW)":[0,1],"GPM GMI / IMERG":[0,1],"SSMIS (DMSP)":[0,1],
+"Sentinel-3 SRAL":[0,1],"Sentinel-6 MF / 6B · Jason-3":[0,1],"CryoSat-2":[0,1],"SWOT KaRIn":[0,1],"ICESat-2 ATLAS":[0,1],"ICESat GLAS (archive)":[0,1],"GRACE / GRACE-FO":[0,1],
+"GOES-19 / 18 ABI":[0,3],"Himawari-9 AHI":[0,3],"MTG FCI (Meteosat-12) · MSG SEVIRI":[0,3],"GK-2A AMI":[0,3],"FY-4A/B AGRI · INSAT-3D/3DR/3DS":[0,3],
+"ASTER GDEM v3":[0,1],"ALOS AW3D30 v4.1":[0,1],"TanDEM-X 90 m / 30 m EDEM":[0,1],"FABDEM":[0,1],
+};
+const TIER_ORDER = {open:0, reg:1, nc:2, closed:3};
+const GROUP_ORDER = ["optical","sar","aerial","commercial","atmos","dem","hyper","micro","alt","thermal","geo"];
+const USE_LABEL = ["None found","Open ML dataset","1 benchmark suite","2+ benchmark suites"];
+
+const esc = s => s;
+const toc = document.getElementById('toc');
+const host = document.getElementById('tables');
+const head = '<thead><tr><th>Mission</th><th>Use in GeoFM benchmarks</th><th>Resolution · bands · swath</th><th>Revisit</th><th>Record</th><th>Status (Sep 2026)</th><th>Coverage</th><th>Licence</th><th>Access</th><th>Sources</th></tr></thead>';
+let total = 0;
+GROUPS.sort((a,b)=>GROUP_ORDER.indexOf(a.id)-GROUP_ORDER.indexOf(b.id));
+GROUPS.forEach(g=>{
+  g.rows.sort((a,b)=>{const ma=META[a[0]],mb=META[b[0]];return (mb[0]-ma[0])||(TIER_ORDER[a[7]]-TIER_ORDER[b[7]])||(ma[1]-mb[1]);});
+  total += g.rows.length;
+  const a=document.createElement('a'); a.href='#'+g.id; a.textContent=g.name; toc.appendChild(a);
+  const body = g.rows.map(r=>{
+    const [name,op,res,rev,rec,st,cov,tier,acc,src]=r;
+    const [cls,lab]=T[tier];
+    const mt=META[name]; const dots='<span class="dots" aria-hidden="true">'+[1,2,3].map(i=>`<i class="${i<=mt[0]?'on':''}"></i>`).join('')+'</span>';
+    return `<tr><td class="m">${name}<small>${op}</small></td><td class="use">${dots}<span class="ul">${USE_LABEL[mt[0]]}</span>${mt[2]?`<small>${mt[2]}</small>`:''}</td><td>${res}</td><td>${rev}</td><td class="num">${rec}</td><td class="st">${st}</td><td>${cov}</td><td><span class="chip ${cls}">${lab}</span></td><td>${acc}</td><td class="src">${src.map(([l,u])=>`<a href="${u}">${l}</a>`).join('')}</td></tr>`;
+  }).join('');
+  const div=document.createElement('div'); div.className='group'; div.id=g.id;
+  div.innerHTML=`<div class="group-head"><h2>${g.name}</h2><span class="count">${g.rows.length} rows</span><p>${g.note}</p></div><div class="tbl"><table>${head}<tbody>${body}</tbody></table></div>`;
+  host.appendChild(div);
+});
+const m=document.createElement('a'); m.href='#methane'; m.textContent='Methane datasets'; toc.appendChild(m);
+
+</script>
+
+<footer class="sf">EOArena task taxonomy, a project of the Earth Intelligence Lab at MIT in collaboration with AI2. Taxonomy data under CC BY 4.0; code under MIT. Each dataset keeps the licence of its original provider. <a href="https://github.com/thampatron/EO_Arena">Source and data on GitHub</a>.</footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Filterable taxonomy of Earth observation tasks and datasets for benchmarking geospatial foundation models.">
+<title>EOArena Taxonomy Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: facet list (the ways to group) → tabbed filter bar → results grouped across domains, with a two-facet matrix view. */
+:root{
+  --bg:#F4F6F5; --panel:#FFFFFF; --fg:#18201D; --muted:#56635D; --line:#D6DDD9; --head:#EBF0ED;
+  --accent:#1F6A74; --accent-soft:#DDEDEF; --on-accent:#FFFFFF;
+  --t-open:#2E7D4F; --t-open-bg:#DFF1E6; --t-reg:#28608F; --t-reg-bg:#DDEAF6; --t-nc:#9A6212; --t-nc-bg:#F6E8CF;
+  --t-unk:#5E6670; --t-unk-bg:#E7EAEE; --t-closed:#A43D3A; --t-closed-bg:#F6DEDC;
+  --q1:#E3F0F1; --q2:#B9D9DC; --q3:#7FB5BB; --q4:#3E8A93; --q5:#1F6A74;
+  --display:"Archivo",ui-sans-serif,system-ui,sans-serif; --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27; --accent:#6CC0CB; --accent-soft:#1D3336; --on-accent:#0E1A1B;
+  --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A; --t-nc:#E4AE5C; --t-nc-bg:#372B17; --t-unk:#AEB6C0; --t-unk-bg:#272D33; --t-closed:#E58681; --t-closed-bg:#3C2422;
+  --q1:#1B2A2C; --q2:#1F4247; --q3:#2B6970; --q4:#4A9AA3; --q5:#8AD0D8; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27; --accent:#6CC0CB; --accent-soft:#1D3336; --on-accent:#0E1A1B;
+  --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A; --t-nc:#E4AE5C; --t-nc-bg:#372B17; --t-unk:#AEB6C0; --t-unk-bg:#272D33; --t-closed:#E58681; --t-closed-bg:#3C2422;
+  --q1:#1B2A2C; --q2:#1F4247; --q3:#2B6970; --q4:#4A9AA3; --q5:#8AD0D8; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:32px 80px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,3.4vw,38px);font-weight:600;font-stretch:85%;line-height:1.1}
+h2{font-size:22px;font-weight:600;font-stretch:90%}
+h3{font-size:16px;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.col{max-width:80ch}
+.muted{color:var(--muted)}
+header{display:grid;gap:10px}
+.lede{color:var(--muted);font-size:17px}
+.facets{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.facet{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.facet .fk{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facet p{font-size:14px;color:var(--muted)}
+.facet .vals{font-size:13.5px}
+.facet.hyp{border-style:dashed}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;display:grid}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);padding:6px 8px 0}
+.tab{font:inherit;font-size:14px;font-weight:600;background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tab .on{display:inline-block;min-width:18px;margin-left:6px;font-family:var(--mono);font-size:11px;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:0 5px}
+.tab:focus-visible,.chip-btn:focus-visible,.btn:focus-visible,select:focus-visible,.cell:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.vals-bar{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px}
+.chip-btn{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 11px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.chip-btn .c{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip-btn[aria-pressed="true"] .c{color:var(--on-accent)}
+.chip-btn[disabled]{opacity:.45;cursor:default}
+.active{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);font-size:14px}
+.active .pill{font-size:13px;background:var(--accent-soft);border-radius:6px;padding:3px 8px;display:inline-flex;gap:6px;align-items:center}
+.active .pill button{font:inherit;border:0;background:none;color:var(--muted);cursor:pointer;padding:0 2px}
+.btn{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:4px 10px;cursor:pointer}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.toolbar .left{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{font:inherit;font-size:13.5px;border:0;background:var(--panel);color:var(--muted);padding:5px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+label.sel{font-size:13.5px;color:var(--muted);display:inline-flex;gap:6px;align-items:center}
+select{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:4px 6px}
+.count{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.group{display:grid;gap:8px}
+.group-h{display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:4px}
+.group-h .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:7px;align-content:start;min-width:0}
+.card .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card .nm{font-weight:600;line-height:1.25}
+.card .sub{font-size:12.5px;color:var(--muted)}
+.card .task{font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tg{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--muted);white-space:nowrap}
+.tg.hyp{border-style:dashed}
+.card .foot{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;color:var(--muted)}
+.chip{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.open{color:var(--t-open);background:var(--t-open-bg)} .reg{color:var(--t-reg);background:var(--t-reg-bg)} .nc{color:var(--t-nc);background:var(--t-nc-bg)} .unk{color:var(--t-unk);background:var(--t-unk-bg)} .closed{color:var(--t-closed);background:var(--t-closed-bg)}
+.dots{display:inline-flex;gap:3px;vertical-align:1px}
+.dots i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--accent);display:block}
+.dots i.on{background:var(--accent)}
+.mx-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table.mx{border-collapse:separate;border-spacing:2px;font-size:13px;padding:6px}
+table.mx th{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.mx thead th{white-space:normal;min-width:64px;max-width:96px;line-height:1.25}
+[hidden]{display:none!important}
+table.mx thead th{vertical-align:bottom}
+table.mx td.cell{width:46px;height:34px;text-align:center;border-radius:4px;font-family:var(--mono);font-variant-numeric:tabular-nums;cursor:pointer}
+table.mx td.z{color:var(--muted);background:transparent;border:1px dashed var(--line);cursor:default}
+.q1{background:var(--q1);color:var(--fg)} .q2{background:var(--q2);color:var(--fg)} .q3{background:var(--q3);color:var(--fg)} .q4{background:var(--q4);color:var(--on-accent)} .q5{background:var(--q5);color:var(--on-accent)}
+table.mx td.tot{font-family:var(--mono);color:var(--muted);text-align:center}
+.mx-legend{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.mx-legend i{width:22px;height:12px;border-radius:3px;display:inline-block}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;padding:6px 9px;border-radius:6px;max-width:320px;z-index:5;line-height:1.35}
+.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px}
+.note{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+<style>
+.sitebar{background:var(--panel);border-bottom:1px solid var(--line);padding-inline:20px}
+.sitebar-in{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding-block:10px}
+.sitebar .brand{font-family:var(--display);font-weight:700;font-stretch:85%;font-size:18px;color:var(--fg);text-decoration:none;margin-right:8px}
+.sitebar nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+.sitebar nav a{font-size:14.5px;color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+.sitebar nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.sitebar nav a:hover{color:var(--fg)}
+.sitebar nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.draft{background:var(--t-nc-bg);color:var(--fg);font-size:14px;padding:8px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.draft b{color:var(--t-nc)}
+footer.sf{max-width:1320px;margin:0 auto;padding:24px 20px 48px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="draft"><b>Draft v0.1.</b> Tags, licences and the ability facet are under review by the Earth Intelligence Lab. Items marked UNVERIFIED are not confirmed. <a href="https://github.com/thampatron/EO_Arena/issues">Report a correction</a>.</div><header class="sitebar"><div class="sitebar-in"><a class="brand" href="index.html">EOArena Taxonomy</a><nav aria-label="Site"><a href="index.html" aria-current="page">Explorer</a><a href="domains.html">Domain audit</a><a href="sensors.html">Sensor audit</a><a href="https://github.com/thampatron/EO_Arena/blob/main/CONTRIBUTING.md">Contribute</a><a href="https://github.com/thampatron/EO_Arena">GitHub</a></nav></div></header>
+<div class="wrap">
+<header>
+  <p class="eyebrow">EOArena · task taxonomy · draft explorer</p>
+  <h1>Browse the audited EO tasks by any facet</h1>
+  <p class="lede col"><span id="nds">118</span> labelled Earth observation datasets, each tagged on the same <span id="nfc">13</span> facets with a fixed vocabulary. Pick a facet tab, choose values, and see every matching dataset across domains. Values within one facet combine with OR; different facets combine with AND. Switch to the matrix to cross any two facets and see where the empty cells are.</p>
+  <p class="note col">Tags are a first pass from our audit of frameworks, sensors and datasets, and are under review. The ability facet is a hypothesis and is drawn with dashed borders. Dataset facts and sources are on the <a href="domains.html">domain audit</a>. Found an error or a missing dataset? <a href="https://github.com/thampatron/EO_Arena/blob/main/CONTRIBUTING.md">Propose a change</a>.</p>
+</header>
+
+<section style="display:grid;gap:12px">
+  <h2>Ways to group the tasks</h2>
+  <div class="facets" id="facetlist"></div>
+</section>
+
+<section class="panel" aria-label="Filters">
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="vals-bar" id="vals"></div>
+  <div class="active" id="active"></div>
+</section>
+
+<div class="toolbar">
+  <div class="left">
+    <div class="seg" role="group" aria-label="View"><button type="button" id="v-list" aria-pressed="true">List</button><button type="button" id="v-mx" aria-pressed="false">Matrix</button></div>
+    <label class="sel" id="grp-wrap">Group by <select id="grp"></select></label>
+    <label class="sel" id="mxr-wrap" hidden>Rows <select id="mxr"></select></label>
+    <label class="sel" id="mxc-wrap" hidden>Columns <select id="mxc"></select></label>
+  </div>
+  <span class="count" id="count"></span>
+</div>
+
+<div id="out"></div>
+</div>
+<div class="tip" id="tip" hidden></div>
+<script>
+const U='UNVERIFIED';
+let FACETS,DATA,F;
+const TIERCLS={open:["open","Open"],reg:["reg","Free + terms"],nc:["nc","Non-commercial"],unk:["unk","Licence unverified"],closed:["closed","Restricted"]};
+
+// build value maps for dom/sub in data order
+
+const state={tab:"task",sel:{},view:"list",grp:"dom",mxr:"sub",mxc:"task"};
+try{const s=JSON.parse(localStorage.getItem('eoa-exp')||'null');if(s){state.tab=s.tab||state.tab;state.view=s.view||state.view;state.grp=s.grp||state.grp;state.mxr=s.mxr||state.mxr;state.mxc=s.mxc||state.mxc;}}catch(e){}
+function save(){try{localStorage.setItem('eoa-exp',JSON.stringify({tab:state.tab,view:state.view,grp:state.grp,mxr:state.mxr,mxc:state.mxc}))}catch(e){}}
+const label=(k,v)=>F[k].vals[v]??v;
+function matches(d,skip){return FACETS.every(f=>{if(f.k===skip)return true;const s=state.sel[f.k];if(!s.size)return true;return d[f.k].some(v=>s.has(v));});}
+const $=id=>document.getElementById(id);
+async function boot(){
+ let voc,raw;
+ try{[voc,raw]=await Promise.all([fetch('data/vocabulary.json').then(r=>r.json()),fetch('data/datasets.json').then(r=>r.json())]);}
+ catch(e){document.getElementById('out').innerHTML='<p class="empty">Could not load the data files. If you opened this page from disk, serve the folder with a local web server (for example <code>python3 -m http.server</code>).</p>';return;}
+ FACETS=voc.facets.map(f=>({k:f.key,name:f.name,desc:f.description,hyp:f.hypothesis,vals:f.values}));
+ F=Object.fromEntries(FACETS.map(f=>[f.k,f]));
+ FACETS.forEach(f=>state.sel[f.k]=new Set());
+ DATA=raw.map(r=>({n:r.name,t:r.task_description,s:r.sensors_description,g:r.geography,z:r.size,lic:r.licence,su:r.benchmark_suites,src:r.sources.map(s=>[s.label,s.url]),
+   dom:[r.domain],sub:[r.subdomain],...r.facets,use:[r.benchmark_suites.length>=2?'u2':r.benchmark_suites.length===1?'u1':'u0']}));
+ document.getElementById('nds').textContent=DATA.length;document.getElementById('nfc').textContent=FACETS.length;
+ start();
+}
+function start(){
+// facet list
+$('facetlist').innerHTML=FACETS.map(f=>`<div class="facet${f.hyp?' hyp':''}"><span class="fk">${f.hyp?'Hypothesis · ':''}${Object.keys(f.vals).length} values</span><h3>${f.name}</h3><p>${f.desc}</p><div class="vals">${f.k==='sub'?'1.1 Cropland and crop type … 8.5 Socioeconomic, plus Disasters':Object.values(f.vals).join(' · ')}</div></div>`).join('');
+// tabs
+function renderTabs(){$('tabs').innerHTML=FACETS.map(f=>`<button class="tab" role="tab" type="button" id="tab-${f.k}" aria-selected="${state.tab===f.k}" data-k="${f.k}">${f.name}${state.sel[f.k].size?`<span class="on">${state.sel[f.k].size}</span>`:''}</button>`).join('');}
+function renderVals(){const f=F[state.tab];const pool=DATA.filter(d=>matches(d,f.k));
+ $('vals').setAttribute('aria-labelledby','tab-'+f.k);$('vals').setAttribute('role','tabpanel');
+ $('vals').innerHTML=Object.entries(f.vals).map(([v,l])=>{const c=pool.filter(d=>d[f.k].includes(v)).length;const on=state.sel[f.k].has(v);return `<button type="button" class="chip-btn" data-v="${v}" aria-pressed="${on}" ${!c&&!on?'disabled':''}>${l}<span class="c">${c}</span></button>`}).join('');}
+function renderActive(){const pills=[];FACETS.forEach(f=>state.sel[f.k].forEach(v=>pills.push(`<span class="pill">${f.name}: ${label(f.k,v)}<button type="button" aria-label="Remove" data-k="${f.k}" data-v="${v}">×</button></span>`)));
+ $('active').innerHTML=pills.length?pills.join('')+'<button type="button" class="btn" id="clear">Clear all</button>':'<span class="muted">No filters. Showing all datasets.</span>';}
+function dots(n){return '<span class="dots" aria-hidden="true">'+[1,2,3].map(i=>`<i class="${i<=Math.min(3,n)?'on':''}"></i>`).join('')+'</span>';}
+function card(d){const [tc,tl]=TIERCLS[d.tier[0]];
+ const tg=(k)=>d[k].map(v=>`<span class="tg${F[k].hyp?' hyp':''}" title="${F[k].name}">${label(k,v)}</span>`).join('');
+ return `<article class="card"><div class="top"><span class="nm">${d.n}</span><span class="chip ${tc}">${tl}</span></div><span class="sub">${d.sub[0]}</span><span class="task">${d.t}</span>
+ <div class="tags">${tg('task')}${tg('unit')}${tg('val')}${tg('tmp')}</div><div class="tags">${tg('sen')}${tg('res')}</div><div class="tags">${tg('p')}${tg('ab')}</div>
+ <div class="foot">${dots(d.su.length)}<span>${d.su.length?d.su.join(', '):'In no benchmark suite'}</span><span>· ${d.g}</span>${d.src[0]?`<a href="${d.src[0][1]}">${d.src[0][0]}</a>`:''}</div></article>`;}
+function renderList(rows){const f=F[state.grp];const groups=[];Object.keys(f.vals).forEach(v=>{const r=rows.filter(d=>d[f.k].includes(v));if(r.length)groups.push([label(f.k,v),r]);});
+ $('out').innerHTML=groups.length?groups.map(([g,r])=>`<div class="group"><div class="group-h"><h3>${g}</h3><span class="n">${r.length}</span></div><div class="cards">${r.map(card).join('')}</div></div>`).join('<div style="height:14px"></div>'):'<p class="empty">No dataset matches these filters. That combination is a gap in the audited data.</p>';}
+function q(n,max){if(!n)return'z';const r=n/max;return r>.8?'q5':r>.6?'q4':r>.4?'q3':r>.2?'q2':'q1';}
+function renderMatrix(rows){const R=F[state.mxr],C=F[state.mxc];
+ const rv=Object.keys(R.vals),cv=Object.keys(C.vals);
+ const cnt=(a,b)=>rows.filter(d=>d[R.k].includes(a)&&d[C.k].includes(b)).length;
+ let max=1;rv.forEach(a=>cv.forEach(b=>{max=Math.max(max,cnt(a,b))}));
+ const head=`<tr><th></th>${cv.map(b=>`<th title="${label(C.k,b)}">${label(C.k,b)}</th>`).join('')}<th>Total</th></tr>`;
+ const body=rv.map(a=>{const tot=rows.filter(d=>d[R.k].includes(a)).length;return `<tr><th>${label(R.k,a)}</th>${cv.map(b=>{const n=cnt(a,b);return `<td class="cell ${q(n,max)}" ${n?`tabindex="0" data-a="${a}" data-b="${b}"`:''} data-tip="${label(R.k,a)} × ${label(C.k,b)}: ${n} dataset${n===1?'':'s'}">${n||'·'}</td>`}).join('')}<td class="tot">${tot}</td></tr>`}).join('');
+ const leg=`<div class="mx-legend"><span>Datasets per cell:</span><i class="q1"></i><i class="q2"></i><i class="q3"></i><i class="q4"></i><i class="q5"></i><span>few → many (max ${max})</span><span>· dashed cell = no dataset</span><span>· click a cell to filter to it</span></div>`;
+ $('out').innerHTML=`<div style="display:grid;gap:10px">${leg}<div class="mx-wrap"><table class="mx"><thead>${head}</thead><tbody>${body}</tbody></table></div><p class="note">A dataset counts in every cell its tags fall in, so multi-valued facets (task, sensor, resolution, ability) can count a dataset more than once.</p></div>`;}
+function renderSelects(){const opts=(cur,excl)=>FACETS.map(f=>`<option value="${f.k}" ${f.k===cur?'selected':''}>${f.name}</option>`).join('');
+ $('grp').innerHTML=opts(state.grp);$('mxr').innerHTML=opts(state.mxr);$('mxc').innerHTML=opts(state.mxc);
+ $('grp-wrap').hidden=state.view!=='list';$('mxr-wrap').hidden=$('mxc-wrap').hidden=state.view!=='mx';
+ $('v-list').setAttribute('aria-pressed',state.view==='list');$('v-mx').setAttribute('aria-pressed',state.view==='mx');}
+function render(){renderTabs();renderVals();renderActive();renderSelects();const rows=DATA.filter(d=>matches(d));
+ $('count').textContent=`${rows.length} of ${DATA.length} datasets`;state.view==='list'?renderList(rows):renderMatrix(rows);save();}
+document.addEventListener('click',e=>{const t=e.target.closest('button,td.cell');if(!t)return;
+ if(t.classList.contains('tab')){state.tab=t.dataset.k;render();return;}
+ if(t.classList.contains('chip-btn')){const s=state.sel[state.tab],v=t.dataset.v;s.has(v)?s.delete(v):s.add(v);render();return;}
+ if(t.id==='clear'){FACETS.forEach(f=>state.sel[f.k].clear());render();return;}
+ if(t.dataset.k&&t.dataset.v&&t.closest('#active')){state.sel[t.dataset.k].delete(t.dataset.v);render();return;}
+ if(t.id==='v-list'){state.view='list';render();return;} if(t.id==='v-mx'){state.view='mx';render();return;}
+ if(t.classList.contains('cell')&&t.dataset.a){state.sel[state.mxr].add(t.dataset.a);state.sel[state.mxc].add(t.dataset.b);state.view='list';render();}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('td.cell[data-a]')){e.preventDefault();e.target.click();}
+ if(e.target.classList&&e.target.classList.contains('tab')&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){const i=FACETS.findIndex(f=>f.k===state.tab);const n=(i+(e.key==='ArrowRight'?1:-1)+FACETS.length)%FACETS.length;state.tab=FACETS[n].k;render();$('tab-'+state.tab).focus();}});
+['grp','mxr','mxc'].forEach(id=>$(id).addEventListener('change',e=>{state[id]=e.target.value;render();}));
+const tip=$('tip');document.addEventListener('mouseover',e=>{const c=e.target.closest('td.cell');if(c){tip.textContent=c.dataset.tip;tip.hidden=false;}});
+document.addEventListener('mousemove',e=>{if(!tip.hidden){tip.style.left=Math.min(e.clientX+14,innerWidth-330)+'px';tip.style.top=(e.clientY+14)+'px';}});
+document.addEventListener('mouseout',e=>{if(e.target.closest('td.cell'))tip.hidden=true;});
+render();
+}
+boot();
+</script>
+
+<footer class="sf">EOArena task taxonomy, a project of the Earth Intelligence Lab at MIT in collaboration with AI2. Taxonomy data under CC BY 4.0; code under MIT. Each dataset keeps the licence of its original provider. <a href="https://github.com/thampatron/EO_Arena">Source and data on GitHub</a>.</footer>
+</body>
+</html>

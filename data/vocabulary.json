@@ -1,0 +1,218 @@
+{
+ "version": "0.1-draft",
+ "facets": [
+  {
+   "key": "dom",
+   "name": "Domain",
+   "description": "Where on Earth, and what is observed. Level 1 of the hierarchy.",
+   "hypothesis": false,
+   "derived": "from domain/subdomain",
+   "values": {
+    "1 · Agriculture": "1 · Agriculture",
+    "2 · Terrestrial ecosystems": "2 · Terrestrial ecosystems",
+    "3 · Inland water": "3 · Inland water",
+    "4 · Oceans and coasts": "4 · Oceans and coasts",
+    "5 · Cryosphere": "5 · Cryosphere",
+    "6 · Atmosphere": "6 · Atmosphere",
+    "7 · Solid Earth": "7 · Solid Earth",
+    "8 · Human systems": "8 · Human systems",
+    "Disasters": "Disasters"
+   }
+  },
+  {
+   "key": "sub",
+   "name": "Subdomain",
+   "description": "Level 2 of the hierarchy (32 subdomains plus the disasters tag).",
+   "hypothesis": false,
+   "derived": "from domain/subdomain",
+   "values": {
+    "1.1 Cropland and crop type": "1.1 Cropland and crop type",
+    "1.2 Crop condition and yield": "1.2 Crop condition and yield",
+    "1.3 Management practices": "1.3 Management practices",
+    "1.4 Rangeland and livestock": "1.4 Rangeland and livestock",
+    "2.1 Land cover and land degradation": "2.1 Land cover and land degradation",
+    "2.2 Forest extent and change": "2.2 Forest extent and change",
+    "2.3 Biomass and carbon stocks": "2.3 Biomass and carbon stocks",
+    "2.4 Vegetation structure and species": "2.4 Vegetation structure and species",
+    "2.5 Ecosystem function (phenology, productivity)": "2.5 Ecosystem function (phenology, productivity)",
+    "2.6 Fire": "2.6 Fire",
+    "3.1 Surface water, rivers and wetlands": "3.1 Surface water, rivers and wetlands",
+    "3.2 Water quality": "3.2 Water quality",
+    "3.3 Soil moisture": "3.3 Soil moisture",
+    "4.1 Coastal ecosystems": "4.1 Coastal ecosystems",
+    "4.2 Shoreline and coastal change": "4.2 Shoreline and coastal change",
+    "4.3 Ocean colour and algal blooms": "4.3 Ocean colour and algal blooms",
+    "4.4 Marine pollution": "4.4 Marine pollution",
+    "5.1 Snow": "5.1 Snow",
+    "5.2 Glaciers and ice sheets": "5.2 Glaciers and ice sheets",
+    "5.3 Sea and lake ice": "5.3 Sea and lake ice",
+    "5.4 Permafrost": "5.4 Permafrost",
+    "6.1 Greenhouse gas point sources": "6.1 Greenhouse gas point sources",
+    "6.2 Aerosols and air quality": "6.2 Aerosols and air quality",
+    "6.3 Clouds and smoke": "6.3 Clouds and smoke",
+    "7.1 Surface deformation": "7.1 Surface deformation",
+    "7.2 Landslides and mass movement": "7.2 Landslides and mass movement",
+    "7.3 Geology and mineral mapping": "7.3 Geology and mineral mapping",
+    "8.1 Settlements and buildings": "8.1 Settlements and buildings",
+    "8.2 Transport": "8.2 Transport",
+    "8.3 Energy and industry": "8.3 Energy and industry",
+    "8.4 Objects and activity": "8.4 Objects and activity",
+    "8.5 Socioeconomic conditions": "8.5 Socioeconomic conditions",
+    "Post-event damage and hazard extent": "Post-event damage and hazard extent"
+   }
+  },
+  {
+   "key": "task",
+   "name": "Task family",
+   "description": "The familiar name. A dataset can carry more than one.",
+   "hypothesis": false,
+   "values": {
+    "SC": "Scene / single-label classification",
+    "ML": "Multi-label classification",
+    "SS": "Semantic segmentation",
+    "IS": "Instance / panoptic / polygon extraction",
+    "OD": "Object detection",
+    "CD": "Change detection",
+    "RG": "Regression",
+    "FC": "Forecasting"
+   }
+  },
+  {
+   "key": "unit",
+   "name": "Output unit",
+   "description": "What one prediction refers to.",
+   "hypothesis": false,
+   "values": {
+    "S": "Scene / patch",
+    "R": "Region (field, county)",
+    "O": "Object (field, building, plume, ship)",
+    "P": "Pixel (dense)",
+    "T": "Sparse point"
+   }
+  },
+  {
+   "key": "val",
+   "name": "Output value",
+   "description": "What kind of value the model must produce.",
+   "hypothesis": false,
+   "values": {
+    "C": "Categorical",
+    "N": "Continuous",
+    "X": "Structured (polygon, graph, track)"
+   }
+  },
+  {
+   "key": "tmp",
+   "name": "Time structure",
+   "description": "How many acquisitions the task uses, and whether it predicts the future.",
+   "hypothesis": false,
+   "values": {
+    "1": "Single date",
+    "M2": "Two or a few dates",
+    "T": "Time series",
+    "F": "Forecast (future)"
+   }
+  },
+  {
+   "key": "sen",
+   "name": "Sensor",
+   "description": "Input data used. Multi-valued.",
+   "hypothesis": false,
+   "values": {
+    "S2": "Sentinel-2",
+    "S1": "Sentinel-1",
+    "LS": "Landsat",
+    "HLS": "HLS",
+    "MOD": "MODIS",
+    "VIIRS": "VIIRS / nightlights",
+    "S3": "Sentinel-3",
+    "S5P": "Sentinel-5P",
+    "PL": "PlanetScope",
+    "VHR": "Commercial VHR satellite",
+    "AER": "Aerial / drone",
+    "HYP": "Hyperspectral",
+    "LB": "L-band SAR",
+    "SAR": "Other SAR (X/C archive, commercial)",
+    "MW": "Passive microwave",
+    "DEM": "Elevation",
+    "WX": "Weather / reanalysis",
+    "INS": "In situ",
+    "STR": "Street-level"
+   }
+  },
+  {
+   "key": "res",
+   "name": "Resolution",
+   "description": "Ground sampling of the main inputs.",
+   "hypothesis": false,
+   "values": {
+    "V": "≤2 m",
+    "H": "2–5 m",
+    "M": "10–60 m",
+    "C": "≥100 m",
+    "NA": "Not imagery"
+   }
+  },
+  {
+   "key": "p",
+   "name": "Label source",
+   "description": "How the labels were made. Decides how far to trust a score.",
+   "hypothesis": false,
+   "values": {
+    "human": "Human annotated",
+    "measured": "Measured (in situ, lidar, surveys)",
+    "model": "Another model's product"
+   }
+  },
+  {
+   "key": "tier",
+   "name": "Licence",
+   "description": "What a public benchmark may do with it.",
+   "hypothesis": false,
+   "values": {
+    "open": "Open",
+    "reg": "Free + terms",
+    "nc": "Non-commercial",
+    "unk": "Licence unverified",
+    "closed": "Restricted"
+   }
+  },
+  {
+   "key": "use",
+   "name": "Benchmark use",
+   "description": "How many audited GeoFM benchmark suites include it.",
+   "hypothesis": false,
+   "derived": "from benchmark_suites",
+   "values": {
+    "u2": "2+ suites",
+    "u1": "1 suite",
+    "u0": "No suite"
+   }
+  },
+  {
+   "key": "covk",
+   "name": "Coverage",
+   "description": "Geographic spread of the labels.",
+   "hypothesis": false,
+   "values": {
+    "c1": "Global",
+    "c2": "Multi-continent or global sample",
+    "c3": "Regional / multi-country",
+    "c4": "National or local"
+   }
+  },
+  {
+   "key": "ab",
+   "name": "Ability tested",
+   "description": "Hypothesis: what the task demands of a representation. To be tested against model rankings.",
+   "hypothesis": true,
+   "values": {
+    "SP": "Spectral discrimination",
+    "SH": "Spatial pattern and shape",
+    "TD": "Temporal dynamics",
+    "PQ": "Physical quantity retrieval",
+    "FU": "Multi-sensor fusion"
+   }
+  }
+ ]
+}

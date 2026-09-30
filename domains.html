@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Audit of 32 Earth observation application subdomains: framework anchors, sensors, datasets and gaps.">
+<title>EO Application Domain Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: findings in a reading column, a coverage matrix as the overview, then one section per domain with anchors, datasets (sorted) and proposed changes. */
+:root{
+  --bg:#F4F6F5; --panel:#FFFFFF; --fg:#18201D; --muted:#56635D; --line:#D6DDD9; --head:#EBF0ED;
+  --accent:#1F6A74;
+  --t-open:#2E7D4F; --t-open-bg:#DFF1E6;
+  --t-reg:#28608F; --t-reg-bg:#DDEAF6;
+  --t-nc:#9A6212; --t-nc-bg:#F6E8CF;
+  --t-unk:#5E6670; --t-unk-bg:#E7EAEE;
+  --t-closed:#A43D3A; --t-closed-bg:#F6DEDC;
+  --display:"Archivo",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27; --accent:#6CC0CB;
+    --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A; --t-nc:#E4AE5C; --t-nc-bg:#372B17;
+    --t-unk:#AEB6C0; --t-unk-bg:#272D33; --t-closed:#E58681; --t-closed-bg:#3C2422; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121816; --panel:#1A211E; --fg:#E3E9E6; --muted:#98A59F; --line:#2B3531; --head:#212A27; --accent:#6CC0CB;
+  --t-open:#6FCB95; --t-open-bg:#1C3326; --t-reg:#7FB4E3; --t-reg-bg:#1B2B3A; --t-nc:#E4AE5C; --t-nc-bg:#372B17;
+  --t-unk:#AEB6C0; --t-unk-bg:#272D33; --t-closed:#E58681; --t-closed-bg:#3C2422; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:36px 80px}
+.col{max-width:80ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,3.4vw,38px);font-weight:600;font-stretch:85%;line-height:1.1}
+h2{font-size:24px;font-weight:600;font-stretch:90%}
+h3{font-size:17.5px;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:10px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.lede{color:var(--muted);font-size:17px}
+section{padding-block:32px;border-bottom:1px solid var(--line);display:grid;gap:16px;scroll-margin-top:12px}
+section:last-of-type{border-bottom:0}
+.note{color:var(--muted);font-size:15px}
+ol.find,ul.plain{margin:0;padding-left:22px;display:grid;gap:10px}
+ol.find b{font-weight:600}
+.chip{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.open{color:var(--t-open);background:var(--t-open-bg)}
+.reg{color:var(--t-reg);background:var(--t-reg-bg)}
+.nc{color:var(--t-nc);background:var(--t-nc-bg)}
+.unk{color:var(--t-unk);background:var(--t-unk-bg)}
+.closed{color:var(--t-closed);background:var(--t-closed-bg)}
+.st-sat{color:var(--t-reg);background:var(--t-reg-bg)}
+.st-cov{color:var(--t-open);background:var(--t-open-bg)}
+.st-thin{color:var(--t-nc);background:var(--t-nc-bg)}
+.st-gap{color:var(--t-closed);background:var(--t-closed-bg)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;gap:7px;align-items:center}
+.legend span.ls{display:inline;min-width:0}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 8px}
+nav.toc a{font-family:var(--mono);font-size:12.5px;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:4px 9px;background:var(--panel);color:var(--fg)}
+nav.toc a:hover{border-color:var(--accent)}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.4}
+table.wide{min-width:1080px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;background:var(--head);padding:9px 10px;border-bottom:1px solid var(--line)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.m{font-weight:600;min-width:140px}
+td.m small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+td.src{font-size:12.5px}
+td.src a{display:inline-block;margin-right:6px}
+td.suites{min-width:140px}
+td.suites small{display:block;color:var(--muted);font-size:12px}
+.dots{display:inline-flex;gap:3px;margin-right:6px;vertical-align:1px}
+.dots i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--accent);display:block}
+.dots i.on{background:var(--accent)}
+.flag{font-family:var(--mono);font-size:11px;color:var(--t-nc);font-weight:500}
+.prov{font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid var(--line);white-space:nowrap}
+.matrix td.sd{font-weight:600}
+.matrix td.dn{font-family:var(--display);font-weight:600;background:var(--head);font-size:14.5px}
+.sub{display:grid;gap:10px;padding-top:6px}
+.sub-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.sub-head .code{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px 24px;font-size:14.5px}
+.meta div{min-width:0}
+.meta .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.gapnote{font-size:14.5px;border-left:3px solid var(--t-closed);padding:4px 0 4px 12px;color:var(--fg)}
+.prop{font-size:14.5px;border-left:3px solid var(--accent);padding:4px 0 4px 12px}
+.prop b{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-right:6px}
+.corr{display:grid;border:1px solid var(--line);border-radius:8px;background:var(--panel);overflow:hidden}
+.corr div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:14.5px}
+.corr div:last-child{border-bottom:0}
+.corr .was{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--t-closed)}
+.corr .hd{background:var(--head);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:640px){ .corr div{grid-template-columns:1fr;gap:4px} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<style>
+.sitebar{background:var(--panel);border-bottom:1px solid var(--line);padding-inline:20px}
+.sitebar-in{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding-block:10px}
+.sitebar .brand{font-family:var(--display);font-weight:700;font-stretch:85%;font-size:18px;color:var(--fg);text-decoration:none;margin-right:8px}
+.sitebar nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+.sitebar nav a{font-size:14.5px;color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+.sitebar nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.sitebar nav a:hover{color:var(--fg)}
+.sitebar nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.draft{background:var(--t-nc-bg);color:var(--fg);font-size:14px;padding:8px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.draft b{color:var(--t-nc)}
+footer.sf{max-width:1320px;margin:0 auto;padding:24px 20px 48px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="draft"><b>Draft v0.1.</b> Tags, licences and the ability facet are under review by the Earth Intelligence Lab. Items marked UNVERIFIED are not confirmed. <a href="https://github.com/thampatron/EO_Arena/issues">Report a correction</a>.</div><header class="sitebar"><div class="sitebar-in"><a class="brand" href="index.html">EOArena Taxonomy</a><nav aria-label="Site"><a href="index.html">Explorer</a><a href="domains.html" aria-current="page">Domain audit</a><a href="sensors.html">Sensor audit</a><a href="https://github.com/thampatron/EO_Arena/blob/main/CONTRIBUTING.md">Contribute</a><a href="https://github.com/thampatron/EO_Arena">GitHub</a></nav></div></header>
+<div class="wrap">
+<header>
+  <p class="eyebrow">EOArena · Task 3.1 · domain audit · as of 29 Sep 2026</p>
+  <h1>Which application domains can a GeoFM benchmark cover today?</h1>
+  <p class="lede col">For each of the 32 proposed subdomains: which frameworks name the need, which open sensors serve it, which open labelled datasets exist, and whether any existing GeoFM benchmark already includes it. Every entry comes from a source that was fetched and read; anything not confirmed is marked <span class="flag">UNVERIFIED</span>.</p>
+  <p class="note col">Datasets are ordered by (1) how many audited GeoFM benchmark suites use them, (2) licence tier, (3) coverage from global to local. Audited suites: PANGAEA, GEO-Bench, GEO-Bench-2, Copernicus-Bench, SustainBench, FoMo-Bench, PhilEO, SatlasPretrain, and the Galileo, AnySat, OmniSat and TerraMind evaluations.</p>
+  <div class="legend">
+    <span><span class="chip open">Open</span></span><span><span class="chip reg">Free + terms</span></span><span><span class="chip nc">Non-commercial</span></span><span><span class="chip unk">Licence unverified</span></span><span><span class="chip closed">Restricted</span></span>
+    <span class="ls">Label source: <span class="prov">human</span> annotated · <span class="prov">measured</span> in situ or lidar · <span class="prov">model</span> another product</span>
+  </div>
+</header>
+
+<section>
+  <h2>What the audit shows</h2>
+  <ol class="find col">
+    <li><b>Nearly half the taxonomy has no benchmark task.</b> 14 of the 32 subdomains appear in none of the audited suites, and 7 more rest on one dataset or one suite. Oceans and coasts, cryosphere and solid Earth are essentially uncovered. Crop type and land cover are saturated: PASTIS appears in six suites, BigEarthNet in five.</li>
+    <li><b>Many gaps can be closed by wrapping datasets that already exist.</b> Openly licensed labelled datasets exist for glaciers (CaFFe, HKH), sea ice (AI4Arctic), InSAR (Hephaestus), methane (CH4Net, EMIT plumes), marine debris (MARIDA), mining (Maus) and utility-scale solar (Kruitwagen); non-commercial ones exist for landslides (CAS Landslide) and methane (MARS-S2L). None is in a benchmark suite except CaFFe (GEO-Bench-2). This is the cheapest contribution EOArena can make.</li>
+    <li><b>Some subdomains have no open labelled data at all.</b> These include agricultural management practices, rangeland condition, land degradation, snow, lake ice, soil moisture, minerals, informal settlements and electrification. For these the gap is the data, not the benchmark.</li>
+    <li><b>Many "labels" are other models' outputs.</b> Biomass (CCI, GEDI L4A), mangroves (Global Mangrove Watch), coral (Allen Coral Atlas, 60–90% overall accuracy), fire (MODIS/VIIRS active fire, MTBS), and coarse land cover (LC100, SEN12MS). A task built on them measures agreement with that product, not accuracy. The label-source tag in every table makes this visible.</li>
+    <li><b>Open imagery and open labels rarely coincide for very-high-resolution tasks.</b> Building damage, roads, vehicles and aircraft are available only on commercial imagery, mostly under non-commercial or academic licences (xBD, BRIGHT, xView, DOTA, SpaceNet). The largest methane sets are also non-commercial.</li>
+    <li><b>Geographic concentration is strong.</b> Crop type labels are mostly European (LPIS-derived). Fire labels are from the US and Australia, forest biomass from Finland, and xBD events mostly from the US.</li>
+    <li><b>Several SDG indicators often cited for EO cannot be measured from imagery.</b> These are 6.3.2 (in-situ only), 14.3.1, 14.4.1, 14.6.1 (policy implementation), 3.9.1, 9.4.1, 13.2.2 (inventories) and 11.5.1 (deaths). They should be dropped as anchors. 11.5.3 (damage to critical infrastructure) should be added.</li>
+    <li><b>Resolution mismatch.</b> Soil moisture, ocean colour and atmospheric composition are natively 300 m to tens of km, while GeoFMs are pretrained mostly at 10 m.</li>
+  </ol>
+  <nav class="toc" aria-label="Sections" id="toc"><a href="#matrix">Coverage matrix</a></nav>
+</section>
+
+<section id="matrix">
+  <div><h2>Coverage matrix</h2><p class="note col" style="margin-top:6px">Status counts tasks in the audited benchmark suites only. "Open datasets" counts verified open labelled datasets outside those suites.</p></div>
+  <div class="legend"><span><span class="chip st-sat">Saturated</span> in many suites</span><span><span class="chip st-cov">Covered</span></span><span><span class="chip st-thin">Thin</span> one dataset or one suite</span><span><span class="chip st-gap">Gap</span> no suite</span></div>
+  <div class="tbl"><table class="matrix wide" id="mtx"><thead><tr><th>Subdomain</th><th>Benchmark status</th><th>Tasks in suites</th><th>Further open datasets</th><th>Main label source</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<div id="domains"></div>
+
+<section id="open">
+  <div><h2>Still unverified</h2><p class="note col" style="margin-top:6px">These could not be confirmed from a primary source during the audit. Treat them as open questions.</p></div>
+  <ul class="plain col">
+    <li>Licences: Sen1Floods11, CropTypeMapping (Ghana/South Sudan), AI4SmallFarms, So2Sat, Landslide4Sense, xView3-SAR, DynamicEarthNet, SEN12MS, CloudSEN12 (exact variant), FLAIR, DHS-derived SustainBench labels.</li>
+    <li>Whether open labelled datasets exist for wetland type, lake and river ice, snow cover, informal settlements, wind turbines paired with imagery, PM2.5 from imagery, and mineral mapping.</li>
+    <li>ESA WorldCereal reference data, GEO-Bench-2 geography, REOBench and other 2025–26 benchmarks.</li>
+    <li>SmokeViz paper and labels; DARTS thaw-slump data; ExtremeEarth sea-ice data; TalloS details; RGI 7.0 glacier count.</li>
+  </ul>
+</section>
+</div>
+
+<script>
+const U='<span class="flag">UNVERIFIED</span>';
+const TIER={open:["open","Open",0],reg:["reg","Free + terms",1],nc:["nc","Non-commercial",2],unk:["unk","Licence unverified",3],closed:["closed","Restricted",4]};
+const ST={sat:["st-sat","Saturated"],cov:["st-cov","Covered"],thin:["st-thin","Thin"],gap:["st-gap","Gap"]};
+const L=(l,u)=>[l,u];
+// dataset: [name, task, sensor, geography/time, size, labelSource, tier, licenceText, suites[], cov(1 global..4 local), sources]
+const D=(n,t,s,g,z,p,tier,lic,su,cov,src)=>({n,t,s,g,z,p,tier,lic,su,cov,src});
+
+const DOMAINS=[
+{id:"d1",name:"1 · Agriculture",subs:[
+ {code:"1.1",name:"Cropland and crop type",status:"sat",
+  anchors:"GEOGLAM EAVs: Cropland Mask, Agriculture Mask, Perennial and Non-Perennial Cropland Masks, Crop Type Masks, Crop Type Area Estimate, Field Boundaries, Crop Rotation Sequence · SDG 2.4.1 (agricultural area) · GCOS Land Cover · CLMS Croplands",
+  sensors:"Sentinel-2 (all datasets below), Sentinel-1, PlanetScope; Landsat for the USDA Cropland Data Layer",
+  ds:[
+   D("PASTIS / PASTIS-R","Semantic + panoptic segmentation, time series","S2 (+S1)","France","2,433 patches; 124k parcels; 18 classes","measured","open","CC BY 4.0 (data); MIT (code)",["PANGAEA","GEO-Bench-2","Galileo","AnySat","OmniSat","TerraMind"],4,[L("GitHub","https://github.com/VSainteuf/pastis-benchmark")]),
+   D("Fields of The World","Field boundary instance segmentation","S2, two dates","24 countries, 4 continents","70,484 chips; 1.63M polygons","human","nc","Mixed by country: CC BY, CC0, Etalab, DL-DE, but also CC BY-NC(-SA) and GPL",["GEO-Bench-2"],2,[L("arXiv","https://arxiv.org/abs/2409.16252")]),
+   D("South Africa crop type","Segmentation","S2 (+S1)","South Africa","10 classes","measured","open","CC BY 4.0",["GEO-Bench","Galileo"],4,[L("Source Coop","https://source.coop/radiantearth")]),
+   D("CropTypeMapping Ghana / South Sudan","Segmentation","S1, S2, PlanetScope","Ghana, South Sudan; 2016–17","4 crops per country","measured","unk","UNVERIFIED",["PANGAEA","SustainBench","TerraMind"],4,[L("SustainBench","https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_type_mapping_ghana-ss.html")]),
+   D("Cashew plantation","Segmentation (perennial crop)","S2","Benin","7 classes","human","unk","UNVERIFIED",["GEO-Bench","Galileo"],4,[L("GEO-Bench","https://arxiv.org/abs/2306.03831")]),
+   D("BreizhCrops","Pixel time-series classification","S2","Brittany, France","UNVERIFIED","measured","unk","UNVERIFIED",["Galileo"],4,[L("Galileo","https://arxiv.org/abs/2502.09356")]),
+   D("SICKLE (paddy classification)","Paddy / non-paddy classification","S2, S1, Landsat-8","Cauvery Delta, India","388 plots","measured","unk","UNVERIFIED",["AnySat"],4,[L("arXiv","https://arxiv.org/abs/2312.00069")]),
+   D("TimeSen2Crop","Crop type classification","S2 time series","Slovenia","UNVERIFIED","measured","unk","UNVERIFIED",["AnySat"],4,[L("AnySat","https://github.com/gastruc/AnySat")]),
+   D("CropHarvest","Pixel time-series classification","S1, S2, SRTM, ERA5","Multi-country (21 source datasets)","95,186 points","measured","open","CC BY-SA 4.0",["Galileo"],2,[L("GitHub","https://github.com/nasaharvest/cropharvest")]),
+   D("AI4SmallFarms","Field boundary segmentation","S2","Cambodia, Vietnam","UNVERIFIED","human","unk","UNVERIFIED",["PANGAEA","TerraMind"],3,[L("PANGAEA guide","https://github.com/VMarsocci/pangaea-bench/blob/main/DATASET_GUIDE.md")]),
+   D("Kenya crop type","Classification","S2","3 Kenyan counties, 2017","5,693 fields; 9 classes","measured","open","CC BY-SA 4.0 (per TorchGeo)",["SustainBench"],4,[L("SustainBench","https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_type_mapping_kenya.html")]),
+   D("AI4Boundaries","Field boundary segmentation","S2 monthly + 1 m orthophotos","7 EU countries/regions, 2019","7,831 samples; 2.5M parcels","measured","open","CC BY 4.0",[],3,[L("ESSD","https://essd.copernicus.org/articles/15/317/2023/")]),
+   D("EuroCropsML","Few-shot parcel classification","S2","Estonia, Latvia, Portugal; 2021","706,683 parcels; 176 classes","measured","open","MIT",[],3,[L("Sci Data","https://doi.org/10.1038/s41597-025-04952-7")]),
+   D("Sen4AgriNet","Classification, segmentation","S2","Catalonia, France; 2016–20","42.5M parcels (LPIS)","measured","open","CC BY-SA 4.0",[],3,[L("arXiv","https://arxiv.org/abs/2204.00951")]),
+   D("AgriFieldNet India","Segmentation","S2","4 Indian states","7,081 samples","measured","open","CC BY 4.0",[],4,[L("Source Coop","https://source.coop/radiantearth")]),
+   D("ZueriCrop","Segmentation","S2","Zurich/Thurgau","28k patches; 48 classes","measured","nc","CC BY-NC 4.0",[],4,[L("arXiv","https://arxiv.org/abs/2102.08820")]),
+  ],
+  gap:"Crop type is Europe-heavy (LPIS). Africa and Asia have only small regional sets; perennial crops only via GEO-Bench's cashew task.",
+  prop:"Split into cropland mask, field boundaries (instance segmentation; FTW, AI4Boundaries, AI4SmallFarms) and crop type and rotation."},
+ {code:"1.2",name:"Crop condition and yield",status:"thin",
+  anchors:"GEOGLAM EAVs: Crop Condition Assessment, Crop Yield Forecast, Crop Yield Estimation, Current Crop Stage, Reference Crop Calendars, LAI, fAPAR · SDG 2.3.1 · GCOS LAI, FAPAR",
+  sensors:"MODIS (SustainBench, CY-Bench), Sentinel-2 (CropNet, SICKLE), Landsat-8 (SICKLE)",
+  ds:[
+   D("SustainBench crop yield","County yield regression","MODIS histograms","US, Argentina, Brazil; 2005–16","11,048 county-years (soybean)","measured","open","CC BY-SA 4.0",["SustainBench"],3,[L("SustainBench","https://sustainlab-group.github.io/sustainbench/docs/datasets/sdg2/crop_yield.html")]),
+   D("SICKLE","Segmentation + yield + phenology dates","S2, S1, Landsat-8","Cauvery Delta, India; 2018–21","388 plots; 351 yield samples","measured","unk","UNVERIFIED",[],4,[L("arXiv","https://arxiv.org/abs/2312.00069")]),
+   D("CY-Bench","Subnational yield forecasting","MODIS NDVI, JRC FAPAR, weather","Multi-continent","Maize, wheat","measured","unk","UNVERIFIED",[],2,[L("GitHub","https://github.com/WUR-AI/AgML-CY-Bench")]),
+   D("CropNet","County yield regression","S2 + HRRR weather","~2,200 US counties; 2017–22","~2.4 TB","measured","nc","CC BY-NC 4.0",[],4,[L("arXiv","https://arxiv.org/abs/2406.06081")]),
+  ],
+  gap:"Yield labels are administrative-unit statistics. Field-level yield: only SICKLE (one region). Yield forecasting is absent from PANGAEA, GEO-Bench and Copernicus-Bench.",
+  prop:"Split into phenology and condition (dates, anomalies) and yield estimation or forecasting (regression)."},
+ {code:"1.3",name:"Management practices",status:"gap",
+  anchors:"GEOGLAM EAVs: Irrigated Cropland Map, Seasonal Fallow Mask, Cover Crop Utilization, Crop Residue Cover, Water Productivity, ET; management EAVs: Tillage Intensity, Cover Crop, Agricultural Burning · SDG 6.4.1 (irrigated agriculture sector), 2.4.1 · GCOS Anthropogenic Water Use",
+  sensors:"Landsat (IrrMapper, western US); others not verified",
+  ds:[],
+  gap:"No open labelled ML dataset verified for irrigation, tillage, residue, cover crops, burning or fallow. IrrMapper is a map product (CC BY 3.0); its training labels were not confirmed as public.",
+  prop:"Move irrigation and agricultural water into their own subdomain (anchored to SDG 6.4.1). Cross-link agricultural burning to 2.6 Fire."},
+ {code:"1.4",name:"Rangeland and livestock",status:"thin",
+  anchors:"GEOGLAM EAVs: Rangelands Mask, Managed Grasslands Mask, Rangeland Condition Assessment, Fractional Cover · SDG 2.3.1 (pastoral), 15.3.1 · CLMS Grasslands",
+  sensors:"Landsat (Global Pasture Watch; Rangeland Analysis Platform, US); VHR for cattle",
+  ds:[
+   D("NZ cattle","Detection / segmentation","RGB aerial 0.1 m","New Zealand","2 classes","human","open","CC BY 4.0 (per GEO-Bench-2)",["GEO-Bench","GEO-Bench-2"],4,[L("GEO-Bench","https://arxiv.org/abs/2306.03831")]),
+   D("Global Pasture Watch grassland samples","Grassland classification","Landsat (labels from VHR interpretation)","Global to 60.5°N; 2000–22","&gt;2.3M samples","human","unk","Maps CC BY; samples UNVERIFIED",[],2,[L("Sci Data","https://www.nature.com/articles/s41597-024-04139-6")]),
+  ],
+  gap:"Only a livestock-detection proxy is in suites. No open dataset for rangeland condition or forage biomass.",
+  prop:"Split into grassland and rangeland extent and condition, and livestock detection and density."},
+]},
+{id:"d2",name:"2 · Terrestrial ecosystems",subs:[
+ {code:"2.1",name:"Land cover and land degradation",status:"sat",
+  anchors:"SDG 15.3.1 (sub-indicators: land cover, land productivity, carbon stocks; one-out-all-out), 15.4.2, 11.3.1 · GCOS Land Cover · GEO BON Ecosystem distribution · CLMS CORINE, CLCplus, Global Dynamic Land Cover",
+  sensors:"ESA WorldCover (S1+S2, 10 m), Dynamic World (S2), ESA-CCI LC 300 m, CGLS-LC100",
+  ds:[
+   D("BigEarthNet v1 / v2 (reBEN)","Multi-label classification","S1 + S2","Europe","549,488 pairs (v2)","model","open","CDLA-Permissive-1.0",["GEO-Bench","GEO-Bench-2","Copernicus-Bench","FoMo-Bench","Galileo"],3,[L("arXiv","https://arxiv.org/abs/2407.03653")]),
+   D("FLAIR / FLAIR 2","Segmentation","Aerial RGBN + DEM (+S2)","France","UNVERIFIED","human","open","Etalab Open Licence 2.0 (FLAIR 2, per GEO-Bench-2)",["GEO-Bench-2","FoMo-Bench","AnySat","OmniSat"],4,[L("GEO-Bench-2","https://arxiv.org/abs/2511.15658")]),
+   D("EuroSAT","Scene classification","S2 (and S1 version)","Europe","27,000","human","open","MIT",["GEO-Bench","Copernicus-Bench","Galileo"],3,[L("GitHub","https://github.com/phelber/EuroSAT")]),
+   D("DynamicEarthNet","Monthly land cover change","PlanetScope","75 AOIs worldwide","75 AOIs","human","open","CC BY 4.0 (per GEO-Bench-2)",["PANGAEA","GEO-Bench-2","TerraMind"],2,[L("arXiv","https://arxiv.org/abs/2203.12560")]),
+   D("LC100 classification / segmentation","Classification, segmentation","Sentinel-3 OLCI","Global","UNVERIFIED","model","open","CC BY 4.0",["Copernicus-Bench"],1,[L("Copernicus-FM","https://github.com/zhu-xlab/Copernicus-FM")]),
+   D("DFC2020","Segmentation","S1 + S2","Global sites","UNVERIFIED","human","reg","Contest terms",["Copernicus-Bench"],2,[L("IEEE DataPort","https://ieee-dataport.org/competitions/2020-ieee-grss-data-fusion-contest")]),
+   D("SEN12MS","Classification, segmentation","S1 + S2","Global","180,662 triplets","model","open","CC BY 4.0 (per GEO-Bench-2 / TorchGeo)",["FoMo-Bench"],2,[L("arXiv","https://arxiv.org/abs/1906.07789")]),
+   D("Chesapeake land cover","Segmentation","1 m RGBN (NAIP)","Chesapeake Bay, US","UNVERIFIED","human","open","CC0 (per TorchGeo)",["GEO-Bench"],4,[L("GEO-Bench","https://arxiv.org/abs/2306.03831")]),
+   D("Five Billion Pixels","Segmentation","Gaofen-2","China","UNVERIFIED","human","unk","UNVERIFIED",["PANGAEA","TerraMind"],4,[L("PANGAEA","https://arxiv.org/abs/2412.04204")]),
+   D("Dynamic World training set","Segmentation, 9 classes","S2","Global, 2019","~24k tiles + 409 validation","human","open","CC BY 4.0",[],2,[L("PANGAEA data","https://doi.pangaea.de/10.1594/PANGAEA.933475")]),
+   D("MultiSenGE","Segmentation","S1 + S2 time series","Grand-Est, France","8,157 patches","model","open","CC BY 4.0",[],4,[L("Zenodo","https://zenodo.org/records/6375466")]),
+   D("OpenEarthMap","Segmentation, 8 classes","0.25–0.5 m RGB","97 regions, 44 countries","5,000 images","human","nc","Mostly CC BY-NC-SA 4.0",[],2,[L("Zenodo","https://zenodo.org/records/7223446")]),
+   D("LoveDA","Segmentation","0.3 m RGB","3 Chinese cities","5,987 images","human","nc","CC BY-NC-SA 4.0",[],4,[L("Zenodo","https://zenodo.org/records/5706578")]),
+  ],
+  gap:"Land cover is saturated, but land degradation (15.3.1 as a composite) has no labelled dataset: every input is a derived product (CCI-LC trends, NDVI trends, SoilGrids).",
+  prop:"Split into land cover mapping and land cover change and degradation. Tag 15.4.2 (mountains) under this subdomain rather than as a new one."},
+ {code:"2.2",name:"Forest extent and change",status:"cov",
+  anchors:"SDG 15.1.1 (FAO land-use definition: &gt;0.5 ha, &gt;5 m, &gt;10% cover; the metadata flags the land-use vs land-cover mismatch), 15.2.1 · GEO BON Ecosystem distribution, disturbances · CLMS Tree Cover and Forests",
+  sensors:"Hansen Global Forest Change (Landsat, 30 m, CC BY 4.0), JRC Tropical Moist Forest (Landsat, 1982–2025)",
+  ds:[
+   D("ForestNet","Deforestation driver classification","Landsat-8","Indonesia","2,756","human","open","CC BY 4.0",["GEO-Bench","GEO-Bench-2","FoMo-Bench"],4,[L("arXiv","https://arxiv.org/abs/2011.05479")]),
+   D("BraDD-S1TS","Deforestation detection","S1 time series","Amazon","UNVERIFIED","model","unk","UNVERIFIED",["AnySat"],3,[L("AnySat","https://github.com/gastruc/AnySat")]),
+   D("RapidAI4EO","Multi-label classification","Planet + S2","Europe","UNVERIFIED","model","unk","UNVERIFIED",["FoMo-Bench"],3,[L("FoMo-Bench","https://arxiv.org/abs/2312.10114")]),
+  ],
+  gap:"No global, open, human-labelled pixel-level forest loss or degradation benchmark. Hansen, TMF and PRODES are algorithmic products. A GeoFM task can target tree cover, which is not what 15.1.1 measures.",
+  prop:"Split into tree cover extent, disturbance and degradation, and driver attribution."},
+ {code:"2.3",name:"Biomass and carbon stocks",status:"cov",
+  anchors:"GCOS Above-ground Biomass, Soil Carbon · SDG 15.2.1 (biomass sub-indicator), 15.3.1 (carbon stocks) · GEO BON Ecosystem Vertical Profile",
+  sensors:"ESA CCI Biomass v7 (100 m; S1, PALSAR, GEDI), GEDI L4B (1 km)",
+  ds:[
+   D("BioMassters","Pixel AGB regression","S1 + S2, 12 months","Finland","~13k chips; ~201 GB","measured","open","CC BY 4.0",["PANGAEA","GEO-Bench-2"],4,[L("Hugging Face","https://huggingface.co/datasets/nascetti-a/BioMassters")]),
+   D("Biomass-S3","AGB regression","Sentinel-3 OLCI","Global","UNVERIFIED","model","open","CC BY 4.0",["Copernicus-Bench"],1,[L("arXiv","https://arxiv.org/abs/2503.11849")]),
+   D("ReforesTree","Detection + carbon regression","Aerial","Ecuador","UNVERIFIED","measured","open","CC BY 4.0 (per TorchGeo)",["FoMo-Bench"],4,[L("FoMo-Bench","https://arxiv.org/abs/2312.10114")]),
+   D("AGBD","AGB regression at GEDI footprints","S2, PALSAR-2, DEM","11 regions, 2019–20","~16M patches","model","nc","CC BY-NC 4.0",[],2,[L("arXiv","https://arxiv.org/abs/2406.04928")]),
+  ],
+  gap:"Nearly all biomass labels are model products. The only ALS/plot-anchored benchmark is BioMassters (one boreal country). Soil carbon has no labelled EO dataset.",
+  prop:"Add soil organic carbon as a leaf. Move canopy height here from 2.4."},
+ {code:"2.4",name:"Vegetation structure and species",status:"cov",
+  anchors:"GEO BON Ecosystem Vertical Profile, Live cover fraction, Species populations, Species traits, Community composition · GCOS LAI · SDG 15.5.1 (indirect)",
+  sensors:"Lang et al. 2023 canopy height (S2 + GEDI, 10 m); aerial and lidar for species",
+  ds:[
+   D("TreeSatAI","Species / genus multi-label","Aerial CIR 0.2 m, S1, S2","Lower Saxony, Germany","50,381 triplets","measured","open","CC BY 4.0",["GEO-Bench-2","FoMo-Bench","AnySat","OmniSat"],4,[L("Zenodo","https://zenodo.org/records/6598391")]),
+   D("NeonTreeEvaluation","Tree crown detection","RGB, lidar, hyperspectral","22 US NEON sites","30,975 crowns","human","open","CC BY 4.0 (data); CC0 (repo)",["GEO-Bench","FoMo-Bench"],4,[L("GitHub","https://github.com/weecology/NeonTreeEvaluation")]),
+   D("TalloS","Tree species multi-label","S1, S2, DEM, ERA5","Global","UNVERIFIED","measured","unk","UNVERIFIED",["FoMo-Bench"],2,[L("FoMo-Bench","https://github.com/RolnickLab/FoMo-Bench")]),
+   D("PLANTED","Tree species","S2, L7, MODIS, S1, ALOS-2","Global","UNVERIFIED","measured","unk","UNVERIFIED",["AnySat"],2,[L("AnySat","https://github.com/gastruc/AnySat")]),
+   D("Cactus, Woody, Spekboom, Waititu","Classification / segmentation","Aerial","Mexico, Chile, South Africa, New Zealand","UNVERIFIED","human","unk","UNVERIFIED",["FoMo-Bench"],4,[L("FoMo-Bench","https://arxiv.org/abs/2312.10114")]),
+   D("EverWatch","Bird species detection (fauna)","Aerial RGB","UNVERIFIED","UNVERIFIED","human","open","CC0 (per GEO-Bench-2)",["GEO-Bench-2"],4,[L("GEO-Bench-2","https://arxiv.org/abs/2511.15658")]),
+   D("Open-Canopy","Canopy height + change regression","SPOT 1.5 m","France, &gt;87,000 km²","UNVERIFIED","measured","open","CC BY 4.0",[],4,[L("arXiv","https://arxiv.org/abs/2407.09392")]),
+   D("PureForest","Species classification","ALS + aerial","France, 449 stands","271k samples","measured","open","Etalab 2.0",[],4,[L("Hugging Face","https://huggingface.co/datasets/IGNF/PureForest")]),
+  ],
+  gap:"Species labels are regional (Germany, France, US). Global canopy height labels are sparse GEDI footprints. No EO dataset for species abundance or community composition. Auto Arborist was deactivated in May 2025.",
+  prop:"Split into vegetation structure (height, cover; next to 2.3) and species and community composition."},
+ {code:"2.5",name:"Ecosystem function (phenology, productivity)",status:"gap",
+  anchors:"GCOS FAPAR, LAI, Albedo, LST · GEO BON Primary productivity, Ecosystem phenology · SDG 15.3.1 (land productivity) · CLMS Vegetation Phenology and Productivity",
+  sensors:"MODIS vegetation indices, CGLS 1 km (per 15.3.1 metadata)",
+  ds:[
+   D("PhenoCam v2.0","Phenology transition dates","Near-surface cameras (pair with satellite)","Mostly North America; 2000–18","393 cameras","measured","open","CC BY 4.0",[],3,[L("Sci Data","https://www.nature.com/articles/s41597-019-0229-9")]),
+   D("FLUXNET2015","GPP / NEE regression","Eddy covariance towers","212 sites","&gt;1,500 site-years","measured","open","CC BY 4.0 (206 sites)",[],2,[L("Sci Data","https://www.nature.com/articles/s41597-020-0534-3")]),
+  ],
+  gap:"No phenology or productivity task in any suite. Ground truth is point data (towers, cameras) that must be matched to pixels; FLUXNET GPP is itself partitioned by a model.",
+  prop:"Rename to biophysical variables and ecosystem function, with phenology and productivity as separate leaves."},
+ {code:"2.6",name:"Fire",status:"thin",
+  anchors:"GCOS Fire (Burned Area, Active Fires, FRP) · GEO BON Ecosystem disturbances · UNDRR hazard profile EN0205 Wildfires · CLMS Burnt Area",
+  sensors:"MODIS MCD64A1 burned area (500 m), VIIRS 375 m active fire (FIRMS), MTBS (Landsat + S2, US)",
+  ds:[
+   D("HLS Burn Scars","Burn scar segmentation","HLS","CONUS, 2018–21","804 scenes","model","open","CC BY 4.0",["PANGAEA","GEO-Bench-2","TerraMind"],4,[L("Hugging Face","https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars")]),
+   D("Sen2Fire","Active fire segmentation","S2 + S5P aerosol","New South Wales, 2019–20","2,466 patches","model","open","CC BY 4.0",[],4,[L("arXiv","https://arxiv.org/abs/2403.17884")]),
+   D("WildfireSpreadTS","Multi-day fire spread","VIIRS + weather, fuel, topography","US, 2018–21","607 fires","model","open","CC BY 4.0",[],4,[L("Zenodo","https://zenodo.org/records/8006177")]),
+   D("Next Day Wildfire Spread","Next-day fire mask","MODIS fire mask + drivers","US","UNVERIFIED","model","open","CC BY 4.0",[],4,[L("arXiv","https://arxiv.org/abs/2112.02447")]),
+   D("CaBuAr","Burned area from pre/post","S2","California","104 GB","measured","unk","CDLA-Permissive-2.0 (Hugging Face) vs OpenRAIL (TorchGeo): conflicting",[],4,[L("arXiv","https://arxiv.org/abs/2401.11519")]),
+  ],
+  gap:"Every fire label is an algorithmic product or an agency perimeter. Labels are US/Australia only; nothing for Africa or the boreal zone, where most burned area occurs. Sen2Fire pairs 1 km labels with 10 m inputs.",
+  prop:"Split into active fire detection, burned area and severity, and spread and risk forecasting (flag: needs weather inputs)."},
+]},
+{id:"d3",name:"3 · Inland water",subs:[
+ {code:"3.1",name:"Surface water, rivers and wetlands",status:"cov",
+  anchors:"SDG 6.6.1 (sub-indicators: water extent, reservoirs, wetlands, mangroves, quantity, quality, river flow, groundwater; custodian UNEP) · GCOS Lakes, River Discharge, Terrestrial Water Storage",
+  sensors:"JRC Global Surface Water (Landsat, 30 m, 1984–2024), SWOT (rivers &gt;100 m, lakes ≥15 acres), S1 and S2",
+  ds:[
+   D("Sen1Floods11","Flood and water segmentation","S1 + S2","11 events, 6 continents","4,831 chips (446 hand-labelled)","human","unk","UNVERIFIED",["PANGAEA","Galileo","AnySat","TerraMind"],2,[L("GitHub","https://github.com/cloudtostreet/Sen1Floods11")]),
+   D("Kuro Siwo (Flood-S1)","Flood segmentation, change","S1 GRD and SLC","43 events, global","33 bn m² labelled","human","open","CC BY",["GEO-Bench-2","Copernicus-Bench"],2,[L("arXiv","https://arxiv.org/abs/2311.12056")]),
+   D("S1S2-Water","Water segmentation","S1 + S2 + Copernicus DEM","Global (S2 tile grid)","65 scene triplets","human","open","CC BY 4.0",[],2,[L("Zenodo","https://zenodo.org/records/11278238")]),
+   D("MMFlood","Flood segmentation","S1 + DEM + hydrography","95 events, 42 countries; 2014–21","1,748 pairs","human","open","CC BY 4.0",[],2,[L("Zenodo","https://zenodo.org/record/6534637")]),
+   D("WorldFloods v2","Flood, water, cloud segmentation","S2","Global","509 pairs","human","nc","CC BY-NC 4.0",[],2,[L("Hugging Face","https://huggingface.co/datasets/isp-uv-es/WorldFloodsv2")]),
+   D("SWED","Coastal water-edge segmentation","S2","Global","~18 GB","human","closed","UK licence, no redistribution",[],2,[L("UKHO","https://openmldata.ukho.gov.uk/")]),
+  ],
+  gap:"Covered for floods only. Almost every labelled set is about flood events. Nothing verified for wetland type or extent (the 6.6.1 wetland sub-indicator), river width or discharge, or lake level.",
+  prop:"Split into surface water dynamics, wetlands, and water level and discharge. Move flood events to the Disasters tag, cross-referenced here."},
+ {code:"3.2",name:"Water quality",status:"gap",
+  anchors:"SDG 6.6.1 turbidity and trophic-state sub-indicator (6.3.2 is in-situ only) · CLMS Lake water quality · no inland water-quality GCOS ECV",
+  sensors:"Sentinel-3 OLCI and Sentinel-2 (EPA CyAN), Landsat, PACE",
+  ds:[
+   D("AquaSat","Chl-a, TSS, DOC, Secchi regression","Landsat matchups","Continental, inland","&gt;600,000 matchups","measured","open","CC BY 4.0",[],3,[L("WRR 2019","https://doi.org/10.1029/2019WR024883")]),
+   D("GLORIA","Chl-a, TSS, CDOM, Secchi from reflectance","In-situ hyperspectral (convolvable to any sensor)","450 water bodies","7,572 spectra","measured","unk","\"Open and free\"; exact licence UNVERIFIED",[],2,[L("Sci Data","https://www.nature.com/articles/s41597-023-01973-y")]),
+  ],
+  gap:"Labels are sparse point matchups, not masks. A GeoFM needs a point-regression protocol (pixel window, time tolerance). SustainBench's \"water quality index\" is DHS household water access and does not fill this.",
+  prop:"Cross-link or merge with 4.3 as one aquatic-optics task family; GLORIA spans lakes and coasts."},
+ {code:"3.3",name:"Soil moisture",status:"gap",
+  anchors:"GCOS Soil Moisture · no SDG indicator",
+  sensors:"ESA CCI Soil Moisture (ASCAT, SMOS, SMAP, AMSR; &gt;40 years), in-situ ISMN network",
+  ds:[],
+  gap:"No labelled ML dataset. Realistic task: sparse regression against ISMN stations or downscaling coarse microwave products. Weakest fit for a 10 m GeoFM.",
+  prop:"Either rename Domain 3 to Hydrology (matching GCOS) or move soil moisture next to agriculture and drought."},
+]},
+{id:"d4",name:"4 · Oceans and coasts",subs:[
+ {code:"4.1",name:"Coastal ecosystems",status:"gap",
+  anchors:"GCOS Marine Habitats · SDG 6.6.1 (mangrove sub-indicator uses Global Mangrove Watch)",
+  sensors:"Global Mangrove Watch (L-band SAR + Landsat), Allen Coral Atlas (PlanetScope 3 m)",
+  ds:[
+   D("Global Mangrove Watch v3/v4","Mangrove extent and change","L-band SAR, Landsat","Tropics; 1996–2020","11 epochs","model","open","CC BY 4.0",[],1,[L("Zenodo","https://zenodo.org/records/6894273")]),
+   D("Allen Coral Atlas maps","Geomorphic and benthic segmentation","PlanetScope (commercial imagery)","Tropical reefs 30°N–30°S","60–90% overall accuracy","model","open","CC BY 4.0 (maps only)",[],1,[L("Methods","https://allencoralatlas.org/methods/")]),
+   D("MagicBathyNet","Bathymetry + seabed classification","S2, SPOT-6, aerial","2 sites (Cyprus, Poland)","UNVERIFIED","human","unk","UNVERIFIED",[],4,[L("GitHub","https://github.com/pagraf/MagicBathyNet")]),
+  ],
+  gap:"Mangrove and coral labels are model products. No independent seagrass dataset at scale.",
+  prop:"Add shallow-water bathymetry and benthic habitat as a leaf."},
+ {code:"4.2",name:"Shoreline and coastal change",status:"gap",
+  anchors:"No direct SDG indicator · GCOS Sea Level, Sea State (context only)",
+  sensors:"Landsat, Sentinel-2 (CoastSat is a tool, not a dataset)",
+  ds:[
+   D("SDS_Benchmark","Shoreline position time series","Landsat, S2","4 beaches (Narrabeen, Duck, Truc Vert, Torrey Pines)","In-situ surveys","measured","open","GPL-3.0",[],4,[L("GitHub","https://github.com/kvos/SDS_Benchmark")]),
+  ],
+  gap:"Ground truth exists at 4 sites. About 10 m accuracy on microtidal beaches, much worse on macrotidal ones.",
+  prop:"Keep, flagged as a data gap."},
+ {code:"4.3",name:"Ocean colour and algal blooms",status:"gap",
+  anchors:"GCOS Ocean Colour, Plankton · SDG 14.1.1(a) coastal eutrophication (computed from OC-CCI chl-a, 4 km)",
+  sensors:"ESA OC-CCI (merged, 4 km), PACE OCI, Sentinel-3 OLCI",
+  ds:[],
+  gap:"No HAB segmentation dataset verified; only GLORIA's coastal spectra (32%). Labels are retrievals or sparse matchups at 300 m–4 km.",
+  prop:"Absorb eutrophication from 4.4; cross-link with 3.2."},
+ {code:"4.4",name:"Marine pollution",status:"thin",
+  anchors:"SDG 14.1.1(b) plastic debris density (satellite only for patches &gt;10 m)",
+  sensors:"Sentinel-1 (oil), Sentinel-2 (debris)",
+  ds:[
+   D("MADOS","Debris, oil, sargassum, ship segmentation","S2","Global, 174 scenes","2,803 patches; 15 classes","human","open","CC BY 4.0",["PANGAEA","Galileo","TerraMind"],2,[L("Zenodo","https://zenodo.org/records/10664073")]),
+   D("MARIDA","Marine debris segmentation","S2","11 countries; 2015–21","1,381 patches (3,339 debris pixels)","human","open","CC BY 4.0",[],2,[L("Zenodo","https://zenodo.org/records/5151941")]),
+   D("NASA Marine Debris","Object detection","PlanetScope 3 m","UNVERIFIED","707 images","human","open","Apache-2.0",[],4,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+   D("Krestenitis oil spill","Oil / look-alike segmentation","S1","European waters, 2015–17","~1,110 images","measured","closed","Access by application",[],3,[L("M4D","https://m4d.iti.gr/oil-spill-detection-dataset/")]),
+  ],
+  gap:"Debris labels are very sparse (MARIDA: 3,339 debris pixels). The best open oil-spill set is restricted.",
+  prop:"Keep as oil spills plus floating debris and sargassum. Vessels move to Human systems 8.4, cross-referenced."},
+]},
+{id:"d5",name:"5 · Cryosphere",subs:[
+ {code:"5.1",name:"Snow",status:"gap",
+  anchors:"GCOS Snow · UNDRR MH0801 snow avalanche · CLMS Snow",
+  sensors:"MODIS MOD10A1 (500 m daily, from 2000)",
+  ds:[],
+  gap:"No dedicated open snow-cover or snow-water-equivalent ML dataset verified. Snow appears only as a class in cloud datasets (CloudSEN12, SPARCS, S2 Cloud Mask Catalogue).",
+  prop:"Keep, flagged as a data gap; a pseudo-label task from MOD10A1 is possible but coarse."},
+ {code:"5.2",name:"Glaciers and ice sheets",status:"thin",
+  anchors:"GCOS Glaciers; Ice Sheets and Ice Shelves · UNDRR MH0607 glacial lake outburst flood",
+  sensors:"RGI 7.0 / GLIMS outlines (CC BY 4.0); SAR archive for calving fronts; NISAR",
+  ds:[
+   D("CaFFe","Calving-front segmentation","ERS, Envisat, RADARSAT-1, ALOS, TSX/TDX, S1","7 glaciers; 1995–2020","681 images","human","open","CC BY 4.0",["GEO-Bench-2"],4,[L("ESSD","https://essd.copernicus.org/articles/14/4287/2022/")]),
+   D("HKH Glacier Mapping","Clean-ice / debris-covered segmentation","Landsat 7 + SRTM","Hindu Kush Himalaya","14,190 patches","human","open","CDLA-Permissive (labels)",[],3,[L("LILA","https://lila.science/datasets/hkh-glacier-mapping")]),
+  ],
+  gap:"No ML dataset for ice-sheet velocity or grounding lines (not confirmed).",
+  prop:"Split into mountain glaciers (outlines) and ice sheets and shelves (calving fronts), matching the two GCOS ECVs."},
+ {code:"5.3",name:"Sea and lake ice",status:"gap",
+  anchors:"GCOS Sea Ice (Ocean–Physical); Lakes (Land–Hydrology) · UNDRR MH0706",
+  sensors:"OSI SAF sea-ice concentration (SSMIS/AMSR2), Sentinel-1 ice charts (CIS, DMI)",
+  ds:[
+   D("AI4Arctic / AutoICE","Sea-ice concentration, stage, floe size","S1 + AMSR2 + ERA5","Canadian and Greenland Arctic; 2018–21","533 scenes","human","open","CC BY 4.0 (Hugging Face rehost)",[],3,[L("TC 2024","https://tc.copernicus.org/articles/18/3471/2024/")]),
+  ],
+  gap:"No lake or river ice dataset. GCOS puts sea ice and lakes in different domains.",
+  prop:"Rename to Sea ice; move lake and river ice to hydrology or keep as a flagged stub."},
+ {code:"5.4",name:"Permafrost",status:"gap",
+  anchors:"GCOS Permafrost (defined by ground temperature and active layer) · UNDRR EN0305 permafrost loss",
+  sensors:"PlanetScope, Sentinel-2 (thaw-slump mapping)",
+  ds:[
+   D("QTEC thaw-slump inventory","Retrogressive thaw slump polygons","PlanetScope 3 m (2019)","Qinghai–Tibet corridor","875 slumps","human","open","CC BY 4.0",[],4,[L("ESSD","https://essd.copernicus.org/articles/14/3875/2022/")]),
+  ],
+  gap:"The GCOS permafrost variables are not observable in imagery; only landforms such as thaw slumps are.",
+  prop:"Reframe as permafrost landforms and cross-link with 7.2 (mass movement)."},
+]},
+{id:"d6",name:"6 · Atmosphere",subs:[
+ {code:"6.1",name:"Greenhouse gas point sources",status:"gap",
+  anchors:"GCOS CO₂, CH₄ and other GHGs; Anthropogenic GHG Emissions · Global Methane Pledge · UNEP IMEO MARS · CAMS Methane Hotspot Explorer (SDG 9.4.1 and 13.2.2 are inventory-based: drop)",
+  sensors:"Sentinel-2 and Landsat SWIR, EMIT, TROPOMI (regional)",
+  ds:[
+   D("EMIT L2B CH₄ plumes","Plume complexes","EMIT 60 m","52°N–52°S; 2022–","Manually reviewed plumes","human","open","NASA open",[],2,[L("LP DAAC","https://lpdaac.usgs.gov/products/emitl2bch4plmv001/")]),
+   D("CH4Net","Plume segmentation","S2","23 sites, Turkmenistan; 2017–21","10,046 images","human","open","CC BY 4.0",[],4,[L("AMT 2024","https://amt.copernicus.org/articles/17/2583/2024/")]),
+   D("MARS-S2L","Plume detection, segmentation, flux","S2 + Landsat","Global","~87k pairs; &gt;5,600 plumes","human","nc","CC BY-NC-SA 4.0",[],2,[L("Hugging Face","https://huggingface.co/datasets/UNEP-IMEO/MARS-S2L")]),
+   D("MethaneS2CM","Classification, segmentation, rate","S2 + Carbon Mapper labels","Global","317,663 patches","model","nc","CC BY-NC 4.0",[],2,[L("Hugging Face","https://huggingface.co/datasets/H1deaki/MethaneS2CM")]),
+   D("STARCOP","Plume segmentation","AVIRIS-NG + simulated WorldView-3","Permian Basin, 2019","1,878 plumes","human","nc","CC BY-NC 4.0",[],4,[L("Zenodo","https://zenodo.org/records/7863343")]),
+  ],
+  gap:"No plume dataset is in any suite (TerraMind's few-shot METER-ML task classifies methane-source infrastructure, not plumes). No CO₂ point-source ML dataset verified. The largest methane sets are non-commercial.",
+  prop:"Restrict to methane unless a CO₂ dataset is found."},
+ {code:"6.2",name:"Aerosols and air quality",status:"thin",
+  anchors:"GCOS Aerosols, Precursors, Ozone · SDG 11.6.2 (uses satellite data) · CAMS · UNDRR EN0102–0103",
+  sensors:"MODIS MAIAC AOD (1 km), TROPOMI",
+  ds:[
+   D("AQ-NO₂-S5P, AQ-O₃-S5P","Regression","Sentinel-5P, 1 km","UNVERIFIED","2,467 samples each","model","open","CC BY 4.0",["Copernicus-Bench"],2,[L("Copernicus-FM","https://github.com/zhu-xlab/Copernicus-FM")]),
+  ],
+  gap:"No PM2.5-from-imagery benchmark found. At 1 km+ this is regression on retrieval products, not image understanding.",
+  prop:"State explicitly as Level-2 product regression, or decide GeoFM inputs are Level-1 radiances."},
+ {code:"6.3",name:"Clouds and smoke",status:"cov",
+  anchors:"GCOS Clouds, Aerosols (smoke) · UNDRR MH0205 smoke",
+  sensors:"NOAA HMS smoke polygons (GOES, analyst-drawn), TROPOMI cloud",
+  ds:[
+   D("CloudSEN12 (Cloud-S2)","Cloud, shadow, snow segmentation","S2 (+S1)","Global except Antarctica; 2018–20","49,400 patches","human","open","CC0 (per GEO-Bench-2)",["GEO-Bench-2","Copernicus-Bench"],2,[L("Sci Data","https://www.nature.com/articles/s41597-022-01878-2")]),
+   D("Cloud-S3","Cloud segmentation","Sentinel-3 OLCI","UNVERIFIED","UNVERIFIED","human","open","CC BY 4.0",["Copernicus-Bench"],2,[L("Copernicus-FM","https://github.com/zhu-xlab/Copernicus-FM")]),
+   D("S2 Cloud Mask Catalogue","Cloud / shadow segmentation","S2 L1C","Global random, 2018","513 subscenes","human","open","CC BY 4.0",[],2,[L("Zenodo","https://zenodo.org/records/4172871")]),
+   D("SPARCS","Cloud, shadow, snow/ice, water","Landsat 8","UNVERIFIED","80 subscenes","human","open","USGS public",[],2,[L("USGS","https://www.usgs.gov/landsat-missions/spatial-procedures-automated-removal-cloud-and-shadow-sparcs-validation-data")]),
+   D("38-Cloud","Cloud segmentation","Landsat 8","38 scenes","17.6k patches","human","open","Apache-2.0",[],4,[L("GitHub","https://github.com/SorourMo/38-Cloud-A-Cloud-Segmentation-Dataset")]),
+  ],
+  gap:"Copernicus-Bench itself treats cloud masking as preprocessing, not an application. No well-documented open smoke benchmark verified.",
+  prop:"Move cloud masking to a cross-cutting preprocessing tier; merge smoke with aerosols or fire."},
+]},
+{id:"d7",name:"7 · Solid Earth",subs:[
+ {code:"7.1",name:"Surface deformation",status:"gap",
+  anchors:"GCMD Geodetics, Tectonics · UNDRR GH0309 subsidence and uplift, GH0101 earthquake, GH0201–0203 volcanic",
+  sensors:"OPERA DISP-S1 (North America, 30 m), EGMS (Europe), NISAR",
+  ds:[
+   D("Hephaestus","Deformation classification, segmentation, captioning","S1 interferograms (COMET-LiCS)","44 volcanoes; 2014–21","19,919 labelled interferograms","human","open","MIT",[],2,[L("GitHub","https://github.com/Orion-AI-Lab/Hephaestus")]),
+   D("QuakeSet","Earthquake classification + magnitude","S1","UNVERIFIED","3,327","measured","reg","OpenRAIL",[],2,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+  ],
+  gap:"Interferometric phase is a different input distribution from the SAR amplitude GeoFMs are pretrained on (all Copernicus-Bench S1 inputs are GRD).",
+  prop:"Name by phenomenon, not technique. Add volcanic unrest (Hephaestus) and earthquakes (QuakeSet) as leaves."},
+ {code:"7.2",name:"Landslides and mass movement",status:"gap",
+  anchors:"UNDRR GH0300 gravitational mass movement · GCMD Geomorphic Landforms/Processes",
+  sensors:"Sentinel-2, DEMs, VHR",
+  ds:[
+   D("CAS Landslide","Binary segmentation","S2, Landsat, Planet, UAV (0.2–5 m)","9 regions","20,865 images","human","nc","CC BY-NC 4.0",[],2,[L("Sci Data","https://www.nature.com/articles/s41597-023-02847-z")]),
+   D("Landslide4Sense","Binary segmentation","S2 + ALOS PALSAR DEM","4 events (Iburi, Kodagu, Gorkha, Taiwan)","4,844 patches","human","unk","UNVERIFIED",[],2,[L("arXiv","https://arxiv.org/abs/2206.00515")]),
+  ],
+  gap:"Open datasets exist but are in no benchmark suite.",
+  prop:"Keep; cross-link with 5.4 permafrost landforms."},
+ {code:"7.3",name:"Geology and mineral mapping",status:"gap",
+  anchors:"GCMD Rocks/Minerals/Crystals, Geochemistry · no SDG, Sendai or GCOS anchor",
+  sensors:"EMIT L2B MIN (10 minerals, 60 m; purpose: dust forcing)",
+  ds:[],
+  gap:"No open labelled ML benchmark verified; only EMIT mineral maps as pseudo-labels. No framework anchor.",
+  prop:"Keep as an explicitly exploratory entry, or drop."},
+]},
+{id:"d8",name:"8 · Human systems",subs:[
+ {code:"8.1",name:"Settlements and buildings",status:"cov",
+  anchors:"SDG 11.1.1, 11.3.1, 11.7.1, 1.4.1 · Sendai C-4 (housing loss) · GCMD Human Settlements",
+  sensors:"GHSL (S2 + Landsat), World Settlement Footprint (S1 + S2, 10 m, CC BY 4.0); Google and Microsoft building footprints (derived from commercial imagery)",
+  ds:[
+   D("So2Sat LCZ42 (LCZ-S2)","Local climate zone classification","S1 + S2","Global cities","UNVERIFIED","human","open","CC BY 4.0 (per GEO-Bench-2)",["GEO-Bench","GEO-Bench-2","Copernicus-Bench","Galileo"],2,[L("GEO-Bench","https://arxiv.org/abs/2306.03831")]),
+   D("SpaceNet 7","Multi-temporal building tracking","Planet 4 m","&gt;100 AOIs","&gt;11M annotations","human","open","CC BY-SA 4.0",["PANGAEA","GEO-Bench-2","TerraMind"],2,[L("arXiv","https://arxiv.org/abs/2102.04420")]),
+   D("SpaceNet 2","Building footprints","WorldView","Las Vegas, Paris, Shanghai, Khartoum","14.1k chips","human","open","CC BY-SA 4.0",["GEO-Bench-2"],4,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+   D("Massachusetts Buildings","Building segmentation","Aerial","Massachusetts","UNVERIFIED","human","unk","UNVERIFIED",["SatlasPretrain"],4,[L("Toronto","https://www.cs.toronto.edu/~vmnih/data/")]),
+   D("GlobalBuildingMap","Building masks","PlanetScope 3 m","Global","180k","model","open","CC BY 4.0",[],2,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+   D("Open Cities AI","Building segmentation","Drone 2–20 cm","10 African cities","~790k buildings","human","open","CC BY 4.0 (weakly stated)",[],3,[L("DrivenData","https://www.drivendata.org/competitions/60/building-segmentation-disaster-resilience/page/151/")]),
+   D("Inria Aerial","Building segmentation","Aerial 0.3 m","US, Austria","810 km²","human","unk","UNVERIFIED",[],4,[L("Inria","https://project.inria.fr/aerialimagelabeling/")]),
+  ],
+  gap:"No verified open labelled dataset for informal settlements (11.1.1). Open-imagery tasks are built-up extent at 10 m; building instances need VHR.",
+  prop:"Split into built-up extent and morphology (10–30 m, open) and building footprints and instances (VHR)."},
+ {code:"8.2",name:"Transport",status:"cov",
+  anchors:"SDG 9.1.1 (rural population within 2 km of an all-season road), 11.2.1 · Sendai D-1, D-4",
+  sensors:"No open operational road product verified; OSM as the de facto label source",
+  ds:[
+   D("Massachusetts Roads","Road segmentation","Aerial","Massachusetts","UNVERIFIED","human","unk","UNVERIFIED",["SatlasPretrain"],4,[L("Toronto","https://www.cs.toronto.edu/~vmnih/data/")]),
+   D("PhilEO roads","Road segmentation","S2","UNVERIFIED","part of 400 GB set","model","unk","UNVERIFIED",["PhilEO"],2,[L("arXiv","https://arxiv.org/abs/2401.04464")]),
+   D("SpaceNet 3 / 5","Road networks (+ travel time)","WorldView-3","Cities (UNVERIFIED)","3,477 / 2,588 chips","human","open","CC BY-SA 4.0",[],4,[L("SpaceNet","https://spacenet.ai/datasets/")]),
+   D("DeepGlobe Roads","Road segmentation","DigitalGlobe 0.5 m","Thailand, Indonesia, India","8,570 images","human","unk","UNVERIFIED",[],3,[L("arXiv","https://arxiv.org/abs/1805.06561")]),
+  ],
+  gap:"Only two road tasks (aerial Massachusetts; PhilEO on S2). No open-imagery road dataset with a verified open licence, although SDG 9.1.1 is directly computable from road maps.",
+  prop:"Keep; priority candidate for a new open task (S2 + OSM)."},
+ {code:"8.3",name:"Energy and industry",status:"cov",
+  anchors:"SDG 7.2.1, 7.1.1 (indirect), 9.4.1 (weak) · GCMD Renewable Energy Infrastructure",
+  sensors:"Sentinel-2 (solar, mines, substations, kilns)",
+  ds:[
+   D("Brick kilns","Binary classification","S2","Bangladesh","UNVERIFIED","human","unk","UNVERIFIED",["GEO-Bench","SustainBench","Galileo"],4,[L("SustainBench","https://sustainlab-group.github.io/sustainbench/docs/datasets/")]),
+   D("Substations","Instance segmentation","S2 + OSM","UNVERIFIED","27k","model","open","CC BY 4.0",["GEO-Bench-2"],2,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+   D("PV4GER","Solar classification / segmentation","Aerial 0.1 m","Germany","UNVERIFIED","human","unk","UNVERIFIED",["GEO-Bench"],4,[L("GEO-Bench","https://arxiv.org/abs/2306.03831")]),
+   D("Kruitwagen et al. 2021 solar inventory","Solar farm polygons","S2 + SPOT 6/7","Global, to 2018","68,661 facilities","human","open","CC BY 4.0",[],1,[L("Nature","https://www.nature.com/articles/s41586-021-03957-7")]),
+   D("Maus et al. 2022 mining polygons","Mine-area segmentation labels","S2 mosaic 10 m, 2019","145 countries","44,929 polygons","human","open","CC BY-SA 4.0",[],1,[L("Sci Data","https://www.nature.com/articles/s41597-022-01547-4")]),
+  ],
+  gap:"No wind-turbine dataset paired with imagery verified.",
+  prop:"Rename to Energy, extractives and industry so mines and kilns are visible."},
+ {code:"8.4",name:"Objects and activity",status:"cov",
+  anchors:"No SDG or Sendai anchor (14.6.1 is a policy indicator)",
+  sensors:"Sentinel-1 for vessels; commercial VHR for vehicles and aircraft",
+  ds:[
+   D("fMoW","Functional land-use classification, 63 classes","DigitalGlobe","&gt;200 countries","&gt;1M images","human","reg","fMoW Challenge Public License",["SatlasPretrain"],1,[L("GitHub","https://github.com/fMoW/dataset")]),
+   D("Airbus Ships","Ship instance segmentation","Airbus VHR","UNVERIFIED","UNVERIFIED","human","unk","UNVERIFIED",["SatlasPretrain"],2,[L("SatlasPretrain","https://arxiv.org/abs/2211.15660")]),
+   D("xView3-SAR","Dark-vessel detection, fishing, length","S1","European and West African waters","991 scenes; 243,018 objects","measured","unk","UNVERIFIED",[],3,[L("arXiv","https://arxiv.org/abs/2206.00897")]),
+   D("xView","Object detection, 60 classes","WorldView-3 0.3 m","Global","~1M objects","human","nc","CC BY-NC-SA 4.0",[],2,[L("arXiv","https://arxiv.org/abs/1802.07856")]),
+   D("DOTA v2 / iSAID","Oriented detection / instance segmentation","Google Earth, GF-2, aerial","Global","5,229 / 2,806 images","human","nc","Academic use only",[],2,[L("DOTA","https://captain-whu.github.io/DOTA/dataset.html")]),
+  ],
+  gap:"Everything except vessels needs commercial VHR under non-commercial or academic terms.",
+  prop:"Split by sensor: vessels (S1, open) and vehicles and aircraft (VHR). Add a land-use function leaf for fMoW and LCZ."},
+ {code:"8.5",name:"Socioeconomic conditions",status:"thin",
+  anchors:"SDG 1.1.1, 1.2.1, 1.4.1, 7.1.1 · GCMD Socioeconomics, Population",
+  sensors:"Landsat + VIIRS Black Marble / DMSP nightlights",
+  ds:[
+   D("SustainBench DHS tasks","Asset wealth, health, education regression","Landsat + nightlights + street-level","48–56 countries","~87k–117k clusters per task","measured","unk","SustainBench CC BY-SA 4.0; DHS terms UNVERIFIED",["SustainBench"],2,[L("SustainBench","https://sustainlab-group.github.io/sustainbench/docs/datasets/dhs.html")]),
+   D("Yeh et al. 2020","Asset wealth regression","Landsat + nightlights","23 African countries","~19,669 villages","measured","unk","UNVERIFIED",[],3,[L("Nat Comms","https://www.nature.com/articles/s41467-020-16185-w")]),
+  ],
+  gap:"No open labelled electrification dataset verified. DHS-derived labels may carry DHS data-use restrictions.",
+  prop:"Keep, labelled as proxy regression from survey data."},
+]},
+{id:"dz",name:"Disasters (cross-cutting tag)",subs:[
+ {code:"tag",name:"Post-event damage and hazard extent",status:"thin",
+  anchors:"Sendai targets A–G; C-4 housing loss, C-5 critical infrastructure, D-1 and D-4 damage to infrastructure · SDG 11.5.2, 11.5.3 (11.5.1 counts deaths: not EO) · Copernicus EMS, International Charter",
+  sensors:"Sentinel-1 flood mapping (CEMS GFM); Maxar/Vantor Open Data for damage",
+  ds:[
+   D("xBD / xView2","Building damage, 4 levels, bi-temporal","Maxar &lt;0.8 m","19 events (mostly US)","850,736 buildings","human","nc","CC BY-NC-SA 4.0",["PANGAEA"],2,[L("arXiv","https://arxiv.org/abs/1911.09296")]),
+   D("BRIGHT","Building damage, optical pre / SAR post","Maxar/NAIP + Capella/Umbra","14 events, 23 regions","3,239 tiles","human","nc","Mixed; Maxar parts CC BY-NC",[],2,[L("GitHub","https://github.com/ChenHongruixuan/BRIGHT")]),
+   D("SpaceNet 8","Flooded roads and buildings","Maxar 0.3–0.8 m","Germany (+ US site UNVERIFIED)","1,289","human","open","CC BY-SA 4.0",[],4,[L("TorchGeo","https://docs.torchgeo.org/en/stable/api/datasets.html")]),
+  ],
+  gap:"Open-licence disaster data covers hazard extent only (floods, burn scars, landslides). Building-damage labels require commercial imagery.",
+  prop:"Keep as a tag plus a \"post-event damage\" task type, anchored to Sendai C-4, C-5, D-1/D-4 and SDG 11.5.2/11.5.3. Hazard-extent datasets stay in their physical domains."},
+]},
+];
+
+function dots(n){return '<span class="dots" aria-hidden="true">'+[1,2,3].map(i=>`<i class="${i<=Math.min(3,n)?'on':''}"></i>`).join('')+'</span>';}
+function sortDs(a,b){return (b.su.length-a.su.length)||(TIER[a.tier][2]-TIER[b.tier][2])||(a.cov-b.cov);}
+const host=document.getElementById('domains'), toc=document.getElementById('toc'), mtx=document.querySelector('#mtx tbody');
+DOMAINS.forEach(dm=>{
+  const a=document.createElement('a'); a.href='#'+dm.id; a.textContent=dm.name; toc.appendChild(a);
+  mtx.insertAdjacentHTML('beforeend',`<tr><td class="dn" colspan="5">${dm.name}</td></tr>`);
+  let html=`<section id="${dm.id}"><h2>${dm.name}</h2>`;
+  dm.subs.forEach(sd=>{
+    sd.ds.sort(sortDs);
+    const inS=sd.ds.filter(d=>d.su.length), outS=sd.ds.filter(d=>!d.su.length);
+    const provs=[...new Set(sd.ds.map(d=>d.p))];
+    const [sc,sl]=ST[sd.status];
+    mtx.insertAdjacentHTML('beforeend',`<tr><td class="sd">${sd.code==='tag'?'':sd.code+' '}${sd.name}</td><td><span class="chip ${sc}">${sl}</span></td><td>${inS.length?inS.map(d=>d.n).join(', '):'—'}</td><td>${outS.length?outS.map(d=>d.n).join(', '):'<span style="color:var(--t-closed)">none verified</span>'}</td><td>${provs.length?provs.map(p=>`<span class="prov">${p}</span>`).join(' '):'—'}</td></tr>`);
+    const rows=sd.ds.map(d=>{const [tc,tl]=TIER[d.tier];return `<tr><td class="m">${d.n}</td><td class="suites">${dots(d.su.length)}${d.su.length?d.su.length+' suite'+(d.su.length>1?'s':''):'None'}${d.su.length?`<small>${d.su.join(', ')}</small>`:''}</td><td>${d.t}</td><td>${d.s}</td><td>${d.g}</td><td class="num">${d.z.replace('UNVERIFIED',U)}</td><td><span class="prov">${d.p}</span></td><td><span class="chip ${tc}">${tl}</span><small style="display:block;color:var(--muted);font-size:12px;margin-top:3px">${d.lic.replace('UNVERIFIED',U)}</small></td><td class="src">${d.src.map(([l,u])=>`<a href="${u}">${l}</a>`).join('')}</td></tr>`;}).join('');
+    html+=`<div class="sub"><div class="sub-head"><span class="code">${sd.code==='tag'?'Tag':sd.code}</span><h3>${sd.name}</h3><span class="chip ${sc}">${sl}</span></div>
+      <div class="meta"><div><span class="lbl">Framework anchors</span>${sd.anchors}</div><div><span class="lbl">Open sensors and products in use</span>${sd.sensors}</div></div>
+      ${sd.ds.length?`<div class="tbl"><table class="wide"><thead><tr><th>Dataset</th><th>Benchmark use</th><th>Task</th><th>Sensor</th><th>Geography / time</th><th>Size</th><th>Labels</th><th>Licence</th><th>Source</th></tr></thead><tbody>${rows}</tbody></table></div>`:''}
+      <p class="gapnote">${sd.gap}</p><p class="prop"><b>Proposed change</b>${sd.prop}</p></div>`;
+  });
+  html+='</section>'; host.insertAdjacentHTML('beforeend',html);
+});
+toc.insertAdjacentHTML('beforeend','<a href="#open">Unverified</a>');
+</script>
+
+<footer class="sf">EOArena task taxonomy, a project of the Earth Intelligence Lab at MIT in collaboration with AI2. Taxonomy data under CC BY 4.0; code under MIT. Each dataset keeps the licence of its original provider. <a href="https://github.com/thampatron/EO_Arena">Source and data on GitHub</a>.</footer>
+</body>
+</html>
