@@ -15,4 +15,4 @@ jobs:
           python-version: "3.12"
       - run: pip install jsonschema
       - run: python3 scripts/validate.py
-      - run: python3 scripts/export.py && git diff --exit-code export/ || (echo "Exports are out of date: run python3 scripts/export.py and commit." && exit 1)
+      - run: python3 scripts/export.py && git diff --exit-code export/ spec/tasks/index.json || (echo "Exports are out of date: run python3 scripts/export.py and commit." && exit 1)

@@ -12,7 +12,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 |---|---|
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
 | `map.html` | Where labelled datasets exist, by country. |
-| `tasks.html` | Task cards: exact inputs, bands, outputs, metric, split and protocol. |
+| `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
 | `arena.html` | The expert arena: blind pairwise comparisons for needs without labels. Rating formula to be decided. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
 | `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |

@@ -135,3 +135,8 @@ for d in D:
            "isAccessibleForFree": d["facets"]["tier"][0] in ("open", "reg", "nc")}
     (cro / f"{d['id']}.json").write_text(json.dumps(doc, indent=1, ensure_ascii=False), encoding="utf-8")
 print(f"STAC: {len(D)} collections in export/stac; Croissant: {len(D)} files in export/croissant")
+
+# Index of task templates, read by tasks.html (static hosting cannot list a folder).
+tasks = sorted(p.stem for p in (ROOT / "spec/tasks").glob("*.json") if p.stem != "index")
+(ROOT / "spec/tasks/index.json").write_text(json.dumps(tasks, indent=1) + "\n", encoding="utf-8")
+print(f"Task index: {len(tasks)} tasks in spec/tasks/index.json")

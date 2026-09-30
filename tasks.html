@@ -3,76 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EOArena Task Cards</title>
-<meta name="description" content="Task cards: the exact inputs, outputs and evaluation settings a model is compared on.">
+<title>EOArena Task Template</title>
+<meta name="description" content="Task template v0.2: the exact inputs, targets, splits and evaluation every model is compared on.">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.anatomy{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.anatomy .card{padding:14px 16px;display:grid;gap:4px}
-.anatomy b{font-size:15px}
-.anatomy span{font-size:13.5px;color:var(--fg-2)}
+.ver{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--accent);border:1px solid var(--line-2);border-radius:999px;padding:2px 10px;margin-left:10px;vertical-align:middle}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.rules .card{padding:14px 16px;display:grid;gap:4px;align-content:start}
+.rules b{font-size:15px}
+.rules span{font-size:13.5px;color:var(--fg-2)}
 .bands{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
 .bands th{text-align:left;font-weight:600;color:var(--fg-3);font-size:12px;padding:6px 8px;border-bottom:1px solid var(--line)}
-.bands td{padding:6px 8px;border-bottom:1px solid var(--line)}
+.bands td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 .bands tr:last-child td{border-bottom:0}
 .btbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm)}
-.sensor-h{font-weight:600;font-size:14.5px;margin:4px 0 6px}
+.mod{display:grid;gap:8px;padding:14px 0 4px;border-top:1px solid var(--line)}
+.mod h4{font-size:15px;margin:0}
+.mod h4 small{font-weight:400;color:var(--fg-3);margin-left:6px}
+.sublabel{font-size:12px;font-weight:600;color:var(--fg-3);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+.tests{display:grid;gap:6px;font-size:14px;color:var(--fg-2)}
+.tests div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.st{font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.st.defined-by-dataset{color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.st.proposed{color:var(--info);background:color-mix(in srgb,var(--info) 10%,transparent)}
+.st.not-possible{color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.st.pending{color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,transparent)}
+ul.notes{margin:0;padding-left:18px;font-size:14px;color:var(--fg-2);display:grid;gap:4px}
+.ptr{font-family:var(--mono);font-size:12px;color:var(--warn)}
+.classes{font-size:13.5px;color:var(--fg-2)}
 .exports{display:flex;flex-wrap:wrap;gap:10px}
 </style>
 </head>
 <body>
 <main class="page">
   <section class="hero">
-    <h1>Task cards</h1>
-    <p class="sub">A dataset becomes a benchmark task only once its inputs, outputs and evaluation are fixed. Each card states them exactly, so models are compared on the same thing.</p>
+    <h1>Task template <span class="ver" id="ver">v0.2 draft</span></h1>
+    <p class="sub">A dataset becomes a benchmark task once its inputs, target, splits and evaluation are fixed. Every model is then compared on exactly the same thing, through an adapter that must declare what it did.</p>
     <div class="stats" id="stats"></div>
   </section>
 
   <section class="section">
-    <h2>What a card fixes</h2>
-    <div class="anatomy">
-      <div class="card"><b>Inputs</b><span>Sensors, bands with wavelengths and resolution, image size, time steps</span></div>
-      <div class="card"><b>Output</b><span>Prediction type, classes, ignored labels</span></div>
-      <div class="card"><b>Split</b><span>Train, validation and test regions; spatial or random</span></div>
-      <div class="card"><b>Metric</b><span>How a prediction is scored</span></div>
-      <div class="card"><b>Protocol</b><span>What is trained: frozen encoder with a probe, or fine-tuning</span></div>
+    <h2>Rules for every task</h2>
+    <div class="rules">
+      <div class="card"><b>Inputs by sensor</b><span>A dictionary keyed by modality. Each is time × bands × height × width, with a valid mask where true means valid.</span></div>
+      <div class="card"><b>Named bands</b><span>Every channel points to the band registry, with wavelengths in µm. Derived and auxiliary layers are declared as such.</span></div>
+      <div class="card"><b>Physical units</b><span>Stored values are converted with a declared scale and offset. No-data pixels are masked, never passed as numbers.</span></div>
+      <div class="card"><b>Time by calendar</b><span>Time steps are chosen by calendar window, not by position in the series. Every step carries its date.</span></div>
+      <div class="card"><b>Pinned data</b><span>Each split is a manifest of samples with a checksum per file, at a fixed data version.</span></div>
+      <div class="card"><b>Nothing hidden</b><span>Adapters declare bands used, how missing bands are filled, how images are resized and which normalisation was applied.</span></div>
     </div>
-    <p class="lead small">The first cards come directly from PANGAEA's published configuration files. Fields those files do not state are marked <span class="flag">UNVERIFIED</span>; the split type is the most important of these. Band wavelengths and resolutions come from the stactools band tables for Sentinel-2 and Landsat and from ESA for Sentinel-1.</p>
-    <div class="exports"><a class="btn" id="dl-stac" href="#">STAC catalogue</a><a class="btn" id="dl-cro" href="#">Croissant records</a><a class="btn" id="dl-json" href="data/tasks.json">tasks.json</a></div>
   </section>
 
   <section class="section">
-    <div class="dhead"><h2>Cards</h2><span class="small muted" id="note"></span></div>
+    <h2>How models are scored</h2>
+    <dl class="kv card" style="padding:18px 20px" id="eval"></dl>
+    <div class="exports" style="margin-top:14px"><a class="btn" id="l-dec" href="#">Decisions and evidence</a><a class="btn" id="l-doc" href="#">Template documentation</a><a class="btn" id="l-spec" href="#">Schemas and protocols</a></div>
+  </section>
+
+  <section class="section">
+    <div class="dhead"><h2>Tasks</h2><span class="small muted">Fields marked <span class="flag">UNVERIFIED</span> are not confirmed by a primary source</span></div>
     <div class="list" id="cards"></div>
   </section>
 </main>
 <script src="assets/site.js"></script>
 <script>
-document.getElementById('dl-stac').href=REPO+'/tree/main/export/stac';
-document.getElementById('dl-cro').href=REPO+'/tree/main/export/croissant';
+const SPEC=REPO+'/blob/main/';
+document.getElementById('l-dec').href=SPEC+'docs/decisions-v0.2.md';
+document.getElementById('l-doc').href=SPEC+'docs/task-template.md';
+document.getElementById('l-spec').href=REPO+'/tree/main/spec';
+const getJSON=p=>fetch(p).then(r=>{if(!r.ok)throw new Error(p);return r.json();});
+const TYPE={"semantic-segmentation":"Segmentation","classification":"Classification","multilabel-classification":"Multi-label classification","pixel-regression":"Pixel regression","image-regression":"Image regression","change-detection":"Change detection","object-detection":"Object detection"};
+const STATUS_TXT={"defined-by-dataset":"defined by the dataset","proposed":"proposed","not-possible":"not possible"};
+const resolve=(o,ptr)=>ptr.slice(1).split('/').reduce((a,k)=>a==null?a:a[k],o);
+const isUnv=(t,ptr)=>t.unverified.includes(ptr);
+const U=(t,ptr,txt)=>esc(txt)+(isUnv(t,ptr)?' <span class="flag">UNVERIFIED</span>':'');
 (async function(){
-  const [tasks,data,specs]=await loadJSON('tasks','datasets','sensor_specs');
+  let names,proto,specs,data;
+  try{[names,proto]=await Promise.all([getJSON('spec/tasks/index.json'),getJSON('spec/protocols.json')]);[specs,data]=await loadJSON('sensor_specs','datasets');}
+  catch(e){document.getElementById('cards').innerHTML='<p class="lead" style="padding:24px">The task files could not be loaded. Serve the folder with <code>python3 -m http.server</code>.</p>';throw e;}
+  const tasks=await Promise.all(names.map(n=>getJSON(`spec/tasks/${n}.json`)));
   const byId=Object.fromEntries(data.map(d=>[d.id,d]));
-  document.getElementById('stats').innerHTML=[[tasks.length,'task cards'],[new Set(tasks.map(t=>t.dataset_id)).size,'datasets with cards'],[data.length-new Set(tasks.map(t=>t.dataset_id)).size,'datasets still without a card']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
-  document.getElementById('note').textContent='Source: PANGAEA configs';
-  const sname=s=>specs[s]?specs[s].name:s;
-  const bandTable=s=>{const opt=s.bands.some(b=>'center_wavelength_um' in b);
-    return `<p class="sensor-h">${esc(sname(s.sensor))}${s.bands.length?` · ${s.bands.length} layer${s.bands.length>1?'s':''}`:''}</p>${s.note?`<p class="small muted" style="margin-bottom:6px">${flag(esc(s.note))}</p>`:''}
-    <div class="btbl"><table class="bands"><thead><tr><th>Band</th>${opt?'<th>Name</th><th>Centre (µm)</th><th>FWHM (µm)</th>':''}<th>GSD (m)</th></tr></thead><tbody>${s.bands.map(b=>`<tr><td>${esc(b.name)}</td>${opt?`<td>${esc(b.common_name||b.note||'')}</td><td>${b.center_wavelength_um??''}</td><td>${b.fwhm_um??''}</td>`:''}<td>${b.gsd_m??(b.note?'':'<span class="flag">UNVERIFIED</span>')}</td></tr>`).join('')}</tbody></table></div>`;};
-  document.getElementById('cards').innerHTML=tasks.map(t=>{const d=byId[t.dataset_id];const o=t.output;
-    return `<details class="acc"><summary>${chev}<span class="summ">${esc(t.title)}<small>${esc(d.subdomain)}</small></span><span class="meta">${esc(t.task_type)} · ${esc(t.evaluation.metric)}</span>${tierChip(d.facets.tier[0])}</summary>
+  document.getElementById('ver').textContent='v'+proto.spec_version.replace('-draft','')+' draft';
+  document.getElementById('stats').innerHTML=[[tasks.length,'tasks'],[new Set(tasks.map(t=>t.task_type)).size,'task types'],[tasks.reduce((n,t)=>n+t.splits.extra_tests.filter(x=>x.status!=='not-possible').length,0),'extra test sets'],[tasks.filter(t=>t.data.manifest_status==='published').length+' / '+tasks.length,'manifests published']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+
+  const tr=proto.tracks, tu=tr[0].tuning, ft=tr[1].tuning, rep=proto.reporting;
+  document.getElementById('eval').innerHTML=[
+    ['Ranked tracks',tr.map(x=>`<b>${esc(x.id)}</b>: ${esc(x.summary)} ${x.runs} runs.`).join('<br>')],
+    ['Diagnostics (not ranked)',proto.diagnostics.map(x=>`<b>${esc(x.id)}</b>: ${esc(x.summary)}`).join('<br>')],
+    ['Tuning',`${tu.trials} trials per model, task and track (${esc(tu.sampler)}), selected on validation only. Learning rate ${tu.space.learning_rate.log_uniform.join('–')} frozen, ${ft.space.learning_rate.log_uniform.join('–')} fine-tuning; batch ${tu.space.batch_size.join(', ')}; ${esc(tu.fixed.optimiser)}, weight decay ${tu.fixed.weight_decay}, up to ${tu.fixed.max_epochs} epochs.`],
+    ['Label fractions','100%, 10% and 1% of training labels, as nested stratified subsets, one per run.'],
+    ['Per task',esc(rep.per_task)],
+    ['Across tasks',esc(rep.aggregate)],
+    ['Ties',esc(rep.pairwise)],
+    ['Pretraining overlap',esc(proto.pretraining_overlap.measure)+' Flagged, never excluded.']
+  ].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+
+  const bandRows=(t,key,m)=>{const reg=Object.fromEntries((specs[m.sensor]?.bands||[]).map(b=>[b.name,b]));
+    return m.bands.map((b,i)=>{const r=b.band?reg[b.band]||{}:{};const nm=b.band||b.name;
+      const what=b.band?(r.common_name||(r.polarization?`${r.polarization} polarisation · C-band ${specs[m.sensor].frequency_ghz} GHz`:'')):(b.derived_from?'derived: '+b.derived_from:'auxiliary: '+b.auxiliary);
+      return `<tr><td>${esc(nm)}</td><td>${U(t,`/inputs/${key}/bands/${i}/derived_from`,what)}</td><td>${r.center_wavelength_um??''}</td><td>${r.gsd_m??''}</td></tr>`;}).join('');};
+  const modality=(t,key,m)=>{const r=m.raster,tm=m.time,w=tm.windows;
+    const bandsUnv=isUnv(t,`/inputs/${key}/bands`)?' <span class="flag">UNVERIFIED</span>':'';
+    return `<div class="mod"><h4>${esc(key)}<small>${esc(specs[m.sensor]?.name||m.sensor)}${m.product?' · '+U(t,`/inputs/${key}/product`,m.product):''}${m.orbit?' · '+esc(m.orbit):''}${m.required===false?' · may be missing':''}</small></h4>
+      <dl class="kv">
+        <div><dt>Values</dt><dd>${m.quantity?U(t,`/inputs/${key}/quantity`,m.quantity.replace(/_/g,' '))+' · ':''}stored ${U(t,`/inputs/${key}/raster/stored_dtype`,r.stored_dtype)}, scale ${U(t,`/inputs/${key}/raster/scale`,String(r.scale))}, unit ${U(t,`/inputs/${key}/raster/unit`,r.unit)}</dd></div>
+        <div><dt>No-data</dt><dd>${U(t,`/inputs/${key}/raster/nodata`,r.nodata==null?'none declared':String(r.nodata))}</dd></div>
+        <div><dt>Grid</dt><dd>${U(t,`/inputs/${key}/grid/size_px`,Array.isArray(m.grid.size_px)?m.grid.size_px.join(' × '):m.grid.size_px+' × '+m.grid.size_px)} px at ${m.grid.gsd_m} m</dd></div>
+        <div><dt>Time</dt><dd>${tm.steps} step${tm.steps>1?'s':''}${w?` · ${w.n} calendar windows, ${esc(w.period)}; pick ${esc(w.pick||'')}`:''}${tm.comparison_rule?`<br><span class="muted small">Compared once with ${esc(tm.comparison_rule)}</span>`:''}</dd></div>
+      </dl>
+      ${m.notes?`<p class="small muted">${esc(m.notes)}</p>`:''}
+      <div class="btbl"><table class="bands"><thead><tr><th>Channel${bandsUnv}</th><th>Name</th><th>Centre (µm)</th><th>Native GSD (m)</th></tr></thead><tbody>${bandRows(t,key,m)}</tbody></table></div></div>`;};
+
+  document.getElementById('cards').innerHTML=tasks.map(t=>{const d=byId[t.dataset_id]||{};const tg=t.target,sp=t.splits,ev=t.evaluation,o=sp.official;
+    const man=o.manifests;const counts=['train','val','test'].map(k=>`${k} ${man[k].n_samples??'?'}`).join(' · ');
+    return `<details class="acc"><summary>${chev}<span class="summ">${esc(t.title)}<small>${esc(d.subdomain||'')}</small></span><span class="meta">${TYPE[t.task_type]||t.task_type} · ${esc(ev.primary_metric.name)}</span>${d.facets?tierChip(d.facets.tier[0]):''}</summary>
     <div class="acc-body">
       <dl class="kv">
-        <div><dt>Image size</dt><dd>${t.input.image_size_px} × ${t.input.image_size_px} px</dd></div>
-        <div><dt>Time steps</dt><dd>${t.input.time_steps}${t.input.multimodal?' · multimodal':''}</dd></div>
-        <div><dt>Output</dt><dd>${esc(o.type)}${o.num_classes!=null?` · ${o.num_classes} class${o.num_classes===1?' (binary)':'es'}`:''}${o.ignore_index!=null?` · ignore index ${o.ignore_index}`:''}</dd></div>
-        <div><dt>Metric</dt><dd>${esc(t.evaluation.metric)}</dd></div>
-        <div><dt>Split</dt><dd>${flag(esc(t.evaluation.split))}</dd></div>
-        <div><dt>Protocol</dt><dd>${flag(esc(t.evaluation.protocol))}</dd></div>
+        <div><dt>Data</dt><dd><a href="${esc(t.data.source_url)}" target="_blank" rel="noopener">source ↗</a> · ${esc(t.data.access)} · revision ${U(t,'/data/revision',t.data.revision||'not pinned yet')}</dd></div>
+        <div><dt>Manifests</dt><dd><span class="st ${t.data.manifest_status}">${esc(t.data.manifest_status)}</span> ${counts}</dd></div>
+        <div><dt>Metadata per sample</dt><dd>location: ${esc(t.sample_metadata.location)} · dates: ${esc(t.sample_metadata.acquisition_time)}</dd></div>
+        <div><dt>Licence</dt><dd>${esc(d.licence||'')}</dd></div>
       </dl>
-      ${t.input.sensors.map(bandTable).join('')}
-      ${o.classes?`<p class="small muted">Classes: ${o.classes.map(esc).join(', ')}</p>`:''}
-      <p class="small"><a href="${esc(t.provenance.config_url)}" target="_blank" rel="noopener">PANGAEA config ↗</a> &nbsp; <a href="index.html?q=${encodeURIComponent(d.name)}">Dataset in the explorer →</a></p>
+      <div class="sublabel">Inputs</div>
+      ${Object.entries(t.inputs).map(([k,m])=>modality(t,k,m)).join('')}
+      <div class="sublabel">Target</div>
+      <dl class="kv">
+        <div><dt>Kind</dt><dd>${esc(tg.kind.replace(/-/g,' '))}${tg.quantity?` · ${esc(tg.quantity)}, ${U(t,'/target/unit',tg.unit)}`:''} · grid: ${esc(tg.grid)}</dd></div>
+        <div><dt>Labels from</dt><dd>${esc(tg.label_source)}</dd></div>
+        ${tg.ignore_index!=null?`<div><dt>Ignored label</dt><dd>${tg.ignore_index}</dd></div>`:''}
+      </dl>
+      ${tg.classes?`<p class="classes">${tg.classes.length} classes: ${tg.classes.map(c=>`${c.index} ${esc(c.name)}`).join(' · ')}</p>`:''}
+      <div class="sublabel">Splits</div>
+      <p class="small" style="color:var(--fg-2)"><b>Official (${esc(o.kind)})</b>: ${esc(o.definition)}</p>
+      <div class="tests">${sp.extra_tests.map(x=>`<div><span class="st ${x.status}">${STATUS_TXT[x.status]}</span><b>${esc(x.name)}</b> (${esc(x.kind)}): ${U(t,'/splits/extra_tests/'+sp.extra_tests.indexOf(x)+'/definition',x.definition)}</div>`).join('')}</div>
+      <p class="small muted">Label fractions ${sp.label_fractions.fractions.map(f=>f*100+'%').join(', ')}, stratified by ${esc(sp.label_fractions.stratify_by)}, at least ${sp.label_fractions.min_train_samples} samples.</p>
+      <div class="sublabel">Evaluation</div>
+      <dl class="kv">
+        <div><dt>Primary metric</dt><dd>${esc(ev.primary_metric.name)} (${ev.primary_metric.higher_is_better?'higher':'lower'} is better): ${esc(ev.primary_metric.averaging)}</dd></div>
+        ${ev.secondary_metrics?`<div><dt>Secondary</dt><dd>${ev.secondary_metrics.map(m=>esc(m.name)).join(', ')}</dd></div>`:''}
+        <div><dt>Tracks</dt><dd>${ev.tracks.map(esc).join(', ')}${ev.diagnostics?` · diagnostics: ${ev.diagnostics.map(esc).join(', ')}`:''}</dd></div>
+        ${ev.inference?`<div><dt>Inference</dt><dd>${esc(ev.inference)}</dd></div>`:''}
+      </dl>
+      ${t.notes?.harness?.length?`<div class="sublabel">Where existing harnesses differ</div><ul class="notes">${t.notes.harness.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      ${t.notes?.open_questions?.length?`<div class="sublabel">Open questions</div><ul class="notes">${t.notes.open_questions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      <div class="sublabel">Unverified fields</div>
+      <p>${t.unverified.map(p=>`<span class="ptr">${esc(p)}</span>`).join(' · ')||'<span class="muted small">none</span>'}</p>
+      <p class="small">${t.provenance.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join(' &nbsp; ')}<br>
+      <a href="${SPEC}spec/tasks/${t.id}.json" target="_blank" rel="noopener">Task file ${esc(t.id)}.json ↗</a> &nbsp; <a href="index.html?q=${encodeURIComponent(d.name||'')}">Dataset in the explorer →</a></p>
     </div></details>`}).join('');
 })();
 </script>

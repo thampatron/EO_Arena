@@ -76,7 +76,7 @@ tracks = {p["id"]: p for p in _proto["tracks"]}
 diagnostics = {p["id"]: p for p in _proto["diagnostics"]}
 sensors = json.loads((ROOT / "data" / "sensor_specs.json").read_text(encoding="utf-8"))
 dataset_ids = {d.get("id") for d in datasets}
-task_files = sorted((ROOT / "spec" / "tasks").glob("*.json"))
+task_files = sorted(p for p in (ROOT / "spec" / "tasks").glob("*.json") if p.stem != "index")
 
 
 def resolve(doc, pointer):

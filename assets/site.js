@@ -17,7 +17,7 @@ async function loadJSON(...names){
 function chrome(){
   const here = location.pathname.split('/').pop() || 'index.html';
   const nav = document.createElement('header'); nav.className='nav';
-  nav.innerHTML = `<div class="nav-in"><a class="brand" href="index.html">EOArena</a><span class="badge-draft">Draft v0.1</span><nav class="nav-links" aria-label="Site">${PAGES.map(([h,l])=>`<a href="${h}"${h===here?' aria-current="page"':''}>${l}</a>`).join('')}<a href="${REPO}">GitHub</a></nav></div>`;
+  nav.innerHTML = `<div class="nav-in"><a class="brand" href="index.html">EOArena</a><span class="badge-draft">Draft v0.2</span><nav class="nav-links" aria-label="Site">${PAGES.map(([h,l])=>`<a href="${h}"${h===here?' aria-current="page"':''}>${l}</a>`).join('')}<a href="${REPO}">GitHub</a></nav></div>`;
   document.body.prepend(nav);
   const f = document.createElement('footer'); f.className='foot';
   f.innerHTML = `<div><span>EOArena task taxonomy · Earth Intelligence Lab, MIT</span><span>Data CC BY 4.0 · Code MIT · Datasets keep their providers' licences · <a href="${REPO}/issues">Report a correction</a></span></div>`;
