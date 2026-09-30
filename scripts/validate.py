@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate data/datasets.json against data/vocabulary.json.
+"""Validate data/datasets.json against data/vocabulary.json, and spec/tasks/*.json against spec/task.schema.json.
 
 Run from the repository root:  python3 scripts/validate.py
 Exits non-zero and lists every problem if any record is invalid.
@@ -67,8 +67,69 @@ for i, d in enumerate(datasets):
     if not isinstance(d.get("benchmark_suites", []), list):
         errors.append(f"{where}: benchmark_suites must be a list")
 
+# ---- Task templates (spec/tasks/*.json) ----
+import jsonschema
+
+schema = json.loads((ROOT / "spec" / "task.schema.json").read_text(encoding="utf-8"))
+protocols = {p["id"]: p for p in json.loads((ROOT / "spec" / "protocols.json").read_text(encoding="utf-8"))["protocols"]}
+sensors = json.loads((ROOT / "data" / "sensor_specs.json").read_text(encoding="utf-8"))
+dataset_ids = {d.get("id") for d in datasets}
+task_files = sorted((ROOT / "spec" / "tasks").glob("*.json"))
+
+
+def resolve(doc, pointer):
+    for part in pointer.lstrip("/").split("/"):
+        part = part.replace("~1", "/").replace("~0", "~")
+        doc = doc[int(part)] if isinstance(doc, list) else doc[part]
+    return doc
+
+
+for path in task_files:
+    where = f"spec/tasks/{path.name}"
+    t = json.loads(path.read_text(encoding="utf-8"))
+    for e in jsonschema.Draft202012Validator(schema).iter_errors(t):
+        errors.append(f"{where}: {'/'.join(map(str, e.absolute_path)) or '(top)'}: {e.message}")
+    if t.get("id") != path.stem:
+        errors.append(f"{where}: id must equal the file name")
+    if t.get("dataset_id") not in dataset_ids:
+        errors.append(f"{where}: dataset_id '{t.get('dataset_id')}' is not in data/datasets.json")
+    inputs = t.get("inputs", {})
+    for key, m in inputs.items():
+        spec = sensors.get(m.get("sensor"))
+        if not spec:
+            errors.append(f"{where}: inputs/{key}: unknown sensor '{m.get('sensor')}'")
+            continue
+        names = {b["name"] for b in spec["bands"]}
+        for b in m.get("bands", []):
+            if "band" in b and b["band"] not in names:
+                errors.append(f"{where}: inputs/{key}: band '{b['band']}' not in {m['sensor']} registry")
+        stats = t.get("normalisation_stats", {}).get("per_modality", {}).get(key)
+        if stats:
+            for k in ("mean", "std"):
+                if len(stats[k]) != len(m.get("bands", [])):
+                    errors.append(f"{where}: normalisation_stats {key}.{k} has {len(stats[k])} values for {len(m['bands'])} bands")
+    for key in t.get("normalisation_stats", {}).get("per_modality", {}):
+        if key not in inputs:
+            errors.append(f"{where}: normalisation_stats names unknown modality '{key}'")
+    grid = t.get("target", {}).get("grid")
+    if grid not in inputs and grid != "none":
+        errors.append(f"{where}: target.grid '{grid}' is not an input modality")
+    classes = t.get("target", {}).get("classes")
+    if classes and [c["index"] for c in classes] != list(range(len(classes))):
+        errors.append(f"{where}: class indices must run 0..n-1 in order")
+    for pid in t.get("evaluation", {}).get("protocols", []):
+        if pid not in protocols:
+            errors.append(f"{where}: unknown protocol '{pid}'")
+        elif t.get("task_type") not in protocols[pid]["task_types"]:
+            errors.append(f"{where}: protocol '{pid}' does not support task type '{t.get('task_type')}'")
+    for ptr in t.get("unverified", []):
+        try:
+            resolve(t, ptr)
+        except (KeyError, IndexError, ValueError, TypeError):
+            errors.append(f"{where}: unverified pointer '{ptr}' does not resolve")
+
 if errors:
     print(f"{len(errors)} problem(s) found:\n")
     print("\n".join(errors))
     sys.exit(1)
-print(f"OK: {len(datasets)} datasets, {len(facets)} filters, all values in the vocabulary.")
+print(f"OK: {len(datasets)} datasets, {len(facets)} filters, all values in the vocabulary; {len(task_files)} task templates valid.")

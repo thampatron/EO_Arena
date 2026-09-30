@@ -1,0 +1,42 @@
+{
+  "spec_version": "0.1-draft",
+  "note": "Evaluation protocols a task can name. 'requires' is what the model adapter must return. Values marked TO BE DECIDED are open; the PANGAEA values are copied from its configs (configs/train.yaml, optimizer/adamw.yaml, lr_scheduler/multi_step_lr.yaml, task/segmentation.yaml, decoder/seg_upernet*.yaml).",
+  "protocols": [
+    {
+      "id": "frozen-knn",
+      "summary": "Encoder frozen, no training. k-nearest-neighbour classification on pooled embeddings.",
+      "task_types": ["classification", "multilabel-classification"],
+      "requires": {"pooled_embedding": true, "feature_maps": false},
+      "trained": "nothing",
+      "settings": {"k": "TO BE DECIDED", "distance": "TO BE DECIDED"},
+      "why": "Measures the embedding alone; no optimiser choices to tune."
+    },
+    {
+      "id": "frozen-linear",
+      "summary": "Encoder frozen. A linear layer on the pooled embedding (image-level tasks) or on the last layer's patch tokens, upsampled to the target grid (dense tasks).",
+      "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression"],
+      "requires": {"pooled_embedding": true, "feature_maps": "last layer only (dense tasks)"},
+      "trained": "linear head",
+      "settings": {"optimiser": "TO BE DECIDED", "epochs": "TO BE DECIDED", "lr_sweep": "TO BE DECIDED"},
+      "why": "Every surveyed model can produce this, including Clay and AnySat, which expose no intermediate layers."
+    },
+    {
+      "id": "frozen-upernet-pangaea",
+      "summary": "PANGAEA default: encoder frozen, UPerNet decoder on four encoder layers. Multi-temporal inputs are combined by L-TAE before the decoder.",
+      "task_types": ["semantic-segmentation", "pixel-regression", "change-detection"],
+      "requires": {"pooled_embedding": false, "feature_maps": "four layers, with their strides declared"},
+      "trained": "decoder (and L-TAE for multi-temporal inputs)",
+      "settings": {"decoder_channels": 512, "optimiser": "AdamW, lr 1e-4, betas (0.9, 0.999), weight decay 0.05", "lr_schedule": "multi-step, decay at 60% and 90% of iterations", "epochs": 80, "batch_size": 8, "precision": "fp32", "default_seed": 234},
+      "why": "Comparable with published PANGAEA results. Mixes encoder quality with decoder fit, and is unusable for models without intermediate layers."
+    },
+    {
+      "id": "finetune",
+      "summary": "Encoder and decoder trained together (PANGAEA finetune: true).",
+      "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression", "change-detection", "object-detection"],
+      "requires": {"pooled_embedding": false, "feature_maps": "as the decoder needs"},
+      "trained": "encoder and head",
+      "settings": {"encoder_lr": "TO BE DECIDED", "epochs": "TO BE DECIDED"},
+      "why": "Closest to how practitioners use a model; most expensive and most sensitive to tuning."
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+ "spec_version": "0.1-draft",
+ "id": "pastis-r-cropseg",
+ "title": "Crop type segmentation from Sentinel-2 and Sentinel-1 time series (PASTIS-R)",
+ "dataset_id": "pastis-pastis-r",
+ "task_type": "semantic-segmentation",
+ "inputs": {
+  "s2": {
+   "sensor": "sentinel-2-msi",
+   "product": "L2A",
+   "quantity": "surface_reflectance",
+   "required": true,
+   "bands": [
+    {
+     "band": "B02"
+    },
+    {
+     "band": "B03"
+    },
+    {
+     "band": "B04"
+    },
+    {
+     "band": "B05"
+    },
+    {
+     "band": "B06"
+    },
+    {
+     "band": "B07"
+    },
+    {
+     "band": "B08"
+    },
+    {
+     "band": "B8A"
+    },
+    {
+     "band": "B11"
+    },
+    {
+     "band": "B12"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "int16",
+    "scale": 0.0001,
+    "offset": 0,
+    "nodata": -10000,
+    "unit": "1"
+   },
+   "grid": {
+    "size_px": 128,
+    "gsd_m": 10,
+    "resampling": "20 m bands delivered at 10 m by the dataset; method not stated"
+   },
+   "time": {
+    "steps": 6,
+    "selection": "6 acquisitions at evenly spaced indices of the series (PANGAEA rule, kept for comparability). The dates of the chosen acquisitions are delivered with them.",
+    "compositing": "none"
+   },
+   "notes": "The full series holds 38–61 acquisitions per patch."
+  },
+  "s1_asc": {
+   "sensor": "sentinel-1-iw",
+   "product": "GRD",
+   "quantity": "sigma0_backscatter",
+   "orbit": "ascending",
+   "required": true,
+   "bands": [
+    {
+     "band": "VV"
+    },
+    {
+     "band": "VH"
+    },
+    {
+     "name": "VV/VH",
+     "derived_from": "VV - VH"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "float32",
+    "scale": 1,
+    "offset": 0,
+    "nodata": null,
+    "unit": "dB"
+   },
+   "grid": {
+    "size_px": 128,
+    "gsd_m": 10
+   },
+   "time": {
+    "steps": 6,
+    "selection": "Same rule as s2, applied independently to the ascending series (about 70 acquisitions), so S1 and S2 steps do not share dates."
+   }
+  }
+ },
+ "sample_metadata": {
+  "location": "centroid",
+  "acquisition_time": "per-step",
+  "source_crs": "EPSG:2154",
+  "notes": "Dates come from metadata.geojson (dates-S2, dates-S1A)."
+ },
+ "target": {
+  "kind": "per-pixel-class",
+  "grid": "s2",
+  "classes": [
+   {
+    "index": 0,
+    "name": "Background"
+   },
+   {
+    "index": 1,
+    "name": "Meadow"
+   },
+   {
+    "index": 2,
+    "name": "Soft Winter Wheat"
+   },
+   {
+    "index": 3,
+    "name": "Corn"
+   },
+   {
+    "index": 4,
+    "name": "Winter Barley"
+   },
+   {
+    "index": 5,
+    "name": "Winter Rapeseed"
+   },
+   {
+    "index": 6,
+    "name": "Spring Barley"
+   },
+   {
+    "index": 7,
+    "name": "Sunflower"
+   },
+   {
+    "index": 8,
+    "name": "Grapevine"
+   },
+   {
+    "index": 9,
+    "name": "Beet"
+   },
+   {
+    "index": 10,
+    "name": "Winter Triticale"
+   },
+   {
+    "index": 11,
+    "name": "Winter Durum Wheat"
+   },
+   {
+    "index": 12,
+    "name": "Fruits, Vegetables, Flowers"
+   },
+   {
+    "index": 13,
+    "name": "Potatoes"
+   },
+   {
+    "index": 14,
+    "name": "Leguminous Fodder"
+   },
+   {
+    "index": 15,
+    "name": "Soybeans"
+   },
+   {
+    "index": 16,
+    "name": "Orchard"
+   },
+   {
+    "index": 17,
+    "name": "Mixed Cereal"
+   },
+   {
+    "index": 18,
+    "name": "Sorghum"
+   },
+   {
+    "index": 19,
+    "name": "Void Label"
+   }
+  ],
+  "ignore_index": 19,
+  "label_source": "French Land Parcel Identification System (RPG) declarations",
+  "notes": "Background is non-agricultural land and is scored as a class. Void marks parcels mostly outside the patch."
+ },
+ "splits": {
+  "kind": "predefined-unknown",
+  "definition": "Official 5-fold split in metadata.geojson; folds 1–3 train, 4 val, 5 test (as in PANGAEA pastis.py).",
+  "test_labels_public": true
+ },
+ "evaluation": {
+  "primary_metric": {
+   "name": "mIoU",
+   "averaging": "mean of per-class IoU over the 19 scored classes, pixels pooled over the test set",
+   "higher_is_better": true
+  },
+  "secondary_metrics": [
+   {
+    "name": "overall accuracy",
+    "averaging": "over scored pixels",
+    "higher_is_better": true
+   }
+  ],
+  "protocols": [
+   "frozen-linear",
+   "frozen-upernet-pangaea"
+  ],
+  "inference": "sliding window (PANGAEA default for segmentation)",
+  "seeds": 3,
+  "label_fractions": [
+   1.0
+  ]
+ },
+ "normalisation_stats": {
+  "source": "PANGAEA configs/dataset/pastis.yaml, converted with the scale above",
+  "computed_on": "not stated in the config",
+  "per_modality": {
+   "s2": {
+    "mean": [
+     0.116168,
+     0.137143,
+     0.142341,
+     0.175973,
+     0.271453,
+     0.305584,
+     0.31979,
+     0.331336,
+     0.241597,
+     0.162684
+    ],
+    "std": [
+     0.204507,
+     0.198318,
+     0.20608,
+     0.196882,
+     0.186722,
+     0.188514,
+     0.189751,
+     0.188516,
+     0.154277,
+     0.137525
+    ]
+   },
+   "s1_asc": {
+    "mean": [
+     -10.9433,
+     -17.36,
+     6.4167
+    ],
+    "std": [
+     3.3847,
+     3.3727,
+     3.3874
+    ]
+   }
+  }
+ },
+ "harness_notes": [
+  "PANGAEA picks time steps by index, not by date, and returns empty metadata, so dates never reach the model (pangaea/datasets/pastis.py, __getitem__).",
+  "PANGAEA uses only the ascending Sentinel-1 series; PASTIS-R also has a descending one.",
+  "PANGAEA's config lists data_min of -10000 for every S2 band, so no-data pixels appear to be passed to models as values."
+ ],
+ "provenance": {
+  "sources": [
+   {
+    "label": "PASTIS benchmark README",
+    "url": "https://github.com/VSainteuf/pastis-benchmark"
+   },
+   {
+    "label": "PANGAEA dataset config",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/pastis.yaml"
+   },
+   {
+    "label": "PANGAEA loader",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/pangaea/datasets/pastis.py"
+   },
+   {
+    "label": "PANGAEA segmentation task config",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/task/segmentation.yaml"
+   }
+  ]
+ },
+ "unverified": [
+  "/inputs/s2/product",
+  "/inputs/s2/quantity",
+  "/inputs/s2/raster/stored_dtype",
+  "/inputs/s2/raster/scale",
+  "/inputs/s2/raster/nodata",
+  "/inputs/s1_asc/product",
+  "/inputs/s1_asc/quantity",
+  "/inputs/s1_asc/raster/stored_dtype",
+  "/inputs/s1_asc/raster/unit",
+  "/inputs/s1_asc/bands/2/derived_from",
+  "/sample_metadata/source_crs",
+  "/splits/kind",
+  "/normalisation_stats/computed_on"
+ ],
+ "open_questions": [
+  "Keep PANGAEA's 6 index-spaced steps for comparability, or choose steps by calendar date so every model sees the same season?",
+  "Should the task also offer the full variable-length series for models built for it (Galileo up to 24 steps, AnySat any length)?",
+  "Are the official folds spatially separated? If not, the test set measures interpolation, not transfer."
+ ]
+}

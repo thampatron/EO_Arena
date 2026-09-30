@@ -30,7 +30,13 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 
 `scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
 
-`scripts/validate.py` checks every record against the vocabulary. It runs automatically on each pull request.
+### Interface spec (draft)
+
+- `docs/model-input-survey.md` and `data/model_inputs.json`: how 10 geospatial foundation models declare their inputs and outputs.
+- `docs/task-template.md`: the task template, its conventions and open decisions.
+- `spec/task.schema.json`, `spec/protocols.json` and `spec/tasks/`: the schema, evaluation protocols and worked examples (PASTIS-R, Sen1Floods11).
+
+`scripts/validate.py` checks every record against the vocabulary and every task template against the schema, band registry and protocols. It runs automatically on each pull request.
 
 ### Filters
 

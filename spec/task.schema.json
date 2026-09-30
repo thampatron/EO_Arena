@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thampatron/EO_Arena/spec/task.schema.json",
+  "title": "EOArena task template",
+  "description": "Fixes what a model is given, what it must predict and how it is scored. Version 0.1-draft. Conventions that apply to every task (tensor layout, units, masks, time and location) are in docs/task-template.md and are not repeated per task.",
+  "type": "object",
+  "required": ["spec_version", "id", "title", "dataset_id", "task_type", "inputs", "sample_metadata", "target", "splits", "evaluation", "provenance", "unverified"],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {"const": "0.1-draft"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "title": {"type": "string"},
+    "dataset_id": {"type": "string", "description": "Record id in data/datasets.json. Domain, subdomain and licence come from there."},
+    "task_type": {"enum": ["classification", "multilabel-classification", "semantic-segmentation", "pixel-regression", "image-regression", "change-detection", "object-detection"]},
+
+    "inputs": {
+      "type": "object",
+      "description": "One entry per modality, keyed by a short name (e.g. s2, s1_asc). Every entry is delivered as a (T, C, H, W) array.",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/modality"}
+    },
+
+    "sample_metadata": {
+      "type": "object",
+      "description": "What each sample carries besides pixels. Models decide how to encode it.",
+      "required": ["location", "acquisition_time"],
+      "additionalProperties": false,
+      "properties": {
+        "location": {"enum": ["centroid", "bbox", "none"], "description": "Delivered as {lon, lat} in EPSG:4326 (bbox: west, south, east, north)."},
+        "acquisition_time": {"enum": ["per-step", "per-sample", "none"], "description": "Delivered as ISO 8601 UTC dates."},
+        "source_crs": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+
+    "target": {
+      "type": "object",
+      "required": ["kind", "grid"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"enum": ["class", "multilabel", "per-pixel-class", "per-pixel-value", "value", "change-mask", "boxes"]},
+        "grid": {"type": "string", "description": "Input modality whose grid the target shares, or 'none' for image-level targets."},
+        "classes": {"type": "array", "items": {"type": "object", "required": ["index", "name"], "additionalProperties": false, "properties": {"index": {"type": "integer"}, "name": {"type": "string"}, "description": {"type": "string"}}}},
+        "ignore_index": {"type": ["integer", "null"]},
+        "quantity": {"type": "string", "description": "For regression: the physical quantity."},
+        "unit": {"type": "string"},
+        "label_source": {"type": "string", "description": "How labels were made: field survey, photo-interpretation, cadastral declaration, model output, etc."},
+        "notes": {"type": "string"}
+      }
+    },
+
+    "splits": {
+      "type": "object",
+      "required": ["kind", "definition"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"enum": ["random", "spatial-blocks", "geographic-regions", "temporal", "predefined-unknown"]},
+        "definition": {"type": "string", "description": "Exactly how train, val and test are formed, with a link or file."},
+        "counts": {"type": "object", "properties": {"train": {"type": "integer"}, "val": {"type": "integer"}, "test": {"type": "integer"}}, "additionalProperties": false},
+        "test_labels_public": {"type": ["boolean", "null"]}
+      }
+    },
+
+    "evaluation": {
+      "type": "object",
+      "required": ["primary_metric", "protocols", "seeds", "label_fractions"],
+      "additionalProperties": false,
+      "properties": {
+        "primary_metric": {"$ref": "#/$defs/metric"},
+        "secondary_metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+        "protocols": {"type": "array", "minItems": 1, "items": {"type": "string"}, "description": "Ids from spec/protocols.json."},
+        "inference": {"type": "string", "description": "How test predictions are produced, e.g. whole image or sliding window."},
+        "seeds": {"type": "integer", "minimum": 1},
+        "label_fractions": {"type": "array", "items": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}, "minItems": 1}
+      }
+    },
+
+    "normalisation_stats": {
+      "type": "object",
+      "description": "Per-band statistics offered to model adapters, in physical units. Adapters may use them or the model's own pretraining statistics; results record which.",
+      "additionalProperties": false,
+      "required": ["source", "computed_on"],
+      "properties": {
+        "source": {"type": "string"},
+        "computed_on": {"type": "string"},
+        "per_modality": {"type": "object", "additionalProperties": {"type": "object", "required": ["mean", "std"], "properties": {"mean": {"type": "array", "items": {"type": "number"}}, "std": {"type": "array", "items": {"type": "number"}}}}}
+      }
+    },
+
+    "harness_notes": {"type": "array", "items": {"type": "string"}, "description": "Where an existing harness (e.g. PANGAEA) implements this task differently from the template."},
+    "provenance": {
+      "type": "object",
+      "required": ["sources"],
+      "additionalProperties": false,
+      "properties": {
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["label", "url"], "properties": {"label": {"type": "string"}, "url": {"type": "string", "pattern": "^https?://"}}}}
+      }
+    },
+    "unverified": {"type": "array", "items": {"type": "string", "pattern": "^/"}, "description": "JSON Pointers to every field not confirmed by a primary source."},
+    "open_questions": {"type": "array", "items": {"type": "string"}}
+  },
+
+  "$defs": {
+    "modality": {
+      "type": "object",
+      "required": ["sensor", "product", "quantity", "bands", "raster", "grid", "time", "required"],
+      "additionalProperties": false,
+      "properties": {
+        "sensor": {"type": "string", "description": "Key in data/sensor_specs.json."},
+        "product": {"type": "string", "description": "Processing level, e.g. L1C, L2A, GRD."},
+        "quantity": {"enum": ["toa_reflectance", "surface_reflectance", "sigma0_backscatter", "gamma0_backscatter", "brightness_temperature", "radiance", "elevation", "rgb_display", "other"]},
+        "orbit": {"enum": ["ascending", "descending", "both", "unknown"]},
+        "required": {"type": "boolean", "description": "False if some samples lack this modality; the valid mask then marks it absent."},
+        "bands": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Channel order of the delivered array.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "band": {"type": "string", "description": "Band name in the sensor registry."},
+              "name": {"type": "string", "description": "For derived layers only."},
+              "derived_from": {"type": "string", "description": "Formula over registry bands, in the modality's delivered units."}
+            },
+            "oneOf": [{"required": ["band"]}, {"required": ["name", "derived_from"]}]
+          }
+        },
+        "raster": {
+          "type": "object",
+          "description": "How stored values map to physical ones: physical = stored * scale + offset (STAC raster extension convention).",
+          "required": ["stored_dtype", "scale", "offset", "nodata", "unit"],
+          "additionalProperties": false,
+          "properties": {
+            "stored_dtype": {"type": "string"},
+            "scale": {"type": ["number", "null"]},
+            "offset": {"type": ["number", "null"]},
+            "nodata": {"type": ["number", "string", "null"]},
+            "unit": {"type": "string", "description": "Unit after scale and offset: '1' for reflectance, 'dB', 'm', 'K'."}
+          }
+        },
+        "grid": {
+          "type": "object",
+          "required": ["size_px", "gsd_m"],
+          "additionalProperties": false,
+          "properties": {
+            "size_px": {"type": "integer"},
+            "gsd_m": {"type": "number", "description": "Pixel size as delivered, after any resampling."},
+            "resampling": {"type": "string"}
+          }
+        },
+        "time": {
+          "type": "object",
+          "required": ["steps", "selection"],
+          "additionalProperties": false,
+          "properties": {
+            "steps": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "object", "required": ["min", "max"], "properties": {"min": {"type": "integer"}, "max": {"type": "integer"}}, "additionalProperties": false}]},
+            "selection": {"type": "string", "description": "How the delivered steps are chosen from what the dataset holds."},
+            "compositing": {"type": "string"}
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "required": ["name", "averaging"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "averaging": {"type": "string", "description": "How the metric is reduced: over classes, pixels, images."},
+        "higher_is_better": {"type": "boolean"}
+      }
+    }
+  }
+}

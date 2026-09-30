@@ -1,0 +1,232 @@
+{
+ "spec_version": "0.1-draft",
+ "id": "sen1floods11-water",
+ "title": "Surface water segmentation from Sentinel-1 and Sentinel-2 (Sen1Floods11, hand-labelled)",
+ "dataset_id": "sen1floods11",
+ "task_type": "semantic-segmentation",
+ "inputs": {
+  "s2": {
+   "sensor": "sentinel-2-msi",
+   "product": "L1C",
+   "quantity": "toa_reflectance",
+   "required": true,
+   "bands": [
+    {
+     "band": "B01"
+    },
+    {
+     "band": "B02"
+    },
+    {
+     "band": "B03"
+    },
+    {
+     "band": "B04"
+    },
+    {
+     "band": "B05"
+    },
+    {
+     "band": "B06"
+    },
+    {
+     "band": "B07"
+    },
+    {
+     "band": "B08"
+    },
+    {
+     "band": "B8A"
+    },
+    {
+     "band": "B09"
+    },
+    {
+     "band": "B10"
+    },
+    {
+     "band": "B11"
+    },
+    {
+     "band": "B12"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "uint16",
+    "scale": 0.0001,
+    "offset": 0,
+    "nodata": null,
+    "unit": "1"
+   },
+   "grid": {
+    "size_px": 512,
+    "gsd_m": 10,
+    "resampling": "all layers projected to EPSG:4326 at 10 m by the dataset; method not stated"
+   },
+   "time": {
+    "steps": 1,
+    "selection": "one acquisition per chip"
+   },
+   "notes": "No cloud or QA mask is provided."
+  },
+  "s1": {
+   "sensor": "sentinel-1-iw",
+   "product": "GRD",
+   "quantity": "sigma0_backscatter",
+   "orbit": "both",
+   "required": true,
+   "bands": [
+    {
+     "band": "VV"
+    },
+    {
+     "band": "VH"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "float32",
+    "scale": 1,
+    "offset": 0,
+    "nodata": "NaN",
+    "unit": "dB"
+   },
+   "grid": {
+    "size_px": 512,
+    "gsd_m": 10
+   },
+   "time": {
+    "steps": 1,
+    "selection": "one acquisition per chip; orbit direction varies by event"
+   }
+  }
+ },
+ "sample_metadata": {
+  "location": "centroid",
+  "acquisition_time": "per-step",
+  "source_crs": "EPSG:4326",
+  "notes": "S1 and S2 dates are given per event (s1_date, s2_date) and can differ."
+ },
+ "target": {
+  "kind": "per-pixel-class",
+  "grid": "s2",
+  "classes": [
+   {
+    "index": 0,
+    "name": "Not Water"
+   },
+   {
+    "index": 1,
+    "name": "Water"
+   }
+  ],
+  "ignore_index": -1,
+  "label_source": "hand-labelled chips"
+ },
+ "splits": {
+  "kind": "predefined-unknown",
+  "definition": "Hand-labelled split files splits/flood_handlabeled/flood_{train,valid,test}_data.csv (as in PANGAEA sen1floods11.py).",
+  "test_labels_public": true
+ },
+ "evaluation": {
+  "primary_metric": {
+   "name": "mIoU",
+   "averaging": "mean of per-class IoU over both classes, pixels pooled over the test set",
+   "higher_is_better": true
+  },
+  "secondary_metrics": [
+   {
+    "name": "IoU (Water)",
+    "averaging": "pixels pooled over the test set",
+    "higher_is_better": true
+   }
+  ],
+  "protocols": [
+   "frozen-linear",
+   "frozen-upernet-pangaea"
+  ],
+  "inference": "sliding window (PANGAEA default for segmentation)",
+  "seeds": 3,
+  "label_fractions": [
+   1.0
+  ]
+ },
+ "normalisation_stats": {
+  "source": "PANGAEA configs/dataset/sen1floods11.yaml, converted with the scale above",
+  "computed_on": "not stated in the config",
+  "per_modality": {
+   "s2": {
+    "mean": [
+     0.162692,
+     0.139603,
+     0.136406,
+     0.121823,
+     0.146607,
+     0.23869,
+     0.284561,
+     0.262296,
+     0.307748,
+     0.048687,
+     0.006378,
+     0.203065,
+     0.117917
+    ],
+    "std": [
+     0.070017,
+     0.073909,
+     0.073525,
+     0.086494,
+     0.077688,
+     0.092137,
+     0.108437,
+     0.102263,
+     0.119644,
+     0.033661,
+     0.0144,
+     0.098087,
+     0.076461
+    ]
+   },
+   "s1": {
+    "mean": [
+     -10.184408,
+     -16.895273
+    ],
+    "std": [
+     4.255339,
+     5.290568
+    ]
+   }
+  }
+ },
+ "harness_notes": [
+  "PANGAEA replaces NaN in S1 with 0 (sen1floods11.py, __getitem__). 0 dB is strong backscatter, so no-data becomes bright signal with no mask.",
+  "PANGAEA gives chips with missing event metadata the date 13 October 1998 without flagging it.",
+  "PANGAEA encodes the date as [year, day of year (0-based), hour]."
+ ],
+ "provenance": {
+  "sources": [
+   {
+    "label": "Sen1Floods11 README",
+    "url": "https://github.com/cloudtostreet/Sen1Floods11"
+   },
+   {
+    "label": "PANGAEA dataset config",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/sen1floods11.yaml"
+   },
+   {
+    "label": "PANGAEA loader",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/pangaea/datasets/sen1floods11.py"
+   }
+  ]
+ },
+ "unverified": [
+  "/inputs/s2/raster/nodata",
+  "/inputs/s1/quantity",
+  "/splits/kind",
+  "/normalisation_stats/computed_on"
+ ],
+ "open_questions": [
+  "Should a held-out region (the Sen1Floods11 paper reports a Bolivia test set; UNVERIFIED here) be a second, out-of-region test split?",
+  "Is S1-only a separate task? It is the use case the dataset was built for (flood mapping through cloud)."
+ ]
+}
