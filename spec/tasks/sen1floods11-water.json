@@ -123,8 +123,8 @@
   "label_source": "hand-labelled chips"
  },
  "splits": {
-  "kind": "predefined-unknown",
-  "definition": "Hand-labelled split files splits/flood_handlabeled/flood_{train,valid,test}_data.csv (as in PANGAEA sen1floods11.py).",
+  "kind": "random",
+  "definition": "Random 60-20-20 split of hand-labelled chips, excluding Bolivia (Bonafilia et al. 2020); files splits/flood_handlabeled/flood_{train,valid,test}_data.csv, as in PANGAEA sen1floods11.py. All hand-labelled Bolivia chips are held out as a separate test set.",
   "test_labels_public": true
  },
  "evaluation": {
@@ -216,17 +216,20 @@
    {
     "label": "PANGAEA loader",
     "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/pangaea/datasets/sen1floods11.py"
+   },
+   {
+    "label": "Bonafilia et al. 2020 (Sen1Floods11 paper)",
+    "url": "https://openaccess.thecvf.com/content_CVPRW_2020/papers/w11/Bonafilia_Sen1Floods11_A_Georeferenced_Dataset_to_Train_and_Test_Deep_Learning_CVPRW_2020_paper.pdf"
    }
   ]
  },
  "unverified": [
   "/inputs/s2/raster/nodata",
   "/inputs/s1/quantity",
-  "/splits/kind",
   "/normalisation_stats/computed_on"
  ],
  "open_questions": [
-  "Should a held-out region (the Sen1Floods11 paper reports a Bolivia test set; UNVERIFIED here) be a second, out-of-region test split?",
+  "Report the Bolivia hold-out as the out-of-region test split (see docs/decisions-v0.2.md, decision 3).",
   "Is S1-only a separate task? It is the use case the dataset was built for (flood mapping through cloud)."
  ]
 }

@@ -74,8 +74,10 @@ Writing the two examples from primary sources turned up problems in the current 
 
 ## Decisions for the lab
 
+Proposed answers, with evidence, are in [decisions-v0.2.md](decisions-v0.2.md).
+
 1. **Time-step selection.** Should we keep PANGAEA's 6 index-spaced steps for comparability, or pick steps by calendar date?
 2. **Variable-length series.** Should a task also offer the full series for models built for it?
 3. **Default protocol for the leaderboard.** `frozen-linear` measures the representation and runs on every model; `frozen-upernet-pangaea` matches published numbers but excludes Clay and AnySat.
-4. **Splits.** Neither example's split is documented as spatially disjoint. Should we add a spatial split alongside the official one?
+4. **Splits.** Neither example's official split is region-disjoint (PASTIS folds are buffered by 1 km within the same tiles; Sen1Floods11 is random, with Bolivia held out). Should we add a spatial split alongside the official one?
 5. **Label fractions.** Should every task also run at, for example, 1% and 10% of training labels?

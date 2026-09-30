@@ -192,8 +192,8 @@
   "notes": "Background is non-agricultural land and is scored as a class. Void marks parcels mostly outside the patch."
  },
  "splits": {
-  "kind": "predefined-unknown",
-  "definition": "Official 5-fold split in metadata.geojson; folds 1–3 train, 4 val, 5 test (as in PANGAEA pastis.py).",
+  "kind": "buffered-random",
+  "definition": "Official 5-fold split in metadata.geojson, folds chosen 'with a 1km buffer between images' (Garnot & Landrieu 2021, §4.1) but interleaved within the same Sentinel-2 tiles; folds 1–3 train, 4 val, 5 test (as in PANGAEA pastis.py).",
   "test_labels_public": true
  },
  "evaluation": {
@@ -285,6 +285,10 @@
    {
     "label": "PANGAEA segmentation task config",
     "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/task/segmentation.yaml"
+   },
+   {
+    "label": "Garnot & Landrieu 2021 (PASTIS paper)",
+    "url": "https://arxiv.org/abs/2107.07933"
    }
   ]
  },
@@ -300,12 +304,11 @@
   "/inputs/s1_asc/raster/unit",
   "/inputs/s1_asc/bands/2/derived_from",
   "/sample_metadata/source_crs",
-  "/splits/kind",
   "/normalisation_stats/computed_on"
  ],
  "open_questions": [
   "Keep PANGAEA's 6 index-spaced steps for comparability, or choose steps by calendar date so every model sees the same season?",
   "Should the task also offer the full variable-length series for models built for it (Galileo up to 24 steps, AnySat any length)?",
-  "Are the official folds spatially separated? If not, the test set measures interpolation, not transfer."
+  "Add an out-of-region test split holding out whole Sentinel-2 tiles (see docs/decisions-v0.2.md, decision 3)."
  ]
 }
