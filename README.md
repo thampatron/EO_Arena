@@ -1,6 +1,6 @@
 # EOArena task taxonomy
 
-An open, filterable taxonomy of Earth observation (EO) tasks and labelled datasets, built to guide the benchmarking of geospatial foundation models (GeoFMs). Part of EOArena, a project of the Earth Intelligence Lab at MIT in collaboration with AI2.
+An open, filterable taxonomy of Earth observation (EO) tasks and labelled datasets, built to guide the benchmarking of geospatial foundation models (GeoFMs). Part of EOArena, a project of the Earth Intelligence Lab at MIT.
 
 **Status: draft v0.1.** Tags, licences and the ability facet are under review. Items marked UNVERIFIED could not be confirmed from a primary source.
 
@@ -10,9 +10,10 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 
 | Page | What it shows |
 |---|---|
-| `index.html` | Explorer: 118 datasets tagged on 13 facets. Filter by any facet across domains, or cross two facets in a matrix to find gaps. |
-| `domains.html` | Domain audit: 8 domains and 32 subdomains, with framework anchors (SDG, GEOGLAM EAVs, GCOS ECVs, GEO BON EBVs, Sendai), open sensors, datasets, gaps and proposed changes. |
-| `sensors.html` | Sensor audit: open EO sensors by type, with licence tier, status and use in existing GeoFM benchmarks. |
+| `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL, so views can be shared. |
+| `domains.html` | 8 domains and 32 subdomains: framework anchors, open sensors, datasets, benchmark status, gaps and proposed changes. |
+| `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence and use in GeoFM benchmarks. |
+| `about.html` | Method, facet definitions and how to contribute. |
 
 ## Data
 
@@ -20,6 +21,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 
 - `data/vocabulary.json`: the facets and every allowed value (the controlled vocabulary).
 - `data/datasets.json`: one record per dataset, with its facet tags, licence, benchmark suites and sources.
+- `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
 
 `scripts/validate.py` checks every record against the vocabulary. It runs automatically on each pull request.
 

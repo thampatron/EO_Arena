@@ -1,0 +1,362 @@
+[
+ {
+  "id": "d1",
+  "name": "1 · Agriculture",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "1.1",
+    "name": "Cropland and crop type",
+    "status": "sat",
+    "anchors": "GEOGLAM EAVs: Cropland Mask, Agriculture Mask, Perennial and Non-Perennial Cropland Masks, Crop Type Masks, Crop Type Area Estimate, Field Boundaries, Crop Rotation Sequence · SDG 2.4.1 (agricultural area) · GCOS Land Cover · CLMS Croplands",
+    "sensors": "Sentinel-2 (all datasets below), Sentinel-1, PlanetScope; Landsat for the USDA Cropland Data Layer",
+    "gap": "Crop type is Europe-heavy (LPIS). Africa and Asia have only small regional sets; perennial crops only via GEO-Bench's cashew task.",
+    "proposal": "Split into cropland mask, field boundaries (instance segmentation; FTW, AI4Boundaries, AI4SmallFarms) and crop type and rotation."
+   },
+   {
+    "code": "1.2",
+    "name": "Crop condition and yield",
+    "status": "thin",
+    "anchors": "GEOGLAM EAVs: Crop Condition Assessment, Crop Yield Forecast, Crop Yield Estimation, Current Crop Stage, Reference Crop Calendars, LAI, fAPAR · SDG 2.3.1 · GCOS LAI, FAPAR",
+    "sensors": "MODIS (SustainBench, CY-Bench), Sentinel-2 (CropNet, SICKLE), Landsat-8 (SICKLE)",
+    "gap": "Yield labels are administrative-unit statistics. Field-level yield: only SICKLE (one region). Yield forecasting is absent from PANGAEA, GEO-Bench and Copernicus-Bench.",
+    "proposal": "Split into phenology and condition (dates, anomalies) and yield estimation or forecasting (regression)."
+   },
+   {
+    "code": "1.3",
+    "name": "Management practices",
+    "status": "gap",
+    "anchors": "GEOGLAM EAVs: Irrigated Cropland Map, Seasonal Fallow Mask, Cover Crop Utilization, Crop Residue Cover, Water Productivity, ET; management EAVs: Tillage Intensity, Cover Crop, Agricultural Burning · SDG 6.4.1 (irrigated agriculture sector), 2.4.1 · GCOS Anthropogenic Water Use",
+    "sensors": "Landsat (IrrMapper, western US); others not verified",
+    "gap": "No open labelled ML dataset verified for irrigation, tillage, residue, cover crops, burning or fallow. IrrMapper is a map product (CC BY 3.0); its training labels were not confirmed as public.",
+    "proposal": "Move irrigation and agricultural water into their own subdomain (anchored to SDG 6.4.1). Cross-link agricultural burning to 2.6 Fire."
+   },
+   {
+    "code": "1.4",
+    "name": "Rangeland and livestock",
+    "status": "thin",
+    "anchors": "GEOGLAM EAVs: Rangelands Mask, Managed Grasslands Mask, Rangeland Condition Assessment, Fractional Cover · SDG 2.3.1 (pastoral), 15.3.1 · CLMS Grasslands",
+    "sensors": "Landsat (Global Pasture Watch; Rangeland Analysis Platform, US); VHR for cattle",
+    "gap": "Only a livestock-detection proxy is in suites. No open dataset for rangeland condition or forage biomass.",
+    "proposal": "Split into grassland and rangeland extent and condition, and livestock detection and density."
+   }
+  ]
+ },
+ {
+  "id": "d2",
+  "name": "2 · Terrestrial ecosystems",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "2.1",
+    "name": "Land cover and land degradation",
+    "status": "sat",
+    "anchors": "SDG 15.3.1 (sub-indicators: land cover, land productivity, carbon stocks; one-out-all-out), 15.4.2, 11.3.1 · GCOS Land Cover · GEO BON Ecosystem distribution · CLMS CORINE, CLCplus, Global Dynamic Land Cover",
+    "sensors": "ESA WorldCover (S1+S2, 10 m), Dynamic World (S2), ESA-CCI LC 300 m, CGLS-LC100",
+    "gap": "Land cover is saturated, but land degradation (15.3.1 as a composite) has no labelled dataset: every input is a derived product (CCI-LC trends, NDVI trends, SoilGrids).",
+    "proposal": "Split into land cover mapping and land cover change and degradation. Tag 15.4.2 (mountains) under this subdomain rather than as a new one."
+   },
+   {
+    "code": "2.2",
+    "name": "Forest extent and change",
+    "status": "cov",
+    "anchors": "SDG 15.1.1 (FAO land-use definition: &gt;0.5 ha, &gt;5 m, &gt;10% cover; the metadata flags the land-use vs land-cover mismatch), 15.2.1 · GEO BON Ecosystem distribution, disturbances · CLMS Tree Cover and Forests",
+    "sensors": "Hansen Global Forest Change (Landsat, 30 m, CC BY 4.0), JRC Tropical Moist Forest (Landsat, 1982–2025)",
+    "gap": "No global, open, human-labelled pixel-level forest loss or degradation benchmark. Hansen, TMF and PRODES are algorithmic products. A GeoFM task can target tree cover, which is not what 15.1.1 measures.",
+    "proposal": "Split into tree cover extent, disturbance and degradation, and driver attribution."
+   },
+   {
+    "code": "2.3",
+    "name": "Biomass and carbon stocks",
+    "status": "cov",
+    "anchors": "GCOS Above-ground Biomass, Soil Carbon · SDG 15.2.1 (biomass sub-indicator), 15.3.1 (carbon stocks) · GEO BON Ecosystem Vertical Profile",
+    "sensors": "ESA CCI Biomass v7 (100 m; S1, PALSAR, GEDI), GEDI L4B (1 km)",
+    "gap": "Nearly all biomass labels are model products. The only ALS/plot-anchored benchmark is BioMassters (one boreal country). Soil carbon has no labelled EO dataset.",
+    "proposal": "Add soil organic carbon as a leaf. Move canopy height here from 2.4."
+   },
+   {
+    "code": "2.4",
+    "name": "Vegetation structure and species",
+    "status": "cov",
+    "anchors": "GEO BON Ecosystem Vertical Profile, Live cover fraction, Species populations, Species traits, Community composition · GCOS LAI · SDG 15.5.1 (indirect)",
+    "sensors": "Lang et al. 2023 canopy height (S2 + GEDI, 10 m); aerial and lidar for species",
+    "gap": "Species labels are regional (Germany, France, US). Global canopy height labels are sparse GEDI footprints. No EO dataset for species abundance or community composition. Auto Arborist was deactivated in May 2025.",
+    "proposal": "Split into vegetation structure (height, cover; next to 2.3) and species and community composition."
+   },
+   {
+    "code": "2.5",
+    "name": "Ecosystem function (phenology, productivity)",
+    "status": "gap",
+    "anchors": "GCOS FAPAR, LAI, Albedo, LST · GEO BON Primary productivity, Ecosystem phenology · SDG 15.3.1 (land productivity) · CLMS Vegetation Phenology and Productivity",
+    "sensors": "MODIS vegetation indices, CGLS 1 km (per 15.3.1 metadata)",
+    "gap": "No phenology or productivity task in any suite. Ground truth is point data (towers, cameras) that must be matched to pixels; FLUXNET GPP is itself partitioned by a model.",
+    "proposal": "Rename to biophysical variables and ecosystem function, with phenology and productivity as separate leaves."
+   },
+   {
+    "code": "2.6",
+    "name": "Fire",
+    "status": "thin",
+    "anchors": "GCOS Fire (Burned Area, Active Fires, FRP) · GEO BON Ecosystem disturbances · UNDRR hazard profile EN0205 Wildfires · CLMS Burnt Area",
+    "sensors": "MODIS MCD64A1 burned area (500 m), VIIRS 375 m active fire (FIRMS), MTBS (Landsat + S2, US)",
+    "gap": "Every fire label is an algorithmic product or an agency perimeter. Labels are US/Australia only; nothing for Africa or the boreal zone, where most burned area occurs. Sen2Fire pairs 1 km labels with 10 m inputs.",
+    "proposal": "Split into active fire detection, burned area and severity, and spread and risk forecasting (flag: needs weather inputs)."
+   }
+  ]
+ },
+ {
+  "id": "d3",
+  "name": "3 · Inland water",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "3.1",
+    "name": "Surface water, rivers and wetlands",
+    "status": "cov",
+    "anchors": "SDG 6.6.1 (sub-indicators: water extent, reservoirs, wetlands, mangroves, quantity, quality, river flow, groundwater; custodian UNEP) · GCOS Lakes, River Discharge, Terrestrial Water Storage",
+    "sensors": "JRC Global Surface Water (Landsat, 30 m, 1984–2024), SWOT (rivers &gt;100 m, lakes ≥15 acres), S1 and S2",
+    "gap": "Covered for floods only. Almost every labelled set is about flood events. Nothing verified for wetland type or extent (the 6.6.1 wetland sub-indicator), river width or discharge, or lake level.",
+    "proposal": "Split into surface water dynamics, wetlands, and water level and discharge. Move flood events to the Disasters tag, cross-referenced here."
+   },
+   {
+    "code": "3.2",
+    "name": "Water quality",
+    "status": "gap",
+    "anchors": "SDG 6.6.1 turbidity and trophic-state sub-indicator (6.3.2 is in-situ only) · CLMS Lake water quality · no inland water-quality GCOS ECV",
+    "sensors": "Sentinel-3 OLCI and Sentinel-2 (EPA CyAN), Landsat, PACE",
+    "gap": "Labels are sparse point matchups, not masks. A GeoFM needs a point-regression protocol (pixel window, time tolerance). SustainBench's \"water quality index\" is DHS household water access and does not fill this.",
+    "proposal": "Cross-link or merge with 4.3 as one aquatic-optics task family; GLORIA spans lakes and coasts."
+   },
+   {
+    "code": "3.3",
+    "name": "Soil moisture",
+    "status": "gap",
+    "anchors": "GCOS Soil Moisture · no SDG indicator",
+    "sensors": "ESA CCI Soil Moisture (ASCAT, SMOS, SMAP, AMSR; &gt;40 years), in-situ ISMN network",
+    "gap": "No labelled ML dataset. Realistic task: sparse regression against ISMN stations or downscaling coarse microwave products. Weakest fit for a 10 m GeoFM.",
+    "proposal": "Either rename Domain 3 to Hydrology (matching GCOS) or move soil moisture next to agriculture and drought."
+   }
+  ]
+ },
+ {
+  "id": "d4",
+  "name": "4 · Oceans and coasts",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "4.1",
+    "name": "Coastal ecosystems",
+    "status": "gap",
+    "anchors": "GCOS Marine Habitats · SDG 6.6.1 (mangrove sub-indicator uses Global Mangrove Watch)",
+    "sensors": "Global Mangrove Watch (L-band SAR + Landsat), Allen Coral Atlas (PlanetScope 3 m)",
+    "gap": "Mangrove and coral labels are model products. No independent seagrass dataset at scale.",
+    "proposal": "Add shallow-water bathymetry and benthic habitat as a leaf."
+   },
+   {
+    "code": "4.2",
+    "name": "Shoreline and coastal change",
+    "status": "gap",
+    "anchors": "No direct SDG indicator · GCOS Sea Level, Sea State (context only)",
+    "sensors": "Landsat, Sentinel-2 (CoastSat is a tool, not a dataset)",
+    "gap": "Ground truth exists at 4 sites. About 10 m accuracy on microtidal beaches, much worse on macrotidal ones.",
+    "proposal": "Keep, flagged as a data gap."
+   },
+   {
+    "code": "4.3",
+    "name": "Ocean colour and algal blooms",
+    "status": "gap",
+    "anchors": "GCOS Ocean Colour, Plankton · SDG 14.1.1(a) coastal eutrophication (computed from OC-CCI chl-a, 4 km)",
+    "sensors": "ESA OC-CCI (merged, 4 km), PACE OCI, Sentinel-3 OLCI",
+    "gap": "No HAB segmentation dataset verified; only GLORIA's coastal spectra (32%). Labels are retrievals or sparse matchups at 300 m–4 km.",
+    "proposal": "Absorb eutrophication from 4.4; cross-link with 3.2."
+   },
+   {
+    "code": "4.4",
+    "name": "Marine pollution",
+    "status": "thin",
+    "anchors": "SDG 14.1.1(b) plastic debris density (satellite only for patches &gt;10 m)",
+    "sensors": "Sentinel-1 (oil), Sentinel-2 (debris)",
+    "gap": "Debris labels are very sparse (MARIDA: 3,339 debris pixels). The best open oil-spill set is restricted.",
+    "proposal": "Keep as oil spills plus floating debris and sargassum. Vessels move to Human systems 8.4, cross-referenced."
+   }
+  ]
+ },
+ {
+  "id": "d5",
+  "name": "5 · Cryosphere",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "5.1",
+    "name": "Snow",
+    "status": "gap",
+    "anchors": "GCOS Snow · UNDRR MH0801 snow avalanche · CLMS Snow",
+    "sensors": "MODIS MOD10A1 (500 m daily, from 2000)",
+    "gap": "No dedicated open snow-cover or snow-water-equivalent ML dataset verified. Snow appears only as a class in cloud datasets (CloudSEN12, SPARCS, S2 Cloud Mask Catalogue).",
+    "proposal": "Keep, flagged as a data gap; a pseudo-label task from MOD10A1 is possible but coarse."
+   },
+   {
+    "code": "5.2",
+    "name": "Glaciers and ice sheets",
+    "status": "thin",
+    "anchors": "GCOS Glaciers; Ice Sheets and Ice Shelves · UNDRR MH0607 glacial lake outburst flood",
+    "sensors": "RGI 7.0 / GLIMS outlines (CC BY 4.0); SAR archive for calving fronts; NISAR",
+    "gap": "No ML dataset for ice-sheet velocity or grounding lines (not confirmed).",
+    "proposal": "Split into mountain glaciers (outlines) and ice sheets and shelves (calving fronts), matching the two GCOS ECVs."
+   },
+   {
+    "code": "5.3",
+    "name": "Sea and lake ice",
+    "status": "gap",
+    "anchors": "GCOS Sea Ice (Ocean–Physical); Lakes (Land–Hydrology) · UNDRR MH0706",
+    "sensors": "OSI SAF sea-ice concentration (SSMIS/AMSR2), Sentinel-1 ice charts (CIS, DMI)",
+    "gap": "No lake or river ice dataset. GCOS puts sea ice and lakes in different domains.",
+    "proposal": "Rename to Sea ice; move lake and river ice to hydrology or keep as a flagged stub."
+   },
+   {
+    "code": "5.4",
+    "name": "Permafrost",
+    "status": "gap",
+    "anchors": "GCOS Permafrost (defined by ground temperature and active layer) · UNDRR EN0305 permafrost loss",
+    "sensors": "PlanetScope, Sentinel-2 (thaw-slump mapping)",
+    "gap": "The GCOS permafrost variables are not observable in imagery; only landforms such as thaw slumps are.",
+    "proposal": "Reframe as permafrost landforms and cross-link with 7.2 (mass movement)."
+   }
+  ]
+ },
+ {
+  "id": "d6",
+  "name": "6 · Atmosphere",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "6.1",
+    "name": "Greenhouse gas point sources",
+    "status": "gap",
+    "anchors": "GCOS CO₂, CH₄ and other GHGs; Anthropogenic GHG Emissions · Global Methane Pledge · UNEP IMEO MARS · CAMS Methane Hotspot Explorer (SDG 9.4.1 and 13.2.2 are inventory-based: drop)",
+    "sensors": "Sentinel-2 and Landsat SWIR, EMIT, TROPOMI (regional)",
+    "gap": "No plume dataset is in any suite (TerraMind's few-shot METER-ML task classifies methane-source infrastructure, not plumes). No CO₂ point-source ML dataset verified. The largest methane sets are non-commercial.",
+    "proposal": "Restrict to methane unless a CO₂ dataset is found."
+   },
+   {
+    "code": "6.2",
+    "name": "Aerosols and air quality",
+    "status": "thin",
+    "anchors": "GCOS Aerosols, Precursors, Ozone · SDG 11.6.2 (uses satellite data) · CAMS · UNDRR EN0102–0103",
+    "sensors": "MODIS MAIAC AOD (1 km), TROPOMI",
+    "gap": "No PM2.5-from-imagery benchmark found. At 1 km+ this is regression on retrieval products, not image understanding.",
+    "proposal": "State explicitly as Level-2 product regression, or decide GeoFM inputs are Level-1 radiances."
+   },
+   {
+    "code": "6.3",
+    "name": "Clouds and smoke",
+    "status": "cov",
+    "anchors": "GCOS Clouds, Aerosols (smoke) · UNDRR MH0205 smoke",
+    "sensors": "NOAA HMS smoke polygons (GOES, analyst-drawn), TROPOMI cloud",
+    "gap": "Copernicus-Bench itself treats cloud masking as preprocessing, not an application. No well-documented open smoke benchmark verified.",
+    "proposal": "Move cloud masking to a cross-cutting preprocessing tier; merge smoke with aerosols or fire."
+   }
+  ]
+ },
+ {
+  "id": "d7",
+  "name": "7 · Solid Earth",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "7.1",
+    "name": "Surface deformation",
+    "status": "gap",
+    "anchors": "GCMD Geodetics, Tectonics · UNDRR GH0309 subsidence and uplift, GH0101 earthquake, GH0201–0203 volcanic",
+    "sensors": "OPERA DISP-S1 (North America, 30 m), EGMS (Europe), NISAR",
+    "gap": "Interferometric phase is a different input distribution from the SAR amplitude GeoFMs are pretrained on (all Copernicus-Bench S1 inputs are GRD).",
+    "proposal": "Name by phenomenon, not technique. Add volcanic unrest (Hephaestus) and earthquakes (QuakeSet) as leaves."
+   },
+   {
+    "code": "7.2",
+    "name": "Landslides and mass movement",
+    "status": "gap",
+    "anchors": "UNDRR GH0300 gravitational mass movement · GCMD Geomorphic Landforms/Processes",
+    "sensors": "Sentinel-2, DEMs, VHR",
+    "gap": "Open datasets exist but are in no benchmark suite.",
+    "proposal": "Keep; cross-link with 5.4 permafrost landforms."
+   },
+   {
+    "code": "7.3",
+    "name": "Geology and mineral mapping",
+    "status": "gap",
+    "anchors": "GCMD Rocks/Minerals/Crystals, Geochemistry · no SDG, Sendai or GCOS anchor",
+    "sensors": "EMIT L2B MIN (10 minerals, 60 m; purpose: dust forcing)",
+    "gap": "No open labelled ML benchmark verified; only EMIT mineral maps as pseudo-labels. No framework anchor.",
+    "proposal": "Keep as an explicitly exploratory entry, or drop."
+   }
+  ]
+ },
+ {
+  "id": "d8",
+  "name": "8 · Human systems",
+  "tag": false,
+  "subdomains": [
+   {
+    "code": "8.1",
+    "name": "Settlements and buildings",
+    "status": "cov",
+    "anchors": "SDG 11.1.1, 11.3.1, 11.7.1, 1.4.1 · Sendai C-4 (housing loss) · GCMD Human Settlements",
+    "sensors": "GHSL (S2 + Landsat), World Settlement Footprint (S1 + S2, 10 m, CC BY 4.0); Google and Microsoft building footprints (derived from commercial imagery)",
+    "gap": "No verified open labelled dataset for informal settlements (11.1.1). Open-imagery tasks are built-up extent at 10 m; building instances need VHR.",
+    "proposal": "Split into built-up extent and morphology (10–30 m, open) and building footprints and instances (VHR)."
+   },
+   {
+    "code": "8.2",
+    "name": "Transport",
+    "status": "cov",
+    "anchors": "SDG 9.1.1 (rural population within 2 km of an all-season road), 11.2.1 · Sendai D-1, D-4",
+    "sensors": "No open operational road product verified; OSM as the de facto label source",
+    "gap": "Only two road tasks (aerial Massachusetts; PhilEO on S2). No open-imagery road dataset with a verified open licence, although SDG 9.1.1 is directly computable from road maps.",
+    "proposal": "Keep; priority candidate for a new open task (S2 + OSM)."
+   },
+   {
+    "code": "8.3",
+    "name": "Energy and industry",
+    "status": "cov",
+    "anchors": "SDG 7.2.1, 7.1.1 (indirect), 9.4.1 (weak) · GCMD Renewable Energy Infrastructure",
+    "sensors": "Sentinel-2 (solar, mines, substations, kilns)",
+    "gap": "No wind-turbine dataset paired with imagery verified.",
+    "proposal": "Rename to Energy, extractives and industry so mines and kilns are visible."
+   },
+   {
+    "code": "8.4",
+    "name": "Objects and activity",
+    "status": "cov",
+    "anchors": "No SDG or Sendai anchor (14.6.1 is a policy indicator)",
+    "sensors": "Sentinel-1 for vessels; commercial VHR for vehicles and aircraft",
+    "gap": "Everything except vessels needs commercial VHR under non-commercial or academic terms.",
+    "proposal": "Split by sensor: vessels (S1, open) and vehicles and aircraft (VHR). Add a land-use function leaf for fMoW and LCZ."
+   },
+   {
+    "code": "8.5",
+    "name": "Socioeconomic conditions",
+    "status": "thin",
+    "anchors": "SDG 1.1.1, 1.2.1, 1.4.1, 7.1.1 · GCMD Socioeconomics, Population",
+    "sensors": "Landsat + VIIRS Black Marble / DMSP nightlights",
+    "gap": "No open labelled electrification dataset verified. DHS-derived labels may carry DHS data-use restrictions.",
+    "proposal": "Keep, labelled as proxy regression from survey data."
+   }
+  ]
+ },
+ {
+  "id": "dz",
+  "name": "Disasters",
+  "tag": true,
+  "subdomains": [
+   {
+    "code": "",
+    "name": "Post-event damage and hazard extent",
+    "status": "thin",
+    "anchors": "Sendai targets A–G; C-4 housing loss, C-5 critical infrastructure, D-1 and D-4 damage to infrastructure · SDG 11.5.2, 11.5.3 (11.5.1 counts deaths: not EO) · Copernicus EMS, International Charter",
+    "sensors": "Sentinel-1 flood mapping (CEMS GFM); Maxar/Vantor Open Data for damage",
+    "gap": "Open-licence disaster data covers hazard extent only (floods, burn scars, landslides). Building-damage labels require commercial imagery.",
+    "proposal": "Keep as a tag plus a \"post-event damage\" task type, anchored to Sendai C-4, C-5, D-1/D-4 and SDG 11.5.2/11.5.3. Hazard-extent datasets stay in their physical domains."
+   }
+  ]
+ }
+]
