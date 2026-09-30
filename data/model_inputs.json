@@ -1,0 +1,531 @@
+{
+ "surveyed": "2026-09-30",
+ "note": "Facts from model repositories, Hugging Face cards and framework code; see docs/model-input-survey.md for the full sourced report.",
+ "models": [
+  {
+   "id": "prithvi-eo-2",
+   "name": "Prithvi-EO-2.0",
+   "variants": "300M, 300M-TL, 600M, 600M-TL (also tiny-TL, 100M-TL)",
+   "org": "IBM, NASA, Jülich Supercomputing Centre",
+   "paper": "arXiv:2412.02732",
+   "licence": {
+    "code": "MIT (NASA-IMPACT/Prithvi-EO-2.0 repo); the prithvi_mae.py file on Hugging Face and in TerraTorch carries an Apache-2.0 header",
+    "weights": "Apache-2.0"
+   },
+   "inputs": {
+    "sensors": [
+     "HLS v2 (30 m)"
+    ],
+    "band_identity": "fixed-names",
+    "bands": "6 HLS bands: Blue, Green, Red, Narrow NIR, SWIR 1, SWIR 2 (HF config names B02–B07; TerraTorch HLSBands names)",
+    "units": "Scaled reflectance implied by statistics (means ~1000–2700); exact scale factor UNVERIFIED",
+    "normalisation": {
+     "by": "caller",
+     "stats": "mean/std in HF config.json and TerraTorch constants"
+    },
+    "patch_size": "16 (300M), 14 (600M)",
+    "input_size": "224 default; positional embedding interpolated for other sizes",
+    "gsd_input": false,
+    "temporal": {
+     "native": true,
+     "max_steps": "any T (positional embedding recomputed); TL temporal encoding uses num_frames set at build",
+     "date_encoding": "TL variants: [year, day-of-year] per frame; 1–365 on the model card, 0–364 in TerraTorch docs"
+    },
+    "location": "TL variants: 2 values; order conflicts: prithvi_mae.py docstring says lat, lon; HF inference.py passes lnglat() (lon, lat); TerraTorch docs example also swaps them",
+    "layout": "B,C,T,H,W"
+   },
+   "outputs": {
+    "type": "all transformer blocks, (B, 1+L, D) with CLS",
+    "dim": "1024 (300M), 1280 (600M)",
+    "stride": "16 / 14",
+    "notes": "600M config.json lists num_features 1024 but embed_dim 1280"
+   },
+   "frameworks": {
+    "pangaea": "Only Prithvi v1-100M configured",
+    "torchgeo": "not surveyed",
+    "terratorch": "prithvi_eo_v2_300, _300_tl, _600, _600_tl"
+   },
+   "sources": [
+    "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-2.0-300M-TL/raw/main/README.md",
+    "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-2.0-300M-TL/raw/main/prithvi_mae.py",
+    "https://raw.githubusercontent.com/IBM/terratorch/main/terratorch/models/backbones/prithvi_vit.py",
+    "https://raw.githubusercontent.com/VMarsocci/pangaea-bench/main/configs/encoder/prithvi.yaml"
+   ]
+  },
+  {
+   "id": "terramind-1",
+   "name": "TerraMind 1.0",
+   "variants": "tiny, small, base, large",
+   "org": "IBM, ESA Φ-lab, FAST-EO project",
+   "paper": "arXiv:2504.11171 (ICCV 2025)",
+   "licence": {
+    "code": "Apache-2.0",
+    "weights": "Apache-2.0"
+   },
+   "inputs": {
+    "sensors": [
+     "S2 L1C",
+     "S2 L2A",
+     "S2 RGB",
+     "S1 GRD",
+     "S1 RTC",
+     "DEM",
+     "coordinates"
+    ],
+    "band_identity": "fixed-names per modality",
+    "bands": "S2L2A 12 bands incl. B9 water vapour, no cirrus (TerraTorch); S1 VV, VH; DEM",
+    "units": "Implied DN-scale S2, dB S1 from statistics; UNVERIFIED",
+    "normalisation": {
+     "by": "caller",
+     "stats": "TerraTorch v1_pretraining_mean/std per modality"
+    },
+    "patch_size": "16",
+    "input_size": "224 default; H, W divisible by 16; positional embedding interpolated",
+    "gsd_input": false,
+    "temporal": {
+     "native": false,
+     "max_steps": "single frame; TerraTorch TemporalWrapper pools over time",
+     "date_encoding": "none"
+    },
+    "location": "optional coords modality (lon, lat), tokenised as text",
+    "layout": "dict {modality: B,C,H,W}"
+   },
+   "outputs": {
+    "type": "all blocks (B, N, D), no CLS; modality merge mean/max/concat/dict",
+    "dim": "192/384/768/1024",
+    "stride": "16",
+    "notes": "IBM recommends layers [5,11,17,23] for large; PANGAEA uses [7,11,15,23]"
+   },
+   "frameworks": {
+    "pangaea": "large only; band list has B10 not B9, although the modality is S2L2A (L2A has no B10) and TerraTorch S2L2A uses B9",
+    "torchgeo": "not surveyed",
+    "terratorch": "yes"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/IBM/terratorch/main/terratorch/models/backbones/terramind/model/terramind_register.py",
+    "https://raw.githubusercontent.com/IBM/terratorch/main/terratorch/models/backbones/terramind/model/terramind_vit.py",
+    "https://raw.githubusercontent.com/VMarsocci/pangaea-bench/main/configs/encoder/terramind_large.yaml"
+   ]
+  },
+  {
+   "id": "dofa",
+   "name": "DOFA",
+   "variants": "base/16, large/16 (weights); small, huge in code; v2 checkpoints",
+   "org": "TUM (zhu-xlab)",
+   "paper": "arXiv:2403.15356",
+   "licence": {
+    "code": "MIT",
+    "weights": "CC-BY-4.0"
+   },
+   "inputs": {
+    "sensors": [
+     "any optical, SAR, hyperspectral"
+    ],
+    "band_identity": "wavelength-conditioned (centre wavelength per channel, µm in TorchGeo; nm in Copernicus-Bench copy), shared across the batch",
+    "bands": "any number",
+    "sar": "placeholder wavelength for every SAR channel: 3.75 µm (TorchGeo, PANGAEA), 5.405 (README demo), 5.6 (GeoBreeze); VV and VH indistinguishable",
+    "units": "caller-defined; pretraining used modality-specific statistics",
+    "normalisation": {
+     "by": "caller",
+     "stats": "not shipped"
+    },
+    "patch_size": "16 (huge 14)",
+    "input_size": "fixed 224 (no positional interpolation)",
+    "gsd_input": false,
+    "temporal": {
+     "native": false,
+     "max_steps": "1",
+     "date_encoding": "none"
+    },
+    "location": "none",
+    "layout": "B,C,H,W + wavelengths list"
+   },
+   "outputs": {
+    "type": "pooled (B,D); intermediate maps via wrappers",
+    "dim": "384/768/1024/1280",
+    "stride": "16",
+    "notes": "fc_norm absent from checkpoints"
+   },
+   "frameworks": {
+    "pangaea": "yes (dofa.yaml)",
+    "torchgeo": "yes",
+    "terratorch": "yes (dofa_vit.py)"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/zhu-xlab/DOFA/master/README.md",
+    "https://raw.githubusercontent.com/microsoft/torchgeo/main/torchgeo/models/dofa.py",
+    "https://raw.githubusercontent.com/VMarsocci/pangaea-bench/main/configs/encoder/dofa.yaml"
+   ]
+  },
+  {
+   "id": "panopticon",
+   "name": "Panopticon",
+   "variants": "ViT-B/14",
+   "org": "Waldmann et al. (CVPR 2025 EarthVision)",
+   "paper": "arXiv:2503.10845",
+   "licence": {
+    "code": "Apache-2.0",
+    "weights": "conflict: CC-BY-4.0 (README) vs MIT (Hugging Face card)"
+   },
+   "inputs": {
+    "sensors": [
+     "any optical, hyperspectral, SAR"
+    ],
+    "band_identity": "wavelength-conditioned, per sample: chn_ids (B,C) in nm; optional spectral response (mu, sigma); channel masks",
+    "bands": "any number",
+    "sar": "categorical ids encoding polarisation and orbit direction (−1…−12)",
+    "units": "caller standardises per dataset",
+    "normalisation": {
+     "by": "caller",
+     "stats": "not shipped"
+    },
+    "patch_size": "14",
+    "input_size": "224 trained; interpolation in original repo, fixed at init in TorchGeo",
+    "gsd_input": false,
+    "temporal": {
+     "native": false,
+     "max_steps": "1",
+     "date_encoding": "none"
+    },
+    "location": "none",
+    "layout": "dict {imgs: B,C,H,W; chn_ids: B,C}"
+   },
+   "outputs": {
+    "type": "CLS (B,768); intermediate layers via get_intermediate_layers",
+    "dim": "768",
+    "stride": "14",
+    "notes": ""
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "yes",
+    "terratorch": "not surveyed"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/Panopticon-FM/panopticon/main/README.md",
+    "https://raw.githubusercontent.com/Panopticon-FM/panopticon/main/dinov2/models/panopticon.py",
+    "https://raw.githubusercontent.com/microsoft/torchgeo/main/torchgeo/models/panopticon.py"
+   ]
+  },
+  {
+   "id": "copernicus-fm",
+   "name": "Copernicus-FM",
+   "variants": "base, large (weights); small, huge in code",
+   "org": "TUM (zhu-xlab)",
+   "paper": "arXiv:2503.11849 (ICCV 2025)",
+   "licence": {
+    "code": "Apache-2.0 (LICENSE file; README badge says 'Custom')",
+    "weights": "CC-BY-4.0"
+   },
+   "inputs": {
+    "sensors": [
+     "S1",
+     "S2",
+     "S3 OLCI",
+     "S5P",
+     "DEM"
+    ],
+    "band_identity": "wavelength + bandwidth per channel (nm), shared across batch; single-channel 'variable' mode via language embedding",
+    "bands": "any number",
+    "sar": "wavelength 5e7 nm, bandwidth 1e9 nm; VV and VH indistinguishable",
+    "units": "S1 dB, S2 DN-scale, S3 scaled, S5P raw (per paper and bench configs)",
+    "normalisation": {
+     "by": "caller",
+     "stats": "bench configs"
+    },
+    "patch_size": "16 base; kernel size is a forward argument",
+    "input_size": "flexible, square",
+    "gsd_input": "indirect: caller supplies patch-token area (km²) as meta[:,3]",
+    "temporal": {
+     "native": false,
+     "max_steps": "1",
+     "date_encoding": "days since 1970-01-01"
+    },
+    "location": "meta = [lon, lat, days since 1970-01-01, patch area km²]; NaN = unknown",
+    "layout": "B,C,H,W + meta (B,4)"
+   },
+   "outputs": {
+    "type": "pooled or CLS; intermediate maps",
+    "dim": "768 (base)",
+    "stride": "= kernel size",
+    "notes": "one NaN in a batch switches the whole batch to the unknown token"
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "yes (base)",
+    "terratorch": "not surveyed"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/zhu-xlab/Copernicus-FM/main/Copernicus-FM/src/model_vit.py",
+    "https://raw.githubusercontent.com/microsoft/torchgeo/main/torchgeo/models/copernicusfm.py"
+   ]
+  },
+  {
+   "id": "anysat",
+   "name": "AnySat",
+   "variants": "base (weights); tiny, small defined without weights",
+   "org": "Astruc, Gonthier, Mallet, Landrieu",
+   "paper": "arXiv:2412.14123 (CVPR 2025)",
+   "licence": {
+    "code": "MIT",
+    "weights": "MIT (Hugging Face card)"
+   },
+   "inputs": {
+    "sensors": [
+     "aerial",
+     "SPOT",
+     "NAIP",
+     "S2",
+     "S1",
+     "ALOS-2",
+     "Landsat 7/8",
+     "MODIS"
+    ],
+    "band_identity": "fixed per modality key",
+    "bands": "e.g. s2: B2,B3,B4,B5,B6,B7,B8,B8A,B11,B12; s1: VV,VH,Ratio",
+    "units": "caller normalises; no statistics shipped",
+    "normalisation": {
+     "by": "caller",
+     "stats": "not shipped"
+    },
+    "patch_size": "in metres (multiple of 10)",
+    "input_size": "square; equal ground extent across modalities",
+    "gsd_input": "no (hard-coded per modality)",
+    "temporal": {
+     "native": true,
+     "max_steps": "no limit stated (UNVERIFIED)",
+     "date_encoding": "day of year per step: README says 0-based, demo uses tm_yday (1-based); no year"
+    },
+    "location": "none",
+    "layout": "dict {mod: B,T,C,H,W; mod_dates: B,T; mod_mask: 1 = valid}"
+   },
+   "outputs": {
+    "type": "tile (B,D), patch (B,n,n,D, channels-last in code; README says B,D,6,6), or dense (2·D channels)",
+    "dim": "768 (dense 1536)",
+    "stride": "patch size in metres",
+    "notes": "no intermediate layers exposed"
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "no",
+    "terratorch": "not surveyed"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/gastruc/AnySat/main/hubconf.py",
+    "https://raw.githubusercontent.com/gastruc/AnySat/main/README.md"
+   ]
+  },
+  {
+   "id": "galileo",
+   "name": "Galileo",
+   "variants": "nano, tiny, base",
+   "org": "nasaharvest (Tseng et al.)",
+   "paper": "arXiv:2502.09356",
+   "licence": {
+    "code": "MIT",
+    "weights": "MIT (Hugging Face card)"
+   },
+   "inputs": {
+    "sensors": [
+     "S1",
+     "S2",
+     "ERA5",
+     "TerraClimate",
+     "VIIRS",
+     "SRTM",
+     "Dynamic World",
+     "WorldCereal",
+     "LandScan",
+     "location"
+    ],
+    "band_identity": "fixed band slots in four groups (space-time, space, time, static)",
+    "bands": "S2: B2–B8, B8A, B11, B12 (L1C, S2_HARMONIZED); S1: VV, VH",
+    "units": "S2 /1e4; S1 dB shifted; per-variable divisors",
+    "normalisation": {
+     "by": "caller or helper",
+     "stats": "normalization.json; helper may silently skip it (string-key issue)"
+    },
+    "patch_size": "pixels, flexible from 8×8 base",
+    "input_size": "square; shared grid",
+    "gsd_input": true,
+    "temporal": {
+     "native": true,
+     "max_steps": "24",
+     "date_encoding": "month index 0–11"
+    },
+    "location": "lat/lon as unit-sphere xyz",
+    "layout": "B,H,W,T,C per group + masks (1 = missing)"
+   },
+   "outputs": {
+    "type": "tokens per group and time; pooling helpers",
+    "dim": "128/192/768",
+    "stride": "patch size",
+    "notes": "no canonical pooled output"
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "no",
+    "terratorch": "not surveyed"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/nasaharvest/galileo/main/single_file_galileo.py",
+    "https://raw.githubusercontent.com/nasaharvest/galileo/main/src/data/utils.py"
+   ]
+  },
+  {
+   "id": "satlaspretrain",
+   "name": "SatlasPretrain (SatlasNet)",
+   "variants": "22 checkpoints: S2 SwinB/SwinT/ResNet50/ResNet152 × SI/MI × RGB/MS; S1, Landsat, Aerial SwinB × SI/MI",
+   "org": "Allen Institute for AI",
+   "paper": "arXiv:2211.15660 (ICCV 2023)",
+   "licence": {
+    "code": "Apache-2.0",
+    "weights": "ODC-BY"
+   },
+   "inputs": {
+    "sensors": [
+     "S2 (TCI + MS)",
+     "S1 GRD",
+     "Landsat 8/9",
+     "aerial RGB"
+    ],
+    "band_identity": "fixed order",
+    "bands": "S2 MS: TCI R,G,B then B05,B06,B07,B08,B11,B12; S1: VH, VV; Landsat B1–B11",
+    "units": "0–1 via fixed divisors (/255, /8160, Landsat (N−4000)/16320, clipped)",
+    "normalisation": {
+     "by": "caller",
+     "stats": "satlas Normalization.md"
+    },
+    "patch_size": "stride-4 embedding (Swin)",
+    "input_size": "flexible (128, 256, 512 tested)",
+    "gsd_input": false,
+    "temporal": {
+     "native": "MI variants: max-pool over up to 8 images",
+     "max_steps": "8",
+     "date_encoding": "none"
+    },
+    "location": "none",
+    "layout": "B, T·C (time-major), H, W"
+   },
+   "outputs": {
+    "type": "feature pyramid, strides 4/8/16/32 (+FPN)",
+    "dim": "SwinB 128/256/512/1024",
+    "stride": "4–32",
+    "notes": "FPN prepends a stride-1 map (5 outputs)"
+   },
+   "frameworks": {
+    "pangaea": "S2 SwinB SI/MI; band order and normalisation differ from Satlas; multi-image reshape is channel-major (B,C·T) while Satlas expects time-major, so bands and time steps are mixed when T>1",
+    "torchgeo": "Swin weights (MI without temporal aggregation)",
+    "terratorch": "yes (torchgeo_swin_satlas.py)"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/allenai/satlas/main/Normalization.md",
+    "https://raw.githubusercontent.com/allenai/satlaspretrain_models/main/satlaspretrain_models/models/backbones.py",
+    "https://raw.githubusercontent.com/VMarsocci/pangaea-bench/main/pangaea/encoders/satlasnet_encoder.py"
+   ]
+  },
+  {
+   "id": "clay",
+   "name": "Clay",
+   "variants": "v1.5 (large), v1 (base)",
+   "org": "Clay foundation (Renaissance Philanthropy)",
+   "paper": "none found",
+   "licence": {
+    "code": "Apache-2.0",
+    "weights": "Apache-2.0"
+   },
+   "inputs": {
+    "sensors": [
+     "S2 L2A",
+     "Landsat C2 L1/L2",
+     "NAIP",
+     "LINZ",
+     "S1 RTC",
+     "MODIS",
+     "PlanetScope",
+     "Satellogic"
+    ],
+    "band_identity": "wavelength-conditioned (µm), shared across batch; per-sensor metadata.yaml",
+    "bands": "any subset with matching wavelengths",
+    "sar": "placeholder wavelengths: VV 3.5, VH 4.0 (so polarisations are distinguishable); linear in v1, dB in v1.5",
+    "units": "raw DN/reflectance; S1 dB (v1.5)",
+    "normalisation": {
+     "by": "caller",
+     "stats": "configs/metadata.yaml per sensor"
+    },
+    "patch_size": "8",
+    "input_size": "square, divisible by 8",
+    "gsd_input": true,
+    "temporal": {
+     "native": false,
+     "max_steps": "1 per pass",
+     "date_encoding": "sin/cos of week and hour"
+    },
+    "location": "sin/cos of lat and lon",
+    "layout": "dict {pixels: B,C,H,W; time; latlon; gsd; waves}"
+   },
+   "outputs": {
+    "type": "CLS + patch tokens, final layer only",
+    "dim": "1024 (v1.5)",
+    "stride": "8",
+    "notes": "no intermediate layers"
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "no",
+    "terratorch": "yes (clay_v1, clay_v15)"
+   },
+   "sources": [
+    "https://raw.githubusercontent.com/Clay-foundation/model/main/configs/metadata.yaml",
+    "https://raw.githubusercontent.com/Clay-foundation/model/main/claymodel/model.py"
+   ]
+  },
+  {
+   "id": "osm-embedding",
+   "name": "OSM embedding model (possibly SatOSM: UNVERIFIED)",
+   "variants": "ViT-L/16 (DINOv2-style, with CLIP-style tag head); an HRNet-W64 config also exists",
+   "org": "UNVERIFIED",
+   "paper": "none",
+   "licence": {
+    "code": "private repository",
+    "weights": "UNVERIFIED"
+   },
+   "inputs": {
+    "sensors": [
+     "aerial RGB (Netherlands orthophotos in the data pipeline)"
+    ],
+    "band_identity": "fixed 3-channel RGB",
+    "bands": "RGB",
+    "units": "0–1 then ImageNet mean/std",
+    "normalisation": {
+     "by": "caller",
+     "stats": "ImageNet defaults"
+    },
+    "patch_size": "16",
+    "input_size": "224 global crops (96 local)",
+    "gsd_input": false,
+    "temporal": {
+     "native": false,
+     "max_steps": "1",
+     "date_encoding": "none"
+    },
+    "location": "none",
+    "layout": "B,C,H,W"
+   },
+   "outputs": {
+    "type": "DINOv2 ViT tokens",
+    "dim": "1024 (ViT-L)",
+    "stride": "16",
+    "notes": "confirm this is the SatOSM used in the lab's benchmarks"
+   },
+   "frameworks": {
+    "pangaea": "no",
+    "torchgeo": "no",
+    "terratorch": "no"
+   },
+   "sources": [
+    "github.com/Ruizhe0723/osm (private): osm_embedding/training/configs/ssl_default_config.yaml, osm_embedding/training/torch/data/transforms.py"
+   ]
+  }
+ ]
+}
