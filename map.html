@@ -31,7 +31,7 @@ svg.map path.sphere{fill:var(--surface);stroke:var(--line)}
 <main class="page">
   <section class="hero">
     <h1>Where the labels are</h1>
-    <p class="sub">Each country is shaded by how many datasets name it in their documented geography. Click a country to see them.</p>
+    <p class="sub">Each country is shaded by how many labelled datasets cover it: global datasets count for every country, plus the datasets that name it. Click a country to see them.</p>
   </section>
 
   <div class="ctrl"><label class="inl">Domain <select class="sel" id="dom"></select></label></div>
@@ -40,13 +40,13 @@ svg.map path.sphere{fill:var(--surface);stroke:var(--line)}
     <div class="card mapcard"><svg class="map" id="map" viewBox="0 0 960 500" role="img" aria-label="World map of labelled datasets by country"></svg><div class="leg" id="leg"></div></div>
     <div class="side">
       <div class="card" id="sel-card" hidden><h3 id="sel-name"></h3><div class="cl" id="sel-body"></div></div>
-      <div class="card"><h3>Not on the map</h3><div class="off" id="off"></div></div>
+      <div class="card"><h3>Coverage</h3><div class="off" id="off"></div></div>
     </div>
   </div>
 
   <section class="section">
     <ul class="clean">
-      <li>Only datasets that name specific countries can be placed on the map. Global, regional and undocumented datasets are counted beside it.</li>
+      <li>Global datasets are counted for every country. Regional datasets and those with no documented geography are listed beside the map. Global coverage is taken from each dataset's documentation, not from its actual sample locations.</li>
       <li>Next version: once EOArena hosts task data, the map will plot the location of every sample in each hosted dataset.</li>
       <li>Boundaries: Natural Earth 1:110m.</li>
     </ul>
@@ -67,24 +67,29 @@ const tip=document.getElementById('tip');
   const svg=d3.select('#map');svg.append('path').attr('class','sphere').attr('d',path({type:"Sphere"}));
   paths=svg.append('g').selectAll('path').data(geo.features.filter(f=>f.id!=='ATA')).join('path').attr('class','c').attr('d',path)
     .attr('tabindex',0).attr('aria-label',f=>f.properties.name)
-    .on('mousemove',(e,f)=>{const n=(labels()[f.id]||[]).length;tip.innerHTML=`<b>${esc(f.properties.name)}</b><br>${n} dataset${n===1?'':'s'}`;tip.hidden=false;tip.style.left=Math.min(e.clientX+14,innerWidth-290)+'px';tip.style.top=(e.clientY+14)+'px';})
+    .on('mousemove',(e,f)=>{const n=(labels()[f.id]||[]).length,g=globals().length;tip.innerHTML=`<b>${esc(f.properties.name)}</b><br>${n+g} dataset${n+g===1?'':'s'}: ${g} global + ${n} naming it`;tip.hidden=false;tip.style.left=Math.min(e.clientX+14,innerWidth-290)+'px';tip.style.top=(e.clientY+14)+'px';})
     .on('mouseleave',()=>tip.hidden=true)
     .on('click',(e,f)=>{st.sel=f.id;render();}).on('keydown',(e,f)=>{if(e.key==='Enter'){st.sel=f.id;render();}});
   render();
 })();
 function scoped(){return DATA.filter(d=>!st.dom||d.domain===st.dom);}
+function globals(){return scoped().filter(d=>d.footprint.scope==='global');}
 function labels(){const m={};scoped().forEach(d=>(d.footprint.countries||[]).forEach(c=>(m[c]=m[c]||[]).push(d)));return m;}
 function render(){
   document.getElementById('dom').value=st.dom;
-  const L=labels();const bin=n=>n===0?0:n===1?1:n===2?2:n<=4?3:n<=7?4:5;
+  const L=labels(),g=globals().length;
+  // Shade by total coverage (global + country-specific). Bins step on the country-specific part so differences stay visible.
+  const bin=n=>g===0?(n===0?0:n===1?1:n===2?2:n<=4?3:n<=7?4:5):(n===0?1:n===1?2:n<=3?3:n<=6?4:5);
   paths.attr('class',f=>'c f'+bin((L[f.id]||[]).length)+(st.sel===f.id?' sel':''));
-  document.getElementById('leg').innerHTML='<span>Datasets naming the country</span>'+['0','1','2','3–4','5–7','8+'].map((l,i)=>`<span><i style="background:${i?'var(--h'+i+')':'#E6E6EA'}"></i>${l}</span>`).join('');
-  const sc=scoped();const g=sc.filter(d=>d.footprint.scope==='global').length,u=sc.filter(d=>d.footprint.scope==='unknown').length;
+  const labs=g===0?['0','1','2','3–4','5–7','8+']:[null,`${g} (global only)`,`${g+1}`,`${g+2}–${g+3}`,`${g+4}–${g+6}`,`${g+7}+`];
+  document.getElementById('leg').innerHTML='<span>Datasets covering the country</span>'+labs.map((l,i)=>l==null?'':`<span><i style="background:${i?'var(--h'+i+')':'#E6E6EA'}"></i>${l}</span>`).join('');
+  const sc=scoped();const u=sc.filter(d=>d.footprint.scope==='unknown').length;
   const regs={};sc.filter(d=>d.footprint.scope==='region').forEach(d=>regs[d.footprint.region]=(regs[d.footprint.region]||0)+1);
-  document.getElementById('off').innerHTML=`<span><b>${sc.filter(d=>d.footprint.scope==='countries').length}</b> of ${sc.length} datasets are on the map.</span><span>${g} global or multi-continent</span>${Object.entries(regs).map(([r,n])=>`<span>${n} in ${esc(r)}</span>`).join('')}<span>${u} with no documented geography</span>`;
+  document.getElementById('off').innerHTML=`<span><b>${sc.filter(d=>d.footprint.scope==='countries').length+g}</b> of ${sc.length} datasets are on the map: ${g} global (shaded everywhere) and ${sc.filter(d=>d.footprint.scope==='countries').length} naming countries.</span>${Object.entries(regs).map(([r,n])=>`<span>${n} in ${esc(r)}</span>`).join('')}<span>${u} with no documented geography</span>`;
   const card=document.getElementById('sel-card');
   if(st.sel){const ds=L[st.sel]||[];card.hidden=false;document.getElementById('sel-name').textContent=GEO.features.find(f=>f.id===st.sel)?.properties.name||st.sel;
-    document.getElementById('sel-body').innerHTML=ds.length?ds.map(d=>`<a href="index.html?q=${encodeURIComponent(d.name)}">${esc(d.name)}</a>`).join(''):'<span class="muted">No country-specific dataset in this domain.</span>';}
+    const G=globals(),lk=d=>`<a href="index.html?q=${encodeURIComponent(d.name)}">${esc(d.name)}</a>`;
+    document.getElementById('sel-body').innerHTML=`<span class="small muted">Naming this country (${ds.length})</span>`+(ds.length?ds.map(lk).join(''):'<span class="muted">None in this domain.</span>')+(G.length?`<span class="small muted" style="margin-top:8px">Global (${G.length})</span>`+G.map(lk).join(''):'');}
   else card.hidden=true;
   const q=new URLSearchParams();if(st.dom)q.set('domain',st.dom);history.replaceState(null,'',q.toString()?'?'+q:location.pathname);
 }
