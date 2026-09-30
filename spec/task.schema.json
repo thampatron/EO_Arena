@@ -2,548 +2,231 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/thampatron/EO_Arena/spec/task.schema.json",
   "title": "EOArena task template",
-  "description": "Fixes what a model is given, what it must predict and how it is scored. Version 0.1-draft. Conventions that apply to every task (tensor layout, units, masks, time and location) are in docs/task-template.md and are not repeated per task.",
+  "description": "Version 0.2-draft. Fixes what a model is given, what it must predict and how it is scored. Rules shared by every task (tensor layout, units, masks, runs, tuning, reporting) live in spec/protocols.json and docs/task-template.md. Only the required core is fixed; extra fields are allowed until v1.",
   "type": "object",
-  "required": [
-    "spec_version",
-    "id",
-    "title",
-    "dataset_id",
-    "task_type",
-    "inputs",
-    "sample_metadata",
-    "target",
-    "splits",
-    "evaluation",
-    "provenance",
-    "unverified"
-  ],
-  "additionalProperties": false,
+  "required": ["spec_version", "id", "title", "dataset_id", "task_type", "data", "inputs", "sample_metadata", "target", "splits", "evaluation", "provenance", "unverified"],
   "properties": {
-    "spec_version": {
-      "const": "0.1-draft"
+    "spec_version": {"const": "0.2-draft"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "title": {"type": "string"},
+    "dataset_id": {"type": "string", "description": "Record id in data/datasets.json, which supplies domain, subdomain and licence."},
+    "task_type": {"enum": ["classification", "multilabel-classification", "semantic-segmentation", "pixel-regression", "image-regression", "change-detection", "object-detection"]},
+
+    "data": {
+      "type": "object",
+      "description": "Where the exact data come from. Decision 9.",
+      "required": ["source_url", "revision", "access", "manifest_status"],
+      "properties": {
+        "source_url": {"type": "string", "pattern": "^https?://"},
+        "revision": {"type": ["string", "null"], "description": "Pinned version: a commit hash, DOI version or archive checksum. Null until pinned."},
+        "access": {"enum": ["open", "gated", "registration"]},
+        "manifest_status": {"enum": ["pending", "published"], "description": "Published once every split has a manifest with per-file SHA-256."}
+      }
     },
-    "id": {
-      "type": "string",
-      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
-    },
-    "title": {
-      "type": "string"
-    },
-    "dataset_id": {
-      "type": "string",
-      "description": "Record id in data/datasets.json. Domain, subdomain and licence come from there."
-    },
-    "task_type": {
-      "enum": [
-        "classification",
-        "multilabel-classification",
-        "semantic-segmentation",
-        "pixel-regression",
-        "image-regression",
-        "change-detection",
-        "object-detection"
-      ]
-    },
+
     "inputs": {
       "type": "object",
-      "description": "One entry per modality, keyed by a short name (e.g. s2, s1_asc). Every entry is delivered as a (T, C, H, W) array.",
+      "description": "One entry per modality. Each is delivered as a (T, C, H, W) array with a (T, H, W) boolean valid mask, true = valid.",
       "minProperties": 1,
-      "additionalProperties": {
-        "$ref": "#/$defs/modality"
-      }
+      "additionalProperties": {"$ref": "#/$defs/modality"}
     },
+
     "sample_metadata": {
       "type": "object",
-      "description": "What each sample carries besides pixels. Models decide how to encode it.",
-      "required": [
-        "location",
-        "acquisition_time"
-      ],
-      "additionalProperties": false,
+      "required": ["location", "acquisition_time"],
       "properties": {
-        "location": {
-          "enum": [
-            "centroid",
-            "bbox",
-            "none"
-          ],
-          "description": "Delivered as {lon, lat} in EPSG:4326 (bbox: west, south, east, north)."
-        },
-        "acquisition_time": {
-          "enum": [
-            "per-step",
-            "per-sample",
-            "none"
-          ],
-          "description": "Delivered as ISO 8601 UTC dates."
-        },
-        "source_crs": {
-          "type": "string"
-        },
-        "notes": {
-          "type": "string"
-        }
+        "location": {"enum": ["centroid", "bbox", "none"], "description": "Delivered as {lon, lat} in EPSG:4326."},
+        "acquisition_time": {"enum": ["per-step", "per-sample", "none"], "description": "Delivered as ISO 8601 UTC dates."},
+        "source_crs": {"type": "string"}
       }
     },
+
     "target": {
       "type": "object",
-      "required": [
-        "kind",
-        "grid"
-      ],
-      "additionalProperties": false,
+      "required": ["kind", "grid", "label_source"],
       "properties": {
-        "kind": {
-          "enum": [
-            "class",
-            "multilabel",
-            "per-pixel-class",
-            "per-pixel-value",
-            "value",
-            "change-mask",
-            "boxes"
-          ]
-        },
-        "grid": {
-          "type": "string",
-          "description": "Input modality whose grid the target shares, or 'none' for image-level targets."
-        },
-        "classes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": [
-              "index",
-              "name"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "index": {
-                "type": "integer"
-              },
-              "name": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "ignore_index": {
-          "type": [
-            "integer",
-            "null"
-          ]
-        },
-        "quantity": {
-          "type": "string",
-          "description": "For regression: the physical quantity."
-        },
-        "unit": {
-          "type": "string"
-        },
-        "label_source": {
-          "type": "string",
-          "description": "How labels were made: field survey, photo-interpretation, cadastral declaration, model output, etc."
-        },
-        "notes": {
-          "type": "string"
-        }
+        "kind": {"enum": ["class", "multilabel", "per-pixel-class", "per-pixel-value", "value", "change-mask", "boxes"]},
+        "grid": {"type": "string", "description": "Input modality whose grid the target shares, or 'none' for image-level targets. Metrics are computed on this grid; labels are never resampled to fit a model."},
+        "classes": {"type": "array", "items": {"type": "object", "required": ["index", "name"], "properties": {"index": {"type": "integer"}, "name": {"type": "string"}}}},
+        "ignore_index": {"type": ["integer", "null"]},
+        "quantity": {"type": "string"},
+        "unit": {"type": "string"},
+        "nodata": {"type": ["number", "null"]},
+        "label_source": {"type": "string"}
       }
     },
+
     "splits": {
       "type": "object",
-      "required": [
-        "kind",
-        "definition"
-      ],
-      "additionalProperties": false,
+      "required": ["official", "extra_tests", "label_fractions"],
       "properties": {
-        "kind": {
-          "enum": [
-            "random",
-            "buffered-random",
-            "spatial-blocks",
-            "geographic-regions",
-            "temporal",
-            "predefined-unknown"
-          ]
-        },
-        "definition": {
-          "type": "string",
-          "description": "Exactly how train, val and test are formed, with a link or file."
-        },
-        "counts": {
+        "official": {
           "type": "object",
+          "required": ["kind", "definition", "manifests"],
           "properties": {
-            "train": {
-              "type": "integer"
-            },
-            "val": {
-              "type": "integer"
-            },
-            "test": {
-              "type": "integer"
-            }
-          },
-          "additionalProperties": false
-        },
-        "test_labels_public": {
-          "type": [
-            "boolean",
-            "null"
-          ]
-        }
-      }
-    },
-    "evaluation": {
-      "type": "object",
-      "required": [
-        "primary_metric",
-        "protocols",
-        "seeds",
-        "label_fractions"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "primary_metric": {
-          "$ref": "#/$defs/metric"
-        },
-        "secondary_metrics": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/metric"
+            "kind": {"$ref": "#/$defs/split_kind"},
+            "definition": {"type": "string"},
+            "manifests": {"type": "object", "required": ["train", "val", "test"], "properties": {"train": {"$ref": "#/$defs/manifest"}, "val": {"$ref": "#/$defs/manifest"}, "test": {"$ref": "#/$defs/manifest"}}},
+            "test_labels_public": {"type": ["boolean", "null"]}
           }
         },
-        "protocols": {
+        "extra_tests": {
           "type": "array",
-          "minItems": 1,
+          "description": "Additional test sets, above all an out-of-region one. Decision 3.",
           "items": {
-            "type": "string"
-          },
-          "description": "Ids from spec/protocols.json."
-        },
-        "inference": {
-          "type": "string",
-          "description": "How test predictions are produced, e.g. whole image or sliding window."
-        },
-        "seeds": {
-          "type": "integer",
-          "minimum": 1
+            "type": "object",
+            "required": ["name", "kind", "definition", "status"],
+            "properties": {
+              "name": {"type": "string"},
+              "kind": {"$ref": "#/$defs/split_kind"},
+              "definition": {"type": "string"},
+              "status": {"enum": ["defined-by-dataset", "proposed", "not-possible"]},
+              "manifest": {"$ref": "#/$defs/manifest"}
+            }
+          }
         },
         "label_fractions": {
-          "type": "array",
-          "items": {
-            "type": "number",
-            "exclusiveMinimum": 0,
-            "maximum": 1
-          },
-          "minItems": 1
+          "type": "object",
+          "description": "Nested, stratified training subsets, one subset per run. Decision 6.",
+          "required": ["fractions", "stratify_by", "min_train_samples"],
+          "properties": {
+            "fractions": {"type": "array", "items": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}, "minItems": 1},
+            "stratify_by": {"type": "string"},
+            "min_train_samples": {"type": "integer", "minimum": 1}
+          }
         }
       }
     },
+
+    "evaluation": {
+      "type": "object",
+      "required": ["primary_metric", "tracks"],
+      "properties": {
+        "primary_metric": {"$ref": "#/$defs/metric"},
+        "secondary_metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+        "tracks": {"type": "array", "minItems": 1, "items": {"type": "string"}, "description": "Ranked tracks from spec/protocols.json."},
+        "diagnostics": {"type": "array", "items": {"type": "string"}, "description": "Unranked diagnostics from spec/protocols.json."},
+        "inference": {"type": "string"}
+      }
+    },
+
     "normalisation_stats": {
       "type": "object",
-      "description": "Per-band statistics offered to model adapters, in physical units. Adapters may use them or the model's own pretraining statistics; results record which.",
-      "additionalProperties": false,
-      "required": [
-        "source",
-        "computed_on"
-      ],
+      "description": "Optional. Per-band statistics in physical units, used only for models that ship none. Decision 8.",
+      "required": ["source", "computed_on"],
       "properties": {
-        "source": {
-          "type": "string"
-        },
-        "computed_on": {
-          "type": "string"
-        },
-        "per_modality": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "required": [
-              "mean",
-              "std"
-            ],
-            "properties": {
-              "mean": {
-                "type": "array",
-                "items": {
-                  "type": "number"
-                }
-              },
-              "std": {
-                "type": "array",
-                "items": {
-                  "type": "number"
-                }
-              }
-            }
-          }
-        }
+        "source": {"type": "string"},
+        "computed_on": {"type": "string"},
+        "per_modality": {"type": "object", "additionalProperties": {"type": "object", "required": ["mean", "std"], "properties": {"mean": {"type": "array", "items": {"type": "number"}}, "std": {"type": "array", "items": {"type": "number"}}}}}
       }
     },
-    "harness_notes": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "Where an existing harness (e.g. PANGAEA) implements this task differently from the template."
+
+    "notes": {
+      "type": "object",
+      "description": "Optional and not normative: differences in existing harnesses, open questions.",
+      "properties": {
+        "harness": {"type": "array", "items": {"type": "string"}},
+        "open_questions": {"type": "array", "items": {"type": "string"}}
+      }
     },
+
     "provenance": {
       "type": "object",
-      "required": [
-        "sources"
-      ],
-      "additionalProperties": false,
+      "required": ["sources"],
       "properties": {
-        "sources": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "object",
-            "required": [
-              "label",
-              "url"
-            ],
-            "properties": {
-              "label": {
-                "type": "string"
-              },
-              "url": {
-                "type": "string",
-                "pattern": "^https?://"
-              }
-            }
-          }
-        }
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["label", "url"], "properties": {"label": {"type": "string"}, "url": {"type": "string", "pattern": "^https?://"}}}}
       }
     },
-    "unverified": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^/"
-      },
-      "description": "JSON Pointers to every field not confirmed by a primary source."
-    },
-    "open_questions": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
+    "unverified": {"type": "array", "items": {"type": "string", "pattern": "^/"}, "description": "JSON Pointers to every field not confirmed by a primary source."}
   },
+
   "$defs": {
+    "split_kind": {"enum": ["random", "buffered-random", "spatial-blocks", "geographic-regions", "temporal", "predefined-unknown"]},
+    "manifest": {
+      "type": "object",
+      "required": ["path", "sha256", "n_samples"],
+      "properties": {
+        "path": {"type": "string", "description": "CSV with sample_id, relpath, sha256, bytes (see scripts/make_manifest.py)."},
+        "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$", "description": "Hash of the manifest file itself. Null while pending."},
+        "n_samples": {"type": ["integer", "null"]}
+      }
+    },
     "modality": {
       "type": "object",
-      "required": [
-        "sensor",
-        "product",
-        "quantity",
-        "bands",
-        "raster",
-        "grid",
-        "time",
-        "required"
-      ],
-      "additionalProperties": false,
+      "required": ["sensor", "bands", "raster", "grid", "time"],
       "properties": {
-        "sensor": {
-          "type": "string",
-          "description": "Key in data/sensor_specs.json."
-        },
-        "product": {
-          "type": "string",
-          "description": "Processing level, e.g. L1C, L2A, GRD."
-        },
-        "quantity": {
-          "enum": [
-            "toa_reflectance",
-            "surface_reflectance",
-            "sigma0_backscatter",
-            "gamma0_backscatter",
-            "brightness_temperature",
-            "radiance",
-            "elevation",
-            "rgb_display",
-            "other"
-          ]
-        },
-        "orbit": {
-          "enum": [
-            "ascending",
-            "descending",
-            "both",
-            "unknown"
-          ]
-        },
-        "required": {
-          "type": "boolean",
-          "description": "False if some samples lack this modality; the valid mask then marks it absent."
-        },
+        "sensor": {"type": "string", "description": "Key in data/sensor_specs.json."},
+        "product": {"type": "string"},
+        "quantity": {"enum": ["toa_reflectance", "surface_reflectance", "sigma0_backscatter", "gamma0_backscatter", "brightness_temperature", "radiance", "elevation", "probability", "other"]},
+        "orbit": {"enum": ["ascending", "descending", "both", "unknown"]},
+        "required": {"type": "boolean"},
         "bands": {
           "type": "array",
           "minItems": 1,
           "description": "Channel order of the delivered array.",
           "items": {
             "type": "object",
-            "additionalProperties": false,
             "properties": {
-              "band": {
-                "type": "string",
-                "description": "Band name in the sensor registry."
-              },
-              "name": {
-                "type": "string",
-                "description": "For derived layers only."
-              },
-              "derived_from": {
-                "type": "string",
-                "description": "Formula over registry bands, in the modality's delivered units."
-              }
+              "band": {"type": "string", "description": "Band name in the sensor registry."},
+              "name": {"type": "string"},
+              "derived_from": {"type": "string", "description": "Formula over registry bands, for derived layers."},
+              "auxiliary": {"type": "string", "description": "Non-spectral layer shipped with the modality, e.g. cloud probability."}
             },
-            "oneOf": [
-              {
-                "required": [
-                  "band"
-                ]
-              },
-              {
-                "required": [
-                  "name",
-                  "derived_from"
-                ]
-              }
-            ]
+            "oneOf": [{"required": ["band"]}, {"required": ["name", "derived_from"]}, {"required": ["name", "auxiliary"]}]
           }
         },
         "raster": {
           "type": "object",
-          "description": "How stored values map to physical ones: physical = stored * scale + offset (STAC raster extension convention).",
-          "required": [
-            "stored_dtype",
-            "scale",
-            "offset",
-            "nodata",
-            "unit"
-          ],
-          "additionalProperties": false,
+          "description": "physical = stored * scale + offset (STAC raster extension). Pixels equal to nodata are marked invalid, never passed as values.",
+          "required": ["stored_dtype", "scale", "offset", "nodata", "unit"],
           "properties": {
-            "stored_dtype": {
-              "type": "string"
-            },
-            "scale": {
-              "type": [
-                "number",
-                "null"
-              ]
-            },
-            "offset": {
-              "type": [
-                "number",
-                "null"
-              ]
-            },
-            "nodata": {
-              "type": [
-                "number",
-                "string",
-                "null"
-              ]
-            },
-            "unit": {
-              "type": "string",
-              "description": "Unit after scale and offset: '1' for reflectance, 'dB', 'm', 'K'."
-            }
+            "stored_dtype": {"type": "string"},
+            "scale": {"type": ["number", "null"]},
+            "offset": {"type": ["number", "null"]},
+            "nodata": {"type": ["number", "string", "null"]},
+            "unit": {"type": "string"}
           }
         },
         "grid": {
           "type": "object",
-          "required": [
-            "size_px",
-            "gsd_m"
-          ],
-          "additionalProperties": false,
+          "required": ["size_px", "gsd_m"],
           "properties": {
-            "size_px": {
-              "type": "integer"
-            },
-            "gsd_m": {
-              "type": "number",
-              "description": "Pixel size as delivered, after any resampling."
-            },
-            "resampling": {
-              "type": "string"
-            }
+            "size_px": {"oneOf": [{"type": "integer"}, {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2}]},
+            "gsd_m": {"type": "number"},
+            "resampling": {"type": "string"}
           }
         },
         "time": {
           "type": "object",
-          "required": [
-            "steps",
-            "selection"
-          ],
-          "additionalProperties": false,
+          "description": "Decision 2: multi-step inputs are selected by calendar window, not by index.",
+          "required": ["steps", "selection"],
           "properties": {
-            "steps": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                {
-                  "type": "object",
-                  "required": [
-                    "min",
-                    "max"
-                  ],
-                  "properties": {
-                    "min": {
-                      "type": "integer"
-                    },
-                    "max": {
-                      "type": "integer"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              ]
+            "steps": {"type": "integer", "minimum": 1},
+            "selection": {"enum": ["single", "calendar-windows"]},
+            "windows": {
+              "type": "object",
+              "required": ["period", "n"],
+              "properties": {
+                "period": {"type": "string", "description": "Season covered, as ISO dates or a rule relative to the label date."},
+                "n": {"type": "integer"},
+                "pick": {"enum": ["clearest", "nearest-centre", "median-composite", "mean-composite", "as-provided"]},
+                "empty_window": {"const": "mask-invalid"}
+              }
             },
-            "selection": {
-              "type": "string",
-              "description": "How the delivered steps are chosen from what the dataset holds."
-            },
-            "compositing": {
-              "type": "string"
-            }
-          }
-        },
-        "notes": {
-          "type": "string"
+            "comparison_rule": {"type": "string", "description": "An existing harness's selection rule, run once only to measure the difference."}
+          },
+          "if": {"properties": {"selection": {"const": "calendar-windows"}}},
+          "then": {"required": ["windows"]}
         }
       }
     },
     "metric": {
       "type": "object",
-      "required": [
-        "name",
-        "averaging"
-      ],
-      "additionalProperties": false,
+      "required": ["name", "averaging", "higher_is_better"],
       "properties": {
-        "name": {
-          "type": "string"
-        },
-        "averaging": {
-          "type": "string",
-          "description": "How the metric is reduced: over classes, pixels, images."
-        },
-        "higher_is_better": {
-          "type": "boolean"
-        }
+        "name": {"type": "string"},
+        "averaging": {"type": "string"},
+        "higher_is_better": {"type": "boolean"}
       }
     }
   }

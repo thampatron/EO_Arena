@@ -1,0 +1,194 @@
+{
+ "spec_version": "0.2-draft",
+ "id": "ch4net-plumes",
+ "title": "Methane plume segmentation from Sentinel-2 at known super-emitter sites (CH4Net)",
+ "dataset_id": "ch4net",
+ "task_type": "semantic-segmentation",
+ "data": {
+  "source_url": "https://huggingface.co/datasets/av555/ch4net",
+  "revision": "DOI 10.57967/hf/2117",
+  "access": "gated",
+  "manifest_status": "pending"
+ },
+ "inputs": {
+  "s2": {
+   "sensor": "sentinel-2-msi",
+   "product": "L1C (Sentinel Hub, 'scaled and harmonised')",
+   "quantity": "toa_reflectance",
+   "required": true,
+   "bands": [
+    {
+     "band": "B01"
+    },
+    {
+     "band": "B02"
+    },
+    {
+     "band": "B03"
+    },
+    {
+     "band": "B04"
+    },
+    {
+     "band": "B05"
+    },
+    {
+     "band": "B06"
+    },
+    {
+     "band": "B07"
+    },
+    {
+     "band": "B08"
+    },
+    {
+     "band": "B8A"
+    },
+    {
+     "band": "B09"
+    },
+    {
+     "band": "B10"
+    },
+    {
+     "band": "B11"
+    },
+    {
+     "band": "B12"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "uint8",
+    "scale": null,
+    "offset": null,
+    "nodata": null,
+    "unit": "unknown"
+   },
+   "grid": {
+    "size_px": 200,
+    "gsd_m": 10,
+    "resampling": "all bands interpolated to 10 m (paper)"
+   },
+   "time": {
+    "steps": 1,
+    "selection": "single"
+   },
+   "notes": "The paper uses 13 bands; the released code defaults to 12 channels. Which band is missing, and the scaling applied by Sentinel Hub, are not documented. The multi-band multi-pass (MBMP) images used for labelling are shipped but are not model inputs."
+  }
+ },
+ "sample_metadata": {
+  "location": "none",
+  "acquisition_time": "none"
+ },
+ "target": {
+  "kind": "per-pixel-class",
+  "grid": "s2",
+  "classes": [
+   {
+    "index": 0,
+    "name": "No plume"
+   },
+   {
+    "index": 1,
+    "name": "Plume"
+   }
+  ],
+  "ignore_index": null,
+  "label_source": "hand-drawn by one annotator on MBMP difference images against a clear reference image per site"
+ },
+ "splits": {
+  "official": {
+   "kind": "temporal",
+   "definition": "Train: 2017–2020 images; validation: 256 training images sampled at random, stratified by plume presence; test: all 2021 images (Vaughan et al. 2024). The Hugging Face release has 8,255 / 255 / 2,473 files, which does not match the paper's 10,046 images.",
+   "manifests": {
+    "train": {
+     "path": "manifests/ch4net-plumes/train.csv",
+     "sha256": null,
+     "n_samples": 8255
+    },
+    "val": {
+     "path": "manifests/ch4net-plumes/val.csv",
+     "sha256": null,
+     "n_samples": 255
+    },
+    "test": {
+     "path": "manifests/ch4net-plumes/test.csv",
+     "sha256": null,
+     "n_samples": 2473
+    }
+   },
+   "test_labels_public": true
+  },
+  "extra_tests": [
+   {
+    "name": "new-site",
+    "kind": "geographic-regions",
+    "status": "not-possible",
+    "definition": "All 23 sites appear in both train and test, and the release has no site, date or coordinate metadata, so a held-out-site test cannot be built from it."
+   }
+  ],
+  "label_fractions": {
+   "fractions": [
+    1.0,
+    0.1,
+    0.01
+   ],
+   "stratify_by": "plume presence",
+   "min_train_samples": 10
+  }
+ },
+ "evaluation": {
+  "primary_metric": {
+   "name": "IoU (Plume)",
+   "averaging": "plume-class pixels pooled over the test set",
+   "higher_is_better": true
+  },
+  "secondary_metrics": [
+   {
+    "name": "scene balanced accuracy",
+    "averaging": "over test scenes; a scene is positive if it has a connected region over 115 px with probability ≥ 0.25 (paper rule)",
+    "higher_is_better": true
+   }
+  ],
+  "tracks": [
+   "frozen-decoder",
+   "finetune"
+  ],
+  "diagnostics": [
+   "linear-probe"
+  ],
+  "inference": "whole image scored on the native grid (the paper scores a centred 100 × 100 crop)"
+ },
+ "notes": {
+  "harness": [
+   "Not in any audited benchmark suite; subdomain 6.1 (greenhouse-gas point sources) has no benchmark task.",
+   "The paper trains on random 100 × 100 crops, balancing positives and negatives each epoch."
+  ],
+  "open_questions": [
+   "Licence is CC BY-NC-ND 4.0: EOArena can evaluate on it but probably cannot redistribute converted data, which is a derivative. Users would download it themselves.",
+   "Test images with no plume make pixel IoU dominated by plume scenes; is scene-level balanced accuracy the better primary metric?",
+   "Resolve the released-count mismatch and the 12 vs 13 band question with the authors before publishing results."
+  ]
+ },
+ "provenance": {
+  "sources": [
+   {
+    "label": "CH4Net paper (Vaughan et al. 2024, AMT)",
+    "url": "https://amt.copernicus.org/articles/17/2583/2024/"
+   },
+   {
+    "label": "Hugging Face dataset",
+    "url": "https://huggingface.co/datasets/av555/ch4net"
+   },
+   {
+    "label": "CH4Net code",
+    "url": "https://github.com/annavaughan/CH4Net"
+   }
+  ]
+ },
+ "unverified": [
+  "/inputs/s2/bands",
+  "/inputs/s2/raster/stored_dtype",
+  "/inputs/s2/grid/size_px"
+ ]
+}

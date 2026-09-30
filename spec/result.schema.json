@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thampatron/EO_Arena/spec/result.schema.json",
+  "title": "EOArena result record",
+  "description": "Version 0.2-draft. One record per model, task, track or diagnostic, label fraction and run. Records what the adapter actually did, so that no choice is hidden.",
+  "type": "object",
+  "required": ["spec_version", "model_id", "task_id", "protocol", "label_fraction", "run", "manifests", "adapter", "hyperparameters", "metrics"],
+  "properties": {
+    "spec_version": {"const": "0.2-draft"},
+    "model_id": {"type": "string", "description": "Model card id."},
+    "task_id": {"type": "string"},
+    "protocol": {"type": "string", "description": "Track or diagnostic id from spec/protocols.json."},
+    "test_set": {"type": "string", "default": "official", "description": "'official' or the name of an extra test set."},
+    "label_fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "run": {"type": "integer", "minimum": 0},
+    "manifests": {"type": "object", "description": "SHA-256 of each manifest used, keyed by split.", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "adapter": {
+      "type": "object",
+      "required": ["modalities_used", "bands_used", "fill_rule", "size_rule", "normalisation", "final_only"],
+      "properties": {
+        "modalities_used": {"type": "array", "items": {"type": "string"}},
+        "bands_used": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}}},
+        "fill_rule": {"enum": ["none", "zero", "mean", "model-default"]},
+        "filled_bands": {"type": "array", "items": {"type": "string"}},
+        "size_rule": {"type": "object", "required": ["method"], "properties": {"method": {"enum": ["native", "tile", "upsample-bilinear"]}, "model_input_px": {"type": "integer"}, "stride_px": {"type": "integer"}}},
+        "normalisation": {"enum": ["model", "task"]},
+        "temporal": {"enum": ["native", "per-step-ltae", "single-step"]},
+        "final_only": {"type": "boolean", "description": "True if the model's final layer was fed to every decoder level."}
+      }
+    },
+    "hyperparameters": {"type": "object", "description": "Selected configuration, and the id of the tuning study it came from."},
+    "metrics": {"type": "object", "additionalProperties": {"type": "number"}},
+    "pretraining_overlap": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "code": {"type": "object", "properties": {"repo": {"type": "string"}, "commit": {"type": "string"}}},
+    "compute": {"type": "object", "properties": {"gpu": {"type": "string"}, "hours": {"type": "number"}}}
+  }
+}

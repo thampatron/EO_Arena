@@ -71,7 +71,9 @@ for i, d in enumerate(datasets):
 import jsonschema
 
 schema = json.loads((ROOT / "spec" / "task.schema.json").read_text(encoding="utf-8"))
-protocols = {p["id"]: p for p in json.loads((ROOT / "spec" / "protocols.json").read_text(encoding="utf-8"))["protocols"]}
+_proto = json.loads((ROOT / "spec" / "protocols.json").read_text(encoding="utf-8"))
+tracks = {p["id"]: p for p in _proto["tracks"]}
+diagnostics = {p["id"]: p for p in _proto["diagnostics"]}
 sensors = json.loads((ROOT / "data" / "sensor_specs.json").read_text(encoding="utf-8"))
 dataset_ids = {d.get("id") for d in datasets}
 task_files = sorted((ROOT / "spec" / "tasks").glob("*.json"))
@@ -117,11 +119,12 @@ for path in task_files:
     classes = t.get("target", {}).get("classes")
     if classes and [c["index"] for c in classes] != list(range(len(classes))):
         errors.append(f"{where}: class indices must run 0..n-1 in order")
-    for pid in t.get("evaluation", {}).get("protocols", []):
-        if pid not in protocols:
-            errors.append(f"{where}: unknown protocol '{pid}'")
-        elif t.get("task_type") not in protocols[pid]["task_types"]:
-            errors.append(f"{where}: protocol '{pid}' does not support task type '{t.get('task_type')}'")
+    for field, known in (("tracks", tracks), ("diagnostics", diagnostics)):
+        for pid in t.get("evaluation", {}).get(field, []):
+            if pid not in known:
+                errors.append(f"{where}: unknown {field[:-1]} '{pid}'")
+            elif t.get("task_type") not in known[pid]["task_types"]:
+                errors.append(f"{where}: '{pid}' does not support task type '{t.get('task_type')}'")
     for ptr in t.get("unverified", []):
         try:
             resolve(t, ptr)

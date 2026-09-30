@@ -4294,18 +4294,22 @@
     "human"
    ],
    "tier": [
-    "open"
+    "nc"
    ],
    "ab": [
     "SP"
    ]
   },
-  "licence": "CC BY 4.0",
+  "licence": "CC BY-NC-ND 4.0 (data, Hugging Face); MIT (code)",
   "benchmark_suites": [],
   "sources": [
    {
     "label": "AMT 2024",
     "url": "https://amt.copernicus.org/articles/17/2583/2024/"
+   },
+   {
+    "label": "Hugging Face dataset",
+    "url": "https://huggingface.co/datasets/av555/ch4net"
    }
   ],
   "footprint": {

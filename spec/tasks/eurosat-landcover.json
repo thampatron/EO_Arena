@@ -1,0 +1,230 @@
+{
+ "spec_version": "0.2-draft",
+ "id": "eurosat-landcover",
+ "title": "Land cover classification from single Sentinel-2 patches (EuroSAT, 13 bands)",
+ "dataset_id": "eurosat",
+ "task_type": "classification",
+ "data": {
+  "source_url": "https://huggingface.co/datasets/torchgeo/eurosat",
+  "revision": "1ce6f1bfb56db63fd91b6ecc466ea67f2509774c (EuroSATallBands.zip sha256 751f070f9bffa2eed48b24ca2dd0b02959280c08837e8c9a5532a67ba611df59)",
+  "access": "open",
+  "manifest_status": "pending"
+ },
+ "inputs": {
+  "s2": {
+   "sensor": "sentinel-2-msi",
+   "product": "L1C",
+   "quantity": "toa_reflectance",
+   "required": true,
+   "bands": [
+    {
+     "band": "B01"
+    },
+    {
+     "band": "B02"
+    },
+    {
+     "band": "B03"
+    },
+    {
+     "band": "B04"
+    },
+    {
+     "band": "B05"
+    },
+    {
+     "band": "B06"
+    },
+    {
+     "band": "B07"
+    },
+    {
+     "band": "B08"
+    },
+    {
+     "band": "B09"
+    },
+    {
+     "band": "B10"
+    },
+    {
+     "band": "B11"
+    },
+    {
+     "band": "B12"
+    },
+    {
+     "band": "B8A"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "uint16",
+    "scale": 0.0001,
+    "offset": 0,
+    "nodata": null,
+    "unit": "1"
+   },
+   "grid": {
+    "size_px": 64,
+    "gsd_m": 10,
+    "resampling": "all bands on one ~10 m UTM grid per patch; method not stated"
+   },
+   "time": {
+    "steps": 1,
+    "selection": "single"
+   },
+   "notes": "Channel order puts B8A last, after B12 (TorchGeo all_band_names; confirmed from pixel statistics)."
+  }
+ },
+ "sample_metadata": {
+  "location": "centroid",
+  "acquisition_time": "none",
+  "source_crs": "UTM zone of each patch (from the GeoTIFF)"
+ },
+ "target": {
+  "kind": "class",
+  "grid": "none",
+  "classes": [
+   {
+    "index": 0,
+    "name": "AnnualCrop"
+   },
+   {
+    "index": 1,
+    "name": "Forest"
+   },
+   {
+    "index": 2,
+    "name": "HerbaceousVegetation"
+   },
+   {
+    "index": 3,
+    "name": "Highway"
+   },
+   {
+    "index": 4,
+    "name": "Industrial"
+   },
+   {
+    "index": 5,
+    "name": "Pasture"
+   },
+   {
+    "index": 6,
+    "name": "PermanentCrop"
+   },
+   {
+    "index": 7,
+    "name": "Residential"
+   },
+   {
+    "index": 8,
+    "name": "River"
+   },
+   {
+    "index": 9,
+    "name": "SeaLake"
+   }
+  ],
+  "ignore_index": null,
+  "label_source": "patch-level class assigned by the dataset authors"
+ },
+ "splits": {
+  "official": {
+   "kind": "random",
+   "definition": "TorchGeo EuroSAT split files (60/20/20, from Neumann et al. 2019, arXiv 1911.06721): eurosat-train.txt sha256 1c1d2e85…d695, eurosat-val.txt b385741f…0330, eurosat-test.txt cf379488…c592.",
+   "manifests": {
+    "train": {
+     "path": "manifests/eurosat-landcover/train.csv",
+     "sha256": null,
+     "n_samples": 16200
+    },
+    "val": {
+     "path": "manifests/eurosat-landcover/val.csv",
+     "sha256": null,
+     "n_samples": 5400
+    },
+    "test": {
+     "path": "manifests/eurosat-landcover/test.csv",
+     "sha256": null,
+     "n_samples": 5400
+    }
+   },
+   "test_labels_public": true
+  },
+  "extra_tests": [
+   {
+    "name": "out-of-region",
+    "kind": "geographic-regions",
+    "status": "defined-by-dataset",
+    "definition": "TorchGeo EuroSATSpatial: train, validation and test by longitude (60/20/20); split files eurosat-spatial-{train,val,test}.txt. Cut-off longitudes are not documented in the code."
+   }
+  ],
+  "label_fractions": {
+   "fractions": [
+    1.0,
+    0.1,
+    0.01
+   ],
+   "stratify_by": "class",
+   "min_train_samples": 10
+  }
+ },
+ "evaluation": {
+  "primary_metric": {
+   "name": "overall accuracy",
+   "averaging": "over test images",
+   "higher_is_better": true
+  },
+  "secondary_metrics": [
+   {
+    "name": "macro F1",
+    "averaging": "unweighted mean over the 10 classes",
+    "higher_is_better": true
+   }
+  ],
+  "tracks": [
+   "frozen-decoder",
+   "finetune"
+  ],
+  "diagnostics": [
+   "knn",
+   "linear-probe"
+  ],
+  "inference": "whole 64 × 64 patch; adapters upsample per protocols.json"
+ },
+ "notes": {
+  "harness": [
+   "GEO-Bench m-eurosat records the wrong band name for most channels; its README says the Hugging Face data is not regenerated and the mapping must be applied on load.",
+   "Corley et al. found that upsampling EuroSAT from 64 to 224 px changes kNN accuracy substantially, so the declared size_rule matters here more than on larger tiles."
+  ],
+  "open_questions": [
+   "EuroSAT has no acquisition dates, so date-aware models get none. Acceptable for a single-date task?"
+  ]
+ },
+ "provenance": {
+  "sources": [
+   {
+    "label": "EuroSAT paper (Helber et al.)",
+    "url": "https://arxiv.org/abs/1709.00029"
+   },
+   {
+    "label": "EuroSAT repository",
+    "url": "https://github.com/phelber/EuroSAT"
+   },
+   {
+    "label": "TorchGeo EuroSAT loader",
+    "url": "https://github.com/microsoft/torchgeo/blob/main/torchgeo/datasets/eurosat.py"
+   },
+   {
+    "label": "GEO-Bench known issues",
+    "url": "https://github.com/ServiceNow/geo-bench"
+   }
+  ]
+ },
+ "unverified": [
+  "/inputs/s2/product",
+  "/inputs/s2/raster/scale",
+  "/splits/extra_tests/0/definition"
+ ]
+}

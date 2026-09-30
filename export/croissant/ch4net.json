@@ -49,9 +49,9 @@
  "@type": "sc:Dataset",
  "conformsTo": "http://mlcommons.org/croissant/1.0",
  "name": "CH4Net",
- "description": "Plume segmentation. Inputs: S2. Geography: 23 sites, Turkmenistan; 2017–21. Size: 10,046 images. Licence as stated by the provider: CC BY 4.0.",
+ "description": "Plume segmentation. Inputs: S2. Geography: 23 sites, Turkmenistan; 2017–21. Size: 10,046 images. Licence as stated by the provider: CC BY-NC-ND 4.0 (data, Hugging Face); MIT (code).",
  "url": "https://amt.copernicus.org/articles/17/2583/2024/",
- "license": "https://creativecommons.org/licenses/by/4.0/",
+ "license": "CC BY-NC-ND 4.0 (data, Hugging Face); MIT (code)",
  "keywords": [
   "10–60 m",
   "6.1 Greenhouse gas point sources",
@@ -61,6 +61,8 @@
   "Sentinel-2",
   "Single date"
  ],
- "sameAs": [],
+ "sameAs": [
+  "https://huggingface.co/datasets/av555/ch4net"
+ ],
  "isAccessibleForFree": true
 }

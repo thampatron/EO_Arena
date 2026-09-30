@@ -33,8 +33,10 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 ### Interface spec (draft)
 
 - `docs/model-input-survey.md` and `data/model_inputs.json`: how 10 geospatial foundation models declare their inputs and outputs.
-- `docs/task-template.md`: the task template, its conventions and open decisions.
-- `spec/task.schema.json`, `spec/protocols.json` and `spec/tasks/`: the schema, evaluation protocols and worked examples (PASTIS-R, Sen1Floods11).
+- `docs/decisions-v0.2.md`: evaluation decisions with evidence.
+- `docs/task-template.md`: the v0.2 task template and its conventions.
+- `spec/`: task, result and model-card schemas, shared protocols, and five tasks (PASTIS-R, Sen1Floods11, EuroSAT, BioMassters, CH4Net).
+- `scripts/make_manifest.py` and `scripts/conformance.py`: split manifests with checksums, and a check of real samples against a task.
 
 `scripts/validate.py` checks every record against the vocabulary and every task template against the schema, band registry and protocols. It runs automatically on each pull request.
 

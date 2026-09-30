@@ -1,6 +1,6 @@
 # Evaluation decisions for task template v0.2
 
-Status: proposed, 30 September 2026. Each decision gives the evidence, the reasoning, and what changes in the template. Anything the sources do not settle is marked **UNVERIFIED** or labelled as our own choice.
+Status: implemented in task template v0.2 (see task-template.md), 30 September 2026. Each decision gives the evidence, the reasoning, and what changes in the template. Anything the sources do not settle is marked **UNVERIFIED** or labelled as our own choice.
 
 ## Summary
 

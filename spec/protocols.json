@@ -1,42 +1,80 @@
 {
-  "spec_version": "0.1-draft",
-  "note": "Evaluation protocols a task can name. 'requires' is what the model adapter must return. Values marked TO BE DECIDED are open; the PANGAEA values are copied from its configs (configs/train.yaml, optimizer/adamw.yaml, lr_scheduler/multi_step_lr.yaml, task/segmentation.yaml, decoder/seg_upernet*.yaml).",
-  "protocols": [
+  "spec_version": "0.2-draft",
+  "note": "Rules shared by every task. Rationale and sources: docs/decisions-v0.2.md. Values marked 'our choice' are not taken from a published benchmark and should be tested.",
+
+  "tracks": [
     {
-      "id": "frozen-knn",
-      "summary": "Encoder frozen, no training. k-nearest-neighbour classification on pooled embeddings.",
-      "task_types": ["classification", "multilabel-classification"],
-      "requires": {"pooled_embedding": true, "feature_maps": false},
-      "trained": "nothing",
-      "settings": {"k": "TO BE DECIDED", "distance": "TO BE DECIDED"},
-      "why": "Measures the embedding alone; no optimiser choices to tune."
-    },
-    {
-      "id": "frozen-linear",
-      "summary": "Encoder frozen. A linear layer on the pooled embedding (image-level tasks) or on the last layer's patch tokens, upsampled to the target grid (dense tasks).",
-      "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression"],
-      "requires": {"pooled_embedding": true, "feature_maps": "last layer only (dense tasks)"},
-      "trained": "linear head",
-      "settings": {"optimiser": "TO BE DECIDED", "epochs": "TO BE DECIDED", "lr_sweep": "TO BE DECIDED"},
-      "why": "Every surveyed model can produce this, including Clay and AnySat, which expose no intermediate layers."
-    },
-    {
-      "id": "frozen-upernet-pangaea",
-      "summary": "PANGAEA default: encoder frozen, UPerNet decoder on four encoder layers. Multi-temporal inputs are combined by L-TAE before the decoder.",
-      "task_types": ["semantic-segmentation", "pixel-regression", "change-detection"],
-      "requires": {"pooled_embedding": false, "feature_maps": "four layers, with their strides declared"},
-      "trained": "decoder (and L-TAE for multi-temporal inputs)",
-      "settings": {"decoder_channels": 512, "optimiser": "AdamW, lr 1e-4, betas (0.9, 0.999), weight decay 0.05", "lr_schedule": "multi-step, decay at 60% and 90% of iterations", "epochs": 80, "batch_size": 8, "precision": "fp32", "default_seed": 234},
-      "why": "Comparable with published PANGAEA results. Mixes encoder quality with decoder fit, and is unusable for models without intermediate layers."
+      "id": "frozen-decoder",
+      "ranked": true,
+      "order": 1,
+      "summary": "Encoder frozen; a fixed decoder is trained on its features.",
+      "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression", "change-detection"],
+      "decoder": {
+        "dense": "UPerNet, 512 channels (PANGAEA), on four feature maps declared in the model card. Models that expose only their final layer feed it to all four levels; results are flagged final_only (our choice, to be tested).",
+        "image_level": "MLP, one hidden layer of 512 units, on the pooled embedding (our choice).",
+        "change_detection": "Siamese: shared frozen encoder on both dates, feature difference into the dense decoder (PANGAEA siamese-diff design).",
+        "time_series": "Models that take a time series natively receive it whole. Others encode each step separately and the features are combined by L-TAE before the decoder (PANGAEA)."
+      },
+      "runs": 10,
+      "tuning": {
+        "trials": 16,
+        "sampler": "Optuna TPE",
+        "select_on": "validation primary metric",
+        "space": {"learning_rate": {"log_uniform": [1e-5, 1e-2]}, "batch_size": [8, 16, 32]},
+        "fixed": {"optimiser": "AdamW", "weight_decay": 0.01, "max_epochs": 50, "early_stopping_patience": 10},
+        "source": "Budget and fixed settings from GEO-Bench / GEO-Bench-2; learning-rate range is our choice, covering PANGAEA's 1e-4 default and its sweep."
+      }
     },
     {
       "id": "finetune",
-      "summary": "Encoder and decoder trained together (PANGAEA finetune: true).",
+      "ranked": true,
+      "order": 2,
+      "summary": "Encoder and decoder trained together. Same decoders as frozen-decoder.",
       "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression", "change-detection", "object-detection"],
-      "requires": {"pooled_embedding": false, "feature_maps": "as the decoder needs"},
-      "trained": "encoder and head",
-      "settings": {"encoder_lr": "TO BE DECIDED", "epochs": "TO BE DECIDED"},
-      "why": "Closest to how practitioners use a model; most expensive and most sensitive to tuning."
+      "runs": 5,
+      "tuning": {
+        "trials": 16,
+        "sampler": "Optuna TPE",
+        "select_on": "validation primary metric",
+        "space": {"learning_rate": {"log_uniform": [1e-6, 1e-3]}, "batch_size": [8, 16, 32]},
+        "fixed": {"optimiser": "AdamW", "weight_decay": 0.01, "max_epochs": 50, "early_stopping_patience": 10},
+        "source": "GEO-Bench-2 search space."
+      }
     }
-  ]
+  ],
+
+  "diagnostics": [
+    {"id": "knn", "ranked": false, "task_types": ["classification", "multilabel-classification"], "summary": "k-nearest neighbours on pooled embeddings, k = 20, cosine similarity (our choice). No training."},
+    {"id": "linear-probe", "ranked": false, "task_types": ["classification", "multilabel-classification", "image-regression", "semantic-segmentation", "pixel-regression"], "summary": "Linear layer on the pooled embedding, or a 1×1 convolution on last-layer patch tokens for dense tasks. Same 16-trial budget and fixed settings as frozen-decoder."}
+  ],
+
+  "runs": {
+    "varies": ["weight initialisation of trained parts", "data order", "label subset (at fractions below 1)"],
+    "hyperparameters": "Tuned once per model, task and track at the full label set on the official validation split, then reused for every run and fraction (our choice, to limit cost)."
+  },
+
+  "reporting": {
+    "per_task": "Mean over runs, with a 95% interval from 1,000 bootstrap resamples over runs; a second interval from resampling test samples within runs.",
+    "normalisation": "Min-max per task, using the worst and best mean of the reference model set frozen at v1 release; the reference points are published and reused (GEO-Bench-2 approach).",
+    "aggregate": "Interquartile mean of normalised run scores across tasks, with a stratified bootstrap (runs resampled within each task), 1,000 resamples (GEO-Bench).",
+    "pairwise": "P(A > B) over pairs of runs per task. Pairs with 0.25 < P < 0.75 are reported as tied (Bouthillier et al. threshold).",
+    "track_agreement": "Kendall's tau between the rankings of the two tracks, per task.",
+    "grouping": "Results are ranked within groups of models that read the same set of modalities (from the result's modalities_used).",
+    "raw": "Every run and every tuning trial is published."
+  },
+
+  "adapter_rules": {
+    "bands": "Declare bands_used (task band names) and fill_rule for any band the model expects but the task lacks: none, zero, mean, or model-default. Nothing is dropped or filled silently.",
+    "size": "Bring inputs to the model's input size by tiling with overlap (larger than the model input) or bilinear upsampling (smaller), and declare which, with the stride. No default resampling to the pretraining resolution.",
+    "predictions": "Dense predictions are mapped back to the task's target grid by bilinear interpolation of logits or values; metrics are computed there.",
+    "normalisation": "Use the model's shipped pretraining statistics; if none, the task's normalisation_stats. Record which.",
+    "metadata": "Dates, location and GSD are converted into the model's own encoding by the adapter.",
+    "missing": "Pixels marked invalid are handled by the model's own mask mechanism if it has one; otherwise the fill_rule applies and is recorded."
+  },
+
+  "pretraining_overlap": {
+    "measure": "Share of test samples whose footprint intersects the model's declared pretraining footprint (model card).",
+    "flag_threshold": 0.1,
+    "note": "Threshold is a placeholder to be calibrated. Flagged results are shown, not excluded."
+  }
 }

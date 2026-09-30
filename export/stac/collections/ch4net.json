@@ -3,8 +3,8 @@
  "stac_version": "1.0.0",
  "id": "ch4net",
  "title": "CH4Net",
- "description": "Plume segmentation. Inputs: S2. Geography: 23 sites, Turkmenistan; 2017–21. Size: 10,046 images. Licence as stated by the provider: CC BY 4.0.",
- "license": "CC-BY-4.0",
+ "description": "Plume segmentation. Inputs: S2. Geography: 23 sites, Turkmenistan; 2017–21. Size: 10,046 images. Licence as stated by the provider: CC BY-NC-ND 4.0 (data, Hugging Face); MIT (code).",
+ "license": "other",
  "keywords": [
   "10–60 m",
   "6.1 Greenhouse gas point sources",
@@ -58,7 +58,7 @@
     "human"
    ],
    "tier": [
-    "open"
+    "nc"
    ],
    "ab": [
     "SP"
@@ -91,6 +91,12 @@
    "rel": "describedby",
    "href": "https://amt.copernicus.org/articles/17/2583/2024/",
    "title": "AMT 2024",
+   "type": "text/html"
+  },
+  {
+   "rel": "related",
+   "href": "https://huggingface.co/datasets/av555/ch4net",
+   "title": "Hugging Face dataset",
    "type": "text/html"
   }
  ]

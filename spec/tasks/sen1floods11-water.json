@@ -1,9 +1,15 @@
 {
- "spec_version": "0.1-draft",
+ "spec_version": "0.2-draft",
  "id": "sen1floods11-water",
  "title": "Surface water segmentation from Sentinel-1 and Sentinel-2 (Sen1Floods11, hand-labelled)",
  "dataset_id": "sen1floods11",
  "task_type": "semantic-segmentation",
+ "data": {
+  "source_url": "https://github.com/cloudtostreet/Sen1Floods11",
+  "revision": null,
+  "access": "open",
+  "manifest_status": "pending"
+ },
  "inputs": {
   "s2": {
    "sensor": "sentinel-2-msi",
@@ -65,7 +71,7 @@
    },
    "time": {
     "steps": 1,
-    "selection": "one acquisition per chip"
+    "selection": "single"
    },
    "notes": "No cloud or QA mask is provided."
   },
@@ -96,7 +102,7 @@
    },
    "time": {
     "steps": 1,
-    "selection": "one acquisition per chip; orbit direction varies by event"
+    "selection": "single"
    }
   }
  },
@@ -120,12 +126,49 @@
    }
   ],
   "ignore_index": -1,
-  "label_source": "hand-labelled chips"
+  "label_source": "hand-labelled chips",
+  "nodata": -1
  },
  "splits": {
-  "kind": "random",
-  "definition": "Random 60-20-20 split of hand-labelled chips, excluding Bolivia (Bonafilia et al. 2020); files splits/flood_handlabeled/flood_{train,valid,test}_data.csv, as in PANGAEA sen1floods11.py. All hand-labelled Bolivia chips are held out as a separate test set.",
-  "test_labels_public": true
+  "official": {
+   "kind": "random",
+   "definition": "Random 60-20-20 split of hand-labelled chips, excluding Bolivia (Bonafilia et al. 2020); files splits/flood_handlabeled/flood_{train,valid,test}_data.csv, as in PANGAEA sen1floods11.py. All hand-labelled Bolivia chips are held out as a separate test set.",
+   "manifests": {
+    "train": {
+     "path": "manifests/sen1floods11-water/train.csv",
+     "sha256": null,
+     "n_samples": null
+    },
+    "val": {
+     "path": "manifests/sen1floods11-water/val.csv",
+     "sha256": null,
+     "n_samples": null
+    },
+    "test": {
+     "path": "manifests/sen1floods11-water/test.csv",
+     "sha256": null,
+     "n_samples": null
+    }
+   },
+   "test_labels_public": true
+  },
+  "extra_tests": [
+   {
+    "name": "out-of-region",
+    "kind": "geographic-regions",
+    "status": "defined-by-dataset",
+    "definition": "All hand-labelled chips from Bolivia, held out by the dataset authors (Bonafilia et al. 2020)."
+   }
+  ],
+  "label_fractions": {
+   "fractions": [
+    1.0,
+    0.1,
+    0.01
+   ],
+   "stratify_by": "flood event",
+   "min_train_samples": 10
+  }
  },
  "evaluation": {
   "primary_metric": {
@@ -140,15 +183,14 @@
     "higher_is_better": true
    }
   ],
-  "protocols": [
-   "frozen-linear",
-   "frozen-upernet-pangaea"
+  "tracks": [
+   "frozen-decoder",
+   "finetune"
   ],
-  "inference": "sliding window (PANGAEA default for segmentation)",
-  "seeds": 3,
-  "label_fractions": [
-   1.0
-  ]
+  "diagnostics": [
+   "linear-probe"
+  ],
+  "inference": "whole 512 × 512 chip; adapters tile or upsample per protocols.json"
  },
  "normalisation_stats": {
   "source": "PANGAEA configs/dataset/sen1floods11.yaml, converted with the scale above",
@@ -198,11 +240,16 @@
    }
   }
  },
- "harness_notes": [
-  "PANGAEA replaces NaN in S1 with 0 (sen1floods11.py, __getitem__). 0 dB is strong backscatter, so no-data becomes bright signal with no mask.",
-  "PANGAEA gives chips with missing event metadata the date 13 October 1998 without flagging it.",
-  "PANGAEA encodes the date as [year, day of year (0-based), hour]."
- ],
+ "notes": {
+  "harness": [
+   "PANGAEA replaces NaN in S1 with 0 (sen1floods11.py, __getitem__). 0 dB is strong backscatter, so no-data becomes bright signal with no mask.",
+   "PANGAEA gives chips with missing event metadata the date 13 October 1998 without flagging it.",
+   "PANGAEA encodes the date as [year, day of year (0-based), hour]."
+  ],
+  "open_questions": [
+   "Is an S1-only variant a separate task? It is the use case the dataset was built for (flood mapping through cloud)."
+  ]
+ },
  "provenance": {
   "sources": [
    {
@@ -226,10 +273,8 @@
  "unverified": [
   "/inputs/s2/raster/nodata",
   "/inputs/s1/quantity",
+  "/inputs/s1/raster/nodata",
+  "/data/revision",
   "/normalisation_stats/computed_on"
- ],
- "open_questions": [
-  "Report the Bolivia hold-out as the out-of-region test split (see docs/decisions-v0.2.md, decision 3).",
-  "Is S1-only a separate task? It is the use case the dataset was built for (flood mapping through cloud)."
  ]
 }

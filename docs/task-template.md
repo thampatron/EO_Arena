@@ -1,83 +1,83 @@
-# Task template, v0.1 draft
+# Task template, v0.2 draft
 
-A task template fixes three things: what a model is given, what it must predict, and how it is scored. It is written once per task, and every model is evaluated against it through its own adapter.
+A task template fixes three things: what a model is given, what it must predict, and how it is scored. v0.2 implements the decisions in [decisions-v0.2.md](decisions-v0.2.md), which gives the evidence for each. The input conventions come from the [model input survey](model-input-survey.md).
 
-The template is built from the [model input survey](model-input-survey.md). Where existing tools already agree, we adopt their convention. Where they disagree, the template picks one convention and the model adapter converts to whatever its model expects.
-
-Files:
+## Files
 
 | File | What it is |
 |---|---|
-| [`spec/task.schema.json`](../spec/task.schema.json) | JSON Schema for a task |
-| [`spec/protocols.json`](../spec/protocols.json) | Evaluation protocols a task can name |
-| [`spec/tasks/`](../spec/tasks) | Worked examples: PASTIS-R crop types, Sen1Floods11 surface water |
-| [`scripts/validate.py`](../scripts/validate.py) | Checks each task against the schema, the band registry, the dataset list and the protocols |
+| [`spec/task.schema.json`](../spec/task.schema.json) | Schema for a task. Only a core is required; extra fields are allowed until v1 |
+| [`spec/protocols.json`](../spec/protocols.json) | Rules shared by every task: tracks, runs, tuning, reporting, adapter rules, pretraining overlap |
+| [`spec/result.schema.json`](../spec/result.schema.json) | One record per model, task, track, label fraction and run, including what the adapter did |
+| [`spec/model_card.schema.json`](../spec/model_card.schema.json) | Stub: what a model must declare (inputs, outputs, pretraining footprint) |
+| [`spec/tasks/`](../spec/tasks) | Five tasks (below) |
+| [`scripts/validate.py`](../scripts/validate.py) | Checks tasks against the schema, band registry, dataset list and protocols (runs in CI) |
+| [`scripts/make_manifest.py`](../scripts/make_manifest.py) | Builds split manifests with per-file SHA-256, and nested label-fraction subsets |
+| [`scripts/conformance.py`](../scripts/conformance.py) | Checks real samples against a task: shape, dtype, nodata masking, physical value range, dates, location, labels |
+
+## The five tasks
+
+| Task | Type | Inputs | Official split | Extra test | Why it is here |
+|---|---|---|---|---|---|
+| `pastis-r-cropseg` | segmentation | S2 L2A + S1 ascending, 6 calendar windows | folds with a 1 km buffer | hold out tile T32ULU (proposed) | multi-temporal, multi-modal |
+| `sen1floods11-water` | segmentation | S2 L1C + S1, single date | random 60/20/20 | Bolivia (defined by the dataset) | S1 no-data handling |
+| `eurosat-landcover` | classification | S2, 13 bands, 64 px | random 60/20/20 (TorchGeo) | longitude split (TorchGeo EuroSATSpatial) | image-level path; small inputs |
+| `biomassters-agb` | pixel regression | S2 L2A + S1 asc + S1 desc, 12 months | random within year | 2021 held out; spatial blocks (proposed) | physical-unit target; missing months |
+| `ch4net-plumes` | segmentation | S2 L1C, single date | temporal (2021 test) | new site: not possible | subdomain 6.1 has no benchmark task |
 
 ## Conventions that hold for every task
 
-These are fixed by the spec, not chosen per task. Each one answers a problem found in the survey.
-
-| Convention | Rule | Survey problem it removes |
-|---|---|---|
-| Inputs | A dictionary keyed by modality (`s2`, `s1_asc`, …) | Channel-stacking sensors with different grids and dates |
-| Layout | Each modality is `(T, C, H, W)` per sample, `(B, T, C, H, W)` batched | Five different layouts across models |
-| Band identity | Every channel names a band in `data/sensor_specs.json`. Wavelengths are in µm; SAR bands carry polarisation and frequency | B02 vs B2 vs BLUE; µm vs nm; SAR placeholders |
-| Derived layers | Declared by formula (`VV - VH`), never by name alone | PASTIS's ambiguous `VV-VH` layer |
-| Values | Delivered in physical units: reflectance 0–1, backscatter in dB. Each modality declares `scale`, `offset`, `nodata` and `unit`, following the STAC raster extension | Undeclared ×10⁴ scaling, linear vs dB |
-| Missing data | A boolean `valid` mask per modality, shape `(T, H, W)`, where **true = valid**. No-data pixels are never replaced by a number | AnySat 1 = valid vs Galileo 1 = missing; PANGAEA turning S1 NaN into 0 dB |
-| Time | ISO 8601 UTC date per time step, per modality | Five date encodings; 0- vs 1-based day of year |
-| Location | `{lon, lat}` in EPSG:4326, as named keys | lat/lon order disagreements |
-| Resolution | `gsd_m` of the delivered grid, per modality | Only two models take GSD; the rest assume it |
-| Normalisation | Not applied by the task. The task offers train-split statistics; the adapter uses them or its model's pretraining statistics, and the result records which | PANGAEA normalising with dataset statistics against the model authors' intent |
-
-## Rules for model adapters
-
-The template is task-side. These rules, which the model-side contract will formalise, keep comparisons honest:
-
-1. **No silent band handling.** An adapter declares which task bands it uses and how it fills bands the model expects but the task lacks. Every result records `bands_used` and `fill_rule`. This replaces PANGAEA's silent drop and zero-fill.
-2. **Encoding happens in the adapter.** Dates, location and GSD are converted there into the model's format: Prithvi's `[year, doy]`, Galileo's months, Clay's sin/cos, and so on.
-3. **Declared outputs.** An adapter returns a pooled embedding, a list of feature maps with their strides, or both. A protocol that needs something the model cannot give is reported as not applicable, not approximated.
-
-## Fields of a task
-
-| Field | Holds |
+| Convention | Rule |
 |---|---|
-| `id`, `title`, `dataset_id` | The link to `data/datasets.json`, which supplies domain, subdomain and licence |
-| `task_type` | classification, multilabel, segmentation, pixel or image regression, change detection, detection |
-| `inputs.<modality>` | `sensor`, `product` (L1C, L2A, GRD), `quantity` (TOA or surface reflectance, σ⁰…), `orbit`, `required`, `bands`, `raster`, `grid`, `time`. `time.selection` must say how the delivered steps are chosen |
-| `sample_metadata` | Whether location and dates exist, and at what granularity |
-| `target` | Kind, the grid it shares, classes with indices, `ignore_index`, units for regression, `label_source` |
-| `splits` | Kind (random, spatial blocks, regions, temporal, or predefined-unknown) and the exact definition |
-| `evaluation` | Primary and secondary metrics with their averaging, protocols, inference mode, number of seeds, label fractions |
-| `normalisation_stats` | Optional per-band mean and std in physical units, with where they were computed |
-| `harness_notes` | Where PANGAEA or another harness does something different |
-| `unverified` | JSON Pointers to every field not confirmed by a primary source; the validator checks they resolve |
-| `open_questions` | Decisions still to take for this task |
+| Inputs | A dictionary keyed by modality; each is `(T, C, H, W)` with a `(T, H, W)` boolean valid mask, **true = valid** |
+| Bands | Every channel names a band in `data/sensor_specs.json` (wavelengths in µm), or is a declared derived or auxiliary layer |
+| Values | Physical units: physical = stored × scale + offset. Pixels equal to nodata are marked invalid and never passed as values |
+| Time | Multi-step inputs are chosen by calendar window, not by index. Every step carries an ISO 8601 date (a month, `YYYY-MM`, for monthly composites). Empty windows are masked invalid. An existing harness's rule is kept only as `comparison_rule`, run once to measure the difference |
+| Location | `{lon, lat}` in EPSG:4326 |
+| Target | Metrics are computed on the task's target grid; labels are never resampled to fit a model |
+| Data | Every split and label subset is a manifest of sample ids and per-file SHA-256 at a pinned revision |
 
-## Protocols
+## Evaluation (from `spec/protocols.json`)
 
-| Protocol | Trained | Model must return | Notes |
-|---|---|---|---|
-| `frozen-knn` | nothing | pooled embedding | Classification only |
-| `frozen-linear` | linear head | pooled embedding, or last-layer tokens for dense tasks | Every surveyed model can run it |
-| `frozen-upernet-pangaea` | UPerNet (+ L-TAE for time series) | four feature maps | PANGAEA defaults: AdamW 1e-4, 80 epochs, batch 8 |
-| `finetune` | encoder and head | as the head needs | Budget to be decided |
+- **Ranked tracks:**
+  - `frozen-decoder`: UPerNet for dense tasks, an MLP for image-level tasks, L-TAE for single-step models on time series; 10 runs.
+  - `finetune`: 5 runs.
+- **Unranked diagnostics:** `knn` and `linear-probe`.
+- **Tuning:** 16 Optuna TPE trials per model, task and track, selected on validation only. Learning rate 1e-5 to 1e-2 on the frozen track and 1e-6 to 1e-3 for fine-tuning; batch size 8, 16 or 32; AdamW, weight decay 0.01, up to 50 epochs, early stopping after 10.
+- **Label fractions:** 100%, 10% and 1%, nested and stratified, one subset per run. Fractions leaving fewer than the task's minimum sample count are skipped.
+- **Reporting:**
+  - per task, a 95% bootstrap interval over runs and over test samples;
+  - across tasks, the interquartile mean of min-max normalised scores with a stratified bootstrap;
+  - pairwise, P(A>B), with 0.25–0.75 reported as tied;
+  - Kendall's τ between the two tracks;
+  - results grouped by the modalities each model read;
+  - every run and trial published.
+- **Adapter rules:** declare the bands used and the fill rule, the resizing method (tile or bilinear upsampling, no resampling to the pretraining resolution) and the normalisation source; map predictions back to the target grid. The result record stores all of it.
+- **Pretraining overlap:** the share of test samples inside the model's declared pretraining footprint. Results are flagged above 0.1 (a placeholder), never excluded.
 
-The two example tasks use three seeds, not PANGAEA's single default seed, so that between-model differences can be compared against seed noise. This is the quantity the aggregation rule needs.
+## What is not done yet
 
-## What the worked examples showed
+- **Manifests.** None are built yet; every task has `manifest_status: pending`. Building them needs the data downloaded, and each dataset converted into the delivery format the conformance check expects.
+- **Tool testing.** The conformance and manifest scripts were tested on synthetic samples only.
+- **Choices still to test:**
+  - the final-layer-only rule for Clay and AnySat;
+  - the learning-rate range for the frozen track;
+  - kNN with k = 20;
+  - the MLP head size;
+  - tuning once at 100% labels and reusing the result for every fraction.
+- **Model cards.** Only a stub exists; the model-side contract is the next step.
 
-Writing the two examples from primary sources turned up problems in the current PANGAEA versions:
+## What writing the new tasks found
 
-- **PASTIS-R.** PANGAEA chooses 6 time steps by index, not date, and drops the dates, so no model can use acquisition time. It uses only the ascending Sentinel-1 series. The S2 product level, the scale factor and the meaning of the third SAR layer are not stated in the dataset's README.
-- **Sen1Floods11.** PANGAEA replaces S1 no-data (NaN) with 0 dB, which is bright backscatter, with no mask. Chips without event metadata get the date 13 October 1998. The README confirms L1C TOA reflectance ×10⁴ and S1 in dB.
-
-## Decisions for the lab
-
-Proposed answers, with evidence, are in [decisions-v0.2.md](decisions-v0.2.md).
-
-1. **Time-step selection.** Should we keep PANGAEA's 6 index-spaced steps for comparability, or pick steps by calendar date?
-2. **Variable-length series.** Should a task also offer the full series for models built for it?
-3. **Default protocol for the leaderboard.** `frozen-linear` measures the representation and runs on every model; `frozen-upernet-pangaea` matches published numbers but excludes Clay and AnySat.
-4. **Splits.** Neither example's official split is region-disjoint (PASTIS folds are buffered by 1 km within the same tiles; Sen1Floods11 is random, with Bolivia held out). Should we add a spatial split alongside the official one?
-5. **Label fractions.** Should every task also run at, for example, 1% and 10% of training labels?
+- **CH4Net:**
+  - Its data are licensed **CC BY-NC-ND 4.0** on Hugging Face, not CC BY 4.0 as our taxonomy said; the record is now corrected. EOArena probably cannot redistribute converted copies.
+  - The release has 8,255 / 255 / 2,473 files, which does not match the paper's 10,046 images.
+  - The code uses 12 bands where the paper says 13.
+  - There is no site or date metadata.
+- **BioMassters:**
+  - PANGAEA's normalisation statistics are placeholder zeros.
+  - PANGAEA fills missing months and S1 no-data with zeros without masking them.
+  - PANGAEA's RMSE is not the competition's per-chip RMSE.
+  - Sources disagree on whether label 0 can mean missing data, and on the unit.
+- **EuroSAT:** the channel order puts B8A after B12. GEO-Bench's `m-eurosat` records the wrong band names for most channels.
+- **PASTIS:** the four tiles span 2018-09-17 to 2019-10-27. No cloud mask is shipped, so windows use the acquisition nearest each window's centre.

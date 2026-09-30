@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thampatron/EO_Arena/spec/model_card.schema.json",
+  "title": "EOArena model card (stub)",
+  "description": "Version 0.2-draft stub, to be completed with the model-side contract. Holds the declarations the task template relies on.",
+  "type": "object",
+  "required": ["spec_version", "id", "name", "weights", "inputs", "outputs", "pretraining_footprint"],
+  "properties": {
+    "spec_version": {"const": "0.2-draft"},
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "weights": {"type": "object", "required": ["url", "licence"], "properties": {"url": {"type": "string"}, "licence": {"type": "string"}, "sha256": {"type": "string"}}},
+    "inputs": {
+      "type": "object",
+      "required": ["band_identity", "input_px", "temporal"],
+      "properties": {
+        "band_identity": {"enum": ["fixed-list", "wavelength-conditioned"]},
+        "bands": {"type": "object", "description": "For fixed-list models: expected registry bands per modality.", "additionalProperties": {"type": "array", "items": {"type": "string"}}},
+        "input_px": {"description": "Fixed input size, or 'flexible' with a divisibility constraint.", "oneOf": [{"type": "integer"}, {"type": "string"}]},
+        "temporal": {"enum": ["native", "single-step"]},
+        "normalisation_stats": {"type": ["string", "null"], "description": "Where the shipped pretraining statistics are, or null if none."}
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["pooled", "feature_maps"],
+      "properties": {
+        "pooled": {"type": "boolean"},
+        "feature_maps": {"type": "array", "items": {"type": "object", "required": ["layer", "stride", "dim"], "properties": {"layer": {"type": ["integer", "string"]}, "stride": {"type": "integer"}, "dim": {"type": "integer"}}}}
+      }
+    },
+    "pretraining_footprint": {
+      "type": "object",
+      "required": ["datasets"],
+      "properties": {
+        "datasets": {"type": "array", "items": {"type": "string"}},
+        "geometry": {"type": ["string", "null"], "description": "Path to a GeoJSON of pretraining sample footprints, or null if unknown."},
+        "period": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

@@ -1,13 +1,19 @@
 {
- "spec_version": "0.1-draft",
+ "spec_version": "0.2-draft",
  "id": "pastis-r-cropseg",
  "title": "Crop type segmentation from Sentinel-2 and Sentinel-1 time series (PASTIS-R)",
  "dataset_id": "pastis-pastis-r",
  "task_type": "semantic-segmentation",
+ "data": {
+  "source_url": "https://zenodo.org/record/5735646",
+  "revision": "Zenodo record 5735646 (DOI 10.5281/zenodo.5735646)",
+  "access": "open",
+  "manifest_status": "pending"
+ },
  "inputs": {
   "s2": {
    "sensor": "sentinel-2-msi",
-   "product": "L2A",
+   "product": "L2A (THEIA)",
    "quantity": "surface_reflectance",
    "required": true,
    "bands": [
@@ -52,14 +58,20 @@
    "grid": {
     "size_px": 128,
     "gsd_m": 10,
-    "resampling": "20 m bands delivered at 10 m by the dataset; method not stated"
+    "resampling": "all bands resampled to 10 m with bilinear interpolation (PASTIS documentation)"
    },
    "time": {
     "steps": 6,
-    "selection": "6 acquisitions at evenly spaced indices of the series (PANGAEA rule, kept for comparability). The dates of the chosen acquisitions are delivered with them.",
-    "compositing": "none"
+    "selection": "calendar-windows",
+    "windows": {
+     "period": "2018-09-01 to 2019-10-31 (acquisitions in metadata.geojson run from 2018-09-17 to 2019-10-27)",
+     "n": 6,
+     "pick": "nearest-centre",
+     "empty_window": "mask-invalid"
+    },
+    "comparison_rule": "PANGAEA: 6 acquisitions at evenly spaced indices, dates dropped"
    },
-   "notes": "The full series holds 38–61 acquisitions per patch."
+   "notes": "38–61 acquisitions per patch. No cloud mask is shipped, so 'clearest' cannot be computed; the acquisition nearest each window centre is used."
   },
   "s1_asc": {
    "sensor": "sentinel-1-iw",
@@ -76,7 +88,7 @@
     },
     {
      "name": "VV/VH",
-     "derived_from": "VV - VH"
+     "derived_from": "VV / VH ratio (whether computed in linear or dB units is not stated)"
     }
    ],
    "raster": {
@@ -92,15 +104,22 @@
    },
    "time": {
     "steps": 6,
-    "selection": "Same rule as s2, applied independently to the ascending series (about 70 acquisitions), so S1 and S2 steps do not share dates."
-   }
+    "selection": "calendar-windows",
+    "windows": {
+     "period": "same six windows as s2",
+     "n": 6,
+     "pick": "nearest-centre",
+     "empty_window": "mask-invalid"
+    },
+    "comparison_rule": "PANGAEA: 6 acquisitions at evenly spaced indices, dates dropped"
+   },
+   "notes": "About 70 ascending acquisitions per patch. No speckle filtering or terrain correction (PASTIS-R paper)."
   }
  },
  "sample_metadata": {
   "location": "centroid",
   "acquisition_time": "per-step",
-  "source_crs": "EPSG:2154",
-  "notes": "Dates come from metadata.geojson (dates-S2, dates-S1A)."
+  "source_crs": "EPSG:2154"
  },
  "target": {
   "kind": "per-pixel-class",
@@ -192,9 +211,45 @@
   "notes": "Background is non-agricultural land and is scored as a class. Void marks parcels mostly outside the patch."
  },
  "splits": {
-  "kind": "buffered-random",
-  "definition": "Official 5-fold split in metadata.geojson, folds chosen 'with a 1km buffer between images' (Garnot & Landrieu 2021, §4.1) but interleaved within the same Sentinel-2 tiles; folds 1–3 train, 4 val, 5 test (as in PANGAEA pastis.py).",
-  "test_labels_public": true
+  "official": {
+   "kind": "buffered-random",
+   "definition": "Official 5-fold split in metadata.geojson, folds chosen 'with a 1km buffer between images' (Garnot & Landrieu 2021, §4.1) but interleaved within the same Sentinel-2 tiles; folds 1–3 train, 4 val, 5 test (as in PANGAEA pastis.py).",
+   "manifests": {
+    "train": {
+     "path": "manifests/pastis-r-cropseg/train.csv",
+     "sha256": null,
+     "n_samples": 1455
+    },
+    "val": {
+     "path": "manifests/pastis-r-cropseg/val.csv",
+     "sha256": null,
+     "n_samples": 482
+    },
+    "test": {
+     "path": "manifests/pastis-r-cropseg/test.csv",
+     "sha256": null,
+     "n_samples": 496
+    }
+   },
+   "test_labels_public": true
+  },
+  "extra_tests": [
+   {
+    "name": "out-of-region",
+    "kind": "geographic-regions",
+    "status": "proposed",
+    "definition": "Hold out every patch of Sentinel-2 tile T32ULU (556 patches, the only tile in UTM zone 32); train and validate on tiles T31TFM, T31TFJ and T30UXV."
+   }
+  ],
+  "label_fractions": {
+   "fractions": [
+    1.0,
+    0.1,
+    0.01
+   ],
+   "stratify_by": "majority crop class of the patch",
+   "min_train_samples": 10
+  }
  },
  "evaluation": {
   "primary_metric": {
@@ -209,15 +264,14 @@
     "higher_is_better": true
    }
   ],
-  "protocols": [
-   "frozen-linear",
-   "frozen-upernet-pangaea"
+  "tracks": [
+   "frozen-decoder",
+   "finetune"
   ],
-  "inference": "sliding window (PANGAEA default for segmentation)",
-  "seeds": 3,
-  "label_fractions": [
-   1.0
-  ]
+  "diagnostics": [
+   "linear-probe"
+  ],
+  "inference": "whole 128 × 128 patch; adapters tile or upsample per protocols.json"
  },
  "normalisation_stats": {
   "source": "PANGAEA configs/dataset/pastis.yaml, converted with the scale above",
@@ -263,11 +317,16 @@
    }
   }
  },
- "harness_notes": [
-  "PANGAEA picks time steps by index, not by date, and returns empty metadata, so dates never reach the model (pangaea/datasets/pastis.py, __getitem__).",
-  "PANGAEA uses only the ascending Sentinel-1 series; PASTIS-R also has a descending one.",
-  "PANGAEA's config lists data_min of -10000 for every S2 band, so no-data pixels appear to be passed to models as values."
- ],
+ "notes": {
+  "harness": [
+   "PANGAEA picks time steps by index, not by date, and returns empty metadata, so dates never reach the model (pangaea/datasets/pastis.py, __getitem__).",
+   "PANGAEA uses only the ascending Sentinel-1 series; PASTIS-R also has a descending one.",
+   "PANGAEA's config lists data_min of -10000 for every S2 band, so no-data pixels appear to be passed to models as values."
+  ],
+  "open_questions": [
+   "Is nearest-centre the right pick without a cloud mask, or should S2 windows use a median composite?"
+  ]
+ },
  "provenance": {
   "sources": [
    {
@@ -289,26 +348,22 @@
    {
     "label": "Garnot & Landrieu 2021 (PASTIS paper)",
     "url": "https://arxiv.org/abs/2107.07933"
+   },
+   {
+    "label": "PASTIS documentation (PDF)",
+    "url": "https://github.com/VSainteuf/pastis-benchmark/blob/main/documentation/pastis-documentation.pdf"
+   },
+   {
+    "label": "PASTIS-R paper (Garnot et al. 2022)",
+    "url": "https://arxiv.org/abs/2112.07558"
    }
   ]
  },
  "unverified": [
-  "/inputs/s2/product",
-  "/inputs/s2/quantity",
-  "/inputs/s2/raster/stored_dtype",
   "/inputs/s2/raster/scale",
   "/inputs/s2/raster/nodata",
-  "/inputs/s1_asc/product",
-  "/inputs/s1_asc/quantity",
   "/inputs/s1_asc/raster/stored_dtype",
-  "/inputs/s1_asc/raster/unit",
   "/inputs/s1_asc/bands/2/derived_from",
-  "/sample_metadata/source_crs",
   "/normalisation_stats/computed_on"
- ],
- "open_questions": [
-  "Keep PANGAEA's 6 index-spaced steps for comparability, or choose steps by calendar date so every model sees the same season?",
-  "Should the task also offer the full variable-length series for models built for it (Galileo up to 24 steps, AnySat any length)?",
-  "Add an out-of-region test split holding out whole Sentinel-2 tiles (see docs/decisions-v0.2.md, decision 3)."
  ]
 }

@@ -1,0 +1,285 @@
+{
+ "spec_version": "0.2-draft",
+ "id": "biomassters-agb",
+ "title": "Above-ground biomass regression from Sentinel-1 and Sentinel-2 monthly series (BioMassters)",
+ "dataset_id": "biomassters",
+ "task_type": "pixel-regression",
+ "data": {
+  "source_url": "https://huggingface.co/datasets/nascetti-a/BioMassters",
+  "revision": null,
+  "access": "open",
+  "manifest_status": "pending"
+ },
+ "inputs": {
+  "s2": {
+   "sensor": "sentinel-2-msi",
+   "product": "L2A (sen2cor)",
+   "quantity": "surface_reflectance",
+   "required": false,
+   "bands": [
+    {
+     "band": "B02"
+    },
+    {
+     "band": "B03"
+    },
+    {
+     "band": "B04"
+    },
+    {
+     "band": "B05"
+    },
+    {
+     "band": "B06"
+    },
+    {
+     "band": "B07"
+    },
+    {
+     "band": "B08"
+    },
+    {
+     "band": "B8A"
+    },
+    {
+     "band": "B11"
+    },
+    {
+     "band": "B12"
+    },
+    {
+     "name": "CLP",
+     "auxiliary": "cloud probability 0–100; 255 = obscured by noise"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "uint16",
+    "scale": 0.0001,
+    "offset": 0,
+    "nodata": null,
+    "unit": "1"
+   },
+   "grid": {
+    "size_px": 256,
+    "gsd_m": 10
+   },
+   "time": {
+    "steps": 12,
+    "selection": "calendar-windows",
+    "windows": {
+     "period": "September of the year before the label to August of the label year",
+     "n": 12,
+     "pick": "as-provided",
+     "empty_window": "mask-invalid"
+    },
+    "comparison_rule": "PANGAEA: all 12 months, missing months zero-filled and not masked"
+   },
+   "notes": "The dataset already provides the least cloudy image per month (chosen with the CLP mask). A month with no file is marked invalid. CLP is scaled differently from the reflectance bands (scale 1)."
+  },
+  "s1_asc": {
+   "sensor": "sentinel-1-iw",
+   "product": "GRD (processed in Google Earth Engine)",
+   "quantity": "sigma0_backscatter",
+   "orbit": "ascending",
+   "required": false,
+   "bands": [
+    {
+     "band": "VV"
+    },
+    {
+     "band": "VH"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "float32",
+    "scale": 1,
+    "offset": 0,
+    "nodata": -9999,
+    "unit": "dB"
+   },
+   "grid": {
+    "size_px": 256,
+    "gsd_m": 10
+   },
+   "time": {
+    "steps": 12,
+    "selection": "calendar-windows",
+    "windows": {
+     "period": "same 12 months as s2",
+     "n": 12,
+     "pick": "mean-composite",
+     "empty_window": "mask-invalid"
+    }
+   },
+   "notes": "Channels 1–2 of each S1 file. Monthly mean of all acquisitions; values below −25 dB masked by the dataset authors."
+  },
+  "s1_dsc": {
+   "sensor": "sentinel-1-iw",
+   "product": "GRD (processed in Google Earth Engine)",
+   "quantity": "sigma0_backscatter",
+   "orbit": "descending",
+   "required": false,
+   "bands": [
+    {
+     "band": "VV"
+    },
+    {
+     "band": "VH"
+    }
+   ],
+   "raster": {
+    "stored_dtype": "float32",
+    "scale": 1,
+    "offset": 0,
+    "nodata": -9999,
+    "unit": "dB"
+   },
+   "grid": {
+    "size_px": 256,
+    "gsd_m": 10
+   },
+   "time": {
+    "steps": 12,
+    "selection": "calendar-windows",
+    "windows": {
+     "period": "same 12 months as s2",
+     "n": 12,
+     "pick": "mean-composite",
+     "empty_window": "mask-invalid"
+    }
+   },
+   "notes": "Channels 3–4 of each S1 file."
+  }
+ },
+ "sample_metadata": {
+  "location": "none",
+  "acquisition_time": "per-step"
+ },
+ "target": {
+  "kind": "per-pixel-value",
+  "grid": "s2",
+  "quantity": "above-ground biomass",
+  "unit": "t per 10 m pixel",
+  "nodata": null,
+  "label_source": "airborne LiDAR calibrated with field plots, converted to AGB by allometric equations (Finnish Forest Centre), originally on a 16 m grid"
+ },
+ "splits": {
+  "official": {
+   "kind": "random",
+   "definition": "Test: 30% of chips from 2018, 2020 and 2021 and 20% from 2019, chosen at random; all 2017 chips in train (Nascetti et al. 2023). The original release has no validation split; EOArena draws 20% of training chips at random, stratified by year (our choice).",
+   "manifests": {
+    "train": {
+     "path": "manifests/biomassters-agb/train.csv",
+     "sha256": null,
+     "n_samples": 8689
+    },
+    "val": {
+     "path": "manifests/biomassters-agb/val.csv",
+     "sha256": null,
+     "n_samples": null
+    },
+    "test": {
+     "path": "manifests/biomassters-agb/test.csv",
+     "sha256": null,
+     "n_samples": null
+    }
+   },
+   "test_labels_public": true
+  },
+  "extra_tests": [
+   {
+    "name": "later-year",
+    "kind": "temporal",
+    "status": "proposed",
+    "definition": "Train on chips labelled 2017–2020, test on 2021 chips."
+   },
+   {
+    "name": "out-of-region",
+    "kind": "spatial-blocks",
+    "status": "proposed",
+    "definition": "Spatial blocks, if chip locations can be recovered; GEO-Bench-2 reports merging location from a metadata table."
+   }
+  ],
+  "label_fractions": {
+   "fractions": [
+    1.0,
+    0.1,
+    0.01
+   ],
+   "stratify_by": "label year and mean-AGB quintile",
+   "min_train_samples": 10
+  }
+ },
+ "evaluation": {
+  "primary_metric": {
+   "name": "RMSE",
+   "averaging": "RMSE per chip, averaged over test chips; zero-biomass pixels included (competition rule)",
+   "higher_is_better": false
+  },
+  "secondary_metrics": [
+   {
+    "name": "RMSE (pooled)",
+    "averaging": "over all test pixels",
+    "higher_is_better": false
+   }
+  ],
+  "tracks": [
+   "frozen-decoder",
+   "finetune"
+  ],
+  "diagnostics": [
+   "linear-probe"
+  ],
+  "inference": "whole 256 × 256 chip; adapters tile or upsample per protocols.json"
+ },
+ "notes": {
+  "harness": [
+   "PANGAEA's config has placeholder zeros for mean and std (marked TODO).",
+   "PANGAEA replaces S1 no-data (−9999) with 0 and fills missing months with zeros; its temporal mask is always false, so neither is flagged.",
+   "PANGAEA reports the square root of the batch-averaged MSE, not the competition's per-chip averaged RMSE.",
+   "GEO-Bench-2 uses 7 time steps (selection not stated), z-scores the labels, and uses S1 only for TerraMind."
+  ],
+  "open_questions": [
+   "Does label 0 mean zero biomass only (paper) or also missing data (competition page)? This decides whether 0 is a nodata value.",
+   "The paper states AGB in tonnes per pixel but also uses t/ha. Confirm the unit before publishing results."
+  ]
+ },
+ "provenance": {
+  "sources": [
+   {
+    "label": "BioMassters paper (Nascetti et al. 2023)",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/40daf2a00278c4bea1b26cd4c8a654f8-Paper-Datasets_and_Benchmarks.pdf"
+   },
+   {
+    "label": "Hugging Face dataset card",
+    "url": "https://huggingface.co/datasets/nascetti-a/BioMassters"
+   },
+   {
+    "label": "DrivenData competition page",
+    "url": "https://www.drivendata.org/competitions/99/biomass-estimation/page/536/"
+   },
+   {
+    "label": "PANGAEA dataset config",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/configs/dataset/biomassters.yaml"
+   },
+   {
+    "label": "PANGAEA loader",
+    "url": "https://github.com/VMarsocci/pangaea-bench/blob/main/pangaea/datasets/biomassters.py"
+   },
+   {
+    "label": "GEO-Bench-2",
+    "url": "https://arxiv.org/abs/2511.15658"
+   }
+  ]
+ },
+ "unverified": [
+  "/inputs/s2/raster/stored_dtype",
+  "/inputs/s2/raster/scale",
+  "/inputs/s2/raster/nodata",
+  "/inputs/s1_asc/raster/stored_dtype",
+  "/inputs/s1_dsc/raster/stored_dtype",
+  "/target/unit",
+  "/target/nodata",
+  "/splits/official/manifests/test/n_samples"
+ ]
+}
