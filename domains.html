@@ -16,16 +16,6 @@
   </section>
 
   <section class="section">
-    <h2>What stands out</h2>
-    <div class="insights">
-      <div class="card insight"><b id="i-gap">14</b><span>subdomains have no task in any audited benchmark suite. Oceans, cryosphere and solid Earth are nearly empty.</span></div>
-      <div class="card insight"><b>6 suites</b><span>include PASTIS. Crop type and land cover are saturated while most domains are untested.</span></div>
-      <div class="card insight"><b id="i-ready">—</b><span>openly licensed datasets sit outside every suite, including glaciers, sea ice, InSAR, methane, marine debris, mining and solar.</span></div>
-      <div class="card insight"><b id="i-model">—</b><span>datasets use another model's output as labels. Scores on these measure agreement, not accuracy.</span></div>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="dhead"><h2>Subdomains</h2>
       <div class="legend"><span>Benchmark status</span><span class="chip s-sat">Saturated</span><span class="chip s-cov">Covered</span><span class="chip s-thin">Thin</span><span class="chip s-gap">Gap</span></div></div>
     <p class="lead small">Status counts tasks in the audited suites: PANGAEA, GEO-Bench, GEO-Bench-2, Copernicus-Bench, SustainBench, FoMo-Bench, PhilEO, SatlasPretrain, and the Galileo, AnySat, OmniSat and TerraMind evaluations. Thin means one dataset or one suite.</p>
@@ -49,9 +39,6 @@
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
   const cnt=k=>subs.filter(s=>s.status===k).length;
   document.getElementById('stats').innerHTML=[[doms.filter(d=>!d.tag).length,'domains'],[subs.length,'subdomains'],[cnt('gap'),'gaps'],[cnt('thin'),'thin'],[data.length,'datasets']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
-  document.getElementById('i-gap').textContent=cnt('gap');
-  document.getElementById('i-ready').textContent=data.filter(d=>d.facets.tier[0]==='open'&&!d.benchmark_suites.length).length;
-  document.getElementById('i-model').textContent=data.filter(d=>d.facets.p[0]==='model').length;
   const key=s=>s.code?`${s.code} ${s.name}`:s.name;
   document.getElementById('domains').innerHTML=doms.map(d=>{
     const bar=`<div class="bar" aria-hidden="true">${d.subdomains.map(s=>`<i class="${STATUS[s.status][0]}" title="${esc(s.name)}"></i>`).join('')}</div>`;

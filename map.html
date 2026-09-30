@@ -4,64 +4,51 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>EOArena Label Map</title>
-<meta name="description" content="Where labelled Earth observation datasets exist, compared with where the need is.">
+<meta name="description" content="Where labelled Earth observation datasets exist, by country.">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 .ctrl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:14px}
 .mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
 @media (max-width:980px){.mapgrid{grid-template-columns:1fr}}
-.mapcard{padding:10px;position:relative}
+.mapcard{padding:10px}
 svg.map{width:100%;height:auto;display:block}
 svg.map path.c{stroke:var(--surface);stroke-width:.5;cursor:pointer}
 svg.map path.c:hover{stroke:var(--fg);stroke-width:1}
 svg.map path.c.sel{stroke:var(--fg);stroke-width:1.4}
-svg.map path.sphere{fill:var(--surface-2);stroke:none}
-.f0{fill:var(--line)} .f1{fill:var(--h1)} .f2{fill:var(--h2)} .f3{fill:var(--h3)} .f4{fill:var(--h4)} .f5{fill:var(--h5)}
-.g-bad{fill:var(--bad)} .g-ok{fill:var(--ok)} .g-info{fill:var(--h2)} .g-none{fill:var(--line)} .g-nd{fill:var(--line);opacity:.45}
+svg.map path.sphere{fill:var(--surface);stroke:var(--line)}
+.f0{fill:#E6E6EA} .f1{fill:var(--h1)} .f2{fill:var(--h2)} .f3{fill:var(--h3)} .f4{fill:var(--h4)} .f5{fill:var(--h5)}
 .leg{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px;color:var(--fg-2);padding:8px 6px 2px}
 .leg i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
-.leg .b-bad{background:var(--bad)} .leg .b-ok{background:var(--ok)} .leg .b-info{background:var(--h2)} .leg .b-none{background:var(--line)}
 .side{display:grid;gap:14px}
 .side .card{padding:16px 18px;display:grid;gap:10px}
 .side h3{font-size:18px}
-.rank{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14.5px}
-.rank li{display:flex;justify-content:space-between;gap:10px}
-.rank li span:last-child{color:var(--fg-3);font-variant-numeric:tabular-nums}
 .off{display:grid;gap:4px;font-size:14.5px;color:var(--fg-2)}
-.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;padding:7px 10px;border-radius:8px;z-index:50;max-width:280px;line-height:1.4}
-.nd{font-size:13.5px;color:var(--fg-3)}
 .cl{display:grid;gap:4px;font-size:14px}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;padding:7px 10px;border-radius:8px;z-index:50;max-width:280px;line-height:1.4}
 </style>
 </head>
 <body>
 <main class="page">
   <section class="hero">
-    <h1>Where labels are, and where they're needed</h1>
-    <p class="sub">Countries named by a dataset's documented geography, against a need proxy. Red marks high need with no country-specific labels.</p>
+    <h1>Where the labels are</h1>
+    <p class="sub">Each country is shaded by how many datasets name it in their documented geography. Click a country to see them.</p>
   </section>
 
-  <div class="ctrl">
-    <label class="inl">Domain <select class="sel" id="dom"></select></label>
-    <label class="inl">Need proxy <select class="sel" id="need"></select></label>
-    <div class="seg" role="group" aria-label="Map view"><button type="button" data-v="gap" aria-pressed="true">Gap</button><button type="button" data-v="labels" aria-pressed="false">Labels</button><button type="button" data-v="need" aria-pressed="false">Need</button></div>
-  </div>
+  <div class="ctrl"><label class="inl">Domain <select class="sel" id="dom"></select></label></div>
 
   <div class="mapgrid">
-    <div class="card mapcard"><svg class="map" id="map" viewBox="0 0 960 500" role="img" aria-label="World map"></svg><div class="leg" id="leg"></div></div>
+    <div class="card mapcard"><svg class="map" id="map" viewBox="0 0 960 500" role="img" aria-label="World map of labelled datasets by country"></svg><div class="leg" id="leg"></div></div>
     <div class="side">
       <div class="card" id="sel-card" hidden><h3 id="sel-name"></h3><div class="cl" id="sel-body"></div></div>
-      <div class="card"><h3>Highest need, no labels</h3><p class="nd" id="rank-note"></p><ol class="rank" id="rank"></ol></div>
       <div class="card"><h3>Not on the map</h3><div class="off" id="off"></div></div>
     </div>
   </div>
 
   <section class="section">
-    <h2>How to read this</h2>
     <ul class="clean">
-      <li>A country counts as labelled when at least one dataset in the chosen domain names it in its documented geography. Global, regional and undocumented datasets cannot be placed on a country, so they are counted beside the map instead.</li>
-      <li>High need means the top 30 countries on the chosen proxy. Proxies are coarse: population for settlements and disasters, arable land for agriculture, forest area for ecosystems. Water, ocean, cryosphere, atmosphere and solid-Earth needs have no country-level proxy yet.</li>
-      <li>Need values are the most recent year the World Bank reports for each country. Boundaries are Natural Earth 1:110m.</li>
-      <li>Next version: once EOArena hosts task data, this map will plot the location of every sample in each hosted dataset, not only the countries a dataset names.</li>
+      <li>Only datasets that name specific countries can be placed on the map. Global, regional and undocumented datasets are counted beside it.</li>
+      <li>Next version: once EOArena hosts task data, the map will plot the location of every sample in each hosted dataset.</li>
+      <li>Boundaries: Natural Earth 1:110m.</li>
     </ul>
   </section>
 </main>
@@ -69,70 +56,39 @@ svg.map path.sphere{fill:var(--surface-2);stroke:none}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
-const DOMAIN_NEED={"1 · Agriculture":"arable","2 · Terrestrial ecosystems":"forest","8 · Human systems":"population","Disasters":"population","":"population"};
-const st={dom:"",need:"population",view:"gap",sel:null};
-const fmt=new Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1});
-let DATA,NEED,GEO,paths;
+const st={dom:"",sel:null};let DATA,GEO,paths;
+const tip=document.getElementById('tip');
 (async function(){
-  const [data,need,geo]=await loadJSON('datasets','need','countries.geojson');
-  DATA=data;NEED=need;GEO=geo;
+  const [data,geo]=await loadJSON('datasets','countries.geojson');DATA=data;GEO=geo;
   const doms=[...new Set(data.map(d=>d.domain))];
-  document.getElementById('dom').innerHTML=`<option value="">All domains</option>`+doms.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');
-  document.getElementById('need').innerHTML=Object.entries(need.indicators).map(([k,v])=>`<option value="${k}">${esc(v.name)}</option>`).join('');
+  document.getElementById('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');
+  const p=new URLSearchParams(location.search);if(p.get('domain'))st.dom=p.get('domain');
   const proj=d3.geoNaturalEarth1().fitExtent([[4,4],[956,496]],{type:"Sphere"});const path=d3.geoPath(proj);
   const svg=d3.select('#map');svg.append('path').attr('class','sphere').attr('d',path({type:"Sphere"}));
   paths=svg.append('g').selectAll('path').data(geo.features.filter(f=>f.id!=='ATA')).join('path').attr('class','c').attr('d',path)
     .attr('tabindex',0).attr('aria-label',f=>f.properties.name)
-    .on('mousemove',(e,f)=>tipShow(e,f)).on('mouseleave',()=>tip.hidden=true)
+    .on('mousemove',(e,f)=>{const n=(labels()[f.id]||[]).length;tip.innerHTML=`<b>${esc(f.properties.name)}</b><br>${n} dataset${n===1?'':'s'}`;tip.hidden=false;tip.style.left=Math.min(e.clientX+14,innerWidth-290)+'px';tip.style.top=(e.clientY+14)+'px';})
+    .on('mouseleave',()=>tip.hidden=true)
     .on('click',(e,f)=>{st.sel=f.id;render();}).on('keydown',(e,f)=>{if(e.key==='Enter'){st.sel=f.id;render();}});
-  readURL();render();
+  render();
 })();
-const tip=document.getElementById('tip');
 function scoped(){return DATA.filter(d=>!st.dom||d.domain===st.dom);}
-function labelsBy(){const m={};scoped().forEach(d=>(d.footprint.countries||[]).forEach(c=>(m[c]=m[c]||[]).push(d)));return m;}
-function needOf(iso){const v=NEED.values[iso];return v&&v[st.need]?v[st.need]:null;}
-function highNeedSet(){const arr=Object.entries(NEED.values).filter(([k,v])=>v[st.need]&&GEO.features.some(f=>f.id===k)).sort((a,b)=>b[1][st.need][0]-a[1][st.need][0]);return new Set(arr.slice(0,30).map(x=>x[0]));}
-function quant(vals){const s=vals.filter(v=>v>0).sort((a,b)=>a-b);return [.2,.4,.6,.8].map(q=>s[Math.floor(q*(s.length-1))]);}
+function labels(){const m={};scoped().forEach(d=>(d.footprint.countries||[]).forEach(c=>(m[c]=m[c]||[]).push(d)));return m;}
 function render(){
-  document.getElementById('dom').value=st.dom;document.getElementById('need').value=st.need;
-  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===st.view));
-  const L=labelsBy(),H=highNeedSet();
-  const nq=quant(GEO.features.map(f=>needOf(f.id)?.[0]||0));
-  const nbin=v=>!v?0:1+nq.filter(t=>v>t).length;
-  const lbin=n=>n===0?0:n===1?1:n===2?2:n<=4?3:n<=7?4:5;
-  paths.attr('class',f=>{const n=(L[f.id]||[]).length,nv=needOf(f.id);let c='c';
-    if(st.view==='labels')c+=' f'+lbin(n);
-    else if(st.view==='need')c+=' f'+nbin(nv?.[0]);
-    else c+=!nv?' g-nd':H.has(f.id)?(n?' g-ok':' g-bad'):(n?' g-info':' g-none');
-    return c+(st.sel===f.id?' sel':'');});
-  const ind=NEED.indicators[st.need];
-  const leg=document.getElementById('leg');
-  if(st.view==='gap'){const cnt=k=>GEO.features.filter(f=>{const n=(L[f.id]||[]).length,nv=needOf(f.id);if(!nv)return false;return k==='bad'?H.has(f.id)&&!n:k==='ok'?H.has(f.id)&&n:k==='info'?!H.has(f.id)&&n:false}).length;
-    leg.innerHTML=`<span><i class="b-bad"></i>High need, no labels (${cnt('bad')})</span><span><i class="b-ok"></i>High need, labelled (${cnt('ok')})</span><span><i class="b-info"></i>Labelled, lower need (${cnt('info')})</span><span><i class="b-none"></i>Neither</span>`;}
-  else if(st.view==='labels')leg.innerHTML=`<span>Datasets naming the country</span>${['0','1','2','3–4','5–7','8+'].map((l,i)=>`<span><i style="background:var(${i?'--h'+i:'--line'})"></i>${l}</span>`).join('')}`;
-  else leg.innerHTML=`<span>${esc(ind.name)} (${esc(ind.unit)}), quintiles</span>${[1,2,3,4,5].map(i=>`<i style="background:var(--h${i})"></i>`).join('')}<span>low → high</span>`;
-  const top=[...H].filter(c=>!(L[c]||[]).length).map(c=>[c,needOf(c)[0]]).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const nm=c=>GEO.features.find(f=>f.id===c)?.properties.name||c;
-  document.getElementById('rank-note').textContent=`Among the top 30 countries by ${ind.name.toLowerCase()}${st.dom?`, for ${st.dom.replace(/^\d · /,'')}`:''}.`;
-  document.getElementById('rank').innerHTML=top.length?top.map(([c,v])=>`<li><span>${esc(nm(c))}</span><span>${fmt.format(v)} ${esc(ind.unit)}</span></li>`).join(''):'<li><span class="muted">Every high-need country has at least one dataset.</span></li>';
+  document.getElementById('dom').value=st.dom;
+  const L=labels();const bin=n=>n===0?0:n===1?1:n===2?2:n<=4?3:n<=7?4:5;
+  paths.attr('class',f=>'c f'+bin((L[f.id]||[]).length)+(st.sel===f.id?' sel':''));
+  document.getElementById('leg').innerHTML='<span>Datasets naming the country</span>'+['0','1','2','3–4','5–7','8+'].map((l,i)=>`<span><i style="background:${i?'var(--h'+i+')':'#E6E6EA'}"></i>${l}</span>`).join('');
   const sc=scoped();const g=sc.filter(d=>d.footprint.scope==='global').length,u=sc.filter(d=>d.footprint.scope==='unknown').length;
   const regs={};sc.filter(d=>d.footprint.scope==='region').forEach(d=>regs[d.footprint.region]=(regs[d.footprint.region]||0)+1);
-  const mapped=sc.filter(d=>d.footprint.scope==='countries').length;
-  document.getElementById('off').innerHTML=`<span><b>${mapped}</b> of ${sc.length} datasets are on the map.</span><span>${g} global or multi-continent</span>${Object.entries(regs).map(([r,n])=>`<span>${n} in ${esc(r)}</span>`).join('')}<span>${u} with no documented geography</span>`;
+  document.getElementById('off').innerHTML=`<span><b>${sc.filter(d=>d.footprint.scope==='countries').length}</b> of ${sc.length} datasets are on the map.</span><span>${g} global or multi-continent</span>${Object.entries(regs).map(([r,n])=>`<span>${n} in ${esc(r)}</span>`).join('')}<span>${u} with no documented geography</span>`;
   const card=document.getElementById('sel-card');
-  if(st.sel){const ds=L[st.sel]||[];const nv=needOf(st.sel);card.hidden=false;document.getElementById('sel-name').textContent=nm(st.sel);
-    document.getElementById('sel-body').innerHTML=`<span class="muted small">${nv?`${esc(ind.name)}: ${fmt.format(nv[0])} ${esc(ind.unit)} (${nv[1]})`:'No World Bank value'}${H.has(st.sel)?' · top 30':''}</span>${ds.length?ds.map(d=>`<a href="index.html?q=${encodeURIComponent(d.name)}">${esc(d.name)}</a>`).join(''):'<span class="muted">No country-specific dataset in this domain.</span>'}`;}
+  if(st.sel){const ds=L[st.sel]||[];card.hidden=false;document.getElementById('sel-name').textContent=GEO.features.find(f=>f.id===st.sel)?.properties.name||st.sel;
+    document.getElementById('sel-body').innerHTML=ds.length?ds.map(d=>`<a href="index.html?q=${encodeURIComponent(d.name)}">${esc(d.name)}</a>`).join(''):'<span class="muted">No country-specific dataset in this domain.</span>';}
   else card.hidden=true;
-  writeURL();
+  const q=new URLSearchParams();if(st.dom)q.set('domain',st.dom);history.replaceState(null,'',q.toString()?'?'+q:location.pathname);
 }
-function tipShow(e,f){const L=labelsBy();const n=(L[f.id]||[]).length,nv=needOf(f.id),ind=NEED.indicators[st.need];
-  tip.innerHTML=`<b>${esc(f.properties.name)}</b><br>${n} dataset${n===1?'':'s'}${nv?`<br>${esc(ind.name)}: ${fmt.format(nv[0])} ${esc(ind.unit)}`:''}`;tip.hidden=false;
-  tip.style.left=Math.min(e.clientX+14,innerWidth-290)+'px';tip.style.top=(e.clientY+14)+'px';}
-function readURL(){const p=new URLSearchParams(location.search);if(p.get('domain'))st.dom=p.get('domain');if(p.get('need')&&NEED.indicators[p.get('need')])st.need=p.get('need');else st.need=DOMAIN_NEED[st.dom]||'population';if(['gap','labels','need'].includes(p.get('view')))st.view=p.get('view');}
-function writeURL(){const p=new URLSearchParams();if(st.dom)p.set('domain',st.dom);p.set('need',st.need);p.set('view',st.view);history.replaceState(null,'','?'+p);}
-document.getElementById('dom').addEventListener('change',e=>{st.dom=e.target.value;if(DOMAIN_NEED[st.dom])st.need=DOMAIN_NEED[st.dom];render();});
-document.getElementById('need').addEventListener('change',e=>{st.need=e.target.value;render();});
-document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{st.view=b.dataset.v;render();}));
+document.getElementById('dom').addEventListener('change',e=>{st.dom=e.target.value;render();});
 </script>
 </body>
 </html>

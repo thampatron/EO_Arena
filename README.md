@@ -11,7 +11,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | Page | What it shows |
 |---|---|
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
-| `map.html` | Where labels exist versus where the need is, by country, with World Bank need proxies. |
+| `map.html` | Where labelled datasets exist, by country. |
 | `tasks.html` | Task cards: exact inputs, bands, outputs, metric, split and protocol. |
 | `arena.html` | The expert arena: blind pairwise comparisons for needs without labels. Rating formula to be decided. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
@@ -26,7 +26,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/datasets.json`: one record per dataset, with its tags, licence, benchmark suites and sources.
 - `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
-- `data/need.json` and `data/countries.geojson`: World Bank need proxies and Natural Earth boundaries for the map.
+- `data/countries.geojson`: Natural Earth boundaries for the map.
 
 `scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
 
