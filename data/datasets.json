@@ -409,7 +409,7 @@
   "subdomain": "1.1 Cropland and crop type",
   "task_description": "Crop type classification",
   "sensors_description": "S2 time series",
-  "geography": "Slovenia",
+  "geography": "Austria",
   "size": "UNVERIFIED",
   "facets": {
    "task": [
@@ -452,7 +452,7 @@
   ],
   "footprint": {
    "countries": [
-    "SVN"
+    "AUT"
    ],
    "scope": "countries"
   }
@@ -4043,7 +4043,8 @@
   "footprint": {
    "countries": [
     "GRL",
-    "USA"
+    "USA",
+    "ATA"
    ],
    "region": "Antarctica",
    "scope": "countries"
@@ -6380,7 +6381,8 @@
   ],
   "footprint": {
    "countries": [
-    "DEU"
+    "DEU",
+    "USA"
    ],
    "scope": "countries"
   }
