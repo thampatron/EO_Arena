@@ -35,20 +35,24 @@
 <script src="assets/site.js"></script>
 <script>
 (async function(){
-  const [doms,data]=await loadJSON('domains','datasets');
+  const [doms,data,ev]=await loadJSON('domains','datasets','evidence');
+  const EVC={e_dist:['ev-dist','Distinct ranking'],e_part:['ev-part','Partly distinct'],e_red:['ev-red','Tracks consensus'],e_weak:['ev-weak','Saturated / below noise'],e_few:['ev-few','Under 10 models'],e_none:['ev-none','No GeoFM scores']};
+  const evChip=id=>{const e=ev.datasets[id];const [c,l]=EVC[e?e.verdict:'e_none'];return `<span class="chip ${c}">${l}</span>`;};
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
   const cnt=k=>subs.filter(s=>s.status===k).length;
-  document.getElementById('stats').innerHTML=[[doms.filter(d=>!d.tag).length,'domains'],[subs.length,'subdomains'],[cnt('gap'),'gaps'],[cnt('thin'),'thin'],[data.length,'datasets']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  document.getElementById('stats').innerHTML=[[doms.filter(d=>!d.tag).length,'domains'],[subs.length,'subdomains'],[cnt('gap'),'gaps'],[cnt('thin'),'thin'],[data.length,'datasets'],[Object.values(ev.datasets).filter(e=>e.results>0).length,'with GeoFM scores']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   const key=s=>s.code?`${s.code} ${s.name}`:s.name;
   document.getElementById('domains').innerHTML=doms.map(d=>{
     const bar=`<div class="bar" aria-hidden="true">${d.subdomains.map(s=>`<i class="${STATUS[s.status][0]}" title="${esc(s.name)}"></i>`).join('')}</div>`;
-    return `<div style="display:grid;gap:12px"><div class="dhead"><h2 style="font-size:24px">${esc(d.name.replace(/^\d · /,''))}${d.tag?' <span class="small muted" style="font-family:var(--sans)">cross-cutting tag</span>':''}</h2>${bar}</div>
+    const cov=ev.domains[d.name];const covLine=cov?`<p class="small muted" style="margin:-4px 0 0">Published GeoFM evidence: ${cov.scored} of ${cov.datasets} known datasets scored · ${cov.results.toLocaleString('en-US')} reported results${cov.unlisted_scored?` · ${cov.unlisted_scored} scored dataset${cov.unlisted_scored===1?'':'s'} not yet in this inventory`:''}</p>`:'';
+    return `<div style="display:grid;gap:12px"><div class="dhead"><h2 style="font-size:24px">${esc(d.name.replace(/^\d · /,''))}${d.tag?' <span class="small muted" style="font-family:var(--sans)">cross-cutting tag</span>':''}</h2>${bar}</div>${covLine}
     <div class="list">${d.subdomains.map(s=>{const ds=data.filter(x=>x.subdomain===key(s)).sort((a,b)=>b.benchmark_suites.length-a.benchmark_suites.length);
       const inS=ds.filter(x=>x.benchmark_suites.length).length;
       return `<details class="acc" id="${s.code||'disasters'}"><summary>${chev}<span class="summ">${s.code?s.code+' ':''}${esc(s.name)}</span><span class="meta">${ds.length} dataset${ds.length===1?'':'s'} · ${inS} in suites</span>${statusChip(s.status)}</summary>
       <div class="acc-body">
         <dl class="kv"><div><dt>Framework anchors</dt><dd>${s.anchors}</dd></div><div><dt>Open sensors and products in use</dt><dd>${s.sensors}</dd></div></dl>
-        ${ds.length?`<div class="dlist">${ds.map(x=>`<a href="index.html?q=${encodeURIComponent(x.name)}"><span>${esc(x.name)}</span><span class="t">${esc(x.task_description)}</span>${dots(x.benchmark_suites.length)}${tierChip(x.facets.tier[0])}</a>`).join('')}</div>`:'<p class="small muted">No open labelled dataset verified.</p>'}
+        ${ds.length?`<div class="dlist">${ds.map(x=>`<a href="index.html?q=${encodeURIComponent(x.name)}"><span>${esc(x.name)}</span><span class="t">${esc(x.task_description)}</span>${dots(x.benchmark_suites.length)}${evChip(x.id)}${tierChip(x.facets.tier[0])}</a>`).join('')}</div>`:'<p class="small muted">No open labelled dataset verified.</p>'}
+        ${(()=>{const u=ev.unlisted.filter(x=>x.subdomain===key(s)&&x.input_kind==='eo_imagery');return u.length?`<p class="small muted" style="margin-top:8px"><b>Scored in the literature, not yet in this inventory:</b> ${u.map(x=>`${esc(x.name)} (${x.models} models)`).join(', ')}</p>`:''})()}
         <p class="note-gap"><b>Gap</b>${flag(s.gap)}</p>
         <p class="note-prop"><b>Proposed change</b>${s.proposal}</p>
       </div></details>`}).join('')}</div></div>`}).join('');

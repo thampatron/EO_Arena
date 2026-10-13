@@ -52,6 +52,10 @@ td.tot{color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
 .mx-legend i{width:22px;height:12px;border-radius:4px;display:inline-block}
 .tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;padding:6px 10px;border-radius:8px;z-index:50;max-width:300px}
 .empty{padding:48px 20px;text-align:center;color:var(--fg-3)}
+.evbox{border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;margin:14px 0}
+.evhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px 14px;margin:0}
+.evgrid dt{font-size:11.5px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.04em}.evgrid dd{margin:0;font-variant-numeric:tabular-nums;font-weight:600}
 .md{display:inline-block;vertical-align:1px;font-size:11px;font-weight:600;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:999px;padding:0 7px;margin-left:6px}
 </style>
 </head>
@@ -91,23 +95,32 @@ td.tot{color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
 
 <script src="assets/site.js"></script>
 <script>
-const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","fp"]],["Hypothesis",["ab"]]];
+const GROUPS=[["Where",["dom","sub"]],["Task",["task","unit","val","tmp"]],["Data",["sen","res"]],["Trust",["p","tier","use","fp","ev"]],["Hypothesis",["ab"]]];
 const OPEN=new Set(["dom","task","tmp","sen","tier"]);
 const MULTI_SHORT={task:1,sen:1};
-let V,F,DATA,DOMS;
+let V,F,DATA,DOMS,EV;
 const st={sel:{},q:"",view:"list",grp:"dom",mxr:"sub",mxc:"task"};
 const $=id=>document.getElementById(id);
 const lab=(k,v)=>F[k].values[v]??v;
+const EVC={e_dist:['ev-dist','Distinct ranking'],e_part:['ev-part','Partly distinct'],e_red:['ev-red','Tracks consensus'],e_weak:['ev-weak','Saturated / below noise'],e_few:['ev-few','Under 10 models'],e_none:['ev-none','No GeoFM scores']};
+const evChip=e=>{const [c,l]=EVC[e.verdict]||EVC.e_none;return `<span class="chip ${c}" title="${esc(EV.verdicts[e.verdict]||'')}">${l}</span>`;};
+const fmt1=x=>x==null?'–':Number(x).toFixed(1);
+function evBlock(e){if(!e.results)return `<div class="evbox"><p class="small muted" style="margin:0"><b>GeoFM evidence</b> · No published scores found in the ${esc(EV.source.split(':')[0])}.</p></div>`;
+  const [c,l]=EVC[e.verdict]||EVC.e_none;
+  return `<div class="evbox"><div class="evhead"><b>GeoFM evidence</b>${evChip(e)}</div>
+  <dl class="evgrid"><div><dt>Models scored</dt><dd>${e.models}</dd></div><div><dt>Papers</dt><dd>${e.papers}</dd></div><div><dt>Reported results</dt><dd>${e.results}</dd></div>${e.spread_pts!=null?`<div><dt>Model spread</dt><dd>${fmt1(e.spread_pts)} pts</dd></div>`:''}${e.headroom_pts!=null?`<div><dt>Headroom</dt><dd>${fmt1(e.headroom_pts)} pts</dd></div>`:''}${e.rho_consensus!=null?`<div><dt>Rank agreement (rho)</dt><dd>${Number(e.rho_consensus).toFixed(2)}</dd></div>`:''}${e.share_self_reported!=null?`<div><dt>Self-reported</dt><dd>${Math.round(100*e.share_self_reported)}%</dd></div>`:''}</dl>
+  <p class="small muted" style="margin:6px 0 0">${esc(EV.verdicts[e.verdict]||'')}. Counts and summary statistics from a meta-analysis of published GeoFM papers; no individual scores. <a href="about.html#evidence">Method</a></p></div>`;}
 
 (async function(){
-  const [voc,raw,doms]=await loadJSON('vocabulary','datasets','domains');
-  V=voc.facets; F=Object.fromEntries(V.map(f=>[f.key,f])); DOMS=doms;
-  DATA=raw.map(r=>({...r,f:{...r.facets,dom:[r.domain],sub:[r.subdomain],fp:[r.footprint.scope],use:[r.benchmark_suites.length>=2?'u2':r.benchmark_suites.length===1?'u1':'u0']}}));
+  const [voc,raw,doms,ev]=await loadJSON('vocabulary','datasets','domains','evidence');
+  V=voc.facets; F=Object.fromEntries(V.map(f=>[f.key,f])); DOMS=doms; EV=ev;
+  DATA=raw.map(r=>{const e=ev.datasets[r.id]||{verdict:'e_none',models:0,papers:0,results:0,benchmark_ids:[]};return {...r,ev:e,f:{...r.facets,dom:[r.domain],sub:[r.subdomain],fp:[r.footprint.scope],use:[r.benchmark_suites.length>=2?'u2':r.benchmark_suites.length===1?'u1':'u0'],ev:[e.verdict]}}});
   V.forEach(f=>st.sel[f.key]=new Set());
   readURL();
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
   const gaps=subs.filter(s=>s.status==='gap').length;
-  $('stats').innerHTML=[[DATA.length,'datasets'],[subs.length,'subdomains'],[gaps,'subdomains with no benchmark task'],[V.length,'filters']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const scored=DATA.filter(d=>d.ev.results>0).length;
+  $('stats').innerHTML=[[DATA.length,'datasets'],[scored,'with published GeoFM scores'],[subs.length,'subdomains'],[gaps,'subdomains with no benchmark task'],[V.length,'filters']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   buildSelects(); render();
 })();
 
@@ -132,7 +145,7 @@ function renderFacets(){
 function renderActive(){const p=[];V.forEach(f=>st.sel[f.key].forEach(v=>p.push(`<span class="pill">${esc(lab(f.key,v))}<button type="button" data-k="${f.key}" data-v="${esc(v)}" aria-label="Remove ${esc(lab(f.key,v))}">×</button></span>`)));
   $('active').innerHTML=p.length?p.join('')+'<button class="btn ghost" type="button" id="clear">Clear all</button>':'';}
 function short(d,k,max){const v=d.f[k].map(x=>lab(k,x));return v.length>max?v.slice(0,max).join(', ')+` +${v.length-max}`:v.join(', ');}
-function row(d,i){return `<button type="button" class="row" data-i="${i}"><span class="nm">${esc(d.name)}${d.f.p[0]==='model'?' <span class="md">Model-derived labels</span>':''}<small>${esc(d.subdomain)}</small></span><span class="c2">${short(d,'task',2)} · ${lab('tmp',d.f.tmp[0])}</span><span class="c3">${short(d,'sen',3)}</span><span>${tierChip(d.f.tier[0])}</span></button>`;}
+function row(d,i){return `<button type="button" class="row" data-i="${i}"><span class="nm">${esc(d.name)}${d.f.p[0]==='model'?' <span class="md">Model-derived labels</span>':''}<small>${esc(d.subdomain)}</small></span><span class="c2">${short(d,'task',2)} · ${lab('tmp',d.f.tmp[0])}</span><span class="c3">${short(d,'sen',3)}</span><span>${evChip(d.ev)}${tierChip(d.f.tier[0])}</span></button>`;}
 function renderList(rows){const f=F[st.grp];const out=[];
   Object.keys(f.values).forEach(v=>{const r=rows.filter(d=>d.f[f.key].includes(v));if(r.length)out.push(`<div class="ghead"><b>${esc(lab(f.key,v))}</b><span>${r.length}</span></div><div class="list">${r.map(d=>row(d,DATA.indexOf(d))).join('')}</div>`)});
   $('out').innerHTML=out.join('')||'<p class="empty">No dataset matches. That combination is a gap in the audited data.</p>';}
@@ -156,6 +169,7 @@ function openDrawer(i){const d=DATA[i];
   const rowsF=[["task","Task"],["unit","Output unit"],["val","Output value"],["tmp","Time"],["sen","Sensors"],["res","Resolution"],["p","Labels"],["fp","Footprint"],["ab","Ability (hypothesis)"]];
   $('d-body').innerHTML=`<p>${flag(d.task_description)}. ${flag(d.sensors_description)}.</p>
   <dl class="facet-grid"><dt>Geography</dt><dd>${flag(d.geography)}${d.footprint.countries?`<br><span class="small muted">Mapped to: ${d.footprint.countries.join(', ')}</span>`:''}${d.footprint.region?`<br><span class="small muted">Region: ${esc(d.footprint.region)}</span>`:''}</dd><dt>Size</dt><dd>${flag(d.size)}</dd><dt>Licence</dt><dd>${tierChip(d.f.tier[0])} <span class="small muted">${flag(esc(d.licence))}</span></dd><dt>Benchmarks</dt><dd>${d.benchmark_suites.length?d.benchmark_suites.map(s=>`<span class="tag">${esc(s)}</span>`).join(''):'<span class="muted small">In no audited benchmark suite</span>'}</dd></dl>
+  ${evBlock(d.ev)}
   <dl class="facet-grid">${rowsF.map(([k,l])=>`<dt>${l}</dt><dd>${tags(k)}</dd>`).join('')}</dl>
   <div><p class="small muted" style="margin-bottom:6px">Sources</p>${d.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join(' &nbsp; ')}</div>
   <p class="small"><a href="domains.html#${encodeURIComponent(d.subdomain.split(' ')[0])}">See this subdomain in the domain audit →</a></p>`;
@@ -184,8 +198,9 @@ document.addEventListener('mouseout',e=>{if(e.target.closest('td.cell'))tip.hidd
 function csv(){const cols=["name","domain","subdomain","task_description","sensors_description","geography","size","licence","benchmark_suites"];
   const fk=V.filter(f=>!['dom','sub'].includes(f.key));
   const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
-  const lines=[[...cols,...fk.map(f=>f.name),"source"].map(q).join(',')];
-  window._rows.forEach(d=>lines.push([...cols.map(c=>Array.isArray(d[c])?d[c].join('; '):d[c]),...fk.map(f=>d.f[f.key].map(v=>lab(f.key,v)).join('; ')),d.sources[0]?.url||''].map(q).join(',')));
+  const evc=["models","papers","results","spread_pts","headroom_pts","rho_consensus","share_self_reported"];
+  const lines=[[...cols,...fk.map(f=>f.name),...evc.map(c=>"evidence_"+c),"source"].map(q).join(',')];
+  window._rows.forEach(d=>lines.push([...cols.map(c=>Array.isArray(d[c])?d[c].join('; '):d[c]),...fk.map(f=>d.f[f.key].map(v=>lab(f.key,v)).join('; ')),...evc.map(c=>d.ev[c]??''),d.sources[0]?.url||''].map(q).join(',')));
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/csv'}));a.download='eoarena-datasets.csv';a.click();}
 </script>
 </body>

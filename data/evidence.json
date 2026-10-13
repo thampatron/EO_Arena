@@ -1,0 +1,2722 @@
+{
+ "as_of": "2026-10-08",
+ "source": "GeoFM meta-analysis workbook v4 (V. Mancoridis, unpublished): 14,600 reported scores from 52 papers. Summary statistics only; no individual scores.",
+ "method": "Original results only (no numbers copied from other papers), no ablation variants. A comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction. spread_pts: median SD of model scores within a comparison (percent metrics). headroom_pts: 100 minus the median best score. rho_consensus: Spearman correlation between the dataset's model ranking (z-scored within comparison, averaged per model) and the mean ranking over all other datasets; needs >= 10 models.",
+ "verdicts": {
+  "e_dist": "Ranks models unlike the consensus (rho < 0.3)",
+  "e_part": "Partly distinct (0.3 <= rho < 0.7)",
+  "e_red": "Tracks the consensus (rho >= 0.7)",
+  "e_weak": "Saturated (< 3 pts headroom) or model spread below the 2.3-pt cross-paper noise",
+  "e_few": "Scored, but fewer than 10 models",
+  "e_none": "No published GeoFM scores found"
+ },
+ "datasets": {
+  "pastis-pastis-r": {
+   "models": 79,
+   "papers": 11,
+   "results": 591,
+   "benchmark_ids": [
+    "galileo_pastis",
+    "geobench2_pastis",
+    "geobench2_pastis_r",
+    "pangaea_pastis",
+    "pastis_hd_classif",
+    "pastis_hd_segm",
+    "pastis_s1",
+    "pastis_s1_val",
+    "pastis_s2",
+    "pastis_s2_val",
+    "tessera_pastis_r"
+   ],
+   "spread_pts": 6.91,
+   "headroom_pts": 53.7,
+   "rho_consensus": 0.61,
+   "share_self_reported": 0.42,
+   "verdict": "e_part"
+  },
+  "cashew-plantation": {
+   "models": 75,
+   "papers": 11,
+   "results": 298,
+   "benchmark_ids": [
+    "geobench_m_cashew_s2",
+    "geobench_m_cashew_s2_val",
+    "mmearth_cashew1k",
+    "x_cashew_plantation"
+   ],
+   "spread_pts": 6.22,
+   "headroom_pts": 47.3,
+   "rho_consensus": 0.55,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "south-africa-crop-type": {
+   "models": 75,
+   "papers": 12,
+   "results": 288,
+   "benchmark_ids": [
+    "geobench_m_sacrop_s2",
+    "geobench_m_sacrop_s2_val",
+    "mmearth_sacrop3k",
+    "sa_crop_type_mapping",
+    "x_sa_crop_type"
+   ],
+   "spread_pts": 3.35,
+   "headroom_pts": 67.8,
+   "rho_consensus": 0.54,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "cropharvest": {
+   "models": 46,
+   "papers": 7,
+   "results": 205,
+   "benchmark_ids": [
+    "bt_cropharvest_crop_type",
+    "cropharvest",
+    "cropharvest_china",
+    "cropharvest_prc_s1",
+    "cropharvest_prc_s1s2",
+    "cropharvest_prc_s2",
+    "cropharvest_togo_s1",
+    "cropharvest_togo_s1s2",
+    "cropharvest_togo_s2",
+    "cropharvest_validation",
+    "galileo_cropharvest_brazil",
+    "galileo_cropharvest_kenya",
+    "galileo_cropharvest_togo",
+    "tessera_cropharvest_togo"
+   ],
+   "spread_pts": 4.14,
+   "headroom_pts": 19.6,
+   "rho_consensus": 0.47,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "breizhcrops": {
+   "models": 32,
+   "papers": 3,
+   "results": 37,
+   "benchmark_ids": [
+    "breizhcrops_s2",
+    "galileo_breizhcrops"
+   ],
+   "spread_pts": 9.46,
+   "headroom_pts": 24.0,
+   "rho_consensus": 0.75,
+   "share_self_reported": 1.0,
+   "verdict": "e_red"
+  },
+  "fields-of-the-world": {
+   "models": 26,
+   "papers": 2,
+   "results": 239,
+   "benchmark_ids": [
+    "earthshift_ftw_germany_to_cambodia",
+    "earthshift_ftw_germany_to_denmark",
+    "earthshift_ftw_germany_year",
+    "earthshift_ftw_south_africa_season",
+    "geobench2_fotw"
+   ],
+   "spread_pts": 1.93,
+   "headroom_pts": 50.1,
+   "rho_consensus": 0.64,
+   "share_self_reported": 0.0,
+   "verdict": "e_weak"
+  },
+  "ai4smallfarms": {
+   "models": 17,
+   "papers": 3,
+   "results": 131,
+   "benchmark_ids": [
+    "pangaea_ai4farms"
+   ],
+   "spread_pts": 1.28,
+   "headroom_pts": 57.3,
+   "rho_consensus": 0.41,
+   "share_self_reported": 0.0,
+   "verdict": "e_weak"
+  },
+  "croptypemapping-ghana-south-sudan": {
+   "models": 17,
+   "papers": 3,
+   "results": 237,
+   "benchmark_ids": [
+    "pangaea_ctm_ss"
+   ],
+   "spread_pts": 8.36,
+   "headroom_pts": 37.2,
+   "rho_consensus": 0.25,
+   "share_self_reported": 0.0,
+   "verdict": "e_dist"
+  },
+  "timesen2crop": {
+   "models": 6,
+   "papers": 1,
+   "results": 7,
+   "benchmark_ids": [
+    "timesen2crop_cls"
+   ],
+   "spread_pts": 2.07,
+   "headroom_pts": 18.8,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
+   "verdict": "e_few"
+  },
+  "sickle-paddy-classification": {
+   "models": 3,
+   "papers": 1,
+   "results": 4,
+   "benchmark_ids": [
+    "sickle_paddy_segm"
+   ],
+   "verdict": "e_few"
+  },
+  "kenya-crop-type": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "ai4boundaries": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "eurocropsml": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sen4agrinet": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "agrifieldnet-india": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "zuericrop": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sustainbench-crop-yield": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sickle": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "cy-bench": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "cropnet": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "nz-cattle": {
+   "models": 38,
+   "papers": 5,
+   "results": 76,
+   "benchmark_ids": [
+    "geobench2_nzcattle",
+    "geobench_m_nzcattle_rgb"
+   ],
+   "spread_pts": 3.24,
+   "headroom_pts": 18.5,
+   "rho_consensus": 0.53,
+   "share_self_reported": 0.88,
+   "verdict": "e_part"
+  },
+  "global-pasture-watch-grassland-samples": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "bigearthnet-v1-v2-reben": {
+   "models": 125,
+   "papers": 22,
+   "results": 694,
+   "benchmark_ids": [
+    "bigearthnet_mm_ft_ablation_composite",
+    "bigearthnet_s2",
+    "bigearthnet_sar",
+    "copernicusbench_bigearthnet_s1",
+    "earthshift_benv2_s2_to_s1",
+    "geobench2_benv2",
+    "geobench_m_bigearthnet",
+    "geobench_m_bigearthnet_val",
+    "geobench_reben_10_s1",
+    "geobench_reben_10_s2",
+    "gfm_bigearthnet_cls",
+    "mmearth_bigearth20k",
+    "ssl4eo_bigearthnet_lp",
+    "x_bigearthnet"
+   ],
+   "spread_pts": 4.65,
+   "headroom_pts": 21.4,
+   "rho_consensus": 0.64,
+   "share_self_reported": 0.91,
+   "verdict": "e_part"
+  },
+  "eurosat": {
+   "models": 115,
+   "papers": 22,
+   "results": 582,
+   "benchmark_ids": [
+    "copernicusbench_eurosat_rgb",
+    "copernicusbench_eurosat_s1",
+    "earthshift_meurosat_rgb_to_rge1",
+    "eurosat_fewshot",
+    "eurosat_helber_s2",
+    "eurosat_sar",
+    "geobench_eurosat_s2",
+    "geobench_m_eurosat",
+    "geobench_m_eurosat_val",
+    "panopticon_msacc_composite",
+    "ssl4eo_eurosat_lp",
+    "x_eurosat"
+   ],
+   "spread_pts": 5.92,
+   "headroom_pts": 4.7,
+   "rho_consensus": 0.67,
+   "share_self_reported": 0.95,
+   "verdict": "e_part"
+  },
+  "dynamicearthnet": {
+   "models": 32,
+   "papers": 4,
+   "results": 246,
+   "benchmark_ids": [
+    "geobench2_dynamic_earthnet",
+    "pangaea_dynamic_earthnet"
+   ],
+   "spread_pts": 3.06,
+   "headroom_pts": 50.5,
+   "rho_consensus": -0.1,
+   "share_self_reported": 0.0,
+   "verdict": "e_dist"
+  },
+  "dfc2020": {
+   "models": 30,
+   "papers": 6,
+   "results": 108,
+   "benchmark_ids": [
+    "copernicusbench_dfc2020_s1",
+    "copernicusbench_dfc2020_s2",
+    "croma_dfc2020_s2",
+    "dfc2020_multilabel_cls",
+    "dfc2020_segmentation",
+    "dfc2020_singlelabel_cls",
+    "ssl4eo_dfc2020_seg"
+   ],
+   "spread_pts": 3.16,
+   "headroom_pts": 44.6,
+   "rho_consensus": 0.64,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "chesapeake-land-cover": {
+   "models": 28,
+   "papers": 4,
+   "results": 48,
+   "benchmark_ids": [
+    "m_chesapeake"
+   ],
+   "spread_pts": 6.64,
+   "headroom_pts": 29.4,
+   "rho_consensus": 0.67,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "flair-flair-2": {
+   "models": 22,
+   "papers": 2,
+   "results": 36,
+   "benchmark_ids": [
+    "flair_semseg",
+    "geobench2_flair2"
+   ],
+   "spread_pts": 4.28,
+   "headroom_pts": 47.6,
+   "rho_consensus": 0.38,
+   "share_self_reported": 0.0,
+   "verdict": "e_part"
+  },
+  "five-billion-pixels": {
+   "models": 16,
+   "papers": 2,
+   "results": 116,
+   "benchmark_ids": [
+    "pangaea_fivebillionpixels",
+    "pangaea_fivebillionpixels_domain_shift"
+   ],
+   "spread_pts": 9.84,
+   "headroom_pts": 26.6,
+   "rho_consensus": 0.1,
+   "share_self_reported": 0.0,
+   "verdict": "e_dist"
+  },
+  "dynamic-world-training-set": {
+   "models": 7,
+   "papers": 1,
+   "results": 7,
+   "benchmark_ids": [
+    "dw_expert"
+   ],
+   "spread_pts": 4.7,
+   "headroom_pts": 41.3,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
+   "verdict": "e_few"
+  },
+  "lc100-classification-segmentation": {
+   "models": 5,
+   "papers": 1,
+   "results": 10,
+   "benchmark_ids": [
+    "copernicusbench_lc100cls_s3",
+    "copernicusbench_lc100seg_s3"
+   ],
+   "verdict": "e_few"
+  },
+  "sen12ms": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "multisenge": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "openearthmap": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "loveda": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "forestnet": {
+   "models": 54,
+   "papers": 7,
+   "results": 104,
+   "benchmark_ids": [
+    "geobench_m_forestnet_l8",
+    "geobench_m_forestnet_l8_val"
+   ],
+   "spread_pts": 3.38,
+   "headroom_pts": 43.6,
+   "rho_consensus": 0.3,
+   "share_self_reported": 0.75,
+   "verdict": "e_part"
+  },
+  "bradd-s1ts": {
+   "models": 4,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "bradd_s1ts_change"
+   ],
+   "verdict": "e_few"
+  },
+  "rapidai4eo": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "biomassters": {
+   "models": 39,
+   "papers": 5,
+   "results": 173,
+   "benchmark_ids": [
+    "biomassters_prithvi",
+    "geobench2_biomassters",
+    "pangaea_biomassters",
+    "tessera_biomassters"
+   ],
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.57,
+   "share_self_reported": 0.33,
+   "verdict": "e_part"
+  },
+  "agbd": {
+   "models": 14,
+   "papers": 1,
+   "results": 71,
+   "benchmark_ids": [
+    "agbd_full",
+    "agbd_geo_africa",
+    "agbd_geo_south_america",
+    "agbd_geo_south_asia",
+    "agbd_lite",
+    "agbd_temporal_2020"
+   ],
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.28,
+   "share_self_reported": 0.0,
+   "verdict": "e_dist"
+  },
+  "biomass-s3": {
+   "models": 5,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "copernicusbench_biomass_s3"
+   ],
+   "verdict": "e_few"
+  },
+  "reforestree": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "treesatai": {
+   "models": 41,
+   "papers": 5,
+   "results": 199,
+   "benchmark_ids": [
+    "geobench2_treesatai",
+    "tessera_treesatai_ts",
+    "treesatai_micro_f1",
+    "treesatai_micro_map",
+    "treesatai_weighted_f1",
+    "treesatai_weighted_map"
+   ],
+   "spread_pts": 2.54,
+   "headroom_pts": 34.4,
+   "rho_consensus": 0.37,
+   "share_self_reported": 0.2,
+   "verdict": "e_part"
+  },
+  "neontreeevaluation": {
+   "models": 28,
+   "papers": 4,
+   "results": 48,
+   "benchmark_ids": [
+    "geobench_m_neontree"
+   ],
+   "spread_pts": 3.58,
+   "headroom_pts": 38.9,
+   "rho_consensus": 0.74,
+   "share_self_reported": 1.0,
+   "verdict": "e_red"
+  },
+  "everwatch": {
+   "models": 14,
+   "papers": 1,
+   "results": 17,
+   "benchmark_ids": [
+    "geobench2_everwatch"
+   ],
+   "spread_pts": 2.15,
+   "headroom_pts": 68.8,
+   "rho_consensus": 0.64,
+   "share_self_reported": 0.0,
+   "verdict": "e_weak"
+  },
+  "planted": {
+   "models": 2,
+   "papers": 1,
+   "results": 4,
+   "benchmark_ids": [
+    "planted_classif"
+   ],
+   "verdict": "e_few"
+  },
+  "tallos": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "cactus-woody-spekboom-waititu": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "open-canopy": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "pureforest": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "fluxnet2015": {
+   "models": 7,
+   "papers": 1,
+   "results": 36,
+   "benchmark_ids": [
+    "gpp_flux_hls_merra2_prithvi"
+   ],
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
+   "verdict": "e_few"
+  },
+  "phenocam-v2-0": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "hls-burn-scars": {
+   "models": 45,
+   "papers": 9,
+   "results": 352,
+   "benchmark_ids": [
+    "exebench_fire_hls_burnscars",
+    "geobench2_burn_scars",
+    "hls_burn_scars",
+    "pangaea_burnscars",
+    "sustainfm_hls_burnscars"
+   ],
+   "spread_pts": 2.67,
+   "headroom_pts": 10.1,
+   "rho_consensus": 0.0,
+   "share_self_reported": 0.14,
+   "verdict": "e_dist"
+  },
+  "sen2fire": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "wildfirespreadts": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "next-day-wildfire-spread": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "cabuar": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sen1floods11": {
+   "models": 65,
+   "papers": 11,
+   "results": 459,
+   "benchmark_ids": [
+    "earthshift_sen1floods11_s2_to_s1",
+    "galileo_sen1floods11",
+    "pangaea_sen1floods11",
+    "sen1floods11_prithvi",
+    "sen1floods11_s1",
+    "sen1floods11_s1_val",
+    "sen1floods11_s2",
+    "water_body_mapping",
+    "x_sen1floods11"
+   ],
+   "spread_pts": 3.48,
+   "headroom_pts": 14.8,
+   "rho_consensus": 0.45,
+   "share_self_reported": 0.46,
+   "verdict": "e_part"
+  },
+  "kuro-siwo-flood-s1": {
+   "models": 24,
+   "papers": 2,
+   "results": 38,
+   "benchmark_ids": [
+    "copernicusbench_flood_s1",
+    "geobench2_kuro_siwo"
+   ],
+   "spread_pts": 10.16,
+   "headroom_pts": 30.7,
+   "rho_consensus": 0.52,
+   "share_self_reported": 0.33,
+   "verdict": "e_part"
+  },
+  "s1s2-water": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "mmflood": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "worldfloods-v2": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "swed": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "aquasat": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "gloria": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "global-mangrove-watch-v3-v4": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "allen-coral-atlas-maps": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "magicbathynet": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sds-benchmark": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "mados": {
+   "models": 59,
+   "papers": 7,
+   "results": 244,
+   "benchmark_ids": [
+    "galileo_mados",
+    "mados_s2",
+    "mados_s2_val",
+    "pangaea_mados",
+    "sustainfm_mados"
+   ],
+   "spread_pts": 6.08,
+   "headroom_pts": 32.0,
+   "rho_consensus": 0.73,
+   "share_self_reported": 0.43,
+   "verdict": "e_red"
+  },
+  "marida": {
+   "models": 7,
+   "papers": 1,
+   "results": 7,
+   "benchmark_ids": [
+    "marida"
+   ],
+   "spread_pts": 6.59,
+   "headroom_pts": 34.4,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
+   "verdict": "e_few"
+  },
+  "nasa-marine-debris": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "krestenitis-oil-spill": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "caffe": {
+   "models": 32,
+   "papers": 2,
+   "results": 79,
+   "benchmark_ids": [
+    "cryobench_caffe",
+    "geobench2_caffe"
+   ],
+   "spread_pts": 8.55,
+   "headroom_pts": 41.8,
+   "rho_consensus": 0.43,
+   "share_self_reported": 0.0,
+   "verdict": "e_part"
+  },
+  "hkh-glacier-mapping": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "ai4arctic-autoice": {
+   "models": 16,
+   "papers": 1,
+   "results": 46,
+   "benchmark_ids": [
+    "cryobench_sicd"
+   ],
+   "spread_pts": 3.99,
+   "headroom_pts": 74.5,
+   "rho_consensus": -0.01,
+   "share_self_reported": 0.0,
+   "verdict": "e_dist"
+  },
+  "qtec-thaw-slump-inventory": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "emit-l2b-ch-plumes": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "ch4net": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "mars-s2l": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "methanes2cm": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "starcop": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "aq-no-s5p-aq-o-s5p": {
+   "models": 5,
+   "papers": 1,
+   "results": 10,
+   "benchmark_ids": [
+    "copernicusbench_aq_no2_s5p",
+    "copernicusbench_aq_o3_s5p"
+   ],
+   "verdict": "e_few"
+  },
+  "cloudsen12-cloud-s2": {
+   "models": 25,
+   "papers": 3,
+   "results": 45,
+   "benchmark_ids": [
+    "copernicusbench_cloud_s2",
+    "geobench2_cloudsen12"
+   ],
+   "spread_pts": 2.96,
+   "headroom_pts": 32.6,
+   "rho_consensus": -0.03,
+   "share_self_reported": 0.5,
+   "verdict": "e_dist"
+  },
+  "cloud-s3": {
+   "models": 5,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "copernicusbench_cloud_s3"
+   ],
+   "verdict": "e_few"
+  },
+  "s2-cloud-mask-catalogue": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sparcs": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "38-cloud": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "hephaestus": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "quakeset": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "landslide4sense": {
+   "models": 5,
+   "papers": 2,
+   "results": 44,
+   "benchmark_ids": [
+    "l4s_landslide_prithvi",
+    "landslide4sense"
+   ],
+   "spread_pts": 0.16,
+   "headroom_pts": 30.8,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
+   "verdict": "e_few"
+  },
+  "cas-landslide": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "so2sat-lcz42-lcz-s2": {
+   "models": 91,
+   "papers": 15,
+   "results": 439,
+   "benchmark_ids": [
+    "copernicusbench_lcz_s2",
+    "geobench_m_so2sat_s2",
+    "geobench_m_so2sat_s2_val",
+    "mmearth_so2sat20k",
+    "so2sat_s1s2_lcz",
+    "ssl4eo_so2sat_lcz42",
+    "x_so2sat"
+   ],
+   "spread_pts": 5.57,
+   "headroom_pts": 38.9,
+   "rho_consensus": 0.72,
+   "share_self_reported": 0.93,
+   "verdict": "e_red"
+  },
+  "spacenet-7": {
+   "models": 33,
+   "papers": 5,
+   "results": 172,
+   "benchmark_ids": [
+    "geobench2_spacenet7",
+    "pangaea_sn7"
+   ],
+   "spread_pts": 2.74,
+   "headroom_pts": 36.9,
+   "rho_consensus": 0.33,
+   "share_self_reported": 0.0,
+   "verdict": "e_part"
+  },
+  "spacenet-2": {
+   "models": 25,
+   "papers": 3,
+   "results": 53,
+   "benchmark_ids": [
+    "geobench2_spacenet2",
+    "gfm_spacenet2_sr",
+    "spacenet2_khartoum",
+    "spacenet2_paris",
+    "spacenet2_shanghai",
+    "spacenet2_vegas"
+   ],
+   "spread_pts": 0.84,
+   "headroom_pts": 12.8,
+   "rho_consensus": 0.47,
+   "share_self_reported": 0.5,
+   "verdict": "e_weak"
+  },
+  "inria-aerial": {
+   "models": 3,
+   "papers": 1,
+   "results": 3,
+   "benchmark_ids": [
+    "inria"
+   ],
+   "verdict": "e_few"
+  },
+  "massachusetts-buildings": {
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "mass_buildings"
+   ],
+   "verdict": "e_few"
+  },
+  "globalbuildingmap": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "open-cities-ai": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "massachusetts-roads": {
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "mass_roads"
+   ],
+   "verdict": "e_few"
+  },
+  "phileo-roads": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "spacenet-3-5": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "deepglobe-roads": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "brick-kilns": {
+   "models": 71,
+   "papers": 10,
+   "results": 346,
+   "benchmark_ids": [
+    "geobench_m_brick_kiln",
+    "geobench_m_brick_kiln_val",
+    "x_brick_kiln"
+   ],
+   "spread_pts": 2.82,
+   "headroom_pts": 2.7,
+   "rho_consensus": 0.6,
+   "share_self_reported": 1.0,
+   "verdict": "e_weak"
+  },
+  "pv4ger": {
+   "models": 29,
+   "papers": 4,
+   "results": 97,
+   "benchmark_ids": [
+    "geobench_m_pv4ger",
+    "geobench_m_pv4ger_seg_rgb"
+   ],
+   "spread_pts": 2.88,
+   "headroom_pts": 4.3,
+   "rho_consensus": 0.83,
+   "share_self_reported": 1.0,
+   "verdict": "e_red"
+  },
+  "substations": {
+   "models": 14,
+   "papers": 1,
+   "results": 17,
+   "benchmark_ids": [
+    "geobench2_substation"
+   ],
+   "spread_pts": 2.23,
+   "headroom_pts": 79.9,
+   "rho_consensus": 0.63,
+   "share_self_reported": 0.0,
+   "verdict": "e_weak"
+  },
+  "kruitwagen-et-al-2021-solar-inventory": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "maus-et-al-2022-mining-polygons": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "fmow": {
+   "models": 48,
+   "papers": 9,
+   "results": 150,
+   "benchmark_ids": [
+    "fmow_10_wv8",
+    "fmow_rgb",
+    "fmow_rgb_temporal",
+    "fmow_sentinel",
+    "sled_torchspatial_fmow"
+   ],
+   "spread_pts": 3.82,
+   "headroom_pts": 36.8,
+   "rho_consensus": 0.62,
+   "share_self_reported": 1.0,
+   "verdict": "e_part"
+  },
+  "airbus-ships": {
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "benchmark_ids": [
+    "airbus_ships"
+   ],
+   "verdict": "e_few"
+  },
+  "xview3-sar": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "xview": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "dota-v2-isaid": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "sustainbench-dhs-tasks": {
+   "models": 15,
+   "papers": 2,
+   "results": 83,
+   "benchmark_ids": [
+    "sled_sustainbench_asset",
+    "sled_sustainbench_composite",
+    "sled_sustainbench_sanitation",
+    "sled_sustainbench_water",
+    "sled_sustainbench_women_education",
+    "sustainfm_asset_wealth",
+    "sustainfm_child_mortality",
+    "sustainfm_sanitation",
+    "sustainfm_women_bmi",
+    "sustainfm_women_education"
+   ],
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.58,
+   "share_self_reported": 0.0,
+   "verdict": "e_part"
+  },
+  "yeh-et-al-2020": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "bright": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "spacenet-8": {
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none"
+  },
+  "xbd-xview2": {
+   "models": 14,
+   "papers": 1,
+   "results": 70,
+   "benchmark_ids": [
+    "pangaea_xview2"
+   ],
+   "spread_pts": 4.35,
+   "headroom_pts": 39.3,
+   "rho_consensus": 0.38,
+   "share_self_reported": 0.0,
+   "verdict": "e_part"
+  }
+ },
+ "unlisted": [
+  {
+   "name": "Nandi",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 33,
+   "papers": 3,
+   "results": 126,
+   "verdict": "e_red"
+  },
+  {
+   "name": "Austrian Crop",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 16,
+   "papers": 2,
+   "results": 104,
+   "verdict": "e_part"
+  },
+  {
+   "name": "NeuCo-Bench Crops",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 16,
+   "verdict": "e_red"
+  },
+  {
+   "name": "NeuCo-Bench Landcover",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 32,
+   "verdict": "e_part"
+  },
+  {
+   "name": "CLCD",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_part"
+  },
+  {
+   "name": "Dynamic World (class fractions)",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 33,
+   "verdict": "e_red"
+  },
+  {
+   "name": "Canadian Cropland",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 9,
+   "papers": 1,
+   "results": 45,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Hyperview",
+   "domain": "1 · Agriculture",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 7,
+   "papers": 1,
+   "results": 16,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Multi-Temporal Crop Classification (HLS)",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 8,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Sen4Map",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 40,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Ethiopia crops",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 2,
+   "results": 4,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Africa crop mask",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Canada crops",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 4,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Descals oil palm",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "S2-Agri",
+   "domain": "1 · Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_few"
+  },
+  {
+   "name": "AWF",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 33,
+   "papers": 3,
+   "results": 126,
+   "verdict": "e_red"
+  },
+  {
+   "name": "RESISC45",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 31,
+   "papers": 6,
+   "results": 68,
+   "verdict": "e_red"
+  },
+  {
+   "name": "Live Fuel Moisture Content",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.6 Fire",
+   "input_kind": "eo_imagery",
+   "models": 27,
+   "papers": 4,
+   "results": 51,
+   "verdict": "e_part"
+  },
+  {
+   "name": "Biomes",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 25,
+   "papers": 2,
+   "results": 87,
+   "verdict": "e_red"
+  },
+  {
+   "name": "GEA North Africa",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 24,
+   "papers": 3,
+   "results": 28,
+   "verdict": "e_part"
+  },
+  {
+   "name": "Forest Loss Driver",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.2 Forest extent and change",
+   "input_kind": "eo_imagery",
+   "models": 23,
+   "papers": 2,
+   "results": 23,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "AID",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 2,
+   "results": 31,
+   "verdict": "e_part"
+  },
+  {
+   "name": "MLRSNet",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 2,
+   "results": 29,
+   "verdict": "e_part"
+  },
+  {
+   "name": "OPTIMAL-31",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 2,
+   "results": 29,
+   "verdict": "e_red"
+  },
+  {
+   "name": "WHU-RS19",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 2,
+   "results": 29,
+   "verdict": "e_part"
+  },
+  {
+   "name": "NeuCo-Bench Biomass",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 32,
+   "verdict": "e_red"
+  },
+  {
+   "name": "Borneo Canopy Height",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 75,
+   "verdict": "e_part"
+  },
+  {
+   "name": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 13,
+   "papers": 1,
+   "results": 52,
+   "verdict": "e_part"
+  },
+  {
+   "name": "RESISC45 / UCMerced (EarthShift)",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 13,
+   "papers": 1,
+   "results": 104,
+   "verdict": "e_dist"
+  },
+  {
+   "name": "RSC11",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_part"
+  },
+  {
+   "name": "RSI-CB128",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "RSI-CB256",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "RSSCN7",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_part"
+  },
+  {
+   "name": "WHU-earth",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_part"
+  },
+  {
+   "name": "CHC canopy height change",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 144,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Dynamic World",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 77,
+   "verdict": "e_part"
+  },
+  {
+   "name": "GeoNRW",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 64,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MMEarth Biomass",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 22,
+   "verdict": "e_part"
+  },
+  {
+   "name": "MMEarth-Bench Biomass",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "input_kind": "eo_imagery",
+   "models": 10,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MMEarth-Bench species",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "input_kind": "eo_imagery",
+   "models": 10,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Ecoregions",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 8,
+   "papers": 2,
+   "results": 22,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CORINE (Panopticon)",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 7,
+   "papers": 1,
+   "results": 16,
+   "verdict": "e_few"
+  },
+  {
+   "name": "ISPRS Vaihingen",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 7,
+   "papers": 1,
+   "results": 7,
+   "verdict": "e_few"
+  },
+  {
+   "name": "SegMunich",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 6,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_few"
+  },
+  {
+   "name": "LCMAP",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_few"
+  },
+  {
+   "name": "SSL4EO-S12-ML",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 10,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS Forest cover",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.2 Forest extent and change",
+   "input_kind": "coords_only",
+   "models": 4,
+   "papers": 2,
+   "results": 7,
+   "verdict": "e_few"
+  },
+  {
+   "name": "HLS Burn Intensity",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.6 Fire",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 4,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GID-15",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "NAIP land cover",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "OpenET",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.5 Ecosystem function (phenology, productivity)",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 2,
+   "results": 5,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GLanCE",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "LUCAS",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 4,
+   "verdict": "e_few"
+  },
+  {
+   "name": "US Trees",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "AGBref",
+   "domain": "2 · Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "input_kind": "eo_imagery",
+   "models": 1,
+   "papers": 1,
+   "results": 8,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GEOID-Flood",
+   "domain": "3 · Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 1,
+   "results": 394,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GeoCrossBench Hurricane Harvey",
+   "domain": "3 · Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 168,
+   "verdict": "e_part"
+  },
+  {
+   "name": "OMBRIA",
+   "domain": "3 · Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 22,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "RSBD",
+   "domain": "3 · Inland water",
+   "subdomain": "3.2 Water quality",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_dist"
+  },
+  {
+   "name": "UrbanSARFloods",
+   "domain": "3 · Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "input_kind": "eo_imagery",
+   "models": 8,
+   "papers": 1,
+   "results": 92,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Earth Surface Water (ESW)",
+   "domain": "3 · Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 24,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Algae Blooms",
+   "domain": "3 · Inland water",
+   "subdomain": "3.2 Water quality",
+   "input_kind": "eo_imagery",
+   "models": 4,
+   "papers": 1,
+   "results": 6,
+   "verdict": "e_few"
+  },
+  {
+   "name": "OlmoEarth Mangrove",
+   "domain": "4 · Oceans and coasts",
+   "subdomain": "4.1 Coastal ecosystems",
+   "input_kind": "eo_imagery",
+   "models": 23,
+   "papers": 2,
+   "results": 42,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "GLD",
+   "domain": "5 · Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "input_kind": "eo_imagery",
+   "models": 16,
+   "papers": 1,
+   "results": 46,
+   "verdict": "e_part"
+  },
+  {
+   "name": "GLID",
+   "domain": "5 · Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "input_kind": "eo_imagery",
+   "models": 16,
+   "papers": 1,
+   "results": 47,
+   "verdict": "e_dist"
+  },
+  {
+   "name": "GSDD",
+   "domain": "5 · Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "input_kind": "eo_imagery",
+   "models": 16,
+   "papers": 1,
+   "results": 47,
+   "verdict": "e_part"
+  },
+  {
+   "name": "Air Temperature (Hooker et al.)",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 28,
+   "verdict": "e_red"
+  },
+  {
+   "name": "NeuCo-Bench Clouds",
+   "domain": "6 · Atmosphere",
+   "subdomain": "6.3 Clouds and smoke",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 16,
+   "verdict": "e_red"
+  },
+  {
+   "name": "SmokePlume",
+   "domain": "6 · Atmosphere",
+   "subdomain": "6.3 Clouds and smoke",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "WorldClim Bioclim",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 11,
+   "verdict": "e_part"
+  },
+  {
+   "name": "ExEBench Cold waves",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "other",
+   "models": 7,
+   "papers": 1,
+   "results": 21,
+   "verdict": "e_few"
+  },
+  {
+   "name": "ExEBench Heatwaves",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "other",
+   "models": 7,
+   "papers": 1,
+   "results": 21,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Digital Typhoon",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 6,
+   "papers": 1,
+   "results": 6,
+   "verdict": "e_few"
+  },
+  {
+   "name": "TropicalCyclone",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 6,
+   "papers": 1,
+   "results": 6,
+   "verdict": "e_few"
+  },
+  {
+   "name": "METER-ML",
+   "domain": "6 · Atmosphere",
+   "subdomain": "6.1 Greenhouse gas point sources",
+   "input_kind": "eo_imagery",
+   "models": 6,
+   "papers": 1,
+   "results": 36,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Copernicus-FM climate variables",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 5,
+   "papers": 1,
+   "results": 30,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CopernicusFM climate (2m temperature)",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 5,
+   "papers": 1,
+   "results": 10,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CopernicusFM climate (precipitation)",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 5,
+   "papers": 1,
+   "results": 10,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CopernicusFM climate regression",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 5,
+   "papers": 1,
+   "results": 10,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CHELSA-TraCE21k",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 3,
+   "papers": 1,
+   "results": 41,
+   "verdict": "e_few"
+  },
+  {
+   "name": "ExEBench Extreme Precipitation",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "other",
+   "models": 2,
+   "papers": 1,
+   "results": 117,
+   "verdict": "e_few"
+  },
+  {
+   "name": "TAASRAD19",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "other",
+   "models": 2,
+   "papers": 1,
+   "results": 39,
+   "verdict": "e_few"
+  },
+  {
+   "name": "ExEBench Tropical Cyclones",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "other",
+   "models": 1,
+   "papers": 1,
+   "results": 36,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Koppen climate classification",
+   "domain": "6 · Atmosphere",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 1,
+   "papers": 1,
+   "results": 1,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Elevation (Mapzen)",
+   "domain": "7 · Solid Earth",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 33,
+   "papers": 4,
+   "results": 101,
+   "verdict": "e_part"
+  },
+  {
+   "name": "MMEarth-Bench soil nitrogen",
+   "domain": "7 · Solid Earth",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 10,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MMEarth-Bench soil organic carbon",
+   "domain": "7 · Solid Earth",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 10,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MMEarth-Bench soil pH",
+   "domain": "7 · Solid Earth",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 10,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "ASTER GED",
+   "domain": "7 · Solid Earth",
+   "subdomain": "7.3 Geology and mineral mapping",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 4,
+   "verdict": "e_few"
+  },
+  {
+   "name": "OSCD",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 32,
+   "papers": 6,
+   "results": 151,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "OlmoEarth Solar Farm",
+   "domain": "8 · Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "input_kind": "eo_imagery",
+   "models": 24,
+   "papers": 3,
+   "results": 26,
+   "verdict": "e_part"
+  },
+  {
+   "name": "Population density",
+   "domain": "8 · Human systems",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 22,
+   "papers": 1,
+   "results": 66,
+   "verdict": "e_red"
+  },
+  {
+   "name": "OlmoEarth Vessel Length",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 20,
+   "papers": 2,
+   "results": 20,
+   "verdict": "e_part"
+  },
+  {
+   "name": "OlmoEarth Vessel Type",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 19,
+   "papers": 2,
+   "results": 19,
+   "verdict": "e_red"
+  },
+  {
+   "name": "OlmoEarth Vessel Detection",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 16,
+   "papers": 2,
+   "results": 28,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "SpaceNet 1",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 3,
+   "results": 20,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "DIOR",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 15,
+   "papers": 1,
+   "results": 15,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS population density",
+   "domain": "8 · Human systems",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 2,
+   "results": 30,
+   "verdict": "e_red"
+  },
+  {
+   "name": "NeuCo-Bench Heatisland",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 14,
+   "papers": 1,
+   "results": 32,
+   "verdict": "e_red"
+  },
+  {
+   "name": "California Housing",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 14,
+   "verdict": "e_part"
+  },
+  {
+   "name": "MOSAIKS Income",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 14,
+   "verdict": "e_part"
+  },
+  {
+   "name": "LEVIR-CD",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "GloSoFarID",
+   "domain": "8 · Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "MineNetCD",
+   "domain": "8 · Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_part"
+  },
+  {
+   "name": "PatternNet",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 26,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "DSE",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_part"
+  },
+  {
+   "name": "WorldPop population density",
+   "domain": "8 · Human systems",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 11,
+   "verdict": "e_part"
+  },
+  {
+   "name": "GRIP4 distance to road",
+   "domain": "8 · Human systems",
+   "subdomain": "8.2 Transport",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 11,
+   "verdict": "e_dist"
+  },
+  {
+   "name": "Infra-Bench",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 9,
+   "papers": 1,
+   "results": 180,
+   "verdict": "e_few"
+  },
+  {
+   "name": "DSIFN",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 7,
+   "papers": 1,
+   "results": 19,
+   "verdict": "e_few"
+  },
+  {
+   "name": "WHU Aerial Building",
+   "domain": "8 · Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "input_kind": "eo_imagery",
+   "models": 7,
+   "papers": 1,
+   "results": 7,
+   "verdict": "e_few"
+  },
+  {
+   "name": "TorchSpatial population density",
+   "domain": "8 · Human systems",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "verdict": "e_few"
+  },
+  {
+   "name": "AiRound",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CV-BrCT",
+   "domain": "8 · Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "input_kind": "eo_imagery",
+   "models": 3,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "TorchSpatial nightlights",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "coords_only",
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CityRep",
+   "domain": "8 · Human systems",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 2,
+   "papers": 1,
+   "results": 16,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS road length",
+   "domain": "8 · Human systems",
+   "subdomain": "8.2 Transport",
+   "input_kind": "eo_imagery",
+   "models": 1,
+   "papers": 1,
+   "results": 1,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS housing price",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "eo_imagery",
+   "models": 1,
+   "papers": 1,
+   "results": 1,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS income",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "eo_imagery",
+   "models": 1,
+   "papers": 1,
+   "results": 1,
+   "verdict": "e_few"
+  },
+  {
+   "name": "MOSAIKS nighttime lights",
+   "domain": "8 · Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "input_kind": "eo_imagery",
+   "models": 1,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GAZADeepDAV",
+   "domain": "Disasters",
+   "subdomain": "z.1 Post-event damage and hazard extent",
+   "input_kind": "eo_imagery",
+   "models": 12,
+   "papers": 1,
+   "results": 12,
+   "verdict": "e_weak"
+  },
+  {
+   "name": "CoordBench environmental (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 90,
+   "verdict": "e_red"
+  },
+  {
+   "name": "CoordBench land cover (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 90,
+   "verdict": "e_red"
+  },
+  {
+   "name": "CoordBench regression (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 94,
+   "verdict": "e_red"
+  },
+  {
+   "name": "CoordBench socioeconomic (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 14,
+   "papers": 1,
+   "results": 90,
+   "verdict": "e_red"
+  },
+  {
+   "name": "SatlasPretrain (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 11,
+   "papers": 1,
+   "results": 117,
+   "verdict": "e_few"
+  },
+  {
+   "name": "AEBench (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "eo_imagery",
+   "models": 5,
+   "papers": 1,
+   "results": 17,
+   "verdict": "e_few"
+  },
+  {
+   "name": "RemoteCLIP RET-3 (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "text_image",
+   "models": 2,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "RemoteCLIP ZS-12 (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "text_image",
+   "models": 2,
+   "papers": 1,
+   "results": 2,
+   "verdict": "e_few"
+  },
+  {
+   "name": "CHELSA-TraCE21k (composite)",
+   "domain": "composite",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 1,
+   "papers": 1,
+   "results": 3,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Countries",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 25,
+   "papers": 2,
+   "results": 87,
+   "verdict": "e_part"
+  },
+  {
+   "name": "UC Merced",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "text_image",
+   "models": 15,
+   "papers": 5,
+   "results": 35,
+   "verdict": "e_few"
+  },
+  {
+   "name": "iNaturalist 2018",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 14,
+   "papers": 3,
+   "results": 50,
+   "verdict": "e_few"
+  },
+  {
+   "name": "Im2GPS3k",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 7,
+   "papers": 1,
+   "results": 35,
+   "verdict": "e_few"
+  },
+  {
+   "name": "YFCC26k",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 5,
+   "papers": 1,
+   "results": 25,
+   "verdict": "e_few"
+  },
+  {
+   "name": "GWS15k",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 4,
+   "papers": 1,
+   "results": 20,
+   "verdict": "e_few"
+  },
+  {
+   "name": "NYU-Depth v2",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 3,
+   "papers": 1,
+   "results": 6,
+   "verdict": "e_few"
+  },
+  {
+   "name": "RSICD",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "text_image",
+   "models": 3,
+   "papers": 1,
+   "results": 18,
+   "verdict": "e_few"
+  },
+  {
+   "name": "RSITMD",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "text_image",
+   "models": 3,
+   "papers": 1,
+   "results": 18,
+   "verdict": "e_few"
+  },
+  {
+   "name": "SUN RGB-D",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "natural_image",
+   "models": 3,
+   "papers": 1,
+   "results": 6,
+   "verdict": "e_few"
+  },
+  {
+   "name": "YFCC",
+   "domain": "outside_taxonomy",
+   "subdomain": "",
+   "input_kind": "coords_only",
+   "models": 3,
+   "papers": 1,
+   "results": 5,
+   "verdict": "e_few"
+  }
+ ],
+ "domains": {
+  "1 · Agriculture": {
+   "datasets": 37,
+   "scored": 26,
+   "results": 2569,
+   "unlisted_scored": 15
+  },
+  "2 · Terrestrial ecosystems": {
+   "datasets": 72,
+   "scored": 57,
+   "results": 4104,
+   "unlisted_scored": 37
+  },
+  "3 · Inland water": {
+   "datasets": 15,
+   "scored": 9,
+   "results": 1215,
+   "unlisted_scored": 7
+  },
+  "4 · Oceans and coasts": {
+   "datasets": 9,
+   "scored": 3,
+   "results": 293,
+   "unlisted_scored": 1
+  },
+  "5 · Cryosphere": {
+   "datasets": 7,
+   "scored": 5,
+   "results": 265,
+   "unlisted_scored": 3
+  },
+  "6 · Atmosphere": {
+   "datasets": 17,
+   "scored": 9,
+   "results": 147,
+   "unlisted_scored": 6
+  },
+  "7 · Solid Earth": {
+   "datasets": 8,
+   "scored": 5,
+   "results": 108,
+   "unlisted_scored": 4
+  },
+  "8 · Human systems": {
+   "datasets": 49,
+   "scored": 38,
+   "results": 2045,
+   "unlisted_scored": 26
+  },
+  "Disasters": {
+   "datasets": 4,
+   "scored": 2,
+   "results": 82,
+   "unlisted_scored": 1
+  }
+ }
+}

@@ -214,6 +214,20 @@
     "PQ": "Physical quantity retrieval",
     "FU": "Multi-sensor fusion"
    }
+  },
+  {
+   "key": "ev",
+   "name": "GeoFM evidence",
+   "description": "How much published GeoFM evidence exists for this dataset, from a meta-analysis of 52 papers (summary statistics only). Distinct means the dataset ranks models unlike the consensus of all other datasets.",
+   "derived": "from data/evidence.json",
+   "values": {
+    "e_dist": "Distinct ranking",
+    "e_part": "Partly distinct",
+    "e_red": "Tracks the consensus",
+    "e_weak": "Saturated or below noise",
+    "e_few": "Scored, under 10 models",
+    "e_none": "No GeoFM scores"
+   }
   }
  ]
 }
