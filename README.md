@@ -27,6 +27,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
 - `data/countries.geojson`: Natural Earth boundaries for the map.
+- `data/evidence.json`: per-dataset summary of published GeoFM evidence (models, papers, spread, headroom, agreement with the consensus ranking, verdict) from a meta-analysis of 52 papers; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py`; see About → GeoFM evidence.
 - `data/footprints/<id>.json` and the combined `data/footprints.json`: sample-level footprints (chip, tile, field or site centroids, up to 3,000 per dataset) with the source file and method each came from; built by `scripts/footprints/<id>.py` and `scripts/footprints/build_index.py`. See `scripts/footprints/BRIEF.md` for the extraction rules.
 
 `scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
@@ -43,7 +44,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 
 ### Filters
 
-Domain · Subdomain · Task family · Output unit · Output value · Time structure · Sensor · Resolution · Label source · Licence · Benchmark use · Footprint · Ability tested (hypothesis)
+Domain · Subdomain · Task family · Output unit · Output value · Time structure · Sensor · Resolution · Label source · Licence · Benchmark use · Footprint · GeoFM evidence · Ability tested (hypothesis)
 
 The ability filter records which capability a task is expected to test (spectral, spatial, temporal, physical quantity, fusion). It is a hypothesis to be tested against how models rank across tasks, not an established fact.
 

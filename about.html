@@ -36,6 +36,15 @@
     <div id="facets"></div>
   </section>
 
+  <section class="section" id="evidence">
+    <h2>GeoFM evidence</h2>
+    <div class="prose">
+      <p>The <b>GeoFM evidence</b> filter and the evidence panel on each dataset say how much published benchmark evidence exists for it. The source is a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (compiled by Viki Mancoridis, 2026, unpublished). This site publishes counts and summary statistics only, never the individual scores, which belong to the papers that reported them.</p>
+      <p>How the summary is computed. Only original results count: numbers copied from another paper, ablation variants and non-foundation baselines are dropped. A comparison is one paper's table with at least four models on the same benchmark, protocol, metric and training fraction. <b>Model spread</b> is the median standard deviation of model scores within a comparison (percent metrics only). <b>Headroom</b> is 100 minus the median best score. <b>ρ vs consensus</b> z-scores every comparison, averages per model, and correlates the dataset's model ranking with the mean ranking over all other datasets; it needs at least ten models. A dataset that <em>tracks the consensus</em> (ρ ≥ 0.7) ranks models like everything else and adds little evidence; a <em>distinct</em> one (ρ &lt; 0.3) ranks them differently, which is either unique signal or, when it comes from a single paper, noise. <em>Saturated</em> means under 3 points of headroom; <em>below noise</em> means model differences are smaller than the 2.3-point median disagreement between papers that measured the same thing.</p>
+      <p>These are descriptive first-pass statistics, not the latent-factor analysis EOArena is building. Scores from one paper reflect that paper's protocol and model choice. Protocols are pooled within a dataset. The script <code>scripts/build_evidence.py</code> documents the inputs.</p>
+    </div>
+  </section>
+
   <section class="section">
     <h2>Contribute</h2>
     <div class="prose">
