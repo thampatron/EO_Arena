@@ -6,15 +6,9 @@ r=r[(r.agreement_vs_recitation=='original')&(~r.model_id.str.contains('_abl'))&(
 r=r[r.input_kind=='eo_imagery']
 r['hib']=r.higher_is_better.astype(str)=='True'; r['s']=np.where(r.hib,r.v,-r.v)
 reg=pd.read_excel(X,'model_registry').drop_duplicates('model_id').set_index('model_id')
-TEAMS=[{'olmoearth','olmoearth_v11','olmoearth_v12'},{'prithvi_v1','prithvi_v2'},{'tessera','tessera_v2'}]
 own=r[r.is_self_reported==True].groupby('model_id').paper_key.agg(set).to_dict()
-PREFIX={'olmoearth':TEAMS[0],'prithvi':TEAMS[1],'tessera':TEAMS[2]}
-def same_team(mid,paper):
-    ps=own.get(mid,set())
-    if paper in ps: return True
-    if any(paper in t and ps & t for t in TEAMS): return True
-    return any(mid.startswith(p) and paper in t for p,t in PREFIX.items())
-r['self2']=[same_team(m,p) for m,p in zip(r.model_id,r.paper_key)]
+# Self-reported = the paper that introduced the model (Viki's is_self_reported flag). Later releases from the same lab count as independent.
+r['self2']=[p in own.get(m,set()) for m,p in zip(r.model_id,r.paper_key)]
 key=['paper_key','benchmark_id','evaluation_protocol','metric','train_fraction_norm']
 rows=[]
 for k,g in r.groupby(key,dropna=False):
@@ -56,7 +50,7 @@ for rec in out.to_dict('records'):
         else: o[k]=None if (v is None or (isinstance(v,float) and np.isnan(v))) else (str(v) if v==v else None)
     recs.append(o)
 meta={"as_of":"2026-10-08","n_models_ranked":int(T.ranked.sum()),"n_models_total":int(A.shape[0]),"n_comparisons":int(len(C)),
- "method":"Each comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction (original results only; ablations and non-foundation baselines dropped). Scores are z-scored within the comparison, so paper and benchmark offsets cancel, and averaged per model. Independent = comparisons from papers that did not introduce the model, and not from the same team's later papers (OlmoEarth, Prithvi, TESSERA versions are treated as one team). Win rate = share of other models in the comparison that the model beats. Ranked by independent mean z; imagery benchmarks only. A model is ranked only with >= 10 independent comparisons on >= 5 benchmarks; others are listed unranked."}
+ "method":"Each comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction (original results only; ablations and non-foundation baselines dropped). Scores are z-scored within the comparison, so paper and benchmark offsets cancel, and averaged per model. Independent = comparisons from papers that did not introduce the model (each model release is its own team; a lab's later paper counts as independent for its earlier models). Win rate = share of other models in the comparison that the model beats. Ranked by independent mean z; imagery benchmarks only. A model is ranked only with >= 10 independent comparisons on >= 5 benchmarks; others are listed unranked."}
 def scope_table(sub):
     I2=sub[~sub.self].groupby('model_id').apply(agg).add_prefix('ind_')
     S2=sub[sub.self].groupby('model_id').apply(agg).add_prefix('self_')

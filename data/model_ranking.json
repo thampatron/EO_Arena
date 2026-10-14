@@ -1,10 +1,10 @@
 {
 "meta": {
 "as_of": "2026-10-08",
-"n_models_ranked": 89,
+"n_models_ranked": 93,
 "n_models_total": 236,
 "n_comparisons": 7967,
-"method": "Each comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction (original results only; ablations and non-foundation baselines dropped). Scores are z-scored within the comparison, so paper and benchmark offsets cancel, and averaged per model. Independent = comparisons from papers that did not introduce the model, and not from the same team's later papers (OlmoEarth, Prithvi, TESSERA versions are treated as one team). Win rate = share of other models in the comparison that the model beats. Ranked by independent mean z; imagery benchmarks only. A model is ranked only with >= 10 independent comparisons on >= 5 benchmarks; others are listed unranked.",
+"method": "Each comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction (original results only; ablations and non-foundation baselines dropped). Scores are z-scored within the comparison, so paper and benchmark offsets cancel, and averaged per model. Independent = comparisons from papers that did not introduce the model (each model release is its own team; a lab's later paper counts as independent for its earlier models). Win rate = share of other models in the comparison that the model beats. Ranked by independent mean z; imagery benchmarks only. A model is ranked only with >= 10 independent comparisons on >= 5 benchmarks; others are listed unranked.",
 "scope_rule": "Within a domain or subdomain a model is ranked with >= 5 independent comparisons on >= 2 benchmarks."
 },
 "models": [
@@ -37,6 +37,32 @@
 {
 "rank": 2.0,
 "ranked": true,
+"name": "olmoearth_v1_base",
+"backbone": "vit_b",
+"pretraining_dataset": "olmoearth_corpus",
+"category": "GFM_self_supervised",
+"encoder_parameter_count": 90000000.0,
+"general_vision": false,
+"ind_comparisons": 63.0,
+"ind_benchmarks": 23.0,
+"ind_papers": 2.0,
+"ind_mean_z": 0.701,
+"ind_win_rate": 0.775,
+"ind_ft_z": 0.639,
+"ind_frozen_z": 0.765,
+"self_comparisons": null,
+"self_mean_z": null,
+"self_win_rate": null,
+"comparisons": 63.0,
+"benchmarks": 23.0,
+"papers": 2.0,
+"mean_z": 0.701,
+"win_rate": 0.775,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
+},
+{
+"rank": 3.0,
+"ranked": true,
 "name": "gfm_swin_swint",
 "backbone": "swin_t",
 "pretraining_dataset": null,
@@ -61,7 +87,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 3.0,
+"rank": 4.0,
 "ranked": true,
 "name": "convnext_l_imagenet",
 "backbone": null,
@@ -87,7 +113,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 4.0,
+"rank": 5.0,
 "ranked": true,
 "name": "convnext_xl_imagenet",
 "backbone": null,
@@ -113,7 +139,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 5.0,
+"rank": 6.0,
 "ranked": true,
 "name": "dinov2_vitb",
 "backbone": "vit_b",
@@ -139,7 +165,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 6.0,
+"rank": 7.0,
 "ranked": true,
 "name": "clay_vitb",
 "backbone": null,
@@ -165,7 +191,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 7.0,
+"rank": 8.0,
 "ranked": true,
 "name": "vitb_augreg_in21k_ft_in1k",
 "backbone": "vit_b",
@@ -191,7 +217,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;8 \u00b7 Human systems"
 },
 {
-"rank": 8.0,
+"rank": 9.0,
 "ranked": true,
 "name": "clip_vitl14",
 "backbone": "vit_l",
@@ -217,7 +243,33 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 9.0,
+"rank": 10.0,
+"ranked": true,
+"name": "olmoearth_v1_large",
+"backbone": "vit_l",
+"pretraining_dataset": "olmoearth_corpus",
+"category": "GFM_self_supervised",
+"encoder_parameter_count": 300000000.0,
+"general_vision": false,
+"ind_comparisons": 49.0,
+"ind_benchmarks": 22.0,
+"ind_papers": 2.0,
+"ind_mean_z": 0.551,
+"ind_win_rate": 0.703,
+"ind_ft_z": 0.726,
+"ind_frozen_z": 0.44,
+"self_comparisons": null,
+"self_mean_z": null,
+"self_win_rate": null,
+"comparisons": 49.0,
+"benchmarks": 22.0,
+"papers": 2.0,
+"mean_z": 0.551,
+"win_rate": 0.703,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
+},
+{
+"rank": 11.0,
 "ranked": true,
 "name": "softcon_vits",
 "backbone": "vit_s",
@@ -243,7 +295,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 10.0,
+"rank": 12.0,
 "ranked": true,
 "name": "alphaearth",
 "backbone": "stp_vitl",
@@ -269,7 +321,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 11.0,
+"rank": 13.0,
 "ranked": true,
 "name": "croma_vitl",
 "backbone": "vit_l",
@@ -295,7 +347,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 12.0,
+"rank": 14.0,
 "ranked": true,
 "name": "terramind_v1l",
 "backbone": "vit_l",
@@ -321,7 +373,33 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 13.0,
+"rank": 15.0,
+"ranked": true,
+"name": "olmoearth_v1_tiny",
+"backbone": "vit_tiny",
+"pretraining_dataset": "olmoearth_corpus",
+"category": "GFM_self_supervised",
+"encoder_parameter_count": 6200000.0,
+"general_vision": false,
+"ind_comparisons": 49.0,
+"ind_benchmarks": 22.0,
+"ind_papers": 1.0,
+"ind_mean_z": 0.378,
+"ind_win_rate": 0.617,
+"ind_ft_z": 0.349,
+"ind_frozen_z": 0.409,
+"self_comparisons": null,
+"self_mean_z": null,
+"self_win_rate": null,
+"comparisons": 49.0,
+"benchmarks": 22.0,
+"papers": 1.0,
+"mean_z": 0.378,
+"win_rate": 0.617,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
+},
+{
+"rank": 16.0,
 "ranked": true,
 "name": "softcon",
 "backbone": "vit_b",
@@ -347,7 +425,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 14.0,
+"rank": 17.0,
 "ranked": true,
 "name": "panopticon",
 "backbone": "vit_b",
@@ -373,7 +451,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 15.0,
+"rank": 18.0,
 "ranked": true,
 "name": "terrafm_vitb",
 "backbone": "vit_b",
@@ -399,7 +477,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;8 \u00b7 Human systems"
 },
 {
-"rank": 16.0,
+"rank": 19.0,
 "ranked": true,
 "name": "terramind_v1b",
 "backbone": "vit_b",
@@ -425,7 +503,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 17.0,
+"rank": 20.0,
 "ranked": true,
 "name": "barlowtwins_resnet50",
 "backbone": "resnet50",
@@ -451,7 +529,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 18.0,
+"rank": 21.0,
 "ranked": true,
 "name": "dinov3_convnext_l",
 "backbone": "convnext_l",
@@ -477,7 +555,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 19.0,
+"rank": 22.0,
 "ranked": true,
 "name": "vitb_supervised",
 "backbone": null,
@@ -503,7 +581,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 20.0,
+"rank": 23.0,
 "ranked": true,
 "name": "dinov3_vitl",
 "backbone": "vit_l",
@@ -529,33 +607,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 21.0,
-"ranked": true,
-"name": "tessera",
-"backbone": "dual_ts_transformer",
-"pretraining_dataset": "tessera_corpus",
-"category": "GFM_self_supervised",
-"encoder_parameter_count": 45697026.0,
-"general_vision": false,
-"ind_comparisons": 19.0,
-"ind_benchmarks": 8.0,
-"ind_papers": 3.0,
-"ind_mean_z": 0.219,
-"ind_win_rate": 0.482,
-"ind_ft_z": null,
-"ind_frozen_z": 0.219,
-"self_comparisons": 18.0,
-"self_mean_z": 1.41,
-"self_win_rate": 0.806,
-"comparisons": 37.0,
-"benchmarks": 13.0,
-"papers": 5.0,
-"mean_z": 0.799,
-"win_rate": 0.64,
-"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
-},
-{
-"rank": 22.0,
+"rank": 24.0,
 "ranked": true,
 "name": "prithvi_v2_600m_tl",
 "backbone": "vit_600m",
@@ -581,7 +633,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 23.0,
+"rank": 25.0,
 "ranked": true,
 "name": "swinb_imagenet_baseline",
 "backbone": null,
@@ -607,7 +659,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;8 \u00b7 Human systems;composite;outside_taxonomy"
 },
 {
-"rank": 24.0,
+"rank": 26.0,
 "ranked": true,
 "name": "ssl4eo_vits_moco",
 "backbone": "vit_s",
@@ -633,7 +685,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 25.0,
+"rank": 27.0,
 "ranked": true,
 "name": "clip_vit",
 "backbone": null,
@@ -659,7 +711,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 26.0,
+"rank": 28.0,
 "ranked": true,
 "name": "dofa_vitb",
 "backbone": "vit_b",
@@ -685,7 +737,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 27.0,
+"rank": 29.0,
 "ranked": true,
 "name": "vicreg_resnet50",
 "backbone": "resnet50",
@@ -711,7 +763,33 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 28.0,
+"rank": 30.0,
+"ranked": true,
+"name": "tessera",
+"backbone": "dual_ts_transformer",
+"pretraining_dataset": "tessera_corpus",
+"category": "GFM_self_supervised",
+"encoder_parameter_count": 45697026.0,
+"general_vision": false,
+"ind_comparisons": 25.0,
+"ind_benchmarks": 12.0,
+"ind_papers": 4.0,
+"ind_mean_z": 0.153,
+"ind_win_rate": 0.473,
+"ind_ft_z": null,
+"ind_frozen_z": 0.153,
+"self_comparisons": 12.0,
+"self_mean_z": 2.144,
+"self_win_rate": 0.986,
+"comparisons": 37.0,
+"benchmarks": 13.0,
+"papers": 5.0,
+"mean_z": 0.799,
+"win_rate": 0.64,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
+},
+{
+"rank": 31.0,
 "ranked": true,
 "name": "prithvi_v2_300m_tl",
 "backbone": "vit_300m",
@@ -737,7 +815,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 29.0,
+"rank": 32.0,
 "ranked": true,
 "name": "croma_vitb",
 "backbone": "vit_b",
@@ -763,7 +841,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 30.0,
+"rank": 33.0,
 "ranked": true,
 "name": "galileo_base",
 "backbone": "vit_b",
@@ -789,7 +867,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 31.0,
+"rank": 34.0,
 "ranked": true,
 "name": "spectralgpt",
 "backbone": "vit_b",
@@ -815,7 +893,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 32.0,
+"rank": 35.0,
 "ranked": true,
 "name": "decur_vits",
 "backbone": "vit_s",
@@ -841,7 +919,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 33.0,
+"rank": 36.0,
 "ranked": true,
 "name": "ssl4eo_vits_dino",
 "backbone": "vit_s",
@@ -867,7 +945,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 34.0,
+"rank": 37.0,
 "ranked": true,
 "name": "unet_supervised",
 "backbone": null,
@@ -893,7 +971,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 35.0,
+"rank": 38.0,
 "ranked": true,
 "name": "vitb_ijepa",
 "backbone": null,
@@ -919,7 +997,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 36.0,
+"rank": 39.0,
 "ranked": true,
 "name": "presto",
 "backbone": "ts_transformer",
@@ -945,7 +1023,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems"
 },
 {
-"rank": 37.0,
+"rank": 40.0,
 "ranked": true,
 "name": "satlas_s2_swinb_si_ms",
 "backbone": "swin_b",
@@ -971,7 +1049,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 38.0,
+"rank": 41.0,
 "ranked": true,
 "name": "ibot_vitb",
 "backbone": "vit_b (size not stated verbatim; inferred from <100M param restriction)",
@@ -997,7 +1075,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;8 \u00b7 Human systems"
 },
 {
-"rank": 39.0,
+"rank": 42.0,
 "ranked": true,
 "name": "dofa_vitl",
 "backbone": "vit_l",
@@ -1023,7 +1101,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 40.0,
+"rank": 43.0,
 "ranked": true,
 "name": "ssl4eo_vits_data2vec",
 "backbone": "vit_s",
@@ -1049,7 +1127,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 41.0,
+"rank": 44.0,
 "ranked": true,
 "name": "prithvi_v2_600m",
 "backbone": "vit_600m",
@@ -1075,7 +1153,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 42.0,
+"rank": 45.0,
 "ranked": true,
 "name": "seco_resnet50",
 "backbone": "resnet50",
@@ -1101,7 +1179,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 43.0,
+"rank": 46.0,
 "ranked": true,
 "name": "copernicusfm",
 "backbone": "vit_b",
@@ -1127,7 +1205,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 44.0,
+"rank": 47.0,
 "ranked": true,
 "name": "vitb_torchvision_in1k",
 "backbone": "vit_b",
@@ -1153,7 +1231,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water"
 },
 {
-"rank": 45.0,
+"rank": 48.0,
 "ranked": true,
 "name": "swav_resnet50",
 "backbone": "resnet50",
@@ -1179,7 +1257,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 46.0,
+"rank": 49.0,
 "ranked": true,
 "name": "galileo",
 "backbone": "vit_b",
@@ -1205,7 +1283,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 47.0,
+"rank": 50.0,
 "ranked": true,
 "name": "galileo_tiny",
 "backbone": "vit_tiny",
@@ -1231,7 +1309,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 48.0,
+"rank": 51.0,
 "ranked": true,
 "name": "prithvi_v2_300m",
 "backbone": "vit_300m",
@@ -1257,7 +1335,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 49.0,
+"rank": 52.0,
 "ranked": true,
 "name": "satmae_vitl",
 "backbone": "vit_l",
@@ -1283,7 +1361,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems;outside_taxonomy"
 },
 {
-"rank": 50.0,
+"rank": 53.0,
 "ranked": true,
 "name": "satlas_swint",
 "backbone": null,
@@ -1309,7 +1387,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 51.0,
+"rank": 54.0,
 "ranked": true,
 "name": "dinov3_sat_vit7b",
 "backbone": "vit_7b",
@@ -1335,7 +1413,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 52.0,
+"rank": 55.0,
 "ranked": true,
 "name": "satlas_aerial_swinb_si",
 "backbone": "swin_b",
@@ -1361,33 +1439,33 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 53.0,
+"rank": 56.0,
 "ranked": true,
-"name": "prithvi_v1_100m",
-"backbone": "vit_100m",
-"pretraining_dataset": "hls",
+"name": "olmoearth_v1_nano",
+"backbone": "vit_nano",
+"pretraining_dataset": "olmoearth_corpus",
 "category": "GFM_self_supervised",
-"encoder_parameter_count": 100000000.0,
+"encoder_parameter_count": 1400000.0,
 "general_vision": false,
-"ind_comparisons": 219.0,
-"ind_benchmarks": 40.0,
-"ind_papers": 9.0,
-"ind_mean_z": -0.166,
-"ind_win_rate": 0.438,
-"ind_ft_z": -0.029,
-"ind_frozen_z": -0.184,
-"self_comparisons": 30.0,
-"self_mean_z": -0.9,
-"self_win_rate": 0.162,
-"comparisons": 249.0,
-"benchmarks": 47.0,
-"papers": 10.0,
-"mean_z": -0.254,
-"win_rate": 0.405,
-"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
+"ind_comparisons": 49.0,
+"ind_benchmarks": 22.0,
+"ind_papers": 1.0,
+"ind_mean_z": -0.156,
+"ind_win_rate": 0.411,
+"ind_ft_z": -0.461,
+"ind_frozen_z": 0.162,
+"self_comparisons": null,
+"self_mean_z": null,
+"self_win_rate": null,
+"comparisons": 49.0,
+"benchmarks": 22.0,
+"papers": 1.0,
+"mean_z": -0.156,
+"win_rate": 0.411,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 54.0,
+"rank": 57.0,
 "ranked": true,
 "name": "satlas_resnet50",
 "backbone": null,
@@ -1413,7 +1491,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 55.0,
+"rank": 58.0,
 "ranked": true,
 "name": "vitl_imagenet",
 "backbone": "vit_l",
@@ -1439,7 +1517,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems;composite;outside_taxonomy"
 },
 {
-"rank": 56.0,
+"rank": 59.0,
 "ranked": true,
 "name": "ofanet",
 "backbone": null,
@@ -1465,7 +1543,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 57.0,
+"rank": 60.0,
 "ranked": true,
 "name": "resnet50_ssl4eo_moco",
 "backbone": "resnet50",
@@ -1491,7 +1569,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 58.0,
+"rank": 61.0,
 "ranked": true,
 "name": "gfm_swinb",
 "backbone": "swin_b",
@@ -1517,7 +1595,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 59.0,
+"rank": 62.0,
 "ranked": true,
 "name": "galileo_nano",
 "backbone": "vit_nano",
@@ -1543,7 +1621,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 60.0,
+"rank": 63.0,
 "ranked": true,
 "name": "dinov3_sat_vitl",
 "backbone": "vit_l",
@@ -1569,7 +1647,33 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 61.0,
+"rank": 64.0,
+"ranked": true,
+"name": "prithvi_v1_100m",
+"backbone": "vit_100m",
+"pretraining_dataset": "hls",
+"category": "GFM_self_supervised",
+"encoder_parameter_count": 100000000.0,
+"general_vision": false,
+"ind_comparisons": 249.0,
+"ind_benchmarks": 47.0,
+"ind_papers": 10.0,
+"ind_mean_z": -0.254,
+"ind_win_rate": 0.405,
+"ind_ft_z": -0.425,
+"ind_frozen_z": -0.184,
+"self_comparisons": null,
+"self_mean_z": null,
+"self_win_rate": null,
+"comparisons": 249.0,
+"benchmarks": 47.0,
+"papers": 10.0,
+"mean_z": -0.254,
+"win_rate": 0.405,
+"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
+},
+{
+"rank": 65.0,
 "ranked": true,
 "name": "resnet50_ssl4eo_dino",
 "backbone": "resnet50",
@@ -1595,7 +1699,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 62.0,
+"rank": 66.0,
 "ranked": true,
 "name": "ssl4eo_vits_mae",
 "backbone": "vit_s",
@@ -1621,7 +1725,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 63.0,
+"rank": 67.0,
 "ranked": true,
 "name": "satmae_pp",
 "backbone": "vit_l",
@@ -1647,7 +1751,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 64.0,
+"rank": 68.0,
 "ranked": true,
 "name": "satmae_vitb",
 "backbone": "vit_b",
@@ -1673,7 +1777,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 65.0,
+"rank": 69.0,
 "ranked": true,
 "name": "resnet50_imagenet",
 "backbone": "resnet50",
@@ -1699,7 +1803,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 66.0,
+"rank": 70.0,
 "ranked": true,
 "name": "satlas_swinb",
 "backbone": "swin_b",
@@ -1725,7 +1829,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 67.0,
+"rank": 71.0,
 "ranked": true,
 "name": "scalemae_vitl",
 "backbone": "vit_l",
@@ -1751,7 +1855,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 68.0,
+"rank": 72.0,
 "ranked": true,
 "name": "decur",
 "backbone": "dual_branch",
@@ -1777,7 +1881,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 69.0,
+"rank": 73.0,
 "ranked": true,
 "name": "satlas_s2_swinb_mi_ms",
 "backbone": "swin_b",
@@ -1803,7 +1907,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 70.0,
+"rank": 74.0,
 "ranked": true,
 "name": "dinov3_vitb",
 "backbone": "vit_b",
@@ -1829,7 +1933,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 71.0,
+"rank": 75.0,
 "ranked": true,
 "name": "clip_rn50",
 "backbone": "resnet50",
@@ -1855,7 +1959,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 72.0,
+"rank": 76.0,
 "ranked": true,
 "name": "dinov3_vit7b",
 "backbone": "vit_7b",
@@ -1881,7 +1985,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 73.0,
+"rank": 77.0,
 "ranked": true,
 "name": "vanilla_mae",
 "backbone": null,
@@ -1907,7 +2011,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 74.0,
+"rank": 78.0,
 "ranked": true,
 "name": "ramen",
 "backbone": "unknown",
@@ -1933,7 +2037,7 @@
 "domains": "5 \u00b7 Cryosphere"
 },
 {
-"rank": 75.0,
+"rank": 79.0,
 "ranked": true,
 "name": "remoteclip",
 "backbone": "vit_l",
@@ -1959,7 +2063,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems;Disasters"
 },
 {
-"rank": 76.0,
+"rank": 80.0,
 "ranked": true,
 "name": "mmearth_cnn_atto",
 "backbone": "convnextv2_atto",
@@ -1985,7 +2089,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 77.0,
+"rank": 81.0,
 "ranked": true,
 "name": "satlas_s2_swint_si_ms",
 "backbone": "swin_t",
@@ -2011,7 +2115,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 78.0,
+"rank": 82.0,
 "ranked": true,
 "name": "clay",
 "backbone": "vit_l",
@@ -2037,7 +2141,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 79.0,
+"rank": 83.0,
 "ranked": true,
 "name": "vitb_imagenet",
 "backbone": "vit_b",
@@ -2063,7 +2167,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 80.0,
+"rank": 84.0,
 "ranked": true,
 "name": "anysat",
 "backbone": "vit_other",
@@ -2089,7 +2193,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;4 \u00b7 Oceans and coasts;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 81.0,
+"rank": 85.0,
 "ranked": true,
 "name": "satlas_s2_resnet50_si_ms",
 "backbone": "resnet50",
@@ -2115,7 +2219,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 82.0,
+"rank": 86.0,
 "ranked": true,
 "name": "dinov3_vith",
 "backbone": "vit_h_plus",
@@ -2141,7 +2245,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;4 \u00b7 Oceans and coasts;8 \u00b7 Human systems"
 },
 {
-"rank": 83.0,
+"rank": 87.0,
 "ranked": true,
 "name": "geoclip",
 "backbone": "loc_rff",
@@ -2167,7 +2271,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;7 \u00b7 Solid Earth;8 \u00b7 Human systems"
 },
 {
-"rank": 84.0,
+"rank": 88.0,
 "ranked": true,
 "name": "vitae_vitb",
 "backbone": "vit_b",
@@ -2193,7 +2297,7 @@
 "domains": "2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 85.0,
+"rank": 89.0,
 "ranked": true,
 "name": "vitb_random",
 "backbone": null,
@@ -2219,7 +2323,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 86.0,
+"rank": 90.0,
 "ranked": true,
 "name": "resnet50_random",
 "backbone": null,
@@ -2245,7 +2349,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;8 \u00b7 Human systems"
 },
 {
-"rank": 87.0,
+"rank": 91.0,
 "ranked": true,
 "name": "senpamae",
 "backbone": null,
@@ -2271,7 +2375,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;8 \u00b7 Human systems"
 },
 {
-"rank": 88.0,
+"rank": 92.0,
 "ranked": true,
 "name": "satclip",
 "backbone": "loc_siren_sh",
@@ -2297,7 +2401,7 @@
 "domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems;3 \u00b7 Inland water;5 \u00b7 Cryosphere;6 \u00b7 Atmosphere;8 \u00b7 Human systems"
 },
 {
-"rank": 89.0,
+"rank": 93.0,
 "ranked": true,
 "name": "resnet50_baseline",
 "backbone": null,
@@ -2897,32 +3001,6 @@
 {
 "rank": null,
 "ranked": false,
-"name": "olmoearth_v1_base",
-"backbone": "vit_b",
-"pretraining_dataset": "olmoearth_corpus",
-"category": "GFM_self_supervised",
-"encoder_parameter_count": 90000000.0,
-"general_vision": false,
-"ind_comparisons": 14.0,
-"ind_benchmarks": 1.0,
-"ind_papers": 1.0,
-"ind_mean_z": 0.274,
-"ind_win_rate": 0.585,
-"ind_ft_z": 0.236,
-"ind_frozen_z": 0.311,
-"self_comparisons": 49.0,
-"self_mean_z": 0.823,
-"self_win_rate": 0.829,
-"comparisons": 63.0,
-"benchmarks": 23.0,
-"papers": 2.0,
-"mean_z": 0.701,
-"win_rate": 0.775,
-"domains": "3 \u00b7 Inland water"
-},
-{
-"rank": null,
-"ranked": false,
 "name": "olmoearth_v11_base",
 "backbone": "vit_b",
 "pretraining_dataset": "olmoearth_corpus",
@@ -3491,32 +3569,6 @@
 "mean_z": -0.326,
 "win_rate": 0.337,
 "domains": "3 \u00b7 Inland water"
-},
-{
-"rank": null,
-"ranked": false,
-"name": "olmoearth_v1_large",
-"backbone": "vit_l",
-"pretraining_dataset": "olmoearth_corpus",
-"category": "GFM_self_supervised",
-"encoder_parameter_count": 300000000.0,
-"general_vision": false,
-"ind_comparisons": 6.0,
-"ind_benchmarks": 5.0,
-"ind_papers": 1.0,
-"ind_mean_z": -0.343,
-"ind_win_rate": 0.333,
-"ind_ft_z": null,
-"ind_frozen_z": -0.343,
-"self_comparisons": 43.0,
-"self_mean_z": 0.675,
-"self_win_rate": 0.754,
-"comparisons": 49.0,
-"benchmarks": 22.0,
-"papers": 2.0,
-"mean_z": 0.551,
-"win_rate": 0.703,
-"domains": "1 \u00b7 Agriculture;2 \u00b7 Terrestrial ecosystems"
 },
 {
 "rank": null,
@@ -4373,8 +4425,22 @@
 "self_mean_z": null
 },
 {
-"name": "skysense",
+"name": "olmoearth_v1_base",
 "rank": 2,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.781,
+"ind_win_rate": 0.79,
+"ind_ft_z": 0.727,
+"ind_frozen_z": 0.8,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "skysense",
+"rank": 3,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -4388,7 +4454,7 @@
 },
 {
 "name": "dinov2_vitb",
-"rank": 3,
+"rank": 4,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 4,
@@ -4402,7 +4468,7 @@
 },
 {
 "name": "convnext_xl_imagenet",
-"rank": 4,
+"rank": 5,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -4416,7 +4482,7 @@
 },
 {
 "name": "ssl4eo_vits_moco",
-"rank": 5,
+"rank": 6,
 "ranked": true,
 "ind_comparisons": 42,
 "ind_benchmarks": 5,
@@ -4430,7 +4496,7 @@
 },
 {
 "name": "alphaearth",
-"rank": 6,
+"rank": 7,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 4,
@@ -4444,7 +4510,7 @@
 },
 {
 "name": "croma_vitl",
-"rank": 7,
+"rank": 8,
 "ranked": true,
 "ind_comparisons": 89,
 "ind_benchmarks": 11,
@@ -4458,7 +4524,7 @@
 },
 {
 "name": "ssl4eo_vits_dino",
-"rank": 8,
+"rank": 9,
 "ranked": true,
 "ind_comparisons": 53,
 "ind_benchmarks": 9,
@@ -4472,7 +4538,7 @@
 },
 {
 "name": "terramind_v1b",
-"rank": 9,
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 10,
@@ -4485,22 +4551,36 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": 10,
+"name": "olmoearth_v1_large",
+"rank": 11,
 "ranked": true,
-"ind_comparisons": 57,
+"ind_comparisons": 22,
 "ind_benchmarks": 7,
-"ind_papers": 5,
-"ind_mean_z": 0.347,
-"ind_win_rate": 0.581,
-"ind_ft_z": 0.443,
-"ind_frozen_z": 0.331,
-"self_comparisons": 10,
-"self_mean_z": -0.577
+"ind_papers": 2,
+"ind_mean_z": 0.36,
+"ind_win_rate": 0.626,
+"ind_ft_z": 0.873,
+"ind_frozen_z": 0.247,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": 12,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.338,
+"ind_win_rate": 0.569,
+"ind_ft_z": 0.229,
+"ind_frozen_z": 0.377,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "resnet50_ssl4eo_dino",
-"rank": 11,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 7,
@@ -4514,7 +4594,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 12,
+"rank": 14,
 "ranked": true,
 "ind_comparisons": 53,
 "ind_benchmarks": 5,
@@ -4528,7 +4608,7 @@
 },
 {
 "name": "softcon",
-"rank": 13,
+"rank": 15,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 5,
@@ -4542,7 +4622,7 @@
 },
 {
 "name": "vitb_supervised",
-"rank": 14,
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -4556,7 +4636,7 @@
 },
 {
 "name": "ssl4eo_vits_data2vec",
-"rank": 15,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 40,
 "ind_benchmarks": 3,
@@ -4570,7 +4650,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 16,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 52,
 "ind_benchmarks": 8,
@@ -4584,7 +4664,7 @@
 },
 {
 "name": "galileo_base",
-"rank": 17,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 7,
@@ -4598,7 +4678,7 @@
 },
 {
 "name": "terramind_v1l",
-"rank": 18,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 8,
@@ -4612,7 +4692,7 @@
 },
 {
 "name": "prithvi_v2_600m",
-"rank": 19,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -4626,7 +4706,7 @@
 },
 {
 "name": "prithvi_v2_600m_tl",
-"rank": 20,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -4639,8 +4719,22 @@
 "self_mean_z": 0.949
 },
 {
+"name": "prithvi_v1_100m",
+"rank": 23,
+"ranked": true,
+"ind_comparisons": 67,
+"ind_benchmarks": 10,
+"ind_papers": 6,
+"ind_mean_z": 0.209,
+"ind_win_rate": 0.526,
+"ind_ft_z": -0.124,
+"ind_frozen_z": 0.331,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "dofa_vitb",
-"rank": 21,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 96,
 "ind_benchmarks": 10,
@@ -4654,7 +4748,7 @@
 },
 {
 "name": "satmae_vitl",
-"rank": 22,
+"rank": 25,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 4,
@@ -4668,7 +4762,7 @@
 },
 {
 "name": "softcon_vits",
-"rank": 23,
+"rank": 26,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -4682,7 +4776,7 @@
 },
 {
 "name": "presto",
-"rank": 24,
+"rank": 27,
 "ranked": true,
 "ind_comparisons": 20,
 "ind_benchmarks": 5,
@@ -4696,7 +4790,7 @@
 },
 {
 "name": "prithvi_v2_300m",
-"rank": 25,
+"rank": 28,
 "ranked": true,
 "ind_comparisons": 32,
 "ind_benchmarks": 9,
@@ -4710,7 +4804,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 26,
+"rank": 29,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -4723,8 +4817,22 @@
 "self_mean_z": 1.267
 },
 {
+"name": "tessera",
+"rank": 30,
+"ranked": true,
+"ind_comparisons": 8,
+"ind_benchmarks": 4,
+"ind_papers": 3,
+"ind_mean_z": 0.027,
+"ind_win_rate": 0.438,
+"ind_ft_z": null,
+"ind_frozen_z": 0.027,
+"self_comparisons": 6,
+"self_mean_z": 2.402
+},
+{
 "name": "satmae_pp",
-"rank": 27,
+"rank": 31,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -4738,7 +4846,7 @@
 },
 {
 "name": "resnet50_ssl4eo_moco",
-"rank": 28,
+"rank": 32,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 7,
@@ -4752,7 +4860,7 @@
 },
 {
 "name": "satmae_vitb",
-"rank": 29,
+"rank": 33,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 4,
@@ -4765,8 +4873,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_nano",
+"rank": 34,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": -0.106,
+"ind_win_rate": 0.432,
+"ind_ft_z": -0.72,
+"ind_frozen_z": 0.113,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "satlas_s2_swinb_si_ms",
-"rank": 30,
+"rank": 35,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 4,
@@ -4780,7 +4902,7 @@
 },
 {
 "name": "panopticon",
-"rank": 31,
+"rank": 36,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 6,
@@ -4794,7 +4916,7 @@
 },
 {
 "name": "galileo_tiny",
-"rank": 32,
+"rank": 37,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 6,
@@ -4808,7 +4930,7 @@
 },
 {
 "name": "galileo",
-"rank": 33,
+"rank": 38,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 4,
@@ -4822,7 +4944,7 @@
 },
 {
 "name": "unet_supervised",
-"rank": 34,
+"rank": 39,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 3,
@@ -4836,7 +4958,7 @@
 },
 {
 "name": "dinov3_convnext_l",
-"rank": 35,
+"rank": 40,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -4850,7 +4972,7 @@
 },
 {
 "name": "dofa_vitl",
-"rank": 36,
+"rank": 41,
 "ranked": true,
 "ind_comparisons": 27,
 "ind_benchmarks": 7,
@@ -4864,7 +4986,7 @@
 },
 {
 "name": "decur",
-"rank": 37,
+"rank": 42,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 5,
@@ -4878,7 +5000,7 @@
 },
 {
 "name": "galileo_nano",
-"rank": 38,
+"rank": 43,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 6,
@@ -4892,7 +5014,7 @@
 },
 {
 "name": "gfm_swinb",
-"rank": 39,
+"rank": 44,
 "ranked": true,
 "ind_comparisons": 45,
 "ind_benchmarks": 6,
@@ -4906,7 +5028,7 @@
 },
 {
 "name": "anysat",
-"rank": 40,
+"rank": 45,
 "ranked": true,
 "ind_comparisons": 55,
 "ind_benchmarks": 8,
@@ -4920,7 +5042,7 @@
 },
 {
 "name": "copernicusfm",
-"rank": 41,
+"rank": 46,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 6,
@@ -4934,7 +5056,7 @@
 },
 {
 "name": "dinov3_sat_vit7b",
-"rank": 42,
+"rank": 47,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -4948,7 +5070,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 43,
+"rank": 48,
 "ranked": true,
 "ind_comparisons": 52,
 "ind_benchmarks": 10,
@@ -4962,7 +5084,7 @@
 },
 {
 "name": "satlas_s2_swinb_mi_ms",
-"rank": 44,
+"rank": 49,
 "ranked": true,
 "ind_comparisons": 46,
 "ind_benchmarks": 7,
@@ -4976,7 +5098,7 @@
 },
 {
 "name": "dinov3_sat_vitl",
-"rank": 45,
+"rank": 50,
 "ranked": true,
 "ind_comparisons": 26,
 "ind_benchmarks": 8,
@@ -4990,7 +5112,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 46,
+"rank": 51,
 "ranked": true,
 "ind_comparisons": 41,
 "ind_benchmarks": 5,
@@ -5004,7 +5126,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 47,
+"rank": 52,
 "ranked": true,
 "ind_comparisons": 58,
 "ind_benchmarks": 8,
@@ -5018,7 +5140,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 48,
+"rank": 53,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 5,
@@ -5032,7 +5154,7 @@
 },
 {
 "name": "dinov3_vit7b",
-"rank": 49,
+"rank": 54,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -5046,7 +5168,7 @@
 },
 {
 "name": "satlas_s2_swint_si_ms",
-"rank": 50,
+"rank": 55,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -5060,7 +5182,7 @@
 },
 {
 "name": "decur_vits",
-"rank": 51,
+"rank": 56,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -5074,7 +5196,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 52,
+"rank": 57,
 "ranked": true,
 "ind_comparisons": 62,
 "ind_benchmarks": 8,
@@ -5088,7 +5210,7 @@
 },
 {
 "name": "clay",
-"rank": 53,
+"rank": 58,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 6,
@@ -5102,7 +5224,7 @@
 },
 {
 "name": "dinov3_vith",
-"rank": 54,
+"rank": 59,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -5116,7 +5238,7 @@
 },
 {
 "name": "mmearth_cnn_atto",
-"rank": 55,
+"rank": 60,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -5130,7 +5252,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 56,
+"rank": 61,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -5144,7 +5266,7 @@
 },
 {
 "name": "senpamae",
-"rank": 57,
+"rank": 62,
 "ranked": true,
 "ind_comparisons": 11,
 "ind_benchmarks": 4,
@@ -5158,7 +5280,7 @@
 },
 {
 "name": "dinov3_vitl",
-"rank": 58,
+"rank": 63,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -5365,34 +5487,6 @@
 "ind_frozen_z": 0.36,
 "self_comparisons": null,
 "self_mean_z": null
-},
-{
-"name": "tessera",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 4,
-"ind_benchmarks": 2,
-"ind_papers": 2,
-"ind_mean_z": -0.022,
-"ind_win_rate": 0.375,
-"ind_ft_z": null,
-"ind_frozen_z": -0.022,
-"self_comparisons": 10,
-"self_mean_z": 1.471
-},
-{
-"name": "olmoearth_v1_large",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 4,
-"ind_benchmarks": 3,
-"ind_papers": 1,
-"ind_mean_z": -0.248,
-"ind_win_rate": 0.333,
-"ind_ft_z": null,
-"ind_frozen_z": -0.248,
-"self_comparisons": 18,
-"self_mean_z": 0.496
 },
 {
 "name": "mmearth_imagenet_mae_atto",
@@ -5739,8 +5833,22 @@
 "self_mean_z": null
 },
 {
-"name": "skysense",
+"name": "olmoearth_v1_base",
 "rank": 3,
+"ranked": true,
+"ind_comparisons": 15,
+"ind_benchmarks": 7,
+"ind_papers": 1,
+"ind_mean_z": 0.825,
+"ind_win_rate": 0.847,
+"ind_ft_z": 0.709,
+"ind_frozen_z": 0.998,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "skysense",
+"rank": 4,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 3,
@@ -5754,7 +5862,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 4,
+"rank": 5,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 4,
@@ -5768,7 +5876,7 @@
 },
 {
 "name": "softcon_vits",
-"rank": 5,
+"rank": 6,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -5782,7 +5890,7 @@
 },
 {
 "name": "convnext_l_imagenet",
-"rank": 6,
+"rank": 7,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 8,
@@ -5796,7 +5904,7 @@
 },
 {
 "name": "dinov2_vitb",
-"rank": 7,
+"rank": 8,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 7,
@@ -5810,7 +5918,7 @@
 },
 {
 "name": "softcon",
-"rank": 8,
+"rank": 9,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 5,
@@ -5824,7 +5932,7 @@
 },
 {
 "name": "convnext_xl_imagenet",
-"rank": 9,
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 8,
@@ -5837,8 +5945,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_large",
+"rank": 11,
+"ranked": true,
+"ind_comparisons": 16,
+"ind_benchmarks": 9,
+"ind_papers": 2,
+"ind_mean_z": 0.527,
+"ind_win_rate": 0.702,
+"ind_ft_z": 0.558,
+"ind_frozen_z": 0.497,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "clip_vitl14",
-"rank": 10,
+"rank": 12,
 "ranked": true,
 "ind_comparisons": 11,
 "ind_benchmarks": 11,
@@ -5851,22 +5973,8 @@
 "self_mean_z": null
 },
 {
-"name": "tessera",
-"rank": 11,
-"ranked": true,
-"ind_comparisons": 8,
-"ind_benchmarks": 4,
-"ind_papers": 2,
-"ind_mean_z": 0.519,
-"ind_win_rate": 0.546,
-"ind_ft_z": null,
-"ind_frozen_z": 0.519,
-"self_comparisons": 8,
-"self_mean_z": 1.334
-},
-{
 "name": "croma_vitl",
-"rank": 12,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 99,
 "ind_benchmarks": 16,
@@ -5880,7 +5988,7 @@
 },
 {
 "name": "panopticon",
-"rank": 13,
+"rank": 14,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 7,
@@ -5893,8 +6001,22 @@
 "self_mean_z": 0.522
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": 15,
+"ranked": true,
+"ind_comparisons": 15,
+"ind_benchmarks": 7,
+"ind_papers": 1,
+"ind_mean_z": 0.41,
+"ind_win_rate": 0.652,
+"ind_ft_z": 0.367,
+"ind_frozen_z": 0.473,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "terramind_v1l",
-"rank": 14,
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 26,
 "ind_benchmarks": 13,
@@ -5908,7 +6030,7 @@
 },
 {
 "name": "vitb_supervised",
-"rank": 15,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 6,
@@ -5922,7 +6044,7 @@
 },
 {
 "name": "prithvi_v2_300m_tl",
-"rank": 16,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 8,
@@ -5935,8 +6057,22 @@
 "self_mean_z": 0.079
 },
 {
+"name": "tessera",
+"rank": 19,
+"ranked": true,
+"ind_comparisons": 10,
+"ind_benchmarks": 6,
+"ind_papers": 3,
+"ind_mean_z": 0.351,
+"ind_win_rate": 0.503,
+"ind_ft_z": null,
+"ind_frozen_z": 0.351,
+"self_comparisons": 6,
+"self_mean_z": 1.885
+},
+{
 "name": "vitb_imagenet22k",
-"rank": 17,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 3,
@@ -5950,7 +6086,7 @@
 },
 {
 "name": "dinov3_sat_vit7b",
-"rank": 18,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 4,
@@ -5964,7 +6100,7 @@
 },
 {
 "name": "barlowtwins_resnet50",
-"rank": 19,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -5978,7 +6114,7 @@
 },
 {
 "name": "clip_vit",
-"rank": 20,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 47,
 "ind_benchmarks": 14,
@@ -5992,7 +6128,7 @@
 },
 {
 "name": "copernicusfm",
-"rank": 21,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 9,
@@ -6006,7 +6142,7 @@
 },
 {
 "name": "unet_supervised",
-"rank": 22,
+"rank": 25,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 5,
@@ -6020,7 +6156,7 @@
 },
 {
 "name": "clay_vitb",
-"rank": 23,
+"rank": 26,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 13,
@@ -6034,7 +6170,7 @@
 },
 {
 "name": "vicreg_resnet50",
-"rank": 24,
+"rank": 27,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -6048,7 +6184,7 @@
 },
 {
 "name": "vitb_torchvision_in1k",
-"rank": 25,
+"rank": 28,
 "ranked": true,
 "ind_comparisons": 10,
 "ind_benchmarks": 4,
@@ -6062,7 +6198,7 @@
 },
 {
 "name": "ssl4eo_resnet50_moco_repro_bigearthnet_allbands",
-"rank": 26,
+"rank": 29,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -6076,7 +6212,7 @@
 },
 {
 "name": "satlas_resnet50",
-"rank": 27,
+"rank": 30,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 3,
@@ -6090,7 +6226,7 @@
 },
 {
 "name": "prithvi_v2_600m_tl",
-"rank": 28,
+"rank": 31,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 8,
@@ -6104,7 +6240,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 29,
+"rank": 32,
 "ranked": true,
 "ind_comparisons": 65,
 "ind_benchmarks": 8,
@@ -6118,7 +6254,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 30,
+"rank": 33,
 "ranked": true,
 "ind_comparisons": 63,
 "ind_benchmarks": 11,
@@ -6132,7 +6268,7 @@
 },
 {
 "name": "dofa_vitb",
-"rank": 31,
+"rank": 34,
 "ranked": true,
 "ind_comparisons": 140,
 "ind_benchmarks": 19,
@@ -6146,7 +6282,7 @@
 },
 {
 "name": "dinov3_convnext_l",
-"rank": 32,
+"rank": 35,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 8,
@@ -6160,7 +6296,7 @@
 },
 {
 "name": "vitb_ijepa",
-"rank": 33,
+"rank": 36,
 "ranked": true,
 "ind_comparisons": 10,
 "ind_benchmarks": 4,
@@ -6174,7 +6310,7 @@
 },
 {
 "name": "terramind_v1b",
-"rank": 34,
+"rank": 37,
 "ranked": true,
 "ind_comparisons": 45,
 "ind_benchmarks": 20,
@@ -6188,7 +6324,7 @@
 },
 {
 "name": "ssl4eo_vits_moco",
-"rank": 35,
+"rank": 38,
 "ranked": true,
 "ind_comparisons": 44,
 "ind_benchmarks": 6,
@@ -6202,7 +6338,7 @@
 },
 {
 "name": "seco_resnet50",
-"rank": 36,
+"rank": 39,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 5,
@@ -6216,7 +6352,7 @@
 },
 {
 "name": "prithvi_v2_600m",
-"rank": 37,
+"rank": 40,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 8,
@@ -6230,7 +6366,7 @@
 },
 {
 "name": "ssl4eo_vits_dino",
-"rank": 38,
+"rank": 41,
 "ranked": true,
 "ind_comparisons": 60,
 "ind_benchmarks": 13,
@@ -6244,7 +6380,7 @@
 },
 {
 "name": "dofa_vitl",
-"rank": 39,
+"rank": 42,
 "ranked": true,
 "ind_comparisons": 41,
 "ind_benchmarks": 13,
@@ -6258,7 +6394,7 @@
 },
 {
 "name": "ssl4eo_vits_data2vec",
-"rank": 40,
+"rank": 43,
 "ranked": true,
 "ind_comparisons": 41,
 "ind_benchmarks": 4,
@@ -6272,7 +6408,7 @@
 },
 {
 "name": "galileo",
-"rank": 41,
+"rank": 44,
 "ranked": true,
 "ind_comparisons": 21,
 "ind_benchmarks": 5,
@@ -6286,7 +6422,7 @@
 },
 {
 "name": "swav_resnet50",
-"rank": 42,
+"rank": 45,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -6300,7 +6436,7 @@
 },
 {
 "name": "resnet50_ssl4eo_moco",
-"rank": 43,
+"rank": 46,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 13,
@@ -6314,7 +6450,7 @@
 },
 {
 "name": "dinov3_sat_vitl",
-"rank": 44,
+"rank": 47,
 "ranked": true,
 "ind_comparisons": 41,
 "ind_benchmarks": 17,
@@ -6327,22 +6463,22 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": 45,
+"name": "olmoearth_v1_nano",
+"rank": 48,
 "ranked": true,
-"ind_comparisons": 77,
-"ind_benchmarks": 9,
-"ind_papers": 8,
-"ind_mean_z": -0.102,
-"ind_win_rate": 0.481,
-"ind_ft_z": -0.084,
-"ind_frozen_z": -0.108,
-"self_comparisons": 13,
-"self_mean_z": -0.763
+"ind_comparisons": 15,
+"ind_benchmarks": 7,
+"ind_papers": 1,
+"ind_mean_z": -0.109,
+"ind_win_rate": 0.44,
+"ind_ft_z": -0.224,
+"ind_frozen_z": 0.064,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "satmae_vitl",
-"rank": 46,
+"rank": 49,
 "ranked": true,
 "ind_comparisons": 42,
 "ind_benchmarks": 8,
@@ -6356,7 +6492,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 47,
+"rank": 50,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 4,
@@ -6370,7 +6506,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 48,
+"rank": 51,
 "ranked": true,
 "ind_comparisons": 60,
 "ind_benchmarks": 13,
@@ -6384,7 +6520,7 @@
 },
 {
 "name": "presto",
-"rank": 49,
+"rank": 52,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -6397,8 +6533,22 @@
 "self_mean_z": null
 },
 {
+"name": "prithvi_v1_100m",
+"rank": 53,
+"ranked": true,
+"ind_comparisons": 90,
+"ind_benchmarks": 13,
+"ind_papers": 9,
+"ind_mean_z": -0.198,
+"ind_win_rate": 0.437,
+"ind_ft_z": -0.411,
+"ind_frozen_z": -0.108,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "satlas_s2_swinb_mi_ms",
-"rank": 50,
+"rank": 54,
 "ranked": true,
 "ind_comparisons": 38,
 "ind_benchmarks": 11,
@@ -6412,7 +6562,7 @@
 },
 {
 "name": "satlas_s2_swinb_si_ms",
-"rank": 51,
+"rank": 55,
 "ranked": true,
 "ind_comparisons": 38,
 "ind_benchmarks": 9,
@@ -6426,7 +6576,7 @@
 },
 {
 "name": "dinov3_vit7b",
-"rank": 52,
+"rank": 56,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 4,
@@ -6440,7 +6590,7 @@
 },
 {
 "name": "resnet50_ssl4eo_dino",
-"rank": 53,
+"rank": 57,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 12,
@@ -6454,7 +6604,7 @@
 },
 {
 "name": "satmae_pp",
-"rank": 54,
+"rank": 58,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 3,
@@ -6468,7 +6618,7 @@
 },
 {
 "name": "mmearth_cnn_atto",
-"rank": 55,
+"rank": 59,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 2,
@@ -6482,7 +6632,7 @@
 },
 {
 "name": "galileo_base",
-"rank": 56,
+"rank": 60,
 "ranked": true,
 "ind_comparisons": 30,
 "ind_benchmarks": 10,
@@ -6496,7 +6646,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 57,
+"rank": 61,
 "ranked": true,
 "ind_comparisons": 59,
 "ind_benchmarks": 24,
@@ -6510,7 +6660,7 @@
 },
 {
 "name": "satmae_vitb",
-"rank": 58,
+"rank": 62,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 4,
@@ -6524,7 +6674,7 @@
 },
 {
 "name": "decur",
-"rank": 59,
+"rank": 63,
 "ranked": true,
 "ind_comparisons": 24,
 "ind_benchmarks": 11,
@@ -6538,7 +6688,7 @@
 },
 {
 "name": "satlas_aerial_swinb_si",
-"rank": 60,
+"rank": 64,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 8,
@@ -6552,7 +6702,7 @@
 },
 {
 "name": "satlas_s2_swint_si_ms",
-"rank": 61,
+"rank": 65,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -6566,7 +6716,7 @@
 },
 {
 "name": "prithvi_v2_300m",
-"rank": 62,
+"rank": 66,
 "ranked": true,
 "ind_comparisons": 40,
 "ind_benchmarks": 8,
@@ -6580,7 +6730,7 @@
 },
 {
 "name": "clip_rn50",
-"rank": 63,
+"rank": 67,
 "ranked": true,
 "ind_comparisons": 33,
 "ind_benchmarks": 11,
@@ -6594,7 +6744,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 64,
+"rank": 68,
 "ranked": true,
 "ind_comparisons": 55,
 "ind_benchmarks": 11,
@@ -6608,7 +6758,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 65,
+"rank": 69,
 "ranked": true,
 "ind_comparisons": 83,
 "ind_benchmarks": 15,
@@ -6622,7 +6772,7 @@
 },
 {
 "name": "gfm_swinb",
-"rank": 66,
+"rank": 70,
 "ranked": true,
 "ind_comparisons": 49,
 "ind_benchmarks": 10,
@@ -6636,7 +6786,7 @@
 },
 {
 "name": "dinov3_vitl",
-"rank": 67,
+"rank": 71,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 6,
@@ -6650,7 +6800,7 @@
 },
 {
 "name": "dinov3_vith",
-"rank": 68,
+"rank": 72,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 4,
@@ -6664,7 +6814,7 @@
 },
 {
 "name": "anysat",
-"rank": 69,
+"rank": 73,
 "ranked": true,
 "ind_comparisons": 55,
 "ind_benchmarks": 11,
@@ -6678,7 +6828,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 70,
+"rank": 74,
 "ranked": true,
 "ind_comparisons": 72,
 "ind_benchmarks": 13,
@@ -6692,7 +6842,7 @@
 },
 {
 "name": "satlas_s2_resnet50_si_ms",
-"rank": 71,
+"rank": 75,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 7,
@@ -6706,7 +6856,7 @@
 },
 {
 "name": "vanilla_mae",
-"rank": 72,
+"rank": 76,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 5,
@@ -6720,7 +6870,7 @@
 },
 {
 "name": "vitb_imagenet",
-"rank": 73,
+"rank": 77,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -6734,7 +6884,7 @@
 },
 {
 "name": "clay",
-"rank": 74,
+"rank": 78,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 7,
@@ -6748,7 +6898,7 @@
 },
 {
 "name": "vitae_vitb",
-"rank": 75,
+"rank": 79,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -6762,7 +6912,7 @@
 },
 {
 "name": "vitb_random",
-"rank": 76,
+"rank": 80,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 5,
@@ -6776,7 +6926,7 @@
 },
 {
 "name": "satclip",
-"rank": 77,
+"rank": 81,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 3,
@@ -6790,7 +6940,7 @@
 },
 {
 "name": "resnet50_random",
-"rank": 78,
+"rank": 82,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 5,
@@ -6804,7 +6954,7 @@
 },
 {
 "name": "resnet18_baseline",
-"rank": 79,
+"rank": 83,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -6818,7 +6968,7 @@
 },
 {
 "name": "senpamae",
-"rank": 80,
+"rank": 84,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 7,
@@ -6832,7 +6982,7 @@
 },
 {
 "name": "geoclip",
-"rank": 81,
+"rank": 85,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 3,
@@ -6846,7 +6996,7 @@
 },
 {
 "name": "resnet50_baseline",
-"rank": 82,
+"rank": 86,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -6860,7 +7010,7 @@
 },
 {
 "name": "vits_random",
-"rank": 83,
+"rank": 87,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 3,
@@ -7181,20 +7331,6 @@
 "self_mean_z": null
 },
 {
-"name": "olmoearth_v1_large",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 2,
-"ind_benchmarks": 2,
-"ind_papers": 1,
-"ind_mean_z": -0.532,
-"ind_win_rate": 0.333,
-"ind_ft_z": null,
-"ind_frozen_z": -0.532,
-"self_comparisons": 14,
-"self_mean_z": 0.679
-},
-{
 "name": "utt",
 "rank": null,
 "ranked": false,
@@ -7483,8 +7619,22 @@
 "self_mean_z": -0.374
 },
 {
-"name": "dofa_vitl",
+"name": "olmoearth_v1_base",
 "rank": 9,
+"ranked": true,
+"ind_comparisons": 16,
+"ind_benchmarks": 2,
+"ind_papers": 2,
+"ind_mean_z": 0.326,
+"ind_win_rate": 0.619,
+"ind_ft_z": 0.307,
+"ind_frozen_z": 0.344,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "dofa_vitl",
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 20,
 "ind_benchmarks": 3,
@@ -7498,7 +7648,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 10,
+"rank": 11,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -7512,7 +7662,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 11,
+"rank": 12,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -7526,7 +7676,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 12,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 2,
@@ -7537,20 +7687,6 @@
 "ind_frozen_z": 0.546,
 "self_comparisons": null,
 "self_mean_z": null
-},
-{
-"name": "prithvi_v1_100m",
-"rank": 13,
-"ranked": true,
-"ind_comparisons": 27,
-"ind_benchmarks": 5,
-"ind_papers": 5,
-"ind_mean_z": 0.106,
-"ind_win_rate": 0.565,
-"ind_ft_z": -0.526,
-"ind_frozen_z": 0.43,
-"self_comparisons": 3,
-"self_mean_z": -1.72
 },
 {
 "name": "ibot_vitb",
@@ -7567,8 +7703,22 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v2_300m_tl",
+"name": "prithvi_v1_100m",
 "rank": 15,
+"ranked": true,
+"ind_comparisons": 30,
+"ind_benchmarks": 5,
+"ind_papers": 6,
+"ind_mean_z": -0.077,
+"ind_win_rate": 0.508,
+"ind_ft_z": -0.924,
+"ind_frozen_z": 0.43,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "prithvi_v2_300m_tl",
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 2,
@@ -7582,7 +7732,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 16,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 3,
@@ -7596,7 +7746,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 17,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 4,
@@ -7610,7 +7760,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 18,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -7624,7 +7774,7 @@
 },
 {
 "name": "softcon",
-"rank": 19,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 4,
@@ -7638,7 +7788,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 20,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 3,
@@ -7652,7 +7802,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 21,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 21,
 "ind_benchmarks": 3,
@@ -7666,7 +7816,7 @@
 },
 {
 "name": "anysat",
-"rank": 22,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -7680,7 +7830,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 23,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 3,
@@ -7731,6 +7881,20 @@
 "ind_win_rate": 0.749,
 "ind_ft_z": 0.655,
 "ind_frozen_z": 1.21,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.904,
+"ind_win_rate": 0.941,
+"ind_ft_z": 0.799,
+"ind_frozen_z": 1.01,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -7917,6 +8081,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.368,
+"ind_win_rate": 0.526,
+"ind_ft_z": 0.657,
+"ind_frozen_z": 0.079,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "ssl4eo_vits_data2vec",
 "rank": null,
 "ranked": false,
@@ -7957,20 +8135,6 @@
 "ind_frozen_z": 0.086,
 "self_comparisons": 4,
 "self_mean_z": 1.082
-},
-{
-"name": "olmoearth_v1_base",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 14,
-"ind_benchmarks": 1,
-"ind_papers": 1,
-"ind_mean_z": 0.274,
-"ind_win_rate": 0.585,
-"ind_ft_z": 0.236,
-"ind_frozen_z": 0.311,
-"self_comparisons": 2,
-"self_mean_z": 0.69
 },
 {
 "name": "terramind_v1t",
@@ -8137,6 +8301,20 @@
 "ind_win_rate": 0.426,
 "ind_ft_z": -1.052,
 "ind_frozen_z": 0.365,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -0.381,
+"ind_win_rate": 0.223,
+"ind_ft_z": -0.625,
+"ind_frozen_z": -0.136,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -8499,6 +8677,34 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 1.038,
+"ind_win_rate": 0.874,
+"ind_ft_z": 1.07,
+"ind_frozen_z": 0.942,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 1.037,
+"ind_win_rate": 0.937,
+"ind_ft_z": 1.038,
+"ind_frozen_z": 1.032,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "galileo_base",
 "rank": null,
 "ranked": false,
@@ -8551,6 +8757,20 @@
 "ind_win_rate": 0.671,
 "ind_ft_z": null,
 "ind_frozen_z": 0.484,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.432,
+"ind_win_rate": 0.734,
+"ind_ft_z": 0.556,
+"ind_frozen_z": 0.059,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -8761,6 +8981,20 @@
 "ind_win_rate": 0.53,
 "ind_ft_z": null,
 "ind_frozen_z": -0.062,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": -0.275,
+"ind_win_rate": 0.396,
+"ind_ft_z": -0.259,
+"ind_frozen_z": -0.325,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -10351,8 +10585,22 @@
 "self_mean_z": null
 },
 {
-"name": "softcon_vits",
+"name": "olmoearth_v1_large",
 "rank": 4,
+"ranked": true,
+"ind_comparisons": 5,
+"ind_benchmarks": 3,
+"ind_papers": 1,
+"ind_mean_z": 0.932,
+"ind_win_rate": 0.812,
+"ind_ft_z": 0.612,
+"ind_frozen_z": 1.411,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "softcon_vits",
+"rank": 5,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -10365,8 +10613,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_base",
+"rank": 6,
+"ranked": true,
+"ind_comparisons": 9,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.844,
+"ind_win_rate": 0.826,
+"ind_ft_z": 0.696,
+"ind_frozen_z": 1.363,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "dinov2_vitb",
-"rank": 5,
+"rank": 7,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 6,
@@ -10380,7 +10642,7 @@
 },
 {
 "name": "gfm_swin_swint",
-"rank": 6,
+"rank": 8,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 5,
@@ -10394,7 +10656,7 @@
 },
 {
 "name": "clay_vitb",
-"rank": 7,
+"rank": 9,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 5,
@@ -10408,7 +10670,7 @@
 },
 {
 "name": "panopticon",
-"rank": 8,
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 7,
@@ -10422,7 +10684,7 @@
 },
 {
 "name": "softcon",
-"rank": 9,
+"rank": 11,
 "ranked": true,
 "ind_comparisons": 33,
 "ind_benchmarks": 9,
@@ -10436,7 +10698,7 @@
 },
 {
 "name": "prithvi_v2_600m_tl",
-"rank": 10,
+"rank": 12,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 4,
@@ -10450,7 +10712,7 @@
 },
 {
 "name": "swinb_imagenet_baseline",
-"rank": 11,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 3,
@@ -10464,7 +10726,7 @@
 },
 {
 "name": "vitb_augreg_in21k_ft_in1k",
-"rank": 12,
+"rank": 14,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -10478,7 +10740,7 @@
 },
 {
 "name": "satlas_s2_swinb_si_ms",
-"rank": 13,
+"rank": 15,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 4,
@@ -10491,8 +10753,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": 16,
+"ranked": true,
+"ind_comparisons": 9,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.389,
+"ind_win_rate": 0.631,
+"ind_ft_z": 0.278,
+"ind_frozen_z": 0.779,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "ssl4eo_vits_moco",
-"rank": 14,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 11,
 "ind_benchmarks": 2,
@@ -10506,7 +10782,7 @@
 },
 {
 "name": "gfm_swinb",
-"rank": 15,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 5,
@@ -10520,7 +10796,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 16,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -10534,7 +10810,7 @@
 },
 {
 "name": "decur_vits",
-"rank": 17,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 2,
@@ -10548,7 +10824,7 @@
 },
 {
 "name": "galileo_base",
-"rank": 18,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -10562,7 +10838,7 @@
 },
 {
 "name": "dofa_vitb",
-"rank": 19,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 60,
 "ind_benchmarks": 13,
@@ -10576,7 +10852,7 @@
 },
 {
 "name": "croma_vitl",
-"rank": 20,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 48,
 "ind_benchmarks": 10,
@@ -10590,7 +10866,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 21,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 30,
 "ind_benchmarks": 9,
@@ -10604,7 +10880,7 @@
 },
 {
 "name": "dofa_vitl",
-"rank": 22,
+"rank": 25,
 "ranked": true,
 "ind_comparisons": 31,
 "ind_benchmarks": 7,
@@ -10618,7 +10894,7 @@
 },
 {
 "name": "prithvi_v2_300m",
-"rank": 23,
+"rank": 26,
 "ranked": true,
 "ind_comparisons": 46,
 "ind_benchmarks": 4,
@@ -10632,7 +10908,7 @@
 },
 {
 "name": "seco_resnet50",
-"rank": 24,
+"rank": 27,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 4,
@@ -10646,7 +10922,7 @@
 },
 {
 "name": "ibot_vitb",
-"rank": 25,
+"rank": 28,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -10660,7 +10936,7 @@
 },
 {
 "name": "terramind_v1b",
-"rank": 26,
+"rank": 29,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 10,
@@ -10674,7 +10950,7 @@
 },
 {
 "name": "alphaearth",
-"rank": 27,
+"rank": 30,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 4,
@@ -10688,7 +10964,7 @@
 },
 {
 "name": "dinov3_sat_vitl",
-"rank": 28,
+"rank": 31,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 8,
@@ -10702,7 +10978,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 29,
+"rank": 32,
 "ranked": true,
 "ind_comparisons": 61,
 "ind_benchmarks": 9,
@@ -10716,7 +10992,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 30,
+"rank": 33,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 3,
@@ -10730,7 +11006,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 31,
+"rank": 34,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 6,
@@ -10744,7 +11020,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 32,
+"rank": 35,
 "ranked": true,
 "ind_comparisons": 58,
 "ind_benchmarks": 6,
@@ -10758,7 +11034,7 @@
 },
 {
 "name": "mmearth_cnn_atto",
-"rank": 33,
+"rank": 36,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 2,
@@ -10772,7 +11048,7 @@
 },
 {
 "name": "satlas_swint",
-"rank": 34,
+"rank": 37,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 5,
@@ -10786,7 +11062,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 35,
+"rank": 38,
 "ranked": true,
 "ind_comparisons": 24,
 "ind_benchmarks": 9,
@@ -10800,7 +11076,7 @@
 },
 {
 "name": "satlas_s2_swinb_mi_ms",
-"rank": 36,
+"rank": 39,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 5,
@@ -10814,7 +11090,7 @@
 },
 {
 "name": "terramind_v1l",
-"rank": 37,
+"rank": 40,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -10828,7 +11104,7 @@
 },
 {
 "name": "clay",
-"rank": 38,
+"rank": 41,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 6,
@@ -10841,8 +11117,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_nano",
+"rank": 42,
+"ranked": true,
+"ind_comparisons": 9,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": -0.236,
+"ind_win_rate": 0.366,
+"ind_ft_z": -0.642,
+"ind_frozen_z": 1.185,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "satmae_vitl",
-"rank": 39,
+"rank": 43,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 7,
@@ -10856,7 +11146,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 40,
+"rank": 44,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 9,
@@ -10870,7 +11160,7 @@
 },
 {
 "name": "vanilla_mae",
-"rank": 41,
+"rank": 45,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 5,
@@ -10884,7 +11174,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 42,
+"rank": 46,
 "ranked": true,
 "ind_comparisons": 30,
 "ind_benchmarks": 11,
@@ -10898,7 +11188,7 @@
 },
 {
 "name": "prithvi_v2_600m",
-"rank": 43,
+"rank": 47,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -10912,7 +11202,7 @@
 },
 {
 "name": "copernicusfm",
-"rank": 44,
+"rank": 48,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 6,
@@ -10926,7 +11216,7 @@
 },
 {
 "name": "ssl4eo_vits_dino",
-"rank": 45,
+"rank": 49,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 6,
@@ -10940,7 +11230,7 @@
 },
 {
 "name": "resnet50_ssl4eo_dino",
-"rank": 46,
+"rank": 50,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 6,
@@ -10954,7 +11244,7 @@
 },
 {
 "name": "vitl_imagenet",
-"rank": 47,
+"rank": 51,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 4,
@@ -10968,7 +11258,7 @@
 },
 {
 "name": "satlas_s2_swint_si_ms",
-"rank": 48,
+"rank": 52,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -10982,7 +11272,7 @@
 },
 {
 "name": "satmae_vitb",
-"rank": 49,
+"rank": 53,
 "ranked": true,
 "ind_comparisons": 25,
 "ind_benchmarks": 4,
@@ -10996,7 +11286,7 @@
 },
 {
 "name": "satmae_pp",
-"rank": 50,
+"rank": 54,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 2,
@@ -11010,7 +11300,7 @@
 },
 {
 "name": "resnet50_ssl4eo_moco",
-"rank": 51,
+"rank": 55,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 6,
@@ -11024,7 +11314,7 @@
 },
 {
 "name": "decur",
-"rank": 52,
+"rank": 56,
 "ranked": true,
 "ind_comparisons": 11,
 "ind_benchmarks": 6,
@@ -11038,7 +11328,7 @@
 },
 {
 "name": "satlas_s2_resnet50_si_ms",
-"rank": 53,
+"rank": 57,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -11052,21 +11342,21 @@
 },
 {
 "name": "prithvi_v1_100m",
-"rank": 54,
+"rank": 58,
 "ranked": true,
-"ind_comparisons": 24,
-"ind_benchmarks": 9,
-"ind_papers": 3,
-"ind_mean_z": -1.108,
-"ind_win_rate": 0.123,
-"ind_ft_z": -0.524,
+"ind_comparisons": 28,
+"ind_benchmarks": 10,
+"ind_papers": 4,
+"ind_mean_z": -1.17,
+"ind_win_rate": 0.119,
+"ind_ft_z": -1.104,
 "ind_frozen_z": -1.192,
-"self_comparisons": 4,
-"self_mean_z": -1.539
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "resnet50_random",
-"rank": 55,
+"rank": 59,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -11080,7 +11370,7 @@
 },
 {
 "name": "anysat",
-"rank": 56,
+"rank": 60,
 "ranked": true,
 "ind_comparisons": 43,
 "ind_benchmarks": 9,
@@ -11094,7 +11384,7 @@
 },
 {
 "name": "senpamae",
-"rank": 57,
+"rank": 61,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 5,
@@ -12272,8 +12562,22 @@
 "self_mean_z": null
 },
 {
-"name": "skysense",
+"name": "olmoearth_v1_base",
 "rank": 3,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.781,
+"ind_win_rate": 0.79,
+"ind_ft_z": 0.727,
+"ind_frozen_z": 0.8,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "skysense",
+"rank": 4,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -12287,7 +12591,7 @@
 },
 {
 "name": "prithvi_v2_600m_tl",
-"rank": 4,
+"rank": 5,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -12301,7 +12605,7 @@
 },
 {
 "name": "ssl4eo_vits_moco",
-"rank": 5,
+"rank": 6,
 "ranked": true,
 "ind_comparisons": 42,
 "ind_benchmarks": 5,
@@ -12315,7 +12619,7 @@
 },
 {
 "name": "alphaearth",
-"rank": 6,
+"rank": 7,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 4,
@@ -12329,7 +12633,7 @@
 },
 {
 "name": "croma_vitl",
-"rank": 7,
+"rank": 8,
 "ranked": true,
 "ind_comparisons": 87,
 "ind_benchmarks": 10,
@@ -12343,7 +12647,7 @@
 },
 {
 "name": "ssl4eo_vits_dino",
-"rank": 8,
+"rank": 9,
 "ranked": true,
 "ind_comparisons": 51,
 "ind_benchmarks": 8,
@@ -12357,7 +12661,7 @@
 },
 {
 "name": "terramind_v1b",
-"rank": 9,
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 35,
 "ind_benchmarks": 9,
@@ -12371,7 +12675,7 @@
 },
 {
 "name": "softcon",
-"rank": 10,
+"rank": 11,
 "ranked": true,
 "ind_comparisons": 21,
 "ind_benchmarks": 4,
@@ -12384,22 +12688,36 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": 11,
+"name": "olmoearth_v1_large",
+"rank": 12,
 "ranked": true,
-"ind_comparisons": 57,
+"ind_comparisons": 22,
 "ind_benchmarks": 7,
-"ind_papers": 5,
-"ind_mean_z": 0.347,
-"ind_win_rate": 0.581,
-"ind_ft_z": 0.443,
-"ind_frozen_z": 0.331,
-"self_comparisons": 9,
-"self_mean_z": -0.46
+"ind_papers": 2,
+"ind_mean_z": 0.36,
+"ind_win_rate": 0.626,
+"ind_ft_z": 0.873,
+"ind_frozen_z": 0.247,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": 13,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": 0.338,
+"ind_win_rate": 0.569,
+"ind_ft_z": 0.229,
+"ind_frozen_z": 0.377,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "convnext_xl_imagenet",
-"rank": 12,
+"rank": 14,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -12413,7 +12731,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 13,
+"rank": 15,
 "ranked": true,
 "ind_comparisons": 53,
 "ind_benchmarks": 5,
@@ -12427,7 +12745,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 14,
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 50,
 "ind_benchmarks": 7,
@@ -12441,7 +12759,7 @@
 },
 {
 "name": "vitb_supervised",
-"rank": 15,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -12455,7 +12773,7 @@
 },
 {
 "name": "ssl4eo_vits_data2vec",
-"rank": 16,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 40,
 "ind_benchmarks": 3,
@@ -12469,7 +12787,7 @@
 },
 {
 "name": "terramind_v1l",
-"rank": 17,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 7,
@@ -12483,7 +12801,7 @@
 },
 {
 "name": "galileo_base",
-"rank": 18,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 7,
@@ -12496,8 +12814,22 @@
 "self_mean_z": 1.399
 },
 {
+"name": "prithvi_v1_100m",
+"rank": 21,
+"ranked": true,
+"ind_comparisons": 66,
+"ind_benchmarks": 9,
+"ind_papers": 6,
+"ind_mean_z": 0.237,
+"ind_win_rate": 0.534,
+"ind_ft_z": -0.035,
+"ind_frozen_z": 0.331,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "prithvi_v2_600m",
-"rank": 19,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -12511,7 +12843,7 @@
 },
 {
 "name": "resnet50_ssl4eo_dino",
-"rank": 20,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 6,
@@ -12525,7 +12857,7 @@
 },
 {
 "name": "satmae_vitl",
-"rank": 21,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 4,
@@ -12539,7 +12871,7 @@
 },
 {
 "name": "softcon_vits",
-"rank": 22,
+"rank": 25,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -12553,7 +12885,7 @@
 },
 {
 "name": "dofa_vitb",
-"rank": 23,
+"rank": 26,
 "ranked": true,
 "ind_comparisons": 89,
 "ind_benchmarks": 8,
@@ -12567,7 +12899,7 @@
 },
 {
 "name": "presto",
-"rank": 24,
+"rank": 27,
 "ranked": true,
 "ind_comparisons": 20,
 "ind_benchmarks": 5,
@@ -12581,7 +12913,7 @@
 },
 {
 "name": "prithvi_v2_300m",
-"rank": 25,
+"rank": 28,
 "ranked": true,
 "ind_comparisons": 32,
 "ind_benchmarks": 9,
@@ -12595,7 +12927,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 26,
+"rank": 29,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -12608,8 +12940,22 @@
 "self_mean_z": 1.267
 },
 {
+"name": "tessera",
+"rank": 30,
+"ranked": true,
+"ind_comparisons": 8,
+"ind_benchmarks": 4,
+"ind_papers": 3,
+"ind_mean_z": 0.027,
+"ind_win_rate": 0.438,
+"ind_ft_z": null,
+"ind_frozen_z": 0.027,
+"self_comparisons": 6,
+"self_mean_z": 2.402
+},
+{
 "name": "satmae_pp",
-"rank": 27,
+"rank": 31,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -12623,7 +12969,7 @@
 },
 {
 "name": "satmae_vitb",
-"rank": 28,
+"rank": 32,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 4,
@@ -12636,8 +12982,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_nano",
+"rank": 33,
+"ranked": true,
+"ind_comparisons": 19,
+"ind_benchmarks": 6,
+"ind_papers": 1,
+"ind_mean_z": -0.106,
+"ind_win_rate": 0.432,
+"ind_ft_z": -0.72,
+"ind_frozen_z": 0.113,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "panopticon",
-"rank": 29,
+"rank": 34,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 6,
@@ -12651,7 +13011,7 @@
 },
 {
 "name": "galileo_tiny",
-"rank": 30,
+"rank": 35,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 6,
@@ -12665,7 +13025,7 @@
 },
 {
 "name": "galileo",
-"rank": 31,
+"rank": 36,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 4,
@@ -12679,7 +13039,7 @@
 },
 {
 "name": "unet_supervised",
-"rank": 32,
+"rank": 37,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 3,
@@ -12693,7 +13053,7 @@
 },
 {
 "name": "resnet50_ssl4eo_moco",
-"rank": 33,
+"rank": 38,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 6,
@@ -12707,7 +13067,7 @@
 },
 {
 "name": "dofa_vitl",
-"rank": 34,
+"rank": 39,
 "ranked": true,
 "ind_comparisons": 25,
 "ind_benchmarks": 6,
@@ -12721,7 +13081,7 @@
 },
 {
 "name": "satlas_s2_swinb_si_ms",
-"rank": 35,
+"rank": 40,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -12735,7 +13095,7 @@
 },
 {
 "name": "dinov3_convnext_l",
-"rank": 36,
+"rank": 41,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -12749,7 +13109,7 @@
 },
 {
 "name": "decur",
-"rank": 37,
+"rank": 42,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 4,
@@ -12763,7 +13123,7 @@
 },
 {
 "name": "galileo_nano",
-"rank": 38,
+"rank": 43,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 6,
@@ -12777,7 +13137,7 @@
 },
 {
 "name": "gfm_swinb",
-"rank": 39,
+"rank": 44,
 "ranked": true,
 "ind_comparisons": 42,
 "ind_benchmarks": 5,
@@ -12791,7 +13151,7 @@
 },
 {
 "name": "anysat",
-"rank": 40,
+"rank": 45,
 "ranked": true,
 "ind_comparisons": 49,
 "ind_benchmarks": 6,
@@ -12805,7 +13165,7 @@
 },
 {
 "name": "copernicusfm",
-"rank": 41,
+"rank": 46,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 6,
@@ -12819,7 +13179,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 42,
+"rank": 47,
 "ranked": true,
 "ind_comparisons": 50,
 "ind_benchmarks": 9,
@@ -12833,7 +13193,7 @@
 },
 {
 "name": "dinov3_sat_vit7b",
-"rank": 43,
+"rank": 48,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -12847,7 +13207,7 @@
 },
 {
 "name": "satlas_s2_swinb_mi_ms",
-"rank": 44,
+"rank": 49,
 "ranked": true,
 "ind_comparisons": 46,
 "ind_benchmarks": 7,
@@ -12861,7 +13221,7 @@
 },
 {
 "name": "dinov3_sat_vitl",
-"rank": 45,
+"rank": 50,
 "ranked": true,
 "ind_comparisons": 25,
 "ind_benchmarks": 7,
@@ -12875,7 +13235,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 46,
+"rank": 51,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 4,
@@ -12889,7 +13249,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 47,
+"rank": 52,
 "ranked": true,
 "ind_comparisons": 56,
 "ind_benchmarks": 7,
@@ -12903,7 +13263,7 @@
 },
 {
 "name": "dinov3_vit7b",
-"rank": 48,
+"rank": 53,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -12917,7 +13277,7 @@
 },
 {
 "name": "satlas_s2_swint_si_ms",
-"rank": 49,
+"rank": 54,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 3,
@@ -12931,7 +13291,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 50,
+"rank": 55,
 "ranked": true,
 "ind_comparisons": 38,
 "ind_benchmarks": 4,
@@ -12945,7 +13305,7 @@
 },
 {
 "name": "decur_vits",
-"rank": 51,
+"rank": 56,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -12959,7 +13319,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 52,
+"rank": 57,
 "ranked": true,
 "ind_comparisons": 58,
 "ind_benchmarks": 7,
@@ -12973,7 +13333,7 @@
 },
 {
 "name": "clay",
-"rank": 53,
+"rank": 58,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 6,
@@ -12987,7 +13347,7 @@
 },
 {
 "name": "dinov3_vith",
-"rank": 54,
+"rank": 59,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -13001,7 +13361,7 @@
 },
 {
 "name": "mmearth_cnn_atto",
-"rank": 55,
+"rank": 60,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 3,
@@ -13015,7 +13375,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 56,
+"rank": 61,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 6,
@@ -13029,7 +13389,7 @@
 },
 {
 "name": "dinov3_vitl",
-"rank": 57,
+"rank": 62,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 6,
@@ -13043,7 +13403,7 @@
 },
 {
 "name": "senpamae",
-"rank": 58,
+"rank": 63,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -13238,20 +13598,6 @@
 "self_mean_z": null
 },
 {
-"name": "tessera",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 4,
-"ind_benchmarks": 2,
-"ind_papers": 2,
-"ind_mean_z": -0.022,
-"ind_win_rate": 0.375,
-"ind_ft_z": null,
-"ind_frozen_z": -0.022,
-"self_comparisons": 10,
-"self_mean_z": 1.471
-},
-{
 "name": "satlas_aerial_swinb_si",
 "rank": null,
 "ranked": false,
@@ -13264,20 +13610,6 @@
 "ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
-},
-{
-"name": "olmoearth_v1_large",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 4,
-"ind_benchmarks": 3,
-"ind_papers": 1,
-"ind_mean_z": -0.248,
-"ind_win_rate": 0.333,
-"ind_ft_z": null,
-"ind_frozen_z": -0.248,
-"self_comparisons": 18,
-"self_mean_z": 0.496
 },
 {
 "name": "mmearth_imagenet_mae_atto",
@@ -13975,6 +14307,20 @@
 "self_mean_z": null
 },
 {
+"name": "prithvi_v1_100m",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 1,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -1.637,
+"ind_win_rate": 0.0,
+"ind_ft_z": -1.637,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "senpamae",
 "rank": null,
 "ranked": false,
@@ -14026,8 +14372,36 @@
 "self_mean_z": 0.653
 },
 {
-"name": "terrafm_vitb",
+"name": "olmoearth_v1_base",
 "rank": 2,
+"ranked": true,
+"ind_comparisons": 10,
+"ind_benchmarks": 4,
+"ind_papers": 1,
+"ind_mean_z": 1.126,
+"ind_win_rate": 0.925,
+"ind_ft_z": 1.029,
+"ind_frozen_z": 1.224,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": 3,
+"ranked": true,
+"ind_comparisons": 9,
+"ind_benchmarks": 4,
+"ind_papers": 1,
+"ind_mean_z": 0.908,
+"ind_win_rate": 0.805,
+"ind_ft_z": 0.734,
+"ind_frozen_z": 1.047,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "terrafm_vitb",
+"rank": 4,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 4,
@@ -14041,7 +14415,7 @@
 },
 {
 "name": "softcon_vits",
-"rank": 3,
+"rank": 5,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -14055,7 +14429,7 @@
 },
 {
 "name": "softcon",
-"rank": 4,
+"rank": 6,
 "ranked": true,
 "ind_comparisons": 35,
 "ind_benchmarks": 4,
@@ -14069,7 +14443,7 @@
 },
 {
 "name": "terramind_v1l",
-"rank": 5,
+"rank": 7,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 6,
@@ -14083,7 +14457,7 @@
 },
 {
 "name": "clip_vitl14",
-"rank": 6,
+"rank": 8,
 "ranked": true,
 "ind_comparisons": 11,
 "ind_benchmarks": 11,
@@ -14096,8 +14470,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": 9,
+"ranked": true,
+"ind_comparisons": 10,
+"ind_benchmarks": 4,
+"ind_papers": 1,
+"ind_mean_z": 0.517,
+"ind_win_rate": 0.68,
+"ind_ft_z": 0.378,
+"ind_frozen_z": 0.657,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "panopticon",
-"rank": 7,
+"rank": 10,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 4,
@@ -14111,7 +14499,7 @@
 },
 {
 "name": "croma_vitl",
-"rank": 8,
+"rank": 11,
 "ranked": true,
 "ind_comparisons": 52,
 "ind_benchmarks": 7,
@@ -14125,7 +14513,7 @@
 },
 {
 "name": "dinov2_vitb",
-"rank": 9,
+"rank": 12,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 5,
@@ -14139,7 +14527,7 @@
 },
 {
 "name": "dinov3_convnext_l",
-"rank": 10,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -14153,7 +14541,7 @@
 },
 {
 "name": "vitb_imagenet22k",
-"rank": 11,
+"rank": 14,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 3,
@@ -14167,7 +14555,7 @@
 },
 {
 "name": "convnext_xl_imagenet",
-"rank": 12,
+"rank": 15,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -14181,7 +14569,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 13,
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 32,
 "ind_benchmarks": 6,
@@ -14195,7 +14583,7 @@
 },
 {
 "name": "barlowtwins_resnet50",
-"rank": 14,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -14209,7 +14597,7 @@
 },
 {
 "name": "clip_vit",
-"rank": 15,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 47,
 "ind_benchmarks": 14,
@@ -14223,7 +14611,7 @@
 },
 {
 "name": "copernicusfm",
-"rank": 16,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 5,
@@ -14237,7 +14625,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 17,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 26,
 "ind_benchmarks": 5,
@@ -14251,7 +14639,7 @@
 },
 {
 "name": "vicreg_resnet50",
-"rank": 18,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -14265,7 +14653,7 @@
 },
 {
 "name": "vitb_torchvision_in1k",
-"rank": 19,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 10,
 "ind_benchmarks": 4,
@@ -14279,7 +14667,7 @@
 },
 {
 "name": "gfm_swinb",
-"rank": 20,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 27,
 "ind_benchmarks": 5,
@@ -14293,7 +14681,7 @@
 },
 {
 "name": "ssl4eo_resnet50_moco_repro_bigearthnet_allbands",
-"rank": 21,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -14307,7 +14695,7 @@
 },
 {
 "name": "vitb_supervised",
-"rank": 22,
+"rank": 25,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -14321,7 +14709,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 23,
+"rank": 26,
 "ranked": true,
 "ind_comparisons": 58,
 "ind_benchmarks": 8,
@@ -14335,7 +14723,7 @@
 },
 {
 "name": "resnet50_ssl4eo_moco",
-"rank": 24,
+"rank": 27,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 5,
@@ -14349,7 +14737,7 @@
 },
 {
 "name": "dofa_vitb",
-"rank": 25,
+"rank": 28,
 "ranked": true,
 "ind_comparisons": 80,
 "ind_benchmarks": 11,
@@ -14363,7 +14751,7 @@
 },
 {
 "name": "vitb_ijepa",
-"rank": 26,
+"rank": 29,
 "ranked": true,
 "ind_comparisons": 10,
 "ind_benchmarks": 4,
@@ -14377,7 +14765,7 @@
 },
 {
 "name": "resnet50_ssl4eo_dino",
-"rank": 27,
+"rank": 30,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 5,
@@ -14391,7 +14779,7 @@
 },
 {
 "name": "terramind_v1b",
-"rank": 28,
+"rank": 31,
 "ranked": true,
 "ind_comparisons": 26,
 "ind_benchmarks": 8,
@@ -14405,7 +14793,7 @@
 },
 {
 "name": "dinov3_sat_vitl",
-"rank": 29,
+"rank": 32,
 "ranked": true,
 "ind_comparisons": 24,
 "ind_benchmarks": 8,
@@ -14419,7 +14807,7 @@
 },
 {
 "name": "seco_resnet50",
-"rank": 30,
+"rank": 33,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 5,
@@ -14433,7 +14821,7 @@
 },
 {
 "name": "swav_resnet50",
-"rank": 31,
+"rank": 34,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -14446,8 +14834,22 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_nano",
+"rank": 35,
+"ranked": true,
+"ind_comparisons": 10,
+"ind_benchmarks": 4,
+"ind_papers": 1,
+"ind_mean_z": -0.081,
+"ind_win_rate": 0.469,
+"ind_ft_z": -0.407,
+"ind_frozen_z": 0.244,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "clay_vitb",
-"rank": 32,
+"rank": 36,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 6,
@@ -14461,7 +14863,7 @@
 },
 {
 "name": "satmae_vitl",
-"rank": 33,
+"rank": 37,
 "ranked": true,
 "ind_comparisons": 42,
 "ind_benchmarks": 8,
@@ -14475,7 +14877,7 @@
 },
 {
 "name": "satlas_s2_swinb_mi_ms",
-"rank": 34,
+"rank": 38,
 "ranked": true,
 "ind_comparisons": 24,
 "ind_benchmarks": 5,
@@ -14489,7 +14891,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 35,
+"rank": 39,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 3,
@@ -14503,7 +14905,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 36,
+"rank": 40,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 3,
@@ -14517,7 +14919,7 @@
 },
 {
 "name": "dofa_vitl",
-"rank": 37,
+"rank": 41,
 "ranked": true,
 "ind_comparisons": 27,
 "ind_benchmarks": 5,
@@ -14531,7 +14933,7 @@
 },
 {
 "name": "prithvi_v2_600m_tl",
-"rank": 38,
+"rank": 42,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -14545,7 +14947,7 @@
 },
 {
 "name": "ssl4eo_vits_moco",
-"rank": 39,
+"rank": 43,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 2,
@@ -14559,7 +14961,7 @@
 },
 {
 "name": "spectralgpt",
-"rank": 40,
+"rank": 44,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 2,
@@ -14573,7 +14975,7 @@
 },
 {
 "name": "ssl4eo_vits_dino",
-"rank": 41,
+"rank": 45,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 7,
@@ -14587,7 +14989,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 42,
+"rank": 46,
 "ranked": true,
 "ind_comparisons": 54,
 "ind_benchmarks": 19,
@@ -14601,7 +15003,7 @@
 },
 {
 "name": "satmae_pp",
-"rank": 43,
+"rank": 47,
 "ranked": true,
 "ind_comparisons": 19,
 "ind_benchmarks": 3,
@@ -14615,7 +15017,7 @@
 },
 {
 "name": "ssl4eo_vits_data2vec",
-"rank": 44,
+"rank": 48,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 2,
@@ -14629,7 +15031,7 @@
 },
 {
 "name": "mmearth_cnn_atto",
-"rank": 45,
+"rank": 49,
 "ranked": true,
 "ind_comparisons": 18,
 "ind_benchmarks": 2,
@@ -14643,7 +15045,7 @@
 },
 {
 "name": "satlas_s2_swinb_si_ms",
-"rank": 46,
+"rank": 50,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 4,
@@ -14657,7 +15059,7 @@
 },
 {
 "name": "satmae_vitb",
-"rank": 47,
+"rank": 51,
 "ranked": true,
 "ind_comparisons": 28,
 "ind_benchmarks": 4,
@@ -14671,7 +15073,7 @@
 },
 {
 "name": "satlas_s2_swint_si_ms",
-"rank": 48,
+"rank": 52,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 2,
@@ -14685,7 +15087,7 @@
 },
 {
 "name": "clip_rn50",
-"rank": 49,
+"rank": 53,
 "ranked": true,
 "ind_comparisons": 33,
 "ind_benchmarks": 11,
@@ -14699,7 +15101,7 @@
 },
 {
 "name": "decur",
-"rank": 50,
+"rank": 54,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 5,
@@ -14713,7 +15115,7 @@
 },
 {
 "name": "prithvi_v2_300m",
-"rank": 51,
+"rank": 55,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 5,
@@ -14727,7 +15129,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 52,
+"rank": 56,
 "ranked": true,
 "ind_comparisons": 36,
 "ind_benchmarks": 7,
@@ -14741,7 +15143,7 @@
 },
 {
 "name": "satlas_s2_resnet50_si_ms",
-"rank": 53,
+"rank": 57,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 3,
@@ -14755,7 +15157,7 @@
 },
 {
 "name": "prithvi_v2_600m",
-"rank": 54,
+"rank": 58,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 4,
@@ -14769,7 +15171,7 @@
 },
 {
 "name": "galileo_base",
-"rank": 55,
+"rank": 59,
 "ranked": true,
 "ind_comparisons": 23,
 "ind_benchmarks": 6,
@@ -14782,8 +15184,22 @@
 "self_mean_z": 1.089
 },
 {
+"name": "prithvi_v1_100m",
+"rank": 60,
+"ranked": true,
+"ind_comparisons": 39,
+"ind_benchmarks": 6,
+"ind_papers": 4,
+"ind_mean_z": -0.681,
+"ind_win_rate": 0.26,
+"ind_ft_z": -0.36,
+"ind_frozen_z": -0.792,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "anysat",
-"rank": 56,
+"rank": 61,
 "ranked": true,
 "ind_comparisons": 44,
 "ind_benchmarks": 7,
@@ -14796,22 +15212,8 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": 57,
-"ranked": true,
-"ind_comparisons": 31,
-"ind_benchmarks": 4,
-"ind_papers": 3,
-"ind_mean_z": -0.742,
-"ind_win_rate": 0.261,
-"ind_ft_z": -0.028,
-"ind_frozen_z": -0.792,
-"self_comparisons": 8,
-"self_mean_z": -0.443
-},
-{
 "name": "vitb_imagenet",
-"rank": 58,
+"rank": 62,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -14825,7 +15227,7 @@
 },
 {
 "name": "vanilla_mae",
-"rank": 59,
+"rank": 63,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 4,
@@ -14839,7 +15241,7 @@
 },
 {
 "name": "clay",
-"rank": 60,
+"rank": 64,
 "ranked": true,
 "ind_comparisons": 9,
 "ind_benchmarks": 4,
@@ -14853,7 +15255,7 @@
 },
 {
 "name": "vitae_vitb",
-"rank": 61,
+"rank": 65,
 "ranked": true,
 "ind_comparisons": 22,
 "ind_benchmarks": 11,
@@ -14867,7 +15269,7 @@
 },
 {
 "name": "vitb_random",
-"rank": 62,
+"rank": 66,
 "ranked": true,
 "ind_comparisons": 17,
 "ind_benchmarks": 5,
@@ -14881,7 +15283,7 @@
 },
 {
 "name": "resnet50_random",
-"rank": 63,
+"rank": 67,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 5,
@@ -14895,7 +15297,7 @@
 },
 {
 "name": "resnet18_baseline",
-"rank": 64,
+"rank": 68,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -14909,7 +15311,7 @@
 },
 {
 "name": "senpamae",
-"rank": 65,
+"rank": 69,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 5,
@@ -14923,7 +15325,7 @@
 },
 {
 "name": "resnet50_baseline",
-"rank": 66,
+"rank": 70,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -14937,7 +15339,7 @@
 },
 {
 "name": "vits_random",
-"rank": 67,
+"rank": 71,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 3,
@@ -15841,6 +16243,34 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.007,
+"ind_win_rate": 0.594,
+"ind_ft_z": 0.109,
+"ind_frozen_z": -0.196,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": -0.028,
+"ind_win_rate": 0.542,
+"ind_ft_z": 0.181,
+"ind_frozen_z": -0.447,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "satlas_resnet50",
 "rank": null,
 "ranked": false,
@@ -15893,6 +16323,20 @@
 "ind_win_rate": 0.412,
 "ind_ft_z": -0.13,
 "ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": -0.17,
+"ind_win_rate": 0.485,
+"ind_ft_z": -0.192,
+"ind_frozen_z": -0.128,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -15981,6 +16425,20 @@
 "self_mean_z": 0.269
 },
 {
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": -0.551,
+"ind_win_rate": 0.291,
+"ind_ft_z": -0.41,
+"ind_frozen_z": -0.834,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "clay",
 "rank": null,
 "ranked": false,
@@ -16033,6 +16491,20 @@
 "ind_win_rate": 0.188,
 "ind_ft_z": -2.177,
 "ind_frozen_z": -0.356,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "prithvi_v1_100m",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 1,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -1.375,
+"ind_win_rate": 0.1,
+"ind_ft_z": -1.375,
+"ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -16424,20 +16896,6 @@
 "self_mean_z": null
 },
 {
-"name": "tessera",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 3,
-"ind_benchmarks": 2,
-"ind_papers": 2,
-"ind_mean_z": 0.575,
-"ind_win_rate": 0.639,
-"ind_ft_z": null,
-"ind_frozen_z": 0.575,
-"self_comparisons": 4,
-"self_mean_z": 1.061
-},
-{
 "name": "satlas_resnet50",
 "rank": null,
 "ranked": false,
@@ -16520,6 +16978,20 @@
 "ind_frozen_z": 0.293,
 "self_comparisons": null,
 "self_mean_z": null
+},
+{
+"name": "tessera",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 3,
+"ind_papers": 3,
+"ind_mean_z": 0.169,
+"ind_win_rate": 0.479,
+"ind_ft_z": null,
+"ind_frozen_z": 0.169,
+"self_comparisons": 3,
+"self_mean_z": 1.764
 },
 {
 "name": "galileo",
@@ -16926,15 +17398,15 @@
 "name": "prithvi_v1_100m",
 "rank": 10,
 "ranked": true,
-"ind_comparisons": 12,
-"ind_benchmarks": 2,
-"ind_papers": 1,
-"ind_mean_z": -0.371,
-"ind_win_rate": 0.384,
-"ind_ft_z": -0.294,
+"ind_comparisons": 13,
+"ind_benchmarks": 3,
+"ind_papers": 2,
+"ind_mean_z": -0.381,
+"ind_win_rate": 0.37,
+"ind_ft_z": -0.322,
 "ind_frozen_z": -0.449,
-"self_comparisons": 1,
-"self_mean_z": -0.492
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "scalemae_vitl",
@@ -17131,6 +17603,20 @@
 "ind_frozen_z": 0.979,
 "self_comparisons": 1,
 "self_mean_z": 0.811
+},
+{
+"name": "tessera",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 1,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.411,
+"ind_win_rate": 0.667,
+"ind_ft_z": null,
+"ind_frozen_z": 0.411,
+"self_comparisons": 3,
+"self_mean_z": 2.006
 },
 {
 "name": "presto",
@@ -17514,6 +18000,20 @@
 "self_mean_z": 0.099
 },
 {
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.809,
+"ind_win_rate": 1.0,
+"ind_ft_z": 0.809,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "prithvi_v2_600m_tl",
 "rank": null,
 "ranked": false,
@@ -17556,20 +18056,6 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 24,
-"ind_benchmarks": 1,
-"ind_papers": 4,
-"ind_mean_z": 0.677,
-"ind_win_rate": 0.751,
-"ind_ft_z": -0.38,
-"ind_frozen_z": 0.92,
-"self_comparisons": 3,
-"self_mean_z": -1.5
-},
-{
 "name": "resnet50_ssl4eo_moco",
 "rank": null,
 "ranked": false,
@@ -17579,6 +18065,20 @@
 "ind_mean_z": 0.675,
 "ind_win_rate": 0.765,
 "ind_ft_z": 0.675,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.654,
+"ind_win_rate": 0.771,
+"ind_ft_z": 0.654,
 "ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
@@ -17668,6 +18168,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.528,
+"ind_win_rate": 0.674,
+"ind_ft_z": 0.528,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "anysat",
 "rank": null,
 "ranked": false,
@@ -17706,6 +18220,34 @@
 "ind_win_rate": 0.627,
 "ind_ft_z": 1.039,
 "ind_frozen_z": -0.016,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "prithvi_v1_100m",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 27,
+"ind_benchmarks": 1,
+"ind_papers": 5,
+"ind_mean_z": 0.435,
+"ind_win_rate": 0.667,
+"ind_ft_z": -0.94,
+"ind_frozen_z": 0.92,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.417,
+"ind_win_rate": 0.514,
+"ind_ft_z": 0.417,
+"ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -18265,8 +18807,22 @@
 "self_mean_z": null
 },
 {
-"name": "dofa_vitl",
+"name": "olmoearth_v1_base",
 "rank": 10,
+"ranked": true,
+"ind_comparisons": 16,
+"ind_benchmarks": 2,
+"ind_papers": 2,
+"ind_mean_z": 0.326,
+"ind_win_rate": 0.619,
+"ind_ft_z": 0.307,
+"ind_frozen_z": 0.344,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "dofa_vitl",
+"rank": 11,
 "ranked": true,
 "ind_comparisons": 20,
 "ind_benchmarks": 3,
@@ -18280,7 +18836,7 @@
 },
 {
 "name": "ssl4eo_vits_mae",
-"rank": 11,
+"rank": 12,
 "ranked": true,
 "ind_comparisons": 13,
 "ind_benchmarks": 2,
@@ -18294,7 +18850,7 @@
 },
 {
 "name": "terrafm_vitb",
-"rank": 12,
+"rank": 13,
 "ranked": true,
 "ind_comparisons": 8,
 "ind_benchmarks": 2,
@@ -18305,20 +18861,6 @@
 "ind_frozen_z": 0.546,
 "self_comparisons": null,
 "self_mean_z": null
-},
-{
-"name": "prithvi_v1_100m",
-"rank": 13,
-"ranked": true,
-"ind_comparisons": 26,
-"ind_benchmarks": 4,
-"ind_papers": 5,
-"ind_mean_z": 0.118,
-"ind_win_rate": 0.569,
-"ind_ft_z": -0.526,
-"ind_frozen_z": 0.465,
-"self_comparisons": 3,
-"self_mean_z": -1.72
 },
 {
 "name": "ibot_vitb",
@@ -18335,8 +18877,22 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v2_300m_tl",
+"name": "prithvi_v1_100m",
 "rank": 15,
+"ranked": true,
+"ind_comparisons": 29,
+"ind_benchmarks": 4,
+"ind_papers": 6,
+"ind_mean_z": -0.072,
+"ind_win_rate": 0.51,
+"ind_ft_z": -0.924,
+"ind_frozen_z": 0.465,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "prithvi_v2_300m_tl",
+"rank": 16,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 2,
@@ -18350,7 +18906,7 @@
 },
 {
 "name": "croma_vitb",
-"rank": 16,
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 15,
 "ind_benchmarks": 3,
@@ -18364,7 +18920,7 @@
 },
 {
 "name": "resnet50_imagenet",
-"rank": 17,
+"rank": 18,
 "ranked": true,
 "ind_comparisons": 16,
 "ind_benchmarks": 4,
@@ -18378,7 +18934,7 @@
 },
 {
 "name": "softcon",
-"rank": 18,
+"rank": 19,
 "ranked": true,
 "ind_comparisons": 7,
 "ind_benchmarks": 3,
@@ -18392,7 +18948,7 @@
 },
 {
 "name": "dinov3_vitb",
-"rank": 19,
+"rank": 20,
 "ranked": true,
 "ind_comparisons": 6,
 "ind_benchmarks": 2,
@@ -18406,7 +18962,7 @@
 },
 {
 "name": "scalemae_vitl",
-"rank": 20,
+"rank": 21,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 2,
@@ -18420,7 +18976,7 @@
 },
 {
 "name": "satlas_swinb",
-"rank": 21,
+"rank": 22,
 "ranked": true,
 "ind_comparisons": 21,
 "ind_benchmarks": 3,
@@ -18434,7 +18990,7 @@
 },
 {
 "name": "anysat",
-"rank": 22,
+"rank": 23,
 "ranked": true,
 "ind_comparisons": 12,
 "ind_benchmarks": 2,
@@ -18448,7 +19004,7 @@
 },
 {
 "name": "remoteclip",
-"rank": 23,
+"rank": 24,
 "ranked": true,
 "ind_comparisons": 14,
 "ind_benchmarks": 2,
@@ -18499,6 +19055,20 @@
 "ind_win_rate": 0.833,
 "ind_ft_z": 1.284,
 "ind_frozen_z": 0.558,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.904,
+"ind_win_rate": 0.941,
+"ind_ft_z": 0.799,
+"ind_frozen_z": 1.01,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -18685,6 +19255,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.368,
+"ind_win_rate": 0.526,
+"ind_ft_z": 0.657,
+"ind_frozen_z": 0.079,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "ssl4eo_vits_data2vec",
 "rank": null,
 "ranked": false,
@@ -18725,20 +19309,6 @@
 "ind_frozen_z": 0.086,
 "self_comparisons": 4,
 "self_mean_z": 1.082
-},
-{
-"name": "olmoearth_v1_base",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 14,
-"ind_benchmarks": 1,
-"ind_papers": 1,
-"ind_mean_z": 0.274,
-"ind_win_rate": 0.585,
-"ind_ft_z": 0.236,
-"ind_frozen_z": 0.311,
-"self_comparisons": 2,
-"self_mean_z": 0.69
 },
 {
 "name": "terramind_v1t",
@@ -18905,6 +19475,20 @@
 "ind_win_rate": 0.426,
 "ind_ft_z": -1.052,
 "ind_frozen_z": 0.365,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -0.381,
+"ind_win_rate": 0.223,
+"ind_ft_z": -0.625,
+"ind_frozen_z": -0.136,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -19291,6 +19875,48 @@
 "comparisons": 36,
 "models": [
 {
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.819,
+"ind_win_rate": 0.947,
+"ind_ft_z": 0.819,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.625,
+"ind_win_rate": 0.897,
+"ind_ft_z": 0.625,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.529,
+"ind_win_rate": 0.831,
+"ind_ft_z": 0.529,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "galileo_base",
 "rank": null,
 "ranked": false,
@@ -19300,6 +19926,20 @@
 "ind_mean_z": 0.411,
 "ind_win_rate": 0.632,
 "ind_ft_z": 0.411,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.321,
+"ind_win_rate": 0.592,
+"ind_ft_z": 0.321,
 "ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
@@ -19524,6 +20164,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 1.546,
+"ind_win_rate": 0.917,
+"ind_ft_z": 2.151,
+"ind_frozen_z": 0.942,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "gfm_swinb",
 "rank": null,
 "ranked": false,
@@ -19534,6 +20188,20 @@
 "ind_win_rate": 0.948,
 "ind_ft_z": null,
 "ind_frozen_z": 1.472,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 1.255,
+"ind_win_rate": 0.927,
+"ind_ft_z": 1.478,
+"ind_frozen_z": 1.032,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -19690,6 +20358,20 @@
 "ind_frozen_z": 0.342,
 "self_comparisons": 4,
 "self_mean_z": 0.883
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.238,
+"ind_win_rate": 0.57,
+"ind_ft_z": 0.417,
+"ind_frozen_z": 0.059,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "scalemae_vitl",
@@ -19996,6 +20678,20 @@
 "ind_win_rate": 0.206,
 "ind_ft_z": null,
 "ind_frozen_z": -0.699,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -0.872,
+"ind_win_rate": 0.201,
+"ind_ft_z": -1.419,
+"ind_frozen_z": -0.325,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -21886,15 +22582,15 @@
 "name": "prithvi_v1_100m",
 "rank": 36,
 "ranked": true,
-"ind_comparisons": 14,
+"ind_comparisons": 15,
 "ind_benchmarks": 4,
-"ind_papers": 3,
-"ind_mean_z": -1.224,
-"ind_win_rate": 0.087,
-"ind_ft_z": -0.868,
+"ind_papers": 4,
+"ind_mean_z": -1.227,
+"ind_win_rate": 0.088,
+"ind_ft_z": -1.002,
 "ind_frozen_z": -1.283,
-"self_comparisons": 1,
-"self_mean_z": -1.268
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "anysat",
@@ -21909,6 +22605,34 @@
 "ind_frozen_z": -1.071,
 "self_comparisons": 1,
 "self_mean_z": 0.842
+},
+{
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 1.5,
+"ind_win_rate": 0.955,
+"ind_ft_z": 1.21,
+"ind_frozen_z": 1.79,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 1.459,
+"ind_win_rate": 0.947,
+"ind_ft_z": 1.072,
+"ind_frozen_z": 1.846,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "softcon_vits",
@@ -22021,6 +22745,20 @@
 "ind_frozen_z": 0.467,
 "self_comparisons": 2,
 "self_mean_z": 1.186
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": 0.464,
+"ind_win_rate": 0.61,
+"ind_ft_z": -0.204,
+"ind_frozen_z": 1.132,
+"self_comparisons": null,
+"self_mean_z": null
 },
 {
 "name": "galileo_base",
@@ -22229,6 +22967,20 @@
 "ind_win_rate": 0.5,
 "ind_ft_z": null,
 "ind_frozen_z": -0.193,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 2,
+"ind_benchmarks": 1,
+"ind_papers": 1,
+"ind_mean_z": -0.232,
+"ind_win_rate": 0.465,
+"ind_ft_z": -0.758,
+"ind_frozen_z": 0.294,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -22853,8 +23605,22 @@
 "self_mean_z": null
 },
 {
-"name": "senpamae",
+"name": "prithvi_v1_100m",
 "rank": 16,
+"ranked": true,
+"ind_comparisons": 7,
+"ind_benchmarks": 4,
+"ind_papers": 3,
+"ind_mean_z": -1.155,
+"ind_win_rate": 0.114,
+"ind_ft_z": -1.181,
+"ind_frozen_z": -1.121,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "senpamae",
+"rank": 17,
 "ranked": true,
 "ind_comparisons": 5,
 "ind_benchmarks": 2,
@@ -22937,6 +23703,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.674,
+"ind_win_rate": 0.744,
+"ind_ft_z": 0.542,
+"ind_frozen_z": 0.937,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "dinov3_convnext_l",
 "rank": null,
 "ranked": false,
@@ -22975,6 +23755,34 @@
 "ind_win_rate": 0.808,
 "ind_ft_z": 0.283,
 "ind_frozen_z": 0.978,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.591,
+"ind_win_rate": 0.737,
+"ind_ft_z": 0.673,
+"ind_frozen_z": 0.426,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_large",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.58,
+"ind_win_rate": 0.721,
+"ind_ft_z": 0.382,
+"ind_frozen_z": 0.976,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -23101,6 +23909,20 @@
 "ind_win_rate": 0.463,
 "ind_ft_z": null,
 "ind_frozen_z": 0.151,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 3,
+"ind_benchmarks": 2,
+"ind_papers": 1,
+"ind_mean_z": 0.129,
+"ind_win_rate": 0.456,
+"ind_ft_z": -0.844,
+"ind_frozen_z": 2.076,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -23399,20 +24221,6 @@
 "self_mean_z": null
 },
 {
-"name": "prithvi_v1_100m",
-"rank": null,
-"ranked": false,
-"ind_comparisons": 4,
-"ind_benchmarks": 3,
-"ind_papers": 2,
-"ind_mean_z": -0.799,
-"ind_win_rate": 0.124,
-"ind_ft_z": 0.164,
-"ind_frozen_z": -1.121,
-"self_comparisons": 3,
-"self_mean_z": -1.63
-},
-{
 "name": "satlas_aerial_swinb_si",
 "rank": null,
 "ranked": false,
@@ -23614,6 +24422,20 @@
 "ind_win_rate": 0.833,
 "ind_ft_z": null,
 "ind_frozen_z": 0.714,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_base",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 3,
+"ind_papers": 1,
+"ind_mean_z": 0.644,
+"ind_win_rate": 0.824,
+"ind_ft_z": 0.644,
+"ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
 },
@@ -23884,6 +24706,20 @@
 "self_mean_z": null
 },
 {
+"name": "olmoearth_v1_tiny",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 3,
+"ind_papers": 1,
+"ind_mean_z": 0.2,
+"ind_win_rate": 0.561,
+"ind_ft_z": 0.2,
+"ind_frozen_z": null,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
 "name": "satlas_vitb",
 "rank": null,
 "ranked": false,
@@ -24104,6 +24940,20 @@
 "ind_win_rate": 0.222,
 "ind_ft_z": null,
 "ind_frozen_z": -0.496,
+"self_comparisons": null,
+"self_mean_z": null
+},
+{
+"name": "olmoearth_v1_nano",
+"rank": null,
+"ranked": false,
+"ind_comparisons": 4,
+"ind_benchmarks": 3,
+"ind_papers": 1,
+"ind_mean_z": -0.512,
+"ind_win_rate": 0.25,
+"ind_ft_z": -0.512,
+"ind_frozen_z": null,
 "self_comparisons": null,
 "self_mean_z": null
 },
