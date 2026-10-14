@@ -13,7 +13,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
 | `map.html` | Where labelled datasets exist: by country, or as the actual sample locations (Samples view). |
 | `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
-| `arena.html` | The expert arena: blind pairwise comparisons for needs without labels. Rating formula to be decided. |
+| `arena.html` | Benchmark ranking: every benchmark with published GeoFM results, ranked by how much evidence it gives (models, papers, spread, headroom, agreement with the consensus). Static, from papers. The expert pairwise arena is planned for later. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
 | `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |
 | `about.html` | Method, filter definitions and how to contribute. |
@@ -52,7 +52,7 @@ The ability filter records which capability a task is expected to test (spectral
 
 - **Map of every sample.** Done for 74 of 118 datasets (Samples view). 36 datasets have only named sites or a bounding box because their distribution (Google Drive, Kaggle, registration) or format (non-georeferenced chips) hides sample locations; 8 have no public location data. Next: footprints of pretraining corpora, to compare where models were trained with where benchmarks are.
 - **Task cards for all datasets**, with the split type (spatial or random) confirmed for each.
-- **Arena voting**, once the rating formula is decided.
+- **Arena voting** (blind pairwise expert comparisons for needs without labels), once the rating formula is decided; the Ranking page currently holds the static benchmark ranking.
 
 ## Run locally
 

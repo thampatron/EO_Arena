@@ -58,7 +58,7 @@ for name, g in reg.items():
         datasets[eid] = s
     elif s["results"] > 0:
         unlisted.append({"name": name, "domain": g["domain"], "subdomain": g.get("subdomain") or "",
-                         "input_kind": g.get("input_kind") or "", **{k: s[k] for k in ("models", "papers", "results", "verdict")}})
+                         "input_kind": g.get("input_kind") or "", **{k: v for k, v in s.items() if k != "benchmark_ids"}})
 unlisted.sort(key=lambda x: (x["domain"], -x["models"]))
 
 doms = defaultdict(lambda: {"datasets": 0, "scored": 0, "results": 0, "unlisted_scored": 0})

@@ -1260,6 +1260,10 @@
    "models": 33,
    "papers": 3,
    "results": 126,
+   "spread_pts": 8.2,
+   "headroom_pts": 25.3,
+   "rho_consensus": 0.79,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1270,6 +1274,10 @@
    "models": 16,
    "papers": 2,
    "results": 104,
+   "spread_pts": 6.64,
+   "headroom_pts": 68.9,
+   "rho_consensus": 0.36,
+   "share_self_reported": 0.57,
    "verdict": "e_part"
   },
   {
@@ -1280,6 +1288,10 @@
    "models": 14,
    "papers": 1,
    "results": 16,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.71,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1290,6 +1302,10 @@
    "models": 14,
    "papers": 1,
    "results": 32,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.55,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1300,6 +1316,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 3.18,
+   "headroom_pts": 12.3,
+   "rho_consensus": 0.53,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -1310,6 +1330,10 @@
    "models": 11,
    "papers": 1,
    "results": 33,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.71,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1320,6 +1344,10 @@
    "models": 9,
    "papers": 1,
    "results": 45,
+   "spread_pts": 4.51,
+   "headroom_pts": 36.0,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1330,6 +1358,10 @@
    "models": 7,
    "papers": 1,
    "results": 16,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1340,6 +1372,10 @@
    "models": 4,
    "papers": 1,
    "results": 8,
+   "spread_pts": 4.0,
+   "headroom_pts": 40.2,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1350,6 +1386,10 @@
    "models": 4,
    "papers": 1,
    "results": 40,
+   "spread_pts": 2.41,
+   "headroom_pts": 24.9,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1410,6 +1450,10 @@
    "models": 33,
    "papers": 3,
    "results": 126,
+   "spread_pts": 7.67,
+   "headroom_pts": 21.0,
+   "rho_consensus": 0.79,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1420,6 +1464,10 @@
    "models": 31,
    "papers": 6,
    "results": 68,
+   "spread_pts": 4.29,
+   "headroom_pts": 6.0,
+   "rho_consensus": 0.8,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1430,6 +1478,10 @@
    "models": 27,
    "papers": 4,
    "results": 51,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.64,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1440,6 +1492,10 @@
    "models": 25,
    "papers": 2,
    "results": 87,
+   "spread_pts": 7.19,
+   "headroom_pts": 25.9,
+   "rho_consensus": 0.78,
+   "share_self_reported": 0.5,
    "verdict": "e_red"
   },
   {
@@ -1450,6 +1506,10 @@
    "models": 24,
    "papers": 3,
    "results": 28,
+   "spread_pts": 5.02,
+   "headroom_pts": 37.1,
+   "rho_consensus": 0.38,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1460,6 +1520,10 @@
    "models": 23,
    "papers": 2,
    "results": 23,
+   "spread_pts": 8.22,
+   "headroom_pts": 2.1,
+   "rho_consensus": 0.76,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -1470,6 +1534,10 @@
    "models": 15,
    "papers": 2,
    "results": 31,
+   "spread_pts": 8.37,
+   "headroom_pts": 7.5,
+   "rho_consensus": 0.63,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1480,6 +1548,10 @@
    "models": 15,
    "papers": 2,
    "results": 29,
+   "spread_pts": 4.06,
+   "headroom_pts": 14.9,
+   "rho_consensus": 0.36,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1490,6 +1562,10 @@
    "models": 15,
    "papers": 2,
    "results": 29,
+   "spread_pts": 9.08,
+   "headroom_pts": 5.7,
+   "rho_consensus": 0.76,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1500,6 +1576,10 @@
    "models": 15,
    "papers": 2,
    "results": 29,
+   "spread_pts": 7.22,
+   "headroom_pts": 3.9,
+   "rho_consensus": 0.68,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1510,6 +1590,10 @@
    "models": 14,
    "papers": 1,
    "results": 32,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.71,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1520,6 +1604,10 @@
    "models": 14,
    "papers": 1,
    "results": 75,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.46,
+   "share_self_reported": 0.5,
    "verdict": "e_part"
   },
   {
@@ -1530,6 +1618,10 @@
    "models": 13,
    "papers": 1,
    "results": 52,
+   "spread_pts": 10.98,
+   "headroom_pts": 27.1,
+   "rho_consensus": 0.34,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -1540,6 +1632,10 @@
    "models": 13,
    "papers": 1,
    "results": 104,
+   "spread_pts": 19.33,
+   "headroom_pts": 18.5,
+   "rho_consensus": -0.06,
+   "share_self_reported": 0.0,
    "verdict": "e_dist"
   },
   {
@@ -1550,6 +1646,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 5.35,
+   "headroom_pts": 10.8,
+   "rho_consensus": 0.34,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1560,6 +1660,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 1.57,
+   "headroom_pts": 4.0,
+   "rho_consensus": 0.67,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -1570,6 +1674,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 1.27,
+   "headroom_pts": 1.5,
+   "rho_consensus": 0.7,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -1580,6 +1688,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 5.54,
+   "headroom_pts": 10.5,
+   "rho_consensus": 0.47,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1590,6 +1702,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 5.08,
+   "headroom_pts": 4.2,
+   "rho_consensus": 0.62,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1600,6 +1716,10 @@
    "models": 12,
    "papers": 1,
    "results": 144,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1610,6 +1730,10 @@
    "models": 11,
    "papers": 1,
    "results": 77,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.51,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1620,6 +1744,10 @@
    "models": 11,
    "papers": 1,
    "results": 64,
+   "spread_pts": 7.69,
+   "headroom_pts": 60.6,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1630,6 +1758,10 @@
    "models": 11,
    "papers": 1,
    "results": 22,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.59,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1640,6 +1772,10 @@
    "models": 10,
    "papers": 1,
    "results": 20,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1650,6 +1786,10 @@
    "models": 10,
    "papers": 1,
    "results": 20,
+   "spread_pts": 7.32,
+   "headroom_pts": 28.5,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1660,6 +1800,10 @@
    "models": 8,
    "papers": 2,
    "results": 22,
+   "spread_pts": 4.67,
+   "headroom_pts": 87.6,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1670,6 +1814,10 @@
    "models": 7,
    "papers": 1,
    "results": 16,
+   "spread_pts": 7.11,
+   "headroom_pts": 14.0,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1680,6 +1828,10 @@
    "models": 7,
    "papers": 1,
    "results": 7,
+   "spread_pts": 3.14,
+   "headroom_pts": 24.7,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1690,6 +1842,10 @@
    "models": 6,
    "papers": 1,
    "results": 12,
+   "spread_pts": 1.65,
+   "headroom_pts": 33.2,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1730,6 +1886,10 @@
    "models": 4,
    "papers": 1,
    "results": 4,
+   "spread_pts": 2.32,
+   "headroom_pts": 68.8,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1810,6 +1970,10 @@
    "models": 15,
    "papers": 1,
    "results": 394,
+   "spread_pts": 2.03,
+   "headroom_pts": 13.6,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1820,6 +1984,10 @@
    "models": 14,
    "papers": 1,
    "results": 168,
+   "spread_pts": 6.1,
+   "headroom_pts": 55.9,
+   "rho_consensus": 0.36,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1830,6 +1998,10 @@
    "models": 12,
    "papers": 1,
    "results": 22,
+   "spread_pts": 0.84,
+   "headroom_pts": 10.4,
+   "rho_consensus": 0.24,
+   "share_self_reported": 0.0,
    "verdict": "e_weak"
   },
   {
@@ -1840,6 +2012,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 3.16,
+   "headroom_pts": 11.7,
+   "rho_consensus": 0.26,
+   "share_self_reported": 0.0,
    "verdict": "e_dist"
   },
   {
@@ -1850,6 +2026,10 @@
    "models": 8,
    "papers": 1,
    "results": 92,
+   "spread_pts": 9.14,
+   "headroom_pts": 46.4,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1880,6 +2060,10 @@
    "models": 23,
    "papers": 2,
    "results": 42,
+   "spread_pts": 3.76,
+   "headroom_pts": 2.2,
+   "rho_consensus": 0.64,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -1890,6 +2074,10 @@
    "models": 16,
    "papers": 1,
    "results": 46,
+   "spread_pts": 4.93,
+   "headroom_pts": 19.6,
+   "rho_consensus": 0.34,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -1900,6 +2088,10 @@
    "models": 16,
    "papers": 1,
    "results": 47,
+   "spread_pts": 7.65,
+   "headroom_pts": 10.5,
+   "rho_consensus": 0.14,
+   "share_self_reported": 0.0,
    "verdict": "e_dist"
   },
   {
@@ -1910,6 +2102,10 @@
    "models": 16,
    "papers": 1,
    "results": 47,
+   "spread_pts": 2.5,
+   "headroom_pts": 25.4,
+   "rho_consensus": 0.53,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -1920,6 +2116,10 @@
    "models": 14,
    "papers": 1,
    "results": 28,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.77,
+   "share_self_reported": 0.25,
    "verdict": "e_red"
   },
   {
@@ -1930,6 +2130,10 @@
    "models": 14,
    "papers": 1,
    "results": 16,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.7,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -1940,6 +2144,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 1.21,
+   "headroom_pts": 5.0,
+   "rho_consensus": 0.1,
+   "share_self_reported": 0.0,
    "verdict": "e_weak"
   },
   {
@@ -1950,6 +2158,10 @@
    "models": 11,
    "papers": 1,
    "results": 11,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.43,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -1960,6 +2172,10 @@
    "models": 7,
    "papers": 1,
    "results": 21,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1970,6 +2186,10 @@
    "models": 7,
    "papers": 1,
    "results": 21,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -1980,6 +2200,10 @@
    "models": 6,
    "papers": 1,
    "results": 6,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -1990,6 +2214,10 @@
    "models": 6,
    "papers": 1,
    "results": 6,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2000,6 +2228,10 @@
    "models": 6,
    "papers": 1,
    "results": 36,
+   "spread_pts": 3.63,
+   "headroom_pts": 64.7,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2010,6 +2242,10 @@
    "models": 5,
    "papers": 1,
    "results": 30,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2020,6 +2256,10 @@
    "models": 5,
    "papers": 1,
    "results": 10,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2030,6 +2270,10 @@
    "models": 5,
    "papers": 1,
    "results": 10,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2040,6 +2284,10 @@
    "models": 5,
    "papers": 1,
    "results": 10,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2100,6 +2348,10 @@
    "models": 33,
    "papers": 4,
    "results": 101,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.65,
+   "share_self_reported": 0.57,
    "verdict": "e_part"
   },
   {
@@ -2110,6 +2362,10 @@
    "models": 10,
    "papers": 1,
    "results": 20,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2120,6 +2376,10 @@
    "models": 10,
    "papers": 1,
    "results": 20,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2130,6 +2390,10 @@
    "models": 10,
    "papers": 1,
    "results": 20,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2150,6 +2414,10 @@
    "models": 32,
    "papers": 6,
    "results": 151,
+   "spread_pts": 0.14,
+   "headroom_pts": 64.9,
+   "rho_consensus": 0.53,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -2160,6 +2428,10 @@
    "models": 24,
    "papers": 3,
    "results": 26,
+   "spread_pts": 3.75,
+   "headroom_pts": 12.5,
+   "rho_consensus": 0.66,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -2170,6 +2442,10 @@
    "models": 22,
    "papers": 1,
    "results": 66,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.7,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2180,6 +2456,10 @@
    "models": 20,
    "papers": 2,
    "results": 20,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.59,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -2190,6 +2470,10 @@
    "models": 19,
    "papers": 2,
    "results": 19,
+   "spread_pts": 8.51,
+   "headroom_pts": 24.1,
+   "rho_consensus": 0.75,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2200,6 +2484,10 @@
    "models": 16,
    "papers": 2,
    "results": 28,
+   "spread_pts": 2.11,
+   "headroom_pts": 21.2,
+   "rho_consensus": 0.74,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -2210,6 +2498,10 @@
    "models": 15,
    "papers": 3,
    "results": 20,
+   "spread_pts": 1.05,
+   "headroom_pts": 15.4,
+   "rho_consensus": 0.63,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -2220,6 +2512,10 @@
    "models": 15,
    "papers": 1,
    "results": 15,
+   "spread_pts": 4.57,
+   "headroom_pts": 20.3,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2230,6 +2526,10 @@
    "models": 14,
    "papers": 2,
    "results": 30,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.76,
+   "share_self_reported": 0.25,
    "verdict": "e_red"
   },
   {
@@ -2240,6 +2540,10 @@
    "models": 14,
    "papers": 1,
    "results": 32,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.78,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2250,6 +2554,10 @@
    "models": 14,
    "papers": 1,
    "results": 14,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.47,
+   "share_self_reported": 0.5,
    "verdict": "e_part"
   },
   {
@@ -2260,6 +2568,10 @@
    "models": 14,
    "papers": 1,
    "results": 14,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.65,
+   "share_self_reported": 0.5,
    "verdict": "e_part"
   },
   {
@@ -2270,6 +2582,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 1.42,
+   "headroom_pts": 5.0,
+   "rho_consensus": 0.43,
+   "share_self_reported": 0.0,
    "verdict": "e_weak"
   },
   {
@@ -2280,6 +2596,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 0.85,
+   "headroom_pts": 3.5,
+   "rho_consensus": 0.35,
+   "share_self_reported": 0.0,
    "verdict": "e_weak"
   },
   {
@@ -2290,6 +2610,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 4.42,
+   "headroom_pts": 19.3,
+   "rho_consensus": 0.58,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -2300,6 +2624,10 @@
    "models": 12,
    "papers": 1,
    "results": 26,
+   "spread_pts": 1.76,
+   "headroom_pts": 2.7,
+   "rho_consensus": 0.85,
+   "share_self_reported": 1.0,
    "verdict": "e_weak"
   },
   {
@@ -2310,6 +2638,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 2.65,
+   "headroom_pts": 24.2,
+   "rho_consensus": 0.62,
+   "share_self_reported": 0.0,
    "verdict": "e_part"
   },
   {
@@ -2320,6 +2652,10 @@
    "models": 11,
    "papers": 1,
    "results": 11,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.57,
+   "share_self_reported": 1.0,
    "verdict": "e_part"
   },
   {
@@ -2330,6 +2666,10 @@
    "models": 11,
    "papers": 1,
    "results": 11,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": -0.11,
+   "share_self_reported": 1.0,
    "verdict": "e_dist"
   },
   {
@@ -2340,6 +2680,10 @@
    "models": 9,
    "papers": 1,
    "results": 180,
+   "spread_pts": 7.74,
+   "headroom_pts": 51.2,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -2350,6 +2694,10 @@
    "models": 7,
    "papers": 1,
    "results": 19,
+   "spread_pts": 0.18,
+   "headroom_pts": 28.8,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2360,6 +2708,10 @@
    "models": 7,
    "papers": 1,
    "results": 7,
+   "spread_pts": 3.62,
+   "headroom_pts": 9.3,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2460,6 +2812,10 @@
    "models": 12,
    "papers": 1,
    "results": 12,
+   "spread_pts": 1.95,
+   "headroom_pts": 1.8,
+   "rho_consensus": 0.78,
+   "share_self_reported": 0.0,
    "verdict": "e_weak"
   },
   {
@@ -2470,6 +2826,10 @@
    "models": 14,
    "papers": 1,
    "results": 90,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.88,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2480,6 +2840,10 @@
    "models": 14,
    "papers": 1,
    "results": 90,
+   "spread_pts": 3.61,
+   "headroom_pts": 42.0,
+   "rho_consensus": 0.87,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2490,6 +2854,10 @@
    "models": 14,
    "papers": 1,
    "results": 94,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.86,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2500,6 +2868,10 @@
    "models": 14,
    "papers": 1,
    "results": 90,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": 0.84,
+   "share_self_reported": 1.0,
    "verdict": "e_red"
   },
   {
@@ -2510,6 +2882,10 @@
    "models": 11,
    "papers": 1,
    "results": 117,
+   "spread_pts": 3.54,
+   "headroom_pts": 39.0,
+   "rho_consensus": null,
+   "share_self_reported": 0.69,
    "verdict": "e_few"
   },
   {
@@ -2520,6 +2896,10 @@
    "models": 5,
    "papers": 1,
    "results": 17,
+   "spread_pts": null,
+   "headroom_pts": null,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2560,6 +2940,10 @@
    "models": 25,
    "papers": 2,
    "results": 87,
+   "spread_pts": 10.36,
+   "headroom_pts": 23.2,
+   "rho_consensus": 0.64,
+   "share_self_reported": 0.5,
    "verdict": "e_part"
   },
   {
@@ -2570,6 +2954,10 @@
    "models": 15,
    "papers": 5,
    "results": 35,
+   "spread_pts": 11.55,
+   "headroom_pts": 1.0,
+   "rho_consensus": null,
+   "share_self_reported": 1.0,
    "verdict": "e_few"
   },
   {
@@ -2580,6 +2968,10 @@
    "models": 14,
    "papers": 3,
    "results": 50,
+   "spread_pts": 2.06,
+   "headroom_pts": 78.5,
+   "rho_consensus": null,
+   "share_self_reported": 0.57,
    "verdict": "e_few"
   },
   {
@@ -2590,6 +2982,10 @@
    "models": 7,
    "papers": 1,
    "results": 35,
+   "spread_pts": 6.12,
+   "headroom_pts": 53.3,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {
@@ -2600,6 +2996,10 @@
    "models": 5,
    "papers": 1,
    "results": 25,
+   "spread_pts": 8.01,
+   "headroom_pts": 65.9,
+   "rho_consensus": null,
+   "share_self_reported": 0.0,
    "verdict": "e_few"
   },
   {

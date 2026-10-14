@@ -3,111 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EOArena Expert Arena</title>
-<meta name="description" content="Blind, pairwise expert comparisons of geospatial foundation model outputs, for Earth observation needs that no labelled dataset covers.">
+<title>EOArena Benchmark Ranking</title>
+<meta name="description" content="A static ranking of Earth observation benchmarks by how much evidence they give about geospatial foundation models, from published results.">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;counter-reset:s}
-.steps .card{padding:16px 18px;display:grid;gap:6px;align-content:start}
-.steps .card::before{counter-increment:s;content:counter(s);font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1}
-.steps b{font-size:15.5px}
-.steps span{font-size:14px;color:var(--fg-2)}
-.vs{padding:18px;display:grid;gap:14px}
-.vs-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:640px){.pair{grid-template-columns:1fr}}
-.panel{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2)}
-.panel p{font-size:13px;font-weight:600;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
-.panel svg{display:block;width:100%;height:auto}
-.vote{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.vote button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-size:14.5px;color:var(--fg-3);cursor:not-allowed}
-.formula{padding:18px 20px;display:grid;gap:12px}
-.eq{font-family:var(--serif);font-size:19px;background:var(--surface-2);border-radius:10px;padding:14px 16px;overflow-x:auto;white-space:nowrap}
-.eq var{font-style:italic}
-.tbd{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--warn);background:var(--warn-bg);border-radius:999px;padding:2px 9px}
-.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.opts .card{padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:14px;color:var(--fg-2)}
-.opts .card b{color:var(--fg);font-size:15px}
-.arenas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.arenas a{padding:14px 16px;display:grid;gap:4px;color:var(--fg)}
-.arenas a:hover{text-decoration:none;border-color:var(--line-2)}
-.arenas small{color:var(--fg-3);font-size:13px}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:14px}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:8px 18px;font-size:13.5px;color:var(--fg-2);margin:0 0 16px;padding:0;list-style:none}
+.legend li{display:flex;gap:8px;align-items:baseline}
+.tablebox{overflow-x:auto}
+table.rk{border-collapse:collapse;width:100%;min-width:1040px;font-size:13.5px}
+table.rk th,table.rk td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.rk th{position:sticky;top:0;background:var(--surface);z-index:1;font-weight:500;color:var(--fg-3);font-size:12px;white-space:nowrap}
+table.rk th button{all:unset;cursor:pointer}
+table.rk th button[aria-sort]::after{content:" \2195";opacity:.4}
+table.rk th button[aria-sort=ascending]::after{content:" \2191";opacity:1}
+table.rk th button[aria-sort=descending]::after{content:" \2193";opacity:1}
+table.rk td.num,table.rk th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.rk td.rank{color:var(--fg-3);font-variant-numeric:tabular-nums;text-align:right}
+table.rk td.dim{color:var(--fg-3)}
+table.rk tr:last-child td{border-bottom:none}
+table.rk a{color:inherit}
+.unl{font-size:11px;font-weight:600;color:var(--fg-3);border:1px dashed var(--line-2);border-radius:999px;padding:0 6px;margin-left:6px;white-space:nowrap}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-right:6px;opacity:.75}
+.count{font-size:14px;color:var(--fg-3);font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
 <main class="page">
   <section class="hero">
-    <h1>The Arena</h1>
-    <p class="sub">For the needs no labelled dataset covers, experts judge models directly: two anonymous outputs, side by side, and a vote on which is better.</p>
+    <h1>Benchmark ranking</h1>
+    <p class="sub">Every benchmark dataset with published GeoFM results, ranked by how much evidence it gives: does it separate models, does it say something the other benchmarks don't, and is there headroom left. Static, from papers; not a model leaderboard.</p>
     <div class="stats" id="stats"></div>
   </section>
 
   <section class="section">
-    <h2>Why an arena</h2>
-    <p class="lead">Leaderboards need labels. The domain audit found subdomains with no open labelled data at all, and many datasets whose labels are another model's output. Expert judgement is the reference that remains. Pairwise votes are easier and more consistent to give than absolute scores, and ratings computed from many votes rank models without any ground-truth map. This follows the approach LMArena uses for language models.</p>
-  </section>
-
-  <section class="section">
-    <h2>How a comparison works</h2>
-    <div class="steps">
-      <div class="card"><b>Draw a case</b><span>A region, date and task are sampled from an arena, for example thaw slumps on the Tibetan Plateau.</span></div>
-      <div class="card"><b>Run two models</b><span>Two models, chosen at random and kept anonymous, produce outputs from the same inputs.</span></div>
-      <div class="card"><b>Expert votes</b><span>A domain expert sees both over the imagery and picks A, B, a tie, or both unusable.</span></div>
-      <div class="card"><b>Update ratings</b><span>Votes are pooled into model ratings with uncertainty. Identities are revealed only after the vote.</span></div>
+    <ul class="legend">
+      <li><span class="chip ev-dist">Distinct ranking</span><span>Ranks models unlike the consensus of all other benchmarks (ρ &lt; 0.3). Unique signal, or noise when from one paper.</span></li>
+      <li><span class="chip ev-part">Partly distinct</span><span>Some shared, some unique signal (0.3 ≤ ρ &lt; 0.7).</span></li>
+      <li><span class="chip ev-red">Tracks consensus</span><span>Ranks models like everything else (ρ ≥ 0.7). Adds little.</span></li>
+      <li><span class="chip ev-weak">Saturated / below noise</span><span>Under 3 pts headroom, or model spread under the 2.3-pt cross-paper noise.</span></li>
+      <li><span class="chip ev-few">Under 10 models</span><span>Scored, but too few models to judge.</span></li>
+    </ul>
+    <div class="ctrl">
+      <label class="inl">Domain <select class="sel" id="dom"></select></label>
+      <label class="inl">Verdict <select class="sel" id="ver"></select></label>
+      <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search" aria-label="Search benchmarks"></label>
+      <label class="inl"><input type="checkbox" id="img" checked> Imagery tasks only</label>
+      <span class="count" id="count"></span>
     </div>
+    <div class="card tablebox"><table class="rk" id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="section">
-    <div class="card vs">
-      <div class="vs-top"><h3 style="font-size:19px">Preview</h3><span class="small muted">Illustrative only. Voting is not open yet.</span></div>
-      <p class="small muted">Task: map retrogressive thaw slumps · Region: sampled tile · Input: PlanetScope, 3 m</p>
-      <div class="pair">
-        <div class="panel"><p>Model A</p><svg viewBox="0 0 320 200" aria-label="Schematic output of model A"><rect width="320" height="200" fill="var(--h1)"/><path d="M0 140 C60 120 110 150 170 128 S270 110 320 124 V200 H0Z" fill="var(--h2)"/><path d="M92 62 q24 -18 46 2 q12 24 -8 40 q-26 10 -40 -8 q-10 -20 2 -34Z" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M200 70 q18 -10 32 4 q6 18 -10 26 q-18 4 -24 -10Z" fill="none" stroke="var(--accent)" stroke-width="3"/></svg></div>
-        <div class="panel"><p>Model B</p><svg viewBox="0 0 320 200" aria-label="Schematic output of model B"><rect width="320" height="200" fill="var(--h1)"/><path d="M0 140 C60 120 110 150 170 128 S270 110 320 124 V200 H0Z" fill="var(--h2)"/><path d="M84 56 q32 -20 58 6 q14 30 -12 46 q-30 12 -46 -12 q-12 -22 0 -40Z" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M40 150 q10 -8 22 0 q4 10 -8 14 q-12 0 -14 -14Z" fill="none" stroke="var(--accent)" stroke-width="3"/></svg></div>
-      </div>
-      <div class="vote" aria-label="Vote options (disabled in preview)"><button disabled>A is better</button><button disabled>Tie</button><button disabled>B is better</button><button disabled>Both unusable</button></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="dhead"><h2>First arenas</h2><span class="small muted">Subdomains with no task in any audited benchmark suite</span></div>
-    <div class="arenas" id="arenas"></div>
-  </section>
-
-  <section class="section">
-    <h2>Rating formula</h2>
-    <div class="card formula">
-      <div class="vs-top"><h3 style="font-size:19px">Arena rating</h3><span class="tbd">TO BE DECIDED</span></div>
-      <div class="eq">P(<var>A</var> beats <var>B</var>) = <var>f</var>(<var>θ</var><sub>A</sub>, <var>θ</var><sub>B</sub>) &nbsp;·&nbsp; <var>θ</var> estimated from all votes &nbsp;·&nbsp; uncertainty: <span class="tbd">TBD</span></div>
-      <div class="opts">
-        <div class="card"><b>Bradley–Terry</b>P(A beats B) = 1 / (1 + e<sup>θ<sub>B</sub> − θ<sub>A</sub></sup>), fitted by maximum likelihood over all votes; confidence intervals by bootstrap. LMArena moved to this from online Elo.</div>
-        <div class="card"><b>Elo</b>Ratings updated after each vote. Simple and familiar, but depends on vote order and gives no clean uncertainty.</div>
-        <div class="card"><b>Extensions to decide</b>How to count ties and "both unusable"; whether to weight votes by expert domain; how to correct for left–right position bias; how many votes per pair before a rating is shown.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Combining labelled tasks</h2>
-    <div class="card formula">
-      <div class="vs-top"><h3 style="font-size:19px">Leaderboard score</h3><span class="tbd">TO BE DECIDED</span></div>
-      <div class="eq"><var>S</var><sub>m</sub> = Σ<sub>t</sub> <var>w</var><sub>t</sub> · <var>r</var><sub>m,t</sub> / Σ<sub>t</sub> <var>w</var><sub>t</sub> &nbsp;·&nbsp; <var>r</var><sub>m,t</sub> = rank of model <var>m</var> on task <var>t</var> &nbsp;·&nbsp; <var>w</var><sub>t</sub> = <span class="tbd">TBD</span></div>
-      <ul class="clean">
-        <li>The current draft weights each task by the standard deviation of model performance, so tasks that separate models count more.</li>
-        <li>Open issue: a large spread can come from noise. A weight based on the spread between models relative to the spread across seeds of the same model would reward tasks that separate models reliably.</li>
-        <li>How arena ratings and labelled-task scores combine, if at all, is also open.</li>
-      </ul>
+    <h2>How to read it</h2>
+    <div class="prose">
+      <p><b>Rank</b> orders benchmarks by verdict (distinct, partly distinct, tracks consensus, saturated or below noise, under 10 models), then by the number of models scored. It is a ranking of benchmarks as evidence, not of models. A model leaderboard pooled across papers would mostly measure who wrote each paper: in the same data, OlmoEarth ranks first in 78% of comparisons in its own paper and in 0% of comparisons run by other groups.</p>
+      <p><b>Models</b> and <b>papers</b> count distinct models and papers that reported a score on the benchmark. <b>Spread</b> is the median standard deviation of model scores within one paper's comparison (percent metrics only). <b>Headroom</b> is 100 minus the median best score. <b>ρ vs consensus</b> compares the benchmark's model ranking with the mean ranking over all other benchmarks, after z-scoring within each comparison so that paper offsets cancel; it needs at least ten models. <b>Self-reported</b> is the share of comparisons that come from a paper scoring its own model.</p>
+      <p>Source: a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (Viki Mancoridis, 2026, unpublished), grouped into 259 datasets and placed in the EOArena taxonomy. Original results only; copied numbers, ablation variants and non-foundation baselines are dropped. Protocols are pooled within a benchmark. Benchmarks marked <span class="unl">not in inventory</span> have published scores but no record yet in the <a href="index.html">Explorer</a>. Method details on the <a href="about.html#evidence">About page</a>.</p>
+      <p>These are descriptive statistics, not the latent-factor analysis EOArena is building. A benchmark scored in one paper reflects that paper's protocol and model choice. The expert pairwise arena for needs with no labelled data is still planned and will return to this page once the ranking has been reviewed.</p>
     </div>
   </section>
 </main>
 <script src="assets/site.js"></script>
 <script>
+const EVC={e_dist:['ev-dist','Distinct ranking',0],e_part:['ev-part','Partly distinct',1],e_red:['ev-red','Tracks consensus',2],e_weak:['ev-weak','Saturated / below noise',3],e_few:['ev-few','Under 10 models',4]};
+const COLS=[['rank','#','rank'],['name','Benchmark',''],['domain','Domain',''],['models','Models','num'],['papers','Papers','num'],['results','Results','num'],['spread_pts','Spread (pts)','num'],['headroom_pts','Headroom (pts)','num'],['rho_consensus','ρ vs consensus','num'],['share_self_reported','Self-reported','num'],['verdict','Verdict','']];
+let ROWS=[],sortKey='rank',sortDir=1;const st={dom:'',ver:'',q:'',img:true};
+const $=id=>document.getElementById(id);
 (async function(){
-  const [doms,data]=await loadJSON('domains','datasets');
-  const gaps=doms.flatMap(d=>d.subdomains.filter(s=>s.code&&s.status==='gap').map(s=>({...s,dom:d.name.replace(/^\d · /,'')})));
-  document.getElementById('stats').innerHTML=[[gaps.length,'candidate arenas'],[data.filter(d=>d.facets.p[0]==='model').length,'datasets with model-derived labels']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
-  document.getElementById('arenas').innerHTML=gaps.map(s=>`<a class="card" href="domains.html#${s.code}"><small>${esc(s.dom)}</small><b>${s.code} ${esc(s.name)}</b></a>`).join('');
+  const [data,ev]=await loadJSON('datasets','evidence');
+  const byId=Object.fromEntries(data.map(d=>[d.id,d]));
+  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];ROWS.push({id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:'eo_imagery',listed:true,...e});});
+  ev.unlisted.forEach(e=>{if(e.results)ROWS.push({...e,listed:false});});
+  ROWS.forEach(r=>{r.verdict=EVC[r.verdict]?r.verdict:'e_few';});
+  ROWS.sort((a,b)=>(EVC[a.verdict][2]-EVC[b.verdict][2])||(b.models-a.models)||a.name.localeCompare(b.name));
+  ROWS.forEach((r,i)=>r.rank=i+1);
+  const judged=ROWS.filter(r=>r.verdict!=='e_few').length;
+  $('stats').innerHTML=[[ROWS.length,'benchmarks with GeoFM scores'],[judged,'with ≥ 10 models'],[ROWS.filter(r=>r.verdict==='e_dist').length,'distinct ranking'],[ROWS.filter(r=>r.verdict==='e_red').length,'track the consensus'],[ev.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const doms=[...new Set(ROWS.map(r=>r.domain))].sort();
+  $('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option>${esc(d)}</option>`).join('');
+  $('ver').innerHTML='<option value="">All verdicts</option>'+Object.entries(EVC).map(([k,v])=>`<option value="${k}">${v[1]}</option>`).join('');
+  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button></th>`).join('');
+  document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','domain','verdict','rank'].includes(k)?1:-1);sortKey=k;render();}));
+  ['dom','ver'].forEach(id=>$(id).addEventListener('change',e=>{st[id]=e.target.value;render();}));
+  $('img').addEventListener('change',e=>{st.img=e.target.checked;render();});
+  let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
+  render();
 })();
+const f1=x=>x==null?'–':Number(x).toFixed(1);
+function cmp(a,b){if(sortKey==='verdict')return (EVC[a.verdict][2]-EVC[b.verdict][2])*sortDir||b.models-a.models;const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
+function render(){
+  const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||r.input_kind==='eo_imagery')).sort(cmp);
+  document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
+  $('count').textContent=`${rows.length} of ${ROWS.length}`;
+  const maxM=Math.max(...ROWS.map(r=>r.models));
+  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];
+    const nm=r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">${esc(r.name)}</a>`:`${esc(r.name)}<span class="unl">not in inventory</span>`;
+    return `<tr><td class="rank">${r.rank}</td><td>${nm}</td><td class="dim">${esc(r.domain.replace(/^\d · /,''))}</td><td class="num"><span class="bar" style="width:${Math.max(2,Math.round(60*r.models/maxM))}px"></span>${r.models}</td><td class="num">${r.papers}</td><td class="num">${r.results.toLocaleString('en-US')}</td><td class="num">${f1(r.spread_pts)}</td><td class="num">${f1(r.headroom_pts)}</td><td class="num">${r.rho_consensus==null?'–':Number(r.rho_consensus).toFixed(2)}</td><td class="num">${r.share_self_reported==null?'–':Math.round(100*r.share_self_reported)+'%'}</td><td><span class="chip ${c}">${l}</span></td></tr>`;}).join('')||'<tr><td colspan="11" class="dim">No benchmark matches.</td></tr>';
+}
 </script>
 </body>
 </html>
