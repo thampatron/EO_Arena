@@ -148,3 +148,9 @@ ul.clean{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--fg-2);max-w
 .chip.ev-weak{background:color-mix(in srgb,var(--warn) 30%,transparent);color:var(--fg)}
 .chip.ev-few{background:var(--surface-2);color:var(--fg-3)}
 .chip.ev-none{background:transparent;color:var(--fg-3);border:1px dashed var(--line-2)}
+
+/* column-header info tips (rankings) */
+.info{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--line-2);color:var(--fg-3);font-size:10px;font-weight:700;font-style:normal;margin-left:5px;vertical-align:1px;cursor:help;position:relative;font-family:var(--sans);text-transform:none;letter-spacing:0}
+.info:hover,.info:focus-visible{border-color:var(--fg-2);color:var(--fg)}
+.info[data-tip]:hover::after,.info[data-tip]:focus-visible::after{content:attr(data-tip);position:absolute;top:22px;left:50%;transform:translateX(-50%);width:260px;white-space:normal;text-align:left;font-size:12.5px;font-weight:400;line-height:1.4;color:var(--bg);background:var(--fg);padding:8px 10px;border-radius:8px;z-index:60;pointer-events:none}
+th:first-child .info[data-tip]:hover::after,th:nth-child(2) .info[data-tip]:hover::after{left:0;transform:none}
