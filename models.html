@@ -39,11 +39,13 @@ table.rk tr.unranked td{color:var(--fg-3)}
   <section class="section">
     <div class="warn-box">A ranking pooled from papers is only as comparable as the papers are. Scores are z-scored inside each paper's own comparison, so paper and benchmark offsets cancel, but protocols are pooled and most models were evaluated by one or two groups. In this same data the median gap between a model's self-reported and independent z-score is large; the two columns are kept apart for that reason.</div>
     <div class="ctrl">
-      <label class="inl">Show <select class="sel" id="show"><option value="ranked">Ranked (≥ 10 independent comparisons on ≥ 5 benchmarks)</option><option value="all">All models with any independent evaluation</option></select></label>
+      <label class="inl">Scope <select class="sel" id="scope"></select></label>
+      <label class="inl">Show <select class="sel" id="show"><option value="ranked">Ranked only</option><option value="all">All models with any independent evaluation</option></select></label>
       <label class="inl"><input type="checkbox" id="gv" checked> Include general-vision baselines</label>
       <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search models" aria-label="Search models"></label>
       <span class="count" id="count"></span>
     </div>
+    <p class="small muted" id="scope-note" style="margin:-6px 0 10px"></p>
     <div class="card tablebox"><table class="rk" id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
   </section>
 
@@ -51,7 +53,7 @@ table.rk tr.unranked td{color:var(--fg-3)}
     <h2>How to read it</h2>
     <div class="prose">
       <p><b>Independent z</b> is the model's mean z-score over comparisons from papers that did not introduce it (and not from the same team's later versions: OlmoEarth, Prithvi and TESSERA releases count as one team). A comparison is one paper's table with at least four models on the same benchmark, protocol, metric and training fraction. z = 0 is the average model in that comparison; z = +1 is one standard deviation better. <b>Win rate</b> is the share of other models in those comparisons that the model beats. <b>Self-reported z</b> is the same statistic over the model's own papers. <b>FT</b> and <b>frozen</b> split the independent z by whether the backbone was fine-tuned or kept frozen (linear probe, kNN, frozen decoder).</p>
-      <p>Models are ranked by independent z and need at least 10 independent comparisons on at least 5 benchmarks. Models below that threshold are listed unranked. Imagery benchmarks only: location-embedding models scored on coordinate-only tasks are left out. Original results only; copied numbers, ablation variants and non-foundation baselines are dropped. <span class="gv">general vision</span> marks ImageNet-, web- or CLIP-pretrained backbones included as baselines.</p>
+      <p>Models are ranked by independent z and need at least 10 independent comparisons on at least 5 benchmarks (within a domain or subdomain: 5 comparisons on 2 benchmarks). Models below that threshold are listed unranked. The <b>Scope</b> control switches to a ranking precomputed on one domain or subdomain's benchmarks only; the fewer benchmarks a scope has, the more its ranking reflects one or two papers' choices. Imagery benchmarks only: location-embedding models scored on coordinate-only tasks are left out. Original results only; copied numbers, ablation variants and non-foundation baselines are dropped. <span class="gv">general vision</span> marks ImageNet-, web- or CLIP-pretrained backbones included as baselines.</p>
       <p>What this ranking is not: a verdict on which model is best. GEO-Bench-2 and PANGAEA show that fine-tuned and frozen rankings disagree, and that no model leads on every task. Use the <a href="benchmarks.html">benchmark ranking</a> to see which tasks separate models at all. Source: a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (Viki Mancoridis, 2026, unpublished); per-model aggregates only. Built by <code>scripts/build_model_ranking.py</code>.</p>
     </div>
   </section>
@@ -60,10 +62,16 @@ table.rk tr.unranked td{color:var(--fg-3)}
 <script>
 const TIPS={"rank": "Position by independent z. Only models with at least 10 independent comparisons on at least 5 benchmarks are ranked; the rest are listed unranked.", "name": "Model id as used in the meta-analysis workbook. 'general vision' marks ImageNet-, web- or CLIP-pretrained backbones used as baselines.", "backbone": "Encoder architecture, where the source paper states it.", "pretraining_dataset": "Pretraining corpus, where stated.", "ind_mean_z": "Mean z-score over independent comparisons: papers that did not introduce the model and are not later versions by the same team. z = 0 is the average model in a comparison; +1 is one standard deviation above it.", "ind_win_rate": "Share of other models in independent comparisons that this model beats.", "ind_comparisons": "Number of independent comparisons the model appears in. A comparison is one paper's table with at least 4 models on the same benchmark, protocol, metric and training fraction.", "ind_benchmarks": "Distinct benchmarks among the independent comparisons.", "ind_papers": "Distinct papers among the independent comparisons.", "ind_ft_z": "Independent z restricted to comparisons that fine-tuned the backbone.", "ind_frozen_z": "Independent z restricted to frozen-backbone comparisons (linear probe, kNN, frozen decoder).", "self_mean_z": "Mean z-score over the model's own papers and same-team later versions. Shown for contrast; never used for the rank.", "self_comparisons": "Number of self-reported comparisons."};
 const COLS=[['rank','#','rank'],['name','Model',''],['backbone','Backbone',''],['pretraining_dataset','Pretraining data',''],['ind_mean_z','Independent z','num'],['ind_win_rate','Win rate','num'],['ind_comparisons','Comparisons','num'],['ind_benchmarks','Benchmarks','num'],['ind_papers','Papers','num'],['ind_ft_z','FT z','num'],['ind_frozen_z','Frozen z','num'],['self_mean_z','Self-reported z','num'],['self_comparisons','Self comps.','num']];
-let ROWS=[],META,sortKey='rank',sortDir=1;const st={show:'ranked',gv:true,q:''};
+let ROWS=[],ALL=[],SCOPES={},META,sortKey='rank',sortDir=1;const st={show:'ranked',gv:true,q:'',scope:''};
 const $=id=>document.getElementById(id);
 (async function(){
-  const [mr]=await loadJSON('model_ranking');META=mr.meta;ROWS=mr.models;
+  const [mr]=await loadJSON('model_ranking');META=mr.meta;ALL=mr.models;SCOPES=mr.scopes||{};ROWS=ALL;
+  const byName=Object.fromEntries(ALL.map(r=>[r.name,r]));
+  Object.values(SCOPES).forEach(sc=>sc.models.forEach(m=>{const b=byName[m.name]||{};m.backbone=b.backbone;m.pretraining_dataset=b.pretraining_dataset;m.general_vision=!!b.general_vision;}));
+  const doms=Object.entries(SCOPES).filter(([k])=>k.startsWith('d:')).sort((a,b)=>a[1].label.localeCompare(b[1].label));
+  $('scope').innerHTML='<option value="">All imagery benchmarks</option>'+doms.map(([k,v])=>`<optgroup label="${esc(v.label)}"><option value="${esc(k)}">${esc(v.label)} (all)</option>${Object.entries(SCOPES).filter(([k2,v2])=>k2.startsWith('s:')&&v2.domain===v.label).sort((a,b)=>a[1].label.localeCompare(b[1].label)).map(([k2,v2])=>`<option value="${esc(k2)}">&nbsp;&nbsp;${esc(v2.label)}</option>`).join('')}</optgroup>`).join('');
+  const p=new URLSearchParams(location.search);if(p.get('scope')&&SCOPES[p.get('scope')]){st.scope=p.get('scope');$('scope').value=st.scope;}
+  $('scope').addEventListener('change',e=>{st.scope=e.target.value;render();});
   const ranked=ROWS.filter(r=>r.ranked);const gv=ranked.filter(r=>r.general_vision).length;
   const top10gv=ranked.slice(0,10).filter(r=>r.general_vision).length;
   $('stats').innerHTML=[[META.n_models_ranked,'models ranked'],[ROWS.length,'with any independent evaluation'],[META.n_comparisons.toLocaleString('en-US'),'comparisons'],[top10gv+' of 10','top-10 are general-vision'],[META.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
@@ -80,6 +88,9 @@ const n=x=>x==null?'–':Number(x).toLocaleString('en-US');
 function cmp(a,b){if(sortKey==='rank'){if(a.rank==null&&b.rank==null)return (b.ind_mean_z??-9)-(a.ind_mean_z??-9);if(a.rank==null)return 1;if(b.rank==null)return -1;return (a.rank-b.rank)*sortDir;}
   const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
 function render(){
+  const sc=st.scope&&SCOPES[st.scope];ROWS=sc?sc.models:ALL;
+  $('scope-note').textContent=sc?`${sc.label}: ${sc.benchmarks} benchmark${sc.benchmarks===1?'':'s'}, ${sc.comparisons.toLocaleString('en-US')} comparisons. Ranked here with ≥ 5 independent comparisons on ≥ 2 benchmarks. Fewer benchmarks means a noisier ranking.`:'All imagery benchmarks. Ranked with ≥ 10 independent comparisons on ≥ 5 benchmarks.';
+  const q=new URLSearchParams();if(st.scope)q.set('scope',st.scope);history.replaceState(null,'',q.toString()?'?'+q:location.pathname);
   const rows=ROWS.filter(r=>(st.show==='all'||r.ranked)&&(st.gv||!r.general_vision)&&(!st.q||r.name.toLowerCase().includes(st.q)||String(r.backbone||'').toLowerCase().includes(st.q))).sort(cmp);
   document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
   $('count').textContent=`${rows.length} models`;

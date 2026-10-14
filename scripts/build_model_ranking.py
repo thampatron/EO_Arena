@@ -1,5 +1,4 @@
-"""Build data/model_ranking.json from the GeoFM meta-analysis workbook (not in this repo). Summary statistics per model only.
-Inputs: results_labelled.pkl (from the EOArena analysis of the workbook) and the workbook's model_registry sheet. Usage: python3 scripts/build_model_ranking.py
+"""Model ranking from the workbook: within-comparison z-scores averaged per model. Summary stats only."""
 import pandas as pd, numpy as np, json, sys
 X='/home/claude/viki/metaanalysis_benchmark_table_v4.xlsx'
 r=pd.read_pickle('results_labelled.pkl')
@@ -25,7 +24,7 @@ for k,g in r.groupby(key,dropna=False):
     selfm=set(g[g.self2].model_id)
     proto=str(k[2]); pfam='fine-tuned' if proto in('FT','PFT') else 'frozen' if proto in('frozen_dec','LP','kNN','frozen','frozen_best','PE','MLP') else 'other'
     for mid in m.index:
-        rows.append(dict(model_id=mid,paper=k[0],dataset=g.canonical_dataset.iat[0],domain=g.domain.iat[0],proto=pfam,z=z[mid],win=(len(m)-rk[mid])/(len(m)-1),self=mid in selfm))
+        rows.append(dict(model_id=mid,paper=k[0],dataset=g.canonical_dataset.iat[0],domain=g.domain.iat[0],subdomain=g.subdomain.iat[0] if isinstance(g.subdomain.iat[0],str) else '',proto=pfam,z=z[mid],win=(len(m)-rk[mid])/(len(m)-1),self=mid in selfm))
 C=pd.DataFrame(rows)
 def agg(d):
     return pd.Series(dict(comparisons=len(d),benchmarks=d.dataset.nunique(),papers=d.paper.nunique(),mean_z=d.z.mean(),win_rate=d.win.mean()))
@@ -58,6 +57,30 @@ for rec in out.to_dict('records'):
     recs.append(o)
 meta={"as_of":"2026-10-08","n_models_ranked":int(T.ranked.sum()),"n_models_total":int(A.shape[0]),"n_comparisons":int(len(C)),
  "method":"Each comparison is one paper's table with >= 4 models on the same benchmark, protocol, metric and train fraction (original results only; ablations and non-foundation baselines dropped). Scores are z-scored within the comparison, so paper and benchmark offsets cancel, and averaged per model. Independent = comparisons from papers that did not introduce the model, and not from the same team's later papers (OlmoEarth, Prithvi, TESSERA versions are treated as one team). Win rate = share of other models in the comparison that the model beats. Ranked by independent mean z; imagery benchmarks only. A model is ranked only with >= 10 independent comparisons on >= 5 benchmarks; others are listed unranked."}
-json.dump({"meta":meta,"models":recs},open('/home/claude/eo_arena/data/model_ranking.json','w'),indent=0)
+def scope_table(sub):
+    I2=sub[~sub.self].groupby('model_id').apply(agg).add_prefix('ind_')
+    S2=sub[sub.self].groupby('model_id').apply(agg).add_prefix('self_')
+    F2=sub[(~sub.self)&(sub.proto=='fine-tuned')].groupby('model_id').z.mean().rename('ind_ft_z')
+    Z2=sub[(~sub.self)&(sub.proto=='frozen')].groupby('model_id').z.mean().rename('ind_frozen_z')
+    if len(I2)==0: return []
+    T2=I2.join(S2,how='outer').join(F2).join(Z2)
+    T2=T2[T2.ind_comparisons.fillna(0)>=1]
+    T2['ranked']=(T2.ind_comparisons>=5)&(T2.ind_benchmarks>=2)
+    T2=T2.sort_values(['ranked','ind_mean_z'],ascending=[False,False]); T2['rank']=[i+1 if rk else None for i,rk in enumerate(T2.ranked)]
+    out2=[]
+    for mid,rec in T2.iterrows():
+        o={'name':mid,'rank':None if pd.isna(rec['rank']) else int(rec['rank']),'ranked':bool(rec.ranked)}
+        for c in ['ind_comparisons','ind_benchmarks','ind_papers','ind_mean_z','ind_win_rate','ind_ft_z','ind_frozen_z','self_comparisons','self_mean_z']:
+            v=rec.get(c); o[c]=None if v is None or pd.isna(v) else (int(v) if c.endswith(('comparisons','benchmarks','papers')) else round(float(v),3))
+        out2.append(o)
+    return out2
+scopes={}
+C2=C[C.domain.isin(['composite','outside_taxonomy'])==False]
+for d,g in C2.groupby('domain'):
+    scopes['d:'+d]={'label':d,'kind':'domain','benchmarks':int(g.dataset.nunique()),'comparisons':int(len(g)),'models':scope_table(g)}
+for (d,sd),g in C2[C2.subdomain!=''].groupby(['domain','subdomain']):
+    scopes['s:'+sd]={'label':sd,'kind':'subdomain','domain':d,'benchmarks':int(g.dataset.nunique()),'comparisons':int(len(g)),'models':scope_table(g)}
+meta["scope_rule"]="Within a domain or subdomain a model is ranked with >= 5 independent comparisons on >= 2 benchmarks."
+json.dump({"meta":meta,"models":recs,"scopes":scopes},open('/home/claude/eo_arena/data/model_ranking.json','w'),indent=0)
 pd.set_option('display.width',250)
 print(len(recs),'ranked of',A.shape[0]); print(out[out.ranked][['rank','name','ind_comparisons','ind_benchmarks','ind_papers','ind_mean_z','ind_win_rate','self_mean_z','general_vision']].head(25).to_string(index=False))

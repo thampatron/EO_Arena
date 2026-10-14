@@ -28,7 +28,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
 - `data/countries.geojson`: Natural Earth boundaries for the map.
-- `data/model_ranking.json`: per-model summary (independent and self-reported comparisons, mean z, win rate, fine-tuned vs frozen), built by `scripts/build_model_ranking.py`.
+- `data/model_ranking.json`: per-model summary (independent and self-reported comparisons, mean z, win rate, fine-tuned vs frozen), overall and precomputed per domain and subdomain (`scopes`), built by `scripts/build_model_ranking.py`.
 - `data/evidence.json`: per-dataset summary of published GeoFM evidence (models, papers, spread, headroom, agreement with the consensus ranking, verdict) from a meta-analysis of 52 papers; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py`; see About → GeoFM evidence.
 - `data/footprints/<id>.json` and the combined `data/footprints.json`: sample-level footprints (chip, tile, field or site centroids, up to 3,000 per dataset) with the source file and method each came from; built by `scripts/footprints/<id>.py` and `scripts/footprints/build_index.py`. See `scripts/footprints/BRIEF.md` for the extraction rules.
 
