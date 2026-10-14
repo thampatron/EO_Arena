@@ -88,11 +88,11 @@ function buildDsel(){const sel=document.getElementById('dsel');const rows=scoped
   sel.innerHTML='<option value="">All datasets</option>'+rows.map(d=>`<option value="${esc(d.id)}">${esc(d.name)} (${FP[d.id].kind}, ${FP[d.id].n_points})</option>`).join('');sel.value=st.ds&&rows.some(d=>d.id===st.ds)?st.ds:'';}
 function drawPoints(){const cv=document.getElementById('pts'),svg=document.getElementById('map');const r=svg.getBoundingClientRect();const dpr=devicePixelRatio||1;
   cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);cv.style.width=r.width+'px';cv.style.height=r.height+'px';
-  const ctx=cv.getContext('2d');ctx.setTransform(dpr*r.width/960,0,0,dpr*r.height/500,0,0);ctx.clearRect(0,0,960,500);
+  const ctx=cv.getContext('2d');ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);ctx.setTransform(dpr*r.width/960,0,0,dpr*r.height/500,0,0);
   const rows=scoped().filter(d=>FP[d.id]&&FP[d.id].n_points);const focus=st.ds;
-  const draw=(d,dim)=>{const f=FP[d.id];const col=DCOL[d.domain]||'#555';ctx.globalAlpha=dim?0.12:(f.kind==='samples'?0.55:0.85);ctx.fillStyle=col;ctx.strokeStyle=col;
-    if(f.kind==='bbox'&&f.bbox){const [w,so,e,n]=f.bbox;ctx.globalAlpha=dim?0.15:0.9;ctx.lineWidth=1.2;ctx.setLineDash([4,3]);ctx.beginPath();[[w,n],[e,n],[e,so],[w,so],[w,n]].forEach(([x,y],i)=>{const q=proj([x,y]);if(!q)return;i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]);});ctx.stroke();ctx.setLineDash([]);return;}
-    const rad=f.kind==='sites'?3.2:f.kind==='tiles'?1.8:1.3;
+  const draw=(d,dim)=>{const f=FP[d.id];const col=dim?'#9a9a9a':(DCOL[d.domain]||'#555');ctx.globalAlpha=dim?0.05:(f.kind==='samples'?0.55:0.85);ctx.fillStyle=col;ctx.strokeStyle=col;
+    if(f.kind==='bbox'&&f.bbox){const [w,so,e,n]=f.bbox;ctx.globalAlpha=dim?0.05:0.9;ctx.lineWidth=1.2;ctx.setLineDash([4,3]);ctx.beginPath();[[w,n],[e,n],[e,so],[w,so],[w,n]].forEach(([x,y],i)=>{const q=proj([x,y]);if(!q)return;i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]);});ctx.stroke();ctx.setLineDash([]);return;}
+    const rad=(f.kind==='sites'?3.2:f.kind==='tiles'?1.8:1.3)*(focus&&!dim?1.6:1);
     f.points.forEach(p=>{const q=proj(p);if(!q)return;ctx.beginPath();ctx.arc(q[0],q[1],rad,0,6.283);ctx.fill();});};
   rows.forEach(d=>{if(!focus||d.id!==focus)draw(d,!!focus);});
   if(focus){const d=rows.find(x=>x.id===focus);if(d)draw(d,false);}
