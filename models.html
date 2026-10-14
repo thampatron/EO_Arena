@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOArena Model Ranking</title>
+<meta name="description" content="A static ranking of geospatial foundation models from published results, with self-reported and independent evaluations separated.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ctrl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:14px}
+.tablebox{overflow-x:auto}
+table.rk{border-collapse:collapse;width:100%;min-width:1180px;font-size:13.5px}
+table.rk th,table.rk td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.rk th{position:sticky;top:0;background:var(--surface);z-index:1;font-weight:500;color:var(--fg-3);font-size:12px;white-space:nowrap}
+table.rk th button{all:unset;cursor:pointer}
+table.rk th button[aria-sort]::after{content:" \2195";opacity:.4}
+table.rk th button[aria-sort=ascending]::after{content:" \2191";opacity:1}
+table.rk th button[aria-sort=descending]::after{content:" \2193";opacity:1}
+table.rk td.num,table.rk th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.rk td.rank{color:var(--fg-3);font-variant-numeric:tabular-nums;text-align:right}
+table.rk td.dim{color:var(--fg-3)}
+table.rk tr:last-child td{border-bottom:none}
+table.rk tr.unranked td{color:var(--fg-3)}
+.gv{font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 7px;margin-left:6px;white-space:nowrap}
+.pos{color:var(--ok)} .neg{color:var(--bad)}
+.zbar{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-right:6px}
+.count{font-size:14px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.warn-box{border-left:3px solid var(--warn);padding:10px 14px;background:var(--warn-bg);border-radius:8px;font-size:14px;color:var(--fg-2);margin-bottom:16px}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <h1>Model ranking</h1>
+    <p class="sub">Every geospatial foundation model with published results on imagery benchmarks, ranked by how it does in evaluations run by groups other than its own. Static, from papers. Read the caveats before quoting a rank.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="section">
+    <div class="warn-box">A ranking pooled from papers is only as comparable as the papers are. Scores are z-scored inside each paper's own comparison, so paper and benchmark offsets cancel, but protocols are pooled and most models were evaluated by one or two groups. In this same data the median gap between a model's self-reported and independent z-score is large; the two columns are kept apart for that reason.</div>
+    <div class="ctrl">
+      <label class="inl">Show <select class="sel" id="show"><option value="ranked">Ranked (≥ 10 independent comparisons on ≥ 5 benchmarks)</option><option value="all">All models with any independent evaluation</option></select></label>
+      <label class="inl"><input type="checkbox" id="gv" checked> Include general-vision baselines</label>
+      <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search models" aria-label="Search models"></label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="card tablebox"><table class="rk" id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="section">
+    <h2>How to read it</h2>
+    <div class="prose">
+      <p><b>Independent z</b> is the model's mean z-score over comparisons from papers that did not introduce it (and not from the same team's later versions: OlmoEarth, Prithvi and TESSERA releases count as one team). A comparison is one paper's table with at least four models on the same benchmark, protocol, metric and training fraction. z = 0 is the average model in that comparison; z = +1 is one standard deviation better. <b>Win rate</b> is the share of other models in those comparisons that the model beats. <b>Self-reported z</b> is the same statistic over the model's own papers. <b>FT</b> and <b>frozen</b> split the independent z by whether the backbone was fine-tuned or kept frozen (linear probe, kNN, frozen decoder).</p>
+      <p>Models are ranked by independent z and need at least 10 independent comparisons on at least 5 benchmarks. Models below that threshold are listed unranked. Imagery benchmarks only: location-embedding models scored on coordinate-only tasks are left out. Original results only; copied numbers, ablation variants and non-foundation baselines are dropped. <span class="gv">general vision</span> marks ImageNet-, web- or CLIP-pretrained backbones included as baselines.</p>
+      <p>What this ranking is not: a verdict on which model is best. GEO-Bench-2 and PANGAEA show that fine-tuned and frozen rankings disagree, and that no model leads on every task. Use the <a href="benchmarks.html">benchmark ranking</a> to see which tasks separate models at all. Source: a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (Viki Mancoridis, 2026, unpublished); per-model aggregates only. Built by <code>scripts/build_model_ranking.py</code>.</p>
+    </div>
+  </section>
+</main>
+<script src="assets/site.js"></script>
+<script>
+const COLS=[['rank','#','rank'],['name','Model',''],['backbone','Backbone',''],['pretraining_dataset','Pretraining data',''],['ind_mean_z','Independent z','num'],['ind_win_rate','Win rate','num'],['ind_comparisons','Comparisons','num'],['ind_benchmarks','Benchmarks','num'],['ind_papers','Papers','num'],['ind_ft_z','FT z','num'],['ind_frozen_z','Frozen z','num'],['self_mean_z','Self-reported z','num'],['self_comparisons','Self comps.','num']];
+let ROWS=[],META,sortKey='rank',sortDir=1;const st={show:'ranked',gv:true,q:''};
+const $=id=>document.getElementById(id);
+(async function(){
+  const [mr]=await loadJSON('model_ranking');META=mr.meta;ROWS=mr.models;
+  const ranked=ROWS.filter(r=>r.ranked);const gv=ranked.filter(r=>r.general_vision).length;
+  const top10gv=ranked.slice(0,10).filter(r=>r.general_vision).length;
+  $('stats').innerHTML=[[META.n_models_ranked,'models ranked'],[ROWS.length,'with any independent evaluation'],[META.n_comparisons.toLocaleString('en-US'),'comparisons'],[top10gv+' of 10','top-10 are general-vision'],[META.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button></th>`).join('');
+  document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','backbone','pretraining_dataset','rank'].includes(k)?1:-1);sortKey=k;render();}));
+  $('show').addEventListener('change',e=>{st.show=e.target.value;render();});
+  $('gv').addEventListener('change',e=>{st.gv=e.target.checked;render();});
+  let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
+  render();
+})();
+const z=x=>x==null?'–':`<span class="${x>0?'pos':x<0?'neg':''}">${x>0?'+':''}${Number(x).toFixed(2)}</span>`;
+const pct=x=>x==null?'–':Math.round(100*x)+'%';
+const n=x=>x==null?'–':Number(x).toLocaleString('en-US');
+function cmp(a,b){if(sortKey==='rank'){if(a.rank==null&&b.rank==null)return (b.ind_mean_z??-9)-(a.ind_mean_z??-9);if(a.rank==null)return 1;if(b.rank==null)return -1;return (a.rank-b.rank)*sortDir;}
+  const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
+function render(){
+  const rows=ROWS.filter(r=>(st.show==='all'||r.ranked)&&(st.gv||!r.general_vision)&&(!st.q||r.name.toLowerCase().includes(st.q)||String(r.backbone||'').toLowerCase().includes(st.q))).sort(cmp);
+  document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
+  $('count').textContent=`${rows.length} models`;
+  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const w=r.ind_mean_z==null?0:Math.min(60,Math.round(40*Math.abs(r.ind_mean_z)));
+    return `<tr class="${r.ranked?'':'unranked'}"><td class="rank">${r.rank??'–'}</td><td>${esc(r.name)}${r.general_vision?'<span class="gv">general vision</span>':''}</td><td class="dim">${esc(r.backbone||'')}</td><td class="dim">${esc(r.pretraining_dataset||'')}</td><td class="num"><span class="zbar" style="width:${w}px;background:${(r.ind_mean_z||0)>=0?'var(--ok)':'var(--bad)'}"></span>${z(r.ind_mean_z)}</td><td class="num">${pct(r.ind_win_rate)}</td><td class="num">${n(r.ind_comparisons)}</td><td class="num">${n(r.ind_benchmarks)}</td><td class="num">${n(r.ind_papers)}</td><td class="num">${z(r.ind_ft_z)}</td><td class="num">${z(r.ind_frozen_z)}</td><td class="num">${z(r.self_mean_z)}</td><td class="num">${n(r.self_comparisons)}</td></tr>`;}).join('')||'<tr><td colspan="13" class="dim">No model matches.</td></tr>';
+}
+</script>
+</body>
+</html>

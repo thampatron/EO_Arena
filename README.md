@@ -13,7 +13,8 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
 | `map.html` | Where labelled datasets exist: by country, or as the actual sample locations (Samples view). |
 | `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
-| `arena.html` | Benchmark ranking: every benchmark with published GeoFM results, ranked by how much evidence it gives (models, papers, spread, headroom, agreement with the consensus). Static, from papers. The expert pairwise arena is planned for later. |
+| `benchmarks.html` | Benchmark ranking: every benchmark with published GeoFM results, ranked by how much evidence it gives (models, papers, spread, headroom, agreement with the consensus). Static, from papers. The expert pairwise arena is planned for later. |
+| `models.html` | Model ranking: every GeoFM with published results, by mean within-comparison z-score on independent evaluations (papers that did not introduce it), with self-reported results shown separately. Static, from papers. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
 | `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |
 | `about.html` | Method, filter definitions and how to contribute. |
@@ -27,6 +28,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/domains.json` and `data/sensors.json`: the domain and sensor audits.
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
 - `data/countries.geojson`: Natural Earth boundaries for the map.
+- `data/model_ranking.json`: per-model summary (independent and self-reported comparisons, mean z, win rate, fine-tuned vs frozen), built by `scripts/build_model_ranking.py`.
 - `data/evidence.json`: per-dataset summary of published GeoFM evidence (models, papers, spread, headroom, agreement with the consensus ranking, verdict) from a meta-analysis of 52 papers; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py`; see About → GeoFM evidence.
 - `data/footprints/<id>.json` and the combined `data/footprints.json`: sample-level footprints (chip, tile, field or site centroids, up to 3,000 per dataset) with the source file and method each came from; built by `scripts/footprints/<id>.py` and `scripts/footprints/build_index.py`. See `scripts/footprints/BRIEF.md` for the extraction rules.
 
@@ -52,7 +54,7 @@ The ability filter records which capability a task is expected to test (spectral
 
 - **Map of every sample.** Done for 74 of 118 datasets (Samples view). 36 datasets have only named sites or a bounding box because their distribution (Google Drive, Kaggle, registration) or format (non-georeferenced chips) hides sample locations; 8 have no public location data. Next: footprints of pretraining corpora, to compare where models were trained with where benchmarks are.
 - **Task cards for all datasets**, with the split type (spatial or random) confirmed for each.
-- **Arena voting** (blind pairwise expert comparisons for needs without labels), once the rating formula is decided; the Ranking page currently holds the static benchmark ranking.
+- **Arena voting** (blind pairwise expert comparisons for needs without labels), once the rating formula is decided; the Benchmark ranking page currently holds the static benchmark ranking.
 
 ## Run locally
 

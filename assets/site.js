@@ -1,6 +1,6 @@
 // Shared chrome and helpers for all pages.
 const REPO = "https://github.com/thampatron/EO_Arena";
-const PAGES = [["index.html","Explorer"],["map.html","Map"],["tasks.html","Tasks"],["arena.html","Ranking"],["domains.html","Domains"],["sensors.html","Sensors"],["about.html","About"]];
+const PAGES = [["index.html","Explorer"],["map.html","Map"],["tasks.html","Tasks"],["benchmarks.html","Benchmark ranking"],["models.html","Model ranking"],["domains.html","Domains"],["sensors.html","Sensors"],["about.html","About"]];
 const TIER = {open:["t-open","Open"],reg:["t-reg","Free + terms"],nc:["t-nc","Non-commercial"],unk:["t-unk","Licence unverified"],closed:["t-closed","Restricted"]};
 const STATUS = {sat:["s-sat","Saturated"],cov:["s-cov","Covered"],thin:["s-thin","Thin"],gap:["s-gap","Gap"]};
 const flag = s => String(s ?? "").replace(/UNVERIFIED/g,'<span class="flag">UNVERIFIED</span>');
