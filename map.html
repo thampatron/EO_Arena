@@ -37,10 +37,10 @@ canvas.pts{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100%
 <main class="page">
   <section class="hero">
     <h1>Where the labels are</h1>
-    <p class="sub">Two views. <b>Countries</b> shades each country by how many datasets name it. <b>Samples</b> plots where the samples actually are, from each dataset's own index files: 74 datasets with sample or tile locations, 36 with only named sites or a bounding box, 8 with no public location data.</p>
+    <p class="sub">Where the samples actually are, from each dataset's own index files: 74 datasets with sample or tile locations, 36 with only named sites or a bounding box, 8 with no public location data. The <b>Countries</b> view shades each country by how many datasets name it in their documentation.</p>
   </section>
 
-  <div class="ctrl"><div class="seg" role="group" aria-label="View"><button type="button" id="v-c" aria-pressed="true">Countries</button><button type="button" id="v-s" aria-pressed="false">Samples</button></div><label class="inl">Domain <select class="sel" id="dom"></select></label><label class="inl" id="dsel-w" hidden>Dataset <select class="sel dsel" id="dsel"></select></label></div>
+  <div class="ctrl"><div class="seg" role="group" aria-label="View"><button type="button" id="v-s" aria-pressed="true">Samples</button><button type="button" id="v-c" aria-pressed="false">Countries</button></div><label class="inl">Domain <select class="sel" id="dom"></select></label><label class="inl" id="dsel-w" hidden>Dataset <select class="sel dsel" id="dsel"></select></label></div>
 
   <div class="mapgrid">
     <div class="card mapcard mapwrap"><svg class="map" id="map" viewBox="0 0 960 500" role="img" aria-label="World map of labelled datasets by country"></svg><canvas class="pts" id="pts" hidden aria-hidden="true"></canvas><div class="leg" id="leg"></div></div>
@@ -63,14 +63,14 @@ canvas.pts{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100%
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="assets/site.js"></script>
 <script>
-const st={dom:"",sel:null,view:"c",ds:""};let DATA,GEO,paths,FP,proj;
+const st={dom:"",sel:null,view:"s",ds:""};let DATA,GEO,paths,FP,proj;
 const DCOL={"1 · Agriculture":"#C98A1A","2 · Terrestrial ecosystems":"#2E8B57","3 · Inland water":"#2B7BB9","4 · Oceans and coasts":"#0E6E8C","5 · Cryosphere":"#6F8FBF","6 · Atmosphere":"#8E6CB8","7 · Solid Earth":"#9A5B2E","8 · Human systems":"#C8403A","Disasters":"#555"};
 const tip=document.getElementById('tip');
 (async function(){
   const [data,geo,fp]=await loadJSON('datasets','countries.geojson','footprints');DATA=data;GEO=geo;FP=fp;
   const doms=[...new Set(data.map(d=>d.domain))];
   document.getElementById('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');
-  const p=new URLSearchParams(location.search);if(p.get('domain'))st.dom=p.get('domain');if(p.get('view')==='samples')st.view='s';if(p.get('dataset')&&FP[p.get('dataset')])st.ds=p.get('dataset');
+  const p=new URLSearchParams(location.search);if(p.get('domain'))st.dom=p.get('domain');if(p.get('view')==='countries')st.view='c';if(p.get('dataset')&&FP[p.get('dataset')])st.ds=p.get('dataset');
   proj=d3.geoNaturalEarth1().fitExtent([[4,4],[956,496]],{type:"Sphere"});const path=d3.geoPath(proj);
   const svg=d3.select('#map');svg.append('path').attr('class','sphere').attr('d',path({type:"Sphere"}));
   paths=svg.append('g').selectAll('path').data(geo.features.filter(f=>f.id!=='ATA')).join('path').attr('class','c').attr('d',path)
@@ -111,7 +111,7 @@ function render(){
   document.getElementById('dom').value=st.dom;
   const samples=st.view==='s';document.getElementById('v-c').setAttribute('aria-pressed',!samples);document.getElementById('v-s').setAttribute('aria-pressed',samples);
   document.getElementById('dsel-w').hidden=!samples;document.getElementById('pts').hidden=!samples;
-  if(samples){paths.attr('class',f=>'c f0');buildDsel();renderSamples();const q=new URLSearchParams();if(st.dom)q.set('domain',st.dom);q.set('view','samples');if(st.ds)q.set('dataset',st.ds);history.replaceState(null,'','?'+q);return;}
+  if(samples){paths.attr('class',f=>'c f0');buildDsel();renderSamples();const q=new URLSearchParams();if(st.dom)q.set('domain',st.dom);if(st.ds)q.set('dataset',st.ds);history.replaceState(null,'',q.toString()?'?'+q:location.pathname);return;}
   document.getElementById('fp-card').hidden=true;
   const L=labels(),g=globals().length;
   // Shade by total coverage (global + country-specific). Bins step on the country-specific part so differences stay visible.
@@ -127,7 +127,7 @@ function render(){
     const G=globals(),lk=d=>`<a href="index.html?q=${encodeURIComponent(d.name)}">${esc(d.name)}</a>`;
     document.getElementById('sel-body').innerHTML=`<span class="small muted">Naming this country (${ds.length})</span>`+(ds.length?ds.map(lk).join(''):'<span class="muted">None in this domain.</span>')+(G.length?`<span class="small muted" style="margin-top:8px">Global (${G.length})</span>`+G.map(lk).join(''):'');}
   else card.hidden=true;
-  const q=new URLSearchParams();if(st.dom)q.set('domain',st.dom);history.replaceState(null,'',q.toString()?'?'+q:location.pathname);
+  const q=new URLSearchParams();q.set('view','countries');if(st.dom)q.set('domain',st.dom);history.replaceState(null,'','?'+q);
 }
 document.getElementById('dom').addEventListener('change',e=>{st.dom=e.target.value;st.ds='';render();});
 document.getElementById('dsel').addEventListener('change',e=>{st.ds=e.target.value;render();});
