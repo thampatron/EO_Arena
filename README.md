@@ -11,7 +11,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | Page | What it shows |
 |---|---|
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
-| `map.html` | Where labelled datasets exist, by country. |
+| `map.html` | Where labelled datasets exist: by country, or as the actual sample locations (Samples view). |
 | `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
 | `arena.html` | The expert arena: blind pairwise comparisons for needs without labels. Rating formula to be decided. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
@@ -28,6 +28,7 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
 - `data/countries.geojson`: Natural Earth boundaries for the map.
 - `data/evidence.json`: per-dataset summary of published GeoFM evidence (models, papers, spread, headroom, agreement with the consensus ranking, verdict) from a meta-analysis of 52 papers; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py`; see About → GeoFM evidence.
+- `data/footprints/<id>.json` and the combined `data/footprints.json`: sample-level footprints (chip, tile, field or site centroids, up to 3,000 per dataset) with the source file and method each came from; built by `scripts/footprints/<id>.py` and `scripts/footprints/build_index.py`. See `scripts/footprints/BRIEF.md` for the extraction rules.
 
 `scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
 
@@ -49,7 +50,7 @@ The ability filter records which capability a task is expected to test (spectral
 
 ## Roadmap
 
-- **Map of every sample.** Once EOArena hosts task data, the map will plot the location of every tile or sample in each hosted dataset, instead of only the countries it names. This needs sample-level footprints (for example STAC items per tile), which also let us check spatial splits and geographic bias directly.
+- **Map of every sample.** Done for 74 of 118 datasets (Samples view). 36 datasets have only named sites or a bounding box because their distribution (Google Drive, Kaggle, registration) or format (non-georeferenced chips) hides sample locations; 8 have no public location data. Next: footprints of pretraining corpora, to compare where models were trained with where benchmarks are.
 - **Task cards for all datasets**, with the split type (spatial or random) confirmed for each.
 - **Arena voting**, once the rating formula is decided.
 
