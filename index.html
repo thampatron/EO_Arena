@@ -54,6 +54,7 @@ td.tot{color:var(--fg-3);text-align:center;font-variant-numeric:tabular-nums}
 .empty{padding:48px 20px;text-align:center;color:var(--fg-3)}
 .evbox{border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;margin:14px 0}
 .evhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.evscore{display:flex;align-items:baseline;gap:10px;margin:8px 0 10px}.evscore b{font-size:26px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.evscore span{font-size:12.5px;color:var(--fg-2)}
 .evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px 14px;margin:0}
 .evgrid dt{font-size:11.5px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.04em}.evgrid dd{margin:0;font-variant-numeric:tabular-nums;font-weight:600}
 .md{display:inline-block;vertical-align:1px;font-size:11px;font-weight:600;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:999px;padding:0 7px;margin-left:6px}
@@ -105,20 +106,15 @@ const lab=(k,v)=>F[k].values[v]??v;
 const EVC={e_reliable:['ev-reliable','Reliable'],e_moderate:['ev-moderate','Moderate'],e_weak:['ev-weak','Weak / saturated'],e_prov_high:['ev-prov-high','Provisional (high)'],e_prov_low:['ev-prov-low','Provisional (low)'],e_spread:['ev-spread','Spread only'],e_few:['ev-few','Under 4 models'],e_none:['ev-none','No GeoFM scores']};
 const evChip=e=>{const [c,l]=EVC[e.verdict]||EVC.e_none;return `<span class="chip ${c}" title="${esc(EV.verdicts[e.verdict]||'')}">${l}</span>`;};
 const fmt2=x=>x==null?'–':Number(x).toFixed(2);
-const pct=x=>Math.round(100*Number(x))+'%';
+const pct=x=>x==null?null:Math.round(100*Number(x))+'%';
 function evBlock(e){if(!e.results)return `<div class="evbox"><p class="small muted" style="margin:0"><b>GeoFM evidence</b> · No published scores found in the ${esc(EV.source.split(':')[0])}.</p></div>`;
-  const cell=(k,v)=>v==null?'':`<div><dt>${k}</dt><dd>${v}</dd></div>`;
-  const rep=e.score==null?null:`${pct(e.score)}${e.score_lo!=null&&e.score_hi!=null?` (${pct(e.score_lo)}–${pct(e.score_hi)})`:''}`;
-  const cells=cell('Models scored',e.models)+cell('Papers',e.papers)+cell('Comparisons',e.tasks_n)+cell('Reported results',e.results)
-    +cell('Model spread',e.spread_pts==null?null:fmt2(e.spread_pts)+' pts')
-    +cell('Seed noise',e.noise_sd==null?null:fmt2(e.noise_sd)+' pts'+(e.sigma2_source!=='measured'?' (plug-in)':''))
-    +cell('Repeatable spread',rep)
-    +cell('Dataset-specific signal',e.unexplained_share==null?null:pct(e.unexplained_share))
-    +cell('Self-reported',e.self_share==null?null:pct(e.self_share));
-  return `<div class="evbox"><div class="evhead"><b>GeoFM evidence</b>${evChip(e)}</div>
-  <dl class="evgrid">${cells}</dl>
+  const [c,l]=EVC[e.verdict]||EVC.e_none;const meas=e.sigma2_source==='measured';
+  const row=(k,label,val)=>val==null?'':`<div><dt>${label}${infoIcon(k)}</dt><dd>${val}</dd></div>`;
+  const head=e.score==null?`<div class="evscore"><b>–</b><span>no reliability score${infoIcon('score')}</span></div>`:`<div class="evscore"><b>${fmt2(e.score)}</b><span>score${meas?'':' (provisional)'}${infoIcon('score')} · ${pct(e.score_lo)}–${pct(e.score_hi)} of the model spread is repeatable</span></div>`;
+  return `<div class="evbox"><div class="evhead"><b>GeoFM evidence</b>${evChip(e)}</div>${head}
+  <dl class="evgrid">${row('models','Models scored',e.models)}${row('papers','Papers',e.papers)}${row('tasks_n','Comparisons',e.tasks_n)}${row('results','Reported results',e.results)}${row('spread_pts','Model spread',e.spread_pts==null?null:fmt2(e.spread_pts)+' pts')}${row('noise_sd','Seed noise',e.noise_sd==null?null:fmt2(e.noise_sd)+' pts'+(meas?'':' (plug-in)'))}${row('n_reps','Replicates per value',e.n_reps==null?null:Number(e.n_reps).toFixed(0)+(e.n_reps_known?'':' (assumed)'))}${row('score_top','Frontier score',e.score_top==null?null:fmt2(e.score_top))}${row('edi','EDI',e.edi==null?null:(e.edi>=1e6?'∞':e.edi>=100?Math.round(e.edi):Number(e.edi).toFixed(1)))}${row('unexplained_share','Dataset-specific signal',pct(e.unexplained_share))}${row('info_share','Info share',e.info_share==null?null:(100*e.info_share).toFixed(1)+'%')}${row('self_share','Self-reported',pct(e.self_share))}</dl>
   ${e.explanation?`<p class="small muted" style="margin:6px 0 0">${esc(e.explanation)}</p>`:''}
-  <p class="small muted" style="margin:6px 0 0">${esc(EV.verdicts[e.verdict]||'')}. Counts and summary statistics from a meta-analysis of published GeoFM papers; no individual scores. <a href="about.html#evidence">Method</a></p></div>`;}
+  <p class="small muted" style="margin:6px 0 0">${esc(EV.verdicts[e.verdict]||'')}${infoIcon('verdict')}. Counts and summary statistics from a meta-analysis of published GeoFM papers; no individual scores. <a href="about.html#evidence">Method</a></p></div>`;}
 
 (async function(){
   const [voc,raw,doms,ev]=await loadJSON('vocabulary','datasets','domains','evidence');

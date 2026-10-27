@@ -174,15 +174,35 @@ def geometry_stability(Y, mask, K, lam0, n_boot=20, min_models=4, seed=0, **kw):
 
 
 # ----------------------------------------------------------------------------- task- and dataset-level scores
-def task_scores(tau2_obs: float, sigma2: float | None):
-    """Eq. 3-6 from observed single-replicate dispersion and replicate noise."""
+def task_scores(tau2_obs: float, sigma2: float | None, n_reps: float = 1.0):
+    """Eq. 3-6.  tau2_obs is the variance across models of the *reported* values.  When a reported value is the
+    mean of n_reps replicates, Var_m(y) = tau2 + sigma2/n_reps, so tau2 = tau2_obs - sigma2/n_reps.  sigma2 stays
+    the single-evaluation noise, as the note defines it, so EDI and the score describe one standard evaluation."""
     if sigma2 is None or not np.isfinite(sigma2) or tau2_obs is None or not np.isfinite(tau2_obs):
         return dict(tau2=None, edi=None, score=None)
-    tau2 = max(tau2_obs - sigma2, 0.0)
+    n = max(float(n_reps) if n_reps and np.isfinite(n_reps) else 1.0, 1.0)
+    tau2 = max(tau2_obs - sigma2 / n, 0.0)
     if sigma2 <= 0:
         return dict(tau2=tau2, edi=None, score=1.0 if tau2 > 0 else None)
     edi = tau2 / sigma2
     return dict(tau2=tau2, edi=edi, score=edi / (1 + edi))
+
+
+def bootstrap_scores(y: np.ndarray, sigma2: float, n_reps: float = 1.0, B: int = 200, rng=None) -> np.ndarray:
+    """B bootstrap draws of the task score, resampling the models in the comparison with replacement."""
+    rng = rng or np.random.default_rng(0)
+    if len(y) < 2 or sigma2 is None or not np.isfinite(sigma2): return np.full(B, np.nan)
+    n = max(float(n_reps) if n_reps and np.isfinite(n_reps) else 1.0, 1.0)
+    v = np.array([rng.choice(y, len(y)).var(ddof=1) for _ in range(B)])
+    tau = np.maximum(v - sigma2 / n, 0)
+    return tau / (tau + sigma2) if sigma2 > 0 else np.where(tau > 0, 1.0, np.nan)
+
+
+def frontier(y: np.ndarray, min_models: int = 4) -> np.ndarray:
+    """The leading half of a comparison (at least min_models), for the frontier score: can the benchmark still
+    separate the strongest models once weak baselines are set aside?"""
+    k = max(min_models, int(np.ceil(len(y) / 2)))
+    return np.sort(y)[::-1][:k]
 
 
 def portfolio_information(lam: np.ndarray, c: np.ndarray, rows: np.ndarray, K: int) -> float:
