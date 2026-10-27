@@ -208,6 +208,7 @@ def summarise(name, Tg):
          "benchmark_ids": sorted(Tg.benchmark_id.unique().tolist()), "protocol_families": sorted(Tg.pf.unique().tolist())}
     pts = Tg[Tg.pts]
     d["spread_pts"] = rnd(np.sqrt(np.average(pts.tau2_obs, weights=pts.n_models)), 2) if len(pts) else None
+    d["task_type"] = str(Tg.task_type.mode().iat[0]) if Tg.task_type.replace("", np.nan).notna().any() else ""
     d["n_sd_models"] = int(Tg.n_sd.sum())
     # headline: tasks whose noise is measured on this dataset (directly, or carried over to its other comparisons with the same
     # protocol family and metric); otherwise provisional tasks. Interval: joint bootstrap of the models within each comparison.
@@ -268,7 +269,7 @@ rows_by = r[~r.canonical_dataset.isin(groups)].groupby("canonical_dataset")
 for name, g in rows_by:
     if not name: continue
     d = {"name": name, "tasks_n": 0, "models": int(g.model_id.nunique()), "papers": int(g.paper_key.nunique()), "results": int(len(g)), "benchmark_ids": sorted(g.benchmark_id.unique().tolist()),
-         "protocol_families": sorted(g.pf.unique().tolist()), "spread_pts": None, "n_sd_models": 0, "sigma2_source": "none", "score": None, "score_lo": None, "score_hi": None, "score_all": None,
+         "protocol_families": sorted(g.pf.unique().tolist()), "task_type": str(g.benchmark_id.map(breg.task_type).dropna().mode().iat[0]) if g.benchmark_id.map(breg.task_type).notna().any() else "", "spread_pts": None, "n_sd_models": 0, "sigma2_source": "none", "score": None, "score_lo": None, "score_hi": None, "score_all": None,
          "edi": None, "score_top": None, "edi_top": None, "n_reps": None, "n_reps_known": False, "sigma2": None, "noise_sd": None, "unexplained_share": None, "r2_shared": None, "self_share": rnd(g.self.mean()), "by_protocol": {}, "tasks": [], "verdict": "e_few",
          "domain": g.domain.iat[0], "subdomain": g.subdomain.iat[0], "input_kind": g.input_kind.iat[0]}
     d["explanation"] = f"{d['models']} model{'s' if d['models'] != 1 else ''} scored in {d['papers']} paper{'s' if d['papers'] != 1 else ''}, but no single comparison has 4 or more models, so spread and reliability cannot be assessed."

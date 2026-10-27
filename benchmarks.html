@@ -100,6 +100,7 @@ const $=id=>document.getElementById(id);
   $('meas').addEventListener('change',e=>{st.meas=e.target.checked;render();});
   let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
   document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=+tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
+  const q0=new URLSearchParams(location.search).get('q');if(q0){st.q=q0.trim().toLowerCase();$('q').value=q0;}
   render();
 })();
 const f1=x=>x==null?'–':Number(x).toFixed(1),f2=x=>x==null?'–':Number(x).toFixed(2),pc=x=>x==null?'–':Math.round(100*x)+'%';

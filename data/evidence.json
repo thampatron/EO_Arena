@@ -114,6 +114,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 3,
    "sigma2_source": "none",
    "score": null,
@@ -223,6 +224,7 @@
     "frozen"
    ],
    "spread_pts": 4.1,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.974,
@@ -365,6 +367,7 @@
     "frozen"
    ],
    "spread_pts": 2.93,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.648,
@@ -673,6 +676,7 @@
     "frozen"
    ],
    "spread_pts": 5.9,
+   "task_type": "classification",
    "n_sd_models": 93,
    "sigma2_source": "measured",
    "score": 0.87,
@@ -2006,6 +2010,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 32,
    "sigma2_source": "measured",
    "score": 0.859,
@@ -2392,6 +2397,7 @@
     "frozen"
    ],
    "spread_pts": 14.14,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.995,
@@ -2502,6 +2508,7 @@
     "frozen"
    ],
    "spread_pts": 2.52,
+   "task_type": "classification",
    "n_sd_models": 39,
    "sigma2_source": "measured",
    "score": 0.788,
@@ -3024,6 +3031,7 @@
     "frozen"
    ],
    "spread_pts": 8.73,
+   "task_type": "segmentation",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.901,
@@ -3223,6 +3231,7 @@
     "frozen"
    ],
    "spread_pts": 7.91,
+   "task_type": "segmentation",
    "n_sd_models": 39,
    "sigma2_source": "measured",
    "score": 0.897,
@@ -3744,6 +3753,7 @@
     "frozen"
    ],
    "spread_pts": 6.39,
+   "task_type": "segmentation",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.937,
@@ -3969,6 +3979,7 @@
     "frozen"
    ],
    "spread_pts": 3.1,
+   "task_type": "segmentation",
    "n_sd_models": 33,
    "sigma2_source": "measured",
    "score": 0.974,
@@ -4149,6 +4160,7 @@
     "frozen"
    ],
    "spread_pts": 4.61,
+   "task_type": "classification",
    "n_sd_models": 19,
    "sigma2_source": "measured",
    "score": 0.862,
@@ -4527,6 +4539,7 @@
     "frozen"
    ],
    "spread_pts": 9.14,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.995,
@@ -4988,6 +5001,7 @@
     "frozen"
    ],
    "spread_pts": 4.12,
+   "task_type": "segmentation",
    "n_sd_models": 8,
    "sigma2_source": "measured",
    "score": 0.998,
@@ -5177,6 +5191,7 @@
     "frozen"
    ],
    "spread_pts": 4.7,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.985,
@@ -5260,6 +5275,7 @@
     "frozen"
    ],
    "spread_pts": 3.58,
+   "task_type": "segmentation",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.255,
@@ -5790,6 +5806,7 @@
     "zero_shot"
    ],
    "spread_pts": 8.36,
+   "task_type": "classification",
    "n_sd_models": 72,
    "sigma2_source": "measured",
    "score": 0.858,
@@ -6918,6 +6935,7 @@
     "fine-tuned"
    ],
    "spread_pts": 2.15,
+   "task_type": "object detection",
    "n_sd_models": 14,
    "sigma2_source": "measured",
    "score": 0.96,
@@ -7000,6 +7018,7 @@
     "frozen"
    ],
    "spread_pts": 4.12,
+   "task_type": "segmentation",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.96,
@@ -7115,6 +7134,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -7201,6 +7221,7 @@
     "frozen"
    ],
    "spread_pts": 2.26,
+   "task_type": "segmentation",
    "n_sd_models": 124,
    "sigma2_source": "measured",
    "score": 0.838,
@@ -7533,6 +7554,7 @@
     "frozen"
    ],
    "spread_pts": 9.57,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.994,
@@ -7804,6 +7826,7 @@
     "frozen"
    ],
    "spread_pts": 4.28,
+   "task_type": "classification",
    "n_sd_models": 39,
    "sigma2_source": "measured",
    "score": 0.837,
@@ -8086,6 +8109,7 @@
     "frozen"
    ],
    "spread_pts": 4.65,
+   "task_type": "segmentation",
    "n_sd_models": 43,
    "sigma2_source": "measured",
    "score": 0.944,
@@ -8878,6 +8902,7 @@
     "frozen"
    ],
    "spread_pts": 9.53,
+   "task_type": "segmentation",
    "n_sd_models": 32,
    "sigma2_source": "measured",
    "score": 0.989,
@@ -9020,6 +9045,7 @@
     "fine-tuned"
    ],
    "spread_pts": 4.14,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.324,
@@ -9348,6 +9374,7 @@
     "frozen"
    ],
    "spread_pts": 6.34,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.988,
@@ -9787,6 +9814,7 @@
     "frozen"
    ],
    "spread_pts": 6.59,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.992,
@@ -9870,6 +9898,7 @@
     "frozen"
    ],
    "spread_pts": 5.22,
+   "task_type": "segmentation",
    "n_sd_models": 25,
    "sigma2_source": "measured",
    "score": 0.977,
@@ -10148,6 +10177,7 @@
     "frozen"
    ],
    "spread_pts": 3.47,
+   "task_type": "segmentation",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.933,
@@ -10380,6 +10410,7 @@
     "frozen"
    ],
    "spread_pts": 7.56,
+   "task_type": "segmentation",
    "n_sd_models": 46,
    "sigma2_source": "measured",
    "score": 0.965,
@@ -11442,6 +11473,7 @@
     "frozen"
    ],
    "spread_pts": 4.06,
+   "task_type": "segmentation",
    "n_sd_models": 22,
    "sigma2_source": "measured",
    "score": 0.894,
@@ -11807,6 +11839,7 @@
     "frozen"
    ],
    "spread_pts": 5.57,
+   "task_type": "segmentation",
    "n_sd_models": 66,
    "sigma2_source": "measured",
    "score": 0.537,
@@ -12576,6 +12609,7 @@
     "frozen"
    ],
    "spread_pts": 6.29,
+   "task_type": "classification",
    "n_sd_models": 70,
    "sigma2_source": "measured",
    "score": 0.916,
@@ -13396,6 +13430,7 @@
     "frozen"
    ],
    "spread_pts": 3.69,
+   "task_type": "segmentation",
    "n_sd_models": 39,
    "sigma2_source": "measured",
    "score": 0.947,
@@ -13891,6 +13926,7 @@
     "frozen"
    ],
    "spread_pts": 1.4,
+   "task_type": "segmentation",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.964,
@@ -14062,6 +14098,7 @@
     "frozen"
    ],
    "spread_pts": 4.23,
+   "task_type": "change detection",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.931,
@@ -14447,6 +14484,7 @@
     "fine-tuned"
    ],
    "spread_pts": 2.23,
+   "task_type": "instance segmentation",
    "n_sd_models": 14,
    "sigma2_source": "measured",
    "score": 0.938,
@@ -14532,6 +14570,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -14724,6 +14763,7 @@
     "frozen"
    ],
    "spread_pts": 3.89,
+   "task_type": "classification",
    "n_sd_models": 32,
    "sigma2_source": "measured",
    "score": 0.919,
@@ -15060,6 +15100,7 @@
     "kmeans_clustering"
    ],
    "spread_pts": 6.73,
+   "task_type": "classification",
    "n_sd_models": 24,
    "sigma2_source": "measured",
    "score": 1.0,
@@ -15587,6 +15628,7 @@
     "frozen"
    ],
    "spread_pts": 4.92,
+   "task_type": "change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.789,
@@ -15776,6 +15818,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -15814,6 +15857,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "instance segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -15852,6 +15896,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -15891,6 +15936,7 @@
     "fine-tuned",
     "frozen"
    ],
+   "task_type": "change detection",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -15929,6 +15975,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -15967,6 +16014,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16006,6 +16054,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "multilabel_classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16044,6 +16093,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16082,6 +16132,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16120,6 +16171,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16159,6 +16211,7 @@
     "fine-tuned",
     "frozen"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16198,6 +16251,7 @@
     "fine-tuned",
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -16224,500 +16278,8 @@
    "explanation": "1 model scored in 1 paper, but no single comparison has 4 or more models, so spread and reliability cannot be assessed.",
    "id": "timesen2crop"
   },
-  "sds-benchmark": {
-   "id": "sds-benchmark",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "gloria": {
-   "id": "gloria",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "open-cities-ai": {
-   "id": "open-cities-ai",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "multisenge": {
-   "id": "multisenge",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "bright": {
-   "id": "bright",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "worldfloods-v2": {
-   "id": "worldfloods-v2",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "wildfirespreadts": {
-   "id": "wildfirespreadts",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "qtec-thaw-slump-inventory": {
-   "id": "qtec-thaw-slump-inventory",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "loveda": {
-   "id": "loveda",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cactus-woody-spekboom-waititu": {
-   "id": "cactus-woody-spekboom-waititu",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
   "pureforest": {
    "id": "pureforest",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "eurocropsml": {
-   "id": "eurocropsml",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "global-pasture-watch-grassland-samples": {
-   "id": "global-pasture-watch-grassland-samples",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "s1s2-water": {
-   "id": "s1s2-water",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "xview3-sar": {
-   "id": "xview3-sar",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "reforestree": {
-   "id": "reforestree",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "s2-cloud-mask-catalogue": {
-   "id": "s2-cloud-mask-catalogue",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "methanes2cm": {
-   "id": "methanes2cm",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "emit-l2b-ch-plumes": {
-   "id": "emit-l2b-ch-plumes",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "global-mangrove-watch-v3-v4": {
-   "id": "global-mangrove-watch-v3-v4",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "dota-v2-isaid": {
-   "id": "dota-v2-isaid",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "kenya-crop-type": {
-   "id": "kenya-crop-type",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "phileo-roads": {
-   "id": "phileo-roads",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cas-landslide": {
-   "id": "cas-landslide",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "open-canopy": {
-   "id": "open-canopy",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "nasa-marine-debris": {
-   "id": "nasa-marine-debris",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "ai4boundaries": {
-   "id": "ai4boundaries",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "kruitwagen-et-al-2021-solar-inventory": {
-   "id": "kruitwagen-et-al-2021-solar-inventory",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cabuar": {
-   "id": "cabuar",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "tallos": {
-   "id": "tallos",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "xview": {
-   "id": "xview",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "globalbuildingmap": {
-   "id": "globalbuildingmap",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "aquasat": {
-   "id": "aquasat",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "allen-coral-atlas-maps": {
-   "id": "allen-coral-atlas-maps",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "agrifieldnet-india": {
-   "id": "agrifieldnet-india",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "spacenet-8": {
-   "id": "spacenet-8",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cy-bench": {
-   "id": "cy-bench",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "zuericrop": {
-   "id": "zuericrop",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "hephaestus": {
-   "id": "hephaestus",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sustainbench-crop-yield": {
-   "id": "sustainbench-crop-yield",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "deepglobe-roads": {
-   "id": "deepglobe-roads",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "magicbathynet": {
-   "id": "magicbathynet",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -16740,8 +16302,8 @@
    "sigma2_source": "none",
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "sparcs": {
-   "id": "sparcs",
+  "cactus-woody-spekboom-waititu": {
+   "id": "cactus-woody-spekboom-waititu",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -16752,188 +16314,8 @@
    "sigma2_source": "none",
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "yeh-et-al-2020": {
-   "id": "yeh-et-al-2020",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "quakeset": {
-   "id": "quakeset",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "mars-s2l": {
-   "id": "mars-s2l",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "38-cloud": {
-   "id": "38-cloud",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "hkh-glacier-mapping": {
-   "id": "hkh-glacier-mapping",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "maus-et-al-2022-mining-polygons": {
-   "id": "maus-et-al-2022-mining-polygons",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "phenocam-v2-0": {
-   "id": "phenocam-v2-0",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sen4agrinet": {
-   "id": "sen4agrinet",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sickle": {
-   "id": "sickle",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "spacenet-3-5": {
-   "id": "spacenet-3-5",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "rapidai4eo": {
-   "id": "rapidai4eo",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "swed": {
-   "id": "swed",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "openearthmap": {
-   "id": "openearthmap",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sen2fire": {
-   "id": "sen2fire",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "krestenitis-oil-spill": {
-   "id": "krestenitis-oil-spill",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "benchmark_ids": [],
-   "verdict": "e_none",
-   "score": null,
-   "sigma2_source": "none",
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cropnet": {
-   "id": "cropnet",
+  "xview": {
+   "id": "xview",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -16956,8 +16338,644 @@
    "sigma2_source": "none",
    "explanation": "No published GeoFM scores found in the workbook."
   },
+  "xview3-sar": {
+   "id": "xview3-sar",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "deepglobe-roads": {
+   "id": "deepglobe-roads",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "spacenet-8": {
+   "id": "spacenet-8",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "allen-coral-atlas-maps": {
+   "id": "allen-coral-atlas-maps",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "yeh-et-al-2020": {
+   "id": "yeh-et-al-2020",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "tallos": {
+   "id": "tallos",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "kenya-crop-type": {
+   "id": "kenya-crop-type",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "qtec-thaw-slump-inventory": {
+   "id": "qtec-thaw-slump-inventory",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "emit-l2b-ch-plumes": {
+   "id": "emit-l2b-ch-plumes",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "spacenet-3-5": {
+   "id": "spacenet-3-5",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "dota-v2-isaid": {
+   "id": "dota-v2-isaid",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "global-pasture-watch-grassland-samples": {
+   "id": "global-pasture-watch-grassland-samples",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "ai4boundaries": {
+   "id": "ai4boundaries",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sustainbench-crop-yield": {
+   "id": "sustainbench-crop-yield",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sen4agrinet": {
+   "id": "sen4agrinet",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "eurocropsml": {
+   "id": "eurocropsml",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "hkh-glacier-mapping": {
+   "id": "hkh-glacier-mapping",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "swed": {
+   "id": "swed",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "nasa-marine-debris": {
+   "id": "nasa-marine-debris",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
   "starcop": {
    "id": "starcop",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "agrifieldnet-india": {
+   "id": "agrifieldnet-india",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "mmflood": {
+   "id": "mmflood",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "maus-et-al-2022-mining-polygons": {
+   "id": "maus-et-al-2022-mining-polygons",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sen2fire": {
+   "id": "sen2fire",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "open-cities-ai": {
+   "id": "open-cities-ai",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "krestenitis-oil-spill": {
+   "id": "krestenitis-oil-spill",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "38-cloud": {
+   "id": "38-cloud",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "gloria": {
+   "id": "gloria",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "open-canopy": {
+   "id": "open-canopy",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "multisenge": {
+   "id": "multisenge",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "methanes2cm": {
+   "id": "methanes2cm",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "globalbuildingmap": {
+   "id": "globalbuildingmap",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "openearthmap": {
+   "id": "openearthmap",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "loveda": {
+   "id": "loveda",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "phenocam-v2-0": {
+   "id": "phenocam-v2-0",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "s1s2-water": {
+   "id": "s1s2-water",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "rapidai4eo": {
+   "id": "rapidai4eo",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cropnet": {
+   "id": "cropnet",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cy-bench": {
+   "id": "cy-bench",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "wildfirespreadts": {
+   "id": "wildfirespreadts",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "quakeset": {
+   "id": "quakeset",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "magicbathynet": {
+   "id": "magicbathynet",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "global-mangrove-watch-v3-v4": {
+   "id": "global-mangrove-watch-v3-v4",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "zuericrop": {
+   "id": "zuericrop",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "bright": {
+   "id": "bright",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "reforestree": {
+   "id": "reforestree",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "kruitwagen-et-al-2021-solar-inventory": {
+   "id": "kruitwagen-et-al-2021-solar-inventory",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "aquasat": {
+   "id": "aquasat",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sparcs": {
+   "id": "sparcs",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "worldfloods-v2": {
+   "id": "worldfloods-v2",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cas-landslide": {
+   "id": "cas-landslide",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "s2-cloud-mask-catalogue": {
+   "id": "s2-cloud-mask-catalogue",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "phileo-roads": {
+   "id": "phileo-roads",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "mars-s2l": {
+   "id": "mars-s2l",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -16980,8 +16998,44 @@
    "sigma2_source": "none",
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "mmflood": {
-   "id": "mmflood",
+  "sds-benchmark": {
+   "id": "sds-benchmark",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sickle": {
+   "id": "sickle",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cabuar": {
+   "id": "cabuar",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "benchmark_ids": [],
+   "verdict": "e_none",
+   "score": null,
+   "sigma2_source": "none",
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "hephaestus": {
+   "id": "hephaestus",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -17011,6 +17065,7 @@
     "frozen"
    ],
    "spread_pts": 9.92,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.98,
@@ -17207,6 +17262,7 @@
     "frozen"
    ],
    "spread_pts": 8.0,
+   "task_type": "segmentation",
    "n_sd_models": 4,
    "sigma2_source": "measured",
    "score": 0.942,
@@ -17456,6 +17512,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -17537,6 +17594,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -17644,6 +17702,7 @@
     "frozen"
    ],
    "spread_pts": 3.18,
+   "task_type": "change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.967,
@@ -17726,6 +17785,7 @@
     "kmeans_clustering"
    ],
    "spread_pts": 4.46,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.984,
@@ -17929,6 +17989,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -18036,6 +18097,7 @@
     "fine-tuned"
    ],
    "spread_pts": 4.0,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.969,
@@ -18144,6 +18206,7 @@
     "fine-tuned"
    ],
    "spread_pts": 2.55,
+   "task_type": "classification",
    "n_sd_models": 40,
    "sigma2_source": "measured",
    "score": 0.943,
@@ -18467,6 +18530,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -18504,6 +18568,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -18542,6 +18607,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -18579,6 +18645,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -18616,6 +18683,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -18658,6 +18726,7 @@
     "frozen"
    ],
    "spread_pts": 8.59,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.988,
@@ -18855,6 +18924,7 @@
     "zero_shot"
    ],
    "spread_pts": 9.72,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.925,
@@ -19169,6 +19239,7 @@
     "zero_shot"
    ],
    "spread_pts": 9.15,
+   "task_type": "classification",
    "n_sd_models": 86,
    "sigma2_source": "measured",
    "score": 0.995,
@@ -19384,6 +19455,7 @@
     "fine-tuned"
    ],
    "spread_pts": 8.22,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.993,
@@ -19464,6 +19536,7 @@
     "fine-tuned"
    ],
    "spread_pts": 5.02,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.981,
@@ -19545,6 +19618,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -19653,6 +19727,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -19876,6 +19951,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -19984,6 +20060,7 @@
     "frozen"
    ],
    "spread_pts": 11.28,
+   "task_type": "segmentation",
    "n_sd_models": 24,
    "sigma2_source": "measured",
    "score": 0.965,
@@ -20100,6 +20177,7 @@
     "frozen"
    ],
    "spread_pts": 19.05,
+   "task_type": "classification",
    "n_sd_models": 48,
    "sigma2_source": "measured",
    "score": 0.998,
@@ -20269,6 +20347,7 @@
     "zero_shot"
    ],
    "spread_pts": 8.96,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.992,
@@ -20411,6 +20490,7 @@
     "zero_shot"
    ],
    "spread_pts": 5.99,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.981,
@@ -20553,6 +20633,7 @@
     "zero_shot"
    ],
    "spread_pts": 8.32,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.984,
@@ -20695,6 +20776,7 @@
     "zero_shot"
    ],
    "spread_pts": 5.19,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.988,
@@ -20837,6 +20919,7 @@
     "zero_shot"
    ],
    "spread_pts": 4.74,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.892,
@@ -20979,6 +21062,7 @@
     "zero_shot"
    ],
    "spread_pts": 3.89,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.535,
@@ -21121,6 +21205,7 @@
     "zero_shot"
    ],
    "spread_pts": 5.11,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.987,
@@ -21263,6 +21348,7 @@
     "zero_shot"
    ],
    "spread_pts": 6.87,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.963,
@@ -21405,6 +21491,7 @@
     "zero_shot"
    ],
    "spread_pts": 5.94,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.891,
@@ -21555,6 +21642,7 @@
     "frozen"
    ],
    "spread_pts": 0.22,
+   "task_type": "regression",
    "n_sd_models": 110,
    "sigma2_source": "measured",
    "score": 0.996,
@@ -21879,6 +21967,7 @@
     "frozen"
    ],
    "spread_pts": 7.85,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.993,
@@ -22048,6 +22137,7 @@
     "frozen"
    ],
    "spread_pts": 0.14,
+   "task_type": "regression",
    "n_sd_models": 22,
    "sigma2_source": "measured",
    "score": 0.97,
@@ -22155,6 +22245,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -22317,6 +22408,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 9,
    "sigma2_source": "measured",
    "score": 0.977,
@@ -22425,6 +22517,7 @@
     "fine-tuned"
    ],
    "spread_pts": 8.09,
+   "task_type": "multilabel_classification",
    "n_sd_models": 2,
    "sigma2_source": "protocol-family median",
    "score": 0.982,
@@ -22533,6 +22626,7 @@
     "frozen"
    ],
    "spread_pts": 7.12,
+   "task_type": "multilabel_classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.993,
@@ -22643,6 +22737,7 @@
     "frozen"
    ],
    "spread_pts": 4.65,
+   "task_type": "classification",
    "n_sd_models": 18,
    "sigma2_source": "measured",
    "score": 0.997,
@@ -22777,6 +22872,7 @@
     "fine-tuned"
    ],
    "spread_pts": 3.14,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.95,
@@ -22857,6 +22953,7 @@
     "fine-tuned"
    ],
    "spread_pts": 11.55,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.996,
@@ -22937,6 +23034,7 @@
     "fine-tuned"
    ],
    "spread_pts": 1.74,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.737,
@@ -23044,6 +23142,7 @@
     "fine-tuned"
    ],
    "spread_pts": 2.32,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.909,
@@ -23127,6 +23226,7 @@
     "frozen",
     "threshold"
    ],
+   "task_type": "change detection",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23165,6 +23265,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23202,6 +23303,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23239,6 +23341,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23277,6 +23380,7 @@
     "fine-tuned",
     "frozen"
    ],
+   "task_type": "multilabel_classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23314,6 +23418,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23352,6 +23457,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23389,6 +23495,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23426,6 +23533,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23463,6 +23571,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -23506,6 +23615,7 @@
     "frozen"
    ],
    "spread_pts": 3.49,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.631,
@@ -23946,6 +24056,7 @@
     "frozen"
    ],
    "spread_pts": 7.0,
+   "task_type": "change_detection (bIoU, minority class only)",
    "n_sd_models": 56,
    "sigma2_source": "measured",
    "score": 0.903,
@@ -24115,6 +24226,7 @@
     "frozen"
    ],
    "spread_pts": 0.84,
+   "task_type": "change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.421,
@@ -24229,6 +24341,7 @@
     "frozen"
    ],
    "spread_pts": 3.16,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.967,
@@ -24310,6 +24423,7 @@
     "frozen"
    ],
    "spread_pts": 10.24,
+   "task_type": "segmentation/change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.993,
@@ -24479,6 +24593,7 @@
     "frozen",
     "threshold"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -24517,6 +24632,7 @@
     "RF",
     "fine-tuned"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -24556,6 +24672,7 @@
     "fine-tuned"
    ],
    "spread_pts": 5.24,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.55,
@@ -24664,6 +24781,7 @@
     "frozen"
    ],
    "spread_pts": 4.4,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.977,
@@ -24806,6 +24924,7 @@
     "frozen"
    ],
    "spread_pts": 7.63,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.99,
@@ -24948,6 +25067,7 @@
     "frozen"
    ],
    "spread_pts": 4.2,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.91,
@@ -25092,6 +25212,7 @@
     "zero_shot"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 26,
    "sigma2_source": "measured",
    "score": 0.755,
@@ -25253,6 +25374,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -25333,6 +25455,7 @@
     "frozen"
    ],
    "spread_pts": 0.04,
+   "task_type": "regression",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.991,
@@ -25413,6 +25536,7 @@
     "frozen"
    ],
    "spread_pts": 1.21,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.774,
@@ -25493,6 +25617,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -25573,6 +25698,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression/forecasting",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -25700,6 +25826,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression/forecasting",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -25827,6 +25954,7 @@
     "frozen"
    ],
    "spread_pts": 3.61,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.963,
@@ -25988,6 +26116,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -26079,6 +26208,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 23,
    "sigma2_source": "measured",
    "score": 0.417,
@@ -26457,6 +26587,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -26495,6 +26626,7 @@
     "fine-tuned",
     "frozen"
    ],
+   "task_type": "forecasting/nowcasting",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -26532,6 +26664,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "forecasting/nowcasting",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -26570,6 +26703,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression/forecasting",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -26607,6 +26741,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -26648,6 +26783,7 @@
     "zero_shot"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 13,
    "sigma2_source": "measured",
    "score": 0.978,
@@ -26836,6 +26972,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 10,
    "sigma2_source": "measured",
    "score": 0.985,
@@ -26944,6 +27081,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 12,
    "sigma2_source": "measured",
    "score": 0.982,
@@ -27052,6 +27190,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 12,
    "sigma2_source": "measured",
    "score": 0.994,
@@ -27160,6 +27299,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 8,
    "sigma2_source": "measured",
    "score": 0.959,
@@ -27266,6 +27406,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -27306,6 +27447,7 @@
     "frozen"
    ],
    "spread_pts": 5.37,
+   "task_type": "change_detection",
    "n_sd_models": 28,
    "sigma2_source": "measured",
    "score": 0.722,
@@ -27666,6 +27808,7 @@
     "zero_shot"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 14,
    "sigma2_source": "measured",
    "score": 0.977,
@@ -27854,6 +27997,7 @@
     "fine-tuned"
    ],
    "spread_pts": 3.75,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.965,
@@ -27934,6 +28078,7 @@
     "fine-tuned"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -28014,6 +28159,7 @@
     "fine-tuned"
    ],
    "spread_pts": 8.51,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.993,
@@ -28094,6 +28240,7 @@
     "fine-tuned"
    ],
    "spread_pts": 4.57,
+   "task_type": "object detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.977,
@@ -28174,6 +28321,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 12,
    "sigma2_source": "measured",
    "score": 0.996,
@@ -28274,6 +28422,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 12,
    "sigma2_source": "measured",
    "score": 0.989,
@@ -28374,6 +28523,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.973,
@@ -28482,6 +28632,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -28590,6 +28741,7 @@
     "fine-tuned"
    ],
    "spread_pts": 2.1,
+   "task_type": "object detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.887,
@@ -28698,6 +28850,7 @@
     "zero_shot"
    ],
    "spread_pts": 5.58,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.809,
@@ -28841,6 +28994,7 @@
     "frozen"
    ],
    "spread_pts": 1.25,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.506,
@@ -28955,6 +29109,7 @@
     "frozen"
    ],
    "spread_pts": 0.03,
+   "task_type": "regression",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.966,
@@ -29035,6 +29190,7 @@
     "frozen"
    ],
    "spread_pts": 0.12,
+   "task_type": "regression",
    "n_sd_models": 11,
    "sigma2_source": "measured",
    "score": 0.909,
@@ -29115,6 +29271,7 @@
     "frozen"
    ],
    "spread_pts": 2.65,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.953,
@@ -29195,6 +29352,7 @@
     "frozen"
    ],
    "spread_pts": 0.85,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.54,
@@ -29275,6 +29433,7 @@
     "frozen"
    ],
    "spread_pts": 1.42,
+   "task_type": "change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.835,
@@ -29355,6 +29514,7 @@
     "frozen"
    ],
    "spread_pts": 4.42,
+   "task_type": "change detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.983,
@@ -29436,6 +29596,7 @@
     "frozen"
    ],
    "spread_pts": 8.79,
+   "task_type": "classification",
    "n_sd_models": 168,
    "sigma2_source": "measured",
    "score": 0.979,
@@ -30144,6 +30305,7 @@
     "fine-tuned"
    ],
    "spread_pts": 6.1,
+   "task_type": "change_detection",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.367,
@@ -30278,6 +30440,7 @@
     "fine-tuned"
    ],
    "spread_pts": 3.62,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.963,
@@ -30357,6 +30520,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30394,6 +30558,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30431,6 +30596,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30468,6 +30634,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30512,6 +30679,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression (R2)",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30549,6 +30717,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30586,6 +30755,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30623,6 +30793,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30660,6 +30831,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "regression",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -30698,6 +30870,7 @@
     "frozen"
    ],
    "spread_pts": 1.95,
+   "task_type": "classification",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.913,
@@ -30782,6 +30955,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression (R^2)",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -30967,6 +31141,7 @@
     "frozen"
    ],
    "spread_pts": 3.73,
+   "task_type": "classification (accuracy)",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.975,
@@ -31152,6 +31327,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "composite",
    "n_sd_models": 4,
    "sigma2_source": "none",
    "score": null,
@@ -31337,6 +31513,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "regression (R^2)",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -31530,6 +31707,7 @@
     "fine-tuned"
    ],
    "spread_pts": 7.72,
+   "task_type": "segmentation",
    "n_sd_models": 0,
    "sigma2_source": "protocol-family median",
    "score": 0.898,
@@ -31927,6 +32105,7 @@
     "frozen"
    ],
    "spread_pts": null,
+   "task_type": "composite",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -31999,6 +32178,7 @@
    "protocol_families": [
     "zero_shot"
    ],
+   "task_type": "composite",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -32036,6 +32216,7 @@
    "protocol_families": [
     "zero_shot"
    ],
+   "task_type": "composite",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -32078,6 +32259,7 @@
     "frozen"
    ],
    "spread_pts": 12.34,
+   "task_type": "classification",
    "n_sd_models": 84,
    "sigma2_source": "measured",
    "score": 0.998,
@@ -32297,6 +32479,7 @@
     "zero_shot"
    ],
    "spread_pts": 2.87,
+   "task_type": "classification",
    "n_sd_models": 40,
    "sigma2_source": "measured",
    "score": 0.978,
@@ -32550,6 +32733,7 @@
     "geocell_cls"
    ],
    "spread_pts": 5.36,
+   "task_type": "geolocalization",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -32735,6 +32919,7 @@
     "geocell_cls"
    ],
    "spread_pts": 7.62,
+   "task_type": "geolocalization",
    "n_sd_models": 0,
    "sigma2_source": "none",
    "score": null,
@@ -32920,6 +33105,7 @@
     "geocell_cls",
     "i2gps_retrieval"
    ],
+   "task_type": "geolocalization",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -32957,6 +33143,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -32994,6 +33181,7 @@
    "protocol_families": [
     "zero_shot"
    ],
+   "task_type": "retrieval",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -33031,6 +33219,7 @@
    "protocol_families": [
     "zero_shot"
    ],
+   "task_type": "retrieval",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -33068,6 +33257,7 @@
    "protocol_families": [
     "fine-tuned"
    ],
+   "task_type": "segmentation",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -33105,6 +33295,7 @@
    "protocol_families": [
     "zero_shot"
    ],
+   "task_type": "retrieval",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",
@@ -33142,6 +33333,7 @@
    "protocol_families": [
     "frozen"
    ],
+   "task_type": "classification",
    "spread_pts": null,
    "n_sd_models": 0,
    "sigma2_source": "none",

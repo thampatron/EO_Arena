@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOArena Evidence Map</title>
+<meta name="description" content="Scatter plots of every benchmark dataset by domain, on the GeoFM benchmark scoring metrics. Switch metrics, colour by subdomain or task family, hover for details.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px}
+.ctrl .grp{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:var(--fg-2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--fg-2);margin:0 0 14px;padding:0;list-style:none;align-items:center}
+.legend li{display:inline-flex;gap:6px;align-items:center}
+.legend svg{width:14px;height:14px;overflow:visible}
+.legend.mini{margin:4px 0 2px;font-size:12px;gap:4px 12px}
+.legend .k{font-size:11.5px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.04em;margin-right:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px}
+.grid.one{grid-template-columns:1fr}
+.panel{padding:14px 14px 8px}
+.panel h2{font-size:16px;margin:0 0 2px;display:flex;align-items:baseline;gap:10px}
+.panel h2 .n{font-size:12.5px;color:var(--fg-3);font-weight:400}
+.panel svg{width:100%;height:auto;display:block;font-family:var(--sans)}
+.panel .empty{color:var(--fg-3);font-size:13px;padding:30px 0 40px;text-align:center}
+svg .gl{stroke:var(--line);stroke-width:1}
+svg .ax{stroke:var(--line-2);stroke-width:1}
+svg .tk{fill:var(--fg-3);font-size:11px}
+svg .al{fill:var(--fg-2);font-size:12px}
+svg .ref{stroke:var(--line-2);stroke-width:1;stroke-dasharray:4 4}
+svg .pt{cursor:pointer}
+svg .pt .m{stroke:#fff;stroke-width:2;paint-order:stroke;transition:opacity .12s}
+svg .pt .hit{fill:transparent}
+svg .pt.dim .m{opacity:.18}
+svg .pt.on .m{stroke:var(--fg);stroke-width:2.5}
+svg .lb{font-size:10.5px;fill:var(--fg-2);pointer-events:none;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.tt{position:absolute;z-index:70;max-width:340px;background:var(--surface);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.16);padding:10px 12px;font-size:13px;line-height:1.4;pointer-events:none}
+.tt.pin{pointer-events:auto}
+.tt b{font-size:14px}
+.tt .ttsub{color:var(--fg-3);font-size:12px;margin:0 0 6px}
+.tt dl{display:grid;grid-template-columns:auto auto;gap:2px 12px;margin:6px 0 0;font-variant-numeric:tabular-nums}
+.tt dt{color:var(--fg-3)}.tt dd{margin:0;text-align:right}
+.tt .expl{color:var(--fg-2);margin:6px 0 0;font-size:12.5px}
+.tt .lnk{margin:8px 0 0;display:flex;gap:10px;font-size:12.5px}
+.tt .unl{font-size:11px;font-weight:600;color:var(--fg-3);border:1px dashed var(--line-2);border-radius:999px;padding:0 6px;margin-left:6px}
+table.tv{border-collapse:collapse;width:100%;font-size:13px}
+table.tv th,table.tv td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+table.tv td.num,table.tv th.num{text-align:right;font-variant-numeric:tabular-nums}
+.count{font-size:13.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <h1>Evidence map</h1>
+    <p class="sub">Every benchmark dataset with a reliability score, one scatter plot per domain. Pick the two metrics to plot, colour by subdomain or task family, hover a point for the numbers and click it to open the dataset. Click the <span class="info" style="cursor:default">i</span> next to an axis for the metric's definition.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="section">
+    <div class="ctrl">
+      <label class="grp">X <select class="sel" id="x"></select><span id="xi"></span></label>
+      <label class="grp">Y <select class="sel" id="y"></select><span id="yi"></span></label>
+      <label class="grp">Colour <select class="sel" id="col"><option value="sub">Subdomain</option><option value="task">Task family</option><option value="both">Subdomain + task family (shape)</option><option value="verdict">Verdict</option></select></label>
+      <label class="grp">Domain <select class="sel" id="dom"><option value="">All (small multiples)</option></select></label>
+      <label class="inl"><input type="checkbox" id="size" checked> Size by models</label>
+      <label class="inl"><input type="checkbox" id="prov" checked> Provisional scores</label>
+      <label class="inl"><input type="checkbox" id="unl" checked> Not in inventory</label>
+      <label class="inl"><input type="checkbox" id="lab"> Label all</label>
+      <label class="inl"><input type="checkbox" id="tbl"> Table view</label>
+      <span class="count" id="count"></span>
+    </div>
+    <ul class="legend" id="legend"></ul>
+    <div class="grid" id="grid"></div>
+    <div class="card" id="table" hidden style="padding:8px 12px;overflow-x:auto"></div>
+  </section>
+
+  <section class="section">
+    <h2>How to read it</h2>
+    <div class="prose">
+      <p>Each point is one benchmark dataset placed by two of the metrics from the <a href="benchmarks.html">Benchmark ranking</a>. Filled points have measured seed noise; hollow points are provisional (noise plugged in from similar comparisons). Point area is proportional to the number of models scored, so a large point is well-supported evidence and a small one is a single paper. Datasets scored in the literature but not yet in the Explorer are included and marked <span class="unl">not in inventory</span> in the tooltip. Non-imagery benchmarks (coordinate-only inputs) are left out.</p>
+      <p>Useful views. <b>Score vs frontier score</b> shows saturation: points far below the diagonal separate weak models from good ones but not the leading models from each other. <b>Spread vs seed noise</b> is the raw material of the score; the dashed line is spread = noise, where the score is 0.5. <b>Dataset-specific signal vs info share</b> separates benchmarks that measure something of their own from benchmarks that mostly repeat the suite. <b>Models vs score</b> shows how much the score rests on.</p>
+      <p>Colours follow the entity, not the rank: a subdomain or task family keeps its colour across every panel and every filter. The table view lists the same points for screen readers and for copying.</p>
+    </div>
+  </section>
+</main>
+<div class="tt" id="tt" hidden></div>
+<script src="assets/site.js"></script>
+<script>
+const AXES=[['score','Score','lin',0,1],['score_top','Frontier score','lin',0,1],['edi','EDI (log)','log',null,null],['spread_pts','Spread (pts)','lin',0,null],['noise_sd','Seed noise (pts)','lin',0,null],['unexplained_share','Dataset-specific signal','lin',0,1],['info_share','Info share','lin',0,null],['self_share','Self-reported','lin',0,1],['r2_shared','Shared-factor R²','lin',0,1],['models','Models','lin',0,null],['papers','Papers','lin',0,null],['tasks_n','Comparisons','lin',0,null],['n_reps','Replicates per value','lin',0,null]];
+const AX=Object.fromEntries(AXES.map(a=>[a[0],a]));
+const PAL=['#2a78d6','#eb6834','#1baf7a','#eda100','#e87ba4','#008300','#6250d6','#e34948'];
+const TASKS=[['SS','Semantic segmentation'],['SC','Scene classification'],['RG','Regression'],['IS','Instance / polygons'],['OD','Object detection'],['CD','Change detection'],['ML','Multi-label classification'],['FC','Forecasting'],['other','Other']];
+const TASK_OF_TYPE=t=>{t=String(t||'').toLowerCase();if(t.includes('multilabel')||t.includes('multi-label'))return 'ML';if(t.includes('instance'))return 'IS';if(t.includes('detection')&&!t.includes('change'))return 'OD';if(t.includes('change'))return 'CD';if(t.includes('forecast'))return 'FC';if(t.includes('segmentation'))return 'SS';if(t.includes('regression'))return 'RG';if(t.includes('classification'))return 'SC';return 'other';};
+const VERD={e_reliable:'Reliable',e_moderate:'Moderate',e_weak:'Weak / saturated',e_prov_high:'Provisional (high)',e_prov_low:'Provisional (low)',e_spread:'Spread only',e_few:'Under 4 models'};
+const SHAPES={SS:'circle',SC:'square',RG:'diamond',IS:'triangle',OD:'tri-down',CD:'plus',ML:'cross',FC:'star',other:'circle'};
+let ROWS=[],DOMS=[],SUBS={},st={x:'score',y:'score_top',col:'sub',dom:'',size:true,prov:true,unl:true,lab:false,tbl:false};
+const $=id=>document.getElementById(id);
+(async function(){
+  const [data,ev]=await loadJSON('datasets','evidence');
+  const byId=Object.fromEntries(data.map(d=>[d.id,d]));
+  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results||e.verdict==='e_none')return;const d=byId[id];ROWS.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,task:(d.facets.task||[])[0]||TASK_OF_TYPE(e.task_type),listed:true,input_kind:e.input_kind||'eo_imagery'});});
+  ev.unlisted.forEach(e=>{if(!e.results)return;ROWS.push({...e,task:TASK_OF_TYPE(e.task_type),listed:false});});
+  ROWS=ROWS.filter(r=>r.input_kind==='eo_imagery'&&r.domain&&!['composite','outside_taxonomy'].includes(r.domain));
+  ROWS.forEach(r=>{r.measured=r.sigma2_source==='measured';r.prov=!r.measured;});
+  DOMS=[...new Set(ROWS.map(r=>r.domain))].sort();
+  DOMS.forEach(d=>{SUBS[d]=[...new Set(ROWS.filter(r=>r.domain===d).map(r=>r.subdomain||'(no subdomain)'))].sort();});
+  $('dom').innerHTML+=DOMS.map(d=>`<option value="${esc(d)}">${esc(d.replace(/^\d · /,''))}</option>`).join('');
+  ['x','y'].forEach(k=>{$(k).innerHTML=AXES.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join('');$(k).value=st[k];});
+  $('xi').innerHTML=infoIcon(st.x);$('yi').innerHTML=infoIcon(st.y);
+  $('col').value=st.col;
+  const scored=ROWS.filter(r=>r.score!=null);
+  $('stats').innerHTML=[[ROWS.length,'benchmark datasets'],[scored.length,'with a score'],[ROWS.filter(r=>r.measured).length,'measured noise'],[DOMS.length,'domains'],[ev.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  ['x','y','col','dom'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.value;if(k==='x')$('xi').innerHTML=infoIcon(st.x);if(k==='y')$('yi').innerHTML=infoIcon(st.y);render();}));
+  ['size','prov','unl','lab','tbl'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.checked;render();}));
+  readURL();render();
+})();
+function readURL(){const u=new URLSearchParams(location.search);['x','y','col','dom'].forEach(k=>{if(u.has(k)&&(k==='dom'||AX[u.get(k)]||k==='col'))st[k]=u.get(k);$(k).value=st[k];});$('xi').innerHTML=infoIcon(st.x);$('yi').innerHTML=infoIcon(st.y);}
+function writeURL(){const u=new URLSearchParams();['x','y','col','dom'].forEach(k=>{if(st[k]&&!(k==='x'&&st[k]==='score')&&!(k==='y'&&st[k]==='score_top')&&!(k==='col'&&st[k]==='sub'))u.set(k,st[k]);});history.replaceState(null,'',location.pathname+(u.toString()?'?'+u:''));}
+const colourKey=r=>st.col==='task'?r.task:st.col==='verdict'?r.verdict:(r.subdomain||'(no subdomain)');
+function colourOf(r,dom){
+  if(st.col==='task')return PAL[Math.max(0,TASKS.findIndex(t=>t[0]===r.task))%PAL.length];
+  if(st.col==='verdict'){const o=Object.keys(VERD);return PAL[o.indexOf(r.verdict)%PAL.length];}
+  const subs=SUBS[dom||r.domain]||[];return PAL[Math.max(0,subs.indexOf(r.subdomain||'(no subdomain)'))%PAL.length];
+}
+const shapeOf=r=>st.col==='both'?SHAPES[r.task]||'circle':'circle';
+function mark(shape,x,y,s,fill,cls,hollow){const h=s;const st=hollow?` style="fill:#fff;stroke:${fill};stroke-width:2"`:'';switch(shape){
+  case 'square':return `<rect class="m ${cls}" x="${x-h}" y="${y-h}" width="${2*h}" height="${2*h}" rx="2" fill="${fill}"${st}/>`;
+  case 'diamond':return `<path class="m ${cls}" d="M${x} ${y-h*1.25}L${x+h*1.25} ${y}L${x} ${y+h*1.25}L${x-h*1.25} ${y}Z" fill="${fill}"${st}/>`;
+  case 'triangle':return `<path class="m ${cls}" d="M${x} ${y-h*1.25}L${x+h*1.2} ${y+h*0.9}L${x-h*1.2} ${y+h*0.9}Z" fill="${fill}"${st}/>`;
+  case 'tri-down':return `<path class="m ${cls}" d="M${x} ${y+h*1.25}L${x+h*1.2} ${y-h*0.9}L${x-h*1.2} ${y-h*0.9}Z" fill="${fill}"${st}/>`;
+  case 'plus':return `<path class="m ${cls}" d="M${x-h*1.2} ${y-h*0.4}h${h*0.8}v-${h*0.8}h${h*0.8}v${h*0.8}h${h*0.8}v${h*0.8}h-${h*0.8}v${h*0.8}h-${h*0.8}v-${h*0.8}h-${h*0.8}Z" fill="${fill}"${st}/>`;
+  case 'cross':return `<path class="m ${cls}" transform="rotate(45 ${x} ${y})" d="M${x-h*1.2} ${y-h*0.4}h${h*0.8}v-${h*0.8}h${h*0.8}v${h*0.8}h${h*0.8}v${h*0.8}h-${h*0.8}v${h*0.8}h-${h*0.8}v-${h*0.8}h-${h*0.8}Z" fill="${fill}"${st}/>`;
+  case 'star':{let d='';for(let i=0;i<10;i++){const r=i%2?h*0.55:h*1.3,a=-Math.PI/2+i*Math.PI/5;d+=(i?'L':'M')+(x+r*Math.cos(a)).toFixed(1)+' '+(y+r*Math.sin(a)).toFixed(1);}return `<path class="m ${cls}" d="${d}Z" fill="${fill}"${st}/>`;}
+  default:return `<circle class="m ${cls}" cx="${x}" cy="${y}" r="${h}" fill="${fill}"${st}/>`;}}
+function scale(a,vals,len,pad){const [k,l,kind,lo0,hi0]=a;let v=vals.filter(x=>x!=null&&isFinite(x)&&(kind!=='log'||x>0));if(kind==='log')v=v.map(Math.log10);let lo=lo0!=null&&kind!=='log'?lo0:Math.min(...v),hi=hi0!=null?hi0:Math.max(...v);if(!isFinite(lo)||!isFinite(hi)){lo=0;hi=1;}if(hi===lo){hi=lo+1;}if(hi0==null&&kind!=='log')hi+= (hi-lo)*0.06;if(kind==='log'){lo=Math.floor(lo);hi=Math.ceil(hi);}
+  const f=x=>{if(x==null||!isFinite(x))return null;if(kind==='log'){if(x<=0)return null;x=Math.log10(x);}return pad+(x-lo)/(hi-lo)*len;};
+  const ticks=[];if(kind==='log'){for(let t=lo;t<=hi;t++)ticks.push([Math.pow(10,t),t>=0?(10**t).toLocaleString('en-US'):(10**t).toString()]);}else{const n=5,step=nice((hi-lo)/n);for(let t=Math.ceil(lo/step)*step;t<=hi+1e-9;t+=step)ticks.push([t,fmtTick(t,step)]);}
+  return {f,ticks,lo,hi,kind};}
+function nice(x){const p=Math.pow(10,Math.floor(Math.log10(x)));const m=x/p;return (m<1.5?1:m<3.5?2:m<7.5?5:10)*p;}
+function fmtTick(t,step){const d=Math.max(0,-Math.floor(Math.log10(step)));return (Math.abs(t)<1e-9?0:t).toFixed(d);}
+function fmtVal(k,v){if(v==null)return '–';if(k==='edi')return v>=1e6?'∞':v>=100?Math.round(v).toLocaleString('en-US'):v.toFixed(1);if(['score','score_top','unexplained_share','self_share','r2_shared','info_share'].includes(k))return k==='info_share'?(100*v).toFixed(1)+'%':v.toFixed(2);if(['models','papers','tasks_n'].includes(k))return String(v);return Number(v).toFixed(2);}
+function panel(dom,rows,big){
+  const W=big?960:470,H=big?560:330,P={l:52,r:14,t:10,b:40};const iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const ax=AX[st.x],ay=AX[st.y];
+  const pts=rows.filter(r=>r[st.x]!=null&&r[st.y]!=null&&(ax[2]!=='log'||r[st.x]>0)&&(ay[2]!=='log'||r[st.y]>0));
+  if(!pts.length)return `<div class="card panel"><h2>${esc(dom.replace(/^\d · /,''))}<span class="n">no scored dataset</span></h2><p class="empty">Nothing to plot for these metrics.</p></div>`;
+  const sx=scale(ax,ROWS.map(r=>r[st.x]),iw,P.l),sy=scale(ay,ROWS.map(r=>r[st.y]),ih,P.t);  // shared scales across panels
+  const Y=v=>{const y=sy.f(v);return y==null?null:H-P.b-(y-P.t);};
+  const maxM=Math.max(...ROWS.map(r=>r.models||1));
+  const rad=r=>st.size?Math.max(3.5,Math.sqrt((r.models||1)/maxM)*(big?16:11)):big?6:5;
+  let g='';
+  sx.ticks.forEach(([t,l])=>{const x=sx.f(t);if(x==null)return;g+=`<line class="gl" x1="${x}" x2="${x}" y1="${P.t}" y2="${H-P.b}"/><text class="tk" x="${x}" y="${H-P.b+14}" text-anchor="middle">${l}</text>`;});
+  sy.ticks.forEach(([t,l])=>{const y=Y(t);if(y==null)return;g+=`<line class="gl" x1="${P.l}" x2="${W-P.r}" y1="${y}" y2="${y}"/><text class="tk" x="${P.l-6}" y="${y+4}" text-anchor="end">${l}</text>`;});
+  g+=`<line class="ax" x1="${P.l}" x2="${W-P.r}" y1="${H-P.b}" y2="${H-P.b}"/><line class="ax" x1="${P.l}" x2="${P.l}" y1="${P.t}" y2="${H-P.b}"/>`;
+  g+=`<text class="al" x="${P.l+iw/2}" y="${H-6}" text-anchor="middle">${esc(ax[1])}</text><text class="al" transform="translate(12 ${P.t+ih/2}) rotate(-90)" text-anchor="middle">${esc(ay[1])}</text>`;
+  const sameUnits=(ax[0]==='score'&&ay[0]==='score_top')||(ax[0]==='score_top'&&ay[0]==='score')||(ax[0]==='spread_pts'&&ay[0]==='noise_sd')||(ax[0]==='noise_sd'&&ay[0]==='spread_pts');
+  if(sameUnits&&sx.kind==='lin'&&sy.kind==='lin'){const lo=Math.max(sx.lo,sy.lo),hi=Math.min(sx.hi,sy.hi);if(hi>lo)g+=`<line class="ref" x1="${sx.f(lo)}" y1="${Y(lo)}" x2="${sx.f(hi)}" y2="${Y(hi)}"/>`;}
+  const sorted=[...pts].sort((a,b)=>(b.models||0)-(a.models||0));
+  sorted.forEach(r=>{const x=sx.f(r[st.x]),y=Y(r[st.y]);const i=ROWS.indexOf(r);const c=colourOf(r,dom);const s=rad(r);
+    g+=`<g class="pt${r.prov?' prov':''}" data-i="${i}" tabindex="0" role="img" aria-label="${esc(r.name)}: ${esc(ax[1])} ${fmtVal(st.x,r[st.x])}, ${esc(ay[1])} ${fmtVal(st.y,r[st.y])}">${mark(shapeOf(r),x,y,s,c,'',r.prov)}<circle class="hit" cx="${x}" cy="${y}" r="${s+6}"/></g>`;
+  });
+  if(st.lab||pts.length<=10)sorted.forEach(r=>{const x=sx.f(r[st.x]),y=Y(r[st.y]);const left=x>P.l+iw*0.72;const nm=r.name.length>26?r.name.slice(0,24)+'…':r.name;g+=`<text class="lb" x="${left?x-rad(r)-3:x+rad(r)+3}" y="${y+3.5}" text-anchor="${left?'end':'start'}">${esc(nm)}</text>`;});
+  const sub=(st.col==='sub'||st.col==='both')&&!big?`<ul class="legend mini">${SUBS[dom].filter(sd=>pts.some(r=>(r.subdomain||'(no subdomain)')===sd)).map((sd,i)=>`<li><svg viewBox="-8 -8 16 16"><circle r="5" fill="${PAL[SUBS[dom].indexOf(sd)%PAL.length]}"/></svg>${esc(sd.replace(/^\d\.\d /,''))}</li>`).join('')}</ul>`:'';
+  return `<div class="card panel"><h2>${esc(dom.replace(/^\d · /,''))}<span class="n">${pts.length} dataset${pts.length===1?'':'s'}${rows.length>pts.length?` · ${rows.length-pts.length} without these metrics`:''}</span></h2><svg viewBox="0 0 ${W} ${H}" role="group" aria-label="${esc(dom)}: ${esc(ax[1])} vs ${esc(ay[1])}">${g}</svg>${sub}</div>`;
+}
+function legend(dom){
+  const sw=(shape,c,hollow)=>`<svg viewBox="-8 -8 16 16">${mark(shape,0,0,5,c,'',hollow)}</svg>`;
+  let items=[];
+  if(st.col==='task'||st.col==='both'){const used=new Set(ROWS.map(r=>r.task));items.push(`<li class="k">Task family</li>`);TASKS.filter(t=>used.has(t[0])).forEach((t,i)=>items.push(`<li>${sw(st.col==='both'?SHAPES[t[0]]:'circle',st.col==='both'?'var(--fg-2)':PAL[TASKS.findIndex(x=>x[0]===t[0])%PAL.length])}${esc(t[1])}</li>`));}
+  if(st.col==='sub'||st.col==='both'){const d=dom||st.dom;if(d){items.push(`<li class="k">Subdomain</li>`);SUBS[d].forEach((s,i)=>items.push(`<li>${sw('circle',PAL[i%PAL.length])}${esc(s)}</li>`));}else items.push(`<li class="k">Subdomain</li><li>colours are per domain; see each panel's key</li>`);}
+  if(st.col==='verdict'){items.push(`<li class="k">Verdict</li>`);Object.entries(VERD).forEach(([k,l],i)=>items.push(`<li>${sw('circle',PAL[i%PAL.length])}${l}</li>`));}
+  items.push(`<li class="k" style="margin-left:10px">Noise</li><li>${sw('circle','var(--fg-2)')}measured</li><li>${sw('circle','var(--fg-2)',true)}provisional (plug-in)</li>`);
+  if(st.size)items.push(`<li class="k" style="margin-left:10px">Size</li><li>models scored</li>`);
+  $('legend').innerHTML=items.join('');
+}
+function render(){
+  writeURL();
+  const rows=ROWS.filter(r=>(st.prov||r.measured)&&(st.unl||r.listed));
+  const doms=st.dom?[st.dom]:DOMS;
+  $('grid').className='grid'+(st.dom?' one':'');
+  $('grid').innerHTML=doms.map(d=>panel(d,rows.filter(r=>r.domain===d),!!st.dom)).join('');
+  $('count').textContent=`${rows.filter(r=>doms.includes(r.domain)).length} datasets shown`;
+  legend(st.dom);
+  $('table').hidden=!st.tbl;$('grid').hidden=st.tbl;
+  if(st.tbl){const cols=['name','domain','subdomain','task',st.x,st.y,'models','papers','verdict'];
+    $('table').innerHTML=`<table class="tv"><thead><tr>${cols.map(c=>`<th class="${AX[c]||['models','papers'].includes(c)?'num':''}">${esc(AX[c]?AX[c][1]:c==='task'?'Task family':c==='tasks_n'?'Comparisons':c[0].toUpperCase()+c.slice(1))}</th>`).join('')}</tr></thead><tbody>${rows.filter(r=>doms.includes(r.domain)).sort((a,b)=>a.domain.localeCompare(b.domain)||(b[st.x]??-1)-(a[st.x]??-1)).map(r=>`<tr>${cols.map(c=>c==='name'?`<td>${r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">${esc(r.name)}</a>`:esc(r.name)+'<span class="unl">not in inventory</span>'}</td>`:c==='verdict'?`<td>${VERD[r.verdict]||r.verdict}${r.prov?' (plug-in)':''}</td>`:c==='task'?`<td>${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])}</td>`:AX[c]||['models','papers'].includes(c)?`<td class="num">${fmtVal(c,r[c])}</td>`:`<td>${esc(String(r[c]||'').replace(/^\d(\.\d)? ?· ?/,''))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+}
+// tooltip
+const tt=$('tt');let pinned=null;
+function showTT(i,el,pin){const r=ROWS[i];if(!r)return;const ax=AX[st.x],ay=AX[st.y];
+  tt.innerHTML=`<b>${esc(r.name)}</b>${r.listed?'':'<span class="unl">not in inventory</span>'}<p class="ttsub">${esc(r.domain.replace(/^\d · /,''))} · ${esc((r.subdomain||'').replace(/^\d\.\d /,''))} · ${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])} · ${VERD[r.verdict]||r.verdict}</p>
+  <dl><dt>${esc(ax[1])}</dt><dd>${fmtVal(st.x,r[st.x])}</dd><dt>${esc(ay[1])}</dt><dd>${fmtVal(st.y,r[st.y])}</dd>${st.x!=='score'&&st.y!=='score'?`<dt>Score</dt><dd>${fmtVal('score',r.score)}${r.score!=null?` <span style="color:var(--fg-3)">${fmtVal('score',r.score_lo)}–${fmtVal('score',r.score_hi)}</span>`:''}</dd>`:''}<dt>Models · papers · comparisons</dt><dd>${r.models} · ${r.papers} · ${r.tasks_n}</dd>${r.noise_sd!=null?`<dt>Seed noise</dt><dd>${r.noise_sd.toFixed(2)} pts${r.measured?'':' (plug-in)'}</dd>`:''}</dl>
+  <p class="expl">${esc((r.explanation||'').split('. ').slice(0,2).join('. '))}${r.explanation?'.':''}</p>
+  <p class="lnk">${r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.name)}">Ranking row →</a></p>`;
+  tt.hidden=false;tt.classList.toggle('pin',!!pin);
+  const b=el.getBoundingClientRect();const w=tt.offsetWidth||320,h=tt.offsetHeight||160;
+  let x=b.right+scrollX+10,y=b.top+scrollY-10;if(x+w>scrollX+innerWidth-12)x=b.left+scrollX-w-10;if(x<12)x=12;if(y+h>scrollY+innerHeight-12)y=Math.max(scrollY+12,b.bottom+scrollY-h);
+  tt.style.left=x+'px';tt.style.top=y+'px';
+  document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));el.classList.add('on');
+}
+function hideTT(){if(pinned!=null)return;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}
+document.addEventListener('mouseover',e=>{const p=e.target.closest('.pt');if(p&&pinned==null)showTT(+p.dataset.i,p,false);});
+document.addEventListener('mouseout',e=>{if(e.target.closest('.pt')&&pinned==null)hideTT();});
+document.addEventListener('focusin',e=>{const p=e.target.closest('.pt');if(p)showTT(+p.dataset.i,p,false);});
+document.addEventListener('click',e=>{const p=e.target.closest('.pt');if(p){const i=+p.dataset.i;if(pinned===i){const r=ROWS[i];if(r.listed)location.href=`index.html?q=${encodeURIComponent(r.name)}`;return;}pinned=i;showTT(i,p,true);return;}if(!e.target.closest('.tt')){pinned=null;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=null;tt.hidden=true;}});
+</script>
+</body>
+</html>

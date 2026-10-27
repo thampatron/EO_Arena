@@ -14,6 +14,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | `map.html` | Where labelled datasets exist: by country, or as the actual sample locations (Samples view). |
 | `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
 | `benchmarks.html` | Benchmark ranking: every benchmark with published GeoFM results, scored by how reliably it separates models (share of the observed model spread that exceeds seed noise), with dataset-specific signal and redundancy-adjusted information from a latent-factor fit. Static, from papers. The expert pairwise arena is planned for later. |
+| `evidence.html` | Evidence map: one scatter plot per domain of every scored benchmark dataset on any two of the scoring metrics (score, frontier score, EDI, spread, seed noise, dataset-specific signal, info share, models…), coloured by subdomain, task family or verdict, hover for the numbers, click to open the dataset. |
 | `models.html` | Model ranking: every GeoFM with published results, by mean within-comparison z-score on independent evaluations (papers that did not introduce it), with self-reported results shown separately. Static, from papers. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
 | `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |
