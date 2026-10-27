@@ -173,12 +173,14 @@ def task_table(cell, noise_agg):
     T.loc[T.sigma2_source != "measured", "n_reps"] = 1.0
     T = T.join(T.apply(lambda row: task_scores(row.tau2_obs, row.sigma2, row.n_reps), axis=1, result_type="expand"))
     T = T.join(T.apply(lambda row: task_scores(row.tau2_top, row.sigma2, row.n_reps), axis=1, result_type="expand").rename(columns={"tau2": "tau2f", "edi": "edi_top", "score": "score_top"}))
+    T.loc[T.n_top >= T.n_models, ["score_top", "edi_top"]] = np.nan   # a 4-model comparison has no frontier distinct from the whole
     cy = {t: x.y.values for t, x in g}
     BS = np.full((BOOT, len(T)), np.nan); BT = np.full((BOOT, len(T)), np.nan)
     for j, t in enumerate(T.index):
         s2 = T.at[t, "sigma2"]
         if not np.isfinite(s2): continue
-        BS[:, j] = bootstrap_scores(cy[t], s2, T.at[t, "n_reps"], BOOT, rng); BT[:, j] = bootstrap_scores(frontier(cy[t]), s2, T.at[t, "n_reps"], BOOT, rng)
+        BS[:, j] = bootstrap_scores(cy[t], s2, T.at[t, "n_reps"], BOOT, rng)
+        if T.at[t, "n_top"] < T.at[t, "n_models"]: BT[:, j] = bootstrap_scores(frontier(cy[t]), s2, T.at[t, "n_reps"], BOOT, rng)
     T["score_lo"] = np.nanpercentile(BS, 5, axis=0); T["score_hi"] = np.nanpercentile(BS, 95, axis=0)
     return T, BS, BT, plug_pf
 
@@ -233,7 +235,8 @@ def score_block(Tg, V, cell):
     d["score_top"] = wmean(use.score_top, use.n_models) if len(use) else None
     d["sigma2"] = wmean(use.sigma2, use.n_models) if len(use) else None
     d["noise_sd"] = None if d["sigma2"] is None or not Tg.pts.any() else float(np.sqrt(d["sigma2"]))
-    d["n_reps"] = wmean(use.n_reps, use.n_models) if len(use) else None; d["n_reps_known"] = bool(use.n_reps_known.all()) if len(use) else False
+    meas = use[use.sigma2_source == "measured"]
+    d["n_reps"] = wmean(meas.n_reps, meas.n_models) if len(meas) else None; d["n_reps_known"] = bool(meas.n_reps_known.all()) if len(meas) else False
     d["edi"] = edi_of(d["score"]); d["edi_top"] = edi_of(d["score_top"])
     for arr, lo, hi in ((V["BS"], "score_lo", "score_hi"), (V["BT"], "score_top_lo", "score_top_hi")):
         if len(use):
