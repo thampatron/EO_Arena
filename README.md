@@ -2,7 +2,7 @@
 
 An open, filterable taxonomy of Earth observation (EO) tasks and labelled datasets, built to guide the benchmarking of geospatial foundation models (GeoFMs). Part of EOArena, a project of the Earth Intelligence Lab at MIT.
 
-**Status: draft v0.1.** Tags, licences and the ability filter are under review. Items marked UNVERIFIED could not be confirmed from a primary source.
+**Status: draft v0.3** (see [CHANGELOG.md](CHANGELOG.md)). Tags, licences and the ability filter are under review. Items marked UNVERIFIED could not be confirmed from a primary source.
 
 **Site:** https://thampatron.github.io/EO_Arena/ (once GitHub Pages is enabled)
 
