@@ -142,10 +142,12 @@ ul.clean{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--fg-2);max-w
 .summ small{display:block;font-weight:400;font-size:13px;color:var(--fg-3)}
 
 /* GeoFM evidence chips (data/evidence.json) */
-.chip.ev-dist{background:var(--accent-soft);color:var(--accent);font-weight:600}
-.chip.ev-part{background:var(--accent-soft);color:var(--fg)}
-.chip.ev-red{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.chip.ev-reliable{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.chip.ev-moderate{background:var(--accent-soft);color:var(--fg)}
+.chip.ev-prov-high{background:var(--accent-soft);color:var(--fg-2);border:1px dashed var(--accent)}
+.chip.ev-prov-low{background:var(--surface-2);color:var(--fg-2);border:1px dashed var(--line-2)}
 .chip.ev-weak{background:color-mix(in srgb,var(--warn) 30%,transparent);color:var(--fg)}
+.chip.ev-spread{background:var(--surface-2);color:var(--fg-3)}
 .chip.ev-few{background:var(--surface-2);color:var(--fg-3)}
 .chip.ev-none{background:transparent;color:var(--fg-3);border:1px dashed var(--line-2)}
 

@@ -218,14 +218,16 @@
   {
    "key": "ev",
    "name": "GeoFM evidence",
-   "description": "How much published GeoFM evidence exists for this dataset, from a meta-analysis of 52 papers (summary statistics only). Distinct means the dataset ranks models unlike the consensus of all other datasets.",
+   "description": "Whether published benchmark results separate GeoFMs beyond evaluation noise, from a meta-analysis of 52 papers (summary statistics only). Score = share of the observed model spread that is repeatable; measured when papers print seed standard deviations, provisional when noise is plugged in.",
    "derived": "from data/evidence.json",
    "values": {
-    "e_dist": "Distinct ranking",
-    "e_part": "Partly distinct",
-    "e_red": "Tracks the consensus",
-    "e_weak": "Saturated or below noise",
-    "e_few": "Scored, under 10 models",
+    "e_reliable": "Reliable",
+    "e_moderate": "Moderate",
+    "e_weak": "Weak / saturated",
+    "e_prov_high": "Provisional (high)",
+    "e_prov_low": "Provisional (low)",
+    "e_spread": "Spread only",
+    "e_few": "Under 4 models",
     "e_none": "No GeoFM scores"
    }
   }

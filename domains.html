@@ -36,7 +36,7 @@
 <script>
 (async function(){
   const [doms,data,ev]=await loadJSON('domains','datasets','evidence');
-  const EVC={e_dist:['ev-dist','Distinct ranking'],e_part:['ev-part','Partly distinct'],e_red:['ev-red','Tracks consensus'],e_weak:['ev-weak','Saturated / below noise'],e_few:['ev-few','Under 10 models'],e_none:['ev-none','No GeoFM scores']};
+  const EVC={e_reliable:['ev-reliable','Reliable'],e_moderate:['ev-moderate','Moderate'],e_weak:['ev-weak','Weak / saturated'],e_prov_high:['ev-prov-high','Provisional (high)'],e_prov_low:['ev-prov-low','Provisional (low)'],e_spread:['ev-spread','Spread only'],e_few:['ev-few','Under 4 models'],e_none:['ev-none','No GeoFM scores']};
   const evChip=id=>{const e=ev.datasets[id];const [c,l]=EVC[e?e.verdict:'e_none'];return `<span class="chip ${c}">${l}</span>`;};
   const subs=doms.flatMap(d=>d.subdomains.filter(s=>s.code));
   const cnt=k=>subs.filter(s=>s.status===k).length;
@@ -44,7 +44,7 @@
   const key=s=>s.code?`${s.code} ${s.name}`:s.name;
   document.getElementById('domains').innerHTML=doms.map(d=>{
     const bar=`<div class="bar" aria-hidden="true">${d.subdomains.map(s=>`<i class="${STATUS[s.status][0]}" title="${esc(s.name)}"></i>`).join('')}</div>`;
-    const cov=ev.domains[d.name];const covLine=cov?`<p class="small muted" style="margin:-4px 0 0">Published GeoFM evidence: ${cov.scored} of ${cov.datasets} known datasets scored · ${cov.results.toLocaleString('en-US')} reported results${cov.unlisted_scored?` · ${cov.unlisted_scored} scored dataset${cov.unlisted_scored===1?'':'s'} not yet in this inventory`:''}</p>`:'';
+    const cov=ev.domains[d.name];const covLine=cov?`<p class="small muted" style="margin:-4px 0 0">Published GeoFM evidence: ${cov.scored} of ${cov.datasets} known datasets scored · ${cov.measured} with measured seed noise · ${cov.results.toLocaleString('en-US')} reported results${cov.unlisted_scored?` · ${cov.unlisted_scored} scored dataset${cov.unlisted_scored===1?'':'s'} not yet in this inventory`:''}</p>`:'';
     return `<div style="display:grid;gap:12px"><div class="dhead"><h2 style="font-size:24px">${esc(d.name.replace(/^\d · /,''))}${d.tag?' <span class="small muted" style="font-family:var(--sans)">cross-cutting tag</span>':''}</h2>${bar}</div>${covLine}
     <div class="list">${d.subdomains.map(s=>{const ds=data.filter(x=>x.subdomain===key(s)).sort((a,b)=>b.benchmark_suites.length-a.benchmark_suites.length);
       const inS=ds.filter(x=>x.benchmark_suites.length).length;

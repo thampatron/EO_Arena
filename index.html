@@ -102,13 +102,22 @@ let V,F,DATA,DOMS,EV;
 const st={sel:{},q:"",view:"list",grp:"dom",mxr:"sub",mxc:"task"};
 const $=id=>document.getElementById(id);
 const lab=(k,v)=>F[k].values[v]??v;
-const EVC={e_dist:['ev-dist','Distinct ranking'],e_part:['ev-part','Partly distinct'],e_red:['ev-red','Tracks consensus'],e_weak:['ev-weak','Saturated / below noise'],e_few:['ev-few','Under 10 models'],e_none:['ev-none','No GeoFM scores']};
+const EVC={e_reliable:['ev-reliable','Reliable'],e_moderate:['ev-moderate','Moderate'],e_weak:['ev-weak','Weak / saturated'],e_prov_high:['ev-prov-high','Provisional (high)'],e_prov_low:['ev-prov-low','Provisional (low)'],e_spread:['ev-spread','Spread only'],e_few:['ev-few','Under 4 models'],e_none:['ev-none','No GeoFM scores']};
 const evChip=e=>{const [c,l]=EVC[e.verdict]||EVC.e_none;return `<span class="chip ${c}" title="${esc(EV.verdicts[e.verdict]||'')}">${l}</span>`;};
-const fmt1=x=>x==null?'–':Number(x).toFixed(1);
+const fmt2=x=>x==null?'–':Number(x).toFixed(2);
+const pct=x=>Math.round(100*Number(x))+'%';
 function evBlock(e){if(!e.results)return `<div class="evbox"><p class="small muted" style="margin:0"><b>GeoFM evidence</b> · No published scores found in the ${esc(EV.source.split(':')[0])}.</p></div>`;
-  const [c,l]=EVC[e.verdict]||EVC.e_none;
+  const cell=(k,v)=>v==null?'':`<div><dt>${k}</dt><dd>${v}</dd></div>`;
+  const rep=e.score==null?null:`${pct(e.score)}${e.score_lo!=null&&e.score_hi!=null?` (${pct(e.score_lo)}–${pct(e.score_hi)})`:''}`;
+  const cells=cell('Models scored',e.models)+cell('Papers',e.papers)+cell('Comparisons',e.tasks_n)+cell('Reported results',e.results)
+    +cell('Model spread',e.spread_pts==null?null:fmt2(e.spread_pts)+' pts')
+    +cell('Seed noise',e.noise_sd==null?null:fmt2(e.noise_sd)+' pts'+(e.sigma2_source!=='measured'?' (plug-in)':''))
+    +cell('Repeatable spread',rep)
+    +cell('Dataset-specific signal',e.unexplained_share==null?null:pct(e.unexplained_share))
+    +cell('Self-reported',e.self_share==null?null:pct(e.self_share));
   return `<div class="evbox"><div class="evhead"><b>GeoFM evidence</b>${evChip(e)}</div>
-  <dl class="evgrid"><div><dt>Models scored</dt><dd>${e.models}</dd></div><div><dt>Papers</dt><dd>${e.papers}</dd></div><div><dt>Reported results</dt><dd>${e.results}</dd></div>${e.spread_pts!=null?`<div><dt>Model spread</dt><dd>${fmt1(e.spread_pts)} pts</dd></div>`:''}${e.headroom_pts!=null?`<div><dt>Headroom</dt><dd>${fmt1(e.headroom_pts)} pts</dd></div>`:''}${e.rho_consensus!=null?`<div><dt>Rank agreement (rho)</dt><dd>${Number(e.rho_consensus).toFixed(2)}</dd></div>`:''}${e.share_self_reported!=null?`<div><dt>Self-reported</dt><dd>${Math.round(100*e.share_self_reported)}%</dd></div>`:''}</dl>
+  <dl class="evgrid">${cells}</dl>
+  ${e.explanation?`<p class="small muted" style="margin:6px 0 0">${esc(e.explanation)}</p>`:''}
   <p class="small muted" style="margin:6px 0 0">${esc(EV.verdicts[e.verdict]||'')}. Counts and summary statistics from a meta-analysis of published GeoFM papers; no individual scores. <a href="about.html#evidence">Method</a></p></div>`;}
 
 (async function(){
@@ -198,7 +207,7 @@ document.addEventListener('mouseout',e=>{if(e.target.closest('td.cell'))tip.hidd
 function csv(){const cols=["name","domain","subdomain","task_description","sensors_description","geography","size","licence","benchmark_suites"];
   const fk=V.filter(f=>!['dom','sub'].includes(f.key));
   const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
-  const evc=["models","papers","results","spread_pts","headroom_pts","rho_consensus","share_self_reported"];
+  const evc=["models","papers","tasks_n","results","spread_pts","noise_sd","sigma2_source","score","score_lo","score_hi","edi","unexplained_share","info_share","self_share","verdict"];
   const lines=[[...cols,...fk.map(f=>f.name),...evc.map(c=>"evidence_"+c),"source"].map(q).join(',')];
   window._rows.forEach(d=>lines.push([...cols.map(c=>Array.isArray(d[c])?d[c].join('; '):d[c]),...fk.map(f=>d.f[f.key].map(v=>lab(f.key,v)).join('; ')),...evc.map(c=>d.ev[c]??''),d.sources[0]?.url||''].map(q).join(',')));
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/csv'}));a.download='eoarena-datasets.csv';a.click();}

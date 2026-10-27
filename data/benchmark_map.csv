@@ -1,0 +1,484 @@
+benchmark_id,canonical_dataset,eoarena_id,domain,subdomain,input_kind,mapping_source
+aebench_cls_composite,AEBench (composite),,composite,,eo_imagery,unlisted-name-match
+aebench_composite,AEBench (composite),,composite,,eo_imagery,unlisted-name-match
+africa_air_temperature_zeroshot,Air Temperature (Hooker et al.),,6 · Atmosphere,,coords_only,unlisted-name-match
+africa_biome_zeroshot,Biomes,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+africa_countries_fewshot,Countries,,outside_taxonomy,,coords_only,unlisted-name-match
+africa_crop_mask,Africa crop mask,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+africa_ecoregions_fewshot,Ecoregions,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+africa_elevation_zeroshot,Elevation (Mapzen),,7 · Solid Earth,,coords_only,unlisted-name-match
+africa_inaturalist_zeroshot,iNaturalist 2018,,outside_taxonomy,,natural_image,unlisted-name-match
+africa_population_density_zeroshot,Population density,,8 · Human systems,,coords_only,unlisted-name-match
+agbd_full,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbd_geo_africa,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbd_geo_south_america,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbd_geo_south_asia,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbd_lite,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbd_temporal_2020,AGBD,agbd,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+agbref_10km,AGBref,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+aid,AID,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+air_temperature,Air Temperature (Hooker et al.),,6 · Atmosphere,,coords_only,unlisted-name-match
+airbus_ships,Airbus Ships,airbus-ships,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+airound,AiRound,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+algae_blooms,Algae Blooms,,3 · Inland water,3.2 Water quality,eo_imagery,unlisted-name-match
+asia_air_temperature_zeroshot,Air Temperature (Hooker et al.),,6 · Atmosphere,,coords_only,unlisted-name-match
+asia_biome_zeroshot,Biomes,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+asia_countries_fewshot,Countries,,outside_taxonomy,,coords_only,unlisted-name-match
+asia_ecoregions_fewshot,Ecoregions,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+asia_elevation_zeroshot,Elevation (Mapzen),,7 · Solid Earth,,coords_only,unlisted-name-match
+asia_inaturalist_zeroshot,iNaturalist 2018,,outside_taxonomy,,natural_image,unlisted-name-match
+asia_population_density_zeroshot,Population density,,8 · Human systems,,coords_only,unlisted-name-match
+aster_global_emissivity,ASTER GED,,7 · Solid Earth,7.3 Geology and mineral mapping,eo_imagery,unlisted-name-match
+awf_l8,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_l8_val,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_s1,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_s1_val,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_s1s2,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_s2,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+awf_s2_val,AWF,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bigearthnet_mm_ft_ablation_composite,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+bigearthnet_s2,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+bigearthnet_sar,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+biomassters_prithvi,BioMassters,biomassters,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+biomes,Biomes,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+bradd_s1ts_change,BraDD-S1TS,bradd-s1ts,2 · Terrestrial ecosystems,2.2 Forest extent and change,eo_imagery,evidence.json
+breizhcrops_s2,BreizhCrops,breizhcrops,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+bt_cropharvest_crop_type,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+bt_dynamicworld_land_cover,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_bare,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_built,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_crops,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_flooded_veg,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_grass,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_shrub,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_snow,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_trees,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_dynamicworld_lc_water,Dynamic World,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+bt_grip4_dist_road,GRIP4 distance to road,,8 · Human systems,8.2 Transport,eo_imagery,unlisted-name-match
+bt_mmearth_biomass_centre_pixel,MMEarth Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+bt_mmearth_biomass_patch_mean,MMEarth Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+bt_worldclim_bioclim,WorldClim Bioclim,,6 · Atmosphere,,eo_imagery,unlisted-name-match
+bt_worldpop_population_density,WorldPop population density,,8 · Human systems,,eo_imagery,unlisted-name-match
+california_housing_prices,California Housing,,8 · Human systems,8.5 Socioeconomic conditions,coords_only,unlisted-name-match
+canada_crops_coarse,Canada crops,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+canada_crops_fine,Canada crops,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+canadian_cropland,Canadian Cropland,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+chc_change_direction,CHC canopy height change,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+chc_height_change,CHC canopy height change,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+cityrep_age,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_gdp,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_lst,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_luc,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_ntl,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_pm25,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_pop,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+cityrep_rde,CityRep,,8 · Human systems,,eo_imagery,unlisted-name-match
+classify_inaturalist_species,iNaturalist 2018,,outside_taxonomy,,natural_image,unlisted-name-match
+climate_precip_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_precip_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_slpress_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_slpress_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_surfpress_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_surfpress_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_temp_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_temp_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_uwind_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_uwind_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_vwind_mean,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+climate_vwind_std,Copernicus-FM climate variables,,6 · Atmosphere,,coords_only,unlisted-name-match
+coordbench_environmental_10deg,CoordBench environmental (composite),,composite,,coords_only,unlisted-name-match
+coordbench_environmental_20deg,CoordBench environmental (composite),,composite,,coords_only,unlisted-name-match
+coordbench_environmental_2deg,CoordBench environmental (composite),,composite,,coords_only,unlisted-name-match
+coordbench_environmental_40deg,CoordBench environmental (composite),,composite,,coords_only,unlisted-name-match
+coordbench_environmental_random,CoordBench environmental (composite),,composite,,coords_only,unlisted-name-match
+coordbench_landcover_10deg,CoordBench land cover (composite),,composite,,coords_only,unlisted-name-match
+coordbench_landcover_20deg,CoordBench land cover (composite),,composite,,coords_only,unlisted-name-match
+coordbench_landcover_2deg,CoordBench land cover (composite),,composite,,coords_only,unlisted-name-match
+coordbench_landcover_40deg,CoordBench land cover (composite),,composite,,coords_only,unlisted-name-match
+coordbench_landcover_random,CoordBench land cover (composite),,composite,,coords_only,unlisted-name-match
+coordbench_regression_10deg,CoordBench regression (composite),,composite,,coords_only,unlisted-name-match
+coordbench_regression_20deg,CoordBench regression (composite),,composite,,coords_only,unlisted-name-match
+coordbench_regression_2deg,CoordBench regression (composite),,composite,,coords_only,unlisted-name-match
+coordbench_regression_40deg,CoordBench regression (composite),,composite,,coords_only,unlisted-name-match
+coordbench_regression_random,CoordBench regression (composite),,composite,,coords_only,unlisted-name-match
+coordbench_socioeconomic_10deg,CoordBench socioeconomic (composite),,composite,,coords_only,unlisted-name-match
+coordbench_socioeconomic_20deg,CoordBench socioeconomic (composite),,composite,,coords_only,unlisted-name-match
+coordbench_socioeconomic_2deg,CoordBench socioeconomic (composite),,composite,,coords_only,unlisted-name-match
+coordbench_socioeconomic_40deg,CoordBench socioeconomic (composite),,composite,,coords_only,unlisted-name-match
+coordbench_socioeconomic_random,CoordBench socioeconomic (composite),,composite,,coords_only,unlisted-name-match
+copernicusbench_aq_no2_s5p,"AQ-NO₂-S5P, AQ-O₃-S5P",aq-no-s5p-aq-o-s5p,6 · Atmosphere,6.2 Aerosols and air quality,eo_imagery,evidence.json
+copernicusbench_aq_o3_s5p,"AQ-NO₂-S5P, AQ-O₃-S5P",aq-no-s5p-aq-o-s5p,6 · Atmosphere,6.2 Aerosols and air quality,eo_imagery,evidence.json
+copernicusbench_bigearthnet_s1,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_biomass_s3,Biomass-S3,biomass-s3,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+copernicusbench_cloud_s2,CloudSEN12 (Cloud-S2),cloudsen12-cloud-s2,6 · Atmosphere,6.3 Clouds and smoke,eo_imagery,evidence.json
+copernicusbench_cloud_s3,Cloud-S3,cloud-s3,6 · Atmosphere,6.3 Clouds and smoke,eo_imagery,evidence.json
+copernicusbench_dfc2020_s1,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_dfc2020_s2,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_eurosat_rgb,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_eurosat_s1,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_flood_s1,Kuro Siwo (Flood-S1),kuro-siwo-flood-s1,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+copernicusbench_lc100cls_s3,LC100 classification / segmentation,lc100-classification-segmentation,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_lc100seg_s3,LC100 classification / segmentation,lc100-classification-segmentation,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+copernicusbench_lcz_s2,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+corine_modis_map,CORINE (Panopticon),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+corine_superdove_map,CORINE (Panopticon),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+countries,Countries,,outside_taxonomy,,coords_only,unlisted-name-match
+croma_dfc2020_s2,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+cropharvest,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_china,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_prc_s1,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_prc_s1s2,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_prc_s2,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_togo_s1,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_togo_s1s2,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_togo_s2,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cropharvest_validation,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+cryobench_caffe,CaFFe,caffe,5 · Cryosphere,5.2 Glaciers and ice sheets,eo_imagery,evidence.json
+cryobench_gld,GLD,,5 · Cryosphere,5.2 Glaciers and ice sheets,eo_imagery,unlisted-name-match
+cryobench_glid,GLID,,5 · Cryosphere,5.2 Glaciers and ice sheets,eo_imagery,unlisted-name-match
+cryobench_gsdd,GSDD,,5 · Cryosphere,5.2 Glaciers and ice sheets,eo_imagery,unlisted-name-match
+cryobench_sicd,AI4Arctic / AutoICE,ai4arctic-autoice,5 · Cryosphere,5.3 Sea and lake ice,eo_imagery,evidence.json
+cv_brct,CV-BrCT,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+descals_oil_palm,Descals oil palm,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+dfc2020_multilabel_cls,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+dfc2020_segmentation,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+dfc2020_singlelabel_cls,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+dior_horizontal_object_detection,DIOR,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+dt_10_himawari_mse,Digital Typhoon,,6 · Atmosphere,,eo_imagery,unlisted-name-match
+dw_expert,Dynamic World training set,dynamic-world-training-set,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+earthshift_benv2_s2_to_s1,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+earthshift_deepglobe_to_dfc2022,DeepGlobe Land Cover / DFC2022 (EarthShift),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+earthshift_ftw_germany_to_cambodia,Fields of The World,fields-of-the-world,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+earthshift_ftw_germany_to_denmark,Fields of The World,fields-of-the-world,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+earthshift_ftw_germany_year,Fields of The World,fields-of-the-world,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+earthshift_ftw_south_africa_season,Fields of The World,fields-of-the-world,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+earthshift_meurosat_rgb_to_rge1,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+earthshift_resisc45_to_ucmerced,RESISC45 / UCMerced (EarthShift),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+earthshift_sen1floods11_s2_to_s1,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+earthshift_ucmerced_to_resisc45,RESISC45 / UCMerced (EarthShift),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+ecoregions,Ecoregions,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+elevation,MOSAIKS elevation,,7 · Solid Earth,,eo_imagery,registry-name
+ethiopia_crops,Ethiopia crops,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+eurosat_fewshot,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+eurosat_helber_s2,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+eurosat_sar,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+exebench_coldwave_t2m_forecast,ExEBench Cold waves,,6 · Atmosphere,,other,unlisted-name-match
+exebench_expcp_nowcast,ExEBench Extreme Precipitation,,6 · Atmosphere,,other,unlisted-name-match
+exebench_fire_hls_burnscars,HLS Burn Scars,hls-burn-scars,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,evidence.json
+exebench_flood_urbansarfloods,UrbanSARFloods,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+exebench_heatwave_t2m_forecast,ExEBench Heatwaves,,6 · Atmosphere,,other,unlisted-name-match
+exebench_storms_nowcast,TAASRAD19,,6 · Atmosphere,,other,unlisted-name-match
+exebench_tc_atmospheric_forecast,ExEBench Tropical Cyclones,,6 · Atmosphere,,other,unlisted-name-match
+exebench_tc_surface_forecast,ExEBench Tropical Cyclones,,6 · Atmosphere,,other,unlisted-name-match
+flair_semseg,FLAIR / FLAIR 2,flair-flair-2,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+fmow_10_wv8,fMoW,fmow,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+fmow_rgb,fMoW,fmow,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+fmow_rgb_temporal,fMoW,fmow,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+fmow_sentinel,fMoW,fmow,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+forest_cover,MOSAIKS Forest cover,,2 · Terrestrial ecosystems,2.2 Forest extent and change,coords_only,unlisted-name-match
+forest_loss_driver_s2,Forest Loss Driver,,2 · Terrestrial ecosystems,2.2 Forest extent and change,eo_imagery,unlisted-name-match
+fuel_moisture,Live Fuel Moisture Content,,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,unlisted-name-match
+galileo_breizhcrops,BreizhCrops,breizhcrops,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+galileo_cropharvest_brazil,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+galileo_cropharvest_kenya,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+galileo_cropharvest_togo,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+galileo_mados,MADOS,mados,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+galileo_pastis,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+galileo_sen1floods11,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+gea_north_africa_s2,GEA North Africa,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+geobench2_benv2,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench2_biomassters,BioMassters,biomassters,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+geobench2_burn_scars,HLS Burn Scars,hls-burn-scars,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,evidence.json
+geobench2_caffe,CaFFe,caffe,5 · Cryosphere,5.2 Glaciers and ice sheets,eo_imagery,evidence.json
+geobench2_cloudsen12,CloudSEN12 (Cloud-S2),cloudsen12-cloud-s2,6 · Atmosphere,6.3 Clouds and smoke,eo_imagery,evidence.json
+geobench2_dynamic_earthnet,DynamicEarthNet,dynamicearthnet,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench2_everwatch,EverWatch,everwatch,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+geobench2_flair2,FLAIR / FLAIR 2,flair-flair-2,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench2_fotw,Fields of The World,fields-of-the-world,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench2_kuro_siwo,Kuro Siwo (Flood-S1),kuro-siwo-flood-s1,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+geobench2_nzcattle,NZ cattle,nz-cattle,1 · Agriculture,1.4 Rangeland and livestock,eo_imagery,evidence.json
+geobench2_pastis,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench2_pastis_r,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench2_spacenet2,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+geobench2_spacenet7,SpaceNet 7,spacenet-7,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+geobench2_substation,Substations,substations,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+geobench2_treesatai,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+geobench_eurosat_s2,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_m_bigearthnet,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_m_bigearthnet_val,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_m_brick_kiln,Brick kilns,brick-kilns,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+geobench_m_brick_kiln_val,Brick kilns,brick-kilns,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+geobench_m_cashew_s2,Cashew plantation,cashew-plantation,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench_m_cashew_s2_val,Cashew plantation,cashew-plantation,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench_m_eurosat,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_m_eurosat_val,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_m_forestnet_l8,ForestNet,forestnet,2 · Terrestrial ecosystems,2.2 Forest extent and change,eo_imagery,evidence.json
+geobench_m_forestnet_l8_val,ForestNet,forestnet,2 · Terrestrial ecosystems,2.2 Forest extent and change,eo_imagery,evidence.json
+geobench_m_neontree,NeonTreeEvaluation,neontreeevaluation,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+geobench_m_nzcattle_rgb,NZ cattle,nz-cattle,1 · Agriculture,1.4 Rangeland and livestock,eo_imagery,evidence.json
+geobench_m_pv4ger,PV4GER,pv4ger,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+geobench_m_pv4ger_seg_rgb,PV4GER,pv4ger,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+geobench_m_sacrop_s2,South Africa crop type,south-africa-crop-type,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench_m_sacrop_s2_val,South Africa crop type,south-africa-crop-type,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+geobench_m_so2sat_s2,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+geobench_m_so2sat_s2_val,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+geobench_reben_10_s1,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geobench_reben_10_s2,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+geoid_esw_water,Earth Surface Water (ESW),,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_bg_s1,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_bg_s1s2,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_flood_s1,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_flood_s1s2,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_perm_s1,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_perm_s1s2,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_s1,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_3class_s1s2,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_heldout_3class,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_heldout_3class_bg,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_heldout_3class_flood,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_heldout_3class_perm,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_heldout_water,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_water_preevent,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_water_s1,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geoid_flood_water_s1s2,GEOID-Flood,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+geonrw_seg,GeoNRW,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+geonrw_seg_ft_ablation_composite,GeoNRW,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+gfm_bigearthnet_cls,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+gfm_dsifn_cd,DSIFN,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+gfm_spacenet2_sr,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+gfm_ucm_cls,UC Merced (classification),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,registry-name
+gfm_vaihingen_seg,ISPRS Vaihingen,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+gfm_whu_aerial_seg,WHU Aerial Building,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+gid15,GID-15,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+glance_land_cover,GLanCE,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+gpp_flux_hls_merra2_prithvi,FLUXNET2015,fluxnet2015,2 · Terrestrial ecosystems,"2.5 Ecosystem function (phenology, productivity)",eo_imagery,evidence.json
+gws15k_city_25km,GWS15k,,outside_taxonomy,,natural_image,unlisted-name-match
+gws15k_continent_2500km,GWS15k,,outside_taxonomy,,natural_image,unlisted-name-match
+gws15k_country_750km,GWS15k,,outside_taxonomy,,natural_image,unlisted-name-match
+gws15k_region_200km,GWS15k,,outside_taxonomy,,natural_image,unlisted-name-match
+gws15k_street_1km,GWS15k,,outside_taxonomy,,natural_image,unlisted-name-match
+hls_burn_intensity_prithvi,HLS Burn Intensity,,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,unlisted-name-match
+hls_burn_scars,HLS Burn Scars,hls-burn-scars,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,evidence.json
+hls_multi_temporal_crop_segmentation,Multi-Temporal Crop Classification (HLS),,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+housing_price,MOSAIKS housing price,,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,unlisted-name-match
+hyperview_modis_mse,Hyperview,,1 · Agriculture,,eo_imagery,unlisted-name-match
+hyperview_superdove,Hyperview,,1 · Agriculture,,eo_imagery,unlisted-name-match
+im2gps3k_city_25km,Im2GPS3k,,outside_taxonomy,,natural_image,unlisted-name-match
+im2gps3k_continent_2500km,Im2GPS3k,,outside_taxonomy,,natural_image,unlisted-name-match
+im2gps3k_country_750km,Im2GPS3k,,outside_taxonomy,,natural_image,unlisted-name-match
+im2gps3k_region_200km,Im2GPS3k,,outside_taxonomy,,natural_image,unlisted-name-match
+im2gps3k_street_1km,Im2GPS3k,,outside_taxonomy,,natural_image,unlisted-name-match
+income_per_household,MOSAIKS income,,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,unlisted-name-match
+infra_bench_cls,Infra-Bench,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+inria,Inria Aerial,inria-aerial,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+l4s_landslide_prithvi,Landslide4Sense,landslide4sense,7 · Solid Earth,7.2 Landslides and mass movement,eo_imagery,evidence.json
+landslide4sense,Landslide4Sense,landslide4sense,7 · Solid Earth,7.2 Landslides and mass movement,eo_imagery,evidence.json
+lcmap_land_cover,LCMAP,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+lcmap_land_cover_change,LCMAP,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+lcmap_land_use,LCMAP,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+lcmap_land_use_change,LCMAP,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+lfmc_s1s2,Live Fuel Moisture Content,,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,unlisted-name-match
+lfmc_s2,Live Fuel Moisture Content,,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,unlisted-name-match
+lucas_land_cover,LUCAS,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+lucas_land_use,LUCAS,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+m_chesapeake,Chesapeake land cover,chesapeake-land-cover,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+mados_s2,MADOS,mados,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+mados_s2_val,MADOS,mados,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+mangrove_s1s2,OlmoEarth Mangrove,,4 · Oceans and coasts,4.1 Coastal ecosystems,eo_imagery,unlisted-name-match
+mangrove_s2,OlmoEarth Mangrove,,4 · Oceans and coasts,4.1 Coastal ecosystems,eo_imagery,unlisted-name-match
+marida,MARIDA,marida,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+mass_buildings,Massachusetts Buildings,massachusetts-buildings,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+mass_roads,Massachusetts Roads,massachusetts-roads,8 · Human systems,8.2 Transport,eo_imagery,evidence.json
+median_income,MOSAIKS Income,,8 · Human systems,8.5 Socioeconomic conditions,coords_only,unlisted-name-match
+meter_ml,METER-ML,,6 · Atmosphere,6.1 Greenhouse gas point sources,eo_imagery,unlisted-name-match
+mlrsnet,MLRSNet,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+mmearth_bench_biomass_africa,MMEarth-Bench Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+mmearth_bench_biomass_random,MMEarth-Bench Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+mmearth_bench_soil_n_africa,MMEarth-Bench soil nitrogen,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_soil_n_random,MMEarth-Bench soil nitrogen,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_soil_oc_africa,MMEarth-Bench soil organic carbon,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_soil_oc_random,MMEarth-Bench soil organic carbon,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_soil_ph_africa,MMEarth-Bench soil pH,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_soil_ph_random,MMEarth-Bench soil pH,,7 · Solid Earth,,eo_imagery,unlisted-name-match
+mmearth_bench_species_africa,MMEarth-Bench species,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+mmearth_bench_species_random,MMEarth-Bench species,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+mmearth_bigearth20k,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+mmearth_cashew1k,Cashew plantation,cashew-plantation,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+mmearth_sacrop3k,South Africa crop type,south-africa-crop-type,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+mmearth_so2sat20k,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+ms_biome,Biomes,,2 · Terrestrial ecosystems,,coords_only,unlisted-name-match
+ms_country_code,Countries,,outside_taxonomy,,coords_only,unlisted-name-match
+ms_elevation,Elevation (Mapzen),,7 · Solid Earth,,coords_only,unlisted-name-match
+ms_population_density,Population density,,8 · Human systems,,coords_only,unlisted-name-match
+naip_land_cover_classification,NAIP land cover,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+nandi_l8,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_l8_val,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_s1,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_s1_val,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_s1s2,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_s2,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nandi_s2_val,Nandi,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+neuco_biomass_mean,NeuCo-Bench Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+neuco_biomass_std,NeuCo-Bench Biomass,,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,unlisted-name-match
+neuco_clouds,NeuCo-Bench Clouds,,6 · Atmosphere,6.3 Clouds and smoke,eo_imagery,unlisted-name-match
+neuco_crops,NeuCo-Bench Crops,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+neuco_heatisland_mean,NeuCo-Bench Heatisland,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+neuco_heatisland_std,NeuCo-Bench Heatisland,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+neuco_landcover_agriculture,NeuCo-Bench Landcover,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+neuco_landcover_forest,NeuCo-Bench Landcover,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+nighttime_lights,MOSAIKS nighttime lights,,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,unlisted-name-match
+nyudepthv2_seg,NYU-Depth v2,,outside_taxonomy,,natural_image,unlisted-name-match
+openet_ensemble,OpenET,,2 · Terrestrial ecosystems,"2.5 Ecosystem function (phenology, productivity)",eo_imagery,unlisted-name-match
+optimal_31,OPTIMAL-31,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+oscd_cd,OSCD,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+pangaea_ai4farms,AI4SmallFarms,ai4smallfarms,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pangaea_biomassters,BioMassters,biomassters,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+pangaea_burnscars,HLS Burn Scars,hls-burn-scars,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,evidence.json
+pangaea_ctm_ss,CropTypeMapping Ghana / South Sudan,croptypemapping-ghana-south-sudan,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pangaea_dynamic_earthnet,DynamicEarthNet,dynamicearthnet,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+pangaea_fivebillionpixels,Five Billion Pixels,five-billion-pixels,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+pangaea_fivebillionpixels_domain_shift,Five Billion Pixels,five-billion-pixels,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+pangaea_mados,MADOS,mados,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+pangaea_pastis,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pangaea_sen1floods11,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+pangaea_sn7,SpaceNet 7,spacenet-7,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+pangaea_xview2,xBD / xView2,xbd-xview2,Disasters,Post-event damage and hazard extent,eo_imagery,evidence.json
+panopticon_designablation_avg,Panopticon design ablation (composite),,composite,,composite,registry-name
+panopticon_msacc_composite,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+pastis_hd_classif,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pastis_hd_segm,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pastis_s1,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pastis_s1_val,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pastis_s2,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+pastis_s2_val,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+patternnet,PatternNet,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+planted_classif,PLANTED,planted,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+population_density,MOSAIKS population density,,8 · Human systems,,eo_imagery,unlisted-name-match
+remoteclip_ret3_meanrecall_composite,RemoteCLIP RET-3 (composite),,composite,,text_image,unlisted-name-match
+remoteclip_zs12_acc_composite,RemoteCLIP ZS-12 (composite),,composite,,text_image,unlisted-name-match
+resisc45_rgb,RESISC45,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+road_length,MOSAIKS road length,,8 · Human systems,8.2 Transport,eo_imagery,unlisted-name-match
+rs2800,RSSCN7,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+rsc11,RSC11,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+rsi_cb128,RSI-CB128,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+rsi_cb256,RSI-CB256,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+rsicd_retrieval,RSICD,,outside_taxonomy,,text_image,unlisted-name-match
+rsitmd_retrieval,RSITMD,,outside_taxonomy,,text_image,unlisted-name-match
+s2_agri_100,S2-Agri,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+sa_crop_type_mapping,South Africa crop type,south-africa-crop-type,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+satlas_naip_points,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_naip_polygons,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_naip_polylines,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_naip_properties,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_naip_regression,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_naip_segmentation,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_classification,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_points,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_polygons,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_polylines,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_properties,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_regression,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+satlas_s2_segmentation,SatlasPretrain (composite),,composite,,eo_imagery,unlisted-name-match
+segmunich,SegMunich,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+sen1floods11_prithvi,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+sen1floods11_s1,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+sen1floods11_s1_val,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+sen1floods11_s2,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+sen4map_croptype_prithvi,Sen4Map,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+sen4map_landcover_prithvi,Sen4Map,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+sickle_paddy_segm,SICKLE (paddy classification),sickle-paddy-classification,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+sled_chelsa_composite,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_frost_change,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_grow_season_first,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_grow_season_length,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_isothermality,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_precip_annual,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_precip_seasonality,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_snow_cover_days,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_temp_annual,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_chelsa_temp_seasonality,CHELSA-TraCE21k,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_koppen_biome,Koppen climate classification,,6 · Atmosphere,,coords_only,unlisted-name-match
+sled_sustainbench_asset,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sled_sustainbench_composite,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sled_sustainbench_sanitation,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sled_sustainbench_water,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sled_sustainbench_women_education,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sled_torchspatial_elevation,Elevation (Mapzen),,7 · Solid Earth,,coords_only,unlisted-name-match
+sled_torchspatial_flickr,YFCC,,outside_taxonomy,,coords_only,unlisted-name-match
+sled_torchspatial_fmow,fMoW,fmow,8 · Human systems,8.4 Objects and activity,eo_imagery,evidence.json
+sled_torchspatial_forest_cover,MOSAIKS Forest cover,,2 · Terrestrial ecosystems,2.2 Forest extent and change,coords_only,unlisted-name-match
+sled_torchspatial_inat2018,iNaturalist 2018,,outside_taxonomy,,natural_image,unlisted-name-match
+sled_torchspatial_nightlights,TorchSpatial nightlights,,8 · Human systems,8.5 Socioeconomic conditions,coords_only,unlisted-name-match
+sled_torchspatial_population,TorchSpatial population density,,8 · Human systems,,coords_only,unlisted-name-match
+so2sat_s1s2_lcz,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+solar_farm_detection_s1s2,OlmoEarth Solar Farm,,8 · Human systems,8.3 Energy and industry,eo_imagery,unlisted-name-match
+solar_farm_detection_s2,OlmoEarth Solar Farm,,8 · Human systems,8.3 Energy and industry,eo_imagery,unlisted-name-match
+spacenet1_wv2,SpaceNet 1,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+spacenet2_khartoum,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+spacenet2_paris,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+spacenet2_shanghai,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+spacenet2_vegas,SpaceNet 2,spacenet-2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+spacenetv1_rgb,SpaceNet 1,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+ssl4eo_bigearthnet_lp,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+ssl4eo_dfc2020_seg,DFC2020,dfc2020,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+ssl4eo_eurosat_lp,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+ssl4eo_s12_ml_benchmark,SSL4EO-S12-ML,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+ssl4eo_so2sat_lcz42,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+sunrgbd_seg,SUN RGB-D,,outside_taxonomy,,natural_image,unlisted-name-match
+sustainfm_asset_wealth,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sustainfm_child_mortality,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sustainfm_clcd,CLCD,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+sustainfm_dse,DSE,,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,unlisted-name-match
+sustainfm_gazadeepdav,GAZADeepDAV,,Disasters,z.1 Post-event damage and hazard extent,eo_imagery,unlisted-name-match
+sustainfm_glosofarid,GloSoFarID,,8 · Human systems,8.3 Energy and industry,eo_imagery,unlisted-name-match
+sustainfm_hls_burnscars,HLS Burn Scars,hls-burn-scars,2 · Terrestrial ecosystems,2.6 Fire,eo_imagery,evidence.json
+sustainfm_levircd,LEVIR-CD,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+sustainfm_mados,MADOS,mados,4 · Oceans and coasts,4.4 Marine pollution,eo_imagery,evidence.json
+sustainfm_minenetcd,MineNetCD,,8 · Human systems,8.3 Energy and industry,eo_imagery,unlisted-name-match
+sustainfm_ombria,OMBRIA,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+sustainfm_rsbd,RSBD,,3 · Inland water,3.2 Water quality,eo_imagery,unlisted-name-match
+sustainfm_sanitation,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sustainfm_smokeplume,SmokePlume,,6 · Atmosphere,6.3 Clouds and smoke,eo_imagery,unlisted-name-match
+sustainfm_women_bmi,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+sustainfm_women_education,SustainBench DHS tasks,sustainbench-dhs-tasks,8 · Human systems,8.5 Socioeconomic conditions,eo_imagery,evidence.json
+tc_10_goes_16,TropicalCyclone,,6 · Atmosphere,,eo_imagery,unlisted-name-match
+tessera_austrian_crop_cls,Austrian Crop,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+tessera_austrian_crop_cls_100x,Austrian Crop,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+tessera_austrian_crop_seg,Austrian Crop,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+tessera_biomassters,BioMassters,biomassters,2 · Terrestrial ecosystems,2.3 Biomass and carbon stocks,eo_imagery,evidence.json
+tessera_borneo_chm,Borneo Canopy Height,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+tessera_cropharvest_togo,CropHarvest,cropharvest,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+tessera_ethiopia_crop,Ethiopia crops,,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,unlisted-name-match
+tessera_pastis_r,PASTIS / PASTIS-R,pastis-pastis-r,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+tessera_treesatai_ts,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+timesen2crop_cls,TimeSen2Crop,timesen2crop,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+treesatai_micro_f1,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+treesatai_micro_map,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+treesatai_weighted_f1,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+treesatai_weighted_map,TreeSatAI,treesatai,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,evidence.json
+uc_merced,UC Merced (classification),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,registry-name
+ucm,UC Merced (classification),,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,registry-name
+ucm_retrieval,UC Merced,,outside_taxonomy,,text_image,unlisted-name-match
+us_trees,US Trees,,2 · Terrestrial ecosystems,2.4 Vegetation structure and species,eo_imagery,unlisted-name-match
+vessel_detection_l8,OlmoEarth Vessel Detection,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+vessel_detection_s1,OlmoEarth Vessel Detection,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+vessel_length_s2,OlmoEarth Vessel Length,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+vessel_type_s2,OlmoEarth Vessel Type,,8 · Human systems,8.4 Objects and activity,eo_imagery,unlisted-name-match
+water_body_mapping,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+whu_earth,WHU-earth,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+whu_rs19,WHU-RS19,,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,unlisted-name-match
+x_bigearthnet,BigEarthNet v1 / v2 (reBEN),bigearthnet-v1-v2-reben,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+x_brick_kiln,Brick kilns,brick-kilns,8 · Human systems,8.3 Energy and industry,eo_imagery,evidence.json
+x_cashew_plantation,Cashew plantation,cashew-plantation,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+x_eurosat,EuroSAT,eurosat,2 · Terrestrial ecosystems,2.1 Land cover and land degradation,eo_imagery,evidence.json
+x_harvey_building,GeoCrossBench Hurricane Harvey,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+x_harvey_flood,GeoCrossBench Hurricane Harvey,,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,unlisted-name-match
+x_oscd,OSCD,,8 · Human systems,8.1 Settlements and buildings,eo_imagery,unlisted-name-match
+x_sa_crop_type,South Africa crop type,south-africa-crop-type,1 · Agriculture,1.1 Cropland and crop type,eo_imagery,evidence.json
+x_sen1floods11,Sen1Floods11,sen1floods11,3 · Inland water,"3.1 Surface water, rivers and wetlands",eo_imagery,evidence.json
+x_so2sat,So2Sat LCZ42 (LCZ-S2),so2sat-lcz42-lcz-s2,8 · Human systems,8.1 Settlements and buildings,eo_imagery,evidence.json
+yfcc26k_city_25km,YFCC26k,,outside_taxonomy,,natural_image,unlisted-name-match
+yfcc26k_continent_2500km,YFCC26k,,outside_taxonomy,,natural_image,unlisted-name-match
+yfcc26k_country_750km,YFCC26k,,outside_taxonomy,,natural_image,unlisted-name-match
+yfcc26k_region_200km,YFCC26k,,outside_taxonomy,,natural_image,unlisted-name-match
+yfcc26k_street_1km,YFCC26k,,outside_taxonomy,,natural_image,unlisted-name-match

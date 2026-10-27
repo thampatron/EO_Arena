@@ -11,7 +11,7 @@
 .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:8px 18px;font-size:13.5px;color:var(--fg-2);margin:0 0 16px;padding:0;list-style:none}
 .legend li{display:flex;gap:8px;align-items:baseline}
 .tablebox{overflow-x:auto}
-table.rk{border-collapse:collapse;width:100%;min-width:1040px;font-size:13.5px}
+table.rk{border-collapse:collapse;width:100%;min-width:1240px;font-size:13.5px}
 table.rk th,table.rk td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 table.rk th{position:sticky;top:0;background:var(--surface);z-index:1;font-weight:500;color:var(--fg-3);font-size:12px;white-space:nowrap}
 table.rk th button{all:unset;cursor:pointer}
@@ -26,29 +26,38 @@ table.rk a{color:inherit}
 .unl{font-size:11px;font-weight:600;color:var(--fg-3);border:1px dashed var(--line-2);border-radius:999px;padding:0 6px;margin-left:6px;white-space:nowrap}
 .bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-right:6px;opacity:.75}
 .count{font-size:14px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+table.rk tr[data-i]{cursor:pointer}
+table.rk tr.open td{background:var(--surface-2)}
+table.rk tr.det td{background:var(--surface-2);padding:10px 14px 14px}
+table.rk.sub{min-width:0;font-size:12.5px;margin-top:4px}
+table.rk.sub th{position:static}
+table.rk.sub td{padding:4px 8px}
 </style>
 </head>
 <body>
 <main class="page">
   <section class="hero">
     <h1>Benchmark ranking</h1>
-    <p class="sub">Every benchmark dataset with published GeoFM results, ranked by how much evidence it gives: does it separate models, does it say something the other benchmarks don't, and is there headroom left. Static, from papers; not a model leaderboard.</p>
+    <p class="sub">Every benchmark dataset with published GeoFM results, scored by how reliably it separates models: the share of the observed model spread that is repeatable once evaluation noise is taken out. Static, from papers; not a model leaderboard.</p>
     <div class="stats" id="stats"></div>
   </section>
 
   <section class="section">
     <ul class="legend">
-      <li><span class="chip ev-dist">Distinct ranking</span><span>Ranks models unlike the consensus of all other benchmarks (ρ &lt; 0.3). Unique signal, or noise when from one paper.</span></li>
-      <li><span class="chip ev-part">Partly distinct</span><span>Some shared, some unique signal (0.3 ≤ ρ &lt; 0.7).</span></li>
-      <li><span class="chip ev-red">Tracks consensus</span><span>Ranks models like everything else (ρ ≥ 0.7). Adds little.</span></li>
-      <li><span class="chip ev-weak">Saturated / below noise</span><span>Under 3 pts headroom, or model spread under the 2.3-pt cross-paper noise.</span></li>
-      <li><span class="chip ev-few">Under 10 models</span><span>Scored, but too few models to judge.</span></li>
+      <li><span class="chip ev-reliable">Reliable</span><span>≥ 80% of the model spread is repeatable; seed noise measured from printed standard deviations.</span></li>
+      <li><span class="chip ev-moderate">Moderate</span><span>50–80% of the spread is repeatable (measured noise).</span></li>
+      <li><span class="chip ev-weak">Weak / saturated</span><span>Under 50% of the spread exceeds measured seed noise: models are hard to tell apart here.</span></li>
+      <li><span class="chip ev-prov-high">Provisional (high)</span><span>≥ 80% repeatable, but no paper prints a seed SD, so noise is plugged in from similar comparisons.</span></li>
+      <li><span class="chip ev-prov-low">Provisional (low)</span><span>&lt; 80% repeatable under plug-in noise.</span></li>
+      <li><span class="chip ev-spread">Spread only</span><span>No noise estimate available; only the observed spread is known.</span></li>
+      <li><span class="chip ev-few">Under 4 models</span><span>Scored, but no single comparison has four models.</span></li>
     </ul>
     <div class="ctrl">
       <label class="inl">Domain <select class="sel" id="dom"></select></label>
       <label class="inl">Verdict <select class="sel" id="ver"></select></label>
       <label class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search" aria-label="Search benchmarks"></label>
       <label class="inl"><input type="checkbox" id="img" checked> Imagery tasks only</label>
+      <label class="inl"><input type="checkbox" id="meas"> Measured noise only</label>
       <span class="count" id="count"></span>
     </div>
     <div class="card tablebox"><table class="rk" id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
@@ -57,30 +66,30 @@ table.rk a{color:inherit}
   <section class="section">
     <h2>How to read it</h2>
     <div class="prose">
-      <p><b>Rank</b> orders benchmarks by verdict (distinct, partly distinct, tracks consensus, saturated or below noise, under 10 models), then by the number of models scored. It is a ranking of benchmarks as evidence, not of models. A model leaderboard pooled across papers would mostly measure who wrote each paper: in the same data, OlmoEarth ranks first in 78% of comparisons in its own paper and in 0% of comparisons run by other groups.</p>
-      <p><b>Models</b> and <b>papers</b> count distinct models and papers that reported a score on the benchmark. <b>Spread</b> is the median standard deviation of model scores within one paper's comparison (percent metrics only). <b>Headroom</b> is 100 minus the median best score. <b>ρ vs consensus</b> compares the benchmark's model ranking with the mean ranking over all other benchmarks, after z-scoring within each comparison so that paper offsets cancel; it needs at least ten models. <b>Self-reported</b> is the share of comparisons that come from a paper scoring its own model.</p>
-      <p>Source: a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (Viki Mancoridis, 2026, unpublished), grouped into 259 datasets and placed in the EOArena taxonomy. Original results only; copied numbers, ablation variants and non-foundation baselines are dropped. Protocols are pooled within a benchmark. Benchmarks marked <span class="unl">not in inventory</span> have published scores but no record yet in the <a href="index.html">Explorer</a>. Method details on the <a href="about.html#evidence">About page</a>.</p>
-      <p>These are descriptive statistics, not the latent-factor analysis EOArena is building. A benchmark scored in one paper reflects that paper's protocol and model choice. The <a href="models.html">model ranking</a> uses the same comparisons the other way round. The expert pairwise arena for needs with no labelled data is still planned.</p>
+      <p>The scoring follows the lab's note <em>GeoFM Benchmark Scoring</em> (S. Wang, Oct 2026). A <b>comparison</b> is one paper's table with at least four GeoFMs on the same benchmark, protocol, metric and training fraction; a benchmark's row pools its comparisons, and the expandable detail lists them. Within a comparison the variance of model scores is the <b>observed separation</b> τ²<sub>obs</sub>; its square root is the <b>spread</b> column. Part of that variance is <b>seed noise</b> σ², the run-to-run variation of a single evaluation, taken from the standard deviations papers print as "mean ± sd" when at least three models in the comparison report one. The stable between-model variance is τ² = τ²<sub>obs</sub> − σ², the <b>effective discriminative information</b> is EDI = τ²/σ², and the <b>score</b> is EDI/(1 + EDI) = τ²/(τ² + σ²): the share of the observed spread that is repeatable model difference, between 0 and 1. The interval is a bootstrap over the models in each comparison.</p>
+      <p>Where no paper prints a seed SD the score is <b>provisional</b>: σ² is plugged in from the same dataset under the same protocol family, or failing that from the median seed noise of that protocol family (about 1 point for both frozen and fine-tuned evaluations). Provisional scores say what the benchmark would score if its noise were typical; they are not an intrinsic measurement and are ranked after measured ones.</p>
+      <p><b>Dataset-specific signal</b> comes from a latent-factor regression fitted to all imagery comparisons: y<sub>mt</sub> = μ<sub>t</sub> + λ<sub>t</sub>ᵀθ<sub>m</sub> + η<sub>mt</sub>, with K shared capability factors chosen by held-out cross-validation and kept only if the task geometry is stable under bootstrap. It is the share of the stable model differences on this benchmark that the shared factors do not explain: high values mean the benchmark ranks models in its own way. It is a diagnostic, not a penalty. <b>Info share</b> is a redundancy-adjusted contribution: the Shapley share of log det(I + ΛᵀC⁻¹Λ), the information the whole suite gives about shared capabilities, so near-duplicate benchmarks split credit. <b>Self-reported</b> is the share of scores that come from the paper that introduced the model.</p>
+      <p>Source: a meta-analysis workbook of 14,600 reported scores from 52 GeoFM papers (Viki Mancoridis, 2026, unpublished), grouped into canonical datasets and placed in the EOArena taxonomy. Original results only; copied numbers, ablation variants, non-foundation baselines and training from scratch are dropped. Benchmarks marked <span class="unl">not in inventory</span> have published scores but no record yet in the <a href="index.html">Explorer</a>. The <a href="models.html">model ranking</a> uses the same comparisons the other way round. Method details on the <a href="about.html#evidence">About page</a>; code in <code>scripts/geofm_scoring.py</code> and <code>scripts/build_evidence.py</code>.</p>
     </div>
   </section>
 </main>
 <script src="assets/site.js"></script>
 <script>
-const EVC={e_dist:['ev-dist','Distinct ranking',0],e_part:['ev-part','Partly distinct',1],e_red:['ev-red','Tracks consensus',2],e_weak:['ev-weak','Saturated / below noise',3],e_few:['ev-few','Under 10 models',4]};
-const TIPS={"rank": "Position by verdict (distinct, partly distinct, tracks consensus, saturated or below noise, under 10 models), then by number of models scored. Ranks benchmarks as evidence, not models.", "name": "The benchmark dataset. Paper-specific variants (splits, fractions, suites) are grouped under one name. Links open the Explorer record when one exists.", "domain": "EOArena application domain the benchmark was assigned to.", "models": "Distinct models with a published score on this benchmark, after dropping copied numbers, ablation variants and non-foundation baselines.", "papers": "Distinct papers that reported a score on this benchmark.", "results": "Number of reported score rows (model × protocol × metric × training fraction).", "spread_pts": "Median standard deviation of model scores within one paper's comparison, in metric points. Percent metrics only. Low spread means models are hard to tell apart here.", "headroom_pts": "100 minus the median best reported score. Under 3 points counts as saturated.", "rho_consensus": "Spearman correlation between this benchmark's ranking of models and the mean ranking over all other benchmarks, after z-scoring within each comparison. Needs at least 10 models. High = redundant with the rest; low = distinct.", "share_self_reported": "Share of comparisons that come from a paper scoring its own model.", "verdict": "Summary label from headroom, spread and rho vs consensus. See the legend above."};
-const COLS=[['rank','#','rank'],['name','Benchmark',''],['domain','Domain',''],['models','Models','num'],['papers','Papers','num'],['results','Results','num'],['spread_pts','Spread (pts)','num'],['headroom_pts','Headroom (pts)','num'],['rho_consensus','ρ vs consensus','num'],['share_self_reported','Self-reported','num'],['verdict','Verdict','']];
-let ROWS=[],sortKey='rank',sortDir=1;const st={dom:'',ver:'',q:'',img:true};
+const EVC={e_reliable:['ev-reliable','Reliable',0],e_moderate:['ev-moderate','Moderate',1],e_weak:['ev-weak','Weak / saturated',2],e_prov_high:['ev-prov-high','Provisional (high)',3],e_prov_low:['ev-prov-low','Provisional (low)',4],e_spread:['ev-spread','Spread only',5],e_few:['ev-few','Under 4 models',6]};
+const TIPS={"rank":"Position by verdict (measured before provisional), then by effective discriminative information. Ranks benchmarks as evidence, not models.","name":"The benchmark dataset. Paper-specific variants (splits, fractions, suites) are grouped under one name. Click a row for its comparisons. Links open the Explorer record when one exists.","domain":"EOArena application domain the benchmark was assigned to.","models":"Distinct models with a published score on this benchmark, after dropping copied numbers, ablation variants and non-foundation baselines.","papers":"Distinct papers that reported a score on this benchmark.","tasks_n":"Comparisons: one paper's table with at least four models on the same benchmark, protocol, metric and training fraction.","spread_pts":"Standard deviation of model scores within a comparison (observed separation, square root of tau2_obs), model-weighted over comparisons, in metric points. Percent metrics only.","noise_sd":"Replicate noise of one evaluation: the standard deviation across seeds or runs that papers print, averaged over models. Marked (plug-in) when no paper prints one and a value from similar comparisons is used.","score":"Share of the observed model spread that is repeatable: tau2/(tau2+sigma2), where tau2 = tau2_obs - sigma2. 90% bootstrap interval over models. Provisional when noise is plugged in.","edi":"Effective discriminative information tau2/sigma2: how many times larger the stable model differences are than evaluation noise.","unexplained_share":"Share of the stable model differences on this benchmark not explained by the shared capability factors of the latent-factor regression. High = ranks models in its own way. Diagnostic, not a penalty.","info_share":"Redundancy-adjusted contribution to the information the whole suite gives about shared model capabilities (Shapley share of log det). Near-duplicate benchmarks split credit.","self_share":"Share of scores that come from the paper that introduced the model.","verdict":"Summary label from the score and whether seed noise was measured or plugged in. See the legend above."};
+const COLS=[['rank','#','rank'],['name','Benchmark',''],['domain','Domain',''],['models','Models','num'],['papers','Papers','num'],['tasks_n','Comparisons','num'],['spread_pts','Spread (pts)','num'],['noise_sd','Seed noise (pts)','num'],['score','Score','num'],['edi','EDI','num'],['unexplained_share','Dataset-specific','num'],['info_share','Info share','num'],['self_share','Self-reported','num'],['verdict','Verdict','']];
+let ROWS=[],sortKey='rank',sortDir=1;const st={dom:'',ver:'',q:'',img:true,meas:false};const open=new Set();
 const $=id=>document.getElementById(id);
 (async function(){
   const [data,ev]=await loadJSON('datasets','evidence');
   const byId=Object.fromEntries(data.map(d=>[d.id,d]));
-  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];ROWS.push({id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:'eo_imagery',listed:true,...e});});
+  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];ROWS.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:e.input_kind||'eo_imagery',listed:true});});
   ev.unlisted.forEach(e=>{if(e.results)ROWS.push({...e,listed:false});});
-  ROWS.forEach(r=>{r.verdict=EVC[r.verdict]?r.verdict:'e_few';});
-  ROWS.sort((a,b)=>(EVC[a.verdict][2]-EVC[b.verdict][2])||(b.models-a.models)||a.name.localeCompare(b.name));
+  ROWS.forEach(r=>{r.verdict=EVC[r.verdict]?r.verdict:'e_few';r.measured=r.sigma2_source==='measured';});
+  ROWS.sort((a,b)=>(EVC[a.verdict][2]-EVC[b.verdict][2])||((b.edi??-1)-(a.edi??-1))||(b.models-a.models)||a.name.localeCompare(b.name));
   ROWS.forEach((r,i)=>r.rank=i+1);
-  const judged=ROWS.filter(r=>r.verdict!=='e_few').length;
-  $('stats').innerHTML=[[ROWS.length,'benchmarks with GeoFM scores'],[judged,'with ≥ 10 models'],[ROWS.filter(r=>r.verdict==='e_dist').length,'distinct ranking'],[ROWS.filter(r=>r.verdict==='e_red').length,'track the consensus'],[ev.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const measured=ROWS.filter(r=>r.measured).length;
+  $('stats').innerHTML=[[ROWS.length,'benchmarks with GeoFM scores'],[measured,'with measured seed noise'],[ROWS.filter(r=>r.verdict==='e_reliable').length,'reliable'],[ROWS.filter(r=>r.verdict==='e_weak').length,'weak or saturated'],[ev.latent?ev.latent.K:'–','capability factors'],[ev.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   const doms=[...new Set(ROWS.map(r=>r.domain))].sort();
   $('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option>${esc(d)}</option>`).join('');
   $('ver').innerHTML='<option value="">All verdicts</option>'+Object.entries(EVC).map(([k,v])=>`<option value="${k}">${v[1]}</option>`).join('');
@@ -88,19 +97,27 @@ const $=id=>document.getElementById(id);
   document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','domain','verdict','rank'].includes(k)?1:-1);sortKey=k;render();}));
   ['dom','ver'].forEach(id=>$(id).addEventListener('change',e=>{st[id]=e.target.value;render();}));
   $('img').addEventListener('change',e=>{st.img=e.target.checked;render();});
+  $('meas').addEventListener('change',e=>{st.meas=e.target.checked;render();});
   let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
+  document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=+tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
   render();
 })();
-const f1=x=>x==null?'–':Number(x).toFixed(1);
-function cmp(a,b){if(sortKey==='verdict')return (EVC[a.verdict][2]-EVC[b.verdict][2])*sortDir||b.models-a.models;const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
+const f1=x=>x==null?'–':Number(x).toFixed(1),f2=x=>x==null?'–':Number(x).toFixed(2),pc=x=>x==null?'–':Math.round(100*x)+'%';
+const fedi=x=>x==null?'–':x>=1e6?'∞':x>=100?Math.round(x).toLocaleString('en-US'):Number(x).toFixed(1);
+function cmp(a,b){if(sortKey==='verdict')return (EVC[a.verdict][2]-EVC[b.verdict][2])*sortDir||(b.edi??-1)-(a.edi??-1);const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
+function detail(r){
+  const prot=Object.entries(r.by_protocol||{}).map(([k,v])=>`<span class="chip">${esc(k)} · ${v.n_tasks} comp. · ${v.n_models} models · score ${f2(v.score)}${v.sigma2_source==='measured'?'':' (plug-in)'}</span>`).join(' ');
+  const tasks=(r.tasks||[]).map(t=>`<tr><td>${esc(t.paper)}</td><td class="dim">${esc(t.benchmark_id)}</td><td>${esc(t.protocol)}${t.train_fraction?` · ${esc(t.train_fraction)}`:''}</td><td class="dim">${esc(t.metric)}</td><td class="num">${t.n_models}</td><td class="num">${t.spread_pts!=null?f2(t.spread_pts):t.spread_units!=null?f2(t.spread_units)+' u':'–'}</td><td class="num">${t.noise_sd==null?'–':f2(t.noise_sd)+(t.noise_source==='measured'?` <span class="dim">(${t.n_sd_models})</span>`:' <span class="dim">plug-in</span>')}</td><td class="num">${t.score==null?'–':`${f2(t.score)} <span class="dim">${f2(t.score_lo)}–${f2(t.score_hi)}</span>`}</td><td class="num">${pc(t.unexplained_share)}</td><td class="num">${pc(t.self_share)}</td></tr>`).join('');
+  return `<tr class="det"><td colspan="${COLS.length}"><p class="small" style="margin:0 0 8px">${esc(r.explanation||'')}</p>${prot?`<p class="small" style="margin:0 0 8px">${prot}</p>`:''}${tasks?`<table class="rk sub"><thead><tr><th>Paper</th><th>Benchmark id</th><th>Protocol</th><th>Metric</th><th class="num">Models</th><th class="num">Spread</th><th class="num">Seed noise (n)</th><th class="num">Score (90%)</th><th class="num">Dataset-specific</th><th class="num">Self-rep.</th></tr></thead><tbody>${tasks}</tbody></table>`:''}</td></tr>`;}
 function render(){
-  const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||r.input_kind==='eo_imagery')).sort(cmp);
+  const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||r.input_kind==='eo_imagery')&&(!st.meas||r.measured)).sort(cmp);
   document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
   $('count').textContent=`${rows.length} of ${ROWS.length}`;
-  const maxM=Math.max(...ROWS.map(r=>r.models));
-  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];
+  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];const i=ROWS.indexOf(r);
     const nm=r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">${esc(r.name)}</a>`:`${esc(r.name)}<span class="unl">not in inventory</span>`;
-    return `<tr><td class="rank">${r.rank}</td><td>${nm}</td><td class="dim">${esc(r.domain.replace(/^\d · /,''))}</td><td class="num"><span class="bar" style="width:${Math.max(2,Math.round(60*r.models/maxM))}px"></span>${r.models}</td><td class="num">${r.papers}</td><td class="num">${r.results.toLocaleString('en-US')}</td><td class="num">${f1(r.spread_pts)}</td><td class="num">${f1(r.headroom_pts)}</td><td class="num">${r.rho_consensus==null?'–':Number(r.rho_consensus).toFixed(2)}</td><td class="num">${r.share_self_reported==null?'–':Math.round(100*r.share_self_reported)+'%'}</td><td><span class="chip ${c}">${l}</span></td></tr>`;}).join('')||'<tr><td colspan="11" class="dim">No benchmark matches.</td></tr>';
+    const sc=r.score==null?'–':`<span class="bar" style="width:${Math.max(2,Math.round(60*r.score))}px"></span>${f2(r.score)}<span class="dim"> ${f2(r.score_lo)}–${f2(r.score_hi)}</span>`;
+    const ns=r.noise_sd==null?'–':f2(r.noise_sd)+(r.measured?'':'<span class="dim"> plug-in</span>');
+    return `<tr data-i="${i}" class="${open.has(i)?'open':''}"><td class="rank">${r.rank}</td><td>${nm}</td><td class="dim">${esc(r.domain.replace(/^\d · /,''))}</td><td class="num">${r.models}</td><td class="num">${r.papers}</td><td class="num">${r.tasks_n}</td><td class="num">${f2(r.spread_pts)}</td><td class="num">${ns}</td><td class="num">${sc}</td><td class="num">${fedi(r.edi)}</td><td class="num">${pc(r.unexplained_share)}</td><td class="num">${r.info_share==null?'–':(100*r.info_share).toFixed(1)+'%'}</td><td class="num">${pc(r.self_share)}</td><td><span class="chip ${c}">${l}</span></td></tr>${open.has(i)?detail(r):''}`;}).join('')||`<tr><td colspan="${COLS.length}" class="dim">No benchmark matches.</td></tr>`;
 }
 </script>
 </body>

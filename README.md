@@ -13,7 +13,7 @@ An open, filterable taxonomy of Earth observation (EO) tasks and labelled datase
 | `index.html` | Explorer: every audited dataset tagged on 13 facets. Filter, search, cross two facets in a matrix, open a dataset for details, export CSV. Filter state lives in the URL. |
 | `map.html` | Where labelled datasets exist: by country, or as the actual sample locations (Samples view). |
 | `tasks.html` | Task template v0.2: shared rules, scoring, and the five task specifications from `spec/tasks/`. |
-| `benchmarks.html` | Benchmark ranking: every benchmark with published GeoFM results, ranked by how much evidence it gives (models, papers, spread, headroom, agreement with the consensus). Static, from papers. The expert pairwise arena is planned for later. |
+| `benchmarks.html` | Benchmark ranking: every benchmark with published GeoFM results, scored by how reliably it separates models (share of the observed model spread that exceeds seed noise), with dataset-specific signal and redundancy-adjusted information from a latent-factor fit. Static, from papers. The expert pairwise arena is planned for later. |
 | `models.html` | Model ranking: every GeoFM with published results, by mean within-comparison z-score on independent evaluations (papers that did not introduce it), with self-reported results shown separately. Static, from papers. |
 | `domains.html` | 8 domains and 32 subdomains: framework anchors, sensors, datasets, benchmark status, gaps. |
 | `sensors.html` | Open EO sensors by type: resolution, revisit, status, licence, benchmark use. |
@@ -29,7 +29,8 @@ The explorer reads two files, so the taxonomy can be corrected without touching 
 - `data/tasks.json` and `data/sensor_specs.json`: task cards and band specifications.
 - `data/countries.geojson`: Natural Earth boundaries for the map.
 - `data/model_ranking.json`: per-model summary (independent and self-reported comparisons, mean z, win rate, fine-tuned vs frozen), overall and precomputed per domain and subdomain (`scopes`), built by `scripts/build_model_ranking.py`.
-- `data/evidence.json`: per-dataset summary of published GeoFM evidence (models, papers, spread, headroom, agreement with the consensus ranking, verdict) from a meta-analysis of 52 papers; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py`; see About → GeoFM evidence.
+- `data/evidence.json`: per-dataset scores from published GeoFM evidence following the lab's *GeoFM Benchmark Scoring* note: observed model spread, replicate (seed) noise where papers print it, the reliability score τ²/(τ²+σ²) with bootstrap intervals, effective discriminative information, dataset-specific signal and redundancy-adjusted information share from a latent-factor regression, per-comparison detail and a plain-English explanation; counts and statistics only, no individual scores. Built by `scripts/build_evidence.py` on top of `scripts/geofm_scoring.py`; see About → GeoFM evidence.
+- `data/benchmark_map.csv`: how each workbook benchmark id maps to a canonical dataset, an EOArena id (when the dataset is in the inventory), domain, subdomain and input kind. Hand-curated; correct it here when a mapping is wrong.
 - `data/footprints/<id>.json` and the combined `data/footprints.json`: sample-level footprints (chip, tile, field or site centroids, up to 3,000 per dataset) with the source file and method each came from; built by `scripts/footprints/<id>.py` and `scripts/footprints/build_index.py`. See `scripts/footprints/BRIEF.md` for the extraction rules.
 
 `scripts/export.py` writes machine-readable exports: a STAC catalogue (one Collection per dataset, `export/stac/`) and Croissant JSON-LD records (`export/croissant/`). Both validate against their official schemas.
