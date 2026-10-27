@@ -181,7 +181,13 @@ def task_table(cell, noise_agg):
         if not np.isfinite(s2): continue
         BS[:, j] = bootstrap_scores(cy[t], s2, T.at[t, "n_reps"], BOOT, rng)
         if T.at[t, "n_top"] < T.at[t, "n_models"]: BT[:, j] = bootstrap_scores(frontier(cy[t]), s2, T.at[t, "n_reps"], BOOT, rng)
-    T["score_lo"] = np.nanpercentile(BS, 5, axis=0); T["score_hi"] = np.nanpercentile(BS, 95, axis=0)
+    def shifted(B, point):
+        """Bootstrap percentile interval re-centred on the point estimate. Resampling 4-8 models with replacement
+        biases the variance (and so tau2 and the score) downward; shifting the bootstrap distribution so its mean
+        equals the point estimate removes that bias and keeps the point inside its own interval. Clipped to [0, 1]."""
+        m = np.nanmean(B, axis=0); sh = B - m[None, :] + np.asarray(point)[None, :]
+        return np.clip(np.nanpercentile(sh, 5, axis=0), 0, 1), np.clip(np.nanpercentile(sh, 95, axis=0), 0, 1)
+    T["score_lo"], T["score_hi"] = shifted(BS, T.score.values.astype(float))
     return T, BS, BT, plug_pf
 
 def attach_latent(T, bundle):
@@ -238,16 +244,20 @@ def score_block(Tg, V, cell):
     meas = use[use.sigma2_source == "measured"]
     d["n_reps"] = wmean(meas.n_reps, meas.n_models) if len(meas) else None; d["n_reps_known"] = bool(meas.n_reps_known.all()) if len(meas) else False
     d["edi"] = edi_of(d["score"]); d["edi_top"] = edi_of(d["score_top"])
-    for arr, lo, hi in ((V["BS"], "score_lo", "score_hi"), (V["BT"], "score_top_lo", "score_top_hi")):
-        if len(use):
+    for arr, lo, hi, pt in ((V["BS"], "score_lo", "score_hi", d["score"]), (V["BT"], "score_top_lo", "score_top_hi", d["score_top"])):
+        if len(use) and pt is not None:
             cols = [V["BSI"][t] for t in use.index]; w = use.n_models.values.astype(float); M = arr[:, cols]; ok = np.isfinite(M)
             den = (ok * w).sum(axis=1); agg = np.where(den > 0, np.nansum(M * w, axis=1) / np.maximum(den, 1e-12), np.nan)
-            d[lo], d[hi] = (rnd(np.nanpercentile(agg, 5)), rnd(np.nanpercentile(agg, 95))) if np.isfinite(agg).any() else (None, None)
+            if np.isfinite(agg).any():
+                sh = agg - np.nanmean(agg) + pt   # re-centre on the point estimate (see shifted() above)
+                d[lo], d[hi] = rnd(float(np.clip(np.nanpercentile(sh, 5), 0, 1))), rnd(float(np.clip(np.nanpercentile(sh, 95), 0, 1)))
+            else: d[lo] = d[hi] = None
         else: d[lo] = d[hi] = None
     d["score_all"] = wmean(Tg.score, Tg.n_models); d["self_share"] = wmean(Tg.self_share, Tg.n_models)
     d["verdict"] = verdict(d)
     for k in ("score", "score_top", "score_all", "sigma2", "self_share", "n_reps"): d[k] = rnd(d[k])
     d["noise_sd"] = rnd(d["noise_sd"], 2); d["edi"] = rnd(d["edi"], 1); d["edi_top"] = rnd(d["edi_top"], 1)
+    d["low_noise"] = bool(d["noise_sd"] is not None and d["noise_sd"] < 0.1)   # flag, not a floor: sigma below 0.1 pt makes EDI explode
     return d
 
 def latent_block(Tg, LT, w):
@@ -402,7 +412,7 @@ meta = {
                "from the same dataset, protocol family and metric (still counted as measured for the dataset), or the protocol-family median seed SD for points-scale metrics (provisional). "
                "tau2 = tau2_obs - sigma2/n_reps, where n_reps is the number of replicates behind each reported mean (seed-list length, the count the paper states, or 3 assumed; 1 for provisional tasks); EDI = tau2/sigma2; score = tau2/(tau2+sigma2) in [0,1]: "
                "the share of observed model spread that is repeatable. score_top repeats this on the leading half of each comparison (at least 4 models): the frontier score. A dataset's score is the model-count-weighted mean over its measured comparisons (provisional ones if none is measured); "
-               "90% intervals bootstrap the models within each comparison jointly. by_protocol repeats everything per dataset x protocol family. variants[noise|self] repeats the scores with the mean instead of the median seed variance and/or with self-reported cells dropped "
+               "90% intervals bootstrap the models within each comparison jointly, re-centred on the point estimate (resampling 4-8 models with replacement biases the variance down). low_noise flags a measured seed SD under 0.1 pt, where EDI is dominated by the noise denominator. by_protocol repeats everything per dataset x protocol family. variants[noise|self] repeats the scores with the mean instead of the median seed variance and/or with self-reported cells dropped "
                "(a comparison must keep >= 4 models). The latent-factor regression y = mu_t + lambda_t'theta_m + eta is fit by alternating ridge least squares on standardised imagery tasks; K is chosen by held-out-cell cross-validation (one-SE rule on RMSE) subject to bootstrap stability of the task geometry. "
                "unexplained_share = stable variation not captured by the K factors (diagnostic, not a penalty); info_share = Monte-Carlo Shapley share of log det(I + Lambda'C^-1 Lambda). latent_variants['3'] repeats these with ridge 3."),
     "verdicts": {"e_reliable": "Reliable discriminator: >= 80% of the model spread is repeatable (measured seed noise)", "e_moderate": "Moderate: 50-80% of the spread is repeatable (measured seed noise)",

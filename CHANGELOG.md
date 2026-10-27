@@ -2,6 +2,8 @@
 
 ## v0.3 — 2026-10-27
 
+- **Redesign after the user study** (`docs/user-study-2026-10-27/`). Benchmark ranking first screen: Benchmark · Verdict · Score (90% CI) · Models · Papers · Spread · Seed noise · Frontier · Suites, ordered by the scoring note (Eq. 6 score with interval first; evidence base; the score's two inputs; our frontier addition); EDI, dataset-specific signal, info share, comparisons, self-reported and domain behind *More diagnostics*. Default sort verdict → papers → score; ranks renumbered after filtering; sticky benchmark column; compact legend; `1 paper` tag; `σ < 0.1 pt` flag (a flag, not a floor). Score intervals re-centred on the point estimate. Analysis settings collapsed under *Advanced* with plain labels. Seeds box. Explorer: badge legend above the list; evidence panel leads with score · models · papers and one sentence, diagnostics behind a toggle; suite membership first in the drawer; `index.html?open=<id>` deep link used by the ranking and the map.
+
 - **Model ranking page removed** (the paper focuses on dataset ranking); `data/model_profiles.json` is still built for analysis.
 
 Benchmark scoring rebuilt on the lab's note *GeoFM Benchmark Scoring* (S. Wang, Oct 2026).

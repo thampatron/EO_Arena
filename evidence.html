@@ -45,6 +45,7 @@ table.tv{border-collapse:collapse;width:100%;font-size:13px}
 table.tv th,table.tv td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
 table.tv td.num,table.tv th.num{text-align:right;font-variant-numeric:tabular-nums}
 .count{font-size:13.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+details.adv{margin:0 0 12px}details.adv>summary{cursor:pointer;font-size:13px;color:var(--fg-2);list-style:none}details.adv>summary::-webkit-details-marker{display:none}details.adv>summary::before{content:'▸ '}details[open].adv>summary::before{content:'▾ '}details.adv .settings{margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -56,7 +57,7 @@ table.tv td.num,table.tv th.num{text-align:right;font-variant-numeric:tabular-nu
   </section>
 
   <section class="section">
-    <div id="settings"></div><p class="setnote" id="setnote" hidden></p>
+    <details class="adv"><summary>Advanced: alternative scoring choices</summary><div id="settings"></div></details><p class="setnote" id="setnote" hidden></p>
     <div class="ctrl">
       <label class="grp">X <select class="sel" id="x"></select><span id="xi"></span></label>
       <label class="grp">Y <select class="sel" id="y"></select><span id="yi"></span></label>
@@ -197,7 +198,7 @@ function showTT(i,el,pin){const r=ROWS[i];if(!r)return;const ax=AX[st.x],ay=AX[s
   tt.innerHTML=`<b>${esc(r.name)}</b>${r.listed?'':'<span class="unl">not in inventory</span>'}<p class="ttsub">${esc(r.domain.replace(/^\d · /,''))} · ${esc((r.subdomain||'').replace(/^\d\.\d /,''))} · ${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])} · ${VERD[r.verdict]||r.verdict}</p>
   <dl><dt>${esc(ax[1])}</dt><dd>${fmtVal(st.x,r[st.x])}</dd><dt>${esc(ay[1])}</dt><dd>${fmtVal(st.y,r[st.y])}</dd>${st.x!=='score'&&st.y!=='score'?`<dt>Score</dt><dd>${fmtVal('score',r.score)}${r.score!=null?` <span style="color:var(--fg-3)">${fmtVal('score',r.score_lo)}–${fmtVal('score',r.score_hi)}</span>`:''}</dd>`:''}<dt>Models · papers · comparisons</dt><dd>${r.models} · ${r.papers} · ${r.tasks_n}</dd>${r.noise_sd!=null?`<dt>Seed noise</dt><dd>${r.noise_sd.toFixed(2)} pts${r.measured?'':' (plug-in)'}</dd>`:''}</dl>
   <p class="expl">${esc((r.explanation||'').split('. ').slice(0,2).join('. '))}${r.explanation?'.':''}</p>
-  <p class="lnk">${r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.base_name||r.name)}">Ranking row →</a></p>`;
+  <p class="lnk">${r.listed?`<a href="index.html?open=${encodeURIComponent(r.id)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.base_name||r.name)}">Ranking row →</a></p>`;
   tt.hidden=false;tt.classList.toggle('pin',!!pin);
   const b=el.getBoundingClientRect();const w=tt.offsetWidth||320,h=tt.offsetHeight||160;
   let x=b.right+scrollX+10,y=b.top+scrollY-10;if(x+w>scrollX+innerWidth-12)x=b.left+scrollX-w-10;if(x<12)x=12;if(y+h>scrollY+innerHeight-12)y=Math.max(scrollY+12,b.bottom+scrollY-h);
@@ -208,7 +209,7 @@ function hideTT(){if(pinned!=null)return;tt.hidden=true;document.querySelectorAl
 document.addEventListener('mouseover',e=>{const p=e.target.closest('.pt');if(p&&pinned==null)showTT(+p.dataset.i,p,false);});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.pt')&&pinned==null)hideTT();});
 document.addEventListener('focusin',e=>{const p=e.target.closest('.pt');if(p)showTT(+p.dataset.i,p,false);});
-document.addEventListener('click',e=>{const p=e.target.closest('.pt');if(p){const i=+p.dataset.i;if(pinned===i){const r=ROWS[i];if(r.listed)location.href=`index.html?q=${encodeURIComponent(r.base_name||r.name)}`;return;}pinned=i;showTT(i,p,true);return;}if(!e.target.closest('.tt')){pinned=null;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}});
+document.addEventListener('click',e=>{const p=e.target.closest('.pt');if(p){const i=+p.dataset.i;if(pinned===i){const r=ROWS[i];if(r.listed)location.href=`index.html?open=${encodeURIComponent(r.id)}`;return;}pinned=i;showTT(i,p,true);return;}if(!e.target.closest('.tt')){pinned=null;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=null;tt.hidden=true;}});
 </script>
 </body>
