@@ -1,0 +1,6594 @@
+{
+ "as_of": "2026-10-27",
+ "K": 3,
+ "axes": [
+  {
+   "axis": 1,
+   "var_share": 0.595,
+   "high": [
+    {
+     "name": "Forest Loss Driver",
+     "loading": 0.165
+    },
+    {
+     "name": "BreizhCrops",
+     "loading": 0.161
+    },
+    {
+     "name": "NeuCo-Bench Crops",
+     "loading": 0.158
+    },
+    {
+     "name": "AWF",
+     "loading": 0.153
+    },
+    {
+     "name": "PASTIS / PASTIS-R",
+     "loading": 0.152
+    },
+    {
+     "name": "MMEarth-Bench species",
+     "loading": 0.152
+    },
+    {
+     "name": "Nandi",
+     "loading": 0.148
+    },
+    {
+     "name": "GEA North Africa",
+     "loading": 0.148
+    }
+   ],
+   "low": [
+    {
+     "name": "xBD / xView2",
+     "loading": -0.18
+    },
+    {
+     "name": "FLAIR / FLAIR 2",
+     "loading": -0.165
+    },
+    {
+     "name": "Five Billion Pixels",
+     "loading": -0.165
+    },
+    {
+     "name": "MineNetCD",
+     "loading": -0.16
+    },
+    {
+     "name": "CLCD",
+     "loading": -0.153
+    },
+    {
+     "name": "SmokePlume",
+     "loading": -0.152
+    },
+    {
+     "name": "RSBD",
+     "loading": -0.145
+    },
+    {
+     "name": "LEVIR-CD",
+     "loading": -0.136
+    }
+   ],
+   "assoc_r2": {
+    "domain": 0.119,
+    "subdomain": 0.197,
+    "task_type": 0.111,
+    "sensor": 0.391,
+    "pf": 0.04
+   }
+  },
+  {
+   "axis": 2,
+   "var_share": 0.289,
+   "high": [
+    {
+     "name": "OlmoEarth Vessel Type",
+     "loading": 0.18
+    },
+    {
+     "name": "OlmoEarth Vessel Length",
+     "loading": 0.151
+    },
+    {
+     "name": "GeoCrossBench Hurricane Harvey",
+     "loading": 0.136
+    },
+    {
+     "name": "Nandi",
+     "loading": 0.123
+    },
+    {
+     "name": "OlmoEarth Solar Farm",
+     "loading": 0.115
+    },
+    {
+     "name": "Forest Loss Driver",
+     "loading": 0.115
+    },
+    {
+     "name": "AWF",
+     "loading": 0.105
+    },
+    {
+     "name": "GEA North Africa",
+     "loading": 0.1
+    }
+   ],
+   "low": [
+    {
+     "name": "NeuCo-Bench Biomass",
+     "loading": -0.128
+    },
+    {
+     "name": "MMEarth-Bench Biomass",
+     "loading": -0.123
+    },
+    {
+     "name": "MMEarth-Bench soil nitrogen",
+     "loading": -0.114
+    },
+    {
+     "name": "NeuCo-Bench Heatisland",
+     "loading": -0.113
+    },
+    {
+     "name": "Fields of The World",
+     "loading": -0.103
+    },
+    {
+     "name": "MMEarth-Bench soil pH",
+     "loading": -0.102
+    },
+    {
+     "name": "Kuro Siwo (Flood-S1)",
+     "loading": -0.097
+    },
+    {
+     "name": "NeuCo-Bench Clouds",
+     "loading": -0.097
+    }
+   ],
+   "assoc_r2": {
+    "domain": 0.021,
+    "subdomain": 0.07,
+    "task_type": 0.158,
+    "sensor": 0.187,
+    "pf": 0.005
+   }
+  },
+  {
+   "axis": 3,
+   "var_share": 0.116,
+   "high": [
+    {
+     "name": "GEA North Africa",
+     "loading": 0.107
+    },
+    {
+     "name": "Live Fuel Moisture Content",
+     "loading": 0.092
+    },
+    {
+     "name": "OlmoEarth Solar Farm",
+     "loading": 0.073
+    },
+    {
+     "name": "OlmoEarth Mangrove",
+     "loading": 0.068
+    },
+    {
+     "name": "Substations",
+     "loading": 0.067
+    },
+    {
+     "name": "EverWatch",
+     "loading": 0.048
+    },
+    {
+     "name": "RESISC45 / UCMerced (EarthShift)",
+     "loading": 0.048
+    },
+    {
+     "name": "AI4Arctic / AutoICE",
+     "loading": 0.04
+    }
+   ],
+   "low": [
+    {
+     "name": "DynamicEarthNet",
+     "loading": -0.103
+    },
+    {
+     "name": "GEOID-Flood",
+     "loading": -0.096
+    },
+    {
+     "name": "Dynamic World training set",
+     "loading": -0.093
+    },
+    {
+     "name": "GloSoFarID",
+     "loading": -0.092
+    },
+    {
+     "name": "MARIDA",
+     "loading": -0.089
+    },
+    {
+     "name": "OlmoEarth Vessel Length",
+     "loading": -0.086
+    },
+    {
+     "name": "OMBRIA",
+     "loading": -0.075
+    },
+    {
+     "name": "MADOS",
+     "loading": -0.07
+    }
+   ],
+   "assoc_r2": {
+    "domain": 0.062,
+    "subdomain": 0.156,
+    "task_type": 0.104,
+    "sensor": 0.187,
+    "pf": 0.071
+   }
+  }
+ ],
+ "n_ranked": 91,
+ "method": "theta_m from the latent-factor regression y_mt = mu_t + lambda_t'theta_m + eta_mt (alternating ridge least squares, ridge 10, K factors chosen by held-out CV and bootstrap stability) on standardised imagery comparisons. Axes are the principal axes of the task loadings (a display convention: the fit is rotation-invariant), with Cov(theta) = I over models. general = mean over ALL imagery tasks of the predicted standardised score lambda_t'theta_m: the scalar a one-factor leaderboard would give, computed from the full profile. general_obs = the same mean over the tasks the model was actually evaluated on; mean_z_obs = the raw within-comparison z-score mean (the previous ranking). independent = fitted on evaluations by papers that did not introduce the model; all = every evaluation. Ranked with >= 10 independent tasks on >= 5 datasets.",
+ "models": [
+  {
+   "id": "croma_vitl",
+   "name": "croma_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     2.208,
+     -1.56,
+     -3.871
+    ],
+    "general": 0.168,
+    "general_obs": 0.278,
+    "mean_z_obs": 0.476,
+    "n_tasks": 317,
+    "n_datasets": 55
+   },
+   "independent": {
+    "theta": [
+     1.429,
+     3.677,
+     2.111
+    ],
+    "general": 0.168,
+    "general_obs": 0.286,
+    "mean_z_obs": 0.517,
+    "n_tasks": 294,
+    "n_datasets": 50
+   },
+   "ranked": true,
+   "rank": 1
+  },
+  {
+   "id": "croma_vitb",
+   "name": "croma_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     3.352,
+     -2.409,
+     -2.37
+    ],
+    "general": 0.182,
+    "general_obs": 0.13,
+    "mean_z_obs": 0.18,
+    "n_tasks": 225,
+    "n_datasets": 39
+   },
+   "independent": {
+    "theta": [
+     1.337,
+     4.704,
+     -0.042
+    ],
+    "general": 0.144,
+    "general_obs": 0.133,
+    "mean_z_obs": 0.204,
+    "n_tasks": 203,
+    "n_datasets": 36
+   },
+   "ranked": true,
+   "rank": 2
+  },
+  {
+   "id": "softcon",
+   "name": "softcon",
+   "backbone": "vit_b",
+   "pretraining_dataset": "ssl4eo_s12_ml",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.969,
+     1.964,
+     -0.037
+    ],
+    "general": 0.037,
+    "general_obs": 0.188,
+    "mean_z_obs": 0.367,
+    "n_tasks": 111,
+    "n_datasets": 29
+   },
+   "independent": {
+    "theta": [
+     2.589,
+     0.354,
+     -0.213
+    ],
+    "general": 0.11,
+    "general_obs": 0.213,
+    "mean_z_obs": 0.502,
+    "n_tasks": 111,
+    "n_datasets": 29
+   },
+   "ranked": true,
+   "rank": 3
+  },
+  {
+   "id": "spectralgpt",
+   "name": "spectralgpt",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow_s2_ben",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     2.497,
+     -0.29,
+     -1.235
+    ],
+    "general": 0.105,
+    "general_obs": 0.176,
+    "mean_z_obs": 0.097,
+    "n_tasks": 188,
+    "n_datasets": 35
+   },
+   "independent": {
+    "theta": [
+     1.837,
+     1.012,
+     0.446
+    ],
+    "general": 0.103,
+    "general_obs": 0.159,
+    "mean_z_obs": 0.074,
+    "n_tasks": 180,
+    "n_datasets": 31
+   },
+   "ranked": true,
+   "rank": 4
+  },
+  {
+   "id": "terramind_v1b",
+   "name": "terramind_v1b",
+   "backbone": "vit_b",
+   "pretraining_dataset": "terramesh",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.821,
+     -1.82,
+     -2.18
+    ],
+    "general": 0.12,
+    "general_obs": 0.084,
+    "mean_z_obs": 0.348,
+    "n_tasks": 162,
+    "n_datasets": 56
+   },
+   "independent": {
+    "theta": [
+     0.815,
+     2.923,
+     0.612
+    ],
+    "general": 0.099,
+    "general_obs": 0.093,
+    "mean_z_obs": 0.37,
+    "n_tasks": 153,
+    "n_datasets": 55
+   },
+   "ranked": true,
+   "rank": 5
+  },
+  {
+   "id": "dofa_vitb",
+   "name": "dofa_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "dofa_multisensor",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -1.62,
+     -2.3,
+     -5.719
+    ],
+    "general": 0.088,
+    "general_obs": 0.148,
+    "mean_z_obs": 0.201,
+    "n_tasks": 395,
+    "n_datasets": 61
+   },
+   "independent": {
+    "theta": [
+     -1.19,
+     1.661,
+     6.395
+    ],
+    "general": 0.096,
+    "general_obs": 0.16,
+    "mean_z_obs": 0.233,
+    "n_tasks": 379,
+    "n_datasets": 61
+   },
+   "ranked": true,
+   "rank": 6
+  },
+  {
+   "id": "terramind_v1l",
+   "name": "terramind_v1l",
+   "backbone": "vit_l",
+   "pretraining_dataset": "terramesh",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.29,
+     -1.362,
+     -3.128
+    ],
+    "general": 0.118,
+    "general_obs": 0.083,
+    "mean_z_obs": 0.441,
+    "n_tasks": 95,
+    "n_datasets": 35
+   },
+   "independent": {
+    "theta": [
+     0.622,
+     2.569,
+     1.19
+    ],
+    "general": 0.095,
+    "general_obs": 0.101,
+    "mean_z_obs": 0.436,
+    "n_tasks": 87,
+    "n_datasets": 34
+   },
+   "ranked": true,
+   "rank": 7
+  },
+  {
+   "id": "olmoearth_v1_base",
+   "name": "olmoearth_v1_base",
+   "backbone": "vit_b",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.555,
+     1.916,
+     -0.341
+    ],
+    "general": 0.031,
+    "general_obs": 0.264,
+    "mean_z_obs": 0.701,
+    "n_tasks": 63,
+    "n_datasets": 23
+   },
+   "independent": {
+    "theta": [
+     2.019,
+     0.051,
+     -0.461
+    ],
+    "general": 0.075,
+    "general_obs": 0.25,
+    "mean_z_obs": 0.808,
+    "n_tasks": 63,
+    "n_datasets": 23
+   },
+   "ranked": true,
+   "rank": 8
+  },
+  {
+   "id": "galileo_base",
+   "name": "galileo_base",
+   "backbone": "vit_b",
+   "pretraining_dataset": "galileo_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     3.479,
+     1.06,
+     -1.597
+    ],
+    "general": 0.132,
+    "general_obs": 0.401,
+    "mean_z_obs": 0.514,
+    "n_tasks": 140,
+    "n_datasets": 29
+   },
+   "independent": {
+    "theta": [
+     1.792,
+     0.211,
+     -0.493
+    ],
+    "general": 0.068,
+    "general_obs": 0.198,
+    "mean_z_obs": 0.204,
+    "n_tasks": 84,
+    "n_datasets": 29
+   },
+   "ranked": true,
+   "rank": 9
+  },
+  {
+   "id": "softcon_vits",
+   "name": "softcon_vits",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12_ml",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.268,
+     1.488,
+     -0.137
+    ],
+    "general": 0.021,
+    "general_obs": 0.239,
+    "mean_z_obs": 0.53,
+    "n_tasks": 52,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     1.69,
+     0.294,
+     -0.345
+    ],
+    "general": 0.068,
+    "general_obs": 0.252,
+    "mean_z_obs": 0.647,
+    "n_tasks": 52,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 10
+  },
+  {
+   "id": "olmoearth_v1_large",
+   "name": "olmoearth_v1_large",
+   "backbone": "vit_l",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.338,
+     1.801,
+     -0.181
+    ],
+    "general": 0.021,
+    "general_obs": 0.268,
+    "mean_z_obs": 0.551,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": {
+    "theta": [
+     1.786,
+     -0.152,
+     -0.451
+    ],
+    "general": 0.061,
+    "general_obs": 0.278,
+    "mean_z_obs": 0.822,
+    "n_tasks": 43,
+    "n_datasets": 19
+   },
+   "ranked": true,
+   "rank": 11
+  },
+  {
+   "id": "dinov2_vitb",
+   "name": "dinov2_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "lvd142m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.343,
+     1.244,
+     -2.077
+    ],
+    "general": 0.013,
+    "general_obs": 0.212,
+    "mean_z_obs": 0.649,
+    "n_tasks": 53,
+    "n_datasets": 21
+   },
+   "independent": {
+    "theta": [
+     0.623,
+     -0.538,
+     2.333
+    ],
+    "general": 0.056,
+    "general_obs": 0.176,
+    "mean_z_obs": 0.709,
+    "n_tasks": 53,
+    "n_datasets": 21
+   },
+   "ranked": true,
+   "rank": 12
+  },
+  {
+   "id": "ssl4eo_vits_dino",
+   "name": "ssl4eo_vits_dino",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     2.671,
+     -0.139,
+     1.894
+    ],
+    "general": 0.04,
+    "general_obs": 0.07,
+    "mean_z_obs": 0.068,
+    "n_tasks": 186,
+    "n_datasets": 37
+   },
+   "independent": {
+    "theta": [
+     2.138,
+     -0.61,
+     -1.086
+    ],
+    "general": 0.056,
+    "general_obs": 0.044,
+    "mean_z_obs": 0.068,
+    "n_tasks": 176,
+    "n_datasets": 37
+   },
+   "ranked": true,
+   "rank": 13
+  },
+  {
+   "id": "decur",
+   "name": "decur",
+   "backbone": "dual_branch",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.994,
+     1.682,
+     0.128
+    ],
+    "general": 0.004,
+    "general_obs": -0.159,
+    "mean_z_obs": -0.348,
+    "n_tasks": 59,
+    "n_datasets": 27
+   },
+   "independent": {
+    "theta": [
+     1.415,
+     -1.003,
+     0.915
+    ],
+    "general": 0.054,
+    "general_obs": -0.115,
+    "mean_z_obs": -0.435,
+    "n_tasks": 54,
+    "n_datasets": 26
+   },
+   "ranked": true,
+   "rank": 14
+  },
+  {
+   "id": "alphaearth",
+   "name": "alphaearth",
+   "backbone": "stp_vitl",
+   "pretraining_dataset": "alphaearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.37,
+     -0.396,
+     0.271
+    ],
+    "general": 0.035,
+    "general_obs": 0.08,
+    "mean_z_obs": 0.486,
+    "n_tasks": 48,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     1.333,
+     0.023,
+     -0.043
+    ],
+    "general": 0.053,
+    "general_obs": 0.05,
+    "mean_z_obs": 0.888,
+    "n_tasks": 42,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 15
+  },
+  {
+   "id": "panopticon",
+   "name": "panopticon",
+   "backbone": "vit_b",
+   "pretraining_dataset": "panopticon_mix",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.501,
+     1.388,
+     -2.924
+    ],
+    "general": 0.025,
+    "general_obs": 0.189,
+    "mean_z_obs": 0.462,
+    "n_tasks": 103,
+    "n_datasets": 35
+   },
+   "independent": {
+    "theta": [
+     0.783,
+     -0.933,
+     2.025
+    ],
+    "general": 0.049,
+    "general_obs": 0.159,
+    "mean_z_obs": 0.462,
+    "n_tasks": 69,
+    "n_datasets": 24
+   },
+   "ranked": true,
+   "rank": 16
+  },
+  {
+   "id": "skysense",
+   "name": "skysense",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.93,
+     -0.268,
+     -0.373
+    ],
+    "general": 0.033,
+    "general_obs": 0.163,
+    "mean_z_obs": 0.732,
+    "n_tasks": 31,
+    "n_datasets": 6
+   },
+   "independent": {
+    "theta": [
+     0.914,
+     0.37,
+     0.188
+    ],
+    "general": 0.046,
+    "general_obs": 0.184,
+    "mean_z_obs": 0.84,
+    "n_tasks": 31,
+    "n_datasets": 6
+   },
+   "ranked": true,
+   "rank": 17
+  },
+  {
+   "id": "resnet50_ssl4eo_dino",
+   "name": "resnet50_ssl4eo_dino",
+   "backbone": "resnet50",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.36,
+     0.896,
+     -0.018
+    ],
+    "general": 0.028,
+    "general_obs": -0.072,
+    "mean_z_obs": -0.086,
+    "n_tasks": 45,
+    "n_datasets": 28
+   },
+   "independent": {
+    "theta": [
+     1.241,
+     -0.852,
+     0.446
+    ],
+    "general": 0.041,
+    "general_obs": -0.07,
+    "mean_z_obs": -0.316,
+    "n_tasks": 35,
+    "n_datasets": 28
+   },
+   "ranked": true,
+   "rank": 18
+  },
+  {
+   "id": "ssl4eo_vits_moco",
+   "name": "ssl4eo_vits_moco",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     1.688,
+     -0.673,
+     1.032
+    ],
+    "general": 0.032,
+    "general_obs": 0.074,
+    "mean_z_obs": 0.2,
+    "n_tasks": 146,
+    "n_datasets": 24
+   },
+   "independent": {
+    "theta": [
+     1.282,
+     -0.243,
+     -0.374
+    ],
+    "general": 0.04,
+    "general_obs": 0.051,
+    "mean_z_obs": 0.172,
+    "n_tasks": 136,
+    "n_datasets": 21
+   },
+   "ranked": true,
+   "rank": 19
+  },
+  {
+   "id": "resnet50_ssl4eo_moco",
+   "name": "resnet50_ssl4eo_moco",
+   "backbone": "resnet50",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.124,
+     0.905,
+     0.011
+    ],
+    "general": 0.019,
+    "general_obs": -0.068,
+    "mean_z_obs": -0.012,
+    "n_tasks": 50,
+    "n_datasets": 30
+   },
+   "independent": {
+    "theta": [
+     0.992,
+     -0.988,
+     0.456
+    ],
+    "general": 0.028,
+    "general_obs": -0.054,
+    "mean_z_obs": -0.375,
+    "n_tasks": 37,
+    "n_datasets": 29
+   },
+   "ranked": true,
+   "rank": 20
+  },
+  {
+   "id": "ssl4eo_vits_data2vec",
+   "name": "ssl4eo_vits_data2vec",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     1.799,
+     0.302,
+     1.264
+    ],
+    "general": 0.02,
+    "general_obs": 0.05,
+    "mean_z_obs": 0.031,
+    "n_tasks": 138,
+    "n_datasets": 19
+   },
+   "independent": {
+    "theta": [
+     1.356,
+     -0.43,
+     -0.961
+    ],
+    "general": 0.028,
+    "general_obs": 0.038,
+    "mean_z_obs": -0.003,
+    "n_tasks": 128,
+    "n_datasets": 16
+   },
+   "ranked": true,
+   "rank": 21
+  },
+  {
+   "id": "satlas_s2_resnet50_si_ms",
+   "name": "satlas_s2_resnet50_si_ms",
+   "backbone": "resnet50",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     0.786,
+     1.614,
+     0.239
+    ],
+    "general": -0.005,
+    "general_obs": -0.21,
+    "mean_z_obs": -0.794,
+    "n_tasks": 30,
+    "n_datasets": 15
+   },
+   "independent": {
+    "theta": [
+     1.125,
+     -0.915,
+     -0.084
+    ],
+    "general": 0.025,
+    "general_obs": -0.187,
+    "mean_z_obs": -0.794,
+    "n_tasks": 30,
+    "n_datasets": 15
+   },
+   "ranked": true,
+   "rank": 22
+  },
+  {
+   "id": "olmoearth_v1_tiny",
+   "name": "olmoearth_v1_tiny",
+   "backbone": "vit_tiny",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.828,
+     1.195,
+     0.669
+    ],
+    "general": -0.009,
+    "general_obs": 0.181,
+    "mean_z_obs": 0.378,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": {
+    "theta": [
+     1.202,
+     -0.32,
+     -0.935
+    ],
+    "general": 0.024,
+    "general_obs": 0.178,
+    "mean_z_obs": 0.509,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "ranked": true,
+   "rank": 23
+  },
+  {
+   "id": "vitae_vitb",
+   "name": "vitae_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.335,
+     1.261,
+     -0.626
+    ],
+    "general": 0.003,
+    "general_obs": -0.064,
+    "mean_z_obs": -1.002,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     0.31,
+     0.765,
+     -0.039
+    ],
+    "general": 0.024,
+    "general_obs": 0.006,
+    "mean_z_obs": -0.811,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 24
+  },
+  {
+   "id": "copernicusfm",
+   "name": "copernicusfm",
+   "backbone": "vit_b",
+   "pretraining_dataset": "copernicus_pretrain",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.18,
+     -1.17,
+     -0.512
+    ],
+    "general": 0.021,
+    "general_obs": -0.049,
+    "mean_z_obs": 0.055,
+    "n_tasks": 71,
+    "n_datasets": 29
+   },
+   "independent": {
+    "theta": [
+     0.109,
+     0.273,
+     0.691
+    ],
+    "general": 0.019,
+    "general_obs": 0.018,
+    "mean_z_obs": 0.071,
+    "n_tasks": 62,
+    "n_datasets": 28
+   },
+   "ranked": true,
+   "rank": 25
+  },
+  {
+   "id": "vitb_supervised",
+   "name": "vitb_supervised",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.356,
+     0.007,
+     -0.13
+    ],
+    "general": 0.006,
+    "general_obs": 0.05,
+    "mean_z_obs": 0.269,
+    "n_tasks": 23,
+    "n_datasets": 10
+   },
+   "independent": {
+    "theta": [
+     0.426,
+     0.271,
+     -0.098
+    ],
+    "general": 0.018,
+    "general_obs": 0.056,
+    "mean_z_obs": 0.473,
+    "n_tasks": 23,
+    "n_datasets": 10
+   },
+   "ranked": true,
+   "rank": 26
+  },
+  {
+   "id": "vitb_augreg_in21k_ft_in1k",
+   "name": "vitb_augreg_in21k_ft_in1k",
+   "backbone": "vit_b",
+   "pretraining_dataset": "imagenet21k",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.222,
+     0.758,
+     -0.7
+    ],
+    "general": -0.009,
+    "general_obs": 0.181,
+    "mean_z_obs": 0.605,
+    "n_tasks": 20,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     0.317,
+     -0.582,
+     0.972
+    ],
+    "general": 0.017,
+    "general_obs": 0.141,
+    "mean_z_obs": 0.65,
+    "n_tasks": 20,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 27
+  },
+  {
+   "id": "prithvi_v1_100m",
+   "name": "prithvi_v1_100m",
+   "backbone": "vit_100m",
+   "pretraining_dataset": "hls",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     2.526,
+     0.922,
+     4.013
+    ],
+    "general": -0.024,
+    "general_obs": -0.052,
+    "mean_z_obs": -0.249,
+    "n_tasks": 245,
+    "n_datasets": 47
+   },
+   "independent": {
+    "theta": [
+     1.926,
+     -0.319,
+     -3.103
+    ],
+    "general": 0.015,
+    "general_obs": 0.007,
+    "mean_z_obs": -0.168,
+    "n_tasks": 226,
+    "n_datasets": 45
+   },
+   "ranked": true,
+   "rank": 28
+  },
+  {
+   "id": "decur_vits",
+   "name": "decur_vits",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.196,
+     2.29,
+     1.079
+    ],
+    "general": -0.051,
+    "general_obs": 0.069,
+    "mean_z_obs": 0.062,
+    "n_tasks": 59,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     1.463,
+     -1.619,
+     -0.725
+    ],
+    "general": 0.014,
+    "general_obs": 0.091,
+    "mean_z_obs": 0.175,
+    "n_tasks": 58,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 29
+  },
+  {
+   "id": "prithvi_v2_300m_tl",
+   "name": "prithvi_v2_300m_tl",
+   "backbone": "vit_300m",
+   "pretraining_dataset": "hls_v2",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.254,
+     -0.679,
+     -0.291
+    ],
+    "general": 0.013,
+    "general_obs": 0.042,
+    "mean_z_obs": 0.191,
+    "n_tasks": 46,
+    "n_datasets": 28
+   },
+   "independent": {
+    "theta": [
+     0.152,
+     0.482,
+     0.03
+    ],
+    "general": 0.013,
+    "general_obs": -0.005,
+    "mean_z_obs": 0.158,
+    "n_tasks": 27,
+    "n_datasets": 19
+   },
+   "ranked": true,
+   "rank": 30
+  },
+  {
+   "id": "satlas_s2_swinb_si_ms",
+   "name": "satlas_s2_swinb_si_ms",
+   "backbone": "swin_b",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     0.518,
+     0.527,
+     -0.397
+    ],
+    "general": 0.012,
+    "general_obs": -0.024,
+    "mean_z_obs": 0.008,
+    "n_tasks": 98,
+    "n_datasets": 23
+   },
+   "independent": {
+    "theta": [
+     0.27,
+     0.78,
+     -0.616
+    ],
+    "general": 0.012,
+    "general_obs": 0.005,
+    "mean_z_obs": 0.008,
+    "n_tasks": 98,
+    "n_datasets": 23
+   },
+   "ranked": true,
+   "rank": 31
+  },
+  {
+   "id": "unet_supervised",
+   "name": "unet_supervised",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.193,
+     0.095,
+     -0.009
+    ],
+    "general": -0.003,
+    "general_obs": 0.006,
+    "mean_z_obs": -0.063,
+    "n_tasks": 30,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     0.269,
+     0.081,
+     -0.024
+    ],
+    "general": 0.009,
+    "general_obs": 0.071,
+    "mean_z_obs": 0.453,
+    "n_tasks": 15,
+    "n_datasets": 5
+   },
+   "ranked": true,
+   "rank": 32
+  },
+  {
+   "id": "dofa_vitl",
+   "name": "dofa_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "dofa_multisensor",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.864,
+     -1.345,
+     -2.063
+    ],
+    "general": 0.022,
+    "general_obs": 0.02,
+    "mean_z_obs": 0.099,
+    "n_tasks": 143,
+    "n_datasets": 35
+   },
+   "independent": {
+    "theta": [
+     -0.703,
+     0.546,
+     1.668
+    ],
+    "general": 0.008,
+    "general_obs": -0.009,
+    "mean_z_obs": 0.05,
+    "n_tasks": 128,
+    "n_datasets": 33
+   },
+   "ranked": true,
+   "rank": 33
+  },
+  {
+   "id": "olmoearth_v1_nano",
+   "name": "olmoearth_v1_nano",
+   "backbone": "vit_nano",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.519,
+     -0.06,
+     0.685
+    ],
+    "general": -0.006,
+    "general_obs": 0.025,
+    "mean_z_obs": -0.156,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": {
+    "theta": [
+     0.545,
+     0.125,
+     -0.83
+    ],
+    "general": 0.007,
+    "general_obs": 0.074,
+    "mean_z_obs": -0.031,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "ranked": true,
+   "rank": 34
+  },
+  {
+   "id": "tessera",
+   "name": "tessera",
+   "backbone": "dual_ts_transformer",
+   "pretraining_dataset": "tessera_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.674,
+     -0.463,
+     0.274
+    ],
+    "general": 0.046,
+    "general_obs": 0.171,
+    "mean_z_obs": 0.799,
+    "n_tasks": 37,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     0.234,
+     0.031,
+     -0.014
+    ],
+    "general": 0.007,
+    "general_obs": -0.004,
+    "mean_z_obs": 0.658,
+    "n_tasks": 19,
+    "n_datasets": 7
+   },
+   "ranked": true,
+   "rank": 35
+  },
+  {
+   "id": "ofanet",
+   "name": "ofanet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.008,
+     0.023,
+     0.184
+    ],
+    "general": -0.014,
+    "general_obs": -0.014,
+    "mean_z_obs": -0.218,
+    "n_tasks": 11,
+    "n_datasets": 10
+   },
+   "independent": {
+    "theta": [
+     0.201,
+     -0.05,
+     0.138
+    ],
+    "general": 0.006,
+    "general_obs": 0.042,
+    "mean_z_obs": 0.641,
+    "n_tasks": 11,
+    "n_datasets": 10
+   },
+   "ranked": true,
+   "rank": 36
+  },
+  {
+   "id": "galileo_tiny",
+   "name": "galileo_tiny",
+   "backbone": "vit_tiny",
+   "pretraining_dataset": "galileo_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.026,
+     0.812,
+     0.078
+    ],
+    "general": 0.015,
+    "general_obs": 0.172,
+    "mean_z_obs": 0.292,
+    "n_tasks": 77,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     0.414,
+     -0.11,
+     -0.554
+    ],
+    "general": 0.002,
+    "general_obs": 0.036,
+    "mean_z_obs": 0.046,
+    "n_tasks": 21,
+    "n_datasets": 13
+   },
+   "ranked": true,
+   "rank": 37
+  },
+  {
+   "id": "presto",
+   "name": "presto",
+   "backbone": "ts_transformer",
+   "pretraining_dataset": "presto_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.151,
+     -0.282,
+     0.17
+    ],
+    "general": -0.015,
+    "general_obs": -0.042,
+    "mean_z_obs": 0.012,
+    "n_tasks": 26,
+    "n_datasets": 8
+   },
+   "independent": {
+    "theta": [
+     0.251,
+     -0.297,
+     0.026
+    ],
+    "general": 0.002,
+    "general_obs": 0.01,
+    "mean_z_obs": 0.318,
+    "n_tasks": 22,
+    "n_datasets": 8
+   },
+   "ranked": true,
+   "rank": 38
+  },
+  {
+   "id": "ibot_vitb",
+   "name": "ibot_vitb",
+   "backbone": "vit_b (size not stated verbatim; inferred from <100M param restriction)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.029,
+     0.008,
+     0.001
+    ],
+    "general": -0.01,
+    "general_obs": 0.032,
+    "mean_z_obs": 0.008,
+    "n_tasks": 20,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     0.065,
+     -0.103,
+     0.141
+    ],
+    "general": -0.0,
+    "general_obs": 0.002,
+    "mean_z_obs": 0.056,
+    "n_tasks": 20,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 39
+  },
+  {
+   "id": "vanilla_mae",
+   "name": "vanilla_mae",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.239,
+     -0.12,
+     0.812
+    ],
+    "general": -0.018,
+    "general_obs": -0.07,
+    "mean_z_obs": -0.548,
+    "n_tasks": 19,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     0.094,
+     0.031,
+     -0.055
+    ],
+    "general": -0.0,
+    "general_obs": 0.015,
+    "mean_z_obs": -0.224,
+    "n_tasks": 14,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 40
+  },
+  {
+   "id": "resnet50_random",
+   "name": "resnet50_random",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.681,
+     1.01,
+     -0.517
+    ],
+    "general": -0.031,
+    "general_obs": -0.081,
+    "mean_z_obs": -1.443,
+    "n_tasks": 22,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     0.33,
+     -0.64,
+     0.065
+    ],
+    "general": -0.001,
+    "general_obs": -0.028,
+    "mean_z_obs": -1.217,
+    "n_tasks": 13,
+    "n_datasets": 6
+   },
+   "ranked": true,
+   "rank": 41
+  },
+  {
+   "id": "satlas_swint",
+   "name": "satlas_swint",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.092,
+     -0.057,
+     0.094
+    ],
+    "general": -0.008,
+    "general_obs": -0.023,
+    "mean_z_obs": -0.143,
+    "n_tasks": 17,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     0.091,
+     -0.054,
+     -0.015
+    ],
+    "general": -0.001,
+    "general_obs": -0.031,
+    "mean_z_obs": -0.143,
+    "n_tasks": 17,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 42
+  },
+  {
+   "id": "vitb_ijepa",
+   "name": "vitb_ijepa",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.215,
+     -0.201,
+     0.006
+    ],
+    "general": -0.0,
+    "general_obs": -0.065,
+    "mean_z_obs": 0.028,
+    "n_tasks": 21,
+    "n_datasets": 7
+   },
+   "independent": {
+    "theta": [
+     0.091,
+     -0.127,
+     0.064
+    ],
+    "general": -0.001,
+    "general_obs": 0.007,
+    "mean_z_obs": 0.303,
+    "n_tasks": 21,
+    "n_datasets": 7
+   },
+   "ranked": true,
+   "rank": 43
+  },
+  {
+   "id": "vitl_imagenet",
+   "name": "vitl_imagenet",
+   "backbone": "vit_l",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     0.033,
+     -0.141,
+     -0.063
+    ],
+    "general": -0.005,
+    "general_obs": -0.024,
+    "mean_z_obs": -0.087,
+    "n_tasks": 14,
+    "n_datasets": 8
+   },
+   "independent": {
+    "theta": [
+     -0.042,
+     0.179,
+     0.005
+    ],
+    "general": -0.002,
+    "general_obs": 0.011,
+    "mean_z_obs": -0.282,
+    "n_tasks": 11,
+    "n_datasets": 6
+   },
+   "ranked": true,
+   "rank": 44
+  },
+  {
+   "id": "vitb_imagenet",
+   "name": "vitb_imagenet",
+   "backbone": "vit_b",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.037,
+     1.017,
+     0.126
+    ],
+    "general": -0.024,
+    "general_obs": -0.048,
+    "mean_z_obs": -0.76,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     0.151,
+     -0.326,
+     0.04
+    ],
+    "general": -0.003,
+    "general_obs": -0.001,
+    "mean_z_obs": -0.562,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 45
+  },
+  {
+   "id": "dinov3_sat_vit7b",
+   "name": "dinov3_sat_vit7b",
+   "backbone": "vit_7b",
+   "pretraining_dataset": "sat493m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.738,
+     -0.495,
+     -0.948
+    ],
+    "general": -0.008,
+    "general_obs": -0.119,
+    "mean_z_obs": -0.146,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     -0.384,
+     -0.04,
+     0.911
+    ],
+    "general": -0.004,
+    "general_obs": -0.074,
+    "mean_z_obs": -0.057,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "ranked": true,
+   "rank": 46
+  },
+  {
+   "id": "prithvi_v2_600m_tl",
+   "name": "prithvi_v2_600m_tl",
+   "backbone": "vit_600m",
+   "pretraining_dataset": "hls_v2",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.078,
+     -1.41,
+     -0.4
+    ],
+    "general": 0.017,
+    "general_obs": 0.091,
+    "mean_z_obs": 0.432,
+    "n_tasks": 53,
+    "n_datasets": 27
+   },
+   "independent": {
+    "theta": [
+     -0.211,
+     0.679,
+     -0.266
+    ],
+    "general": -0.004,
+    "general_obs": 0.032,
+    "mean_z_obs": 0.2,
+    "n_tasks": 34,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 47
+  },
+  {
+   "id": "swinb_imagenet_baseline",
+   "name": "swinb_imagenet_baseline",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.187,
+     -0.16,
+     0.023
+    ],
+    "general": -0.014,
+    "general_obs": -0.028,
+    "mean_z_obs": 0.189,
+    "n_tasks": 20,
+    "n_datasets": 8
+   },
+   "independent": {
+    "theta": [
+     -0.046,
+     0.051,
+     -0.085
+    ],
+    "general": -0.006,
+    "general_obs": 0.001,
+    "mean_z_obs": 0.346,
+    "n_tasks": 18,
+    "n_datasets": 7
+   },
+   "ranked": true,
+   "rank": 48
+  },
+  {
+   "id": "galileo",
+   "name": "galileo",
+   "backbone": "vit_b",
+   "pretraining_dataset": "galileo_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.069,
+     -0.142,
+     0.214
+    ],
+    "general": -0.015,
+    "general_obs": 0.019,
+    "mean_z_obs": -0.081,
+    "n_tasks": 41,
+    "n_datasets": 11
+   },
+   "independent": {
+    "theta": [
+     -0.05,
+     0.141,
+     -0.199
+    ],
+    "general": -0.007,
+    "general_obs": 0.014,
+    "mean_z_obs": 0.002,
+    "n_tasks": 41,
+    "n_datasets": 11
+   },
+   "ranked": true,
+   "rank": 49
+  },
+  {
+   "id": "prithvi_v2_600m",
+   "name": "prithvi_v2_600m",
+   "backbone": "vit_600m",
+   "pretraining_dataset": "hls_v2",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.001,
+     -1.892,
+     -0.262
+    ],
+    "general": 0.017,
+    "general_obs": -0.015,
+    "mean_z_obs": 0.358,
+    "n_tasks": 82,
+    "n_datasets": 32
+   },
+   "independent": {
+    "theta": [
+     -0.152,
+     0.173,
+     -0.0
+    ],
+    "general": -0.007,
+    "general_obs": -0.024,
+    "mean_z_obs": 0.09,
+    "n_tasks": 37,
+    "n_datasets": 21
+   },
+   "ranked": true,
+   "rank": 50
+  },
+  {
+   "id": "seco_resnet50",
+   "name": "seco_resnet50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "seco_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.09,
+     0.406,
+     0.213
+    ],
+    "general": -0.021,
+    "general_obs": -0.015,
+    "mean_z_obs": -0.031,
+    "n_tasks": 29,
+    "n_datasets": 11
+   },
+   "independent": {
+    "theta": [
+     0.106,
+     -0.413,
+     0.02
+    ],
+    "general": -0.007,
+    "general_obs": 0.008,
+    "mean_z_obs": 0.163,
+    "n_tasks": 29,
+    "n_datasets": 11
+   },
+   "ranked": true,
+   "rank": 51
+  },
+  {
+   "id": "vitb_torchvision_in1k",
+   "name": "vitb_torchvision_in1k",
+   "backbone": "vit_b",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.078,
+     0.105,
+     0.034
+    ],
+    "general": -0.014,
+    "general_obs": 0.012,
+    "mean_z_obs": -0.041,
+    "n_tasks": 20,
+    "n_datasets": 6
+   },
+   "independent": {
+    "theta": [
+     -0.027,
+     -0.185,
+     0.068
+    ],
+    "general": -0.007,
+    "general_obs": -0.002,
+    "mean_z_obs": -0.041,
+    "n_tasks": 20,
+    "n_datasets": 6
+   },
+   "ranked": true,
+   "rank": 52
+  },
+  {
+   "id": "clip_rn50",
+   "name": "clip_rn50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.44,
+     0.547,
+     0.068
+    ],
+    "general": -0.002,
+    "general_obs": -0.052,
+    "mean_z_obs": -0.49,
+    "n_tasks": 36,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     0.011,
+     -0.271,
+     0.024
+    ],
+    "general": -0.008,
+    "general_obs": 0.004,
+    "mean_z_obs": -0.07,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 53
+  },
+  {
+   "id": "satmae_vitl",
+   "name": "satmae_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.234,
+     -1.065,
+     -0.348
+    ],
+    "general": 0.002,
+    "general_obs": -0.044,
+    "mean_z_obs": -0.124,
+    "n_tasks": 105,
+    "n_datasets": 22
+   },
+   "independent": {
+    "theta": [
+     -0.412,
+     0.169,
+     0.519
+    ],
+    "general": -0.008,
+    "general_obs": -0.027,
+    "mean_z_obs": 0.025,
+    "n_tasks": 97,
+    "n_datasets": 21
+   },
+   "ranked": true,
+   "rank": 54
+  },
+  {
+   "id": "swav_resnet50",
+   "name": "swav_resnet50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.047,
+     0.131,
+     0.085
+    ],
+    "general": -0.014,
+    "general_obs": 0.018,
+    "mean_z_obs": -0.065,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     -0.04,
+     -0.113,
+     0.006
+    ],
+    "general": -0.008,
+    "general_obs": 0.007,
+    "mean_z_obs": 0.139,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 55
+  },
+  {
+   "id": "barlowtwins_resnet50",
+   "name": "barlowtwins_resnet50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.079,
+     -0.359,
+     0.059
+    ],
+    "general": -0.009,
+    "general_obs": 0.054,
+    "mean_z_obs": 0.292,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     -0.157,
+     0.056,
+     -0.018
+    ],
+    "general": -0.01,
+    "general_obs": 0.013,
+    "mean_z_obs": 0.511,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 56
+  },
+  {
+   "id": "vicreg_resnet50",
+   "name": "vicreg_resnet50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.073,
+     -0.184,
+     0.087
+    ],
+    "general": -0.012,
+    "general_obs": 0.041,
+    "mean_z_obs": 0.162,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     -0.123,
+     -0.026,
+     -0.008
+    ],
+    "general": -0.01,
+    "general_obs": 0.011,
+    "mean_z_obs": 0.381,
+    "n_tasks": 24,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 57
+  },
+  {
+   "id": "satclip",
+   "name": "satclip",
+   "backbone": "loc_siren_sh",
+   "pretraining_dataset": "s2_100k",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -1.297,
+     0.4,
+     -0.271
+    ],
+    "general": -0.051,
+    "general_obs": -0.204,
+    "mean_z_obs": -1.558,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": {
+    "theta": [
+     -0.18,
+     -0.006,
+     0.007
+    ],
+    "general": -0.011,
+    "general_obs": -0.019,
+    "mean_z_obs": -0.843,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "ranked": true,
+   "rank": 58
+  },
+  {
+   "id": "geoclip",
+   "name": "geoclip",
+   "backbone": "loc_rff",
+   "pretraining_dataset": "mp16",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -1.444,
+     0.442,
+     -0.297
+    ],
+    "general": -0.056,
+    "general_obs": -0.191,
+    "mean_z_obs": -0.99,
+    "n_tasks": 18,
+    "n_datasets": 8
+   },
+   "independent": {
+    "theta": [
+     -0.203,
+     -0.007,
+     0.007
+    ],
+    "general": -0.012,
+    "general_obs": -0.018,
+    "mean_z_obs": -0.326,
+    "n_tasks": 18,
+    "n_datasets": 8
+   },
+   "ranked": true,
+   "rank": 59
+  },
+  {
+   "id": "gfm_swin_swint",
+   "name": "gfm_swin_swint",
+   "backbone": "swin_t",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.63,
+     -0.137,
+     -0.588
+    ],
+    "general": -0.016,
+    "general_obs": 0.047,
+    "mean_z_obs": 0.697,
+    "n_tasks": 17,
+    "n_datasets": 12
+   },
+   "independent": {
+    "theta": [
+     -0.491,
+     -0.053,
+     0.639
+    ],
+    "general": -0.014,
+    "general_obs": 0.037,
+    "mean_z_obs": 0.697,
+    "n_tasks": 17,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 60
+  },
+  {
+   "id": "satlas_aerial_swinb_si",
+   "name": "satlas_aerial_swinb_si",
+   "backbone": "swin_b",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     -0.148,
+     0.098,
+     0.276
+    ],
+    "general": -0.021,
+    "general_obs": -0.033,
+    "mean_z_obs": -0.155,
+    "n_tasks": 19,
+    "n_datasets": 18
+   },
+   "independent": {
+    "theta": [
+     -0.063,
+     -0.236,
+     -0.169
+    ],
+    "general": -0.014,
+    "general_obs": -0.009,
+    "mean_z_obs": -0.155,
+    "n_tasks": 19,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 61
+  },
+  {
+   "id": "ramen",
+   "name": "ramen",
+   "backbone": "unknown",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.032,
+     0.293,
+     0.408
+    ],
+    "general": -0.02,
+    "general_obs": -0.007,
+    "mean_z_obs": -0.55,
+    "n_tasks": 15,
+    "n_datasets": 5
+   },
+   "independent": {
+    "theta": [
+     -0.005,
+     -0.175,
+     -0.399
+    ],
+    "general": -0.015,
+    "general_obs": -0.013,
+    "mean_z_obs": -0.55,
+    "n_tasks": 15,
+    "n_datasets": 5
+   },
+   "ranked": true,
+   "rank": 62
+  },
+  {
+   "id": "galileo_nano",
+   "name": "galileo_nano",
+   "backbone": "vit_nano",
+   "pretraining_dataset": "galileo_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -1.036,
+     0.083,
+     0.589
+    ],
+    "general": -0.058,
+    "general_obs": -0.178,
+    "mean_z_obs": -0.37,
+    "n_tasks": 77,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     0.015,
+     -0.462,
+     -0.298
+    ],
+    "general": -0.018,
+    "general_obs": -0.052,
+    "mean_z_obs": -0.106,
+    "n_tasks": 21,
+    "n_datasets": 13
+   },
+   "ranked": true,
+   "rank": 63
+  },
+  {
+   "id": "satlas_resnet50",
+   "name": "satlas_resnet50",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.147,
+     -0.129,
+     -0.012
+    ],
+    "general": -0.003,
+    "general_obs": -0.042,
+    "mean_z_obs": -0.184,
+    "n_tasks": 14,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     -0.27,
+     -0.198,
+     -0.024
+    ],
+    "general": -0.02,
+    "general_obs": -0.018,
+    "mean_z_obs": -0.73,
+    "n_tasks": 14,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 64
+  },
+  {
+   "id": "terrafm_vitb",
+   "name": "terrafm_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "terrafm_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.08,
+     0.63,
+     0.572
+    ],
+    "general": -0.026,
+    "general_obs": 0.036,
+    "mean_z_obs": 0.499,
+    "n_tasks": 54,
+    "n_datasets": 14
+   },
+   "independent": {
+    "theta": [
+     -0.146,
+     -0.554,
+     0.038
+    ],
+    "general": -0.02,
+    "general_obs": 0.004,
+    "mean_z_obs": 0.352,
+    "n_tasks": 40,
+    "n_datasets": 12
+   },
+   "ranked": true,
+   "rank": 65
+  },
+  {
+   "id": "dinov3_vit7b",
+   "name": "dinov3_vit7b",
+   "backbone": "vit_7b",
+   "pretraining_dataset": "lvd1689m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.9,
+     -0.643,
+     -0.41
+    ],
+    "general": -0.024,
+    "general_obs": -0.176,
+    "mean_z_obs": -0.534,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     -0.575,
+     -0.19,
+     0.587
+    ],
+    "general": -0.021,
+    "general_obs": -0.122,
+    "mean_z_obs": -0.429,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "ranked": true,
+   "rank": 66
+  },
+  {
+   "id": "satmae_pp",
+   "name": "satmae_pp",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.854,
+     -1.197,
+     -0.515
+    ],
+    "general": -0.014,
+    "general_obs": -0.159,
+    "mean_z_obs": -0.364,
+    "n_tasks": 55,
+    "n_datasets": 9
+   },
+   "independent": {
+    "theta": [
+     -0.804,
+     0.223,
+     0.674
+    ],
+    "general": -0.021,
+    "general_obs": -0.118,
+    "mean_z_obs": -0.262,
+    "n_tasks": 55,
+    "n_datasets": 9
+   },
+   "ranked": true,
+   "rank": 67
+  },
+  {
+   "id": "clay_vitb",
+   "name": "clay_vitb",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.253,
+     -2.516,
+     0.617
+    ],
+    "general": 0.012,
+    "general_obs": 0.127,
+    "mean_z_obs": 0.612,
+    "n_tasks": 62,
+    "n_datasets": 27
+   },
+   "independent": {
+    "theta": [
+     -0.784,
+     1.702,
+     -0.998
+    ],
+    "general": -0.023,
+    "general_obs": 0.113,
+    "mean_z_obs": 0.568,
+    "n_tasks": 62,
+    "n_datasets": 27
+   },
+   "ranked": true,
+   "rank": 68
+  },
+  {
+   "id": "ssl4eo_vits_mae",
+   "name": "ssl4eo_vits_mae",
+   "backbone": "vit_s",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     1.066,
+     0.347,
+     3.629
+    ],
+    "general": -0.058,
+    "general_obs": -0.097,
+    "mean_z_obs": -0.291,
+    "n_tasks": 198,
+    "n_datasets": 47
+   },
+   "independent": {
+    "theta": [
+     0.88,
+     -0.608,
+     -2.848
+    ],
+    "general": -0.031,
+    "general_obs": -0.072,
+    "mean_z_obs": -0.292,
+    "n_tasks": 188,
+    "n_datasets": 47
+   },
+   "ranked": true,
+   "rank": 69
+  },
+  {
+   "id": "clip_vit",
+   "name": "clip_vit",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.229,
+     -0.285,
+     0.35
+    ],
+    "general": -0.022,
+    "general_obs": 0.007,
+    "mean_z_obs": 0.195,
+    "n_tasks": 64,
+    "n_datasets": 18
+   },
+   "independent": {
+    "theta": [
+     -0.523,
+     -0.349,
+     -0.014
+    ],
+    "general": -0.033,
+    "general_obs": 0.024,
+    "mean_z_obs": 0.608,
+    "n_tasks": 52,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 70
+  },
+  {
+   "id": "vitb_random",
+   "name": "vitb_random",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.605,
+     -0.22,
+     -0.256
+    ],
+    "general": -0.021,
+    "general_obs": -0.031,
+    "mean_z_obs": -1.075,
+    "n_tasks": 27,
+    "n_datasets": 10
+   },
+   "independent": {
+    "theta": [
+     -0.532,
+     -0.358,
+     -0.062
+    ],
+    "general": -0.035,
+    "general_obs": -0.081,
+    "mean_z_obs": -0.971,
+    "n_tasks": 27,
+    "n_datasets": 10
+   },
+   "ranked": true,
+   "rank": 71
+  },
+  {
+   "id": "dinov3_vitb",
+   "name": "dinov3_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "lvd1689m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -1.107,
+     -0.991,
+     0.015
+    ],
+    "general": -0.036,
+    "general_obs": -0.127,
+    "mean_z_obs": -0.489,
+    "n_tasks": 36,
+    "n_datasets": 16
+   },
+   "independent": {
+    "theta": [
+     -0.812,
+     -0.309,
+     0.383
+    ],
+    "general": -0.037,
+    "general_obs": -0.101,
+    "mean_z_obs": -0.41,
+    "n_tasks": 36,
+    "n_datasets": 16
+   },
+   "ranked": true,
+   "rank": 72
+  },
+  {
+   "id": "dinov3_vith",
+   "name": "dinov3_vith",
+   "backbone": "vit_h_plus",
+   "pretraining_dataset": "lvd1689m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -1.108,
+     -0.855,
+     -0.057
+    ],
+    "general": -0.036,
+    "general_obs": -0.24,
+    "mean_z_obs": -0.872,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     -0.817,
+     -0.326,
+     0.39
+    ],
+    "general": -0.038,
+    "general_obs": -0.18,
+    "mean_z_obs": -0.762,
+    "n_tasks": 16,
+    "n_datasets": 13
+   },
+   "ranked": true,
+   "rank": 73
+  },
+  {
+   "id": "convnext_l_imagenet",
+   "name": "convnext_l_imagenet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.767,
+     -0.645,
+     0.387
+    ],
+    "general": -0.037,
+    "general_obs": 0.06,
+    "mean_z_obs": 0.691,
+    "n_tasks": 19,
+    "n_datasets": 18
+   },
+   "independent": {
+    "theta": [
+     -0.78,
+     0.068,
+     -0.371
+    ],
+    "general": -0.043,
+    "general_obs": 0.107,
+    "mean_z_obs": 0.691,
+    "n_tasks": 19,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 74
+  },
+  {
+   "id": "satmae_vitb",
+   "name": "satmae_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.886,
+     -1.114,
+     0.443
+    ],
+    "general": -0.037,
+    "general_obs": -0.175,
+    "mean_z_obs": -0.372,
+    "n_tasks": 75,
+    "n_datasets": 14
+   },
+   "independent": {
+    "theta": [
+     -0.866,
+     -0.627,
+     0.317
+    ],
+    "general": -0.047,
+    "general_obs": -0.127,
+    "mean_z_obs": -0.212,
+    "n_tasks": 74,
+    "n_datasets": 14
+   },
+   "ranked": true,
+   "rank": 75
+  },
+  {
+   "id": "dinov3_sat_vitl",
+   "name": "dinov3_sat_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "sat493m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -3.104,
+     -1.967,
+     -2.474
+    ],
+    "general": -0.038,
+    "general_obs": -0.086,
+    "mean_z_obs": -0.252,
+    "n_tasks": 98,
+    "n_datasets": 42
+   },
+   "independent": {
+    "theta": [
+     -2.365,
+     0.04,
+     2.956
+    ],
+    "general": -0.049,
+    "general_obs": -0.073,
+    "mean_z_obs": -0.195,
+    "n_tasks": 98,
+    "n_datasets": 42
+   },
+   "ranked": true,
+   "rank": 76
+  },
+  {
+   "id": "resnet50_imagenet",
+   "name": "resnet50_imagenet",
+   "backbone": "resnet50",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -1.151,
+     3.87,
+     1.805
+    ],
+    "general": -0.129,
+    "general_obs": -0.108,
+    "mean_z_obs": -0.38,
+    "n_tasks": 115,
+    "n_datasets": 44
+   },
+   "independent": {
+    "theta": [
+     0.621,
+     -4.127,
+     0.401
+    ],
+    "general": -0.05,
+    "general_obs": -0.063,
+    "mean_z_obs": -0.283,
+    "n_tasks": 113,
+    "n_datasets": 44
+   },
+   "ranked": true,
+   "rank": 77
+  },
+  {
+   "id": "clay",
+   "name": "clay",
+   "backbone": "vit_l",
+   "pretraining_dataset": "clay_multisensor",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -1.162,
+     -1.767,
+     0.227
+    ],
+    "general": -0.035,
+    "general_obs": -0.319,
+    "mean_z_obs": -0.733,
+    "n_tasks": 45,
+    "n_datasets": 22
+   },
+   "independent": {
+    "theta": [
+     -1.178,
+     -0.002,
+     0.003
+    ],
+    "general": -0.054,
+    "general_obs": -0.215,
+    "mean_z_obs": -0.611,
+    "n_tasks": 45,
+    "n_datasets": 22
+   },
+   "ranked": true,
+   "rank": 78
+  },
+  {
+   "id": "convnext_xl_imagenet",
+   "name": "convnext_xl_imagenet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.952,
+     -1.195,
+     0.644
+    ],
+    "general": -0.043,
+    "general_obs": 0.083,
+    "mean_z_obs": 0.68,
+    "n_tasks": 34,
+    "n_datasets": 18
+   },
+   "independent": {
+    "theta": [
+     -1.123,
+     0.282,
+     -0.647
+    ],
+    "general": -0.058,
+    "general_obs": 0.115,
+    "mean_z_obs": 0.68,
+    "n_tasks": 34,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 79
+  },
+  {
+   "id": "prithvi_v2_300m",
+   "name": "prithvi_v2_300m",
+   "backbone": "vit_300m",
+   "pretraining_dataset": "hls_v2",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.926,
+     -2.777,
+     0.54
+    ],
+    "general": -0.023,
+    "general_obs": -0.05,
+    "mean_z_obs": 0.015,
+    "n_tasks": 175,
+    "n_datasets": 34
+   },
+   "independent": {
+    "theta": [
+     -1.584,
+     0.738,
+     -0.135
+    ],
+    "general": -0.06,
+    "general_obs": -0.082,
+    "mean_z_obs": -0.053,
+    "n_tasks": 130,
+    "n_datasets": 24
+   },
+   "ranked": true,
+   "rank": 80
+  },
+  {
+   "id": "dinov3_convnext_l",
+   "name": "dinov3_convnext_l",
+   "backbone": "convnext_l",
+   "pretraining_dataset": "lvd1689m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -1.333,
+     -0.938,
+     0.352
+    ],
+    "general": -0.052,
+    "general_obs": 0.08,
+    "mean_z_obs": 0.285,
+    "n_tasks": 34,
+    "n_datasets": 18
+   },
+   "independent": {
+    "theta": [
+     -1.249,
+     -0.028,
+     -0.188
+    ],
+    "general": -0.061,
+    "general_obs": 0.11,
+    "mean_z_obs": 0.285,
+    "n_tasks": 34,
+    "n_datasets": 18
+   },
+   "ranked": true,
+   "rank": 81
+  },
+  {
+   "id": "mmearth_cnn_atto",
+   "name": "mmearth_cnn_atto",
+   "backbone": "convnextv2_atto",
+   "pretraining_dataset": "mmearth",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -1.577,
+     -1.079,
+     0.562
+    ],
+    "general": -0.063,
+    "general_obs": -0.227,
+    "mean_z_obs": -0.258,
+    "n_tasks": 70,
+    "n_datasets": 13
+   },
+   "independent": {
+    "theta": [
+     -1.091,
+     -0.874,
+     0.345
+    ],
+    "general": -0.061,
+    "general_obs": -0.238,
+    "mean_z_obs": -0.536,
+    "n_tasks": 54,
+    "n_datasets": 8
+   },
+   "ranked": true,
+   "rank": 82
+  },
+  {
+   "id": "satlas_s2_swint_si_ms",
+   "name": "satlas_s2_swint_si_ms",
+   "backbone": "swin_t",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     -1.393,
+     -0.643,
+     0.779
+    ],
+    "general": -0.067,
+    "general_obs": -0.287,
+    "mean_z_obs": -0.59,
+    "n_tasks": 48,
+    "n_datasets": 8
+   },
+   "independent": {
+    "theta": [
+     -0.911,
+     -1.057,
+     -0.021
+    ],
+    "general": -0.064,
+    "general_obs": -0.234,
+    "mean_z_obs": -0.541,
+    "n_tasks": 48,
+    "n_datasets": 8
+   },
+   "ranked": true,
+   "rank": 83
+  },
+  {
+   "id": "dinov3_vitl",
+   "name": "dinov3_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "lvd1689m",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -2.249,
+     -1.393,
+     -0.339
+    ],
+    "general": -0.063,
+    "general_obs": -0.041,
+    "mean_z_obs": 0.243,
+    "n_tasks": 50,
+    "n_datasets": 19
+   },
+   "independent": {
+    "theta": [
+     -1.787,
+     -0.435,
+     0.851
+    ],
+    "general": -0.073,
+    "general_obs": -0.041,
+    "mean_z_obs": 0.293,
+    "n_tasks": 50,
+    "n_datasets": 19
+   },
+   "ranked": true,
+   "rank": 84
+  },
+  {
+   "id": "senpamae",
+   "name": "senpamae",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.022,
+     -0.611,
+     3.061
+    ],
+    "general": -0.07,
+    "general_obs": -0.233,
+    "mean_z_obs": -1.492,
+    "n_tasks": 31,
+    "n_datasets": 16
+   },
+   "independent": {
+    "theta": [
+     -0.513,
+     -0.673,
+     -2.026
+    ],
+    "general": -0.076,
+    "general_obs": -0.191,
+    "mean_z_obs": -1.33,
+    "n_tasks": 31,
+    "n_datasets": 16
+   },
+   "ranked": true,
+   "rank": 85
+  },
+  {
+   "id": "satlas_s2_swinb_mi_ms",
+   "name": "satlas_s2_swinb_mi_ms",
+   "backbone": "swin_b",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     -2.131,
+     -1.702,
+     1.142
+    ],
+    "general": -0.089,
+    "general_obs": -0.257,
+    "mean_z_obs": -0.476,
+    "n_tasks": 96,
+    "n_datasets": 26
+   },
+   "independent": {
+    "theta": [
+     -1.668,
+     -0.738,
+     0.064
+    ],
+    "general": -0.088,
+    "general_obs": -0.221,
+    "mean_z_obs": -0.41,
+    "n_tasks": 96,
+    "n_datasets": 26
+   },
+   "ranked": true,
+   "rank": 86
+  },
+  {
+   "id": "anysat",
+   "name": "anysat",
+   "backbone": "vit_other",
+   "pretraining_dataset": "geoplex",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.013,
+     -5.763,
+     5.163
+    ],
+    "general": -0.03,
+    "general_obs": -0.467,
+    "mean_z_obs": -0.71,
+    "n_tasks": 180,
+    "n_datasets": 36
+   },
+   "independent": {
+    "theta": [
+     -2.503,
+     3.367,
+     -5.077
+    ],
+    "general": -0.14,
+    "general_obs": -0.38,
+    "mean_z_obs": -0.63,
+    "n_tasks": 170,
+    "n_datasets": 34
+   },
+   "ranked": true,
+   "rank": 87
+  },
+  {
+   "id": "satlas_swinb",
+   "name": "satlas_swinb",
+   "backbone": "swin_b",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     -2.153,
+     -0.019,
+     4.154
+    ],
+    "general": -0.174,
+    "general_obs": -0.256,
+    "mean_z_obs": -0.383,
+    "n_tasks": 200,
+    "n_datasets": 34
+   },
+   "independent": {
+    "theta": [
+     -0.953,
+     -3.919,
+     -1.609
+    ],
+    "general": -0.15,
+    "general_obs": -0.202,
+    "mean_z_obs": -0.322,
+    "n_tasks": 200,
+    "n_datasets": 34
+   },
+   "ranked": true,
+   "rank": 88
+  },
+  {
+   "id": "gfm_swinb",
+   "name": "gfm_swinb",
+   "backbone": "swin_b",
+   "pretraining_dataset": "geopile",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -4.332,
+     -0.002,
+     0.506
+    ],
+    "general": -0.166,
+    "general_obs": -0.146,
+    "mean_z_obs": -0.178,
+    "n_tasks": 158,
+    "n_datasets": 35
+   },
+   "independent": {
+    "theta": [
+     -3.418,
+     -1.542,
+     0.426
+    ],
+    "general": -0.172,
+    "general_obs": -0.169,
+    "mean_z_obs": -0.214,
+    "n_tasks": 149,
+    "n_datasets": 29
+   },
+   "ranked": true,
+   "rank": 89
+  },
+  {
+   "id": "scalemae_vitl",
+   "name": "scalemae_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -4.25,
+     6.276,
+     -1.969
+    ],
+    "general": -0.174,
+    "general_obs": -0.282,
+    "mean_z_obs": -0.439,
+    "n_tasks": 230,
+    "n_datasets": 48
+   },
+   "independent": {
+    "theta": [
+     -4.606,
+     3.402,
+     -2.853
+    ],
+    "general": -0.188,
+    "general_obs": -0.25,
+    "mean_z_obs": -0.411,
+    "n_tasks": 226,
+    "n_datasets": 47
+   },
+   "ranked": true,
+   "rank": 90
+  },
+  {
+   "id": "remoteclip",
+   "name": "remoteclip",
+   "backbone": "vit_l",
+   "pretraining_dataset": "remoteclip_corpus",
+   "category": "GFM_vlm",
+   "all": {
+    "theta": [
+     -5.427,
+     0.169,
+     1.502
+    ],
+    "general": -0.227,
+    "general_obs": -0.235,
+    "mean_z_obs": -0.469,
+    "n_tasks": 211,
+    "n_datasets": 53
+   },
+   "independent": {
+    "theta": [
+     -4.092,
+     -2.255,
+     0.065
+    ],
+    "general": -0.221,
+    "general_obs": -0.265,
+    "mean_z_obs": -0.556,
+    "n_tasks": 198,
+    "n_datasets": 42
+   },
+   "ranked": true,
+   "rank": 91
+  },
+  {
+   "id": "satlas_s1_swinb",
+   "name": "satlas_s1_swinb",
+   "backbone": "swin_b",
+   "pretraining_dataset": "satlas_pretrain",
+   "category": "GFM_supervised",
+   "all": {
+    "theta": [
+     0.989,
+     0.393,
+     -0.283
+    ],
+    "general": 0.026,
+    "general_obs": -0.153,
+    "mean_z_obs": -0.902,
+    "n_tasks": 24,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.761,
+     0.561,
+     -0.18
+    ],
+    "general": 0.036,
+    "general_obs": -0.126,
+    "mean_z_obs": -0.902,
+    "n_tasks": 24,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet18_random",
+   "name": "resnet18_random",
+   "backbone": "resnet18",
+   "pretraining_dataset": "none",
+   "category": "baseline_random",
+   "all": {
+    "theta": [
+     0.662,
+     0.962,
+     0.433
+    ],
+    "general": -0.007,
+    "general_obs": -0.151,
+    "mean_z_obs": -1.707,
+    "n_tasks": 12,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.757,
+     -0.334,
+     -0.422
+    ],
+    "general": 0.014,
+    "general_obs": -0.103,
+    "mean_z_obs": -1.707,
+    "n_tasks": 12,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "swin_t_imagenet",
+   "name": "swin_t_imagenet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.228,
+     -0.272,
+     -0.38
+    ],
+    "general": 0.01,
+    "general_obs": 0.057,
+    "mean_z_obs": 0.611,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.065,
+     0.455,
+     0.129
+    ],
+    "general": 0.01,
+    "general_obs": 0.07,
+    "mean_z_obs": 0.611,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "terramind_v1s",
+   "name": "terramind_v1s",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.159,
+     -0.025,
+     -0.303
+    ],
+    "general": 0.003,
+    "general_obs": -0.019,
+    "mean_z_obs": 0.202,
+    "n_tasks": 14,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.079,
+     0.255,
+     0.109
+    ],
+    "general": 0.007,
+    "general_obs": -0.007,
+    "mean_z_obs": 0.202,
+    "n_tasks": 14,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "terramind_v1t",
+   "name": "terramind_v1t",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.163,
+     -0.028,
+     -0.339
+    ],
+    "general": 0.004,
+    "general_obs": -0.013,
+    "mean_z_obs": 0.174,
+    "n_tasks": 16,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.071,
+     0.28,
+     0.126
+    ],
+    "general": 0.007,
+    "general_obs": -0.001,
+    "mean_z_obs": 0.174,
+    "n_tasks": 16,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "convnext_b_imagenet",
+   "name": "convnext_b_imagenet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.163,
+     -0.192,
+     -0.265
+    ],
+    "general": 0.004,
+    "general_obs": 0.03,
+    "mean_z_obs": 0.419,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.044,
+     0.318,
+     0.085
+    ],
+    "general": 0.006,
+    "general_obs": 0.044,
+    "mean_z_obs": 0.419,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "dinov3_unspecified",
+   "name": "dinov3_unspecified",
+   "backbone": "unknown",
+   "pretraining_dataset": "nan",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     0.06,
+     -0.306,
+     -0.078
+    ],
+    "general": -0.002,
+    "general_obs": -0.008,
+    "mean_z_obs": 1.028,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.113,
+     -0.094,
+     0.254
+    ],
+    "general": 0.004,
+    "general_obs": 0.079,
+    "mean_z_obs": 1.028,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "crossscale_mae",
+   "name": "crossscale_mae",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.017,
+     0.099,
+     0.352
+    ],
+    "general": -0.018,
+    "general_obs": -0.058,
+    "mean_z_obs": -0.976,
+    "n_tasks": 5,
+    "n_datasets": 4
+   },
+   "independent": {
+    "theta": [
+     0.073,
+     0.076,
+     -0.023
+    ],
+    "general": 0.0,
+    "general_obs": -0.003,
+    "mean_z_obs": -0.28,
+    "n_tasks": 5,
+    "n_datasets": 4
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "vitb_imagenet22k",
+   "name": "vitb_imagenet22k",
+   "backbone": "vit_b",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     0.092,
+     -0.138,
+     -0.089
+    ],
+    "general": -0.003,
+    "general_obs": 0.028,
+    "mean_z_obs": 0.193,
+    "n_tasks": 8,
+    "n_datasets": 4
+   },
+   "independent": {
+    "theta": [
+     -0.055,
+     0.262,
+     -0.004
+    ],
+    "general": -0.001,
+    "general_obs": 0.06,
+    "mean_z_obs": 0.55,
+    "n_tasks": 8,
+    "n_datasets": 4
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "u_tae_pastis_baseline",
+   "name": "u_tae_pastis_baseline",
+   "backbone": "transformer_other",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.035,
+     -0.048,
+     -0.042
+    ],
+    "general": -0.007,
+    "general_obs": 0.004,
+    "mean_z_obs": 0.905,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.015,
+     0.065,
+     0.014
+    ],
+    "general": -0.002,
+    "general_obs": 0.037,
+    "mean_z_obs": 1.438,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "cmid",
+   "name": "cmid",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.003,
+     -0.002,
+     -0.016
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.399,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.006,
+     0.003,
+     0.001
+    ],
+    "general": -0.003,
+    "general_obs": 0.009,
+    "mean_z_obs": 0.574,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "convmae_convvitl",
+   "name": "convmae_convvitl",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.069,
+     -0.036,
+     0.142
+    ],
+    "general": -0.01,
+    "general_obs": -0.084,
+    "mean_z_obs": -0.918,
+    "n_tasks": 6,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.033,
+     -0.022,
+     0.012
+    ],
+    "general": -0.003,
+    "general_obs": -0.048,
+    "mean_z_obs": -0.946,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "gps2vec",
+   "name": "gps2vec",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.04,
+     -0.012,
+     0.008
+    ],
+    "general": -0.008,
+    "general_obs": -0.014,
+    "mean_z_obs": -0.712,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.006,
+     0.0,
+     -0.0
+    ],
+    "general": -0.003,
+    "general_obs": -0.0,
+    "mean_z_obs": -0.712,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "gps2vec_visual",
+   "name": "gps2vec_visual",
+   "backbone": "loc_grid",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.058,
+     -0.018,
+     0.012
+    ],
+    "general": -0.007,
+    "general_obs": -0.015,
+    "mean_z_obs": -1.034,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.009,
+     0.0,
+     -0.0
+    ],
+    "general": -0.003,
+    "general_obs": -0.0,
+    "mean_z_obs": -1.034,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "matter",
+   "name": "matter",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.036,
+     -0.041,
+     -0.014
+    ],
+    "general": -0.01,
+    "general_obs": -0.012,
+    "mean_z_obs": 0.94,
+    "n_tasks": 3,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.005,
+     0.045,
+     -0.009
+    ],
+    "general": -0.003,
+    "general_obs": 0.004,
+    "mean_z_obs": 0.969,
+    "n_tasks": 3,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "omnisat",
+   "name": "omnisat",
+   "backbone": "dual_branch",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.01,
+     -0.054,
+     0.044
+    ],
+    "general": -0.009,
+    "general_obs": -0.068,
+    "mean_z_obs": 0.724,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.009,
+     0.012,
+     0.032
+    ],
+    "general": -0.003,
+    "general_obs": -0.063,
+    "mean_z_obs": 0.916,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "prithvi_v2_100m",
+   "name": "prithvi_v2_100m",
+   "backbone": "vit_100m",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.014,
+     -0.009,
+     -0.006
+    ],
+    "general": -0.008,
+    "general_obs": -0.003,
+    "mean_z_obs": -0.018,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.005,
+     0.011,
+     -0.001
+    ],
+    "general": -0.003,
+    "general_obs": 0.006,
+    "mean_z_obs": -0.018,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet18_baseline",
+   "name": "resnet18_baseline",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.128,
+     0.029,
+     0.058
+    ],
+    "general": -0.015,
+    "general_obs": 0.013,
+    "mean_z_obs": -1.558,
+    "n_tasks": 5,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.042,
+     0.145,
+     -0.016
+    ],
+    "general": -0.003,
+    "general_obs": -0.033,
+    "mean_z_obs": -1.264,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ringmo",
+   "name": "ringmo",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.005,
+     -0.003,
+     -0.023
+    ],
+    "general": -0.008,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.572,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.008,
+     0.004,
+     0.002
+    ],
+    "general": -0.003,
+    "general_obs": 0.009,
+    "mean_z_obs": 0.752,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "skysense_v2",
+   "name": "skysense_v2",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.011,
+     -0.006,
+     -0.055
+    ],
+    "general": -0.008,
+    "general_obs": 0.001,
+    "mean_z_obs": 1.36,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.016,
+     0.008,
+     0.004
+    ],
+    "general": -0.003,
+    "general_obs": 0.01,
+    "mean_z_obs": 1.565,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "caco",
+   "name": "caco",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.012,
+     0.006,
+     0.056
+    ],
+    "general": -0.011,
+    "general_obs": -0.003,
+    "mean_z_obs": -1.396,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.014,
+     -0.006,
+     -0.003
+    ],
+    "general": -0.004,
+    "general_obs": 0.009,
+    "mean_z_obs": -1.278,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_fmow",
+   "name": "csp_fmow",
+   "backbone": "loc_space2vec",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -0.005,
+     0.001,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": -0.004,
+    "mean_z_obs": 0.435,
+    "n_tasks": 6,
+    "n_datasets": 3
+   },
+   "independent": {
+    "theta": [
+     -0.001,
+     -0.0,
+     0.0
+    ],
+    "general": -0.004,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.073,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_inat",
+   "name": "csp_inat",
+   "backbone": "loc_space2vec",
+   "pretraining_dataset": "inat",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     0.024,
+     -0.007,
+     0.005
+    ],
+    "general": -0.008,
+    "general_obs": -0.013,
+    "mean_z_obs": -0.422,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.004,
+     0.0,
+     -0.0
+    ],
+    "general": -0.004,
+    "general_obs": -0.0,
+    "mean_z_obs": -0.422,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "gassl",
+   "name": "gassl",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.012,
+     0.06,
+     0.028
+    ],
+    "general": -0.011,
+    "general_obs": -0.018,
+    "mean_z_obs": -0.226,
+    "n_tasks": 12,
+    "n_datasets": 7
+   },
+   "independent": {
+    "theta": [
+     -0.01,
+     -0.001,
+     -0.002
+    ],
+    "general": -0.004,
+    "general_obs": 0.001,
+    "mean_z_obs": 0.092,
+    "n_tasks": 8,
+    "n_datasets": 6
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "mlp",
+   "name": "mlp",
+   "backbone": "mlp",
+   "pretraining_dataset": "none",
+   "category": "task_architecture",
+   "all": {
+    "theta": [
+     -0.005,
+     0.002,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": -0.011,
+    "mean_z_obs": 0.088,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.001,
+     -0.0,
+     0.0
+    ],
+    "general": -0.004,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.088,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "mmearth_imagenet_mae_atto",
+   "name": "mmearth_imagenet_mae_atto",
+   "backbone": "convnextv2_atto",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.08,
+     0.039,
+     -0.032
+    ],
+    "general": -0.006,
+    "general_obs": -0.02,
+    "mean_z_obs": -0.723,
+    "n_tasks": 6,
+    "n_datasets": 4
+   },
+   "independent": {
+    "theta": [
+     -0.004,
+     0.015,
+     -0.001
+    ],
+    "general": -0.004,
+    "general_obs": -0.0,
+    "mean_z_obs": -0.334,
+    "n_tasks": 6,
+    "n_datasets": 4
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "mosaiks",
+   "name": "mosaiks",
+   "backbone": "random_features",
+   "pretraining_dataset": "none",
+   "category": "feature_baseline",
+   "all": {
+    "theta": [
+     -0.001,
+     0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.011,
+    "mean_z_obs": 0.013,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.004,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.013,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet18_imagenet",
+   "name": "resnet18_imagenet",
+   "backbone": "resnet18",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.003,
+     0.0,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": 0.022,
+    "mean_z_obs": 0.054,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.009,
+     -0.032,
+     0.004
+    ],
+    "general": -0.004,
+    "general_obs": -0.025,
+    "mean_z_obs": 0.241,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "rvsa",
+   "name": "rvsa",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     0.0,
+     0.001
+    ],
+    "general": -0.009,
+    "general_obs": -0.001,
+    "mean_z_obs": -0.015,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.001,
+     0.001,
+     0.0
+    ],
+    "general": -0.004,
+    "general_obs": 0.009,
+    "mean_z_obs": 0.147,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satlas_vitb",
+   "name": "satlas_vitb",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.001,
+     -0.001,
+     -0.007
+    ],
+    "general": -0.009,
+    "general_obs": -0.001,
+    "mean_z_obs": 0.178,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.004,
+     0.002,
+     0.001
+    ],
+    "general": -0.004,
+    "general_obs": 0.009,
+    "mean_z_obs": 0.346,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satvit_v2",
+   "name": "satvit_v2",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.009,
+     -0.015,
+     -0.044
+    ],
+    "general": -0.008,
+    "general_obs": -0.071,
+    "mean_z_obs": 0.157,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.035,
+     0.006,
+     0.043
+    ],
+    "general": -0.004,
+    "general_obs": 0.033,
+    "mean_z_obs": 0.639,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "seco_resnet18",
+   "name": "seco_resnet18",
+   "backbone": "resnet18",
+   "pretraining_dataset": "seco_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.049,
+     -0.011,
+     -0.022
+    ],
+    "general": -0.007,
+    "general_obs": 0.024,
+    "mean_z_obs": 0.65,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     0.027,
+     -0.096,
+     0.011
+    ],
+    "general": -0.004,
+    "general_obs": -0.022,
+    "mean_z_obs": 0.792,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "segformer_mitb0",
+   "name": "segformer_mitb0",
+   "backbone": "mit_b0",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.097,
+     -0.038,
+     -0.159
+    ],
+    "general": -0.008,
+    "general_obs": -0.006,
+    "mean_z_obs": 0.494,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.079,
+     0.017,
+     0.138
+    ],
+    "general": -0.004,
+    "general_obs": -0.012,
+    "mean_z_obs": 0.494,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "smarties_vitl",
+   "name": "smarties_vitl",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.003,
+     0.006,
+     0.014
+    ],
+    "general": -0.009,
+    "general_obs": -0.082,
+    "mean_z_obs": -0.301,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.006,
+     0.002,
+     0.003
+    ],
+    "general": -0.004,
+    "general_obs": -0.045,
+    "mean_z_obs": 0.325,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_resnet50_moco_repro_bigearthnet_allbands",
+   "name": "ssl4eo_resnet50_moco_repro_bigearthnet_allbands",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.035,
+     -0.053,
+     -0.021
+    ],
+    "general": -0.009,
+    "general_obs": -0.073,
+    "mean_z_obs": -0.42,
+    "n_tasks": 8,
+    "n_datasets": 3
+   },
+   "independent": {
+    "theta": [
+     -0.012,
+     0.022,
+     -0.002
+    ],
+    "general": -0.004,
+    "general_obs": 0.002,
+    "mean_z_obs": 0.876,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_resnet50_moco_repro_seco",
+   "name": "ssl4eo_resnet50_moco_repro_seco",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.075,
+     -0.004,
+     -0.03
+    ],
+    "general": -0.011,
+    "general_obs": -0.053,
+    "mean_z_obs": -0.125,
+    "n_tasks": 6,
+    "n_datasets": 3
+   },
+   "independent": {
+    "theta": [
+     -0.002,
+     0.004,
+     -0.0
+    ],
+    "general": -0.004,
+    "general_obs": 0.002,
+    "mean_z_obs": 0.136,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_resnet50_moco_repro_sen12ms_allbands",
+   "name": "ssl4eo_resnet50_moco_repro_sen12ms_allbands",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.101,
+     -0.028,
+     0.054
+    ],
+    "general": -0.007,
+    "general_obs": -0.039,
+    "mean_z_obs": 0.421,
+    "n_tasks": 6,
+    "n_datasets": 3
+   },
+   "independent": {
+    "theta": [
+     -0.011,
+     0.021,
+     -0.002
+    ],
+    "general": -0.004,
+    "general_obs": 0.002,
+    "mean_z_obs": 0.84,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_resnet50_moco_repro_sen12ms_rgb",
+   "name": "ssl4eo_resnet50_moco_repro_sen12ms_rgb",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.052,
+     -0.008,
+     0.026
+    ],
+    "general": -0.008,
+    "general_obs": -0.089,
+    "mean_z_obs": 0.177,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.008,
+     0.016,
+     -0.002
+    ],
+    "general": -0.004,
+    "general_obs": 0.002,
+    "mean_z_obs": 0.624,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "tov",
+   "name": "tov",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.006,
+     0.003,
+     0.027
+    ],
+    "general": -0.01,
+    "general_obs": -0.002,
+    "mean_z_obs": -0.685,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.006,
+     -0.003,
+     -0.001
+    ],
+    "general": -0.004,
+    "general_obs": 0.009,
+    "mean_z_obs": -0.544,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "utt",
+   "name": "utt",
+   "backbone": "cnn",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.012,
+     0.046,
+     -0.052
+    ],
+    "general": -0.009,
+    "general_obs": -0.075,
+    "mean_z_obs": -0.801,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.003,
+     -0.004,
+     -0.012
+    ],
+    "general": -0.004,
+    "general_obs": -0.065,
+    "mean_z_obs": -0.42,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "vits_random",
+   "name": "vits_random",
+   "backbone": "vit_s",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.595,
+     0.047,
+     -0.353
+    ],
+    "general": -0.022,
+    "general_obs": -0.15,
+    "mean_z_obs": -1.865,
+    "n_tasks": 7,
+    "n_datasets": 4
+   },
+   "independent": {
+    "theta": [
+     0.017,
+     -0.033,
+     0.003
+    ],
+    "general": -0.004,
+    "general_obs": 0.001,
+    "mean_z_obs": -1.274,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "convnext",
+   "name": "convnext",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.081,
+     -0.018,
+     -0.115
+    ],
+    "general": -0.009,
+    "general_obs": -0.008,
+    "mean_z_obs": 0.376,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.065,
+     0.004,
+     0.098
+    ],
+    "general": -0.005,
+    "general_obs": -0.013,
+    "mean_z_obs": 0.376,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_vits_unspecified",
+   "name": "ssl4eo_vits_unspecified",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.016,
+     0.009,
+     0.074
+    ],
+    "general": -0.011,
+    "general_obs": -0.004,
+    "mean_z_obs": -1.854,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.018,
+     -0.009,
+     -0.004
+    ],
+    "general": -0.005,
+    "general_obs": 0.008,
+    "mean_z_obs": -1.75,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "fgmae",
+   "name": "fgmae",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.042,
+     -0.051,
+     0.236
+    ],
+    "general": -0.013,
+    "general_obs": 0.002,
+    "mean_z_obs": -0.444,
+    "n_tasks": 6,
+    "n_datasets": 6
+   },
+   "independent": {
+    "theta": [
+     -0.006,
+     -0.133,
+     0.053
+    ],
+    "general": -0.006,
+    "general_obs": 0.06,
+    "mean_z_obs": 0.099,
+    "n_tasks": 6,
+    "n_datasets": 6
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_stack",
+   "name": "satmae_stack",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.048,
+     0.094,
+     0.191
+    ],
+    "general": -0.013,
+    "general_obs": -0.019,
+    "mean_z_obs": -0.72,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     0.038,
+     -0.065,
+     -0.192
+    ],
+    "general": -0.007,
+    "general_obs": -0.024,
+    "mean_z_obs": -0.72,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "scalemae_vitb",
+   "name": "scalemae_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.1,
+     0.035,
+     -0.0
+    ],
+    "general": -0.013,
+    "general_obs": -0.011,
+    "mean_z_obs": -0.15,
+    "n_tasks": 3,
+    "n_datasets": 3
+   },
+   "independent": {
+    "theta": [
+     -0.076,
+     -0.014,
+     0.008
+    ],
+    "general": -0.007,
+    "general_obs": 0.01,
+    "mean_z_obs": -0.797,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet50_baseline",
+   "name": "resnet50_baseline",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -1.483,
+     1.536,
+     1.114
+    ],
+    "general": -0.1,
+    "general_obs": -0.323,
+    "mean_z_obs": -1.78,
+    "n_tasks": 23,
+    "n_datasets": 4
+   },
+   "independent": {
+    "theta": [
+     -0.38,
+     0.685,
+     -0.118
+    ],
+    "general": -0.009,
+    "general_obs": -0.034,
+    "mean_z_obs": -1.513,
+    "n_tasks": 22,
+    "n_datasets": 4
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "convnext_t_imagenet",
+   "name": "convnext_t_imagenet",
+   "backbone": "nan",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.096,
+     0.122,
+     0.179
+    ],
+    "general": -0.018,
+    "general_obs": -0.075,
+    "mean_z_obs": -0.326,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.031,
+     -0.221,
+     -0.076
+    ],
+    "general": -0.011,
+    "general_obs": -0.057,
+    "mean_z_obs": -0.326,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "climax",
+   "name": "climax",
+   "backbone": "vit_other",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.012,
+     0.183,
+     0.244
+    ],
+    "general": -0.017,
+    "general_obs": -0.022,
+    "mean_z_obs": -1.29,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "independent": {
+    "theta": [
+     -0.008,
+     -0.138,
+     -0.268
+    ],
+    "general": -0.012,
+    "general_obs": -0.028,
+    "mean_z_obs": -1.29,
+    "n_tasks": 8,
+    "n_datasets": 2
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "olmoearth_v11_base",
+   "name": "olmoearth_v11_base",
+   "backbone": "vit_b",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.335,
+     -0.15,
+     0.072
+    ],
+    "general": -0.02,
+    "general_obs": -0.001,
+    "mean_z_obs": 0.269,
+    "n_tasks": 24,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.239,
+     -0.168,
+     0.064
+    ],
+    "general": -0.016,
+    "general_obs": 0.016,
+    "mean_z_obs": 0.269,
+    "n_tasks": 24,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet50_ssl4eo_moco_s1",
+   "name": "resnet50_ssl4eo_moco_s1",
+   "backbone": "resnet50",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.379,
+     0.478,
+     0.667
+    ],
+    "general": -0.042,
+    "general_obs": -0.202,
+    "mean_z_obs": -0.677,
+    "n_tasks": 14,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.11,
+     -0.816,
+     -0.253
+    ],
+    "general": -0.029,
+    "general_obs": -0.192,
+    "mean_z_obs": -0.677,
+    "n_tasks": 14,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet101_imagenet",
+   "name": "resnet101_imagenet",
+   "backbone": "resnet101",
+   "pretraining_dataset": "imagenet",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.579,
+     0.718,
+     1.018
+    ],
+    "general": -0.059,
+    "general_obs": -0.275,
+    "mean_z_obs": -1.723,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "independent": {
+    "theta": [
+     -0.166,
+     -1.239,
+     -0.382
+    ],
+    "general": -0.042,
+    "general_obs": -0.248,
+    "mean_z_obs": -1.723,
+    "n_tasks": 7,
+    "n_datasets": 1
+   },
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_all_four",
+   "name": "bt_fused_all_four",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.652,
+     -0.202,
+     0.137
+    ],
+    "general": 0.012,
+    "general_obs": 0.059,
+    "mean_z_obs": 0.774,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_alphaearth_geoclip",
+   "name": "bt_fused_alphaearth_geoclip",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.476,
+     -0.147,
+     0.099
+    ],
+    "general": 0.006,
+    "general_obs": 0.035,
+    "mean_z_obs": 0.518,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_alphaearth_satclip",
+   "name": "bt_fused_alphaearth_satclip",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.606,
+     -0.186,
+     0.126
+    ],
+    "general": 0.01,
+    "general_obs": 0.052,
+    "mean_z_obs": 0.623,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_alphaearth_tessera",
+   "name": "bt_fused_alphaearth_tessera",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.778,
+     -0.238,
+     0.16
+    ],
+    "general": 0.016,
+    "general_obs": 0.075,
+    "mean_z_obs": 0.726,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_geoclip_satclip",
+   "name": "bt_fused_geoclip_satclip",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     -1.151,
+     0.35,
+     -0.234
+    ],
+    "general": -0.046,
+    "general_obs": -0.185,
+    "mean_z_obs": -1.048,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_tessera_geoclip",
+   "name": "bt_fused_tessera_geoclip",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.326,
+     -0.101,
+     0.068
+    ],
+    "general": 0.001,
+    "general_obs": 0.015,
+    "mean_z_obs": 0.366,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "bt_fused_tessera_satclip",
+   "name": "bt_fused_tessera_satclip",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "varies",
+   "category": "embedding_fusion",
+   "all": {
+    "theta": [
+     0.429,
+     -0.131,
+     0.088
+    ],
+    "general": 0.005,
+    "general_obs": 0.028,
+    "mean_z_obs": 0.404,
+    "n_tasks": 16,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "chivit",
+   "name": "chivit",
+   "backbone": "channelvit",
+   "pretraining_dataset": "chivit_pretraining_mix",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.402,
+     0.773,
+     -0.962
+    ],
+    "general": -0.009,
+    "general_obs": 0.212,
+    "mean_z_obs": 0.652,
+    "n_tasks": 20,
+    "n_datasets": 9
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "clip_vitl14",
+   "name": "clip_vitl14",
+   "backbone": "vit_l",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.367,
+     0.062,
+     0.086
+    ],
+    "general": -0.024,
+    "general_obs": -0.054,
+    "mean_z_obs": 0.589,
+    "n_tasks": 12,
+    "n_datasets": 12
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_imageonly_tile2vec",
+   "name": "csp_imageonly_tile2vec",
+   "backbone": "unstated - an off-the-shelf RS image encoder pretrained with Tile2Vec's unsupervised triplet loss; the paper never names the encoder architecture for this baseline",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.0,
+     0.001,
+     0.001
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": -2.161,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_inat_gps2vec_tag_fusion",
+   "name": "csp_inat_gps2vec_tag_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": -1.108,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_inat_gps2vec_visual_fusion",
+   "name": "csp_inat_gps2vec_visual_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": -0.959,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_mse_fmow",
+   "name": "csp_mse_fmow",
+   "backbone": "loc_space2vec",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.446,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "csp_nce_bld_fmow",
+   "name": "csp_nce_bld_fmow",
+   "backbone": "loc_space2vec",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.585,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_barlow_twins_geonrw",
+   "name": "decur_bl_barlow_twins_geonrw",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.043,
+     -0.056,
+     0.032
+    ],
+    "general": -0.008,
+    "general_obs": 0.009,
+    "mean_z_obs": 0.685,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_barlow_twins_rgb_geonrw",
+   "name": "decur_bl_barlow_twins_rgb_geonrw",
+   "backbone": "resnet50 (single-modality)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.026,
+     -0.033,
+     0.019
+    ],
+    "general": -0.008,
+    "general_obs": 0.008,
+    "mean_z_obs": 0.408,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_barlow_twins_sar",
+   "name": "decur_bl_barlow_twins_sar",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.044,
+     0.066,
+     0.014
+    ],
+    "general": -0.009,
+    "general_obs": -0.01,
+    "mean_z_obs": 0.648,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_bt_sar",
+   "name": "decur_bl_bt_sar",
+   "backbone": "resnet50 (single-modality)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.042,
+     -0.068,
+     -0.007
+    ],
+    "general": -0.01,
+    "general_obs": -0.016,
+    "mean_z_obs": -0.943,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_clip_cross_geonrw",
+   "name": "decur_bl_clip_cross_geonrw",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.012,
+     0.012,
+     -0.009
+    ],
+    "general": -0.01,
+    "general_obs": 0.005,
+    "mean_z_obs": -0.174,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_clip_cross_sar",
+   "name": "decur_bl_clip_cross_sar",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.011,
+     -0.02,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.014,
+    "mean_z_obs": -0.124,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_simclr_cross_geonrw",
+   "name": "decur_bl_simclr_cross_geonrw",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.009,
+     0.008,
+     -0.006
+    ],
+    "general": -0.009,
+    "general_obs": 0.005,
+    "mean_z_obs": -0.124,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_simclr_cross_sar",
+   "name": "decur_bl_simclr_cross_sar",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.009,
+     -0.018,
+     0.001
+    ],
+    "general": -0.009,
+    "general_obs": -0.014,
+    "mean_z_obs": -0.091,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_supervised_geonrw",
+   "name": "decur_bl_supervised_geonrw",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.017,
+     0.016,
+     -0.012
+    ],
+    "general": -0.01,
+    "general_obs": 0.005,
+    "mean_z_obs": -0.238,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_supervised_sar",
+   "name": "decur_bl_supervised_sar",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.023,
+     -0.038,
+     -0.003
+    ],
+    "general": -0.009,
+    "general_obs": -0.01,
+    "mean_z_obs": -0.737,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_vicreg_geonrw",
+   "name": "decur_bl_vicreg_geonrw",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.008,
+     -0.012,
+     0.006
+    ],
+    "general": -0.009,
+    "general_obs": 0.006,
+    "mean_z_obs": 0.148,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_bl_vicreg_sar",
+   "name": "decur_bl_vicreg_sar",
+   "backbone": "dual_branch (ResNet-50 x2)",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.001,
+     -0.001,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.013,
+    "mean_z_obs": 0.043,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_geonrw",
+   "name": "decur_geonrw",
+   "backbone": "dual_branch",
+   "pretraining_dataset": "geonrw",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.062,
+     -0.078,
+     0.045
+    ],
+    "general": -0.007,
+    "general_obs": 0.01,
+    "mean_z_obs": 0.971,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_vits_geonrw",
+   "name": "decur_vits_geonrw",
+   "backbone": "vit_s",
+   "pretraining_dataset": "geonrw",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.026,
+     -0.021,
+     0.017
+    ],
+    "general": -0.008,
+    "general_obs": 0.008,
+    "mean_z_obs": 1.288,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_vits_simclr_geonrw",
+   "name": "decur_vits_simclr_geonrw",
+   "backbone": "vit_s",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.024,
+     -0.02,
+     0.017
+    ],
+    "general": -0.009,
+    "general_obs": 0.008,
+    "mean_z_obs": 1.225,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "decur_vits_simclr_sar",
+   "name": "decur_vits_simclr_sar",
+   "backbone": "vit_s",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.008,
+     0.009,
+     0.005
+    ],
+    "general": -0.009,
+    "general_obs": -0.018,
+    "mean_z_obs": 0.321,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "dofa_plus_vitb",
+   "name": "dofa_plus_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "dofa_multisensor",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.075,
+     -0.067,
+     -0.612
+    ],
+    "general": 0.003,
+    "general_obs": 0.035,
+    "mean_z_obs": 0.569,
+    "n_tasks": 14,
+    "n_datasets": 12
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "dofa_plus_vitl",
+   "name": "dofa_plus_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "dofa_multisensor",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.162,
+     0.123,
+     -1.343
+    ],
+    "general": 0.014,
+    "general_obs": 0.084,
+    "mean_z_obs": 1.311,
+    "n_tasks": 15,
+    "n_datasets": 13
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "factorized_prior_l0025",
+   "name": "factorized_prior_l0025",
+   "backbone": "factorized_prior",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.209,
+     0.147,
+     -0.035
+    ],
+    "general": -0.017,
+    "general_obs": -0.123,
+    "mean_z_obs": -0.442,
+    "n_tasks": 8,
+    "n_datasets": 5
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "factorized_prior_l01",
+   "name": "factorized_prior_l01",
+   "backbone": "factorized_prior",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.219,
+     0.224,
+     -0.041
+    ],
+    "general": -0.018,
+    "general_obs": -0.133,
+    "mean_z_obs": -0.537,
+    "n_tasks": 8,
+    "n_datasets": 5
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "factorized_prior_l05",
+   "name": "factorized_prior_l05",
+   "backbone": "factorized_prior",
+   "pretraining_dataset": "ssl4eo_s12",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.309,
+     0.461,
+     -0.067
+    ],
+    "general": -0.023,
+    "general_obs": -0.167,
+    "mean_z_obs": -0.885,
+    "n_tasks": 8,
+    "n_datasets": 5
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "gfm_swinb_random_init",
+   "name": "gfm_swinb_random_init",
+   "backbone": "swin_b",
+   "pretraining_dataset": "nan",
+   "category": "baseline_random",
+   "all": {
+    "theta": [
+     0.231,
+     -0.087,
+     -0.066
+    ],
+    "general": 0.001,
+    "general_obs": -0.037,
+    "mean_z_obs": -0.583,
+    "n_tasks": 13,
+    "n_datasets": 7
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "gps2vec_visual_tag_fusion",
+   "name": "gps2vec_visual_tag_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": -1.115,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "mocov3_vitb",
+   "name": "mocov3_vitb",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": -1.33,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "neuco_avg_baseline",
+   "name": "neuco_avg_baseline",
+   "backbone": "none",
+   "pretraining_dataset": "none",
+   "category": "trivial_baseline",
+   "all": {
+    "theta": [
+     -0.931,
+     1.491,
+     -0.225
+    ],
+    "general": -0.051,
+    "general_obs": -0.338,
+    "mean_z_obs": -2.657,
+    "n_tasks": 8,
+    "n_datasets": 5
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "olmoearth_v12_base",
+   "name": "olmoearth_v12_base",
+   "backbone": "vit_b",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.41,
+     2.276,
+     -0.36
+    ],
+    "general": 0.022,
+    "general_obs": 0.35,
+    "mean_z_obs": 0.907,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "olmoearth_v12_nano",
+   "name": "olmoearth_v12_nano",
+   "backbone": "vit_nano",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.584,
+     0.065,
+     0.69
+    ],
+    "general": -0.006,
+    "general_obs": 0.043,
+    "mean_z_obs": -0.045,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "olmoearth_v12_small",
+   "name": "olmoearth_v12_small",
+   "backbone": "vit_s",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     1.363,
+     2.016,
+     0.259
+    ],
+    "general": 0.01,
+    "general_obs": 0.317,
+    "mean_z_obs": 0.813,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "olmoearth_v12_tiny",
+   "name": "olmoearth_v12_tiny",
+   "backbone": "vit_tiny",
+   "pretraining_dataset": "olmoearth_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.979,
+     1.468,
+     0.479
+    ],
+    "general": -0.002,
+    "general_obs": 0.224,
+    "mean_z_obs": 0.53,
+    "n_tasks": 49,
+    "n_datasets": 22
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "remoteclip_rn50",
+   "name": "remoteclip_rn50",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.292,
+     -0.841,
+     -0.066
+    ],
+    "general": 0.011,
+    "general_obs": 0.021,
+    "mean_z_obs": 0.185,
+    "n_tasks": 36,
+    "n_datasets": 12
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "remoteclip_vitb32",
+   "name": "remoteclip_vitb32",
+   "backbone": "vit_base",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.196,
+     -1.478,
+     -0.021
+    ],
+    "general": 0.0,
+    "general_obs": 0.067,
+    "mean_z_obs": 0.822,
+    "n_tasks": 36,
+    "n_datasets": 12
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "resnet152_baseline",
+   "name": "resnet152_baseline",
+   "backbone": "resnet152",
+   "pretraining_dataset": "nan",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": -0.43,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satclip_l10_csp_inat_fusion",
+   "name": "satclip_l10_csp_inat_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.669,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satclip_l10_geoclip_fusion",
+   "name": "satclip_l10_geoclip_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.976,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satclip_l10_gps2vec_tag_fusion",
+   "name": "satclip_l10_gps2vec_tag_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.785,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satclip_l10_gps2vec_visual_fusion",
+   "name": "satclip_l10_gps2vec_visual_fusion",
+   "backbone": "fused_concat",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.751,
+    "n_tasks": 2,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satdifuser",
+   "name": "satdifuser",
+   "backbone": "diffusion_unet",
+   "pretraining_dataset": "diffusionsat_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.063,
+     -0.564,
+     -1.307
+    ],
+    "general": 0.024,
+    "general_obs": 0.099,
+    "mean_z_obs": 1.399,
+    "n_tasks": 15,
+    "n_datasets": 11
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_pp_sentinel",
+   "name": "satmae_pp_sentinel",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.594,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_pp_vitb_sentinel",
+   "name": "satmae_pp_vitb_sentinel",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.534,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_stack_rgb",
+   "name": "satmae_stack_rgb",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.0,
+     0.0,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": -0.001,
+    "mean_z_obs": -0.053,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_stack_sentinel",
+   "name": "satmae_stack_sentinel",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.001,
+     -0.0,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.444,
+    "n_tasks": 3,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_vitb_sentinel",
+   "name": "satmae_vitb_sentinel",
+   "backbone": "vit_b",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": 0.465,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_vitl_rgb_nontemporal",
+   "name": "satmae_vitl_rgb_nontemporal",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.0,
+     -0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.121,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_vitl_rgb_temporal",
+   "name": "satmae_vitl_rgb_temporal",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_rgb",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.002,
+     -0.004,
+     0.011
+    ],
+    "general": -0.009,
+    "general_obs": -0.001,
+    "mean_z_obs": 0.993,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "satmae_vitl_sentinel",
+   "name": "satmae_vitl_sentinel",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.001,
+     -0.0,
+     -0.001
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.808,
+    "n_tasks": 4,
+    "n_datasets": 2
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "scalemae_vitl_fmow_sentinel",
+   "name": "scalemae_vitl_fmow_sentinel",
+   "backbone": "vit_l",
+   "pretraining_dataset": "fmow_sentinel",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.0,
+    "mean_z_obs": -1.772,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "seco_resnet18_100k",
+   "name": "seco_resnet18_100k",
+   "backbone": "resnet18",
+   "pretraining_dataset": "seco_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.043,
+     -0.009,
+     -0.019
+    ],
+    "general": -0.007,
+    "general_obs": 0.024,
+    "mean_z_obs": 0.568,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "seco_resnet50_100k",
+   "name": "seco_resnet50_100k",
+   "backbone": "resnet50",
+   "pretraining_dataset": "seco_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.053,
+     -0.012,
+     -0.024
+    ],
+    "general": -0.007,
+    "general_obs": 0.024,
+    "mean_z_obs": 0.696,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "seco_resnet50_satmae_repro",
+   "name": "seco_resnet50_satmae_repro",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "baseline_pretrained",
+   "all": {
+    "theta": [
+     0.001,
+     0.001,
+     -0.004
+    ],
+    "general": -0.009,
+    "general_obs": -0.001,
+    "mean_z_obs": -0.717,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "ssl4eo_resnet50_imagenet_moco",
+   "name": "ssl4eo_resnet50_imagenet_moco",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     -0.075,
+     0.056,
+     0.01
+    ],
+    "general": -0.012,
+    "general_obs": -0.041,
+    "mean_z_obs": -0.639,
+    "n_tasks": 2,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "supervised_dual_encoder_grid",
+   "name": "supervised_dual_encoder_grid",
+   "backbone": "loc_space2vec",
+   "pretraining_dataset": "task_only",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.48,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "supervised_dual_encoder_wrap",
+   "name": "supervised_dual_encoder_wrap",
+   "backbone": "loc_wrap",
+   "pretraining_dataset": "task_only",
+   "category": "location_encoder",
+   "all": {
+    "theta": [
+     -0.0,
+     -0.0,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": 0.0,
+    "mean_z_obs": 0.268,
+    "n_tasks": 4,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "swint_baseline",
+   "name": "swint_baseline",
+   "backbone": "swin_t",
+   "pretraining_dataset": "sen12ms",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.254,
+     0.241,
+     0.2
+    ],
+    "general": -0.025,
+    "general_obs": -0.147,
+    "mean_z_obs": -0.377,
+    "n_tasks": 18,
+    "n_datasets": 4
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "terrafm_vitl",
+   "name": "terrafm_vitl",
+   "backbone": "vit_l",
+   "pretraining_dataset": "terrafm_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.358,
+     0.59,
+     -0.247
+    ],
+    "general": 0.002,
+    "general_obs": 0.118,
+    "mean_z_obs": 1.757,
+    "n_tasks": 6,
+    "n_datasets": 6
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "terramind_latefusion_tokenizers",
+   "name": "terramind_latefusion_tokenizers",
+   "backbone": "vit_b",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.003,
+     -0.001,
+     -0.015
+    ],
+    "general": -0.009,
+    "general_obs": 0.007,
+    "mean_z_obs": -1.044,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "terramind_v1b_single",
+   "name": "terramind_v1b_single",
+   "backbone": "nan",
+   "pretraining_dataset": "terramesh",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     0.002,
+     -0.001,
+     -0.01
+    ],
+    "general": -0.009,
+    "general_obs": 0.007,
+    "mean_z_obs": -0.7,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "tessera_v2_l",
+   "name": "tessera_v2_l",
+   "backbone": "dual_ts_transformer",
+   "pretraining_dataset": "tessera_v2_corpus",
+   "category": "GFM_self_supervised",
+   "all": {
+    "theta": [
+     -0.108,
+     -0.048,
+     -0.004
+    ],
+    "general": -0.012,
+    "general_obs": 0.022,
+    "mean_z_obs": 0.622,
+    "n_tasks": 6,
+    "n_datasets": 5
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "unet_resnet50_supervised",
+   "name": "unet_resnet50_supervised",
+   "backbone": "resnet50",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.002,
+     0.006,
+     -0.0
+    ],
+    "general": -0.009,
+    "general_obs": -0.054,
+    "mean_z_obs": -0.237,
+    "n_tasks": 1,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "unetpp_supervised",
+   "name": "unetpp_supervised",
+   "backbone": "unet",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.069,
+     0.31,
+     -0.031
+    ],
+    "general": -0.009,
+    "general_obs": -0.047,
+    "mean_z_obs": -1.037,
+    "n_tasks": 10,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  },
+  {
+   "id": "vivit_sen4map_scratch",
+   "name": "vivit_sen4map_scratch",
+   "backbone": "transformer_other",
+   "pretraining_dataset": "nan",
+   "category": "nan",
+   "all": {
+    "theta": [
+     0.068,
+     0.468,
+     -0.055
+    ],
+    "general": -0.011,
+    "general_obs": -0.058,
+    "mean_z_obs": -1.388,
+    "n_tasks": 10,
+    "n_datasets": 1
+   },
+   "independent": null,
+   "ranked": false,
+   "rank": null
+  }
+ ]
+}

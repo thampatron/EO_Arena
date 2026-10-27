@@ -224,3 +224,57 @@ def shapley_information(groups: dict, lam: np.ndarray, c: np.ndarray, K: int, n_
             v = portfolio_information(lam, c, cur, K)
             contrib[names[i]] += v - v_prev; v_prev = v
     return {n: v / n_perm for n, v in contrib.items()}
+
+
+# ----------------------------------------------------------------------------- diagnostics of the latent fit
+def principal_axes(lam: np.ndarray, theta: np.ndarray):
+    """Rotate (lam, theta) so the task loadings are on their principal axes (ordered by variance explained).
+    The fit is invariant to rotation (note, Sec. 'Interpreting task latent factors'); this is a display convention."""
+    if lam.shape[1] == 0: return lam, theta, np.zeros(0)
+    c = lam - lam.mean(0)
+    U, S, Vt = np.linalg.svd(c, full_matrices=False); R = Vt.T
+    return lam @ R, theta @ R, (S ** 2) / max((S ** 2).sum(), 1e-12)
+
+
+def _pairwise_corr(E, min_shared):
+    """Pairwise-complete Pearson correlation between columns of E (NaN = missing), by matrix products."""
+    W = (~np.isnan(E)).astype(float); E0 = np.nan_to_num(E)
+    n = W.T @ W; sx = E0.T @ W; sy = sx.T; sxx = (E0 ** 2).T @ W; syy = sxx.T; sxy = E0.T @ E0
+    with np.errstate(invalid="ignore", divide="ignore"):
+        mx = sx / n; my = sy / n; cov = sxy / n - mx * my; vx = sxx / n - mx ** 2; vy = syy / n - my ** 2
+        R = cov / np.sqrt(vx * vy)
+    R[(n < min_shared) | ~np.isfinite(R)] = np.nan; np.fill_diagonal(R, np.nan)
+    return R
+
+
+def residual_correlation_check(Y, mask, mu, lam, theta, min_shared=6, n_perm=200, seed=0, group=None):
+    """Test the diagonal-Psi assumption (Eq. 2): are residuals eta_mt correlated across tasks?
+    For every task pair with >= min_shared models in common, the Pearson correlation of residuals over those
+    models; compared with a permutation null that shuffles each task's residuals across its models (which keeps
+    every task's residual distribution and the overlap pattern, and destroys cross-task structure).
+    Returns summary statistics: mean |r|, share of pairs with |r| > 0.5, and the top eigenvalue share of the
+    pairwise-complete residual correlation matrix, each with the null's mean, 95th percentile and p-value."""
+    rng = np.random.default_rng(seed)
+    E = np.where(mask, Y - (mu[None, :] + (theta @ lam.T if lam.shape[1] else 0)), np.nan)
+    M, T = E.shape
+    iu = np.triu_indices(T, 1)
+    same = None if group is None else (np.asarray(group)[iu[0]] == np.asarray(group)[iu[1]])
+    def stats(E):
+        R = _pairwise_corr(E, min_shared); rv = np.abs(R[iu]); ok = np.isfinite(rv); rs = rv[ok]
+        if not len(rs): return dict(n_pairs=0, mean_abs_r=None, share_abs_r_gt_0_5=None, top_eig_share=None, within_group_mean_abs_r=None, between_group_mean_abs_r=None)
+        Cf = np.nan_to_num(R, nan=0.0); np.fill_diagonal(Cf, 1.0); ev = np.linalg.eigvalsh(Cf)
+        d = dict(n_pairs=int(len(rs)), mean_abs_r=float(rs.mean()), share_abs_r_gt_0_5=float((rs > 0.5).mean()), top_eig_share=float(ev[-1] / max(ev.sum(), 1e-12)))
+        if same is not None:
+            w = rv[ok & same]; b = rv[ok & ~same]
+            d["within_group_mean_abs_r"] = float(w.mean()) if len(w) else None; d["between_group_mean_abs_r"] = float(b.mean()) if len(b) else None; d["n_within"] = int(len(w)); d["n_between"] = int(len(b))
+        return d
+    obs = stats(E)
+    null = {k: [] for k in ("mean_abs_r", "share_abs_r_gt_0_5", "top_eig_share", "within_group_mean_abs_r", "between_group_mean_abs_r") if obs.get(k) is not None}
+    for _ in range(n_perm):
+        Ep = E.copy()
+        for t in range(T):
+            o = ~np.isnan(Ep[:, t]); Ep[o, t] = rng.permutation(Ep[o, t])
+        s = stats(Ep)
+        for k in null: null[k].append(s[k])
+    out = dict(observed=obs, null={k: dict(mean=float(np.nanmean(v)), p95=float(np.nanpercentile(v, 95)), p_value=float(np.mean(np.array(v, float) >= obs[k]))) for k, v in null.items() if len(v) and v[0] is not None and obs[k] is not None}, n_perm=n_perm, min_shared=min_shared, group="paper" if group is not None else None)
+    return out

@@ -1,0 +1,3195 @@
+{
+ "as_of": "2026-10-27",
+ "method": "Datasets with published comparisons but no measured seed noise (score provisional), ordered by evidence mass = models x comparisons. Suggested models are the ones that appear in most of the dataset's comparisons; re-evaluating them with >= 5 seeds under the listed protocol families would convert the dataset's score from provisional to measured.",
+ "datasets": [
+  {
+   "name": "MADOS",
+   "id": "mados",
+   "domain": "4 \u00b7 Oceans and coasts",
+   "subdomain": "4.4 Marine pollution",
+   "models": 51,
+   "papers": 4,
+   "tasks_n": 14,
+   "results": 214,
+   "evidence_mass": 714,
+   "provisional_score": 0.988,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 14
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 12
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 8
+    },
+    {
+     "model_id": "scalemae_vitl",
+     "comparisons": 8
+    },
+    {
+     "model_id": "spectralgpt",
+     "comparisons": 8
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 8
+    }
+   ],
+   "benchmark_ids": [
+    "galileo_mados",
+    "mados_s2",
+    "pangaea_mados",
+    "sustainfm_mados"
+   ]
+  },
+  {
+   "name": "RESISC45",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 27,
+   "papers": 4,
+   "tasks_n": 9,
+   "results": 61,
+   "evidence_mass": 243,
+   "provisional_score": 0.925,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "convmae_convvitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "scalemae_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "vanilla_mae",
+     "comparisons": 4
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "resisc45_rgb"
+   ]
+  },
+  {
+   "name": "GEOID-Flood",
+   "id": null,
+   "domain": "3 \u00b7 Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "models": 15,
+   "papers": 1,
+   "tasks_n": 14,
+   "results": 168,
+   "evidence_mass": 210,
+   "provisional_score": 0.631,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 14
+    },
+    {
+     "model_id": "olmoearth_v1_base",
+     "comparisons": 14
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 14
+    },
+    {
+     "model_id": "terramind_v1b",
+     "comparisons": 14
+    },
+    {
+     "model_id": "terramind_v1l",
+     "comparisons": 14
+    },
+    {
+     "model_id": "satlas_swinb",
+     "comparisons": 14
+    }
+   ],
+   "benchmark_ids": [
+    "geoid_flood_3class_bg_s1",
+    "geoid_flood_3class_flood_s1",
+    "geoid_flood_3class_perm_s1",
+    "geoid_flood_3class_s1",
+    "geoid_flood_water_s1"
+   ]
+  },
+  {
+   "name": "CropTypeMapping Ghana / South Sudan",
+   "id": "croptypemapping-ghana-south-sudan",
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 15,
+   "results": 180,
+   "evidence_mass": 180,
+   "provisional_score": 0.995,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 15
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 15
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 15
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 15
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 15
+    },
+    {
+     "model_id": "satlas_s2_swinb_mi_ms",
+     "comparisons": 15
+    }
+   ],
+   "benchmark_ids": [
+    "pangaea_ctm_ss"
+   ]
+  },
+  {
+   "name": "Nandi",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 29,
+   "papers": 1,
+   "tasks_n": 5,
+   "results": 103,
+   "evidence_mass": 145,
+   "provisional_score": 0.98,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_tiny",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_small",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_nano",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_base",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v1_tiny",
+     "comparisons": 5
+    }
+   ],
+   "benchmark_ids": [
+    "nandi_l8",
+    "nandi_s1",
+    "nandi_s1s2",
+    "nandi_s2"
+   ]
+  },
+  {
+   "name": "AWF",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 29,
+   "papers": 1,
+   "tasks_n": 5,
+   "results": 103,
+   "evidence_mass": 145,
+   "provisional_score": 0.988,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_tiny",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_small",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_nano",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v12_base",
+     "comparisons": 5
+    },
+    {
+     "model_id": "olmoearth_v1_tiny",
+     "comparisons": 5
+    }
+   ],
+   "benchmark_ids": [
+    "awf_l8",
+    "awf_s1",
+    "awf_s1s2",
+    "awf_s2"
+   ]
+  },
+  {
+   "name": "AI4SmallFarms",
+   "id": "ai4smallfarms",
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 9,
+   "results": 108,
+   "evidence_mass": 108,
+   "provisional_score": 0.648,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 9
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 9
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 9
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 9
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 9
+    },
+    {
+     "model_id": "satlas_s2_swinb_si_ms",
+     "comparisons": 9
+    }
+   ],
+   "benchmark_ids": [
+    "pangaea_ai4farms"
+   ]
+  },
+  {
+   "name": "Five Billion Pixels",
+   "id": "five-billion-pixels",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 8,
+   "results": 96,
+   "evidence_mass": 96,
+   "provisional_score": 0.994,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 8
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 8
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 8
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 8
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 8
+    },
+    {
+     "model_id": "satlas_s2_swinb_si_ms",
+     "comparisons": 8
+    }
+   ],
+   "benchmark_ids": [
+    "pangaea_fivebillionpixels",
+    "pangaea_fivebillionpixels_domain_shift"
+   ]
+  },
+  {
+   "name": "Borneo Canopy Height",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 6,
+   "results": 69,
+   "evidence_mass": 84,
+   "provisional_score": null,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 6
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 6
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 6
+    },
+    {
+     "model_id": "galileo",
+     "comparisons": 6
+    },
+    {
+     "model_id": "satlas_swinb",
+     "comparisons": 6
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 6
+    }
+   ],
+   "benchmark_ids": [
+    "tessera_borneo_chm"
+   ]
+  },
+  {
+   "name": "xBD / xView2",
+   "id": "xbd-xview2",
+   "domain": "Disasters",
+   "subdomain": "Post-event damage and hazard extent",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 5,
+   "results": 60,
+   "evidence_mass": 60,
+   "provisional_score": 0.789,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 5
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 5
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 5
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 5
+    },
+    {
+     "model_id": "satlas_s2_swinb_si_ms",
+     "comparisons": 5
+    }
+   ],
+   "benchmark_ids": [
+    "pangaea_xview2"
+   ]
+  },
+  {
+   "name": "BreizhCrops",
+   "id": "breizhcrops",
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 29,
+   "papers": 2,
+   "tasks_n": 2,
+   "results": 34,
+   "evidence_mass": 58,
+   "provisional_score": 0.995,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_nano",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 2
+    },
+    {
+     "model_id": "presto",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_tiny",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "breizhcrops_s2",
+    "galileo_breizhcrops"
+   ]
+  },
+  {
+   "name": "SustainBench DHS tasks",
+   "id": "sustainbench-dhs-tasks",
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 5,
+   "results": 50,
+   "evidence_mass": 50,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 5
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 5
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 5
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 5
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 5
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_asset_wealth",
+    "sustainfm_child_mortality",
+    "sustainfm_sanitation",
+    "sustainfm_women_bmi",
+    "sustainfm_women_education"
+   ]
+  },
+  {
+   "name": "Canadian Cropland",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 9,
+   "papers": 1,
+   "tasks_n": 5,
+   "results": 45,
+   "evidence_mass": 45,
+   "provisional_score": 0.984,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen",
+    "kmeans_clustering"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 5
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "resnet50_baseline",
+     "comparisons": 5
+    },
+    {
+     "model_id": "satmae_vitb",
+     "comparisons": 5
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 5
+    },
+    {
+     "model_id": "ssl4eo_vits_dino",
+     "comparisons": 5
+    }
+   ],
+   "benchmark_ids": [
+    "canadian_cropland"
+   ]
+  },
+  {
+   "name": "GeoNRW",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 11,
+   "papers": 1,
+   "tasks_n": 4,
+   "results": 35,
+   "evidence_mass": 44,
+   "provisional_score": 0.993,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "decur_bl_barlow_twins_geonrw",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur_bl_barlow_twins_rgb_geonrw",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur_bl_clip_cross_geonrw",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur_bl_simclr_cross_geonrw",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur_bl_supervised_geonrw",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur_bl_vicreg_geonrw",
+     "comparisons": 4
+    }
+   ],
+   "benchmark_ids": [
+    "geonrw_seg"
+   ]
+  },
+  {
+   "name": "AI4Arctic / AutoICE",
+   "id": "ai4arctic-autoice",
+   "domain": "5 \u00b7 Cryosphere",
+   "subdomain": "5.3 Sea and lake ice",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 42,
+   "evidence_mass": 42,
+   "provisional_score": 0.974,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 3
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 3
+    },
+    {
+     "model_id": "ramen",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "cryobench_sicd"
+   ]
+  },
+  {
+   "name": "GLD",
+   "id": null,
+   "domain": "5 \u00b7 Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 42,
+   "evidence_mass": 42,
+   "provisional_score": 0.977,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 3
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 3
+    },
+    {
+     "model_id": "ramen",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "cryobench_gld"
+   ]
+  },
+  {
+   "name": "GLID",
+   "id": null,
+   "domain": "5 \u00b7 Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 42,
+   "evidence_mass": 42,
+   "provisional_score": 0.99,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 3
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 3
+    },
+    {
+     "model_id": "ramen",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "cryobench_glid"
+   ]
+  },
+  {
+   "name": "GSDD",
+   "id": null,
+   "domain": "5 \u00b7 Cryosphere",
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 42,
+   "evidence_mass": 42,
+   "provisional_score": 0.91,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 3
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 3
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 3
+    },
+    {
+     "model_id": "ramen",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "cryobench_gsdd"
+   ]
+  },
+  {
+   "name": "Landslide4Sense",
+   "id": "landslide4sense",
+   "domain": "7 \u00b7 Solid Earth",
+   "subdomain": "7.2 Landslides and mass movement",
+   "models": 4,
+   "papers": 1,
+   "tasks_n": 10,
+   "results": 40,
+   "evidence_mass": 40,
+   "provisional_score": 0.324,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "prithvi_v2_300m",
+     "comparisons": 10
+    },
+    {
+     "model_id": "prithvi_v2_600m",
+     "comparisons": 10
+    },
+    {
+     "model_id": "unet_supervised",
+     "comparisons": 10
+    },
+    {
+     "model_id": "unetpp_supervised",
+     "comparisons": 10
+    }
+   ],
+   "benchmark_ids": [
+    "l4s_landslide_prithvi"
+   ]
+  },
+  {
+   "name": "OlmoEarth Mangrove",
+   "id": null,
+   "domain": "4 \u00b7 Oceans and coasts",
+   "subdomain": "4.1 Coastal ecosystems",
+   "models": 20,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 36,
+   "evidence_mass": 40,
+   "provisional_score": 0.55,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 2
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "terramind_v1l",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "mangrove_s1s2",
+    "mangrove_s2"
+   ]
+  },
+  {
+   "name": "Live Fuel Moisture Content",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.6 Fire",
+   "models": 19,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 36,
+   "evidence_mass": 38,
+   "provisional_score": null,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 2
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "panopticon",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "lfmc_s1s2",
+    "lfmc_s2"
+   ]
+  },
+  {
+   "name": "AID",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.992,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "aid"
+   ]
+  },
+  {
+   "name": "MLRSNet",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.981,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "mlrsnet"
+   ]
+  },
+  {
+   "name": "OPTIMAL-31",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.984,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "optimal_31"
+   ]
+  },
+  {
+   "name": "RSC11",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.988,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "rsc11"
+   ]
+  },
+  {
+   "name": "RSI-CB128",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.892,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "rsi_cb128"
+   ]
+  },
+  {
+   "name": "RSI-CB256",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.535,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "rsi_cb256"
+   ]
+  },
+  {
+   "name": "RSSCN7",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.987,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "rs2800"
+   ]
+  },
+  {
+   "name": "WHU-RS19",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.963,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "whu_rs19"
+   ]
+  },
+  {
+   "name": "WHU-earth",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.891,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "whu_earth"
+   ]
+  },
+  {
+   "name": "CHC canopy height change",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "models": 9,
+   "papers": 1,
+   "tasks_n": 4,
+   "results": 36,
+   "evidence_mass": 36,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 4
+    },
+    {
+     "model_id": "dinov3_unspecified",
+     "comparisons": 4
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 4
+    },
+    {
+     "model_id": "prithvi_v2_600m",
+     "comparisons": 4
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 4
+    },
+    {
+     "model_id": "satlas_s2_swinb_mi_ms",
+     "comparisons": 4
+    }
+   ],
+   "benchmark_ids": [
+    "chc_height_change"
+   ]
+  },
+  {
+   "name": "PatternNet",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "models": 12,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 26,
+   "evidence_mass": 36,
+   "provisional_score": 0.809,
+   "protocol_families": [
+    "frozen",
+    "zero_shot"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "clip_vit",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_vitb32",
+     "comparisons": 3
+    },
+    {
+     "model_id": "remoteclip_rn50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitae_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "barlowtwins_resnet50",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "patternnet"
+   ]
+  },
+  {
+   "name": "NeuCo-Bench Landcover",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 28,
+   "evidence_mass": 28,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l0025",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l01",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l05",
+     "comparisons": 2
+    },
+    {
+     "model_id": "neuco_avg_baseline",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "neuco_landcover_agriculture",
+    "neuco_landcover_forest"
+   ]
+  },
+  {
+   "name": "NeuCo-Bench Biomass",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 28,
+   "evidence_mass": 28,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l0025",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l01",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l05",
+     "comparisons": 2
+    },
+    {
+     "model_id": "neuco_avg_baseline",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "neuco_biomass_mean",
+    "neuco_biomass_std"
+   ]
+  },
+  {
+   "name": "UrbanSARFloods",
+   "id": null,
+   "domain": "3 \u00b7 Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 4,
+   "results": 28,
+   "evidence_mass": 28,
+   "provisional_score": 0.993,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "climax",
+     "comparisons": 4
+    },
+    {
+     "model_id": "convnext",
+     "comparisons": 4
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 4
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 4
+    },
+    {
+     "model_id": "prithvi_v2_300m_tl",
+     "comparisons": 4
+    },
+    {
+     "model_id": "satmae_stack",
+     "comparisons": 4
+    }
+   ],
+   "benchmark_ids": [
+    "exebench_flood_urbansarfloods"
+   ]
+  },
+  {
+   "name": "NeuCo-Bench Heatisland",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 28,
+   "evidence_mass": 28,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l0025",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l01",
+     "comparisons": 2
+    },
+    {
+     "model_id": "factorized_prior_l05",
+     "comparisons": 2
+    },
+    {
+     "model_id": "neuco_avg_baseline",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "neuco_heatisland_mean",
+    "neuco_heatisland_std"
+   ]
+  },
+  {
+   "name": "AGBD",
+   "id": "agbd",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "models": 13,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 19,
+   "evidence_mass": 26,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "alphaearth",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "satlas_s2_swinb_mi_ms",
+     "comparisons": 2
+    },
+    {
+     "model_id": "resnet50_ssl4eo_moco",
+     "comparisons": 2
+    },
+    {
+     "model_id": "prithvi_v2_100m",
+     "comparisons": 2
+    },
+    {
+     "model_id": "terramind_v1t",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "agbd_full",
+    "agbd_lite"
+   ]
+  },
+  {
+   "name": "OlmoEarth Vessel Detection",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "models": 13,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 22,
+   "evidence_mass": 26,
+   "provisional_score": 0.887,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay",
+     "comparisons": 2
+    },
+    {
+     "model_id": "olmoearth_v12_nano",
+     "comparisons": 2
+    },
+    {
+     "model_id": "olmoearth_v12_base",
+     "comparisons": 2
+    },
+    {
+     "model_id": "olmoearth_v12_tiny",
+     "comparisons": 2
+    },
+    {
+     "model_id": "olmoearth_v12_small",
+     "comparisons": 2
+    },
+    {
+     "model_id": "olmoearth_v1_tiny",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "vessel_detection_l8",
+    "vessel_detection_s1"
+   ]
+  },
+  {
+   "name": "METER-ML",
+   "id": null,
+   "domain": "6 \u00b7 Atmosphere",
+   "subdomain": "6.1 Greenhouse gas point sources",
+   "models": 6,
+   "papers": 1,
+   "tasks_n": 4,
+   "results": 24,
+   "evidence_mass": 24,
+   "provisional_score": 0.963,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clip_vit",
+     "comparisons": 4
+    },
+    {
+     "model_id": "decur",
+     "comparisons": 4
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 4
+    },
+    {
+     "model_id": "prithvi_v2_300m",
+     "comparisons": 4
+    },
+    {
+     "model_id": "terramind_v1b",
+     "comparisons": 4
+    },
+    {
+     "model_id": "terramind_v1l",
+     "comparisons": 4
+    }
+   ],
+   "benchmark_ids": [
+    "meter_ml"
+   ]
+  },
+  {
+   "name": "SpaceNet 1",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "models": 12,
+   "papers": 2,
+   "tasks_n": 2,
+   "results": 12,
+   "evidence_mass": 24,
+   "provisional_score": 0.506,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "convmae_convvitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov2_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gassl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "spacenet1_wv2",
+    "spacenetv1_rgb"
+   ]
+  },
+  {
+   "name": "DSIFN",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 3,
+   "results": 19,
+   "evidence_mass": 21,
+   "provisional_score": 0.367,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "gfm_swinb_random_init",
+     "comparisons": 3
+    },
+    {
+     "model_id": "resnet50_imagenet",
+     "comparisons": 3
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 3
+    },
+    {
+     "model_id": "swinb_imagenet_baseline",
+     "comparisons": 3
+    },
+    {
+     "model_id": "seco_resnet50",
+     "comparisons": 3
+    },
+    {
+     "model_id": "vitl_imagenet",
+     "comparisons": 3
+    }
+   ],
+   "benchmark_ids": [
+    "gfm_dsifn_cd"
+   ]
+  },
+  {
+   "name": "Forest Loss Driver",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.2 Forest extent and change",
+   "models": 20,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 20,
+   "evidence_mass": 20,
+   "provisional_score": 0.993,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "clay",
+     "comparisons": 1
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "forest_loss_driver_s2"
+   ]
+  },
+  {
+   "name": "GEA North Africa",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 20,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 20,
+   "evidence_mass": 20,
+   "provisional_score": 0.981,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "clay",
+     "comparisons": 1
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "gea_north_africa_s2"
+   ]
+  },
+  {
+   "name": "OMBRIA",
+   "id": null,
+   "domain": "3 \u00b7 Inland water",
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 20,
+   "evidence_mass": 20,
+   "provisional_score": 0.421,
+   "protocol_families": [
+    "fine-tuned",
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 2
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 2
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 2
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_ombria"
+   ]
+  },
+  {
+   "name": "OlmoEarth Solar Farm",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "models": 20,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 20,
+   "evidence_mass": 20,
+   "provisional_score": 0.965,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "clay",
+     "comparisons": 1
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "solar_farm_detection_s2"
+   ]
+  },
+  {
+   "name": "OlmoEarth Vessel Length",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "models": 17,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 17,
+   "evidence_mass": 17,
+   "provisional_score": null,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "clay",
+     "comparisons": 1
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "vessel_length_s2"
+   ]
+  },
+  {
+   "name": "MMEarth-Bench species",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.4 Vegetation structure and species",
+   "models": 8,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 16,
+   "evidence_mass": 16,
+   "provisional_score": 0.982,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dinov3_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 2
+    },
+    {
+     "model_id": "mmearth_cnn_atto",
+     "comparisons": 2
+    },
+    {
+     "model_id": "satlas_swinb",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "mmearth_bench_species_africa",
+    "mmearth_bench_species_random"
+   ]
+  },
+  {
+   "name": "OlmoEarth Vessel Type",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "models": 16,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 16,
+   "evidence_mass": 16,
+   "provisional_score": 0.993,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "clay",
+     "comparisons": 1
+    },
+    {
+     "model_id": "copernicusfm",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov3_sat_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "galileo_base",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "vessel_type_s2"
+   ]
+  },
+  {
+   "name": "DIOR",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.4 Objects and activity",
+   "models": 15,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 15,
+   "evidence_mass": 15,
+   "provisional_score": 0.977,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "caco",
+     "comparisons": 1
+    },
+    {
+     "model_id": "cmid",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_plus_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gassl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "dior_horizontal_object_detection"
+   ]
+  },
+  {
+   "name": "NeuCo-Bench Crops",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 14,
+   "evidence_mass": 14,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l0025",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l01",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l05",
+     "comparisons": 1
+    },
+    {
+     "model_id": "neuco_avg_baseline",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "neuco_crops"
+   ]
+  },
+  {
+   "name": "Hyperview",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 14,
+   "evidence_mass": 14,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dinov2_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "panopticon",
+     "comparisons": 2
+    },
+    {
+     "model_id": "senpamae",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "hyperview_modis_mse",
+    "hyperview_superdove"
+   ]
+  },
+  {
+   "name": "CORINE (Panopticon)",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 14,
+   "evidence_mass": 14,
+   "provisional_score": 0.993,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 2
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dinov2_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 2
+    },
+    {
+     "model_id": "panopticon",
+     "comparisons": 2
+    },
+    {
+     "model_id": "senpamae",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "corine_modis_map",
+    "corine_superdove_map"
+   ]
+  },
+  {
+   "name": "NeuCo-Bench Clouds",
+   "id": null,
+   "domain": "6 \u00b7 Atmosphere",
+   "subdomain": "6.3 Clouds and smoke",
+   "models": 14,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 14,
+   "evidence_mass": 14,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "clay_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l0025",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l01",
+     "comparisons": 1
+    },
+    {
+     "model_id": "factorized_prior_l05",
+     "comparisons": 1
+    },
+    {
+     "model_id": "neuco_avg_baseline",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "neuco_clouds"
+   ]
+  },
+  {
+   "name": "CLCD",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.967,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_clcd"
+   ]
+  },
+  {
+   "name": "SegMunich",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 5,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.737,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "resnet50_imagenet",
+     "comparisons": 2
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 2
+    },
+    {
+     "model_id": "seco_resnet50",
+     "comparisons": 2
+    },
+    {
+     "model_id": "spectralgpt",
+     "comparisons": 2
+    },
+    {
+     "model_id": "vitb_imagenet22k",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "segmunich"
+   ]
+  },
+  {
+   "name": "RSBD",
+   "id": null,
+   "domain": "3 \u00b7 Inland water",
+   "subdomain": "3.2 Water quality",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.967,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_rsbd"
+   ]
+  },
+  {
+   "name": "SmokePlume",
+   "id": null,
+   "domain": "6 \u00b7 Atmosphere",
+   "subdomain": "6.3 Clouds and smoke",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.774,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_smokeplume"
+   ]
+  },
+  {
+   "name": "DSE",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.5 Socioeconomic conditions",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.953,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_dse"
+   ]
+  },
+  {
+   "name": "GloSoFarID",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.54,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_glosofarid"
+   ]
+  },
+  {
+   "name": "LEVIR-CD",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.835,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_levircd"
+   ]
+  },
+  {
+   "name": "MineNetCD",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.3 Energy and industry",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.983,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_minenetcd"
+   ]
+  },
+  {
+   "name": "GAZADeepDAV",
+   "id": null,
+   "domain": "Disasters",
+   "subdomain": "z.1 Post-event damage and hazard extent",
+   "models": 10,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 10,
+   "evidence_mass": 10,
+   "provisional_score": 0.913,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swin_swint",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "remoteclip",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satlas_swint",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "sustainfm_gazadeepdav"
+   ]
+  },
+  {
+   "name": "Multi-Temporal Crop Classification (HLS)",
+   "id": null,
+   "domain": "1 \u00b7 Agriculture",
+   "subdomain": "1.1 Cropland and crop type",
+   "models": 4,
+   "papers": 1,
+   "tasks_n": 2,
+   "results": 8,
+   "evidence_mass": 8,
+   "provisional_score": 0.969,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "prithvi_v1_100m",
+     "comparisons": 2
+    },
+    {
+     "model_id": "prithvi_v2_300m",
+     "comparisons": 2
+    },
+    {
+     "model_id": "prithvi_v2_600m",
+     "comparisons": 2
+    },
+    {
+     "model_id": "unet_supervised",
+     "comparisons": 2
+    }
+   ],
+   "benchmark_ids": [
+    "hls_multi_temporal_crop_segmentation"
+   ]
+  },
+  {
+   "name": "Dynamic World training set",
+   "id": "dynamic-world-training-set",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 7,
+   "evidence_mass": 7,
+   "provisional_score": 0.985,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "ssl4eo_vits_dino",
+     "comparisons": 1
+    },
+    {
+     "model_id": "ssl4eo_vits_mae",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "dw_expert"
+   ]
+  },
+  {
+   "name": "MARIDA",
+   "id": "marida",
+   "domain": "4 \u00b7 Oceans and coasts",
+   "subdomain": "4.4 Marine pollution",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 7,
+   "evidence_mass": 7,
+   "provisional_score": 0.992,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "ssl4eo_vits_dino",
+     "comparisons": 1
+    },
+    {
+     "model_id": "ssl4eo_vits_mae",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "marida"
+   ]
+  },
+  {
+   "name": "ISPRS Vaihingen",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 7,
+   "evidence_mass": 7,
+   "provisional_score": 0.95,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swinb_random_init",
+     "comparisons": 1
+    },
+    {
+     "model_id": "resnet50_imagenet",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "seco_resnet50",
+     "comparisons": 1
+    },
+    {
+     "model_id": "swinb_imagenet_baseline",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "gfm_vaihingen_seg"
+   ]
+  },
+  {
+   "name": "UC Merced (classification)",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.1 Land cover and land degradation",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 7,
+   "evidence_mass": 7,
+   "provisional_score": 0.996,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swinb_random_init",
+     "comparisons": 1
+    },
+    {
+     "model_id": "resnet50_imagenet",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "seco_resnet50",
+     "comparisons": 1
+    },
+    {
+     "model_id": "swinb_imagenet_baseline",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "gfm_ucm_cls"
+   ]
+  },
+  {
+   "name": "WHU Aerial Building",
+   "id": null,
+   "domain": "8 \u00b7 Human systems",
+   "subdomain": "8.1 Settlements and buildings",
+   "models": 7,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 7,
+   "evidence_mass": 7,
+   "provisional_score": 0.963,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "gfm_swinb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "gfm_swinb_random_init",
+     "comparisons": 1
+    },
+    {
+     "model_id": "resnet50_imagenet",
+     "comparisons": 1
+    },
+    {
+     "model_id": "satmae_vitl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "seco_resnet50",
+     "comparisons": 1
+    },
+    {
+     "model_id": "swinb_imagenet_baseline",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "gfm_whu_aerial_seg"
+   ]
+  },
+  {
+   "name": "Digital Typhoon",
+   "id": null,
+   "domain": "6 \u00b7 Atmosphere",
+   "subdomain": "",
+   "models": 6,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 6,
+   "evidence_mass": 6,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov2_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "panopticon",
+     "comparisons": 1
+    },
+    {
+     "model_id": "softcon",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "dt_10_himawari_mse"
+   ]
+  },
+  {
+   "name": "TropicalCyclone",
+   "id": null,
+   "domain": "6 \u00b7 Atmosphere",
+   "subdomain": "",
+   "models": 6,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 6,
+   "evidence_mass": 6,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "anysat",
+     "comparisons": 1
+    },
+    {
+     "model_id": "croma_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dinov2_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "dofa_vitb",
+     "comparisons": 1
+    },
+    {
+     "model_id": "panopticon",
+     "comparisons": 1
+    },
+    {
+     "model_id": "softcon",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "tc_10_goes_16"
+   ]
+  },
+  {
+   "name": "FLUXNET2015",
+   "id": "fluxnet2015",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.5 Ecosystem function (phenology, productivity)",
+   "models": 4,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 4,
+   "evidence_mass": 4,
+   "provisional_score": null,
+   "protocol_families": [
+    "frozen"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "prithvi_v2_300m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v2_300m_tl",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v2_600m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v2_600m_tl",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "gpp_flux_hls_merra2_prithvi"
+   ]
+  },
+  {
+   "name": "HLS Burn Intensity",
+   "id": null,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "subdomain": "2.6 Fire",
+   "models": 4,
+   "papers": 1,
+   "tasks_n": 1,
+   "results": 4,
+   "evidence_mass": 4,
+   "provisional_score": 0.909,
+   "protocol_families": [
+    "fine-tuned"
+   ],
+   "suggested_models": [
+    {
+     "model_id": "prithvi_v2_300m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "prithvi_v2_600m",
+     "comparisons": 1
+    },
+    {
+     "model_id": "unet_resnet50_supervised",
+     "comparisons": 1
+    },
+    {
+     "model_id": "unet_supervised",
+     "comparisons": 1
+    }
+   ],
+   "benchmark_ids": [
+    "hls_burn_intensity_prithvi"
+   ]
+  }
+ ]
+}

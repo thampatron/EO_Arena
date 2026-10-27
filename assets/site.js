@@ -60,3 +60,46 @@ function infoPop(key,anchor){
 }
 document.addEventListener('click',e=>{const b=e.target.closest('button.info[data-m]');if(b){e.stopPropagation();infoPop(b.dataset.m,b);return;}if(!e.target.closest('.pop'))document.querySelectorAll('.pop').forEach(p=>p.remove());});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.pop').forEach(p=>p.remove());});
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Analysis settings shared by the evidence pages: which variant of the scoring to show. Stored in the URL (so a view
+// can be shared) and in localStorage (so it follows the reader between pages).
+const SETTINGS_DEF = {
+  noise:{label:"Seed noise σ²",options:[["median","median over models"],["mean","mean over models"]],help:"How the per-model seed variances in a comparison are combined into one σ². Median is robust to one unstable run; mean is the textbook pooled estimate."},
+  self:{label:"Self-reported",options:[["all","kept"],["independent","dropped"]],help:"Dropped = scores reported by the paper that introduced the model are removed before anything is computed; a comparison must keep at least 4 models."},
+  headline:{label:"Headline score",options:[["score","full comparison"],["score_top","frontier (leading half)"]],help:"Which score is used for the verdict, the rank and the Explorer panel. Frontier = computed among the top half of the models in each comparison."},
+  unit:{label:"Unit",options:[["dataset","dataset"],["protocol","dataset × protocol family"]],help:"Score each dataset once over all its comparisons, or separately for frozen and fine-tuned evaluations (the note's definition of a task)."},
+  ridge:{label:"Latent fit",options:[["10","ridge 10 (stable)"],["3","ridge 3 (predictive)"]],help:"Regularisation of the latent-factor regression behind dataset-specific signal and info share. Ridge 10 gives a task geometry stable under bootstrap (0.66); ridge 3 predicts held-out cells better but its geometry is not reproducible (0.3-0.4)."},
+};
+const SETTINGS_DEFAULT={noise:"median",self:"all",headline:"score",unit:"dataset",ridge:"10"};
+const SET={...SETTINGS_DEFAULT};
+(function(){try{Object.assign(SET,JSON.parse(localStorage.getItem("eoarena.settings")||"{}"));}catch(e){}
+  const u=new URLSearchParams(location.search);Object.keys(SETTINGS_DEF).forEach(k=>{if(u.has("s_"+k))SET[k]=u.get("s_"+k);});
+  Object.keys(SETTINGS_DEF).forEach(k=>{if(!SETTINGS_DEF[k].options.some(o=>o[0]===SET[k]))SET[k]=SETTINGS_DEFAULT[k];});})();
+function settingsSave(){try{localStorage.setItem("eoarena.settings",JSON.stringify(SET));}catch(e){}
+  const u=new URLSearchParams(location.search);Object.keys(SETTINGS_DEF).forEach(k=>{if(SET[k]!==SETTINGS_DEFAULT[k])u.set("s_"+k,SET[k]);else u.delete("s_"+k);});history.replaceState(null,"",location.pathname+(u.toString()?"?"+u:""));}
+const variantKey=()=>`${SET.noise}|${SET.self}`;
+const isDefaultSettings=()=>Object.keys(SETTINGS_DEF).every(k=>SET[k]===SETTINGS_DEFAULT[k]);
+function settingsSummary(){return Object.keys(SETTINGS_DEF).filter(k=>SET[k]!==SETTINGS_DEFAULT[k]).map(k=>`${SETTINGS_DEF[k].label}: ${SETTINGS_DEF[k].options.find(o=>o[0]===SET[k])[1]}`).join(" · ");}
+// Overlay the chosen variant on an evidence record. Returns a new object; the main-variant fields stay as *_main.
+function applyVariant(e){
+  if(!e)return e;const o={...e,score_main:e.score,verdict_main:e.verdict};
+  const vk=variantKey();
+  if(vk!=="median|all"&&e.variants&&e.variants[vk]){const v=e.variants[vk];["tasks_n","models","papers","results","spread_pts","noise_sd","n_sd_models","sigma2_source","sigma2","score","score_lo","score_hi","score_top","score_top_lo","score_top_hi","edi","edi_top","n_reps","n_reps_known","score_all","self_share","verdict"].forEach(k=>{if(k in v)o[k]=v[k];});o.variant=vk;}
+  if(SET.ridge!=="10"&&e.latent_variants&&e.latent_variants[SET.ridge]){const l=e.latent_variants[SET.ridge];["unexplained_share","r2_shared","info_share"].forEach(k=>{if(k in l)o[k]=l[k];});}
+  if(SET.headline==="score_top"&&o.score_top!=null){o.score_full=o.score;o.score_full_lo=o.score_lo;o.score_full_hi=o.score_hi;o.edi_full=o.edi;o.score=o.score_top;o.score_lo=o.score_top_lo??null;o.score_hi=o.score_top_hi??null;o.edi=o.edi_top;o.verdict=reVerdict(o);}
+  else if(SET.headline==="score_top"&&o.score!=null){o.score=null;o.edi=null;o.verdict=reVerdict(o);}
+  if(vk!=="median|all"&&o.variant)o.verdict=reVerdict(o);
+  return o;}
+function reVerdict(o){if((o.models||0)<4||!o.tasks_n)return "e_few";if(o.score==null)return "e_spread";if(o.sigma2_source==="measured")return o.score>=0.8?"e_reliable":o.score>=0.5?"e_moderate":"e_weak";return o.score>=0.8?"e_prov_high":"e_prov_low";}
+// Expand a record into dataset x protocol-family rows when the unit setting asks for it.
+function unitRows(e){if(SET.unit!=="protocol"||!e.by_protocol||!Object.keys(e.by_protocol).length)return [applyVariant(e)];
+  return Object.entries(e.by_protocol).map(([pf,b])=>applyVariant({...e,...b,by_protocol:undefined,tasks:(e.tasks||[]).filter(t=>t.protocol_family===pf),protocol_family:pf,name:`${e.name} · ${pf}`,base_name:e.name,explanation:`${pf} comparisons only. `+(e.explanation||"")}));}
+function settingsBar(onChange,keys){keys=keys||Object.keys(SETTINGS_DEF);
+  const el=document.createElement("div");el.className="settings";el.innerHTML=`<span class="k">Analysis settings${infoIcon('settings')}</span>`+keys.map(k=>`<label class="grp">${SETTINGS_DEF[k].label}<select class="sel sm" data-s="${k}" title="${esc(SETTINGS_DEF[k].help)}">${SETTINGS_DEF[k].options.map(o=>`<option value="${o[0]}"${SET[k]===o[0]?' selected':''}>${o[1]}</option>`).join('')}</select></label>`).join('')+`<button type="button" class="reset" ${isDefaultSettings()?'hidden':''}>Reset</button>`;
+  el.querySelectorAll("select").forEach(s=>s.addEventListener("change",()=>{SET[s.dataset.s]=s.value;settingsSave();el.querySelector(".reset").hidden=isDefaultSettings();onChange();}));
+  el.querySelector(".reset").addEventListener("click",()=>{Object.assign(SET,SETTINGS_DEFAULT);settingsSave();el.querySelectorAll("select").forEach(s=>s.value=SET[s.dataset.s]);el.querySelector(".reset").hidden=true;onChange();});
+  return el;}
+METRICS.settings={name:"Analysis settings",what:"The scoring note leaves a few choices open. Every dataset is scored under each of them, and these controls switch the whole page between the variants. The defaults are the main analysis; the choice follows you between pages and is written into the URL.",how:"σ²: median (default) or mean of the per-model seed variances within a comparison. Self-reported: keep all scores, or drop those from the paper that introduced the model before computing anything (comparisons that fall below 4 models are dropped). Headline: the full-comparison score (Eq. 6) or the frontier score (leading half of each comparison) drives verdicts and ranks. Unit: one score per dataset, or one per dataset × protocol family (frozen / fine-tuned), the note's own definition of a task. Latent fit: ridge 10 (main; stable geometry) or ridge 3 (better held-out prediction, unstable geometry) for dataset-specific signal and info share."};
+METRICS.general={name:"General ability",what:"The scalar a one-factor leaderboard would give: the model's predicted standardised score averaged over every imagery task, computed from its full capability profile.",how:"mean over all tasks t of λ_tᵀθ_m from the latent-factor fit (ridge 10, K factors), so a model evaluated on few tasks is placed by what its profile predicts elsewhere. 'Independent' uses a fit on evaluations by papers that did not introduce the model; 'all' uses every evaluation. general_obs restricts the mean to the tasks the model was actually evaluated on; mean z is the raw within-comparison z-score mean (the previous ranking).",eq:"Eq. 9"};
+METRICS.theta={name:"Capability profile θ",what:"The model's position on each latent capability axis. Axes are the principal axes of the task loadings and are not uniquely interpretable (any rotation fits equally well); read them through the datasets that load on them.",how:"θ_m from the latent-factor regression with Cov(θ) = I over models, rotated to the principal axes of Λ. Axis 1 carries most of the shared variance (close to general ability); later axes separate tasks that order models differently. Each axis is described by the datasets with the most positive and most negative loadings and by how much of its loadings domain, sensor, task type or protocol explain.",eq:"Eq. 9"};

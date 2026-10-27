@@ -56,6 +56,7 @@ table.tv td.num,table.tv th.num{text-align:right;font-variant-numeric:tabular-nu
   </section>
 
   <section class="section">
+    <div id="settings"></div><p class="setnote" id="setnote" hidden></p>
     <div class="ctrl">
       <label class="grp">X <select class="sel" id="x"></select><span id="xi"></span></label>
       <label class="grp">Y <select class="sel" id="y"></select><span id="yi"></span></label>
@@ -92,29 +93,35 @@ const TASKS=[['SS','Semantic segmentation'],['SC','Scene classification'],['RG',
 const TASK_OF_TYPE=t=>{t=String(t||'').toLowerCase();if(t.includes('multilabel')||t.includes('multi-label'))return 'ML';if(t.includes('instance'))return 'IS';if(t.includes('detection')&&!t.includes('change'))return 'OD';if(t.includes('change'))return 'CD';if(t.includes('forecast'))return 'FC';if(t.includes('segmentation'))return 'SS';if(t.includes('regression'))return 'RG';if(t.includes('classification'))return 'SC';return 'other';};
 const VERD={e_reliable:'Reliable',e_moderate:'Moderate',e_weak:'Weak / saturated',e_prov_high:'Provisional (high)',e_prov_low:'Provisional (low)',e_spread:'Spread only',e_few:'Under 4 models'};
 const SHAPES={SS:'circle',SC:'square',RG:'diamond',IS:'triangle',OD:'tri-down',CD:'plus',ML:'cross',FC:'star',other:'circle'};
-let ROWS=[],DOMS=[],SUBS={},st={x:'score',y:'score_top',col:'sub',dom:'',size:true,prov:true,unl:true,lab:false,tbl:false};
+let ROWS=[],RAW=[],EV=null,DOMS=[],SUBS={},st={x:'score',y:'score_top',col:'sub',dom:'',size:true,prov:true,unl:true,lab:false,tbl:false};
 const $=id=>document.getElementById(id);
+function buildRows(){
+  ROWS=[];RAW.forEach(e=>unitRows(e).forEach(r=>ROWS.push(r)));
+  ROWS.forEach(r=>{r.measured=r.sigma2_source==='measured';r.prov=!r.measured;r.base_name=r.base_name||r.name;});
+  const scored=ROWS.filter(r=>r.score!=null);
+  $('stats').innerHTML=[[ROWS.length,SET.unit==='protocol'?'dataset × protocol rows':'benchmark datasets'],[scored.length,'with a score'],[ROWS.filter(r=>r.measured).length,'measured noise'],[DOMS.length,'domains'],[EV.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const note=settingsSummary();$('setnote').hidden=!note;$('setnote').textContent=note?`Showing a non-default analysis variant — ${note}.`:'';
+}
 (async function(){
-  const [data,ev]=await loadJSON('datasets','evidence');
+  const [data,ev]=await loadJSON('datasets','evidence');EV=ev;
   const byId=Object.fromEntries(data.map(d=>[d.id,d]));
-  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results||e.verdict==='e_none')return;const d=byId[id];ROWS.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,task:(d.facets.task||[])[0]||TASK_OF_TYPE(e.task_type),listed:true,input_kind:e.input_kind||'eo_imagery'});});
-  ev.unlisted.forEach(e=>{if(!e.results)return;ROWS.push({...e,task:TASK_OF_TYPE(e.task_type),listed:false});});
-  ROWS=ROWS.filter(r=>r.input_kind==='eo_imagery'&&r.domain&&!['composite','outside_taxonomy'].includes(r.domain));
-  ROWS.forEach(r=>{r.measured=r.sigma2_source==='measured';r.prov=!r.measured;});
-  DOMS=[...new Set(ROWS.map(r=>r.domain))].sort();
-  DOMS.forEach(d=>{SUBS[d]=[...new Set(ROWS.filter(r=>r.domain===d).map(r=>r.subdomain||'(no subdomain)'))].sort();});
+  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results||e.verdict==='e_none')return;const d=byId[id];RAW.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,task:(d.facets.task||[])[0]||TASK_OF_TYPE(e.task_type),listed:true,input_kind:e.input_kind||'eo_imagery'});});
+  ev.unlisted.forEach(e=>{if(!e.results)return;RAW.push({...e,task:TASK_OF_TYPE(e.task_type),listed:false});});
+  RAW=RAW.filter(r=>r.input_kind==='eo_imagery'&&r.domain&&!['composite','outside_taxonomy'].includes(r.domain));
+  DOMS=[...new Set(RAW.map(r=>r.domain))].sort();
+  DOMS.forEach(d=>{SUBS[d]=[...new Set(RAW.filter(r=>r.domain===d).map(r=>r.subdomain||'(no subdomain)'))].sort();});
   $('dom').innerHTML+=DOMS.map(d=>`<option value="${esc(d)}">${esc(d.replace(/^\d · /,''))}</option>`).join('');
   ['x','y'].forEach(k=>{$(k).innerHTML=AXES.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join('');$(k).value=st[k];});
   $('xi').innerHTML=infoIcon(st.x);$('yi').innerHTML=infoIcon(st.y);
   $('col').value=st.col;
-  const scored=ROWS.filter(r=>r.score!=null);
-  $('stats').innerHTML=[[ROWS.length,'benchmark datasets'],[scored.length,'with a score'],[ROWS.filter(r=>r.measured).length,'measured noise'],[DOMS.length,'domains'],[ev.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('settings').replaceWith(settingsBar(()=>{buildRows();render();}));
+  buildRows();
   ['x','y','col','dom'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.value;if(k==='x')$('xi').innerHTML=infoIcon(st.x);if(k==='y')$('yi').innerHTML=infoIcon(st.y);render();}));
   ['size','prov','unl','lab','tbl'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.checked;render();}));
   readURL();render();
 })();
 function readURL(){const u=new URLSearchParams(location.search);['x','y','col','dom'].forEach(k=>{if(u.has(k)&&(k==='dom'||AX[u.get(k)]||k==='col'))st[k]=u.get(k);$(k).value=st[k];});$('xi').innerHTML=infoIcon(st.x);$('yi').innerHTML=infoIcon(st.y);}
-function writeURL(){const u=new URLSearchParams();['x','y','col','dom'].forEach(k=>{if(st[k]&&!(k==='x'&&st[k]==='score')&&!(k==='y'&&st[k]==='score_top')&&!(k==='col'&&st[k]==='sub'))u.set(k,st[k]);});history.replaceState(null,'',location.pathname+(u.toString()?'?'+u:''));}
+function writeURL(){const u=new URLSearchParams(location.search);['x','y','col','dom'].forEach(k=>u.delete(k));['x','y','col','dom'].forEach(k=>{if(st[k]&&!(k==='x'&&st[k]==='score')&&!(k==='y'&&st[k]==='score_top')&&!(k==='col'&&st[k]==='sub'))u.set(k,st[k]);});history.replaceState(null,'',location.pathname+(u.toString()?'?'+u:''));}
 const colourKey=r=>st.col==='task'?r.task:st.col==='verdict'?r.verdict:(r.subdomain||'(no subdomain)');
 function colourOf(r,dom){
   if(st.col==='task')return PAL[Math.max(0,TASKS.findIndex(t=>t[0]===r.task))%PAL.length];
@@ -182,7 +189,7 @@ function render(){
   legend(st.dom);
   $('table').hidden=!st.tbl;$('grid').hidden=st.tbl;
   if(st.tbl){const cols=['name','domain','subdomain','task',st.x,st.y,'models','papers','verdict'];
-    $('table').innerHTML=`<table class="tv"><thead><tr>${cols.map(c=>`<th class="${AX[c]||['models','papers'].includes(c)?'num':''}">${esc(AX[c]?AX[c][1]:c==='task'?'Task family':c==='tasks_n'?'Comparisons':c[0].toUpperCase()+c.slice(1))}</th>`).join('')}</tr></thead><tbody>${rows.filter(r=>doms.includes(r.domain)).sort((a,b)=>a.domain.localeCompare(b.domain)||(b[st.x]??-1)-(a[st.x]??-1)).map(r=>`<tr>${cols.map(c=>c==='name'?`<td>${r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">${esc(r.name)}</a>`:esc(r.name)+'<span class="unl">not in inventory</span>'}</td>`:c==='verdict'?`<td>${VERD[r.verdict]||r.verdict}${r.prov?' (plug-in)':''}</td>`:c==='task'?`<td>${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])}</td>`:AX[c]||['models','papers'].includes(c)?`<td class="num">${fmtVal(c,r[c])}</td>`:`<td>${esc(String(r[c]||'').replace(/^\d(\.\d)? ?· ?/,''))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+    $('table').innerHTML=`<table class="tv"><thead><tr>${cols.map(c=>`<th class="${AX[c]||['models','papers'].includes(c)?'num':''}">${esc(AX[c]?AX[c][1]:c==='task'?'Task family':c==='tasks_n'?'Comparisons':c[0].toUpperCase()+c.slice(1))}</th>`).join('')}</tr></thead><tbody>${rows.filter(r=>doms.includes(r.domain)).sort((a,b)=>a.domain.localeCompare(b.domain)||(b[st.x]??-1)-(a[st.x]??-1)).map(r=>`<tr>${cols.map(c=>c==='name'?`<td>${r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">${esc(r.name)}</a>`:esc(r.name)+'<span class="unl">not in inventory</span>'}</td>`:c==='verdict'?`<td>${VERD[r.verdict]||r.verdict}${r.prov?' (plug-in)':''}</td>`:c==='task'?`<td>${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])}</td>`:AX[c]||['models','papers'].includes(c)?`<td class="num">${fmtVal(c,r[c])}</td>`:`<td>${esc(String(r[c]||'').replace(/^\d(\.\d)? ?· ?/,''))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
 }
 // tooltip
 const tt=$('tt');let pinned=null;
@@ -190,7 +197,7 @@ function showTT(i,el,pin){const r=ROWS[i];if(!r)return;const ax=AX[st.x],ay=AX[s
   tt.innerHTML=`<b>${esc(r.name)}</b>${r.listed?'':'<span class="unl">not in inventory</span>'}<p class="ttsub">${esc(r.domain.replace(/^\d · /,''))} · ${esc((r.subdomain||'').replace(/^\d\.\d /,''))} · ${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])} · ${VERD[r.verdict]||r.verdict}</p>
   <dl><dt>${esc(ax[1])}</dt><dd>${fmtVal(st.x,r[st.x])}</dd><dt>${esc(ay[1])}</dt><dd>${fmtVal(st.y,r[st.y])}</dd>${st.x!=='score'&&st.y!=='score'?`<dt>Score</dt><dd>${fmtVal('score',r.score)}${r.score!=null?` <span style="color:var(--fg-3)">${fmtVal('score',r.score_lo)}–${fmtVal('score',r.score_hi)}</span>`:''}</dd>`:''}<dt>Models · papers · comparisons</dt><dd>${r.models} · ${r.papers} · ${r.tasks_n}</dd>${r.noise_sd!=null?`<dt>Seed noise</dt><dd>${r.noise_sd.toFixed(2)} pts${r.measured?'':' (plug-in)'}</dd>`:''}</dl>
   <p class="expl">${esc((r.explanation||'').split('. ').slice(0,2).join('. '))}${r.explanation?'.':''}</p>
-  <p class="lnk">${r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.name)}">Ranking row →</a></p>`;
+  <p class="lnk">${r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.base_name||r.name)}">Ranking row →</a></p>`;
   tt.hidden=false;tt.classList.toggle('pin',!!pin);
   const b=el.getBoundingClientRect();const w=tt.offsetWidth||320,h=tt.offsetHeight||160;
   let x=b.right+scrollX+10,y=b.top+scrollY-10;if(x+w>scrollX+innerWidth-12)x=b.left+scrollX-w-10;if(x<12)x=12;if(y+h>scrollY+innerHeight-12)y=Math.max(scrollY+12,b.bottom+scrollY-h);
@@ -201,7 +208,7 @@ function hideTT(){if(pinned!=null)return;tt.hidden=true;document.querySelectorAl
 document.addEventListener('mouseover',e=>{const p=e.target.closest('.pt');if(p&&pinned==null)showTT(+p.dataset.i,p,false);});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.pt')&&pinned==null)hideTT();});
 document.addEventListener('focusin',e=>{const p=e.target.closest('.pt');if(p)showTT(+p.dataset.i,p,false);});
-document.addEventListener('click',e=>{const p=e.target.closest('.pt');if(p){const i=+p.dataset.i;if(pinned===i){const r=ROWS[i];if(r.listed)location.href=`index.html?q=${encodeURIComponent(r.name)}`;return;}pinned=i;showTT(i,p,true);return;}if(!e.target.closest('.tt')){pinned=null;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}});
+document.addEventListener('click',e=>{const p=e.target.closest('.pt');if(p){const i=+p.dataset.i;if(pinned===i){const r=ROWS[i];if(r.listed)location.href=`index.html?q=${encodeURIComponent(r.base_name||r.name)}`;return;}pinned=i;showTT(i,p,true);return;}if(!e.target.closest('.tt')){pinned=null;tt.hidden=true;document.querySelectorAll('.pt.on').forEach(p=>p.classList.remove('on'));}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=null;tt.hidden=true;}});
 </script>
 </body>

@@ -52,6 +52,7 @@ table.rk.sub td{padding:4px 8px}
       <li><span class="chip ev-spread">Spread only</span><span>No noise estimate available; only the observed spread is known.</span></li>
       <li><span class="chip ev-few">Under 4 models</span><span>Scored, but no single comparison has four models.</span></li>
     </ul>
+    <div id="settings"></div><p class="setnote" id="setnote" hidden></p>
     <div class="ctrl">
       <label class="inl">Domain <select class="sel" id="dom"></select></label>
       <label class="inl">Verdict <select class="sel" id="ver"></select></label>
@@ -80,26 +81,33 @@ const COLS=[['rank','#','rank'],['name','Benchmark',''],['domain','Domain',''],[
 const RANKTIP="Position by verdict (measured before provisional), then by EDI. Ranks benchmarks as evidence, not models.";
 let ROWS=[],sortKey='rank',sortDir=1;const st={dom:'',ver:'',q:'',img:true,meas:false};const open=new Set();
 const $=id=>document.getElementById(id);
-(async function(){
-  const [data,ev]=await loadJSON('datasets','evidence');
-  const byId=Object.fromEntries(data.map(d=>[d.id,d]));
-  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];ROWS.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:e.input_kind||'eo_imagery',listed:true});});
-  ev.unlisted.forEach(e=>{if(e.results)ROWS.push({...e,listed:false});});
+let RAW=[],EV=null,DATA=null;
+function buildRows(){
+  ROWS=[];RAW.forEach(e=>unitRows(e).forEach(r=>{if(!r.results)return;ROWS.push(r);}));
   ROWS.forEach(r=>{r.verdict=EVC[r.verdict]?r.verdict:'e_few';r.measured=r.sigma2_source==='measured';});
   ROWS.sort((a,b)=>(EVC[a.verdict][2]-EVC[b.verdict][2])||((b.edi??-1)-(a.edi??-1))||(b.models-a.models)||a.name.localeCompare(b.name));
   ROWS.forEach((r,i)=>r.rank=i+1);
   const measured=ROWS.filter(r=>r.measured).length;
-  $('stats').innerHTML=[[ROWS.length,'benchmarks with GeoFM scores',''],[measured,'with measured seed noise','noise_sd'],[ROWS.filter(r=>r.verdict==='e_reliable').length,'reliable','verdict'],[ROWS.filter(r=>r.score!=null&&r.score<0.8).length,'score below 0.8','score'],[ev.latent?ev.latent.K:'–','capability factors','unexplained_share'],[ev.as_of,'as of','']].map(([n,l,k])=>`<div class="stat"><b>${n}</b><span>${l}${k?infoIcon(k):''}</span></div>`).join('');
+  $('stats').innerHTML=[[ROWS.length,SET.unit==='protocol'?'dataset × protocol rows':'benchmarks with GeoFM scores',''],[measured,'with measured seed noise','noise_sd'],[ROWS.filter(r=>r.verdict==='e_reliable').length,'reliable','verdict'],[ROWS.filter(r=>r.score!=null&&r.score<0.8).length,'score below 0.8','score'],[EV.latent?EV.latent.K:'–','capability factors','unexplained_share'],[EV.as_of,'as of','']].map(([n,l,k])=>`<div class="stat"><b>${n}</b><span>${l}${k?infoIcon(k):''}</span></div>`).join('');
+  const note=settingsSummary();$('setnote').hidden=!note;$('setnote').textContent=note?`Showing a non-default analysis variant — ${note}.`:'';
+}
+(async function(){
+  const [data,ev]=await loadJSON('datasets','evidence');EV=ev;DATA=data;
+  const byId=Object.fromEntries(data.map(d=>[d.id,d]));
+  Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];RAW.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:e.input_kind||'eo_imagery',listed:true});});
+  ev.unlisted.forEach(e=>{if(e.results)RAW.push({...e,listed:false});});
+  $('settings').replaceWith(settingsBar(()=>{buildRows();document.querySelectorAll('#tbl th button').forEach(b=>{const k=b.dataset.k;if(k==='score')b.textContent=SET.headline==='score_top'?'Frontier score (headline)':'Score';if(k==='score_top')b.textContent=SET.headline==='score_top'?'Full score':'Frontier score';});render();}));
+  buildRows();
   const doms=[...new Set(ROWS.map(r=>r.domain))].sort();
   $('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option>${esc(d)}</option>`).join('');
   $('ver').innerHTML='<option value="">All verdicts</option>'+Object.entries(EVC).map(([k,v])=>`<option value="${k}">${v[1]}</option>`).join('');
-  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button>${k==='rank'?`<i class="info" tabindex="0" role="note" aria-label="${esc(RANKTIP)}" data-tip="${esc(RANKTIP)}">i</i>`:infoIcon(k)}</th>`).join('');
+  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>{if(k==='score')l=SET.headline==='score_top'?'Frontier score (headline)':'Score';if(k==='score_top')l=SET.headline==='score_top'?'Full score':'Frontier score';return [k,l,c];}).map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button>${k==='rank'?`<i class="info" tabindex="0" role="note" aria-label="${esc(RANKTIP)}" data-tip="${esc(RANKTIP)}">i</i>`:infoIcon(k)}</th>`).join('');
   document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','domain','verdict','rank'].includes(k)?1:-1);sortKey=k;render();}));
   ['dom','ver'].forEach(id=>$(id).addEventListener('change',e=>{st[id]=e.target.value;render();}));
   $('img').addEventListener('change',e=>{st.img=e.target.checked;render();});
   $('meas').addEventListener('change',e=>{st.meas=e.target.checked;render();});
   let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
-  document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=+tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
+  document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
   const q0=new URLSearchParams(location.search).get('q');if(q0){st.q=q0.trim().toLowerCase();$('q').value=q0;}
   render();
 })();
@@ -114,11 +122,11 @@ function render(){
   const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||r.input_kind==='eo_imagery')&&(!st.meas||r.measured)).sort(cmp);
   document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
   $('count').textContent=`${rows.length} of ${ROWS.length}`;
-  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];const i=ROWS.indexOf(r);
-    const nm=r.listed?`<a href="index.html?q=${encodeURIComponent(r.name)}">${esc(r.name)}</a>`:`${esc(r.name)}<span class="unl">not in inventory</span>`;
+  document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];const i=r.name;
+    const nm=(r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">${esc(r.base_name||r.name)}</a>`:`${esc(r.base_name||r.name)}`)+(r.protocol_family?` <span class="dim">· ${esc(r.protocol_family)}</span>`:'')+(r.listed?'':`<span class="unl">not in inventory</span>`);
     const sc=r.score==null?'–':`<span class="bar" style="width:${Math.max(2,Math.round(60*r.score))}px"></span>${f2(r.score)}<span class="dim"> ${f2(r.score_lo)}–${f2(r.score_hi)}</span>`;
     const ns=r.noise_sd==null?'–':f2(r.noise_sd)+(r.measured?'':'<span class="dim"> plug-in</span>');
-    return `<tr data-i="${i}" class="${open.has(i)?'open':''}"><td class="rank">${r.rank}</td><td>${nm}</td><td class="dim">${esc(r.domain.replace(/^\d · /,''))}</td><td class="num">${r.models}</td><td class="num">${r.papers}</td><td class="num">${r.tasks_n}</td><td class="num">${f2(r.spread_pts)}</td><td class="num">${ns}</td><td class="num">${sc}</td><td class="num">${f2(r.score_top)}</td><td class="num">${fedi(r.edi)}</td><td class="num">${pc(r.unexplained_share)}</td><td class="num">${r.info_share==null?'–':(100*r.info_share).toFixed(1)+'%'}</td><td class="num">${pc(r.self_share)}</td><td><span class="chip ${c}">${l}</span></td></tr>${open.has(i)?detail(r):''}`;}).join('')||`<tr><td colspan="${COLS.length}" class="dim">No benchmark matches.</td></tr>`;
+    return `<tr data-i="${i}" class="${open.has(i)?'open':''}"><td class="rank">${r.rank}</td><td>${nm}</td><td class="dim">${esc(r.domain.replace(/^\d · /,''))}</td><td class="num">${r.models}</td><td class="num">${r.papers}</td><td class="num">${r.tasks_n}</td><td class="num">${f2(r.spread_pts)}</td><td class="num">${ns}</td><td class="num">${sc}</td><td class="num">${SET.headline==='score_top'?f2(r.score_full):f2(r.score_top)}</td><td class="num">${fedi(r.edi)}</td><td class="num">${pc(r.unexplained_share)}</td><td class="num">${r.info_share==null?'–':(100*r.info_share).toFixed(1)+'%'}</td><td class="num">${pc(r.self_share)}</td><td><span class="chip ${c}">${l}</span></td></tr>${open.has(i)?detail(r):''}`;}).join('')||`<tr><td colspan="${COLS.length}" class="dim">No benchmark matches.</td></tr>`;
 }
 </script>
 </body>
