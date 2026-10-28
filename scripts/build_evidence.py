@@ -281,18 +281,20 @@ def task_rec(t, T, LT):
             "r2_shared": rnd(lt.r2) if lt is not None else None, "unexplained_share": rnd(lt.unexplained_share) if lt is not None else None, "self_share": rnd(row.self_share, 2)}
 
 def explain(d, K):
-    p = [f"{d['tasks_n']} comparison{'s' if d['tasks_n'] != 1 else ''} ({d['models']} models, {d['papers']} paper{'s' if d['papers'] != 1 else ''})."]
-    if d["spread_pts"] is not None: p.append(f"GeoFMs differ by an SD of {d['spread_pts']:.2f} pts within a comparison.")
-    if d["score"] is None: p.append("No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.")
+    n = d["tasks_n"]
+    p = [f"Reported by {d['papers']} paper{'s' if d['papers'] != 1 else ''} with {d['models']} models in {n} comparison{'s' if n != 1 else ''}."]
+    if d["spread_pts"] is not None: p.append(f"Models differ by a standard deviation of {d['spread_pts']:.1f} points.")
+    if d["score"] is None:
+        p.append("No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed.")
     else:
-        noise = f"{np.sqrt(d['sigma2']):.2f} pts" if d["spread_pts"] is not None else f"{np.sqrt(d['sigma2']):.3g} (metric units)"
+        noise = f"{np.sqrt(d['sigma2']):.2f} points" if d["spread_pts"] is not None else f"{np.sqrt(d['sigma2']):.3g} (metric units)"
         if d["sigma2_source"] == "measured":
-            reps = f"reported values average {d['n_reps']:.0f} replicates{'' if d['n_reps_known'] else ' (assumed)'}"
-            p.append(f"Seed noise SD of one evaluation is {noise} ({d['n_sd_models']} model entries with SDs; {reps}), so {100*d['score']:.0f}% of the spread is repeatable model difference (score {d['score']:.2f}, 90% CI {d['score_lo']:.2f}-{d['score_hi']:.2f}).")
-            if d.get("score_top") is not None: p.append(f"Among the leading half of the models only, {100*d['score_top']:.0f}% of the spread is repeatable (frontier score {d['score_top']:.2f}).")
-        else: p.append(f"No printed seed SD; with a plug-in noise SD of {noise} ({d['sigma2_source']}) about {100*d['score']:.0f}% of the spread would be repeatable (provisional score {d['score']:.2f}).")
-    if d.get("unexplained_share") is not None: p.append(f"{100*d['unexplained_share']:.0f}% of the stable model differences are not explained by the {K} shared capability factor{'s' if K != 1 else ''} (dataset-specific signal).")
-    if d.get("info_share"): p.append(f"Contributes {100*d['info_share']:.1f}% of the information the whole suite gives about shared capabilities (redundancy-adjusted).")
+            p.append(f"Re-running an evaluation changes a score by about {noise}, so {100*d['score']:.0f}% of the differences between models are real (score {d['score']:.2f}, 90% interval {d['score_lo']:.2f}–{d['score_hi']:.2f}).")
+            if d.get("score_top") is not None:
+                p.append(f"Among the better half of the models, {100*d['score_top']:.0f}% are real (top-half score {d['score_top']:.2f})" + (", so the benchmark mainly separates weak models from strong ones." if d["score"] - d["score_top"] >= 0.25 else "."))
+        else:
+            p.append(f"No paper reports seed noise for this benchmark; with the typical value of {noise} for its protocol, about {100*d['score']:.0f}% of the differences would be real (estimated score {d['score']:.2f}).")
+    if d["papers"] == 1 and n: p.append("All results come from one paper, so they reflect a single group's setup.")
     return " ".join(p)
 
 MAIN = TABLES[MAIN_VARIANT]; Tm = MAIN["T"]

@@ -701,7 +701,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (13 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 13 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.3 Biomass and carbon stocks",
    "input_kind": "eo_imagery",
@@ -1133,7 +1133,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (14 models, 1 paper). GeoFMs differ by an SD of 4.10 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 97% of the spread would be repeatable (provisional score 0.97). 76% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 3 comparisons. Models differ by a standard deviation of 4.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 97% of the differences would be real (estimated score 0.97). All results come from one paper, so they reflect a single group's setup.",
    "domain": "5 · Cryosphere",
    "subdomain": "5.3 Sea and lake ice",
    "input_kind": "eo_imagery",
@@ -1616,7 +1616,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "9 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 3.24 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 74% of the spread would be repeatable (provisional score 0.74). 50% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 9 comparisons. Models differ by a standard deviation of 3.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 74% of the differences would be real (estimated score 0.74). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -3246,7 +3246,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "47 comparisons (110 models, 18 papers). GeoFMs differ by an SD of 5.90 pts within a comparison. Seed noise SD of one evaluation is 1.46 pts (93 model entries with SDs; reported values average 6 replicates), so 87% of the spread is repeatable model difference (score 0.87, 90% CI 0.83-0.90). Among the leading half of the models only, 70% of the spread is repeatable (frontier score 0.70). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 4.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 18 papers with 110 models in 47 comparisons. Models differ by a standard deviation of 5.9 points. Re-running an evaluation changes a score by about 1.46 points, so 87% of the differences between models are real (score 0.87, 90% interval 0.83–0.90). Among the better half of the models, 70% are real (top-half score 0.70).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -3923,7 +3923,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "12 comparisons (38 models, 4 papers). Seed noise SD of one evaluation is 0 (metric units) (32 model entries with SDs; reported values average 5 replicates), so 86% of the spread is repeatable model difference (score 0.86, 90% CI 0.84-0.87). Among the leading half of the models only, 91% of the spread is repeatable (frontier score 0.91). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 2.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 38 models in 12 comparisons. Re-running an evaluation changes a score by about 0 (metric units), so 86% of the differences between models are real (score 0.86, 90% interval 0.84–0.87). Among the better half of the models, 91% are real (top-half score 0.91).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.3 Biomass and carbon stocks",
    "input_kind": "eo_imagery",
@@ -4218,7 +4218,7 @@
      "self_share": 0.6
     }
    ],
-   "explanation": "2 comparisons (29 models, 2 papers). GeoFMs differ by an SD of 14.14 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 100% of the spread would be repeatable (provisional score 0.99). 56% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 29 models in 2 comparisons. Models differ by a standard deviation of 14.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 100% of the differences would be real (estimated score 0.99).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -5029,7 +5029,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "17 comparisons (65 models, 8 papers). GeoFMs differ by an SD of 2.52 pts within a comparison. Seed noise SD of one evaluation is 0.36 pts (39 model entries with SDs; reported values average 6 replicates), so 79% of the spread is repeatable model difference (score 0.79, 90% CI 0.71-0.85). Among the leading half of the models only, 60% of the spread is repeatable (frontier score 0.60). 54% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 3.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 8 papers with 65 models in 17 comparisons. Models differ by a standard deviation of 2.5 points. Re-running an evaluation changes a score by about 0.36 points, so 79% of the differences between models are real (score 0.79, 90% interval 0.71–0.85). Among the better half of the models, 60% are real (top-half score 0.60).",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery",
@@ -5516,7 +5516,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (30 models, 2 papers). GeoFMs differ by an SD of 8.73 pts within a comparison. Seed noise SD of one evaluation is 1.52 pts (28 model entries with SDs; reported values average 5 replicates), so 90% of the spread is repeatable model difference (score 0.90, 90% CI 0.86-0.93). Among the leading half of the models only, 75% of the spread is repeatable (frontier score 0.75). 52% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 30 models in 5 comparisons. Models differ by a standard deviation of 8.7 points. Re-running an evaluation changes a score by about 1.52 points, so 90% of the differences between models are real (score 0.90, 90% interval 0.86–0.93). Among the better half of the models, 75% are real (top-half score 0.75).",
    "domain": "5 · Cryosphere",
    "subdomain": "5.2 Glaciers and ice sheets",
    "input_kind": "eo_imagery",
@@ -6328,7 +6328,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "17 comparisons (69 models, 9 papers). GeoFMs differ by an SD of 7.91 pts within a comparison. Seed noise SD of one evaluation is 2.20 pts (39 model entries with SDs; reported values average 6 replicates), so 90% of the spread is repeatable model difference (score 0.90, 90% CI 0.87-0.91). Among the leading half of the models only, 78% of the spread is repeatable (frontier score 0.78). 53% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 3.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 9 papers with 69 models in 17 comparisons. Models differ by a standard deviation of 7.9 points. Re-running an evaluation changes a score by about 2.20 points, so 90% of the differences between models are real (score 0.90, 90% interval 0.87–0.91). Among the better half of the models, 78% are real (top-half score 0.78).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -6841,7 +6841,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "6 comparisons (27 models, 4 papers). GeoFMs differ by an SD of 6.39 pts within a comparison. Seed noise SD of one evaluation is 1.32 pts (11 model entries with SDs; reported values average 10 replicates), so 94% of the spread is repeatable model difference (score 0.94, 90% CI 0.85-0.98). Among the leading half of the models only, 78% of the spread is repeatable (frontier score 0.78). 63% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 27 models in 6 comparisons. Models differ by a standard deviation of 6.4 points. Re-running an evaluation changes a score by about 1.32 points, so 94% of the differences between models are real (score 0.94, 90% interval 0.85–0.98). Among the better half of the models, 78% are real (top-half score 0.78).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -7301,7 +7301,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "4 comparisons (24 models, 3 papers). GeoFMs differ by an SD of 3.10 pts within a comparison. Seed noise SD of one evaluation is 0.44 pts (33 model entries with SDs; reported values average 5 replicates (assumed)), so 97% of the spread is repeatable model difference (score 0.97, 90% CI 0.91-1.00). Among the leading half of the models only, 89% of the spread is repeatable (frontier score 0.89). 68% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 3 papers with 24 models in 4 comparisons. Models differ by a standard deviation of 3.1 points. Re-running an evaluation changes a score by about 0.44 points, so 97% of the differences between models are real (score 0.97, 90% interval 0.91–1.00). Among the better half of the models, 89% are real (top-half score 0.89).",
    "domain": "6 · Atmosphere",
    "subdomain": "6.3 Clouds and smoke",
    "input_kind": "eo_imagery",
@@ -7876,7 +7876,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "12 comparisons (41 models, 4 papers). GeoFMs differ by an SD of 4.61 pts within a comparison. Seed noise SD of one evaluation is 1.24 pts (19 model entries with SDs; reported values average 4 replicates (assumed)), so 86% of the spread is repeatable model difference (score 0.86, 90% CI 0.81-0.90). Among the leading half of the models only, 64% of the spread is repeatable (frontier score 0.64). 61% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 41 models in 12 comparisons. Models differ by a standard deviation of 4.6 points. Re-running an evaluation changes a score by about 1.24 points, so 86% of the differences between models are real (score 0.86, 90% interval 0.81–0.90). Among the better half of the models, 64% are real (top-half score 0.64).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -8521,7 +8521,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "15 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 9.14 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 50% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 2.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 15 comparisons. Models differ by a standard deviation of 9.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -8898,7 +8898,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "5 comparisons (14 models, 3 papers). GeoFMs differ by an SD of 4.12 pts within a comparison. Seed noise SD of one evaluation is 0.10 pts (8 model entries with SDs; reported values average 3 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 0.97-1.00). Among the leading half of the models only, 100% of the spread is repeatable (frontier score 1.00). 63% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 3 papers with 14 models in 5 comparisons. Models differ by a standard deviation of 4.1 points. Re-running an evaluation changes a score by about 0.10 points, so 100% of the differences between models are real (score 1.00, 90% interval 0.97–1.00). Among the better half of the models, 100% are real (top-half score 1.00).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -9165,7 +9165,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (7 models, 1 paper). GeoFMs differ by an SD of 4.70 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 40% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 1 comparison. Models differ by a standard deviation of 4.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -9976,7 +9976,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "17 comparisons (29 models, 2 papers). GeoFMs differ by an SD of 3.58 pts within a comparison. Seed noise SD of one evaluation is 3.52 pts (28 model entries with SDs; reported values average 5 replicates), so 26% of the spread is repeatable model difference (score 0.26, 90% CI 0.19-0.30). Among the leading half of the models only, 21% of the spread is repeatable (frontier score 0.21). 49% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 3.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 29 models in 17 comparisons. Models differ by a standard deviation of 3.6 points. Re-running an evaluation changes a score by about 3.52 points, so 26% of the differences between models are real (score 0.26, 90% interval 0.19–0.30). Among the better half of the models, 21% are real (top-half score 0.21).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -11591,7 +11591,7 @@
      "self_share": 0.75
     }
    ],
-   "explanation": "39 comparisons (97 models, 16 papers). GeoFMs differ by an SD of 8.36 pts within a comparison. Seed noise SD of one evaluation is 0.87 pts (72 model entries with SDs; reported values average 5 replicates (assumed)), so 86% of the spread is repeatable model difference (score 0.86, 90% CI 0.84-0.87). Among the leading half of the models only, 78% of the spread is repeatable (frontier score 0.78). 51% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 5.7% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 16 papers with 97 models in 39 comparisons. Models differ by a standard deviation of 8.4 points. Re-running an evaluation changes a score by about 0.87 points, so 86% of the differences between models are real (score 0.86, 90% interval 0.84–0.87). Among the better half of the models, 78% are real (top-half score 0.78).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -11858,7 +11858,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (14 models, 1 paper). GeoFMs differ by an SD of 2.15 pts within a comparison. Seed noise SD of one evaluation is 0.44 pts (14 model entries with SDs; reported values average 5 replicates), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.90-0.99). Among the leading half of the models only, 95% of the spread is repeatable (frontier score 0.95). 79% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 1 comparison. Models differ by a standard deviation of 2.1 points. Re-running an evaluation changes a score by about 0.44 points, so 96% of the differences between models are real (score 0.96, 90% interval 0.90–0.99). Among the better half of the models, 95% are real (top-half score 0.95). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery",
@@ -12263,7 +12263,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (18 models, 1 paper). GeoFMs differ by an SD of 4.12 pts within a comparison. Seed noise SD of one evaluation is 0.78 pts (28 model entries with SDs; reported values average 5 replicates), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.94-0.97). Among the leading half of the models only, 84% of the spread is repeatable (frontier score 0.84). 49% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 18 models in 2 comparisons. Models differ by a standard deviation of 4.1 points. Re-running an evaluation changes a score by about 0.78 points, so 96% of the differences between models are real (score 0.96, 90% interval 0.94–0.97). Among the better half of the models, 84% are real (top-half score 0.84). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -12494,7 +12494,7 @@
      "self_share": 1.0
     }
    ],
-   "explanation": "1 comparison (4 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 4 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.5 Ecosystem function (phenology, productivity)",
    "input_kind": "eo_imagery",
@@ -13119,7 +13119,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "10 comparisons (26 models, 2 papers). GeoFMs differ by an SD of 2.26 pts within a comparison. Seed noise SD of one evaluation is 0.74 pts (124 model entries with SDs; reported values average 5 replicates), so 84% of the spread is repeatable model difference (score 0.84, 90% CI 0.80-0.87). Among the leading half of the models only, 68% of the spread is repeatable (frontier score 0.68). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 26 models in 10 comparisons. Models differ by a standard deviation of 2.3 points. Re-running an evaluation changes a score by about 0.74 points, so 84% of the differences between models are real (score 0.84, 90% interval 0.80–0.87). Among the better half of the models, 68% are real (top-half score 0.68).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -13576,7 +13576,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "8 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 9.57 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 36% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.6% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 8 comparisons. Models differ by a standard deviation of 9.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery",
@@ -14143,7 +14143,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "8 comparisons (50 models, 6 papers). GeoFMs differ by an SD of 4.28 pts within a comparison. Seed noise SD of one evaluation is 1.25 pts (39 model entries with SDs; reported values average 6 replicates), so 84% of the spread is repeatable model difference (score 0.84, 90% CI 0.76-0.90). Among the leading half of the models only, 46% of the spread is repeatable (frontier score 0.46). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.8% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 6 papers with 50 models in 8 comparisons. Models differ by a standard deviation of 4.3 points. Re-running an evaluation changes a score by about 1.25 points, so 84% of the differences between models are real (score 0.84, 90% interval 0.76–0.90). Among the better half of the models, 46% are real (top-half score 0.46), so the benchmark mainly separates weak models from strong ones.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.2 Forest extent and change",
    "input_kind": "eo_imagery",
@@ -15227,7 +15227,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "27 comparisons (39 models, 6 papers). GeoFMs differ by an SD of 4.65 pts within a comparison. Seed noise SD of one evaluation is 0.73 pts (43 model entries with SDs; reported values average 7 replicates), so 94% of the spread is repeatable model difference (score 0.94, 90% CI 0.90-0.97). Among the leading half of the models only, 52% of the spread is repeatable (frontier score 0.52). 40% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 4.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 6 papers with 39 models in 27 comparisons. Models differ by a standard deviation of 4.7 points. Re-running an evaluation changes a score by about 0.73 points, so 94% of the differences between models are real (score 0.94, 90% interval 0.90–0.97). Among the better half of the models, 52% are real (top-half score 0.52), so the benchmark mainly separates weak models from strong ones.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.6 Fire",
    "input_kind": "eo_imagery",
@@ -15660,7 +15660,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "3 comparisons (22 models, 2 papers). GeoFMs differ by an SD of 9.53 pts within a comparison. Seed noise SD of one evaluation is 1.01 pts (32 model entries with SDs; reported values average 5 replicates (assumed)), so 99% of the spread is repeatable model difference (score 0.99, 90% CI 0.84-1.00). Among the leading half of the models only, 17% of the spread is repeatable (frontier score 0.17). 55% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 22 models in 3 comparisons. Models differ by a standard deviation of 9.5 points. Re-running an evaluation changes a score by about 1.01 points, so 99% of the differences between models are real (score 0.99, 90% interval 0.84–1.00). Among the better half of the models, 17% are real (top-half score 0.17), so the benchmark mainly separates weak models from strong ones.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery",
@@ -16134,7 +16134,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "10 comparisons (4 models, 1 paper). GeoFMs differ by an SD of 6.01 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 71% of the spread would be repeatable (provisional score 0.71). 63% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 4 models in 10 comparisons. Models differ by a standard deviation of 6.0 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 71% of the differences would be real (estimated score 0.71). All results come from one paper, so they reflect a single group's setup.",
    "domain": "7 · Solid Earth",
    "subdomain": "7.2 Landslides and mass movement",
    "input_kind": "eo_imagery",
@@ -16866,7 +16866,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "14 comparisons (51 models, 4 papers). GeoFMs differ by an SD of 6.34 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.62 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 48% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 3.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 51 models in 14 comparisons. Models differ by a standard deviation of 6.3 points. No paper reports seed noise for this benchmark; with the typical value of 0.62 points for its protocol, about 99% of the differences would be real (estimated score 0.99).",
    "domain": "4 · Oceans and coasts",
    "subdomain": "4.4 Marine pollution",
    "input_kind": "eo_imagery",
@@ -17133,7 +17133,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (7 models, 1 paper). GeoFMs differ by an SD of 6.59 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 46% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 1 comparison. Models differ by a standard deviation of 6.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "4 · Oceans and coasts",
    "subdomain": "4.4 Marine pollution",
    "input_kind": "eo_imagery",
@@ -17701,7 +17701,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "8 comparisons (37 models, 5 papers). GeoFMs differ by an SD of 5.22 pts within a comparison. Seed noise SD of one evaluation is 0.44 pts (25 model entries with SDs; reported values average 7 replicates), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.95-0.99). Among the leading half of the models only, 91% of the spread is repeatable (frontier score 0.91). 67% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 5 papers with 37 models in 8 comparisons. Models differ by a standard deviation of 5.2 points. Re-running an evaluation changes a score by about 0.44 points, so 98% of the differences between models are real (score 0.98, 90% interval 0.95–0.99). Among the better half of the models, 91% are real (top-half score 0.91).",
    "domain": "1 · Agriculture",
    "subdomain": "1.4 Rangeland and livestock",
    "input_kind": "eo_imagery",
@@ -18214,7 +18214,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "6 comparisons (27 models, 4 papers). GeoFMs differ by an SD of 3.47 pts within a comparison. Seed noise SD of one evaluation is 0.55 pts (11 model entries with SDs; reported values average 10 replicates), so 93% of the spread is repeatable model difference (score 0.93, 90% CI 0.81-0.99). Among the leading half of the models only, 68% of the spread is repeatable (frontier score 0.68). 56% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 27 models in 6 comparisons. Models differ by a standard deviation of 3.5 points. Re-running an evaluation changes a score by about 0.55 points, so 93% of the differences between models are real (score 0.93, 90% interval 0.81–0.99). Among the better half of the models, 68% are real (top-half score 0.68), so the benchmark mainly separates weak models from strong ones.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery",
@@ -19572,7 +19572,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "37 comparisons (72 models, 8 papers). GeoFMs differ by an SD of 7.56 pts within a comparison. Seed noise SD of one evaluation is 1.14 pts (46 model entries with SDs; reported values average 5 replicates), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.94-0.98). Among the leading half of the models only, 88% of the spread is repeatable (frontier score 0.88). 42% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 8.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 8 papers with 72 models in 37 comparisons. Models differ by a standard deviation of 7.6 points. Re-running an evaluation changes a score by about 1.14 points, so 96% of the differences between models are real (score 0.96, 90% interval 0.94–0.98). Among the better half of the models, 88% are real (top-half score 0.88).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -20221,7 +20221,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "11 comparisons (27 models, 4 papers). GeoFMs differ by an SD of 4.06 pts within a comparison. Seed noise SD of one evaluation is 0.22 pts (22 model entries with SDs; reported values average 10 replicates), so 89% of the spread is repeatable model difference (score 0.89, 90% CI 0.76-0.96). Among the leading half of the models only, 28% of the spread is repeatable (frontier score 0.28). 50% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 27 models in 11 comparisons. Models differ by a standard deviation of 4.1 points. Re-running an evaluation changes a score by about 0.22 points, so 89% of the differences between models are real (score 0.89, 90% interval 0.76–0.96). Among the better half of the models, 28% are real (top-half score 0.28), so the benchmark mainly separates weak models from strong ones.",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery",
@@ -21280,7 +21280,7 @@
      "self_share": 0.6
     }
    ],
-   "explanation": "26 comparisons (56 models, 8 papers). GeoFMs differ by an SD of 6.14 pts within a comparison. Seed noise SD of one evaluation is 2.34 pts (66 model entries with SDs; reported values average 6 replicates), so 54% of the spread is repeatable model difference (score 0.54, 90% CI 0.49-0.57). Among the leading half of the models only, 28% of the spread is repeatable (frontier score 0.28). 29% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 6.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 8 papers with 56 models in 26 comparisons. Models differ by a standard deviation of 6.1 points. Re-running an evaluation changes a score by about 2.34 points, so 54% of the differences between models are real (score 0.54, 90% interval 0.49–0.57). Among the better half of the models, 28% are real (top-half score 0.28), so the benchmark mainly separates weak models from strong ones.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery",
@@ -22392,7 +22392,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "28 comparisons (83 models, 13 papers). GeoFMs differ by an SD of 6.29 pts within a comparison. Seed noise SD of one evaluation is 1.14 pts (70 model entries with SDs; reported values average 6 replicates (assumed)), so 92% of the spread is repeatable model difference (score 0.92, 90% CI 0.87-0.96). Among the leading half of the models only, 64% of the spread is repeatable (frontier score 0.64). 47% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 6.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 13 papers with 83 models in 28 comparisons. Models differ by a standard deviation of 6.3 points. Re-running an evaluation changes a score by about 1.14 points, so 92% of the differences between models are real (score 0.92, 90% interval 0.87–0.96). Among the better half of the models, 64% are real (top-half score 0.64), so the benchmark mainly separates weak models from strong ones.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery",
@@ -23177,7 +23177,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "16 comparisons (69 models, 9 papers). GeoFMs differ by an SD of 3.69 pts within a comparison. Seed noise SD of one evaluation is 0.63 pts (39 model entries with SDs; reported values average 6 replicates), so 95% of the spread is repeatable model difference (score 0.95, 90% CI 0.93-0.96). Among the leading half of the models only, 79% of the spread is repeatable (frontier score 0.79). 48% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 3.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 9 papers with 69 models in 16 comparisons. Models differ by a standard deviation of 3.7 points. Re-running an evaluation changes a score by about 0.63 points, so 95% of the differences between models are real (score 0.95, 90% interval 0.93–0.96). Among the better half of the models, 79% are real (top-half score 0.79).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery",
@@ -23637,7 +23637,7 @@
      "self_share": 0.4
     }
    ],
-   "explanation": "4 comparisons (23 models, 2 papers). GeoFMs differ by an SD of 1.40 pts within a comparison. Seed noise SD of one evaluation is 0.25 pts (28 model entries with SDs; reported values average 5 replicates), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.94-0.98). Among the leading half of the models only, 80% of the spread is repeatable (frontier score 0.80). 58% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 23 models in 4 comparisons. Models differ by a standard deviation of 1.4 points. Re-running an evaluation changes a score by about 0.25 points, so 96% of the differences between models are real (score 0.96, 90% interval 0.94–0.98). Among the better half of the models, 80% are real (top-half score 0.80).",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery",
@@ -24313,7 +24313,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "12 comparisons (29 models, 3 papers). GeoFMs differ by an SD of 4.23 pts within a comparison. Seed noise SD of one evaluation is 0.64 pts (28 model entries with SDs; reported values average 5 replicates), so 93% of the spread is repeatable model difference (score 0.93, 90% CI 0.91-0.95). Among the leading half of the models only, 82% of the spread is repeatable (frontier score 0.82). 64% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 3 papers with 29 models in 12 comparisons. Models differ by a standard deviation of 4.2 points. Re-running an evaluation changes a score by about 0.64 points, so 93% of the differences between models are real (score 0.93, 90% interval 0.91–0.95). Among the better half of the models, 82% are real (top-half score 0.82).",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery",
@@ -24580,7 +24580,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (14 models, 1 paper). GeoFMs differ by an SD of 2.23 pts within a comparison. Seed noise SD of one evaluation is 0.57 pts (14 model entries with SDs; reported values average 5 replicates), so 94% of the spread is repeatable model difference (score 0.94, 90% CI 0.91-0.96). Among the leading half of the models only, 78% of the spread is repeatable (frontier score 0.78). 78% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 1 comparison. Models differ by a standard deviation of 2.2 points. Re-running an evaluation changes a score by about 0.57 points, so 94% of the differences between models are real (score 0.94, 90% interval 0.91–0.96). Among the better half of the models, 78% are real (top-half score 0.78). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery",
@@ -24959,7 +24959,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (10 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 5 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.5 Socioeconomic conditions",
    "input_kind": "eo_imagery",
@@ -25582,7 +25582,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "10 comparisons (36 models, 4 papers). GeoFMs differ by an SD of 3.89 pts within a comparison. Seed noise SD of one evaluation is 0.70 pts (32 model entries with SDs; reported values average 5 replicates), so 92% of the spread is repeatable model difference (score 0.92, 90% CI 0.87-0.95). Among the leading half of the models only, 72% of the spread is repeatable (frontier score 0.72). 52% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 36 models in 10 comparisons. Models differ by a standard deviation of 3.9 points. Re-running an evaluation changes a score by about 0.70 points, so 92% of the differences between models are real (score 0.92, 90% interval 0.87–0.95). Among the better half of the models, 72% are real (top-half score 0.72).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery",
@@ -26506,7 +26506,7 @@
      "self_share": 1.0
     }
    ],
-   "explanation": "17 comparisons (36 models, 5 papers). GeoFMs differ by an SD of 6.73 pts within a comparison. Seed noise SD of one evaluation is 0.03 pts (24 model entries with SDs; reported values average 3 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 1.00-1.00). Among the leading half of the models only, 99% of the spread is repeatable (frontier score 0.99). 69% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.7% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 5 papers with 36 models in 17 comparisons. Models differ by a standard deviation of 6.7 points. Re-running an evaluation changes a score by about 0.03 points, so 100% of the differences between models are real (score 1.00, 90% interval 1.00–1.00). Among the better half of the models, 99% are real (top-half score 0.99).",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery",
@@ -26881,7 +26881,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 4.92 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 79% of the spread would be repeatable (provisional score 0.79). 17% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 2.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 5 comparisons. Models differ by a standard deviation of 4.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 79% of the differences would be real (estimated score 0.79). All results come from one paper, so they reflect a single group's setup.",
    "domain": "Disasters",
    "subdomain": "Post-event damage and hazard extent",
    "input_kind": "eo_imagery",
@@ -27396,184 +27396,8 @@
    "explanation": "1 model scored in 1 paper, but no single comparison has 4 or more models, so spread and reliability cannot be assessed.",
    "id": "timesen2crop"
   },
-  "sen12ms": {
-   "id": "sen12ms",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "aquasat": {
-   "id": "aquasat",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "methanes2cm": {
-   "id": "methanes2cm",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "magicbathynet": {
-   "id": "magicbathynet",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "phileo-roads": {
-   "id": "phileo-roads",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cy-bench": {
-   "id": "cy-bench",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "wildfirespreadts": {
-   "id": "wildfirespreadts",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sen4agrinet": {
-   "id": "sen4agrinet",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "spacenet-3-5": {
-   "id": "spacenet-3-5",
+  "xview3-sar": {
+   "id": "xview3-sar",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -27616,206 +27440,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "global-mangrove-watch-v3-v4": {
-   "id": "global-mangrove-watch-v3-v4",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "maus-et-al-2022-mining-polygons": {
-   "id": "maus-et-al-2022-mining-polygons",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "hkh-glacier-mapping": {
-   "id": "hkh-glacier-mapping",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "allen-coral-atlas-maps": {
-   "id": "allen-coral-atlas-maps",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "quakeset": {
-   "id": "quakeset",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sds-benchmark": {
-   "id": "sds-benchmark",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "dota-v2-isaid": {
-   "id": "dota-v2-isaid",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "tallos": {
-   "id": "tallos",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "globalbuildingmap": {
-   "id": "globalbuildingmap",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cropnet": {
-   "id": "cropnet",
+  "bright": {
+   "id": "bright",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -27858,446 +27484,6 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "open-canopy": {
-   "id": "open-canopy",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "deepglobe-roads": {
-   "id": "deepglobe-roads",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "mmflood": {
-   "id": "mmflood",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "swed": {
-   "id": "swed",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cactus-woody-spekboom-waititu": {
-   "id": "cactus-woody-spekboom-waititu",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "reforestree": {
-   "id": "reforestree",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "starcop": {
-   "id": "starcop",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "global-pasture-watch-grassland-samples": {
-   "id": "global-pasture-watch-grassland-samples",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "agrifieldnet-india": {
-   "id": "agrifieldnet-india",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "mars-s2l": {
-   "id": "mars-s2l",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "kruitwagen-et-al-2021-solar-inventory": {
-   "id": "kruitwagen-et-al-2021-solar-inventory",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "pureforest": {
-   "id": "pureforest",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "s2-cloud-mask-catalogue": {
-   "id": "s2-cloud-mask-catalogue",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "hephaestus": {
-   "id": "hephaestus",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "zuericrop": {
-   "id": "zuericrop",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "open-cities-ai": {
-   "id": "open-cities-ai",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sickle": {
-   "id": "sickle",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "cas-landslide": {
-   "id": "cas-landslide",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "krestenitis-oil-spill": {
-   "id": "krestenitis-oil-spill",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "emit-l2b-ch-plumes": {
-   "id": "emit-l2b-ch-plumes",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
   "qtec-thaw-slump-inventory": {
    "id": "qtec-thaw-slump-inventory",
    "tasks_n": 0,
@@ -28320,8 +27506,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "cabuar": {
-   "id": "cabuar",
+  "sen4agrinet": {
+   "id": "sen4agrinet",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28342,8 +27528,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "kenya-crop-type": {
-   "id": "kenya-crop-type",
+  "open-canopy": {
+   "id": "open-canopy",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28364,8 +27550,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "spacenet-8": {
-   "id": "spacenet-8",
+  "magicbathynet": {
+   "id": "magicbathynet",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28386,228 +27572,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "loveda": {
-   "id": "loveda",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "s1s2-water": {
-   "id": "s1s2-water",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "multisenge": {
-   "id": "multisenge",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "xview3-sar": {
-   "id": "xview3-sar",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "next-day-wildfire-spread": {
-   "id": "next-day-wildfire-spread",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sparcs": {
-   "id": "sparcs",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "nasa-marine-debris": {
-   "id": "nasa-marine-debris",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "eurocropsml": {
-   "id": "eurocropsml",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "yeh-et-al-2020": {
-   "id": "yeh-et-al-2020",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "sustainbench-crop-yield": {
-   "id": "sustainbench-crop-yield",
-   "tasks_n": 0,
-   "models": 0,
-   "papers": 0,
-   "results": 0,
-   "score": null,
-   "score_lo": null,
-   "score_hi": null,
-   "score_top": null,
-   "edi": null,
-   "edi_top": null,
-   "spread_pts": null,
-   "noise_sd": null,
-   "verdict": "e_none",
-   "sigma2_source": "none",
-   "benchmark_ids": [],
-   "variants": {},
-   "latent_variants": {},
-   "by_protocol": {},
-   "explanation": "No published GeoFM scores found in the workbook."
-  },
-  "phenocam-v2-0": {
-   "id": "phenocam-v2-0",
+  "spacenet-3-5": {
+   "id": "spacenet-3-5",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28650,6 +27616,116 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
+  "starcop": {
+   "id": "starcop",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "hephaestus": {
+   "id": "hephaestus",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "eurocropsml": {
+   "id": "eurocropsml",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "tallos": {
+   "id": "tallos",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "s1s2-water": {
+   "id": "s1s2-water",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
   "xview": {
    "id": "xview",
    "tasks_n": 0,
@@ -28672,8 +27748,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "38-cloud": {
-   "id": "38-cloud",
+  "global-mangrove-watch-v3-v4": {
+   "id": "global-mangrove-watch-v3-v4",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28694,8 +27770,8 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "bright": {
-   "id": "bright",
+  "swed": {
+   "id": "swed",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28716,8 +27792,96 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "ai4boundaries": {
-   "id": "ai4boundaries",
+  "cas-landslide": {
+   "id": "cas-landslide",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "reforestree": {
+   "id": "reforestree",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cabuar": {
+   "id": "cabuar",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cropnet": {
+   "id": "cropnet",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "allen-coral-atlas-maps": {
+   "id": "allen-coral-atlas-maps",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28760,8 +27924,360 @@
    "by_protocol": {},
    "explanation": "No published GeoFM scores found in the workbook."
   },
-  "rapidai4eo": {
-   "id": "rapidai4eo",
+  "ai4boundaries": {
+   "id": "ai4boundaries",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "loveda": {
+   "id": "loveda",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "multisenge": {
+   "id": "multisenge",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "dota-v2-isaid": {
+   "id": "dota-v2-isaid",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "yeh-et-al-2020": {
+   "id": "yeh-et-al-2020",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "quakeset": {
+   "id": "quakeset",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "maus-et-al-2022-mining-polygons": {
+   "id": "maus-et-al-2022-mining-polygons",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sickle": {
+   "id": "sickle",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sustainbench-crop-yield": {
+   "id": "sustainbench-crop-yield",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "krestenitis-oil-spill": {
+   "id": "krestenitis-oil-spill",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "mmflood": {
+   "id": "mmflood",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "nasa-marine-debris": {
+   "id": "nasa-marine-debris",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "hkh-glacier-mapping": {
+   "id": "hkh-glacier-mapping",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "spacenet-8": {
+   "id": "spacenet-8",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "pureforest": {
+   "id": "pureforest",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sparcs": {
+   "id": "sparcs",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "open-cities-ai": {
+   "id": "open-cities-ai",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -28784,6 +28300,490 @@
   },
   "gloria": {
    "id": "gloria",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "global-pasture-watch-grassland-samples": {
+   "id": "global-pasture-watch-grassland-samples",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "s2-cloud-mask-catalogue": {
+   "id": "s2-cloud-mask-catalogue",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "rapidai4eo": {
+   "id": "rapidai4eo",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "globalbuildingmap": {
+   "id": "globalbuildingmap",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "zuericrop": {
+   "id": "zuericrop",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "kruitwagen-et-al-2021-solar-inventory": {
+   "id": "kruitwagen-et-al-2021-solar-inventory",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sen12ms": {
+   "id": "sen12ms",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "next-day-wildfire-spread": {
+   "id": "next-day-wildfire-spread",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "kenya-crop-type": {
+   "id": "kenya-crop-type",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "aquasat": {
+   "id": "aquasat",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cactus-woody-spekboom-waititu": {
+   "id": "cactus-woody-spekboom-waititu",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "phileo-roads": {
+   "id": "phileo-roads",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "mars-s2l": {
+   "id": "mars-s2l",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "38-cloud": {
+   "id": "38-cloud",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "phenocam-v2-0": {
+   "id": "phenocam-v2-0",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "cy-bench": {
+   "id": "cy-bench",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "deepglobe-roads": {
+   "id": "deepglobe-roads",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "agrifieldnet-india": {
+   "id": "agrifieldnet-india",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "sds-benchmark": {
+   "id": "sds-benchmark",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "methanes2cm": {
+   "id": "methanes2cm",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "emit-l2b-ch-plumes": {
+   "id": "emit-l2b-ch-plumes",
+   "tasks_n": 0,
+   "models": 0,
+   "papers": 0,
+   "results": 0,
+   "score": null,
+   "score_lo": null,
+   "score_hi": null,
+   "score_top": null,
+   "edi": null,
+   "edi_top": null,
+   "spread_pts": null,
+   "noise_sd": null,
+   "verdict": "e_none",
+   "sigma2_source": "none",
+   "benchmark_ids": [],
+   "variants": {},
+   "latent_variants": {},
+   "by_protocol": {},
+   "explanation": "No published GeoFM scores found in the workbook."
+  },
+  "wildfirespreadts": {
+   "id": "wildfirespreadts",
    "tasks_n": 0,
    "models": 0,
    "papers": 0,
@@ -29289,7 +29289,7 @@
      "self_share": 0.31
     }
    ],
-   "explanation": "5 comparisons (29 models, 1 paper). GeoFMs differ by an SD of 9.92 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 51% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 29 models in 5 comparisons. Models differ by a standard deviation of 9.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -29828,7 +29828,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "7 comparisons (16 models, 2 papers). GeoFMs differ by an SD of 8.00 pts within a comparison. Seed noise SD of one evaluation is 2.12 pts (4 model entries with SDs; reported values average 5 replicates), so 94% of the spread is repeatable model difference (score 0.94, 90% CI 0.81-1.00). Among the leading half of the models only, 94% of the spread is repeatable (frontier score 0.94). 70% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 16 models in 7 comparisons. Models differ by a standard deviation of 8.0 points. Re-running an evaluation changes a score by about 2.12 points, so 94% of the differences between models are real (score 0.94, 90% interval 0.81–1.00). Among the better half of the models, 94% are real (top-half score 0.94).",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -30094,7 +30094,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -30388,7 +30388,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -30654,7 +30654,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 3.18 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 37% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 3.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -31250,7 +31250,7 @@
      "self_share": 0.33
     }
    ],
-   "explanation": "5 comparisons (9 models, 1 paper). GeoFMs differ by an SD of 4.46 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 55% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 9 models in 5 comparisons. Models differ by a standard deviation of 4.5 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -31544,7 +31544,7 @@
      "self_share": 0.14
     }
    ],
-   "explanation": "2 comparisons (7 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -31801,7 +31801,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "2 comparisons (4 models, 1 paper). GeoFMs differ by an SD of 4.00 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 97% of the spread would be repeatable (provisional score 0.97). 54% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 4 models in 2 comparisons. Models differ by a standard deviation of 4.0 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 97% of the differences would be real (estimated score 0.97). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -32275,7 +32275,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "10 comparisons (4 models, 1 paper). GeoFMs differ by an SD of 2.55 pts within a comparison. Seed noise SD of one evaluation is 0.71 pts (40 model entries with SDs; reported values average 10 replicates), so 94% of the spread is repeatable model difference (score 0.94, 90% CI 0.80-1.00). 66% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 4 models in 10 comparisons. Models differ by a standard deviation of 2.5 points. Re-running an evaluation changes a score by about 0.71 points, so 94% of the differences between models are real (score 0.94, 90% interval 0.80–1.00). All results come from one paper, so they reflect a single group's setup.",
    "domain": "1 · Agriculture",
    "subdomain": "1.1 Cropland and crop type",
    "input_kind": "eo_imagery"
@@ -32970,7 +32970,7 @@
      "self_share": 0.31
     }
    ],
-   "explanation": "5 comparisons (29 models, 1 paper). GeoFMs differ by an SD of 8.59 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 53% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 29 models in 5 comparisons. Models differ by a standard deviation of 8.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -33656,7 +33656,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "9 comparisons (27 models, 4 papers). GeoFMs differ by an SD of 9.72 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.63 pts (protocol-family median) about 92% of the spread would be repeatable (provisional score 0.92). 66% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 27 models in 9 comparisons. Models differ by a standard deviation of 9.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.63 points for its protocol, about 92% of the differences would be real (estimated score 0.92).",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -34171,7 +34171,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "6 comparisons (25 models, 2 papers). GeoFMs differ by an SD of 9.15 pts within a comparison. Seed noise SD of one evaluation is 0.68 pts (86 model entries with SDs; reported values average 8 replicates (assumed)), so 100% of the spread is repeatable model difference (score 0.99, 90% CI 0.93-1.00). Among the leading half of the models only, 66% of the spread is repeatable (frontier score 0.66).",
+   "explanation": "Reported by 2 papers with 25 models in 6 comparisons. Models differ by a standard deviation of 9.2 points. Re-running an evaluation changes a score by about 0.68 points, so 100% of the differences between models are real (score 0.99, 90% interval 0.93–1.00). Among the better half of the models, 66% are real (top-half score 0.66), so the benchmark mainly separates weak models from strong ones.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -34437,7 +34437,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "1 comparison (20 models, 1 paper). GeoFMs differ by an SD of 8.22 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 54% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 20 models in 1 comparison. Models differ by a standard deviation of 8.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.2 Forest extent and change",
    "input_kind": "eo_imagery"
@@ -34703,7 +34703,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "1 comparison (20 models, 1 paper). GeoFMs differ by an SD of 5.02 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 49% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 20 models in 1 comparison. Models differ by a standard deviation of 5.0 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -34997,7 +34997,7 @@
      "self_share": 0.24
     }
    ],
-   "explanation": "2 comparisons (19 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 19 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.6 Fire",
    "input_kind": "eo_imagery"
@@ -35509,7 +35509,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "6 comparisons (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.7% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 6 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery"
@@ -35803,7 +35803,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.3 Biomass and carbon stocks",
    "input_kind": "eo_imagery"
@@ -36207,7 +36207,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (13 models, 1 paper). GeoFMs differ by an SD of 11.28 pts within a comparison. Seed noise SD of one evaluation is 1.80 pts (24 model entries with SDs; reported values average 5 replicates), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.76-1.00). Among the leading half of the models only, 66% of the spread is repeatable (frontier score 0.66). 64% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 13 models in 2 comparisons. Models differ by a standard deviation of 11.3 points. Re-running an evaluation changes a score by about 1.80 points, so 96% of the differences between models are real (score 0.96, 90% interval 0.76–1.00). Among the better half of the models, 66% are real (top-half score 0.66), so the benchmark mainly separates weak models from strong ones. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -36666,7 +36666,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "4 comparisons (13 models, 1 paper). GeoFMs differ by an SD of 19.05 pts within a comparison. Seed noise SD of one evaluation is 0.83 pts (48 model entries with SDs; reported values average 5 replicates), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 1.00-1.00). Among the leading half of the models only, 100% of the spread is repeatable (frontier score 1.00). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 13 models in 4 comparisons. Models differ by a standard deviation of 19.1 points. Re-running an evaluation changes a score by about 0.83 points, so 100% of the differences between models are real (score 1.00, 90% interval 1.00–1.00). Among the better half of the models, 100% are real (top-half score 1.00). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -37079,7 +37079,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 8.96 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 74% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 9.0 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -37492,7 +37492,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 5.99 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 76% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 6.0 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -37905,7 +37905,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 8.32 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 69% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 8.3 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -38318,7 +38318,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 5.19 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 72% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 5.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -38731,7 +38731,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 4.74 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 88% of the spread would be repeatable (provisional score 0.88). 75% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 4.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 88% of the differences would be real (estimated score 0.88). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -39144,7 +39144,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 3.89 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 52% of the spread would be repeatable (provisional score 0.52). 68% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 3.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 52% of the differences would be real (estimated score 0.52). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -39557,7 +39557,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 5.11 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 74% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 5.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -39970,7 +39970,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 6.87 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 80% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 6.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -40383,7 +40383,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 5.94 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 88% of the spread would be repeatable (provisional score 0.88). 66% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 5.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 88% of the differences would be real (estimated score 0.88). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -40901,7 +40901,7 @@
      "self_share": 0.64
     }
    ],
-   "explanation": "10 comparisons (11 models, 1 paper). GeoFMs differ by an SD of 21.54 pts within a comparison. Seed noise SD of one evaluation is 0.67 pts (110 model entries with SDs; reported values average 3 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 0.98-1.00). Among the leading half of the models only, 90% of the spread is repeatable (frontier score 0.90). 66% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.8% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 11 models in 10 comparisons. Models differ by a standard deviation of 21.5 points. Re-running an evaluation changes a score by about 0.67 points, so 100% of the differences between models are real (score 1.00, 90% interval 0.98–1.00). Among the better half of the models, 90% are real (top-half score 0.90). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -41305,7 +41305,7 @@
      "self_share": 0.88
     }
    ],
-   "explanation": "4 comparisons (11 models, 1 paper). GeoFMs differ by an SD of 7.85 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.65 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 86% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 11 models in 4 comparisons. Models differ by a standard deviation of 7.8 points. No paper reports seed noise for this benchmark; with the typical value of 0.65 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -41599,7 +41599,7 @@
      "self_share": 0.64
     }
    ],
-   "explanation": "2 comparisons (11 models, 1 paper). GeoFMs differ by an SD of 14.43 pts within a comparison. Seed noise SD of one evaluation is 2.51 pts (22 model entries with SDs; reported values average 3 replicates (assumed)), so 97% of the spread is repeatable model difference (score 0.97, 90% CI 0.94-0.99). Among the leading half of the models only, 81% of the spread is repeatable (frontier score 0.81). 67% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 11 models in 2 comparisons. Models differ by a standard deviation of 14.4 points. Re-running an evaluation changes a score by about 2.51 points, so 97% of the differences between models are real (score 0.97, 90% interval 0.94–0.99). Among the better half of the models, 81% are real (top-half score 0.81). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.3 Biomass and carbon stocks",
    "input_kind": "eo_imagery"
@@ -41946,7 +41946,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "4 comparisons (9 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 9 models in 4 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery"
@@ -42240,7 +42240,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "2 comparisons (8 models, 1 paper). Seed noise SD of one evaluation is 0 (metric units) (9 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.80-1.00). Among the leading half of the models only, 40% of the spread is repeatable (frontier score 0.40). 32% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 2 comparisons. Re-running an evaluation changes a score by about 0 (metric units), so 98% of the differences between models are real (score 0.98, 90% interval 0.80–1.00). Among the better half of the models, 40% are real (top-half score 0.40), so the benchmark mainly separates weak models from strong ones. All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.3 Biomass and carbon stocks",
    "input_kind": "eo_imagery"
@@ -42534,7 +42534,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "2 comparisons (8 models, 1 paper). GeoFMs differ by an SD of 8.09 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 29% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 2 comparisons. Models differ by a standard deviation of 8.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.4 Vegetation structure and species",
    "input_kind": "eo_imagery"
@@ -42828,7 +42828,7 @@
      "self_share": 0.14
     }
    ],
-   "explanation": "2 comparisons (7 models, 1 paper). GeoFMs differ by an SD of 7.12 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 64% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 2 comparisons. Models differ by a standard deviation of 7.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -43261,7 +43261,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (7 models, 1 paper). GeoFMs differ by an SD of 4.65 pts within a comparison. Seed noise SD of one evaluation is 0.22 pts (18 model entries with SDs; reported values average 3 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 0.82-1.00). Among the leading half of the models only, 100% of the spread is repeatable (frontier score 1.00).",
+   "explanation": "Reported by 1 paper with 7 models in 3 comparisons. Models differ by a standard deviation of 4.7 points. Re-running an evaluation changes a score by about 0.22 points, so 100% of the differences between models are real (score 1.00, 90% interval 0.82–1.00). Among the better half of the models, 100% are real (top-half score 1.00). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -43527,7 +43527,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (7 models, 1 paper). GeoFMs differ by an SD of 3.14 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 95% of the spread would be repeatable (provisional score 0.95). 69% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 1 comparison. Models differ by a standard deviation of 3.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 95% of the differences would be real (estimated score 0.95). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -43793,7 +43793,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (7 models, 1 paper). GeoFMs differ by an SD of 11.55 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 100% of the spread would be repeatable (provisional score 1.00). 78% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 1 comparison. Models differ by a standard deviation of 11.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 100% of the differences would be real (estimated score 1.00). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -44086,7 +44086,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "2 comparisons (5 models, 1 paper). GeoFMs differ by an SD of 1.74 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 74% of the spread would be repeatable (provisional score 0.74). 34% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 5 models in 2 comparisons. Models differ by a standard deviation of 1.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 74% of the differences would be real (estimated score 0.74). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.1 Land cover and land degradation",
    "input_kind": "eo_imagery"
@@ -44316,7 +44316,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "1 comparison (4 models, 1 paper). GeoFMs differ by an SD of 2.32 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 91% of the spread would be repeatable (provisional score 0.91). 63% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 4 models in 1 comparison. Models differ by a standard deviation of 2.3 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 91% of the differences would be real (estimated score 0.91). All results come from one paper, so they reflect a single group's setup.",
    "domain": "2 · Terrestrial ecosystems",
    "subdomain": "2.6 Fire",
    "input_kind": "eo_imagery"
@@ -45465,7 +45465,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "14 comparisons (15 models, 1 paper). GeoFMs differ by an SD of 3.49 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.67 pts (protocol-family median) about 62% of the spread would be repeatable (provisional score 0.62). 30% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 2.9% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 15 models in 14 comparisons. Models differ by a standard deviation of 3.5 points. No paper reports seed noise for this benchmark; with the typical value of 0.67 points for its protocol, about 62% of the differences would be real (estimated score 0.62). All results come from one paper, so they reflect a single group's setup.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery"
@@ -45924,7 +45924,7 @@
      "self_share": 0.07
     }
    ],
-   "explanation": "4 comparisons (14 models, 1 paper). GeoFMs differ by an SD of 7.00 pts within a comparison. Seed noise SD of one evaluation is 1.84 pts (56 model entries with SDs; reported values average 5 replicates), so 90% of the spread is repeatable model difference (score 0.90, 90% CI 0.83-0.96). Among the leading half of the models only, 73% of the spread is repeatable (frontier score 0.73). 48% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 4 comparisons. Models differ by a standard deviation of 7.0 points. Re-running an evaluation changes a score by about 1.84 points, so 90% of the differences between models are real (score 0.90, 90% interval 0.83–0.96). Among the better half of the models, 73% are real (top-half score 0.73). All results come from one paper, so they reflect a single group's setup.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery"
@@ -46328,7 +46328,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (10 models, 1 paper). GeoFMs differ by an SD of 0.84 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.66 pts (protocol-family median) about 39% of the spread would be repeatable (provisional score 0.39). 0% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 2 comparisons. Models differ by a standard deviation of 0.8 points. No paper reports seed noise for this benchmark; with the typical value of 0.66 points for its protocol, about 39% of the differences would be real (estimated score 0.39). All results come from one paper, so they reflect a single group's setup.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery"
@@ -46594,7 +46594,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 3.16 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 46% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 3.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "3 · Inland water",
    "subdomain": "3.2 Water quality",
    "input_kind": "eo_imagery"
@@ -47052,7 +47052,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "4 comparisons (7 models, 1 paper). GeoFMs differ by an SD of 10.24 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.66 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 78% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 4 comparisons. Models differ by a standard deviation of 10.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.66 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "3 · Inland water",
    "subdomain": "3.1 Surface water, rivers and wetlands",
    "input_kind": "eo_imagery"
@@ -47431,7 +47431,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "2 comparisons (20 models, 1 paper). GeoFMs differ by an SD of 5.24 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 55% of the spread would be repeatable (provisional score 0.55). 65% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 20 models in 2 comparisons. Models differ by a standard deviation of 5.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 55% of the differences would be real (estimated score 0.55). All results come from one paper, so they reflect a single group's setup.",
    "domain": "4 · Oceans and coasts",
    "subdomain": "4.1 Coastal ecosystems",
    "input_kind": "eo_imagery"
@@ -47862,7 +47862,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (14 models, 1 paper). GeoFMs differ by an SD of 4.40 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 97% of the spread would be repeatable (provisional score 0.97). 52% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 3 comparisons. Models differ by a standard deviation of 4.4 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 97% of the differences would be real (estimated score 0.97). All results come from one paper, so they reflect a single group's setup.",
    "domain": "5 · Cryosphere",
    "subdomain": "5.2 Glaciers and ice sheets",
    "input_kind": "eo_imagery"
@@ -48293,7 +48293,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (14 models, 1 paper). GeoFMs differ by an SD of 7.63 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 44% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 3 comparisons. Models differ by a standard deviation of 7.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "5 · Cryosphere",
    "subdomain": "5.2 Glaciers and ice sheets",
    "input_kind": "eo_imagery"
@@ -48724,7 +48724,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (14 models, 1 paper). GeoFMs differ by an SD of 4.20 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.64 pts (protocol-family median) about 90% of the spread would be repeatable (provisional score 0.90). 61% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 3 comparisons. Models differ by a standard deviation of 4.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.64 points for its protocol, about 90% of the differences would be real (estimated score 0.90). All results come from one paper, so they reflect a single group's setup.",
    "domain": "5 · Cryosphere",
    "subdomain": "5.2 Glaciers and ice sheets",
    "input_kind": "eo_imagery"
@@ -49184,7 +49184,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "4 comparisons (14 models, 1 paper). Seed noise SD of one evaluation is 2.99 (metric units) (26 model entries with SDs; reported values average 3 replicates (assumed)), so 76% of the spread is repeatable model difference (score 0.76, 90% CI 0.56-0.90). Among the leading half of the models only, 20% of the spread is repeatable (frontier score 0.20).",
+   "explanation": "Reported by 1 paper with 14 models in 4 comparisons. Re-running an evaluation changes a score by about 2.99 (metric units), so 76% of the differences between models are real (score 0.76, 90% interval 0.56–0.90). Among the better half of the models, 20% are real (top-half score 0.20), so the benchmark mainly separates weak models from strong ones. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -49450,7 +49450,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "6.3 Clouds and smoke",
    "input_kind": "eo_imagery"
@@ -49716,7 +49716,7 @@
      "self_share": 0.64
     }
    ],
-   "explanation": "1 comparison (11 models, 1 paper). GeoFMs differ by an SD of 4.26 pts within a comparison. Seed noise SD of one evaluation is 0.40 pts (11 model entries with SDs; reported values average 3 replicates (assumed)), so 99% of the spread is repeatable model difference (score 0.99, 90% CI 0.97-1.00). Among the leading half of the models only, 95% of the spread is repeatable (frontier score 0.95). 88% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 11 models in 1 comparison. Models differ by a standard deviation of 4.3 points. Re-running an evaluation changes a score by about 0.40 points, so 99% of the differences between models are real (score 0.99, 90% interval 0.97–1.00). Among the better half of the models, 95% are real (top-half score 0.95). All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -49982,7 +49982,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 1.21 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 74% of the spread would be repeatable (provisional score 0.74). 28% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 1.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 74% of the differences would be real (estimated score 0.74). All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "6.3 Clouds and smoke",
    "input_kind": "eo_imagery"
@@ -50248,7 +50248,7 @@
      "self_share": 0.17
     }
    ],
-   "explanation": "1 comparison (6 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 6 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -50568,7 +50568,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (6 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 6 models in 3 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "other"
@@ -50888,7 +50888,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "3 comparisons (6 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 6 models in 3 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "other"
@@ -51235,7 +51235,7 @@
      "self_share": 0.33
     }
    ],
-   "explanation": "4 comparisons (6 models, 1 paper). GeoFMs differ by an SD of 3.61 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 55% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 6 models in 4 comparisons. Models differ by a standard deviation of 3.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "6.1 Greenhouse gas point sources",
    "input_kind": "eo_imagery"
@@ -51501,7 +51501,7 @@
      "self_share": 0.17
     }
    ],
-   "explanation": "1 comparison (6 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 6 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -52039,7 +52039,7 @@
      "self_share": 0.8
     }
    ],
-   "explanation": "12 comparisons (5 models, 1 paper). Seed noise SD of one evaluation is 3.92 (metric units) (23 model entries with SDs; reported values average 3 replicates (assumed)), so 42% of the spread is repeatable model difference (score 0.42, 90% CI 0.42-0.42). Among the leading half of the models only, 42% of the spread is repeatable (frontier score 0.42).",
+   "explanation": "Reported by 1 paper with 5 models in 12 comparisons. Re-running an evaluation changes a score by about 3.92 (metric units), so 42% of the differences between models are real (score 0.42, 90% interval 0.42–0.42). Among the better half of the models, 42% are real (top-half score 0.42). All results come from one paper, so they reflect a single group's setup.",
    "domain": "6 · Atmosphere",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -52742,7 +52742,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (25 models, 2 papers). Seed noise SD of one evaluation is 0.0775 (metric units) (13 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.73-1.00). Among the leading half of the models only, 78% of the spread is repeatable (frontier score 0.78).",
+   "explanation": "Reported by 2 papers with 25 models in 5 comparisons. Re-running an evaluation changes a score by about 0.0775 (metric units), so 98% of the differences between models are real (score 0.98, 90% interval 0.73–1.00). Among the better half of the models, 78% are real (top-half score 0.78).",
    "domain": "7 · Solid Earth",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -53035,7 +53035,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). Seed noise SD of one evaluation is 0.0316 (metric units) (10 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.87-1.00). Among the leading half of the models only, 94% of the spread is repeatable (frontier score 0.94). 83% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. Re-running an evaluation changes a score by about 0.0316 (metric units), so 98% of the differences between models are real (score 0.98, 90% interval 0.87–1.00). Among the better half of the models, 94% are real (top-half score 0.94). All results come from one paper, so they reflect a single group's setup.",
    "domain": "7 · Solid Earth",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -53329,7 +53329,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "2 comparisons (8 models, 1 paper). Seed noise SD of one evaluation is 0 (metric units) (12 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.90-1.00). Among the leading half of the models only, 76% of the spread is repeatable (frontier score 0.76). 30% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 2 comparisons. Re-running an evaluation changes a score by about 0 (metric units), so 98% of the differences between models are real (score 0.98, 90% interval 0.90–1.00). Among the better half of the models, 76% are real (top-half score 0.76). All results come from one paper, so they reflect a single group's setup.",
    "domain": "7 · Solid Earth",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -53623,7 +53623,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "2 comparisons (8 models, 1 paper). Seed noise SD of one evaluation is 0.0447 (metric units) (12 model entries with SDs; reported values average 3 replicates (assumed)), so 99% of the spread is repeatable model difference (score 0.99, 90% CI 0.99-1.00). Among the leading half of the models only, 88% of the spread is repeatable (frontier score 0.89). 54% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 2 comparisons. Re-running an evaluation changes a score by about 0.0447 (metric units), so 99% of the differences between models are real (score 0.99, 90% interval 0.99–1.00). Among the better half of the models, 88% are real (top-half score 0.89). All results come from one paper, so they reflect a single group's setup.",
    "domain": "7 · Solid Earth",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -53917,7 +53917,7 @@
      "self_share": 0.12
     }
    ],
-   "explanation": "2 comparisons (8 models, 1 paper). Seed noise SD of one evaluation is 0 (metric units) (8 model entries with SDs; reported values average 3 replicates (assumed)), so 96% of the spread is repeatable model difference (score 0.96, 90% CI 0.81-1.00). Among the leading half of the models only, 84% of the spread is repeatable (frontier score 0.84). 25% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.6% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 2 comparisons. Re-running an evaluation changes a score by about 0 (metric units), so 96% of the differences between models are real (score 0.96, 90% interval 0.81–1.00). Among the better half of the models, 84% are real (top-half score 0.84). All results come from one paper, so they reflect a single group's setup.",
    "domain": "7 · Solid Earth",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -54606,7 +54606,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "11 comparisons (27 models, 4 papers). GeoFMs differ by an SD of 7.87 pts within a comparison. Seed noise SD of one evaluation is 3.23 pts (28 model entries with SDs; reported values average 5 replicates), so 72% of the spread is repeatable model difference (score 0.72, 90% CI 0.65-0.78). Among the leading half of the models only, 45% of the spread is repeatable (frontier score 0.45). 66% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.5% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 4 papers with 27 models in 11 comparisons. Models differ by a standard deviation of 7.9 points. Re-running an evaluation changes a score by about 3.23 points, so 72% of the differences between models are real (score 0.72, 90% interval 0.65–0.78). Among the better half of the models, 45% are real (top-half score 0.45), so the benchmark mainly separates weak models from strong ones.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -55093,7 +55093,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (25 models, 2 papers). Seed noise SD of one evaluation is 0.0632 (metric units) (14 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.87-1.00). Among the leading half of the models only, 96% of the spread is repeatable (frontier score 0.96).",
+   "explanation": "Reported by 2 papers with 25 models in 5 comparisons. Re-running an evaluation changes a score by about 0.0632 (metric units), so 98% of the differences between models are real (score 0.98, 90% interval 0.87–1.00). Among the better half of the models, 96% are real (top-half score 0.96).",
    "domain": "8 · Human systems",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -55359,7 +55359,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "1 comparison (20 models, 1 paper). GeoFMs differ by an SD of 3.75 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 58% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 20 models in 1 comparison. Models differ by a standard deviation of 3.8 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery"
@@ -55625,7 +55625,7 @@
      "self_share": 0.24
     }
    ],
-   "explanation": "1 comparison (17 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.3% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 17 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -55891,7 +55891,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "1 comparison (16 models, 1 paper). GeoFMs differ by an SD of 8.51 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 99% of the spread would be repeatable (provisional score 0.99). 42% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 16 models in 1 comparison. Models differ by a standard deviation of 8.5 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 99% of the differences would be real (estimated score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -56157,7 +56157,7 @@
      "self_share": 0.13
     }
    ],
-   "explanation": "1 comparison (15 models, 1 paper). GeoFMs differ by an SD of 4.57 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 91% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 15 models in 1 comparison. Models differ by a standard deviation of 4.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -56450,7 +56450,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). Seed noise SD of one evaluation is 0.0632 (metric units) (12 model entries with SDs; reported values average 3 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 0.99-1.00). Among the leading half of the models only, 99% of the spread is repeatable (frontier score 0.99).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. Re-running an evaluation changes a score by about 0.0632 (metric units), so 100% of the differences between models are real (score 1.00, 90% interval 0.99–1.00). Among the better half of the models, 99% are real (top-half score 0.99). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.5 Socioeconomic conditions",
    "input_kind": "coords_only"
@@ -56743,7 +56743,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). Seed noise SD of one evaluation is 0.0316 (metric units) (12 model entries with SDs; reported values average 3 replicates (assumed)), so 99% of the spread is repeatable model difference (score 0.99, 90% CI 0.87-1.00). Among the leading half of the models only, 97% of the spread is repeatable (frontier score 0.97).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. Re-running an evaluation changes a score by about 0.0316 (metric units), so 99% of the differences between models are real (score 0.99, 90% interval 0.87–1.00). Among the better half of the models, 97% are real (top-half score 0.97). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.5 Socioeconomic conditions",
    "input_kind": "coords_only"
@@ -57036,7 +57036,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). Seed noise SD of one evaluation is 0.0316 (metric units) (11 model entries with SDs; reported values average 3 replicates (assumed)), so 97% of the spread is repeatable model difference (score 0.97, 90% CI 0.88-1.00). Among the leading half of the models only, 96% of the spread is repeatable (frontier score 0.96). 83% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. Re-running an evaluation changes a score by about 0.0316 (metric units), so 97% of the differences between models are real (score 0.97, 90% interval 0.88–1.00). Among the better half of the models, 96% are real (top-half score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -57330,7 +57330,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "2 comparisons (14 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise. Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 14 models in 2 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -57624,7 +57624,7 @@
      "self_share": 0.4
     }
    ],
-   "explanation": "2 comparisons (13 models, 1 paper). GeoFMs differ by an SD of 2.10 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 89% of the spread would be repeatable (provisional score 0.89). 73% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 13 models in 2 comparisons. Models differ by a standard deviation of 2.1 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 89% of the differences would be real (estimated score 0.89). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -58037,7 +58037,7 @@
      "self_share": 0.5
     }
    ],
-   "explanation": "3 comparisons (12 models, 1 paper). GeoFMs differ by an SD of 5.58 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.59 pts (protocol-family median) about 78% of the spread would be repeatable (provisional score 0.78). 70% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 12 models in 3 comparisons. Models differ by a standard deviation of 5.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.59 points for its protocol, about 78% of the differences would be real (estimated score 0.78). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -58442,7 +58442,7 @@
      "self_share": 0.2
     }
    ],
-   "explanation": "2 comparisons (12 models, 2 papers). GeoFMs differ by an SD of 1.25 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.65 pts (protocol-family median) about 50% of the spread would be repeatable (provisional score 0.49). 37% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 2 papers with 12 models in 2 comparisons. Models differ by a standard deviation of 1.2 points. No paper reports seed noise for this benchmark; with the typical value of 0.65 points for its protocol, about 50% of the differences would be real (estimated score 0.49).",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -58708,7 +58708,7 @@
      "self_share": 0.64
     }
    ],
-   "explanation": "1 comparison (11 models, 1 paper). GeoFMs differ by an SD of 3.22 pts within a comparison. Seed noise SD of one evaluation is 0.60 pts (11 model entries with SDs; reported values average 3 replicates (assumed)), so 97% of the spread is repeatable model difference (score 0.97, 90% CI 0.94-0.98). Among the leading half of the models only, 85% of the spread is repeatable (frontier score 0.85). 90% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal).",
+   "explanation": "Reported by 1 paper with 11 models in 1 comparison. Models differ by a standard deviation of 3.2 points. Re-running an evaluation changes a score by about 0.60 points, so 97% of the differences between models are real (score 0.97, 90% interval 0.94–0.98). Among the better half of the models, 85% are real (top-half score 0.85). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.2 Transport",
    "input_kind": "eo_imagery"
@@ -58974,7 +58974,7 @@
      "self_share": 0.64
     }
    ],
-   "explanation": "1 comparison (11 models, 1 paper). GeoFMs differ by an SD of 11.59 pts within a comparison. Seed noise SD of one evaluation is 3.60 pts (11 model entries with SDs; reported values average 3 replicates (assumed)), so 91% of the spread is repeatable model difference (score 0.91, 90% CI 0.81-0.96). Among the leading half of the models only, 66% of the spread is repeatable (frontier score 0.66). 67% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 11 models in 1 comparison. Models differ by a standard deviation of 11.6 points. Re-running an evaluation changes a score by about 3.60 points, so 91% of the differences between models are real (score 0.91, 90% interval 0.81–0.96). Among the better half of the models, 66% are real (top-half score 0.66), so the benchmark mainly separates weak models from strong ones. All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -59240,7 +59240,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 2.65 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 95% of the spread would be repeatable (provisional score 0.95). 73% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 2.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 95% of the differences would be real (estimated score 0.95). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.5 Socioeconomic conditions",
    "input_kind": "eo_imagery"
@@ -59506,7 +59506,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 0.85 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 48% of the spread would be repeatable (provisional score 0.48). 21% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.1% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 0.8 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 48% of the differences would be real (estimated score 0.48). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery"
@@ -59772,7 +59772,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 1.42 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 81% of the spread would be repeatable (provisional score 0.81). 20% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 1.4 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 81% of the differences would be real (estimated score 0.81). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -60038,7 +60038,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 4.42 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 98% of the spread would be repeatable (provisional score 0.98). 26% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.4% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 4.4 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 98% of the differences would be real (estimated score 0.98). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.3 Energy and industry",
    "input_kind": "eo_imagery"
@@ -61036,7 +61036,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "24 comparisons (8 models, 1 paper). GeoFMs differ by an SD of 8.79 pts within a comparison. Seed noise SD of one evaluation is 1.06 pts (168 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.95-0.99). Among the leading half of the models only, 90% of the spread is repeatable (frontier score 0.90). 57% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 1.9% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 8 models in 24 comparisons. Models differ by a standard deviation of 8.8 points. Re-running an evaluation changes a score by about 1.06 points, so 98% of the differences between models are real (score 0.98, 90% interval 0.95–0.99). Among the better half of the models, 90% are real (top-half score 0.90). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.4 Objects and activity",
    "input_kind": "eo_imagery"
@@ -61356,7 +61356,7 @@
      "self_share": 0.17
     }
    ],
-   "explanation": "3 comparisons (7 models, 1 paper). GeoFMs differ by an SD of 13.54 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 100% of the spread would be repeatable (provisional score 1.00). 62% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 3 comparisons. Models differ by a standard deviation of 13.5 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 100% of the differences would be real (estimated score 1.00). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -61622,7 +61622,7 @@
      "self_share": 0.29
     }
    ],
-   "explanation": "1 comparison (7 models, 1 paper). GeoFMs differ by an SD of 3.62 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 96% of the spread would be repeatable (provisional score 0.96). 73% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.0% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 7 models in 1 comparison. Models differ by a standard deviation of 3.6 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 96% of the differences would be real (estimated score 0.96). All results come from one paper, so they reflect a single group's setup.",
    "domain": "8 · Human systems",
    "subdomain": "8.1 Settlements and buildings",
    "input_kind": "eo_imagery"
@@ -62264,7 +62264,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "1 comparison (10 models, 1 paper). GeoFMs differ by an SD of 1.95 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 90% of the spread would be repeatable (provisional score 0.90). 36% of the stable model differences are not explained by the 3 shared capability factors (dataset-specific signal). Contributes 0.2% of the information the whole suite gives about shared capabilities (redundancy-adjusted).",
+   "explanation": "Reported by 1 paper with 10 models in 1 comparison. Models differ by a standard deviation of 1.9 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 90% of the differences would be real (estimated score 0.90). All results come from one paper, so they reflect a single group's setup.",
    "domain": "Disasters",
    "subdomain": "z.1 Post-event damage and hazard extent",
    "input_kind": "eo_imagery"
@@ -62642,7 +62642,7 @@
      "self_share": 0.08
     }
    ],
-   "explanation": "5 comparisons (13 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 13 models in 5 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -63020,7 +63020,7 @@
      "self_share": 0.08
     }
    ],
-   "explanation": "5 comparisons (13 models, 1 paper). GeoFMs differ by an SD of 3.73 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.61 pts (protocol-family median) about 97% of the spread would be repeatable (provisional score 0.97).",
+   "explanation": "Reported by 1 paper with 13 models in 5 comparisons. Models differ by a standard deviation of 3.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.61 points for its protocol, about 97% of the differences would be real (estimated score 0.97). All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -63398,7 +63398,7 @@
      "self_share": 0.08
     }
    ],
-   "explanation": "5 comparisons (13 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 13 models in 5 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -63776,7 +63776,7 @@
      "self_share": 0.08
     }
    ],
-   "explanation": "5 comparisons (13 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 13 models in 5 comparisons. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -64378,7 +64378,7 @@
      "self_share": 0.25
     }
    ],
-   "explanation": "13 comparisons (11 models, 1 paper). GeoFMs differ by an SD of 7.72 pts within a comparison. No printed seed SD; with a plug-in noise SD of 0.70 pts (protocol-family median) about 90% of the spread would be repeatable (provisional score 0.90).",
+   "explanation": "Reported by 1 paper with 11 models in 13 comparisons. Models differ by a standard deviation of 7.7 points. No paper reports seed noise for this benchmark; with the typical value of 0.70 points for its protocol, about 90% of the differences would be real (estimated score 0.90). All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -64608,7 +64608,7 @@
      "self_share": 1.0
     }
    ],
-   "explanation": "1 comparison (5 models, 1 paper). No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 5 models in 1 comparison. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "composite",
    "subdomain": "",
    "input_kind": "eo_imagery"
@@ -65205,7 +65205,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "6 comparisons (25 models, 2 papers). GeoFMs differ by an SD of 12.34 pts within a comparison. Seed noise SD of one evaluation is 0.52 pts (84 model entries with SDs; reported values average 8 replicates (assumed)), so 100% of the spread is repeatable model difference (score 1.00, 90% CI 0.93-1.00). Among the leading half of the models only, 72% of the spread is repeatable (frontier score 0.71).",
+   "explanation": "Reported by 2 papers with 25 models in 6 comparisons. Models differ by a standard deviation of 12.3 points. Re-running an evaluation changes a score by about 0.52 points, so 100% of the differences between models are real (score 1.00, 90% interval 0.93–1.00). Among the better half of the models, 72% are real (top-half score 0.71), so the benchmark mainly separates weak models from strong ones.",
    "domain": "outside_taxonomy",
    "subdomain": "",
    "input_kind": "coords_only"
@@ -65839,7 +65839,7 @@
      "self_share": 0.67
     }
    ],
-   "explanation": "7 comparisons (12 models, 2 papers). GeoFMs differ by an SD of 2.87 pts within a comparison. Seed noise SD of one evaluation is 0.33 pts (40 model entries with SDs; reported values average 3 replicates (assumed)), so 98% of the spread is repeatable model difference (score 0.98, 90% CI 0.95-0.99). Among the leading half of the models only, 91% of the spread is repeatable (frontier score 0.91).",
+   "explanation": "Reported by 2 papers with 12 models in 7 comparisons. Models differ by a standard deviation of 2.9 points. Re-running an evaluation changes a score by about 0.33 points, so 98% of the differences between models are real (score 0.98, 90% interval 0.95–0.99). Among the better half of the models, 91% are real (top-half score 0.91).",
    "domain": "outside_taxonomy",
    "subdomain": "",
    "input_kind": "natural_image"
@@ -66217,7 +66217,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (5 models, 1 paper). GeoFMs differ by an SD of 5.36 pts within a comparison. No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 5 models in 5 comparisons. Models differ by a standard deviation of 5.4 points. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "outside_taxonomy",
    "subdomain": "",
    "input_kind": "natural_image"
@@ -66595,7 +66595,7 @@
      "self_share": 0.0
     }
    ],
-   "explanation": "5 comparisons (4 models, 1 paper). GeoFMs differ by an SD of 7.62 pts within a comparison. No paper prints a seed/run standard deviation for this benchmark, and no plug-in noise is available, so the observed spread cannot be separated from evaluation noise.",
+   "explanation": "Reported by 1 paper with 4 models in 5 comparisons. Models differ by a standard deviation of 7.6 points. No paper reports seed noise for this benchmark and none can be estimated, so its reliability cannot be assessed. All results come from one paper, so they reflect a single group's setup.",
    "domain": "outside_taxonomy",
    "subdomain": "",
    "input_kind": "natural_image"

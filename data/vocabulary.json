@@ -218,17 +218,17 @@
   {
    "key": "ev",
    "name": "GeoFM evidence",
-   "description": "Whether published benchmark results separate GeoFMs beyond evaluation noise, from a meta-analysis of 52 papers (summary statistics only). Score = share of the observed model spread that is repeatable; measured when papers print seed standard deviations, provisional when noise is plugged in.",
+   "description": "Whether published results distinguish foundation models on this dataset beyond run-to-run noise, from 52 papers. Reliable, Moderate and Unreliable use seed noise reported in the papers; Likely reliable and Uncertain use an estimated noise level.",
    "derived": "from data/evidence.json",
    "values": {
     "e_reliable": "Reliable",
     "e_moderate": "Moderate",
-    "e_weak": "Weak / saturated",
-    "e_prov_high": "Provisional (high)",
-    "e_prov_low": "Provisional (low)",
-    "e_spread": "Spread only",
-    "e_few": "Under 4 models",
-    "e_none": "No GeoFM scores"
+    "e_weak": "Unreliable",
+    "e_prov_high": "Likely reliable",
+    "e_prov_low": "Uncertain",
+    "e_spread": "No noise data",
+    "e_few": "Too few models",
+    "e_none": "No published results"
    }
   }
  ]

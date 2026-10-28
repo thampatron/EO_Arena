@@ -52,24 +52,25 @@ details.adv{margin:0 0 12px}details.adv>summary{cursor:pointer;font-size:13px;co
 <main class="page">
   <section class="hero">
     <h1>Evidence map</h1>
-    <p class="sub">Every benchmark dataset with a reliability score, one scatter plot per domain. Pick the two metrics to plot, colour by subdomain or task family, hover a point for the numbers and click it to open the dataset. Click the <span class="info" style="cursor:default">i</span> next to an axis for the metric's definition.</p>
+    <p class="sub">Every scored benchmark, one plot per domain. Choose what to put on each axis, colour the points by subdomain or task, and hover a point for its numbers; click it to open the dataset. Useful for choosing a varied set of benchmarks and for spotting benchmarks that only separate weak models from strong ones.</p>
     <div class="stats" id="stats"></div>
   </section>
 
   <section class="section">
-    <details class="adv"><summary>Advanced: alternative scoring choices</summary><div id="settings"></div></details><p class="setnote" id="setnote" hidden></p>
+    <details class="adv"><summary>Advanced settings</summary><div id="settings"></div></details><p class="setnote" id="setnote" hidden></p>
     <div class="ctrl">
       <label class="grp">X <select class="sel" id="x"></select><span id="xi"></span></label>
       <label class="grp">Y <select class="sel" id="y"></select><span id="yi"></span></label>
-      <label class="grp">Colour <select class="sel" id="col"><option value="sub">Subdomain</option><option value="task">Task family</option><option value="both">Subdomain + task family (shape)</option><option value="verdict">Verdict</option></select></label>
+      <label class="grp">Colour <select class="sel" id="col"><option value="sub">Subdomain</option><option value="task">Task type</option><option value="both">Subdomain and task type</option><option value="verdict">Verdict</option></select></label>
       <label class="grp">Domain <select class="sel" id="dom"><option value="">All (small multiples)</option></select></label>
       <label class="inl"><input type="checkbox" id="size" checked> Size by models</label>
-      <label class="inl"><input type="checkbox" id="prov" checked> Provisional scores</label>
-      <label class="inl"><input type="checkbox" id="unl" checked> Not in inventory</label>
+      <label class="inl"><input type="checkbox" id="prov" checked> Include estimated-noise scores</label>
+      <label class="inl"><input type="checkbox" id="unl" checked> Include datasets not in the Explorer</label>
       <label class="inl"><input type="checkbox" id="lab"> Label all</label>
       <label class="inl"><input type="checkbox" id="tbl"> Table view</label>
       <span class="count" id="count"></span>
     </div>
+    <span class="opthelp" id="axhelp"></span>
     <ul class="legend" id="legend"></ul>
     <div class="grid" id="grid"></div>
     <div class="card" id="table" hidden style="padding:8px 12px;overflow-x:auto"></div>
@@ -78,21 +79,21 @@ details.adv{margin:0 0 12px}details.adv>summary{cursor:pointer;font-size:13px;co
   <section class="section">
     <h2>How to read it</h2>
     <div class="prose">
-      <p>Each point is one benchmark dataset placed by two of the metrics from the <a href="benchmarks.html">Benchmark ranking</a>. Filled points have measured seed noise; hollow points are provisional (noise plugged in from similar comparisons). Point area is proportional to the number of models scored, so a large point is well-supported evidence and a small one is a single paper. Datasets scored in the literature but not yet in the Explorer are included and marked <span class="unl">not in inventory</span> in the tooltip. Non-imagery benchmarks (coordinate-only inputs) are left out.</p>
-      <p>Useful views. <b>Score vs frontier score</b> shows saturation: points far below the diagonal separate weak models from good ones but not the leading models from each other. <b>Spread vs seed noise</b> is the raw material of the score; the dashed line is spread = noise, where the score is 0.5. <b>Dataset-specific signal vs info share</b> separates benchmarks that measure something of their own from benchmarks that mostly repeat the suite. <b>Models vs score</b> shows how much the score rests on.</p>
-      <p>Colours follow the entity, not the rank: a subdomain or task family keeps its colour across every panel and every filter. The table view lists the same points for screen readers and for copying.</p>
+      <p>Each point is one benchmark. Filled points use seed noise reported in the papers; hollow points use an estimated noise level. Larger points have more models behind them. Datasets with published results but no Explorer entry are included and labelled in the tooltip. Benchmarks whose input is only a location, not an image, are left out.</p>
+      <p><b>Score against top-half score</b> (the default) shows which benchmarks still separate strong models: points well below the dashed diagonal mainly separate weak baselines from good models. <b>Spread against seed noise</b> shows the two quantities the score is built from; on the dashed line they are equal and the score is 0.5. <b>Models against score</b> shows how much evidence each score rests on.</p>
+      <p>Colours stay attached to a subdomain or task across all plots and filters. Each option in the axis menus has a definition under the <span class="info" style="cursor:default">i</span> next to it; the table view lists the same points as text.</p>
     </div>
   </section>
 </main>
 <div class="tt" id="tt" hidden></div>
 <script src="assets/site.js"></script>
 <script>
-const AXES=[['score','Score','lin',0,1],['score_top','Frontier score','lin',0,1],['edi','EDI (log)','log',null,null],['spread_pts','Spread (pts)','lin',0,null],['noise_sd','Seed noise (pts)','lin',0,null],['unexplained_share','Dataset-specific signal','lin',0,1],['info_share','Info share','lin',0,null],['self_share','Self-reported','lin',0,1],['r2_shared','Shared-factor R²','lin',0,1],['models','Models','lin',0,null],['papers','Papers','lin',0,null],['tasks_n','Comparisons','lin',0,null],['n_reps','Replicates per value','lin',0,null]];
+const AXES=[['score','Score','lin',0,1],['score_top','Top-half score','lin',0,1],['edi','Signal-to-noise (log scale)','log',null,null],['spread_pts','Spread (pts)','lin',0,null],['noise_sd','Seed noise (pts)','lin',0,null],['unexplained_share','Dataset-specific signal','lin',0,1],['info_share','Information share','lin',0,null],['self_share','Self-reported','lin',0,1],['r2_shared','Shared-factor R²','lin',0,1],['models','Models','lin',0,null],['papers','Papers','lin',0,null],['tasks_n','Comparisons','lin',0,null],['n_reps','Runs per value','lin',0,null]];
 const AX=Object.fromEntries(AXES.map(a=>[a[0],a]));
 const PAL=['#2a78d6','#eb6834','#1baf7a','#eda100','#e87ba4','#008300','#6250d6','#e34948'];
 const TASKS=[['SS','Semantic segmentation'],['SC','Scene classification'],['RG','Regression'],['IS','Instance / polygons'],['OD','Object detection'],['CD','Change detection'],['ML','Multi-label classification'],['FC','Forecasting'],['other','Other']];
 const TASK_OF_TYPE=t=>{t=String(t||'').toLowerCase();if(t.includes('multilabel')||t.includes('multi-label'))return 'ML';if(t.includes('instance'))return 'IS';if(t.includes('detection')&&!t.includes('change'))return 'OD';if(t.includes('change'))return 'CD';if(t.includes('forecast'))return 'FC';if(t.includes('segmentation'))return 'SS';if(t.includes('regression'))return 'RG';if(t.includes('classification'))return 'SC';return 'other';};
-const VERD={e_reliable:'Reliable',e_moderate:'Moderate',e_weak:'Weak / saturated',e_prov_high:'Provisional (high)',e_prov_low:'Provisional (low)',e_spread:'Spread only',e_few:'Under 4 models'};
+const VERD=Object.fromEntries(Object.entries(VERDICTS).map(([k,v])=>[k,v[1]]));
 const SHAPES={SS:'circle',SC:'square',RG:'diamond',IS:'triangle',OD:'tri-down',CD:'plus',ML:'cross',FC:'star',other:'circle'};
 let ROWS=[],RAW=[],EV=null,DOMS=[],SUBS={},st={x:'score',y:'score_top',col:'sub',dom:'',size:true,prov:true,unl:true,lab:false,tbl:false};
 const $=id=>document.getElementById(id);
@@ -100,7 +101,7 @@ function buildRows(){
   ROWS=[];RAW.forEach(e=>unitRows(e).forEach(r=>ROWS.push(r)));
   ROWS.forEach(r=>{r.measured=r.sigma2_source==='measured';r.prov=!r.measured;r.base_name=r.base_name||r.name;});
   const scored=ROWS.filter(r=>r.score!=null);
-  $('stats').innerHTML=[[ROWS.length,SET.unit==='protocol'?'dataset × protocol rows':'benchmark datasets'],[scored.length,'with a score'],[ROWS.filter(r=>r.measured).length,'measured noise'],[DOMS.length,'domains'],[EV.as_of,'as of']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('stats').innerHTML=[[ROWS.length,SET.unit==='protocol'?'benchmark × protocol rows':'image-based benchmarks with published results'],[scored.length,'with a score'],[ROWS.filter(r=>r.measured).length,'with measured seed noise'],[DOMS.length,'domains']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
   const note=settingsSummary();$('setnote').hidden=!note;$('setnote').textContent=note?`Showing a non-default analysis variant — ${note}.`:'';
 }
 (async function(){
@@ -119,7 +120,11 @@ function buildRows(){
   buildRows();
   ['x','y','col','dom'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.value;if(k==='x')$('xi').innerHTML=infoIcon(st.x);if(k==='y')$('yi').innerHTML=infoIcon(st.y);render();}));
   ['size','prov','unl','lab','tbl'].forEach(k=>$(k).addEventListener('change',e=>{st[k]=e.target.checked;render();}));
-  readURL();render();
+  const colDefs={sub:'Colour: subdomain within each domain (key under each plot).',task:'Colour: task type (classification, segmentation, regression, detection, …).',both:'Colour: subdomain; shape: task type.',verdict:'Colour: verdict of the benchmark.'};
+  const first=k=>{const w=METRICS[k]?METRICS[k].what:AX[k][1];return w.split(/(?<=\.)\s/)[0];};
+  const axh=()=>{$('axhelp').innerHTML=`<b>X</b> ${esc(first(st.x))} <b>Y</b> ${esc(first(st.y))} ${esc(colDefs[st.col])}`;};
+  ['x','y','col'].forEach(k=>$(k).addEventListener('change',axh));
+  readURL();axh();render();
 })();
 function readURL(){const u=new URLSearchParams(location.search);['x','y','col','dom'].forEach(k=>{if(u.has(k)&&(k==='dom'||AX[u.get(k)]||k==='col'))st[k]=u.get(k);$(k).value=st[k];});$('xi').innerHTML=infoIcon(st.x);$('yi').innerHTML=infoIcon(st.y);}
 function writeURL(){const u=new URLSearchParams(location.search);['x','y','col','dom'].forEach(k=>u.delete(k));['x','y','col','dom'].forEach(k=>{if(st[k]&&!(k==='x'&&st[k]==='score')&&!(k==='y'&&st[k]==='score_top')&&!(k==='col'&&st[k]==='sub'))u.set(k,st[k]);});history.replaceState(null,'',location.pathname+(u.toString()?'?'+u:''));}
@@ -176,7 +181,7 @@ function legend(dom){
   if(st.col==='task'||st.col==='both'){const used=new Set(ROWS.map(r=>r.task));items.push(`<li class="k">Task family</li>`);TASKS.filter(t=>used.has(t[0])).forEach((t,i)=>items.push(`<li>${sw(st.col==='both'?SHAPES[t[0]]:'circle',st.col==='both'?'var(--fg-2)':PAL[TASKS.findIndex(x=>x[0]===t[0])%PAL.length])}${esc(t[1])}</li>`));}
   if(st.col==='sub'||st.col==='both'){const d=dom||st.dom;if(d){items.push(`<li class="k">Subdomain</li>`);SUBS[d].forEach((s,i)=>items.push(`<li>${sw('circle',PAL[i%PAL.length])}${esc(s)}</li>`));}else items.push(`<li class="k">Subdomain</li><li>colours are per domain; see each panel's key</li>`);}
   if(st.col==='verdict'){items.push(`<li class="k">Verdict</li>`);Object.entries(VERD).forEach(([k,l],i)=>items.push(`<li>${sw('circle',PAL[i%PAL.length])}${l}</li>`));}
-  items.push(`<li class="k" style="margin-left:10px">Noise</li><li>${sw('circle','var(--fg-2)')}measured</li><li>${sw('circle','var(--fg-2)',true)}provisional (plug-in)</li>`);
+  items.push(`<li class="k" style="margin-left:10px">Noise</li><li>${sw('circle','var(--fg-2)')}measured</li><li>${sw('circle','var(--fg-2)',true)}estimated</li>`);
   if(st.size)items.push(`<li class="k" style="margin-left:10px">Size</li><li>models scored</li>`);
   $('legend').innerHTML=items.join('');
 }
@@ -190,13 +195,13 @@ function render(){
   legend(st.dom);
   $('table').hidden=!st.tbl;$('grid').hidden=st.tbl;
   if(st.tbl){const cols=['name','domain','subdomain','task',st.x,st.y,'models','papers','verdict'];
-    $('table').innerHTML=`<table class="tv"><thead><tr>${cols.map(c=>`<th class="${AX[c]||['models','papers'].includes(c)?'num':''}">${esc(AX[c]?AX[c][1]:c==='task'?'Task family':c==='tasks_n'?'Comparisons':c[0].toUpperCase()+c.slice(1))}</th>`).join('')}</tr></thead><tbody>${rows.filter(r=>doms.includes(r.domain)).sort((a,b)=>a.domain.localeCompare(b.domain)||(b[st.x]??-1)-(a[st.x]??-1)).map(r=>`<tr>${cols.map(c=>c==='name'?`<td>${r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">${esc(r.name)}</a>`:esc(r.name)+'<span class="unl">not in inventory</span>'}</td>`:c==='verdict'?`<td>${VERD[r.verdict]||r.verdict}${r.prov?' (plug-in)':''}</td>`:c==='task'?`<td>${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])}</td>`:AX[c]||['models','papers'].includes(c)?`<td class="num">${fmtVal(c,r[c])}</td>`:`<td>${esc(String(r[c]||'').replace(/^\d(\.\d)? ?· ?/,''))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+    $('table').innerHTML=`<table class="tv"><thead><tr>${cols.map(c=>`<th class="${AX[c]||['models','papers'].includes(c)?'num':''}">${esc(AX[c]?AX[c][1]:c==='task'?'Task family':c==='tasks_n'?'Comparisons':c[0].toUpperCase()+c.slice(1))}</th>`).join('')}</tr></thead><tbody>${rows.filter(r=>doms.includes(r.domain)).sort((a,b)=>a.domain.localeCompare(b.domain)||(b[st.x]??-1)-(a[st.x]??-1)).map(r=>`<tr>${cols.map(c=>c==='name'?`<td>${r.listed?`<a href="index.html?q=${encodeURIComponent(r.base_name||r.name)}">${esc(r.name)}</a>`:esc(r.name)+'<span class="unl">not in Explorer</span>'}</td>`:c==='verdict'?`<td>${VERD[r.verdict]||r.verdict}${r.prov?' (estimated noise)':''}</td>`:c==='task'?`<td>${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])}</td>`:AX[c]||['models','papers'].includes(c)?`<td class="num">${fmtVal(c,r[c])}</td>`:`<td>${esc(String(r[c]||'').replace(/^\d(\.\d)? ?· ?/,''))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
 }
 // tooltip
 const tt=$('tt');let pinned=null;
 function showTT(i,el,pin){const r=ROWS[i];if(!r)return;const ax=AX[st.x],ay=AX[st.y];
-  tt.innerHTML=`<b>${esc(r.name)}</b>${r.listed?'':'<span class="unl">not in inventory</span>'}<p class="ttsub">${esc(r.domain.replace(/^\d · /,''))} · ${esc((r.subdomain||'').replace(/^\d\.\d /,''))} · ${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])} · ${VERD[r.verdict]||r.verdict}</p>
-  <dl><dt>${esc(ax[1])}</dt><dd>${fmtVal(st.x,r[st.x])}</dd><dt>${esc(ay[1])}</dt><dd>${fmtVal(st.y,r[st.y])}</dd>${st.x!=='score'&&st.y!=='score'?`<dt>Score</dt><dd>${fmtVal('score',r.score)}${r.score!=null?` <span style="color:var(--fg-3)">${fmtVal('score',r.score_lo)}–${fmtVal('score',r.score_hi)}</span>`:''}</dd>`:''}<dt>Models · papers · comparisons</dt><dd>${r.models} · ${r.papers} · ${r.tasks_n}</dd>${r.noise_sd!=null?`<dt>Seed noise</dt><dd>${r.noise_sd.toFixed(2)} pts${r.measured?'':' (plug-in)'}</dd>`:''}</dl>
+  tt.innerHTML=`<b>${esc(r.name)}</b>${r.listed?'':'<span class="unl">not in Explorer</span>'}<p class="ttsub">${esc(r.domain.replace(/^\d · /,''))} · ${esc((r.subdomain||'').replace(/^\d\.\d /,''))} · ${esc((TASKS.find(t=>t[0]===r.task)||['','?'])[1])} · ${VERD[r.verdict]||r.verdict}</p>
+  <dl><dt>${esc(ax[1])}</dt><dd>${fmtVal(st.x,r[st.x])}</dd><dt>${esc(ay[1])}</dt><dd>${fmtVal(st.y,r[st.y])}</dd>${st.x!=='score'&&st.y!=='score'?`<dt>Score</dt><dd>${fmtVal('score',r.score)}${r.score!=null?` <span style="color:var(--fg-3)">${fmtVal('score',r.score_lo)}–${fmtVal('score',r.score_hi)}</span>`:''}</dd>`:''}<dt>Models · papers · comparisons</dt><dd>${r.models} · ${r.papers} · ${r.tasks_n}</dd>${r.noise_sd!=null?`<dt>Seed noise</dt><dd>${r.noise_sd.toFixed(2)} points${r.measured?'':' (estimated)'}</dd>`:''}</dl>
   <p class="expl">${esc((r.explanation||'').split('. ').slice(0,2).join('. '))}${r.explanation?'.':''}</p>
   <p class="lnk">${r.listed?`<a href="index.html?open=${encodeURIComponent(r.id)}">Open in Explorer →</a>`:''}<a href="benchmarks.html?q=${encodeURIComponent(r.base_name||r.name)}">Ranking row →</a></p>`;
   tt.hidden=false;tt.classList.toggle('pin',!!pin);
