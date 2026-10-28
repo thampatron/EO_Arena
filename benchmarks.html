@@ -44,6 +44,9 @@ table.rk.sub td{padding:4px 8px}
 .tablenote{font-size:12.5px;color:var(--fg-3);margin:8px 0 0}
 .ci{color:var(--fg-3);font-size:12.5px}
 .faq details{border-bottom:1px solid var(--line);padding:10px 0}.faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq summary::before{content:'+ ';color:var(--fg-3)}.faq details[open] summary::before{content:'− '}.faq p{margin:8px 0 2px;max-width:860px;line-height:1.55;color:var(--fg-2)}
+.pp-t{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--fg-3);margin:4px 0 6px}
+.pplist{list-style:none;padding:0;margin:0 0 10px;display:grid;gap:8px;max-width:980px}.pp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:default}.pp-h{font-weight:600;font-size:13.5px}.pp-h a{color:var(--fg)}.pp-h a:hover{color:var(--accent)}.pp-u{font-size:13px;color:var(--fg);margin-top:3px}.pp-m{font-size:12px;color:var(--fg-3);margin-top:3px}
+.cmpd>summary{cursor:pointer;font-size:12.5px;color:var(--accent);margin:2px 0 6px}
 </style>
 </head>
 <body>
@@ -71,7 +74,7 @@ table.rk.sub td{padding:4px 8px}
     </div>
     <p class="setnote" id="setnote" hidden></p>
     <div class="card tablebox"><table class="rk" id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
-    <p class="tablenote">Click a row to see the individual comparisons behind it. Click a benchmark name to open its dataset record. Numbers in brackets are 90% confidence intervals.</p>
+    <p class="tablenote">Click a row to see which papers evaluated models on the benchmark and how well it separated them in each. Click a benchmark name to open its dataset record. Numbers in brackets are 90% confidence intervals.</p>
   </section>
 
   <section class="section faq">
@@ -124,17 +127,30 @@ function buildRows(){
   $('meas').addEventListener('change',e=>{st.meas=e.target.checked;render();});
   $('more').addEventListener('change',e=>{st.more=e.target.checked;document.getElementById('tbl').classList.toggle('more',st.more);render();});
   let t;$('q').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{st.q=e.target.value.trim().toLowerCase();render();},150);});
-  document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
+  document.querySelector('#tbl tbody').addEventListener('click',e=>{if(e.target.closest('a')||e.target.closest('tr.det'))return;const tr=e.target.closest('tr[data-i]');if(!tr)return;const i=tr.dataset.i;open.has(i)?open.delete(i):open.add(i);render();});
   const q0=new URLSearchParams(location.search).get('q');if(q0){st.q=q0.trim().toLowerCase();$('q').value=q0;}
   render();
 })();
 const f1=x=>x==null?'–':Number(x).toFixed(1),f2=x=>x==null?'–':Number(x).toFixed(2),pc=x=>x==null?'–':Math.round(100*x)+'%';
 const fedi=x=>x==null?'–':x>=1e6?'∞':x>=100?Math.round(x).toLocaleString('en-US'):Number(x).toFixed(1);
 function cmp(a,b){if(sortKey==='verdict')return (EVC[a.verdict][2]-EVC[b.verdict][2])*sortDir||(b.papers-a.papers);if(sortKey==='suites')return (b.suites.length-a.suites.length)*sortDir;const x=a[sortKey],y=b[sortKey];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*sortDir;}
+function usefulness(p){
+  if(p.score==null)return 'The models it compared could not be checked against noise (no noise information).';
+  const est=p.noise_measured?'':' (noise estimated)';
+  const top=p.score_top==null?'':p.score-p.score_top>=0.25?` Among its stronger models the differences were mostly noise (top-half score ${f2(p.score_top)}), so it mainly separated weak models from strong ones.`:p.score_top>=0.8?` It also separated its stronger models from each other (top-half score ${f2(p.score_top)}).`:` Among its stronger models the separation was weaker (top-half score ${f2(p.score_top)}).`;
+  const lead=p.score>=0.8?`Clearly separated the ${p.models} models it compared: ${Math.round(100*p.score)}% of their differences were real${est}.`:p.score>=0.5?`Partly separated the ${p.models} models it compared: ${Math.round(100*p.score)}% of their differences were real${est}.`:`Did not reliably separate the ${p.models} models it compared: only ${Math.round(100*p.score)}% of their differences exceeded noise${est}.`;
+  return lead+top;}
 function detail(r){
-  const prot=Object.entries(r.by_protocol||{}).map(([k,v])=>`<span class="chip">${esc(k[0].toUpperCase()+k.slice(1))}: score ${f2(v.score)}${v.sigma2_source==='measured'?'':' (estimated noise)'} · ${v.models} models · ${v.tasks_n} comparison${v.tasks_n===1?'':'s'}</span>`).join(' ')+(Object.keys(r.by_protocol||{}).length?infoIcon('protocol'):'');
-  const tasks=(r.tasks||[]).map(t=>`<tr><td>${esc(t.paper)}</td><td class="dim">${esc(t.benchmark_id)}</td><td>${esc(t.protocol)}${t.train_fraction?` · ${esc(t.train_fraction)}`:''}</td><td class="dim">${esc(t.metric)}</td><td class="num">${t.n_models}</td><td class="num">${t.spread_pts!=null?f2(t.spread_pts):t.spread_units!=null?f2(t.spread_units)+' u':'–'}</td><td class="num">${t.noise_sd==null?'–':f2(t.noise_sd)+(t.noise_source==='measured'?'':' <span class="dim">est.</span>')}</td><td class="num">${t.n_reps==null||t.noise_source!=='measured'?'–':Number(t.n_reps).toFixed(0)+(t.n_reps_known?'':' <span class="dim">assumed</span>')}</td><td class="num">${t.score==null?'–':`${f2(t.score)}<span class="ci">${range(t.score_lo,t.score_hi)}</span>`}</td><td class="num">${t.score_top==null?'–':f2(t.score_top)}</td></tr>`).join('');
-  return `<tr class="det"><td colspan="${COLS.length}"><p class="small" style="margin:0 0 8px;max-width:900px">${esc(r.explanation||'')}</p>${prot?`<p class="small" style="margin:0 0 8px">${prot}</p>`:''}${tasks?`<table class="rk sub"><thead><tr><th>Paper</th><th>Benchmark version</th><th>Protocol${infoIcon('protocol')}</th><th>Metric</th><th class="num">Models</th><th class="num">Spread</th><th class="num">Seed noise</th><th class="num">Runs per value${infoIcon('n_reps')}</th><th class="num">Score</th><th class="num">Top-half score</th></tr></thead><tbody>${tasks}</tbody></table>`:''}</td></tr>`;}
+  const P=(EV&&EV.papers)||{};
+  const prot=Object.entries(r.by_protocol||{}).map(([k,v])=>`<span class="chip">${esc(k[0].toUpperCase()+k.slice(1))}: score ${f2(v.score)}${v.sigma2_source==='measured'?'':' (estimated noise)'} · ${v.models} models</span>`).join(' ')+(Object.keys(r.by_protocol||{}).length?infoIcon('protocol'):'');
+  const papers=(r.by_paper||[]).filter(p=>!r.protocol_family||p.protocols.includes(r.protocol_family)).map(p=>{const m=P[p.paper]||{title:p.paper};
+    const t=m.url?`<a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.title)}</a>`:esc(m.title);
+    return `<li class="pp"><div class="pp-h">${t}${m.date?`<span class="dim"> · ${esc(m.date.slice(0,4))}</span>`:''}</div><div class="pp-u">${esc(usefulness(p))}</div><div class="pp-m">${p.models} models · ${p.comparisons} comparison${p.comparisons===1?'':'s'} · ${esc(p.protocols.join(', '))} · ${esc(p.metrics.join(', '))}${p.spread_pts!=null?` · spread ${f2(p.spread_pts)} points`:''}${p.self_share?` · ${Math.round(100*p.self_share)}% self-reported`:''}</div></li>`;}).join('');
+  const tasks=(r.tasks||[]).map(t=>`<tr><td>${esc((P[t.paper]||{}).title?((P[t.paper].title.length>48?P[t.paper].title.slice(0,46)+'…':P[t.paper].title)):t.paper)}</td><td class="dim">${esc(t.benchmark_id)}</td><td>${esc(t.protocol)}${t.train_fraction?` · ${esc(t.train_fraction)}`:''}</td><td class="dim">${esc(t.metric)}</td><td class="num">${t.n_models}</td><td class="num">${t.spread_pts!=null?f2(t.spread_pts):t.spread_units!=null?f2(t.spread_units)+' u':'–'}</td><td class="num">${t.noise_sd==null?'–':f2(t.noise_sd)+(t.noise_source==='measured'?'':' <span class="dim">est.</span>')}</td><td class="num">${t.n_reps==null||t.noise_source!=='measured'?'–':Number(t.n_reps).toFixed(0)+(t.n_reps_known?'':' <span class="dim">assumed</span>')}</td><td class="num">${t.score==null?'–':`${f2(t.score)}<span class="ci">${range(t.score_lo,t.score_hi)}</span>`}</td><td class="num">${t.score_top==null?'–':f2(t.score_top)}</td></tr>`).join('');
+  const n=(r.by_paper||[]).length;
+  return `<tr class="det"><td colspan="${COLS.length}"><p class="small" style="margin:0 0 10px;max-width:900px">${esc(r.explanation||'')}</p>${prot?`<p class="small" style="margin:0 0 10px">${prot}</p>`:''}
+  ${papers?`<h4 class="pp-t">Papers that evaluated models on this benchmark (${n})</h4><ol class="pplist">${papers}</ol>`:''}
+  ${tasks?`<details class="cmpd"><summary>Show individual comparisons (${(r.tasks||[]).length})</summary><table class="rk sub"><thead><tr><th>Paper</th><th>Benchmark version</th><th>Protocol${infoIcon('protocol')}</th><th>Metric</th><th class="num">Models</th><th class="num">Spread</th><th class="num">Seed noise</th><th class="num">Runs per value${infoIcon('n_reps')}</th><th class="num">Score</th><th class="num">Top-half score</th></tr></thead><tbody>${tasks}</tbody></table></details>`:''}</td></tr>`;}
 function render(){
   const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||(r.input_kind==='eo_imagery'&&!['composite','outside_taxonomy',''].includes(r.domain||'')))&&(!st.meas||r.measured)).sort(cmp);
   document.querySelectorAll('#tbl th button[data-k]').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));

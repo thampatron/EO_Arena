@@ -44,6 +44,17 @@ X = src / "metaanalysis_benchmark_table_v4.xlsx"
 r = pd.read_excel(X, "results_long")
 breg = pd.read_excel(X, "benchmark_registry").drop_duplicates("benchmark_id").set_index("benchmark_id")
 mreg = pd.read_excel(X, "model_registry").drop_duplicates("model_id").set_index("model_id")
+srcs = pd.read_excel(X, "sources").drop_duplicates("paper_key").set_index("paper_key")
+# title clean-up: LaTeX residue in two workbook titles
+srcs.loc[srcs.index.isin(["tessera_v2"]), "title"] = "TESSERA v2: Scaling Pixel-wise Earth Foundation Models"
+srcs.loc[srcs.index.isin(["neuco-bench"]), "title"] = srcs.loc[srcs.index.isin(["neuco-bench"]), "title"].str.replace(r"^blind\s+", "", regex=True)
+srcs.loc[srcs.index.isin(["geobench_v2_leaderboard"]), "title"] = "GEO-Bench-2 public leaderboard (Hugging Face)"
+def paper_url(ident):
+    ident = str(ident or "")
+    m = re.search(r"arXiv:(\d{4}\.\d{4,5})", ident)
+    if m: return f"https://arxiv.org/abs/{m.group(1)}"
+    m = re.search(r"https?://\S+", ident)
+    return re.sub(r"@[0-9a-f]{6,40}$", "", m.group(0).rstrip(").,")) if m else None
 bmap = pd.read_csv((src / "benchmark_map.csv") if (src / "benchmark_map.csv").exists() else ROOT / "data" / "benchmark_map.csv", dtype=str).fillna("").set_index("benchmark_id")
 known = {d["id"] for d in json.loads((ROOT / "data" / "datasets.json").read_text(encoding="utf-8"))}
 
@@ -330,6 +341,16 @@ def summarise(name, Tg_main):
         bp["latent_variants"] = {"3": latent_block(g, LAT[MAIN_VARIANT]["3"], g.n_models.values)}
         d["by_protocol"][pf] = bp
     d["tasks"] = [task_rec(t, Tm, LAT[MAIN_VARIANT]["10"]) for t in Tg_main.sort_values("n_models", ascending=False).index]
+    d["by_paper"] = []
+    for pk, g in Tg_main.groupby("paper_key"):
+        cg = cells["all"][cells["all"].task.isin(g.index)]; sc = g[g.score.notna()]
+        d["by_paper"].append({"paper": pk, "comparisons": int(len(g)), "models": int(cg.model_id.nunique()),
+            "protocols": sorted(g.pf.unique().tolist()), "metrics": sorted(g.metric.astype(str).unique().tolist()),
+            "versions": sorted(g.benchmark_id.unique().tolist()),
+            "score": rnd(wmean(sc.score, sc.n_models)) if len(sc) else None, "score_top": rnd(wmean(sc.score_top, sc.n_models)) if len(sc) else None,
+            "spread_pts": rnd(np.sqrt(np.average(g[g.pts].tau2_obs, weights=g[g.pts].n_models)), 2) if g.pts.any() else None,
+            "noise_measured": bool((g.sigma2_source == "measured").any()), "self_share": rnd(wmean(g.self_share, g.n_models), 2)})
+    d["by_paper"].sort(key=lambda x: (-x["models"], x["paper"]))
     d["explanation"] = explain(d, K)
     return d
 
@@ -436,6 +457,9 @@ meta = {
     "counts": {"tasks": int(len(Tm)), "tasks_measured": int((Tm.sigma2_source == "measured").sum()), "tasks_provisional": int(Tm.sigma2_source.isin(["same dataset, same protocol family", "protocol-family median"]).sum()),
                "tasks_no_noise": int((Tm.sigma2_source == "none").sum()), "cells_with_sd": int(cells["all"].sd.notna().sum()), "cells_with_seed_lists": int((r.sd_kind == "seeds").sum()),
                "noise_sd_by_protocol_family_pts": {pf: rnd(np.sqrt(v), 2) for pf, v in MAIN["plug_pf"].items()}},
+    "papers": {pk: {"title": str(srcs.at[pk, "title"]) if pk in srcs.index else pk, "id": str(srcs.at[pk, "identifier"]) if pk in srcs.index else "",
+                    "url": paper_url(srcs.at[pk, "identifier"]) if pk in srcs.index else None, "date": (lambda v: "" if pd.isna(v) else str(v))(srcs.at[pk, "release_year_month"]) if pk in srcs.index else "",
+                    "kind": str(srcs.at[pk, "source_kind"]) if pk in srcs.index else ""} for pk in sorted(Tm.paper_key.unique())},
     "datasets": datasets, "unlisted": unlisted, "domains": dict(sorted(doms.items()))}
 (ROOT / "data" / "evidence.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 log(f"evidence.json written; K={K}")
