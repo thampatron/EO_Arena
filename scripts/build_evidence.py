@@ -66,6 +66,12 @@ r["pm_mean"] = [p[0] for p in P]; r["pm_sd"] = [p[1] for p in P]; r["sd_kind"] =
 N_REPS = {"geobench_v2_leaderboard": 5, "earthshift": 5, "geocross-bench": 5, "melt-salt": 10, "mind": 5, "presto": 3, "prithvi_v2": 10,
           "ss_vision_transformers_for_lc": 5, "tessera_v2": 5, "agbd_eval": 3}
 N_REPS_DEFAULT = 3
+# unit repair: some workbook rows tagged percent_printed store the value as a fraction (e.g. r2 printed "67.1 ± 2.9", stored 0.671).
+# Detect by the printed number being ~100x the stored value and restore percent units (value and SD), so spread and noise are in points.
+raw_first = pd.to_numeric(r.raw_cell.astype(str).str.extract(r"(-?\d+(?:\.\d+)?)")[0], errors="coerce")
+fix = (r.scale_basis == "percent_printed") & (r.v.abs() <= 1.5) & (raw_first.abs() > 1.5) & ((raw_first / r.v.where(r.v != 0)).sub(100).abs() < 1)
+r.loc[fix, "v"] = r.loc[fix, "v"] * 100; r.loc[fix, "pm_mean"] = raw_first[fix]
+r["unit_fixed"] = fix
 r["n_reps"] = np.where(r.sd_kind == "seeds", r.n_seeds, np.where(r.sd_kind == "printed", r.paper_key.map(N_REPS).fillna(N_REPS_DEFAULT), 1.0)).astype(float)
 r["n_reps_known"] = (r.sd_kind == "seeds") | r.paper_key.isin(N_REPS)
 ratio = (r.v / r.pm_mean).where(r.pm_mean.abs() > 0); r["sd"] = r.pm_sd * ratio.where(ratio.notna(), 1.0)
@@ -78,7 +84,7 @@ for c in ["canonical_dataset", "eoarena_id", "domain", "subdomain", "input_kind"
 r["task"] = r.paper_key.astype(str) + "|" + r.benchmark_id.astype(str) + "|" + r.evaluation_protocol.astype(str) + "|" + r.metric.astype(str) + "|" + r.train_fraction_norm.astype(str)
 own = r[r.is_self_reported == True].groupby("model_id").paper_key.agg(set).to_dict()
 r["self"] = [p in own.get(m, set()) for m, p in zip(r.model_id, r.paper_key)]
-log(f"{len(r)} result rows")
+log(f"{len(r)} result rows ({int(r.unit_fixed.sum())} restored from fraction to percent units)")
 
 TINFO = r.drop_duplicates("task").set_index("task")[["paper_key", "benchmark_id", "evaluation_protocol", "pf", "metric", "train_fraction_norm", "pts",
                                                       "canonical_dataset", "eoarena_id", "domain", "subdomain", "input_kind"]]

@@ -139,7 +139,7 @@ function render(){
   if(sortKey==='rank')rows.forEach((r,i)=>r.rank_shown=i+1);else rows.forEach(r=>r.rank_shown=r.rank);
   document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];const i=r.name;
     const nm=(r.listed?`<a href="index.html?open=${encodeURIComponent(r.id)}" title="Open in the Explorer">${esc(r.base_name||r.name)}</a>`:`${esc(r.base_name||r.name)}`)+(r.protocol_family?` <span class="dim">· ${esc(r.protocol_family)}</span>`:'')+(r.listed?'':`<span class="unl">not in inventory</span>`);
-    const sc=r.score==null?'–':`<span class="bar" style="width:${Math.max(2,Math.round(36*r.score))}px"></span>${f2(r.score)}<span class="dim"> ${f2(r.score_lo)}–${f2(r.score_hi)}</span>${r.low_noise?'<span class="flagnoise" title="Measured seed SD under 0.1 pt: EDI is dominated by the tiny denominator">σ &lt; 0.1</span>':''}`;
+    const sc=r.score==null?'–':`${f2(r.score)}<span class="dim"> ${f2(r.score_lo)}–${f2(r.score_hi)}</span>${r.low_noise?'<span class="flagnoise" title="Measured seed SD under 0.1 pt: EDI is dominated by the tiny denominator">σ &lt; 0.1</span>':''}`;
     const ns=r.noise_sd==null?'–':f2(r.noise_sd)+(r.measured?'':'<span class="dim"> plug-in</span>');
     const vd=`<span class="chip ${c}">${l}</span>`;
     const su=r.suites.length?`<span title="${esc(r.suites.join(', '))}" style="border-bottom:1px dotted var(--line-2);cursor:help">${r.suites.length}</span>`:'<span class="dim">–</span>';

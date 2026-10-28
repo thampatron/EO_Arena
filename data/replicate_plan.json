@@ -12,7 +12,7 @@
    "tasks_n": 14,
    "results": 214,
    "evidence_mass": 714,
-   "provisional_score": 0.988,
+   "provisional_score": 0.986,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -60,7 +60,7 @@
    "tasks_n": 9,
    "results": 61,
    "evidence_mass": 243,
-   "provisional_score": 0.925,
+   "provisional_score": 0.923,
    "protocol_families": [
     "fine-tuned",
     "frozen",
@@ -106,7 +106,7 @@
    "tasks_n": 14,
    "results": 168,
    "evidence_mass": 210,
-   "provisional_score": 0.631,
+   "provisional_score": 0.625,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -155,7 +155,7 @@
    "tasks_n": 15,
    "results": 180,
    "evidence_mass": 180,
-   "provisional_score": 0.995,
+   "provisional_score": 0.994,
    "protocol_families": [
     "frozen"
    ],
@@ -199,7 +199,7 @@
    "tasks_n": 5,
    "results": 103,
    "evidence_mass": 145,
-   "provisional_score": 0.98,
+   "provisional_score": 0.978,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -247,7 +247,7 @@
    "tasks_n": 5,
    "results": 103,
    "evidence_mass": 145,
-   "provisional_score": 0.988,
+   "provisional_score": 0.987,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -295,7 +295,7 @@
    "tasks_n": 9,
    "results": 108,
    "evidence_mass": 108,
-   "provisional_score": 0.648,
+   "provisional_score": 0.738,
    "protocol_families": [
     "frozen"
    ],
@@ -339,7 +339,7 @@
    "tasks_n": 8,
    "results": 96,
    "evidence_mass": 96,
-   "provisional_score": 0.994,
+   "provisional_score": 0.993,
    "protocol_families": [
     "frozen"
    ],
@@ -429,7 +429,7 @@
    "tasks_n": 5,
    "results": 60,
    "evidence_mass": 60,
-   "provisional_score": 0.789,
+   "provisional_score": 0.787,
    "protocol_families": [
     "frozen"
    ],
@@ -566,7 +566,7 @@
    "tasks_n": 5,
    "results": 45,
    "evidence_mass": 45,
-   "provisional_score": 0.984,
+   "provisional_score": 0.982,
    "protocol_families": [
     "fine-tuned",
     "frozen",
@@ -657,7 +657,7 @@
    "tasks_n": 3,
    "results": 42,
    "evidence_mass": 42,
-   "provisional_score": 0.974,
+   "provisional_score": 0.972,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -702,7 +702,7 @@
    "tasks_n": 3,
    "results": 42,
    "evidence_mass": 42,
-   "provisional_score": 0.977,
+   "provisional_score": 0.974,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -792,7 +792,7 @@
    "tasks_n": 3,
    "results": 42,
    "evidence_mass": 42,
-   "provisional_score": 0.91,
+   "provisional_score": 0.898,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -837,7 +837,7 @@
    "tasks_n": 10,
    "results": 40,
    "evidence_mass": 40,
-   "provisional_score": 0.324,
+   "provisional_score": 0.711,
    "protocol_families": [
     "fine-tuned"
    ],
@@ -963,7 +963,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.992,
+   "provisional_score": 0.991,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1008,7 +1008,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.981,
+   "provisional_score": 0.979,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1053,7 +1053,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.984,
+   "provisional_score": 0.982,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1098,7 +1098,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.988,
+   "provisional_score": 0.986,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1143,7 +1143,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.892,
+   "provisional_score": 0.877,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1188,7 +1188,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.535,
+   "provisional_score": 0.524,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1233,7 +1233,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.987,
+   "provisional_score": 0.986,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1278,7 +1278,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.963,
+   "provisional_score": 0.957,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1323,7 +1323,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.891,
+   "provisional_score": 0.875,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1412,7 +1412,7 @@
    "tasks_n": 3,
    "results": 26,
    "evidence_mass": 36,
-   "provisional_score": 0.809,
+   "provisional_score": 0.782,
    "protocol_families": [
     "frozen",
     "zero_shot"
@@ -1727,7 +1727,7 @@
    "tasks_n": 4,
    "results": 24,
    "evidence_mass": 24,
-   "provisional_score": 0.963,
+   "provisional_score": 0.958,
    "protocol_families": [
     "frozen"
    ],
@@ -1771,7 +1771,7 @@
    "tasks_n": 2,
    "results": 12,
    "evidence_mass": 24,
-   "provisional_score": 0.506,
+   "provisional_score": 0.495,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -1817,7 +1817,7 @@
    "tasks_n": 3,
    "results": 19,
    "evidence_mass": 21,
-   "provisional_score": 0.367,
+   "provisional_score": 0.997,
    "protocol_families": [
     "fine-tuned"
    ],
@@ -1949,7 +1949,7 @@
    "tasks_n": 2,
    "results": 20,
    "evidence_mass": 20,
-   "provisional_score": 0.421,
+   "provisional_score": 0.389,
    "protocol_families": [
     "fine-tuned",
     "frozen"
@@ -2304,7 +2304,7 @@
    "tasks_n": 2,
    "results": 14,
    "evidence_mass": 14,
-   "provisional_score": 0.993,
+   "provisional_score": 0.992,
    "protocol_families": [
     "frozen"
    ],
@@ -2393,7 +2393,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.967,
+   "provisional_score": 0.963,
    "protocol_families": [
     "frozen"
    ],
@@ -2477,7 +2477,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.967,
+   "provisional_score": 0.962,
    "protocol_families": [
     "frozen"
    ],
@@ -2521,7 +2521,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.774,
+   "provisional_score": 0.742,
    "protocol_families": [
     "frozen"
    ],
@@ -2565,7 +2565,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.953,
+   "provisional_score": 0.946,
    "protocol_families": [
     "frozen"
    ],
@@ -2609,7 +2609,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.54,
+   "provisional_score": 0.476,
    "protocol_families": [
     "frozen"
    ],
@@ -2653,7 +2653,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.835,
+   "provisional_score": 0.812,
    "protocol_families": [
     "frozen"
    ],
@@ -2697,7 +2697,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.983,
+   "provisional_score": 0.981,
    "protocol_families": [
     "frozen"
    ],
@@ -2741,7 +2741,7 @@
    "tasks_n": 1,
    "results": 10,
    "evidence_mass": 10,
-   "provisional_score": 0.913,
+   "provisional_score": 0.901,
    "protocol_families": [
     "frozen"
    ],
@@ -2821,7 +2821,7 @@
    "tasks_n": 1,
    "results": 7,
    "evidence_mass": 7,
-   "provisional_score": 0.985,
+   "provisional_score": 0.983,
    "protocol_families": [
     "frozen"
    ],
@@ -2865,7 +2865,7 @@
    "tasks_n": 1,
    "results": 7,
    "evidence_mass": 7,
-   "provisional_score": 0.992,
+   "provisional_score": 0.991,
    "protocol_families": [
     "frozen"
    ],
