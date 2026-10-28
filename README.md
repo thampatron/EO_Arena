@@ -55,6 +55,7 @@ The ability filter records which capability a task is expected to test (spectral
 
 - **Map of every sample.** Done for 74 of 118 datasets (Samples view). 36 datasets have only named sites or a bounding box because their distribution (Google Drive, Kaggle, registration) or format (non-georeferenced chips) hides sample locations; 8 have no public location data. Next: footprints of pretraining corpora, to compare where models were trained with where benchmarks are.
 - **Task cards for all datasets**, with the split type (spatial or random) confirmed for each.
+- **Dataset ceilings.** For each benchmark, train a model on train + test and evaluate on test, to estimate the best score the labels allow (label noise, ambiguous classes). Spread and top-half scores can then be read against a real ceiling instead of an implicit 100.
 - **Arena voting** (blind pairwise expert comparisons for needs without labels), once the rating formula is decided; the Benchmark ranking page currently holds the static benchmark ranking.
 
 ## Run locally
