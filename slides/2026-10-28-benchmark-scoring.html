@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark Scoring Update</title>
+<style>
+:root{--bg:#f4f4f2;--card:#fff;--fg:#1d1d1f;--fg2:#55555a;--fg3:#86868b;--line:#e3e3e0;--blue:#2a78d6;--orange:#eb6834;--red:#c8372d;--green:#1a8a4a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.deck{height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+.slide{display:none;width:min(1120px,100%);aspect-ratio:16/9;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.08);padding:52px 64px;position:relative;overflow:hidden}
+.slide.on{display:flex;flex-direction:column}
+.k{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg3);margin:0 0 10px}
+h1{font-size:46px;line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+h2{font-size:34px;line-height:1.12;margin:0 0 22px;letter-spacing:-.015em}
+p,li{font-size:20px;line-height:1.45;color:var(--fg2)}
+ul{margin:0;padding-left:24px}li{margin:0 0 10px}
+b{color:var(--fg)}
+.lead{font-size:22px;color:var(--fg2);max-width:860px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-items:start}
+.big{font-size:56px;font-weight:700;letter-spacing:-.02em;color:var(--fg);line-height:1}
+.stat{margin-bottom:22px}.stat span{display:block;font-size:16px;color:var(--fg3);margin-top:6px}
+.note{position:absolute;left:64px;right:64px;bottom:26px;font-size:13px;color:var(--fg3)}
+.pn{position:absolute;right:28px;bottom:22px;font-size:13px;color:var(--fg3)}
+table{border-collapse:collapse;width:100%;font-size:17px}
+th{font-weight:600;color:var(--fg3);font-size:13px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--fg2);vertical-align:top}
+td b{color:var(--fg)}
+.flag{color:var(--red);font-weight:600}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--fg2);margin:0 0 8px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+svg text{font-family:inherit}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--fg3)}
+@media print{.slide{display:flex!important;page-break-after:always;box-shadow:none}.nav{display:none}.deck{display:block}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide on">
+  <p class="k">EOArena · team meeting · 28 Oct 2026</p>
+  <h1>Which benchmarks actually tell geospatial foundation models apart?</h1>
+  <p class="lead">Sherrie's <i>GeoFM Benchmark Scoring</i> applied to the published evidence: 14,600 scores from 52 papers, 825 model comparisons, 155 image-based benchmarks.</p>
+  <div style="margin-top:auto"><p style="font-size:17px">Live: Benchmark ranking · Evidence map · an explanation window behind every metric</p></div>
+  <span class="pn">1</span>
+</section>
+
+<section class="slide">
+  <p class="k">The metric (note, Eq. 1–6)</p>
+  <h2>Score = the share of the gap between models that is real, not seed noise</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><b>Spread</b>: how far apart models are in one paper's comparison (τ²<sub>obs</sub>).</li>
+        <li><b>Seed noise</b>: how much one model's score moves on a re-run (σ²).</li>
+        <li><b>Score</b> = τ² / (τ² + σ²), with τ² = spread − noise. 1 = all real, 0.5 = half noise.</li>
+        <li><b>Top-half score</b> (our addition): the same, among the better half of models only.</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:17px;color:var(--fg3);margin:0 0 6px">Worked example: GEO-Bench-2, PASTIS, fine-tuned, 18 models</p>
+      <table>
+        <tr><td>Spread</td><td><b>5.81</b> mIoU points</td></tr>
+        <tr><td>Seed noise</td><td><b>0.69</b> points (5 seeds)</td></tr>
+        <tr><td>τ² = 5.81² − 0.69²/5</td><td><b>33.7</b></td></tr>
+        <tr><td>Score = 33.7 / (33.7 + 0.47)</td><td><b>0.99</b></td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="pn">2</span>
+</section>
+
+<section class="slide">
+  <p class="k">Finding 1</p>
+  <h2>Seed noise is printed for a quarter of the evidence. Where it is, most benchmarks separate models</h2>
+  <div class="grid2">
+    <div>
+      <div class="stat"><div class="big">23%</div><span>of comparisons have measured seed noise (9 papers); the rest use an estimate and are flagged</span></div>
+      <div class="stat"><div class="big">0.94</div><span>median score across the 47 datasets with measured noise</span></div>
+    </div>
+    <div>
+      <p style="margin-top:0">The clear exceptions, both with measured noise:</p>
+      <table>
+        <tr><th>Benchmark</th><th>Score</th><th>Why</th></tr>
+        <tr><td><b>DynamicEarthNet</b></td><td class="flag">0.26</td><td>spread 3.6 pts ≈ noise 3.5 pts</td></tr>
+        <tr><td><b>Sen1Floods11</b></td><td class="flag">0.54</td><td>noise 2.3 pts vs spread 5.6</td></tr>
+      </table>
+      <p style="font-size:18px;margin-top:16px"><b>Sen1Floods11 is one of our five launch tasks.</b></p>
+    </div>
+  </div>
+  <p class="note">The note expects σ² to require new runs; for this part of the evidence papers already printed it. The rest is an evidence map, as the note anticipates.</p>
+  <span class="pn">3</span>
+</section>
+
+<section class="slide">
+  <p class="k">Finding 2</p>
+  <h2>The score saturates. Among strong models, many benchmarks stop separating</h2>
+  <div class="legend"><span><i style="background:var(--blue)"></i>Score (all models)</span><span><i style="background:var(--orange)"></i>Top-half score</span></div>
+  <svg viewBox="0 0 980 330" style="width:100%;flex:1" role="img" aria-label="Score and top-half score for eight benchmarks">
+    <g id="bars"></g>
+  </svg>
+  <p class="note">Median top-half score 0.78 vs 0.94 for the full score; 25 of 46 datasets fall below 0.8. A benchmark's value depends on which models it must tell apart, which the note already says (Eq. 6 is conditional on the evaluated population).</p>
+  <span class="pn">4</span>
+</section>
+
+<section class="slide">
+  <p class="k">Finding 3 · note Eq. 2, 9–12</p>
+  <h2>Model performance has three dimensions, organised by sensor, and the leftover structure is per dataset</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><b>K = 3</b> shared factors: held-out prediction stops improving and the structure is stable under resampling.</li>
+        <li>What explains the task structure: <b>sensor 31%</b>, subdomain 16%, task type 12%, <b>domain 8%</b>, protocol 3%.</li>
+        <li>So a single model leaderboard fails, and we dropped it.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>The note assumes leftover differences are independent across tasks (diagonal Ψ). <b>They are not</b>: mean |r| 0.35 vs 0.30 by chance, p &lt; 0.005.</li>
+        <li>Within the same dataset <b>0.59</b>, between datasets 0.33, within a paper 0.34. A fourth factor does not help.</li>
+        <li>The missing piece is a dataset-level interaction, not another shared capability.</li>
+      </ul>
+    </div>
+  </div>
+  <span class="pn">5</span>
+</section>
+
+<section class="slide">
+  <p class="k">Finding 4 · seed noise</p>
+  <h2>Noise is small, set by paper and dataset rather than domain, and smaller than disagreement between labs</h2>
+  <div class="grid2">
+    <div>
+      <table>
+        <tr><th>What explains seed noise</th><th>Share</th></tr>
+        <tr><td>Domain</td><td><b>3%</b></td></tr>
+        <tr><td>Paper (implementation)</td><td><b>51%</b></td></tr>
+        <tr><td>Dataset</td><td><b>62%</b></td></tr>
+      </table>
+      <p style="font-size:17px;margin-top:14px">Typical σ is 0.6–0.9 points in every domain measured. Oceans and Disasters have no measured noise at all.</p>
+    </div>
+    <div>
+      <div class="stat"><div class="big">2.8 pts</div><span>median difference for the same model on the same benchmark between papers (62 cases)</span></div>
+      <div class="stat"><div class="big">≈ 4×</div><span>the seed noise. Unreported implementation choices move scores more than seeds do</span></div>
+    </div>
+  </div>
+  <span class="pn">6</span>
+</section>
+
+<section class="slide">
+  <p class="k">For discussion</p>
+  <h2>Four changes to the method, and why</h2>
+  <table>
+    <tr><th style="width:36%">Change</th><th>Why</th></tr>
+    <tr><td><b>Remove σ²/n, not σ², from the spread</b></td><td>Papers publish averages of n runs. Subtracting full σ² over-corrects and understates the score.</td></tr>
+    <tr><td><b>Estimate σ² per dataset, not per domain</b></td><td>Domain explains 3% of noise, dataset 62%. A domain-level estimate carries almost no information.</td></tr>
+    <tr><td><b>Block-diagonal residual covariance by dataset</b></td><td>Residuals correlate 0.59 within a dataset. The diagonal Ψ double-counts datasets with many comparisons in Eq. 8.</td></tr>
+    <tr><td><b>Add a cross-lab variance term</b></td><td>Papers disagree by ~4× seed noise. σ² describes a reproducible paper, not a reproducible benchmark.</td></tr>
+  </table>
+  <p class="note">Also worth considering: a per-model σ² (39% of noise variation is between models in the same comparison).</p>
+  <span class="pn">7</span>
+</section>
+
+<section class="slide">
+  <p class="k">Next steps</p>
+  <h2>What we do next</h2>
+  <div class="grid2">
+    <ul>
+      <li><b>Measure σ² where it is missing.</b> Replicate plan ranks datasets by evidence at stake: MADOS, RESISC45, GEOID-Flood, CropTypeMapping, Nandi.</li>
+      <li><b>Controlled reproducibility check:</b> re-run a few models on PASTIS and Sen1Floods11 with 5 seeds to split seed from implementation noise.</li>
+      <li><b>Estimate dataset ceilings:</b> train on train + test, evaluate on test.</li>
+    </ul>
+    <ul>
+      <li><b>Revisit the launch tasks</b> given Sen1Floods11.</li>
+      <li><b>Decide the paper's headline:</b> full score or top-half score.</li>
+      <li><b>Viki reviews the benchmark mapping</b> (15 judgement calls).</li>
+    </ul>
+  </div>
+  <p class="note">Caveats: 60 of 156 measured comparisons come from two sources (GEO-Bench-2, Prithvi-v2); 87 of 155 benchmarks rest on one paper; information share and dataset-specific signal are indicative only.</p>
+  <span class="pn">8</span>
+</section>
+
+</div>
+<div class="nav">← → to move · P to print</div>
+<script>
+const data=[["PASTIS",0.965,0.878],["South Africa crop type",0.947,0.793],["EuroSAT",0.858,0.781],["BigEarthNet",0.87,0.702],["HLS Burn Scars",0.944,0.524],["PV4GER",0.894,0.284],["Kuro Siwo",0.989,0.171],["Sen1Floods11",0.537,0.275],["DynamicEarthNet",0.255,0.206]];
+const x0=210,w=700,rowH=32,bh=11;let g='';const X=v=>x0+w*v;
+g+=`<line x1="${x0}" x2="${X(1)}" y1="300" y2="300" stroke="#e3e3e0"/>`;[[0,'0'],[0.5,'0.5'],[1,'1']].forEach(([v,l])=>{g+=`<text x="${X(v)}" y="320" text-anchor="middle" font-size="13" fill="#86868b">${l}</text>`;});g+=`<line x1="${X(0.8)}" x2="${X(0.8)}" y1="4" y2="300" stroke="#c9c9c4" stroke-dasharray="4 4"/><text x="${X(0.8)}" y="320" text-anchor="middle" font-size="13" fill="#86868b">0.8</text>`;
+data.forEach(([n,s,t],i)=>{const y=10+i*rowH;g+=`<text x="${x0-12}" y="${y+16}" text-anchor="end" font-size="15" fill="#1d1d1f">${n}</text><rect x="${x0}" y="${y+2}" width="${w*s}" height="${bh}" rx="3" fill="#2a78d6"/><rect x="${x0}" y="${y+15}" width="${w*t}" height="${bh}" rx="3" fill="#eb6834"/><text x="${x0+w*s+6}" y="${y+12}" font-size="12" fill="#55555a">${s.toFixed(2)}</text><text x="${x0+w*t+6}" y="${y+25}" font-size="12" fill="#55555a">${t.toFixed(2)}</text>`;});
+document.getElementById('bars').innerHTML=g;
+const S=[...document.querySelectorAll('.slide')];let i=0;
+const show=k=>{i=Math.max(0,Math.min(S.length-1,k));S.forEach((s,j)=>s.classList.toggle('on',j===i));};
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key==='p'||e.key==='P')window.print();});
+document.addEventListener('click',e=>{if(e.target.closest('a'))return;show(e.clientX>innerWidth/2?i+1:i-1);});
+</script>
+</body>
+</html>
