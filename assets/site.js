@@ -48,18 +48,28 @@ const METRICS = {
   r2_shared:{name:"Shared-factor R²",what:"Share of the spread on this benchmark reproduced by the shared factors of the latent-factor model.",how:"1 − residual variance / observed variance, averaged over comparisons."},
   protocol:{name:"Protocol",what:"How the foundation model was adapted to the task. Frozen: the pretrained encoder is kept fixed and only a small head (linear probe, k-NN or decoder) is trained. Fine-tuned: the whole model is trained on the task.",how:"Linear probe, k-NN, frozen encoder + decoder → frozen; full or partial fine-tuning → fine-tuned."},
 };function infoIcon(key){const m=METRICS[key];if(!m)return '';return `<button type="button" class="info" data-m="${key}" aria-label="About ${esc(m.name)}">i</button>`;}
-function infoPop(key,anchor){
-  document.querySelectorAll('.pop').forEach(p=>p.remove());
-  const m=METRICS[key];if(!m)return;
-  const pop=document.createElement('div');pop.className='pop';pop.setAttribute('role','dialog');
-  pop.innerHTML=`<div class="pop-h"><b>${esc(m.name)}</b>${m.eq?`<span class="pop-eq">${esc(m.eq)}</span>`:''}<button type="button" class="pop-x" aria-label="Close">×</button></div><p>${esc(m.what)}</p><p class="pop-how"><b>How it is computed.</b> ${esc(m.how)}</p><p class="pop-src">Definitions follow S. Wang, <i>GeoFM Benchmark Scoring</i> (Oct 2026). Code: <code>scripts/geofm_scoring.py</code>, <code>scripts/build_evidence.py</code>.</p>`;
-  document.body.append(pop);
-  const r=anchor.getBoundingClientRect();const w=Math.min(380,innerWidth-24);pop.style.width=w+'px';
-  pop.style.left=Math.max(12,Math.min(r.left+scrollX-8,scrollX+innerWidth-w-12))+'px';pop.style.top=(r.bottom+scrollY+8)+'px';
-  pop.querySelector('.pop-x').addEventListener('click',()=>pop.remove());
+function infoPop(key){
+  closeInfo();const m=METRICS[key];if(!m)return;const d=m.detail||{};
+  const sec=(h,body)=>body?`<section><h3>${h}</h3>${body}</section>`:'';
+  const list=a=>a&&a.length?`<ol>${a.map(x=>`<li>${x}</li>`).join('')}</ol>`:'';
+  const ul=a=>a&&a.length?`<ul>${a.map(x=>`<li>${x}</li>`).join('')}</ul>`:'';
+  const ov=document.createElement('div');ov.className='mdl-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label',m.name);
+  ov.innerHTML=`<div class="mdl"><header><div><p class="mdl-k">How this number is made</p><h2>${esc(m.name)}</h2></div><button type="button" class="mdl-x" aria-label="Close">×</button></header><div class="mdl-b">
+   ${sec('What it means',`<p>${d.meaning||esc(m.what)}</p>`)}
+   ${sec('How it is computed',d.steps?list(d.steps):`<p>${esc(m.how||'')}</p>`)}
+   ${sec('Formula',d.formula?`<p class="mdl-f">${d.formula}</p>`:'')}
+   ${sec('Worked example',d.example?`<p>${d.example}</p>`:'')}
+   ${sec('Edge cases and choices made',ul(d.edge))}
+   ${sec('Settings that change it',d.settings?`<p>${d.settings}</p>`:'')}
+   ${sec('Source',d.source?`<p>${d.source} Method: S. Wang, <i>GeoFM Benchmark Scoring</i> (2026). Code: <code>scripts/geofm_scoring.py</code>, <code>scripts/build_evidence.py</code>.</p>`:'')}
+  </div></div>`;
+  document.body.append(ov);document.body.classList.add('mdl-open');
+  ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('.mdl-x'))closeInfo();});
+  ov.querySelector('.mdl-x').focus();
 }
-document.addEventListener('click',e=>{const b=e.target.closest('button.info[data-m]');if(b){e.stopPropagation();infoPop(b.dataset.m,b);return;}if(!e.target.closest('.pop'))document.querySelectorAll('.pop').forEach(p=>p.remove());});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.pop').forEach(p=>p.remove());});
+function closeInfo(){document.querySelectorAll('.mdl-ov,.pop').forEach(p=>p.remove());document.body.classList.remove('mdl-open');}
+document.addEventListener('click',e=>{const b=e.target.closest('button.info[data-m]');if(b){e.stopPropagation();e.preventDefault();infoPop(b.dataset.m);return;}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInfo();});
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Analysis settings shared by the evidence pages: which variant of the scoring to show. Stored in the URL (so a view
@@ -113,3 +123,5 @@ METRICS.theta={name:"Capability profile θ",what:"The model's position on each l
 // Verdict vocabulary shared by every page: label and one-line meaning.
 const VERDICTS={e_reliable:["ev-reliable","Reliable","Score ≥ 0.8 with measured seed noise."],e_moderate:["ev-moderate","Moderate","Score 0.5–0.8 with measured seed noise."],e_weak:["ev-weak","Unreliable","Score below 0.5: model differences are mostly noise."],e_prov_high:["ev-prov-high","Likely reliable","Score ≥ 0.8, but seed noise is estimated, not measured."],e_prov_low:["ev-prov-low","Uncertain","Score below 0.8 with estimated seed noise."],e_spread:["ev-spread","No noise data","Spread is known; seed noise is neither printed nor estimable."],e_few:["ev-few","Too few models","No comparison includes four models."],e_none:["ev-none","No published results","No foundation-model scores found."]};
 const range=(lo,hi,d=2)=>lo==null||hi==null?'':` (${Number(lo).toFixed(d)}–${Number(hi).toFixed(d)})`;
+
+document.write('<script src="assets/metric-details.js"><\/script>');

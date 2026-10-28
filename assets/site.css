@@ -177,3 +177,16 @@ select.sel.sm{padding:3px 8px;font-size:13px}
 .settings .reset{all:unset;cursor:pointer;color:var(--accent);font-size:13px}
 .settings .reset:hover{text-decoration:underline}
 .setnote{font-size:12.5px;color:var(--warn);margin:-8px 0 12px}
+
+.mdl-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.42);display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+.mdl{background:var(--surface);color:var(--fg);border-radius:16px;max-width:860px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.25);margin-bottom:5vh}
+.mdl header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 28px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface);border-radius:16px 16px 0 0}
+.mdl header h2{margin:2px 0 0;font-size:26px;letter-spacing:-.01em}
+.mdl .mdl-k{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-3)}
+.mdl .mdl-x{all:unset;cursor:pointer;font-size:26px;line-height:1;color:var(--fg-3);padding:4px 8px;border-radius:8px}.mdl .mdl-x:hover,.mdl .mdl-x:focus-visible{color:var(--fg);background:var(--surface-2)}
+.mdl .mdl-b{padding:6px 28px 26px;font-size:15px;line-height:1.6}
+.mdl section{margin-top:18px}.mdl h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-3);margin:0 0 6px}
+.mdl p{margin:0 0 8px}.mdl ol,.mdl ul{margin:0;padding-left:22px}.mdl li{margin:0 0 6px}
+.mdl .mdl-f{font-family:var(--mono);font-size:14px;background:var(--surface-2);padding:10px 14px;border-radius:8px;white-space:pre-wrap}
+.mdl code{font-size:13px}
+body.mdl-open{overflow:hidden}

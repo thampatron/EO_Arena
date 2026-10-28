@@ -110,15 +110,15 @@ function buildRows(){
   Object.entries(ev.datasets).forEach(([id,e])=>{if(!e.results)return;const d=byId[id];RAW.push({...e,id,name:d.name,domain:d.domain,subdomain:d.subdomain,input_kind:e.input_kind||'eo_imagery',listed:true,suites:d.benchmark_suites||[]});});
   ev.unlisted.forEach(e=>{e.suites=[];});
   ev.unlisted.forEach(e=>{if(e.results)RAW.push({...e,listed:false});});
-  $('settings').replaceWith(settingsBar(()=>{buildRows();document.querySelectorAll('#tbl th button').forEach(b=>{const k=b.dataset.k;if(k==='score')b.textContent=SET.headline==='score_top'?'Top-half score':'Score';if(k==='score_top')b.textContent=SET.headline==='score_top'?'Score (all models)':'Top-half score';});render();}));
+  $('settings').replaceWith(settingsBar(()=>{buildRows();document.querySelectorAll('#tbl th button[data-k]').forEach(b=>{const k=b.dataset.k;if(k==='score')b.textContent=SET.headline==='score_top'?'Top-half score':'Score';if(k==='score_top')b.textContent=SET.headline==='score_top'?'Score (all models)':'Top-half score';});render();}));
   buildRows();
   const doms=[...new Set(ROWS.map(r=>r.domain))].sort();
   $('dom').innerHTML='<option value="">All domains</option>'+doms.map(d=>`<option>${esc(d)}</option>`).join('');
   $('ver').innerHTML='<option value="">All verdicts</option>'+ORDER.map(k=>`<option value="${k}" title="${esc(VERDICTS[k][2])}">${VERDICTS[k][1]}</option>`).join('');
   bindHelp($('ver'),Object.fromEntries([['','Every verdict. Choose one to see only those benchmarks.'],...ORDER.map(k=>[k,VERDICTS[k][1]+': '+VERDICTS[k][2]])]),$('verhelp'));
   $('vlegend').innerHTML=ORDER.map(k=>`<li><span class="chip ${VERDICTS[k][0]}">${VERDICTS[k][1]}</span><span>${VERDICTS[k][2]}</span></li>`).join('');
-  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>{if(k==='score')l=SET.headline==='score_top'?'Top-half score':'Score';if(k==='score_top')l=SET.headline==='score_top'?'Score (all models)':'Top-half score';return [k,l,c];}).map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button>${k==='rank'?`<i class="info" tabindex="0" role="note" aria-label="${esc(RANKTIP)}" data-tip="${esc(RANKTIP)}">i</i>`:infoIcon(k)}</th>`).join('');
-  document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','domain','verdict','rank'].includes(k)?1:-1);sortKey=k;render();}));
+  document.querySelector('#tbl thead tr').innerHTML=COLS.map(([k,l,c])=>{if(k==='score')l=SET.headline==='score_top'?'Top-half score':'Score';if(k==='score_top')l=SET.headline==='score_top'?'Score (all models)':'Top-half score';return [k,l,c];}).map(([k,l,c])=>`<th class="${c}"><button type="button" data-k="${k}" aria-sort="none">${l}</button>${infoIcon(k)}</th>`).join('');
+  document.querySelectorAll('#tbl th button[data-k]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;sortDir=sortKey===k?-sortDir:(['name','domain','verdict','rank'].includes(k)?1:-1);sortKey=k;render();}));
   ['dom','ver'].forEach(id=>$(id).addEventListener('change',e=>{st[id]=e.target.value;render();}));
   $('img').addEventListener('change',e=>{st.img=e.target.checked;render();});
   $('meas').addEventListener('change',e=>{st.meas=e.target.checked;render();});
@@ -137,7 +137,7 @@ function detail(r){
   return `<tr class="det"><td colspan="${COLS.length}"><p class="small" style="margin:0 0 8px;max-width:900px">${esc(r.explanation||'')}</p>${prot?`<p class="small" style="margin:0 0 8px">${prot}</p>`:''}${tasks?`<table class="rk sub"><thead><tr><th>Paper</th><th>Benchmark version</th><th>Protocol${infoIcon('protocol')}</th><th>Metric</th><th class="num">Models</th><th class="num">Spread</th><th class="num">Seed noise</th><th class="num">Runs per value${infoIcon('n_reps')}</th><th class="num">Score</th><th class="num">Top-half score</th></tr></thead><tbody>${tasks}</tbody></table>`:''}</td></tr>`;}
 function render(){
   const rows=ROWS.filter(r=>(!st.dom||r.domain===st.dom)&&(!st.ver||r.verdict===st.ver)&&(!st.q||r.name.toLowerCase().includes(st.q))&&(!st.img||(r.input_kind==='eo_imagery'&&!['composite','outside_taxonomy',''].includes(r.domain||'')))&&(!st.meas||r.measured)).sort(cmp);
-  document.querySelectorAll('#tbl th button').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
+  document.querySelectorAll('#tbl th button[data-k]').forEach(b=>b.setAttribute('aria-sort',b.dataset.k===sortKey?(sortDir>0?'ascending':'descending'):'none'));
   $('count').textContent=`${rows.length} shown`;
   if(sortKey==='rank')rows.forEach((r,i)=>r.rank_shown=i+1);else rows.forEach(r=>r.rank_shown=r.rank);
   document.querySelector('#tbl tbody').innerHTML=rows.map(r=>{const [c,l]=EVC[r.verdict];const i=r.name;
