@@ -120,10 +120,15 @@ SPECS = {  # name -> (groups, has u)
     "dataset + task": (["dataset"], True),
     "dataset + protocol + sensor + task": (["dataset", "protocol", "sensor"], True),
 }
-RIDGES = (1.0, 3.0, 10.0) if not QUICK else (3.0,)
-def kw(spec, ridge):
+RIDGES = (3.0,)   # ridge 3 was best for every spec in the 1/3/10 grid of the first full run (no paper offsets)
+PIDX = np.asarray(pd.factorize(tp)[0])
+def kw(spec, ridge, paper_offset=True):
+    """paper_offset adds the paper x model implementation effect c_{m,p}; without it, simulation on this mask shows
+    held-out CV over-selects K (K_true 1 -> 2, 2 -> 3), because extra factors absorb implementation effects."""
     gs, has_u = SPECS[spec]
-    return dict(groups={g: G_ALL[g][0] for g in gs}, ridge_u=(ridge if has_u else 1e6), ridge_g={g: ridge for g in gs}, ridge_theta=ridge, n_restarts=1, n_iter=200, tol=1e-6)
+    k = dict(groups={g: G_ALL[g][0] for g in gs}, ridge_u=(ridge if has_u else 1e6), ridge_g={g: ridge for g in gs}, ridge_theta=ridge, n_restarts=1, n_iter=200, tol=1e-6)
+    if paper_offset: k.update(paper=PIDX, ridge_pm=3.0)
+    return k
 
 # ----------------------------------------------------------------------------- 1. model selection: spec x K x ridge, held-out cells
 sel = []
@@ -133,11 +138,16 @@ for spec in SPECS:
             if K == 0 and (spec != "free (current)" or ridge != RIDGES[0]): continue
             k = kw(spec, ridge); g = k.pop("groups")
             cv = db.heldout_cell_cv(Y, mask, K, g, folds=FOLDS, seed=SEED, **k)
-            sel.append(dict(spec=spec, ridge=ridge, K=K, **cv)); log("cv", spec, ridge, K, round(cv["rmse"], 4), round(cv["pair_acc"], 4))
+            sel.append(dict(spec=spec, ridge=ridge, K=K, paper_offset=True, **cv)); log("cv", spec, ridge, K, round(cv["rmse"], 4), round(cv["pair_acc"], 4))
+for K in KS:   # the same structured spec without paper offsets, for the record (what the current site's fit corresponds to)
+    k = kw("dataset + protocol + sensor + task", RIDGES[0], paper_offset=False); g = k.pop("groups")
+    cv = db.heldout_cell_cv(Y, mask, K, g, folds=FOLDS, seed=SEED, **k)
+    sel.append(dict(spec="dataset + protocol + sensor + task", ridge=RIDGES[0], K=K, paper_offset=False, **cv)); log("cv no-offset", K, round(cv["pair_acc"], 4))
 sel = pd.DataFrame(sel)
-best = sel.loc[sel.pair_acc.idxmax()]
+cand = sel[sel.paper_offset]
+best = cand.loc[cand.pair_acc.idxmax()]
 thr = best.pair_acc - best.pair_acc_se
-chosen = sel[sel.pair_acc >= thr].sort_values(["K", "pair_acc"], ascending=[True, False]).iloc[0]   # one-SE rule on held-out ordering accuracy
+chosen = cand[cand.pair_acc >= thr].sort_values(["K", "pair_acc"], ascending=[True, False]).iloc[0]   # one-SE rule on held-out ordering accuracy
 log("chosen", chosen.to_dict())
 K = int(chosen.K); SPEC = chosen.spec; RIDGE = float(chosen.ridge)
 
@@ -146,6 +156,13 @@ k = kw("dataset + protocol + sensor + task", RIDGE); g = k.pop("groups")
 lopo = db.leave_one_paper_out(Y, mask, tp, max(K, 1), g, **k)
 lopo["dataset"] = [td[t] for t in lopo.task]
 log("LOPO", lopo[["rho_struct", "rho_global", "acc_struct", "acc_global"]].mean().round(3).to_dict(), len(lopo))
+# paired bootstrap over papers: is the dataset-structured prediction better than one general ordering?
+_d = lopo.dropna(subset=["rho_struct", "rho_global"]).assign(diff=lambda x: x.rho_struct - x.rho_global)
+_pp = _d.groupby("paper")["diff"].apply(list).to_dict(); _keys = list(_pp); _rng = np.random.default_rng(SEED)
+_bs = [np.mean(sum((_pp[_keys[i]] for i in _rng.integers(0, len(_keys), len(_keys))), [])) for _ in range(2000)]
+lopo_gain = {"mean_rho_gain": float(_d["diff"].mean()), "ci90": [float(np.percentile(_bs, 5)), float(np.percentile(_bs, 95))],
+             "p_gain_le_0": float(np.mean(np.array(_bs) <= 0)), "n_tasks": int(len(_d)), "n_papers": len(_keys)}
+log("LOPO gain", lopo_gain)
 
 # ----------------------------------------------------------------------------- 3. simulation on the real mask
 sim = []
@@ -190,7 +207,7 @@ log(f"reproducibility: {len(rep)} dataset-protocol-metric groups")
 # ----------------------------------------------------------------------------- write
 out = {"as_of": time.strftime("%Y-%m-%d"), "overlap": overlap, "chosen": {"K": K, "spec": SPEC, "ridge": RIDGE},
        "model_selection": sel.round(4).to_dict("records"), "simulation": sim.round(4).to_dict("records"),
-       "lopo": {"mean": lopo[["rho_struct", "rho_global", "acc_struct", "acc_global"]].mean().round(4).to_dict(), "n_tasks": int(len(lopo)),
+       "lopo": {"gain_vs_global": lopo_gain, "mean": lopo[["rho_struct", "rho_global", "acc_struct", "acc_global"]].mean().round(4).to_dict(), "n_tasks": int(len(lopo)),
                 "by_dataset": lopo.groupby("dataset")[["rho_struct", "rho_global"]].mean().round(3).dropna(how="all").to_dict("index")},
        "metadata_association": assoc,
        "datasets": {n: {"n_tasks": int(ntask[i]), "papers": int(dmeta.at[n, "papers"]), "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],
