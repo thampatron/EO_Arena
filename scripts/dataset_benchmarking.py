@@ -232,6 +232,11 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
         fit = fit_heteroskedastic(Y, m2, K, groups, **kw)[0] if hetero else fit_structured(Y, m2, K, groups, **kw)
         L = fit.lam(include_u=False)
         gen = (fit.mu[None, ~hold] + fit.theta @ fit.lam()[~hold].T).mean(1)   # global "general ability" score
+        Z = np.full(Y.shape, np.nan)
+        for t in np.where(~hold)[0]:
+            o = m2[:, t]
+            if o.sum() > 1 and Y[o, t].std() > 0: Z[o, t] = (Y[o, t] - Y[o, t].mean()) / Y[o, t].std(ddof=1)
+        board = np.nanmean(np.where(np.isnan(Z), np.nan, Z), axis=1)        # K-independent one-ranking baseline
         ntr = m2.sum(1)
         for t in np.where(hold)[0]:
             ms = np.where(mask[:, t] & (ntr >= min_theta_tasks))[0]
@@ -242,7 +247,9 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
             ps = fit.theta[ms] @ L[t] if has_group else np.full(len(ms), np.nan)
             r_s, a_s, n_pairs = _rank_scores(y, ps) if has_group else (np.nan, np.nan, 0)
             r_g, a_g, _ = _rank_scores(y, gen[ms])
-            rows.append(dict(paper=p, task=int(t), n_models=len(ms), n_pairs=n_pairs, rho_struct=r_s, acc_struct=a_s, rho_global=r_g, acc_global=a_g))
+            r_b, a_b, _ = _rank_scores(y, np.nan_to_num(board[ms]))
+            rows.append(dict(paper=p, task=int(t), n_models=len(ms), n_pairs=n_pairs, rho_struct=r_s, acc_struct=a_s, rho_global=r_g, acc_global=a_g,
+                             rho_board=r_b, acc_board=a_b))
     return pd.DataFrame(rows)
 
 
@@ -299,11 +306,15 @@ def similarity(Ld):
     return S
 
 
-def metadata_association(Ld, labels, n_perm=2000, seed=0):
+def metadata_association(Ld, labels, n_perm=2000, seed=0, direction_only=False):
     """Share of dataset-loading variance explained by a categorical label, against a permutation null that shuffles the
     label across DATASETS (the unit of analysis). Reports observed R^2, null mean, and p-value; the excess over the null
     is what should be read, since R^2 for a many-level factor is large by chance."""
     labels = np.asarray(labels).astype(str)
+    keep = ~np.isin(labels, ["", "nan", "None"])                          # missing labels are missing, not a level
+    Ld = np.asarray(Ld)[keep]; labels = labels[keep]
+    if direction_only:                                                    # what a dataset measures, not how strongly
+        Ld = Ld / np.maximum(np.linalg.norm(Ld, axis=1, keepdims=True), 1e-12)
     def r2(lab):
         tot = ((Ld - Ld.mean(0)) ** 2).sum()
         within = sum(((Ld[lab == l] - Ld[lab == l].mean(0)) ** 2).sum() for l in np.unique(lab))
