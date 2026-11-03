@@ -24,18 +24,74 @@ t0 = time.time()
 def log(*a): print(f"[{time.time()-t0:6.0f}s]", *a, flush=True)
 
 r, TINFO, make_cells, breg, mreg, srcs = load(SRC)
-cells = {"all": make_cells(False), "independent": make_cells(True)}
 
-# ----------------------------------------------------------------------------- matrix (same task filter as build_evidence.matrix)
+# ----------------------------------------------------------------------------- inclusion rules beyond build_evidence.py
+# (1) main-text results only: table placement from data/table_locations.json (rule on the source file name, plus a
+#     check of each remaining table against the arXiv version); appendix, supplementary and unclear tables are dropped.
+# (2) no ablations: models the workbook registers as ablations (row_role), tables that are ablation studies, and
+#     variant axes that change the model, pretraining or training recipe.
+# (3) evaluation-setting variants (test split, input bands, threshold, ...) become part of the task key instead of being
+#     averaged into one cell with the paper's headline setting.
+# (4) one canonical metric per comparison (metric twins computed on the same runs are not independent tasks).
+# (5) fixed scale: bounded metrics in points (percent / fraction*100, R^2*100); unbounded error metrics are left out of
+#     the latent fit and only counted.
+LOC = json.loads((ROOT / "data" / "table_locations.json").read_text())
+loc = pd.DataFrame(LOC["tables"]).set_index(["paper", "file", "table_id"])
+r["file"] = r.locator.astype(str).str.replace(r":(\d+|p\d+)$", "", regex=True); r["table_id"] = r.table_id.astype(str)
+k = list(zip(r.paper_key, r.file, r.table_id))
+r["location"] = [loc.location.get(x, "unclear") for x in k]
+_line = pd.to_numeric(r.locator.astype(str).str.extract(r":(\d+)$")[0], errors="coerce")
+for o in LOC.get("line_overrides", []):
+    hit = (r.paper_key == o["paper"]) & (r.file == o["file"]) & (_line >= o["appendix_from_line"])
+    r.loc[hit, "location"] = "appendix"
+r["table_ablation"] = [bool(loc.ablation.get(x, False)) for x in k]
+mreg_role = mreg.row_role if "row_role" in mreg else pd.Series(dtype=str)
+r["model_ablation"] = r.model_id.map(mreg_role).eq("ablation") | r.model_id.astype(str).str.contains("_abl")
+ABLATION_AXES = set(LOC["ablation_axes"])
+HEADLINE = LOC.get("headline_variants", {})          # axis -> the paper's headline setting, kept when an axis is an ablation
+r["variant_ablation"] = [a in ABLATION_AXES and str(v) != HEADLINE.get(a) for a, v in zip(r.variant_axis.astype(str), r.config_variant.astype(str))]
+r["variant_ablation"] = r.variant_ablation.astype(bool)
+drops = {"appendix or supplementary": (r.location == "appendix").sum(), "location unclear": (r.location == "unclear").sum(),
+         "ablation table": (r.table_ablation & (r.location == "main")).sum(), "ablation model": (r.model_ablation & (r.location == "main") & ~r.table_ablation).sum(),
+         "ablation variant axis": (r.variant_ablation & (r.location == "main") & ~r.table_ablation & ~r.model_ablation).sum()}
+n0 = len(r)
+r = r[(r.location == "main") & ~r.table_ablation & ~r.model_ablation & ~r.variant_ablation].copy()
+UNBOUNDED = {"rmse", "mse", "mae", "l1", "nmae", "rmse_utility", "far", "crps", "mape", "rel_l2"}
+r["metric_s"] = r.metric.astype(str)
+is_r2 = (r.metric_s == "r2") & (r.scale_basis == "not_percent")
+r.loc[is_r2, "y"] = r.loc[is_r2, "v"] * 100; r.loc[is_r2, "pts"] = True
+r["bounded"] = r.pts.astype(bool) & ~r.metric_s.isin(UNBOUNDED)
+drops["unbounded metric (not in fit)"] = int((~r.bounded).sum())
+r = r[r.bounded].copy()
+r["variant"] = r.config_variant.astype(str).where(r.variant_axis.notna(), "")
+r["comparison"] = r.paper_key.astype(str) + "|" + r.table_id.astype(str) + "|" + r.benchmark_id.astype(str) + "|" + r.evaluation_protocol.astype(str) + "|" + r.train_fraction_norm.astype(str) + "|" + r.variant
+PRIORITY = ["miou", "iou", "f1", "map", "acc", "acc_top1", "oa", "bal_acc", "r2", "micro_f1", "weighted_f1", "acc_avg"]
+nm = r.groupby(["comparison", "metric_s"]).model_id.nunique().reset_index(name="n")
+nm["prio"] = nm.metric_s.map({m: i for i, m in enumerate(PRIORITY)}).fillna(len(PRIORITY))
+canon = nm.sort_values(["comparison", "n", "prio", "metric_s"], ascending=[True, False, True, True]).drop_duplicates("comparison").set_index("comparison").metric_s
+twins = int((nm.groupby("comparison").size() > 1).sum())
+r = r[r.metric_s == r.comparison.map(canon)].copy()
+r["task"] = r.comparison + "|" + r.metric_s
+log(f"rows {n0} -> {len(r)}; dropped {drops}; {twins} comparisons had metric twins (kept one metric each)")
+
+TINFO = r.drop_duplicates("task").set_index("task")[["paper_key", "benchmark_id", "evaluation_protocol", "pf", "metric", "train_fraction_norm", "variant",
+                                                    "canonical_dataset", "eoarena_id", "domain", "subdomain", "input_kind"]]
+TINFO["task_type"] = TINFO.benchmark_id.map(breg.task_type).fillna(""); TINFO["sensor"] = TINFO.benchmark_id.map(breg.sensor).fillna("")
+def make_cells(drop_self):
+    rr = r[~r.self] if drop_self else r
+    cell = rr.groupby(["task", "model_id"]).agg(y=("y", "mean"), n_rows=("y", "size"), sd=("sd", "mean"), selfrep=("self", "max")).rename(columns={"selfrep": "self"}).reset_index()
+    n = cell.groupby("task").model_id.nunique(); return cell[cell.task.isin(n[n >= 4].index)].copy()
+cells = {"all": make_cells(False), "independent": make_cells(True)}
+log(f"cells with >1 row after filtering (should be ~0): {(cells['all'].n_rows > 1).sum()}")
+
+# ----------------------------------------------------------------------------- matrix on the fixed points scale
 IMG = TINFO[(TINFO.input_kind == "eo_imagery") & (~TINFO.domain.isin(["composite", "outside_taxonomy"])) & (TINFO.canonical_dataset != "")].index
 def matrix(cell):
-    lc = cell[cell.task.isin(IMG)].copy()
-    g = lc.groupby("task").y
-    lc["z"] = (lc.y - g.transform("mean")) / g.transform("std").replace(0, np.nan); lc = lc[lc.z.notna()]
+    lc = cell[cell.task.isin(IMG)]
     models = sorted(lc.model_id.unique()); tasks = sorted(lc.task.unique())
     mi = {m: i for i, m in enumerate(models)}; ti = {t: i for i, t in enumerate(tasks)}
     Y = np.zeros((len(models), len(tasks))); mask = np.zeros_like(Y, bool)
-    Y[lc.model_id.map(mi), lc.task.map(ti)] = lc.z; mask[lc.model_id.map(mi), lc.task.map(ti)] = True
+    Y[lc.model_id.map(mi), lc.task.map(ti)] = lc.y; mask[lc.model_id.map(mi), lc.task.map(ti)] = True
     return Y, mask, models, tasks
 
 def level_index(values):
@@ -79,9 +135,9 @@ for spec in SPECS:
             cv = db.heldout_cell_cv(Y, mask, K, g, folds=FOLDS, seed=SEED, **k)
             sel.append(dict(spec=spec, ridge=ridge, K=K, **cv)); log("cv", spec, ridge, K, round(cv["rmse"], 4), round(cv["pair_acc"], 4))
 sel = pd.DataFrame(sel)
-best = sel.loc[sel.rmse.idxmin()]
-thr = best.rmse + best.rmse_se
-chosen = sel[sel.rmse <= thr].sort_values(["K", "rmse"]).iloc[0]           # one-SE rule: fewest factors within 1 SE of best
+best = sel.loc[sel.pair_acc.idxmax()]
+thr = best.pair_acc - best.pair_acc_se
+chosen = sel[sel.pair_acc >= thr].sort_values(["K", "pair_acc"], ascending=[True, False]).iloc[0]   # one-SE rule on held-out ordering accuracy
 log("chosen", chosen.to_dict())
 K = int(chosen.K); SPEC = chosen.spec; RIDGE = float(chosen.ridge)
 
@@ -96,27 +152,35 @@ sim = []
 for Kt in (1, 2, 3):
     for snr in (0.5, 1.0, 2.0):
         Ys, Ld_true, nm = db.simulate(mask, td, tp, Kt, snr=snr, dataset_share=0.6, paper_effect=0.5, seed=10 * Kt + int(4 * snr))
-        rm = {Kf: db.heldout_cell_cv(Ys, mask, Kf, g, folds=3, seed=SEED, **k)["rmse"] for Kf in KS}
-        b = min(rm, key=rm.get)
-        f = db.fit_structured(Ys, mask, Kt, g, **k); n2, Lh, _ = db.dataset_loadings(f, td)
+        cvs = {Kf: db.heldout_cell_cv(Ys, mask, Kf, g, folds=3, seed=SEED, **k) for Kf in KS}
+        rm = {Kf: v["pair_acc"] for Kf, v in cvs.items()}
+        bk = max(rm, key=rm.get); b = min(Kf for Kf in KS if rm[Kf] >= rm[bk] - cvs[bk]["pair_acc_se"])
+        f, _ = db.fit_heteroskedastic(Ys, mask, Kt, g, **k); n2, Lh, _ = db.dataset_loadings(f, td)
         rec = db.recovery(np.array([Ld_true[nm.index(n)] for n in n2]), Lh)
-        sim.append(dict(K_true=Kt, snr=snr, K_best_cv=b, recovery_at_true_K=rec, **{f"rmse_K{kk}": v for kk, v in rm.items()}))
+        sim.append(dict(K_true=Kt, snr=snr, K_best_cv=b, recovery_at_true_K=rec, **{f"pair_acc_K{kk}": v for kk, v in rm.items()}))
         log("sim", sim[-1])
 sim = pd.DataFrame(sim)
 
 # ----------------------------------------------------------------------------- 4. dataset outputs at the chosen spec
 k = kw(SPEC, RIDGE); g = k.pop("groups"); k["n_restarts"] = 3; k["n_iter"] = 400
-fit = db.fit_structured(Y, mask, K, g, **k)
+fit, psi = db.fit_heteroskedastic(Y, mask, K, g, **k)
 names, Ld, ntask = db.dataset_loadings(fit, td)
 S = db.similarity(Ld) if K else None
 comm = db.communality_by_dataset(Y, mask, fit, td)
+shap, shap_se = db.dataset_shapley(Ld, n_perm=200 if QUICK else 1000)
+# reported separation (note Eq. 10): model-count-weighted mean within-comparison variance, points^2, its own model sets
+tau_obs = {}
+for n in names:
+    cols = np.where(td == n)[0]; v = [(Y[mask[:, t], t].var(ddof=1), mask[:, t].sum()) for t in cols if mask[:, t].sum() > 1]
+    tau_obs[n] = float(np.sqrt(np.average([a for a, _ in v], weights=[w for _, w in v]))) if v else np.nan
+resid_sd = {n: float(np.sqrt(np.median(psi[td == n]))) for n in names}
 dmeta = TI.groupby("canonical_dataset").agg(domain=("domain", "first"), subdomain=("subdomain", "first"), task_type=("task_type", lambda s: s.mode().iat[0] if len(s.mode()) else ""),
                                           sensor=("sensor", lambda s: s.mode().iat[0] if len(s.mode()) else ""), papers=("paper_key", "nunique")).reindex(names)
 assoc = {c: db.metadata_association(Ld, dmeta[c].fillna("").values, n_perm=500 if QUICK else 2000) for c in ("domain", "subdomain", "task_type", "sensor")} if K else {}
 log("assoc", {c: (round(a["r2"], 3), round(a["null_mean"], 3), a["p_value"]) for c, a in assoc.items()})
 
 # cross-paper reproducibility on the raw (points) scale, per dataset x protocol family x metric
-rr = cells["all"].merge(TINFO[["canonical_dataset", "pf", "metric", "paper_key", "pts"]], left_on="task", right_index=True)
+rr = cells["all"].merge(TINFO[["canonical_dataset", "pf", "metric", "paper_key"]], left_on="task", right_index=True)
 rr = rr[rr.task.isin(IMG)]
 rr = rr.groupby(["canonical_dataset", "pf", "metric", "paper_key", "model_id"], as_index=False).y.mean()
 rr["group"] = rr.canonical_dataset + " | " + rr.pf + " | " + rr.metric.astype(str)
@@ -131,7 +195,10 @@ out = {"as_of": time.strftime("%Y-%m-%d"), "overlap": overlap, "chosen": {"K": K
        "metadata_association": assoc,
        "datasets": {n: {"n_tasks": int(ntask[i]), "papers": int(dmeta.at[n, "papers"]), "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],
                         "communality": None if not np.isfinite(comm.get(n, np.nan)) else round(comm[n], 3),
-                        "loading_norm": round(float(np.linalg.norm(Ld[i])), 3) if K else None,
+                        "shared_signal_to_residual": round(float(Ld[i] @ Ld[i]), 3) if K else None,
+                        "reported_separation_pts": round(tau_obs[n], 2) if np.isfinite(tau_obs[n]) else None,
+                        "residual_sd_pts": round(resid_sd[n], 2),
+                        "info_share": round(float(shap[i] / max(shap.sum(), 1e-12)), 4) if K else None, "info_share_mc_se": round(float(shap_se[i] / max(shap.sum(), 1e-12)), 4) if K else None,
                         "nearest": [{"name": names[j], "similarity": round(float(S[i, j]), 3)} for j in np.argsort(-S[i])[1:6]] if K else []}
                     for i, n in enumerate(names)},
        "reproducibility": rep.round(4).to_dict("records")}

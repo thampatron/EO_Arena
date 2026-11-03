@@ -1,0 +1,3020 @@
+{
+ "about": "Placement of every extracted results table in its paper. build_dataset_analysis.py keeps location == 'main' and ablation == false only.",
+ "line_overrides": [
+  {
+   "paper": "alphaearth",
+   "file": "main.tex",
+   "appendix_from_line": 956,
+   "evidence": "Supplementary heading at main.tex:956 (bibliography at 176); rows at line 1129 are an S16.2.4 weight sweep"
+  }
+ ],
+ "ablation_axes": [
+  "reproduction",
+  "pretrain_band_subset",
+  "pretrain_data_fraction",
+  "patch_embedding_training",
+  "masking_strategy",
+  "model_size",
+  "channel_grouping",
+  "init",
+  "finetune_augmentation",
+  "temporal_input_handling",
+  "spectral_crop_size",
+  "pretrain_scales",
+  "embedding_prefix_dim",
+  "inference_window",
+  "finetune_epochs",
+  "decoder_config",
+  "fusion_strategy",
+  "probe_strategy",
+  "downstream_module",
+  "source_table"
+ ],
+ "headline_variants": {
+  "embedding_prefix_dim": "128",
+  "probe_strategy": "standard_ridge",
+  "source_table": "main_table"
+ },
+ "tables": [
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:BEN",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 4.2 Classification: HTML S4.T5 \"UC Merced classification accuracy and BigEarthNet...\" contains ResNet50 ImageNet 98.8 UCM; main-body comparison table."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:DSFIN",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 4.1 Change Detection (4 Experiments): HTML S4.T4 \"DSFIN Change Detection Results\" contains 28.74; main-body model comparison."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:OSCD",
+   "n_rows": 21,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.1 Change Detection (4 Experiments): HTML S4.T3 \"Onera Satellite Change Detection Results\" contains 70.42; main-body model comparison."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:data_temp",
+   "n_rows": 27,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — 5.5 Temporal Pairs Experiment (5 Ablation Studies): HTML S5.T10 \"Results for employing temporal pairs and datasets from SeCo\" contains 57.03; pretraining-data ablation in Section 5."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:full_results",
+   "n_rows": 135,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — Supplementary Material (placed in Appendix C): HTML A3.T12 \"Detailed downstream results for all experiments in the main manuscript\" (GFM 59.82/71.24/99.0); mostly ablation variants (stages, w/o datasets, GeoPile) plus baselines, so mixed but ablation-dominated."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:min_ablation",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — 5.4 Multi-objective Ablation (5 Ablation Studies): HTML S5.T9 \"Ablation results for the training objectives in GFM\" contains w/o teacher 57.3."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:seg",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 4.3 Segmentation: HTML S4.T6 \"Results on the WHU Aerial and Vaihingen segmentation datasets\" contains 88.5."
+  },
+  {
+   "paper": "GFM",
+   "file": "arxiv.tex",
+   "table_id": "tab:spacenet",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 4.4 Super-resolution: HTML S4.T7 \"SpaceNet2 Super-resolution Results\" contains 23.279."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:geo_africa",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.2 Geographical generalization: arXiv v1 PDF (no HTML): Table 3 \"Test RMSE ... for geographical generalization experiments\" with AEF Africa 35.08/29.17/29.21; in v2 it is Table 1, also main."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:gfm-benchmark",
+   "n_rows": 11,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.1 Results on the AGBD benchmark dataset: arXiv v1 PDF: Table 2 \"Lite test RMSE ... GFMs evaluated via frozen encoders and UPerNet\" (SSL4EO-MoCo 64.34); in v2 these numbers moved to appendix Table A.4(a) - source tex matches v1."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:lite-screening",
+   "n_rows": 14,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table C.8 — Appendix C. Additional quantitative results: arXiv v1 PDF: Table C.8 \"Test RMSE across training and evaluation regimes\" with AEF LP 89.05 +- 0.04 (value absent from v2)."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:main-results",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 5.1 Results on the AGBD benchmark dataset: arXiv v1 PDF: Table 1 \"Test RMSE on the full dataset for the main model configurations\" with AEF LP 60.46; in v2 these values are in appendix Table A.4(c) - source tex matches v1. Varies heads/features on embeddings but is framed as the main model comparison."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:model_comparison",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.4/5.5 Comparison to ESA CCI on AGBref: arXiv v1 PDF: Table 5 (v2 Table 3) fcn_film x AEF vs ESA CCI against AGBref, R2 0.563, RMSE 44.79."
+  },
+  {
+   "paper": "agbd_eval",
+   "file": "main.tex",
+   "table_id": "tab:temporal",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.3 Temporal generalization: arXiv v1 PDF: Table 4 (v2 Table 2) AEF all years 50.64 / cross-year 52.23 / within-year 51.05."
+  },
+  {
+   "paper": "alphaearth",
+   "file": "figures/headline_aef.png",
+   "table_id": "fig:headline_aef_A",
+   "n_rows": 25,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Figure 1 — 2 From sparse labels to maps: headline_aef.png is included in main.tex line 70 as Figure 1 'Embedding fields paradigm' (panel A error ratios, max-trial), placed in Sec. 2 well before the bibliography (line 176) and the Supplementary Material section (line 956)."
+  },
+  {
+   "paper": "alphaearth",
+   "file": "main.tex",
+   "table_id": "text",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "nan — 6 Estimating biophysical variables / 7 Change detection (+ Supplementary S16.2.4 for 4 rows): MIXED: emissivity/OpenET/LCMAP-change values are in-text in main Secs. 6-7 (main.tex lines 133-138), but the glance_land_cover/lucas_land_cover BA values (~66.6/64.7, ~34.7/34.2) come from line 1129, Supplementary S16.2.4 batch-uniformity sweep (b=0.005 vs b=0), which is an appendix ablation."
+  },
+  {
+   "paper": "anysat",
+   "file": "4_experiments.tex",
+   "table_id": "tab:rebuttal",
+   "n_rows": 47,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.2 Results and Analysis (Competing Methods): Table 1 'Comparison to Foundation Models' in Sec. 4 shows AnySat 90.6 FT / 87.7 (bullet) probe on HLS Burns and Prithvi2 90.5, matching the record."
+  },
+  {
+   "paper": "anysat",
+   "file": "A_supplementary.tex",
+   "table_id": "tab:detailed",
+   "n_rows": 28,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'A_supplementary.tex'"
+  },
+  {
+   "paper": "anysat",
+   "file": "A_supplementary.tex",
+   "table_id": "tab:external",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'A_supplementary.tex'"
+  },
+  {
+   "paper": "better-together",
+   "file": "tables/r2_scores_lc_classes.tex",
+   "table_id": "tab:r2_scores_lc_classes",
+   "n_rows": 99,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.3 Land cover spatial scale explains SatCLIP complementarity: Table 5 per-class land-cover R2 with alphaearth Water 90.7, Trees 70.6, Grass 64.2 is in Sec. 5.3 of the main body."
+  },
+  {
+   "paper": "better-together",
+   "file": "tables/r2_scores_main_tasks.tex",
+   "table_id": "tab:r2_scores_main_tasks",
+   "n_rows": 66,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.2 Embedding complementarity is task-dependent: Table 3 shows alphaearth Crops 60.0, Biomass 67.1, Land cover 71.1, matching the record, in Sec. 5.2."
+  },
+  {
+   "paper": "better-together",
+   "file": "tables/r2_scores_main_tasks_biomass.tex",
+   "table_id": "tab:r2_scores_main_tasks_biomass",
+   "n_rows": 11,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table S1 — A.3 Supplementary results: Table S1 (Biomass centre-pixel: alphaearth 49.9, tessera 37.3, geoclip 11.4) sits in Appendix A.3 Supplementary results."
+  },
+  {
+   "paper": "copernicus",
+   "file": "appendix/a2_copernicusfm.tex",
+   "table_id": "tab:ablate1",
+   "n_rows": 10,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix/a2_copernicusfm.tex'"
+  },
+  {
+   "paper": "copernicus",
+   "file": "appendix/a2_copernicusfm.tex",
+   "table_id": "tab:ablate2",
+   "n_rows": 10,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix/a2_copernicusfm.tex'"
+  },
+  {
+   "paper": "copernicus",
+   "file": "sec/4_copernicusfm.tex",
+   "table_id": "tab:ablation-main",
+   "n_rows": 25,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4 Copernicus-FM (4.4 Ablation studies): HTML S4.T2 'Ablation study of Copernicus-FM'; baseline+dynamic patch row 56.3/87.6/62.2 matches; before References/Appendix A."
+  },
+  {
+   "paper": "copernicus",
+   "file": "sec/5_sentinelbench.tex",
+   "table_id": "tab:benchmark",
+   "n_rows": 63,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5 Copernicus-Bench (5.2 Benchmark results): HTML S5.T4; Cloud-S2 row 64.2/59.4/60.4/66.9/65.0/65.0/66.7 matches quote; main body."
+  },
+  {
+   "paper": "copernicus",
+   "file": "sec/5_sentinelbench.tex",
+   "table_id": "tab:climate",
+   "n_rows": 60,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5 Copernicus-Bench / 6 Bridging EO & climate via grid embeddings: HTML S5.T5 caption matches; Coord.(raw) 8.36/3.06/0.79 matches; main body."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:decur",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 3.2 Radar and Radar-Optical Experiments: arXiv HTML Table 5 caption \"Linear probing radar and radar-optical representations.\" sits in Sec 3.2, before references/Appendix A; compares DeCUR vs CROMA."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:full_fmow",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — A.4.1 Data (Appendix A.4 Evaluation Details): arXiv HTML Table 13 \"fMoW-Sentinel results ... using the complete training set\" is in Appendix A.4.1, after the references."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:main_exp",
+   "n_rows": 108,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 3.1 Multispectral Optical Experiments: arXiv HTML Table 1 \"Classification results on four benchmarks, under FT, LP and MLP probing\" is in Sec 3.1."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:main_nonpara",
+   "n_rows": 54,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3.1 Multispectral Optical Experiments: arXiv HTML Table 2 (kNN and K-means clustering results, *10% of training set) is in Sec 3.1."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:mm_exp",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 3.2 Radar and Radar-Optical Experiments: arXiv HTML Table 4 \"Multimodal (Sentinel-1 & 2) linear probing results\" is in Sec 3.2."
+  },
+  {
+   "paper": "croma",
+   "file": "main.tex",
+   "table_id": "Tab:seg",
+   "n_rows": 21,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 3.1 Multispectral Optical Experiments: arXiv HTML Table 3 \"Semantic segmentation (mIoU) results on three Sentinel-2 benchmarks\" is in Sec 3.1."
+  },
+  {
+   "paper": "cryo-bench",
+   "file": "X_suppl.tex",
+   "table_id": "tab:s1",
+   "n_rows": 62,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'X_suppl.tex'"
+  },
+  {
+   "paper": "cryo-bench",
+   "file": "table/fine_tunning_impact_table.tex",
+   "table_id": "tab:fine_tuning_impact",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.3 Impact of fine tuning: Matches Table 5 of arXiv v1-v3 (DOFA GLID 90.13 w/o vs 84.33 w/, SpectralGPT 76.23) in main Sec. 5.3; the table was dropped in the restructured v4/v5, which replace it with Table VII."
+  },
+  {
+   "paper": "cryo-bench",
+   "file": "table/full_result_table.tex",
+   "table_id": "tab:full_result",
+   "n_rows": 70,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4 Model Selection and Experiment design: Values (CROMA GLID 78.52, GLD 76.84, SICD 24.84) match Table 3 of arXiv v1-v3 in the main body; v4/v5 revise this as Table V (Sec. V-A, also main) with different datasets."
+  },
+  {
+   "paper": "cryo-bench",
+   "file": "table/ten_percent_result_table.tex",
+   "table_id": "tab:ten_percent",
+   "n_rows": 70,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.2 Few-Shot Experiment: Values (CROMA GLID 71.48, GLD 67.91, SICD 19.92) match Table 4 of arXiv v1-v3 in main Sec. 5.2; v4/v5 revise it as Table VI (Sec. V-B, main)."
+  },
+  {
+   "paper": "csp",
+   "file": "main.tex",
+   "table_id": "tab:unsuper_eval_fmow",
+   "n_rows": 28,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 4.3 Satellite Image Classification: HTML S4.T5 \"Top1 accuracy ... on the fMoW val dataset\" contains Tile2Vec 59.41."
+  },
+  {
+   "paper": "csp",
+   "file": "main.tex",
+   "table_id": "tab:unsuper_eval_in18",
+   "n_rows": 24,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.2 Fine-Grained Species Recognition: HTML S4.T1 \"Top1 accuracy ... on the iNat2018 validation dataset\" contains 5.28; caption matches quote."
+  },
+  {
+   "paper": "csp",
+   "file": "main.tex",
+   "table_id": "tab:unsuper_eval_in18_ablation",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.2 Fine-Grained Species Recognition: HTML S4.T2 \"Ablation studies on different CSP-MC-* pretraining objectives\" contains 8.63."
+  },
+  {
+   "paper": "csp",
+   "file": "main.tex",
+   "table_id": "tab:unsuper_eval_in18_ablation_locdim",
+   "n_rows": 16,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.2 Fine-Grained Species Recognition: HTML S4.T3 \"Ablation studies on different location embedding dimensions\" contains 7.64."
+  },
+  {
+   "paper": "decur",
+   "file": "appendix.tex",
+   "table_id": "tab:attention",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "decur",
+   "file": "appendix.tex",
+   "table_id": "tab:vits",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "decur",
+   "file": "main.tex",
+   "table_id": "tab:BE-mm",
+   "n_rows": 50,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 5.1 SAR-optical scene classification: HTML S5.T1 \"SAR-optical transfer results (mAP) on BigEarthNet-MM\" contains 77.4."
+  },
+  {
+   "paper": "decur",
+   "file": "main.tex",
+   "table_id": "tab:NRW-mm",
+   "n_rows": 60,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.2 RGB-DEM semantic segmentation: HTML S5.T2 \"RGB-DEM transfer learning results (mIoU) ... GeoNRW\" contains 14.1."
+  },
+  {
+   "paper": "decur",
+   "file": "main.tex",
+   "table_id": "tab:ablation-loss",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 6 Ablation studies: HTML S6.T5 \"Ablation results on loss components\" contains 81.7."
+  },
+  {
+   "paper": "decur",
+   "file": "main.tex",
+   "table_id": "tab:ablation-rda",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 6 Ablation studies: HTML S6.T4 \"Ablation results (mAP) on the deformable attention module\" contains 79.4."
+  },
+  {
+   "paper": "decur",
+   "file": "main.tex",
+   "table_id": "tab:rgbd-mm",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.3 RGB-depth semantic segmentation: HTML S5.T3 \"RGB-depth fine-tuning results on SUN-RGBD and NYU-Depth v2\" contains 34.5."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "cls_res",
+   "n_rows": 59,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4 Experiments / 4.1 GEO-Bench Classification Experiments: arXiv HTML S4.T1 \"Linear probing results on six classification tasks\"; sample values 63.6/88.9/92.2 found in it; before bibliography, paper has no appendix."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "resic45",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 4.2.1 Image Classification on RESISC45: arXiv HTML S4.T4 \"Classification results on the RESISC-45 dataset\"; values 88.3/94.8/81.2 present."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "seg_res",
+   "n_rows": 58,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.1 GEO-Bench Segmentation (Experiments): arXiv HTML S4.T2 \"Partial fine-tuning results on six segmentation tasks\"; values 88.4/76.4/53.0 present."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "tab:dior_horizontal",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 4.3 Object Detection Experiments: arXiv HTML S4.T5 \"Detection performance on the DIOR horizontal dataset\"; values 67.40/70.89/75.90 present."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "tab:epochs",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 4.4 Ablation Studies (4.4.2 Training Epochs): arXiv HTML S4.T7 \"Ablation Studies on the performance of DOFA with different training epochs\"; varies DOFA pretraining epochs."
+  },
+  {
+   "paper": "dofa",
+   "file": "template.tex",
+   "table_id": "tab:pangea",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.2 PANGEA Benchmark Experiments: arXiv HTML S4.T3 \"Benchmark results across 8 EO downstream tasks\"; values 86.53/69.77/40.26 present."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:data_shift",
+   "n_rows": 96,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T10 \"Scale Shift Results\" (RESISC45<->UCMerced) contains Clay 81.94; despite the label name it is the scale-shift table, in Appendix A."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:data_shift_deepglobe",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T11 \"Data Shift Results for DeepGlobe-DFC2022\" contains Clay 85.54."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:geo_shift",
+   "n_rows": 96,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T12 \"Geographic Shift Results\" contains Clay 54.12."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:sensor_shift (BigEarthNetv2; label reused 3x)",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 16 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T16 \"BigEarthNetv2 S2-S1 Sensor Shift Results\" contains Clay 71.79."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:sensor_shift (Sen1Floods11; label reused 3x)",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 14 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T14 \"Sen1Floods11 Sensor Shift Results\" contains Clay 83.05."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:sensor_shift (m-EuroSat; label reused 3x)",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 15 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T15 \"m-EuroSat Sensor Shift Results\" contains Clay 84.64."
+  },
+  {
+   "paper": "earthshift",
+   "file": "neurips_2026.tex",
+   "table_id": "tab:temporal_shift",
+   "n_rows": 96,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — A.6 Extended Results - Absolute Performance Scores: HTML A1.T13 \"Temporal Shift Results\" contains Clay 51.48/48.68/55.56; main body has only the effective-robustness summary Table 2."
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:fire_frozenbody",
+   "n_rows": 32,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:flood_frozenbody",
+   "n_rows": 56,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_coldwave",
+   "n_rows": 18,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_expcp_probscore",
+   "n_rows": 117,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_heatwave",
+   "n_rows": 18,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_storm_probscore",
+   "n_rows": 39,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_tc_atm",
+   "n_rows": 30,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "exe-bench",
+   "file": "sources/5_appendix.tex",
+   "table_id": "tab:res_tc_sur",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sources/5_appendix.tex'"
+  },
+  {
+   "paper": "galileo",
+   "file": "combined_ablations.tex",
+   "table_id": "tab:combined_ablation",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'combined_ablations.tex'"
+  },
+  {
+   "paper": "galileo",
+   "file": "data_ablations.tex",
+   "table_id": "tab:data_ablation",
+   "n_rows": 29,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'data_ablations.tex'"
+  },
+  {
+   "paper": "galileo",
+   "file": "global_ablations.tex",
+   "table_id": "tab:global_ablation",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'global_ablations.tex'"
+  },
+  {
+   "paper": "galileo",
+   "file": "local_ablations.tex",
+   "table_id": "tab:local_ablation",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'local_ablations.tex'"
+  },
+  {
+   "paper": "galileo",
+   "file": "main.tex",
+   "table_id": "tab:batch_size",
+   "n_rows": 3,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — A.1 The Galileo SSL algorithm (Appendix A): Table 10 varies the global-task minibatch size (bs16: MADOS 64.24, Floods 77.76, EuroSat 90.10) and is in Appendix A.1."
+  },
+  {
+   "paper": "galileo",
+   "file": "table_cls_ft.tex",
+   "table_id": "tab:ft_full",
+   "n_rows": 288,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 16 — Appendix D Results: Table 16 'Image classification test performance via finetuning' (SatMAE ViT-Base EuroSat 96.5/90.8/79.7) is in Appendix D."
+  },
+  {
+   "paper": "galileo",
+   "file": "table_cls_knn.tex",
+   "table_id": "tab:knn_full",
+   "n_rows": 288,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 15 — Appendix D Results: Table 15 'Image classification test performance via kNN' (SatMAE ViT-Base EuroSat 84.1/73.3/50.1) is in Appendix D."
+  },
+  {
+   "paper": "galileo",
+   "file": "table_seg_lp.tex",
+   "table_id": "tab:seg_results_full",
+   "n_rows": 332,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 17 — Appendix D Results: Table 17 'Image (and image timeseries) segmentation test performance via linear probing' is in Appendix D."
+  },
+  {
+   "paper": "galileo",
+   "file": "table_ts.tex",
+   "table_id": "tab:ts_results",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 4 Results: Table 6 pixel-timeseries LP (Presto Togo 75.5, Brazil 98.8, Kenya 84.0) is in main Sec. 4."
+  },
+  {
+   "paper": "geobench_v2_leaderboard",
+   "file": "results/114be1f0-5a41-43a5-b4e6-7fb683bc01ec/results_and_parameters.csv",
+   "table_id": "leaderboard:114be1f0",
+   "n_rows": 326,
+   "location": "main",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "public leaderboard snapshot (no paper body/appendix split)"
+  },
+  {
+   "paper": "geobench_v2_leaderboard",
+   "file": "results/2ce4a907-7ae3-45d3-a07a-558f8d0d758b/results_and_parameters.csv",
+   "table_id": "leaderboard:2ce4a907",
+   "n_rows": 57,
+   "location": "main",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "public leaderboard snapshot (no paper body/appendix split)"
+  },
+  {
+   "paper": "geobench_v2_leaderboard",
+   "file": "results/80100fc6-dc1a-4514-b946-341157eaf816/results_and_parameters.csv",
+   "table_id": "leaderboard:80100fc6",
+   "n_rows": 150,
+   "location": "main",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "public leaderboard snapshot (no paper body/appendix split)"
+  },
+  {
+   "paper": "geoclip",
+   "file": "paper.tex",
+   "table_id": "tab:state-of-the-art",
+   "n_rows": 55,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.1 Comparison with State-of-the-art methods: arXiv HTML S4.T1 (Im2GPS3k and GWS15k SOTA comparison), before References; kNN values 7.2/19.4/26.9 present."
+  },
+  {
+   "paper": "geoclip",
+   "file": "paper.tex",
+   "table_id": "tab:yfcc",
+   "n_rows": 25,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Supplementary Table 1 — Supplementary: 1 Results on additional dataset: Table appears after References under the \"Supplementary for: GeoCLIP\" title page (HTML S1.T1 \"Results on YFCC26k dataset\", supplementary numbering restarts); values 4.4/11.0/16.9 present."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-1",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 8(a) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 8(a) is x-bigearthnet (datasets 1–2); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-10",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 12(b) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 12(b) is x-so2sat (datasets 9–10); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-2",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 8(b) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 8(b) is x-brick-kiln (datasets 1–2); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-3",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 9(a) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 9(a) is x-cashew-plantation (datasets 3–4); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-4",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 9(b) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 9(b) is x-eurosat (datasets 3–4); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-5",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 10(a) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 10(a) is x-harvey-building (datasets 5–6); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-6",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 10(b) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 10(b) is x-harvey-flood (datasets 5–6); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-7",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 11(a) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 11(a) is x-OSCD (datasets 7–8); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-8",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 11(b) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 11(b) is x-SA-crop-type (datasets 7–8); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geocross-bench",
+   "file": "per-dataset-tables.tex",
+   "table_id": "tab:per-dataset-9",
+   "n_rows": 84,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 12(a) — Appendix I All Results: arXiv HTML v2 (2511.02831v2) Appendix I \"All Results\" (after References) holds Tables 8–12 \"Per-dataset setting averages ... (datasets 1–10 of 10)\"; subtable 12(a) is x-sen1floods11 (datasets 9–10); main text has only aggregate Table 2. v3 HTML not rendered; v1 had no such tables."
+  },
+  {
+   "paper": "geoid-flood-bench",
+   "file": "sections/X_suppl.tex",
+   "table_id": "tab:permwater",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/X_suppl.tex'"
+  },
+  {
+   "paper": "geoid-flood-bench",
+   "file": "tables/backbone_benchmark.tex",
+   "table_id": "tab:backbone_benchmark",
+   "n_rows": 168,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.2 Model benchmark: Table 2 single-modality S1 GRD benchmark; TerraMind-T row 0.926/0.868/0.974 matches samples; main Sec. 5, before References and Appendix 0.A."
+  },
+  {
+   "paper": "geoid-flood-bench",
+   "file": "tables/cross_dataset_comparison.tex",
+   "table_id": "tab:cross_dataset_comparison",
+   "n_rows": 70,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.5 Cross-dataset generalization: Caption matches Table 5; MMFlood-trained row 0.873/0.790/0.954 matches; compares training datasets, not model design."
+  },
+  {
+   "paper": "geoid-flood-bench",
+   "file": "tables/modality_ablation.tex",
+   "table_id": "tab:modality_ablation",
+   "n_rows": 16,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'tables/modality_ablation.tex'"
+  },
+  {
+   "paper": "geoid-flood-bench",
+   "file": "tables/paired_multimodal.tex",
+   "table_id": "tab:paired_multimodal",
+   "n_rows": 140,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.3 Paired and change-focused extensions: Caption matches Table 3 (scenarios i-iii); values 0.931/0.877/0.975 match; compares benchmark task scenarios with a fixed TerraMind-B encoder (not labelled an ablation; the paper's ablation is Table 4)."
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S10_accuracy_weighted_recall",
+   "n_rows": 28,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S11_macro_precision",
+   "n_rows": 28,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S12_macro_recall",
+   "n_rows": 28,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S13_weighted_precision",
+   "n_rows": 28,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S8_lp_per_class",
+   "n_rows": 32,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "infra-bench",
+   "file": "supporting_documents/supporting_info.tex",
+   "table_id": "tab:S9_ft_per_class",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+  },
+  {
+   "paper": "melt-salt",
+   "file": "Original_Template/root.tex",
+   "table_id": "tab:ex_result",
+   "n_rows": 264,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table I — V Results (V-A Quantitative Results): HTML S5.T1; SatCLIP-Org .57±.03/65.4±0.9/.47±.02 matches; only appendix table is Table II (t-test)."
+  },
+  {
+   "paper": "mind",
+   "file": "tables/adaptive.tex",
+   "table_id": "tab:adaptive",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Figure 9 (inline table, v1) — 5.3 Chunk selection and regularization: arXiv v1 HTML S5.F9 \"Chunk selection and regularization\" table has GeoCLIP+CP 0.291+-0.011 and MIND chunk sel. 0.280+-0.017 (v2 replaced it with Figure 6 with different values); ablates chunk selection vs Chunked Penalty."
+  },
+  {
+   "paper": "mind",
+   "file": "tables/category.tex",
+   "table_id": "tab:category",
+   "n_rows": 180,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 (v1) / Table 5 (v2) — Appendix A Reproducibility (v1) / Appendix F (v2): HTML v1 A1.T3 \"CoordBench results by target category\" contains Coord. IDW 0.827; appendix in both versions."
+  },
+  {
+   "paper": "mind",
+   "file": "tables/coordbench.tex",
+   "table_id": "tab:coordbench",
+   "n_rows": 180,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3.1 Nested distillation (Section 3; v1): HTML S3.T2 \"Methods on CoordBench\" contains Coord. IDW 67.7/62.8/55.7; main in both v1 and v2."
+  },
+  {
+   "paper": "mind",
+   "file": "tables/fixed-width-main.tex",
+   "table_id": "tab:fixw-main",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Figure 4 (inline table) — 3 MIND for Geographic Representations: arXiv v1 HTML S3.F4.fig2 \"The effect of nested supervision\" table: Non-nested 64-dim 0.452/0.186/-0.071 (matches v1, not v2); ablates nested supervision."
+  },
+  {
+   "paper": "mmearth",
+   "file": "main.tex",
+   "table_id": "tab:results_domain_specific",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 6.1 How can domain specific pretraining improve representations?: Table 3 varies the MAE pretraining data, image size and patch size (MMEarth-S2rgb 128/32: 55.5/29.8, 38.1) to justify design choices, in main Sec. 6.1."
+  },
+  {
+   "paper": "mmearth",
+   "file": "main.tex",
+   "table_id": "tab:results_multi_modal",
+   "n_rows": 36,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 6.2 How do multi-modal pretext tasks impact representations?: Table 4 varies pretext-task modalities (PixelM/ImageM/full) against ImageNet and S2-only MAE (ImageNet 55.7/25.9, 36.6), in main Sec. 6.2."
+  },
+  {
+   "paper": "mmearth",
+   "file": "main.tex",
+   "table_id": "tab:results_prior_work",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 6.2 How do multi-modal pretext tasks impact representations?: Table 5 'Comparison to prior work' (GASSL 53.6/34.1, 42.4) is in main Sec. 6.2."
+  },
+  {
+   "paper": "mmearth",
+   "file": "main_suppl_content.tex",
+   "table_id": "tab:loss_weighting_results",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'main_suppl_content.tex'"
+  },
+  {
+   "paper": "mmearth",
+   "file": "main_suppl_content.tex",
+   "table_id": "tab:taster_results",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'main_suppl_content.tex'"
+  },
+  {
+   "paper": "mmearth-bench",
+   "file": "appendix.tex",
+   "table_id": "tab:ft_metrics_by_task",
+   "n_rows": 80,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "mosaiks",
+   "file": "s41467-021-24638-z.pdf",
+   "table_id": "text",
+   "n_rows": 11,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "nan — Results: 'Multi-task performance of MOSAIKS in the US' (PDF p3) and 'Applying MOSAIKS at scale' (PDF p6): Nature Comms PDF (11 pp, refs on p10): R2=0.91/0.68/0.72 sentence on p3 and global R2=0.85/0.45/0.62 on p6 are both in Results, not Supplementary."
+  },
+  {
+   "paper": "neuco-bench",
+   "file": "sects/evaluations_general.tex",
+   "table_id": "tab:full_results",
+   "n_rows": 128,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.3 General Evaluations: Table 2 full per-task R2 (Averaging Baseline Biomass Mean -0.552, Std -0.426, Crops -0.061) is in main Sec. 5.3."
+  },
+  {
+   "paper": "olmoearth",
+   "file": "sec/ablation.tex",
+   "table_id": "tab:ablation",
+   "n_rows": 77,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'sec/ablation.tex'"
+  },
+  {
+   "paper": "olmoearth",
+   "file": "sec/appendix.tex",
+   "table_id": "tab:aef",
+   "n_rows": 21,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sec/appendix.tex'"
+  },
+  {
+   "paper": "olmoearth",
+   "file": "sec/development.tex",
+   "table_id": "tab:development",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 3.6 Ablations: arXiv HTML Table 4 \"Development path of the OlmoEarth base model ... starting from a Latent MIM approach\" is in Sec 3.6 Ablations, before references."
+  },
+  {
+   "paper": "olmoearth_v11",
+   "file": "sec/ablations.tex",
+   "table_id": "tab:ablations",
+   "n_rows": 20,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'sec/ablations.tex'"
+  },
+  {
+   "paper": "olmoearth_v11",
+   "file": "sec/finetune_v2.tex",
+   "table_id": "tab:finetune",
+   "n_rows": 75,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3.2 Finetuning Results: v1 HTML Table 2 fine-tuning results; OlmoEarth v1.1 ViT Nano m-bigearthnet 67.4, m-so2sat 61.1, m-brick-kiln 98.5 match v1 (v2 renames to v1.2 with different values)."
+  },
+  {
+   "paper": "olmoearth_v11",
+   "file": "sec/knnlp.tex",
+   "table_id": "tab:knnlp",
+   "n_rows": 72,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 3.1 kNN and Linear Probing Results (float placed in Sec. 2.4): v1 HTML Table 1 kNN/LP; v1.1 ViT Nano 59.6/54.6/91.2 match; main body, appendices A-B contain only speedup and FrozenStart tables."
+  },
+  {
+   "paper": "olmoearth_v12",
+   "file": "sec/ablations.tex",
+   "table_id": "tab:ablations",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'sec/ablations.tex'"
+  },
+  {
+   "paper": "olmoearth_v12",
+   "file": "sec/appendix.tex",
+   "table_id": "tab:pos-enc-full-no-cropharvest",
+   "n_rows": 85,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sec/appendix.tex'"
+  },
+  {
+   "paper": "olmoearth_v12",
+   "file": "sec/finetune_v2.tex",
+   "table_id": "tab:finetune",
+   "n_rows": 444,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3 Experiments & Results (3.2 Finetuning Results): arXiv 2605.20804v2 (v1.2) HTML S3.T2 'Finetuning results on research benchmarks (left) and partner tasks (right)'; AnySat 68.4/56.7/98.7 matches."
+  },
+  {
+   "paper": "olmoearth_v12",
+   "file": "sec/knnlp.tex",
+   "table_id": "tab:knnlp",
+   "n_rows": 597,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 2 OlmoEarth v1.2 (placed in 2.3; discussed in 3.1 kNN and Linear Probing Results): arXiv 2605.20804v2 HTML S2.T1; AnySat 54.5/36.5/84.5 matches; main body."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/10_percent_miou.tex",
+   "table_id": "tab:comp_10",
+   "n_rows": 132,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 5.2 Data Scarcity: arXiv HTML S5.T7 (11 datasets, 10% of data); values 76.44/32.44/32.8 present; input before \\appendix in main.tex."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/50_percent_miou.tex",
+   "table_id": "tab:comp_50",
+   "n_rows": 132,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 5.2 Data Scarcity: arXiv HTML S5.T6 (11 datasets, 50% of data); values 81.52/57.68/32.33 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/domain_adaptation_fbps.tex",
+   "table_id": "tab:dom_ad_fbps",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — 5.6 Domain Adaptation: arXiv HTML S5.T11 \"Domain Adaptation experiments for FiveBillionPixels\"; values 18.38/16.56/35.39 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_ai4smallfarms.tex",
+   "table_id": "tab:ai4smallfarms",
+   "n_rows": 72,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A17 — Appendix A.10.1 Extensive Results (AI4SmallFarms): arXiv HTML A1.T17; values 40.82/40.84/42.6 present; \\input after \\appendix in main.tex."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_biomass.tex",
+   "table_id": "tab:extensive-biomass",
+   "n_rows": 15,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A18 — Appendix A.11.1 Extensive Results (BioMassters): arXiv HTML A1.T18; values 41.19/38.5/37.86 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_croptypemap.tex",
+   "table_id": "tab:ext-ctm-ltae",
+   "n_rows": 99,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A14 — Appendix A.8.1 Extensive Results (Crop Type Mapping-South Sudan): arXiv HTML A1.T14 (CTM-SS, L-TAE time strategy); values 49.76/56.72/60.99 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_croptypemap.tex",
+   "table_id": "tab:extensive-ctm-100perc",
+   "n_rows": 65,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A12 — Appendix A.8.1 Extensive Results (Crop Type Mapping-South Sudan): arXiv HTML A1.T12 (CTM-SS 100%, linear vs L-TAE); values 43.86/55.9/80.31 present; temporal-aggregation comparison across GFMs, not an ablation of a proposed model."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_dynamicen.tex",
+   "table_id": "tab:ext-dyn-ltae",
+   "n_rows": 96,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A11 — Appendix A.7.1 Extensive Results (DynamicEarthNet): arXiv HTML A1.T11 (DynamicEarthNet, L-TAE); values 45.46/47.47/48.04 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_dynamicen.tex",
+   "table_id": "tab:extensive-dyn-100perc",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A9 — Appendix A.7.1 Extensive Results (DynamicEarthNet): arXiv HTML A1.T9 (DynamicEarthNet 100%, linear vs L-TAE); values 47.31/69.72/49.52 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_fbps.tex",
+   "table_id": "tab:extensive-fbps",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A8 — Appendix A.6.1 Extensive Results (FiveBillionPixels): arXiv HTML A1.T8; values 63.5/90.14/54.14 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_hlsburnscars.tex",
+   "table_id": "tab:hlsburnscars_extensive",
+   "n_rows": 144,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A1 — Appendix A.1.1 Extensive Results (HLS Burn Scars): arXiv HTML A1.T1 (10/50/100% labels); values 85.42/95.09/89.1 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_mados.tex",
+   "table_id": "tab:mados-results",
+   "n_rows": 48,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A2 — Appendix A.2.1 Extensive Results (MADOS): arXiv HTML A1.T2; values 77.19/91.04/68.19 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_pastis.tex",
+   "table_id": "tab:pastis-ltae",
+   "n_rows": 195,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A5 — Appendix A.3.1 Extensive Results (PASTIS-R): arXiv HTML A1.T5 (PASTIS-R, L-TAE); values 32.8/45.73/75.37 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_sen1floods11.tex",
+   "table_id": "tab:extensive-floods",
+   "n_rows": 72,
+   "location": "unclear",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "nan — not in published paper: tabs/extensive_sen1floods11.tex is never \\input in main.tex of the arXiv source, and its values (e.g. CROMA 97.89) appear in neither the v1 nor v2 HTML; orphan table file, not part of the published paper (the Sen1Floods11 appendix table is Table A6 = tab:extensive-floods-scarcity)."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_sen1floods11_scarcity.tex",
+   "table_id": "tab:extensive-floods-scarcity",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A6 — Appendix A.4.1 Extensive Results (Sen1Floods11): arXiv HTML A1.T6 (limited training labels); values 92.9/94.91/90.13 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_sn7_limited_label.tex",
+   "table_id": "tab:sn7_limited_label",
+   "n_rows": 72,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A16 — Appendix A.9.1 Extensive Results (SpaceNet 7): arXiv HTML A1.T16 (concatenation, limited labels); values 46.74/82.9/66.07 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/extensive_xview2.tex",
+   "table_id": "tab:ext-results-xview2",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A7 — Appendix A.5.1 Extensive Results (xView2): arXiv HTML A1.T7; values 65.81/97.21/71.73 present."
+  },
+  {
+   "paper": "pangea",
+   "file": "tabs/main_miou.tex",
+   "table_id": "tab:comp_100",
+   "n_rows": 132,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.1 Main Comparison: arXiv HTML S5.T5 (11 datasets, 100% of data); values 82.42/67.55/32.32 present."
+  },
+  {
+   "paper": "panopticon",
+   "file": "3_methods_v2.tex",
+   "table_id": "tab:perf-common",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 3.5 Implementation details (discussed in 4.4 Performance on popular sensors): arXiv HTML Table 3 \"Classification and segmentation on datasets consisting of well-known sensors from GEO-Bench, reBEN, and RESISC45\" is placed in Sec 3.5, main body."
+  },
+  {
+   "paper": "panopticon",
+   "file": "3_methods_v2.tex",
+   "table_id": "tab:spec-gen",
+   "n_rows": 60,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3.5 Implementation details (discussed in 4.1 Generalization to unique sensors): arXiv HTML Table 2 \"Spectral Generalization Performance. Synthesized sensor channels generated from EnMAP...\" is placed in Sec 3.5, main body."
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:abl_cumulative",
+   "n_rows": 7,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:cropsplit",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:gb_cls",
+   "n_rows": 41,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:gb_segm_macro_jaccard",
+   "n_rows": 36,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:gb_segm_micro_jaccard",
+   "n_rows": 36,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:gb_segm_miou",
+   "n_rows": 36,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "panopticon",
+   "file": "final_sup.tex",
+   "table_id": "tab:sup-sipe-results",
+   "n_rows": 18,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'final_sup.tex'"
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:cropharvest-results",
+   "n_rows": 3,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 3 Method (3.2 Encoding and tokenization; float placement): arXiv HTML S3.T2 \"Mean F1 score across all CropHarvest tasks\"; values 0.738/0.835/0.836 present; before \\bibliography/\\appendix."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:cropharvest-results-full",
+   "n_rows": 3,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — Appendix A.5: arXiv HTML A1.T12 \"Additional results for the CropHarvest task\" (AUC ROC); values 0.806/0.917/0.921 present; after \\appendix."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:eurosat_finetune",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.2.1 Image-based Results: arXiv HTML S5.T5 \"EuroSAT finetuning accuracy\"; values 0.849/0.953 present."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:mask_ablation",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 5.4 Ablations: arXiv HTML S5.T7 \"Structured masking strategies yield the best downstream performance\"; varies Presto pretraining masking."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:reg_se",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — Appendix A.3 Baselines: arXiv HTML A1.T10 \"Full results for regression tasks from Table 3\"; values 28.75/0.972/25.28 present."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:s2agri-full",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 16 — Appendix A.5: arXiv HTML A1.T16 \"Full results on the S2-Agri100 dataset\"; values 67.03/0.56/42.83 present."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:scaling",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 6 Discussion & Conclusion (float placement; follows 5.4 Ablations): arXiv HTML S6.T8 \"Effect of model size on validation performance\" (larger Presto variants), before \\appendix; values 0.687/0.669 present."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:treesat",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.1 Timeseries Tasks: arXiv HTML S5.T4 \"Results on the TreeSatAI dataset\"; values 38.34/35.45/40.79 present."
+  },
+  {
+   "paper": "presto",
+   "file": "main.tex",
+   "table_id": "tab:treesat-results-full",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 15 — Appendix A.5: arXiv HTML A1.T15 \"Additional results for the TreeSatAI\"; values 38.69/37.41/30.09 present."
+  },
+  {
+   "paper": "prithvi_v1",
+   "file": "prithvi_v1.1.tex",
+   "table_id": "tab:fire_scars_results",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 6.2 Downstream Application Results: HTML S6.T3 wildfire scar segmentation contains Prithvi (pretrained) 73.62/84.81/84.84."
+  },
+  {
+   "paper": "prithvi_v1",
+   "file": "prithvi_v1.1.tex",
+   "table_id": "tab:flood_mapping_results",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 6.2 Downstream Application Results: HTML S6.T2 Sen1Floods11 contains Swin-dagger 80.58/89.24/87.98; baseline comparison (also includes pretrained vs not, 50 vs 500 epochs rows)."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:R2-GPP-columns",
+   "n_rows": 16,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XV — IV-D 2 Estimation of Gross Primary Productivity (GPP): Table XV leave-one-year-out R2 (Prithvi-EO-2.0-300M 0.84/0.77/0.77) is in main Sec. IV-D."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:biomassters_performance",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table XIII — IV-D 1 Above Ground Biomass Estimation: Table XIII varies Prithvi-300M input configuration (S2 LoRA T=4 35.47, S2+S1 T=4 38.67, S2 T=12 33.40) in main Sec. IV-D; flagged ablation because it varies input handling of the paper's own model."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:biomassters_subset_performance",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XIV — IV-D 1 Above Ground Biomass Estimation: Table XIV training-subset RMSE (50% 34.31, 20% 34.89, 10% 36.77) is in main Sec. IV-D; it is a label-fraction study, not a design-choice ablation."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:burn_intensity_training",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VI — IV-B 3 Burn Intensity Mapping: Table VI Burn intensity results is in main Sec. IV-B."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:crops_fractions_perf",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XI — IV-C 2 Multi-Temporal Land Cover and Crop Classification: Table XI crop-type weighted F1 for Sen4Map ratios is in main Sec. IV-C."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:firescars",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table V — IV-B 2 Wildfire Scar Mapping: Table V wildfire scar results is in main Sec. IV-B."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:geobench_cls_summary_1",
+   "n_rows": 39,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A1 — Appendix A GEO-Bench detailed results: Table A1 (m-bigearthnet DINO-ResNet50 67.37, DOFA 68.58, DeCUR 67.54) is in Appendix A."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:geobench_cls_summary_2",
+   "n_rows": 39,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A2 — Appendix A GEO-Bench detailed results: Table A2 covers m-forestnet, m-pv4ger, m-so2sat in Appendix A."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:geobench_seg_summary_1",
+   "n_rows": 39,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A3 — Appendix A GEO-Bench detailed results: Table A3 covers m-NeonTree, m-SA-crop-type, m-cashew-plant in Appendix A."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:geobench_seg_summary_2",
+   "n_rows": 39,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table A4 — Appendix A GEO-Bench detailed results: Table A4 covers m-chesapeake, m-nz-cattle, m-pv4ger-seg in Appendix A."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:land_cover_fractions_perf",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table X — IV-C 2 Multi-Temporal Land Cover and Crop Classification: Table X land-cover weighted F1 for Sen4Map ratios is in main Sec. IV-C."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:landslide_full_dataset_training",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VII — IV-B 4 Landslide Detection: Table VII L4S full-dataset results (U-Net wCE 70.4/59.7/56.2) is in main Sec. IV-B; loss column describes each compared model, not an ablation."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:landslide_small_subset_training",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VIII — IV-B 4 Landslide Detection: Table VIII L4S ~1% subset results is in main Sec. IV-B."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:multitemporalcropus",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IX — IV-C 1 Multi-Temporal Crop Segmentation in the US: Table IX US multi-temporal crop segmentation is in main Sec. IV-C."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:pastis_results",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XII — IV-C 3 Multi-Temporal Crop Segmentation with PASTIS: Table XII PASTIS mIoU at 100%/10% is in main Sec. IV-C."
+  },
+  {
+   "paper": "prithvi_v2",
+   "file": "main.tex",
+   "table_id": "tab:sen1floods11",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IV — IV-B 1 Flood Mapping: Table IV Sen1Floods11 results is in main Sec. IV-B."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: Backbone ablation",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V (sub-table) — IV-C Ablation Study: Table V composite ablation; backbone sub-table rows 25.56/37.46 and 35.72 match; RemoteCLIP has no appendix."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: Dateset ablation",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V (sub-table) — IV-C Ablation Study: Dataset ablation sub-table of Table V; SEG-4 only 7.15/14.55, DET-10 only 9.82 match."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: Loss ablation",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V (sub-table) — IV-C Ablation Study: Loss ablation sub-table of Table V; Margin Ranking 28.93/48.47, SigLIP 26.68 match."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: Pre-training model ablation",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V (sub-table) — IV-C Ablation Study: Pretraining ablation sub-table of Table V; ResNet-50 ImageNet 37.07/44.36, SwAV 34.6 match."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: linear-probe and K-NN",
+   "n_rows": 264,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IV — IV-B5 Full-shot Linear Probing and k-NN Classification: Caption 'Linear probing and and k-NN classification results on 12 remote sensing datasets' matches Table IV."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab: zero-shot",
+   "n_rows": 72,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table III — IV-B3 Zero-shot Image Classification: Caption 'Zero-shot accuracies on 12 remote sensing image classification datasets' matches Table III."
+  },
+  {
+   "paper": "remoteclip",
+   "file": "main.tex",
+   "table_id": "tab:retrieval",
+   "n_rows": 90,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table II — IV-B Benchmarking RemoteCLIP (IV-B1 Cross-modal Retrieval): Table II retrieval benchmark; CLIP-CL RN50 (RET-3) RSITMD 19.25/39.82/51.33 matches; a SOTA comparison table, not an ablation."
+  },
+  {
+   "paper": "satclip",
+   "file": "appendix.tex",
+   "table_id": "tab:appendix:satclipmodels",
+   "n_rows": 114,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "satclip",
+   "file": "appendix.tex",
+   "table_id": "tab:res_combined",
+   "n_rows": 35,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "satclip",
+   "file": "tables/downstream_tasks_table_all.tex",
+   "table_id": "tab:res_all",
+   "n_rows": 81,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — Appendix E.5 Additional Results: Predictive Performance: tables/downstream_tasks_table_all.tex is \\input in appendix.tex; HTML Pt0.A5.T7 (ViT16) contains 0.90 ± 0.13 / 0.42 ± 0.01 (main Table 2 is the ResNet50 condensed version)."
+  },
+  {
+   "paper": "satclip",
+   "file": "tables/geo_adaption_table_all.tex",
+   "table_id": "tab:res_adaptation_all",
+   "n_rows": 126,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — Appendix E.6 Additional Results: Geographic Generalization: tables/geo_adaption_table_all.tex is \\input in appendix.tex; HTML Pt0.A5.T8; main Table 3 is the condensed version (from geo_adaption_table_condensed.tex) sharing some values."
+  },
+  {
+   "paper": "satdifuser",
+   "file": "tables/cls-main.tex",
+   "table_id": "tab:cls_comparison",
+   "n_rows": 66,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.3 Main Results: HTML S4.T2 linear-classifier caption matches; Satlas 54.3/88.7/92.1 matches."
+  },
+  {
+   "paper": "satdifuser",
+   "file": "tables/compareSD.tex",
+   "table_id": "tab-sd21",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 4.4 Ablation Studies (Comparison of Diffusion Backbones): HTML S4.T5; SD v2-1 row 94.5/82.5/60.2 matches; compares backbones of the authors' own method."
+  },
+  {
+   "paper": "satdifuser",
+   "file": "tables/limited_ss_1.tex",
+   "table_id": "tab:limited_ss1",
+   "n_rows": 33,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 4.4 Ablation Studies (Data Scarcity Scenario): HTML S4.T6; Satlas 92.3/88.6, 83.1/77.8, 49.1/25.7 matches; sits under the Ablation heading but is a cross-model comparison at 100%/10% labels, not a design ablation."
+  },
+  {
+   "paper": "satdifuser",
+   "file": "tables/ss-main.tex",
+   "table_id": "tab:ss_comparison",
+   "n_rows": 66,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.3 Main Results: HTML S4.T1 UPerNet mIoU caption matches; Satlas 92.3/83.1/52.0 matches."
+  },
+  {
+   "paper": "satlas-pretrain",
+   "file": "main.tex",
+   "table_id": "tab:downstream",
+   "n_rows": 105,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.2 Downstream Performance (float in 5.1): Table 3 downstream 50/All fine-tuning; ImageNet row UCM 0.35/0.92, RESISC45 0.17 match; compares pretraining sources, main body before Appendix A."
+  },
+  {
+   "paper": "satlas-pretrain",
+   "file": "main.tex",
+   "table_id": "tab:results",
+   "n_rows": 117,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.1 Results on SatlasPretrain (float in Sec. 4): Table 2 SatlasPretrain test-set results; PSPNet 77.8/15.0/53.2 match; mixes baseline architectures with SatlasNet single/multi-image and per-type/joint/fine-tuned variants."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:MAE-basic",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 5.2 fMoW RGB (non-temporal): arXiv HTML Table 1 \"Top 1 Accuracy on fMoW classification. Frozen ... Finetune ...\" in Sec 5.2."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:SatMAE_spectral",
+   "n_rows": 20,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.4 fMoW Sentinel (Multi-spectral): arXiv HTML Table 3 \"Top 1 & Top 5 Accuracy on the fMoW Sentinel validation set. The different initializations...\" in Sec 5.3/5.4; benchmark comparison that also lists SatMAE grouping/init variants."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:bigearthnet",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — 5.5 Transfer Learning Experiments: arXiv HTML Table 9 \"BigEarthNet multi-label classification results\" in Sec 5.5."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:eurosat",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 5.5 Transfer Learning Experiments: arXiv HTML Table 8 \"EuroSAT land cover classification results. * RGB only\" in Sec 5.5."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:naip",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 5.5 Transfer Learning Experiments: arXiv HTML Table 6 \"NAIP land cover classification results.\" in Sec 5.5."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:spacenet",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 5.5 Transfer Learning Experiments: arXiv HTML Table 7 \"SpaceNet v1 building segmentation results.\" in Sec 5.5."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:spectral_ablation",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.4 fMoW Sentinel (Multi-spectral): arXiv HTML Table 5 \"Ablation studies on spectral SatMAE on fMoW-Sentinel\" in Sec 5.4."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:temporal_ablation",
+   "n_rows": 3,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.3 fMoW RGB (temporal): arXiv HTML Table 4 \"Ablation studies on different components of temporal SatMAE\" in Sec 5.3."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/4_experiment.tex",
+   "table_id": "tab:temporal_table1",
+   "n_rows": 11,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.3 fMoW RGB (temporal): arXiv HTML Table 2 \"Classification results on the temporal fMoW RGB dataset\" in Sec 5.3."
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:results_rgb_mask_ratio_patch_size",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:results_sentinel_further_improvments",
+   "n_rows": 2,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "satmae",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:results_spectral_mask_ratio_patch_size",
+   "n_rows": 3,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:ablation_on_fmow_sentinel",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.3 Pre-training and Finetuning on fMoW-Sentinel: Table 4 'Ablation study demonstrating the effect of using multiple scales in pre-training' is in main Sec. 5.3."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_bigearthnet",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 5.5.1 Land Cover Classification: Table 8 BigEarthNet multi-label mAP is in main Sec. 5.5."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_eurosat",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.5.1 Land Cover Classification: Table 5 EuroSAT land cover classification is in main Sec. 5.5."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_fmow_rgb",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.2 Pre-training and Finetuning on fMoW-RGB: Table 2 fMoW-RGB comparison is in the main body (placed in Sec. 5.1/5.2)."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_fmow_sentinel",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.3 Pre-training and Finetuning on fMoW-Sentinel: Table 3 fMoW-Sentinel finetuning is in main Sec. 5.3."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_resisc",
+   "n_rows": 1,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 5.5.1 Land Cover Classification: Table 6 RESISC-45 finetuning is in main Sec. 5.5."
+  },
+  {
+   "paper": "satmae++",
+   "file": "arxiv.tex",
+   "table_id": "tbl:finetuning_ucmerced",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 5.5.1 Land Cover Classification: Table 7 UC-Merced finetuning is in main Sec. 5.5."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "fig:linear_prob",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.1 Representation Quality (Linear probing and finetuning): HTML S4.T2 RESISC-45 frozen/finetune; Scale-MAE 89.6/95.7, SatMAE 88.3 match (label says fig: but it is a table)."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "fig:linear_prob2",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.1 Representation Quality (Linear probing and finetuning): HTML S4.T3 FMoW-RGB full finetuning; Scale-MAE 77.9/94.3, SatMAE† 72.4 match."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:gsdpe",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 4.2 Ablations: HTML S4.T6 GSDPE ablation caption matches; main body."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:knn-per-dataset",
+   "n_rows": 24,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.1 Representation Quality: HTML S4.T1; AiRound 63.2/57.8/59.7 matches (not appendix Table 11, which is per-k kNN)."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:mask",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 4.2 Ablations: HTML S4.T7 mask-rate ablation caption matches."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:numlay",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 5 Discussion: HTML S5.T8 decoder-layers ablation; floated into Section 5, still before References/Appendix A."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:resolution",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — 5 Discussion: HTML S5.T9 low/high-res reconstruction ablation; before References/Appendix A."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:semseg",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 4.1 Representation Quality (Semantic segmentation transfer): HTML S4.T5; Conv. 77.6/78.7/82.2/78.3 row matches quote."
+  },
+  {
+   "paper": "scale-mae",
+   "file": "PaperForReview.tex",
+   "table_id": "tab:spacenet",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 4.1 Representation Quality (Semantic segmentation transfer): HTML S4.T4 SpaceNet v1 results; main body."
+  },
+  {
+   "paper": "seco",
+   "file": "main.tex",
+   "table_id": "tab:ablation_sampling",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.1 Land-Cover Classification on BigEarthNet (Ablation on the Locations Sampling Strategy): Table 2 Gaussian vs Uniform sampling; Uniform 71.63/72.59/79.65 matches; SeCo has no appendix in arXiv version."
+  },
+  {
+   "paper": "seco",
+   "file": "main.tex",
+   "table_id": "tab:bigearthnet_results",
+   "n_rows": 64,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4.1 Land-Cover Classification on BigEarthNet (float in 3.2.2): Table 1 BigEarthNet mAP; Random init ResNet-18 43.05/45.95/68.11 matches."
+  },
+  {
+   "paper": "seco",
+   "file": "main.tex",
+   "table_id": "tab:eurosat_results",
+   "n_rows": 5,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.2 Land-Cover Classification on EuroSAT: Table 3; Random init 63.21, ImageNet 86.44, MoCo-v2 83.72 match."
+  },
+  {
+   "paper": "seco",
+   "file": "main.tex",
+   "table_id": "tab:oscd_results",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 4.3 Change Detection on Onera Satellite: Table 4; Random init 70.53/19.17/29.44 matches."
+  },
+  {
+   "paper": "sled",
+   "file": "preprint.tex",
+   "table_id": "tab:alignment",
+   "n_rows": 18,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — Supplemental Materials (Cross-Modal Alignment): arXiv HTML Table 3 \"Examining cross-modal alignment options performance\" is under Supplemental Materials, after References."
+  },
+  {
+   "paper": "sled",
+   "file": "preprint.tex",
+   "table_id": "tab:main_results",
+   "n_rows": 95,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — Methodology > Pretraining Specifications: arXiv HTML Table 1 \"SLED results compared to current state-of-the-art models on 4 distinct benchmark suites\" is in the main body before References."
+  },
+  {
+   "paper": "sled",
+   "file": "preprint.tex",
+   "table_id": "tab:siren_net",
+   "n_rows": 16,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — Supplemental Materials (Position Encoders): arXiv HTML Table 2 \"Ablations between SLED location encoder using Spherical Harmonics, RFF, SirenNet...\" is under Supplemental Materials, after References."
+  },
+  {
+   "paper": "softcon",
+   "file": "appendix.tex",
+   "table_id": "tab:benchmark",
+   "n_rows": 8,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "softcon",
+   "file": "appendix.tex",
+   "table_id": "tab:pecp",
+   "n_rows": 14,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'appendix.tex'"
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:SAR",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table II — V-A2 BigEarthNet-SAR and EuroSAT-SAR: Table II; SoftCon RN50 78.9/87.1, ViT-S 80.3 match."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:be-eu",
+   "n_rows": 10,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table I — V-A1 BigEarthNet and EuroSAT: Caption matches Table I (linear/finetune on BE-10% and EuroSAT, SOTA comparison)."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:continual",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table VIII — VI-2 Continual pretraining (VI Ablation and discussion): Table VIII source-model ablation; cont. (ImageNet) 80.2/83.9, cont. (MoCov3) 80.9 match; main body, before References and Appendix A."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:dfc2020",
+   "n_rows": 3,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IV — V-B Land cover segmentation: Table IV; SoftCon RN50 50.3, ViT-S 50.7, ViT-B 51.0 match."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:fmow",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table III — V-A3 fMoW-sentinel: Table III; SoftCon ViT-S 39.9/59.7, ViT-B 44.0 match."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:geobench",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VI — V-D Other domain-specific applications: Table VI GEO-Bench frozen-encoder transfer; SoftCon ViT-S 49.9/92.6/44.4 match."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:mask",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table IX — VI-3 Siamese masking (VI Ablation and discussion): Table IX masking-ratio ablation; w/o masking 82.3/84.5, 50% 81.7 match."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:oscd",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table V — V-C Change detection: Table V; Rand. Init. RN50 72.3/13.8/23.1 matches."
+  },
+  {
+   "paper": "softcon",
+   "file": "main.tex",
+   "table_id": "tab:softcon",
+   "n_rows": 14,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table VII — VI-1 SoftCon loss (VI Ablation and discussion): Table VII loss ablation; Contrast only 78.9/82.1, SoftCon only 76.0 match."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "bigearthnet",
+   "n_rows": 11,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table II — III-B Multi-Label RS Scene Classification on BigEarthNet: HTML S3.T2 caption matches; paper has no appendix."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "changedetection",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IV — III-D RS Change Detection on OSCD: HTML S3.T4 caption matches; paper has no appendix."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "modelscale",
+   "n_rows": 10,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table VI — III-E Ablation Studies (III-E6 Model Size): HTML S3.T6; ViT-B SpectralGPT 85.92 / SpectralGPT+ 88.17, ViT-L 89.53 match; varies own model size and pretraining."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "segmentation",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table III — III-C RS Semantic Segmentation on SegMunich: HTML S3.T3 caption matches; paper has no appendix."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "sub_datascale",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V(b) — III-E Ablation Studies (III-E2 Data Scale): HTML S3.T6.st2 '(b) Data Scale' subtable of Table V ablation."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "sub_maskingratio",
+   "n_rows": 3,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V(c) — III-E Ablation Studies (III-E3 Masking Ratio): HTML S3.T6.st3 '(c) Masking Ratio' subtable of Table V ablation."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "sub_patchsize",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V(a) — III-E Ablation Studies (III-E1 Token Size): HTML Table V(a) Token Size: SpectralGPT p16 76.42, p8 85.61 match."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "sub_reconstrurtion",
+   "n_rows": 2,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V(d) — III-E Ablation Studies (III-E4 Reconstruction Target): HTML S3.T6.st4 '(d) Reconstruction Target' subtable of Table V ablation."
+  },
+  {
+   "paper": "spectralgpt",
+   "file": "final.tex",
+   "table_id": "tab:synthetic",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table I — III-A Single-Label RS Scene Classification on EuroSAT: HTML S3.T1 EuroSAT caption matches; paper has no appendix."
+  },
+  {
+   "paper": "ss_vision_transformers_for_lc",
+   "file": "Self-supervised_Vision_Transformers_for_Land-cover_Segmentation_and_Classification.pdf",
+   "table_id": "tab:table1",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4 Data / 5 Experiments and Results (page 5): CVPRW 2022 open-access PDF (Scheibenreif et al.) p5: \"Table 1. Results for single- and multi-label classification ...\" with ResNet50 fusion FT 67 ± 2 / Frozen 60 ± 1 and Swin S1 baseline 55... ; paper has no appendix (References on p9)."
+  },
+  {
+   "paper": "ss_vision_transformers_for_lc",
+   "file": "Self-supervised_Vision_Transformers_for_Land-cover_Segmentation_and_Classification.pdf",
+   "table_id": "tab:table2",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4 Data / 5 Experiments and Results (page 5): CVPRW 2022 open-access PDF p5: \"Table 2. Results for segmentation downstream tasks with Swin Transformer backbone\"; main body, no appendix in paper."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:benchmark-ft",
+   "n_rows": 30,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table IV — V.A Classification (Comparison of SSL methods): arXiv HTML Table IV \"Fine-tuning results for EuroSAT, BigEarthNet, and So2Sat-LCZ42\" in Sec V.A."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:benchmark-lc",
+   "n_rows": 40,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table III — V.A Classification (Comparison of SSL methods): arXiv HTML Table III \"Linear probing results for EuroSAT, BigEarthNet (BE) and So2Sat-LCZ42\" in Sec V.A."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:dataset-comp-ft",
+   "n_rows": 8,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table XIX — Appendix-3 E. Additional dataset comparison results: arXiv HTML Table XIX \"Comparison of different pre-training datasets under fine-tuning evaluation\" in Appendix-3, after References; varies pretraining dataset (MoCo-v2 RN50) to justify SSL4EO-S12."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:dataset-comp-lc",
+   "n_rows": 15,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table V — V.A Classification (Comparison of pre-training datasets): arXiv HTML Table V \"Comparison of different pre-training datasets under linear probing evaluation\" in Sec V.A; varies pretraining dataset with fixed MoCo-v2 RN50."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:dataset-size",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table XI — VI.A Ablation studies (Impact of pre-training scale): arXiv HTML Table XI \"Linear probing results on BigEarthNet-10% for various Sentinel-2 L1C pre-training data sizes\" in Sec VI.A Ablation studies."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:dfc2020",
+   "n_rows": 9,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VI — V.B Segmentation (Land cover segmentation): arXiv HTML Table VI (DFC2020 OA/AA/mIoU) in Sec V.B."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:imagenet-diff",
+   "n_rows": 8,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XVII — Appendix-3 D.1 Different ImageNet pre-training protocols: arXiv HTML Table XVII \"Summary of different ImageNet pre-training protocols\" in Appendix-3, after References; compares baseline ImageNet protocols (ablation status debatable)."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:level",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table X — VI.A Ablation studies (Atmospheric correction as data augmentation): arXiv HTML Table X (L1C vs L2A vs L1C+L2A pretraining) in Sec VI.A Ablation studies."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:mask-ratio",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table XVI — Appendix-3 C. Effect of MAE masking ratio: arXiv HTML Table XVI \"Effects of different masking ratios\" in Appendix-3, after References."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:modality",
+   "n_rows": 8,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table VIII — VI.A Ablation studies (Benefits of multimodality): arXiv HTML Table VIII \"Linear probing results of multimodal SSL\" in Sec VI.A Ablation studies."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:oscd",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table VII — V.B Segmentation (Change detection): arXiv HTML Table VII \"OSCD change detection results\" in Sec V.B."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:rs-sup",
+   "n_rows": 8,
+   "location": "appendix",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table XVIII — Appendix-3 D.2 Supervised pre-training on RS datasets: arXiv HTML Table XVIII \"A comparison of different pre-training protocols on remote sensing datasets and evaluated on EuroSAT\" in Appendix-3; compares supervised-RS vs SSL pretraining protocols (ablation status debatable)."
+  },
+  {
+   "paper": "ssl4eo",
+   "file": "02_all.tex",
+   "table_id": "tab:season",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table IX — VI.A Ablation studies (Ablation of seasonal information): arXiv HTML Table IX \"Linear probing results of multi-temporal ablation study\" in Sec VI.A."
+  },
+  {
+   "paper": "sustainfm",
+   "file": "main.tex",
+   "table_id": "table:FMs3",
+   "n_rows": 160,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 4.2 Accuracy Assessment: HTML S4.T3 \"Performance of Foundation Models and Traditional Methods across SustainFM tasks\" contains CROMA 84.02."
+  },
+  {
+   "paper": "sustainfm",
+   "file": "main.tex",
+   "table_id": "table:FMs_fixed_order",
+   "n_rows": 10,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 4.2 Accuracy Assessment: HTML S4.T4 \"Comparison of Finetuning the FM decoder only and Finetuning the Full Parameters\" (OMBRIA) contains DOFA 89.46; benchmark protocol comparison across FMs, not an ablation of an own model."
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/04_experiments.tex",
+   "table_id": "tab:abl-GEO-Bench",
+   "n_rows": 12,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 5.4 Ablations and Analysis: Table 5 component ablation; SS-only 54.62/83.20/50.58 matches; main body (appendix tables are A1/A2)."
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/04_experiments.tex",
+   "table_id": "tab:benchGeo",
+   "n_rows": 78,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.3 Evaluating Downstream Tasks: Table 4 GEO-Bench comparison; SatMAE ViT-L 96.6/68.3/57.2 matches."
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/04_experiments.tex",
+   "table_id": "tab:benchmarkcop",
+   "n_rows": 56,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5.3 Evaluating Downstream Tasks: Table 3 Copernicus-Bench; Cloud-S2 Supervised 59.4, Random 60.4, SoftCon 66.9 match."
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/04_experiments.tex",
+   "table_id": "tab:knn-results",
+   "n_rows": 24,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.3 Evaluating Downstream Tasks: Caption matches Table 2 kNN evaluation on GEO-Bench subsets."
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/05_supp.tex",
+   "table_id": "tab:abl-fusion",
+   "n_rows": 8,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sec/05_supp.tex'"
+  },
+  {
+   "paper": "terrafm",
+   "file": "sec/05_supp.tex",
+   "table_id": "tab:landslide",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sec/05_supp.tex'"
+  },
+  {
+   "paper": "terramind",
+   "file": "05_experiments.tex",
+   "table_id": "tab:all_sen1floods11_zeroshot_results",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5.3 Zero-shot experiments: HTML S5.T4; TerraMindv1-B 45.40, -single 69.75, Prithvi 2.0 80.97 match."
+  },
+  {
+   "paper": "terramind",
+   "file": "05_experiments.tex",
+   "table_id": "tab:multimodal",
+   "n_rows": 6,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 5.5 Fine-tuning experiments: HTML S5.T7; S-1 20.04/80.39, S-2 40.20 match; varies input modalities of TerraMind only."
+  },
+  {
+   "paper": "terramind",
+   "file": "05_experiments.tex",
+   "table_id": "tab:pangaea-full-results",
+   "n_rows": 18,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 5.5 Fine-tuning experiments: HTML S5.T6 PANGAEA comparison caption matches; main body (supplementary starts at Sec 8 after References)."
+  },
+  {
+   "paper": "terramind",
+   "file": "05_experiments.tex",
+   "table_id": "tab:sen1floods11_cot_results",
+   "n_rows": 4,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 5.6 Thinking in modalities: HTML S5.T8; TerraMind S-1 68.00/81.06, S-2 82.26 match; compares own fine-tuning recipes (TiM vs standard)."
+  },
+  {
+   "paper": "terramind",
+   "file": "05_experiments.tex",
+   "table_id": "tab:sen1floods11_uni_vs_multi",
+   "n_rows": 14,
+   "location": "main",
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 5.1 Foundational experiments: HTML S5.T2; late fusion 61.01/72.70 vs token-level 63.94 match; fusion-design study of own approach."
+  },
+  {
+   "paper": "terramind",
+   "file": "12_appendix.tex",
+   "table_id": "tab:few_shot_all",
+   "n_rows": 60,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name '12_appendix.tex'"
+  },
+  {
+   "paper": "terramind",
+   "file": "12_appendix.tex",
+   "table_id": "tab:sacrop",
+   "n_rows": 1,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name '12_appendix.tex'"
+  },
+  {
+   "paper": "terramind",
+   "file": "12_appendix.tex",
+   "table_id": "tab:sen1floods11_zeroshot_results",
+   "n_rows": 1,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name '12_appendix.tex'"
+  },
+  {
+   "paper": "tessera",
+   "file": "sec/4_experiments.tex",
+   "table_id": "tab:unified_result_table",
+   "n_rows": 363,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 1 — 4 Experiments: arXiv HTML Table 1 \"Results across tasks. (a) Classification ... (b) Segmentation ... (c) Regression\" in Sec 4, before References/Appendix A."
+  },
+  {
+   "paper": "tessera",
+   "file": "sec/5_discussion_and_ablation.tex",
+   "table_id": "tab:ablation",
+   "n_rows": 7,
+   "location": "appendix",
+   "ablation": true,
+   "how": "rule",
+   "evidence": "source file name 'sec/5_discussion_and_ablation.tex'"
+  },
+  {
+   "paper": "tessera",
+   "file": "sec/X_suppl.tex",
+   "table_id": "tab:africa_benchmark",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sec/X_suppl.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:arch-sweep",
+   "n_rows": 117,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:cityrep-linear",
+   "n_rows": 16,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:distill-scaling",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:family-prefix",
+   "n_rows": 16,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:from-scratch",
+   "n_rows": 2,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:full-pixel-matryoshka",
+   "n_rows": 120,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:heldout-veg-std",
+   "n_rows": 24,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:matryoshka-cls-composite",
+   "n_rows": 6,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:teacher-size",
+   "n_rows": 4,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tessera_v2",
+   "file": "sections/appendix.tex",
+   "table_id": "tab:temporal-window",
+   "n_rows": 2,
+   "location": "appendix",
+   "ablation": false,
+   "how": "rule",
+   "evidence": "source file name 'sections/appendix.tex'"
+  },
+  {
+   "paper": "tree-height-change",
+   "file": "tables/reg_benchmark.tex",
+   "table_id": "tab:model_metrics",
+   "n_rows": 132,
+   "location": "main",
+   "ablation": false,
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — 4.2 Results (Performance of the benchmarked GFMs): arXiv HTML S4.T2 \"Benchmark results of the GFMs on the CHC dataset\"; ResNet-50 3.51/2.57/0.68 present; paper has no appendix in the arXiv source (it refers to a separate supplement tab. S5 for full evaluation). Table also varies training loss (s/t/w) but is primarily a GFM benchmark."
+  }
+ ]
+}

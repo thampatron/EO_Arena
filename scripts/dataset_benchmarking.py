@@ -44,6 +44,7 @@ class StructuredFit:
     obj: float = np.nan
     n_iter: int = 0
     meta: dict = field(default_factory=dict)
+    scale: np.ndarray | None = None     # (T,) residual SD per task when fitted in noise units (fit_heteroskedastic)
 
     def lam(self, include_u: bool = True) -> np.ndarray:
         L = self.U.copy() if include_u else np.zeros_like(self.U)
@@ -53,7 +54,9 @@ class StructuredFit:
         return L
 
     def predict(self) -> np.ndarray:
-        return self.mu[None, :] + self.theta @ self.lam().T
+        """Predictions on the original (points) scale."""
+        P = self.mu[None, :] + self.theta @ self.lam().T
+        return P if self.scale is None else P * self.scale[None, :]
 
 
 def _group_parts(B, groups, T, K, skip=None):
@@ -67,14 +70,17 @@ def _group_parts(B, groups, T, K, skip=None):
 
 
 def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g: dict | None = None, ridge_theta=10.0,
-                   n_iter=400, tol=1e-7, seed=0, n_restarts=3, theta_init=None) -> StructuredFit:
-    """Block-coordinate ridge least squares on observed cells. Every block update solves its exact ridge subproblem, so the
-    penalised objective decreases monotonically. groups=None or {} gives the free-loading model (current EOArena fit)."""
+                   n_iter=400, tol=1e-7, seed=0, n_restarts=3, theta_init=None, task_weight=None) -> StructuredFit:
+    """Block-coordinate ridge (weighted) least squares on observed cells. Every block update solves its exact ridge
+    subproblem, so the penalised objective decreases monotonically. groups=None or {} gives the free-loading model (the
+    current EOArena fit). task_weight (T,) multiplies each task's squared residuals: pass 1/psi_t for the note's
+    heteroskedastic residual variance (Eq. 1: eps ~ N(0, sigma_t^2)); see fit_heteroskedastic."""
     groups = {g: np.asarray(v, int) for g, v in (groups or {}).items()}
     ridge_g = {g: (ridge_g or {}).get(g, 1.0) for g in groups}
     M, T = Y.shape
-    W = mask.astype(float)
-    WY = np.where(mask, Y, 0.0)
+    w_t = np.ones(Y.shape[1]) if task_weight is None else np.asarray(task_weight, float)
+    W = mask.astype(float) * w_t[None, :]
+    WY = W * np.where(mask, Y, 0.0)
     nlev = {g: int(idx.max()) + 1 if (idx >= 0).any() else 0 for g, idx in groups.items()}
     rng = np.random.default_rng(seed)
     mu0 = np.array([Y[mask[:, t], t].mean() if mask[:, t].any() else 0.0 for t in range(T)])
@@ -136,19 +142,50 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     return StructuredFit(K, mu, th, B, U, groups, obj, it)
 
 
+def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
+    """Fit with a residual variance per task, psi_t (note Eq. 1/9: each task has its own noise scale). Each task is
+    divided by its current residual SD sqrt(psi_t) and the structured model is fitted in these noise units; psi_t is then
+    re-estimated on the original scale, three rounds. Unlike standardising by the observed spread of the models a paper
+    chose, this keeps between-model signal: |lambda_t|^2 is the shared-capability variance of task t in units of its
+    residual variance (an EDI-like signal-to-residual ratio), comparable across tasks and metrics, and the ridge has
+    the same meaning for every task. psi_t is the df-corrected residual mean square shrunk toward the median over tasks
+    with prior_n pseudo-observations, so 4-model comparisons do not get extreme scales. NB with single reported scores
+    psi_t = Psi_tt + sigma_t^2 (stable task-specific interaction plus evaluation noise, not separable: note Eq. 9).
+    Returns (fit, psi); fit.scale = sqrt(psi) and fit.predict() is on the original scale."""
+    T = Y.shape[1]; psi = None; fit = None
+    sd0 = np.array([Y[mask[:, t], t].std(ddof=1) if mask[:, t].sum() > 1 else 1.0 for t in range(T)])
+    psi = np.maximum(sd0, 1e-3) ** 2                      # start: observed spread (replaced after the first round)
+    for _ in range(n_rounds):
+        s = np.sqrt(psi)
+        fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
+        fit.scale = s
+        E = np.where(mask, Y - fit.predict(), 0.0); n = mask.sum(0)
+        dof = np.maximum(n - K - 1, 1.0)
+        raw = (E ** 2).sum(0) / dof
+        pooled_rel = np.median((raw / psi)[n > K + 2]) if (n > K + 2).any() else 1.0
+        target = pooled_rel * psi                         # shrink toward the pooled residual/scale ratio, task by task
+        psi = np.maximum((dof * raw + prior_n * target) / (dof + prior_n), 1e-6)
+    s_new = np.sqrt(psi)                                  # express the final fit in the final psi's units
+    fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, **kw); fit.scale = s_new
+    return fit, psi
+
+
 # ============================================================================ 2. out-of-sample tests
 def _rank_scores(y, p):
     """Spearman rho and pairwise ordering accuracy (ties in y skipped) for one task."""
-    if len(y) < 3 or np.ptp(y) == 0 or np.ptp(p) == 0:
+    if len(y) < 3 or np.ptp(y) == 0:
         return np.nan, np.nan, 0
+    if np.ptp(p) == 0:
+        return 0.0, 0.5, 0
     rho = spearmanr(y, p).statistic
     d_y = np.sign(y[:, None] - y[None, :]); d_p = np.sign(p[:, None] - p[None, :])
     iu = np.triu_indices(len(y), 1); keep = d_y[iu] != 0
-    acc = float((d_y[iu][keep] == d_p[iu][keep]).mean()) if keep.any() else np.nan
+    hit = np.where(d_p[iu][keep] == 0, 0.5, (d_y[iu][keep] == d_p[iu][keep]).astype(float))
+    acc = float(hit.mean()) if keep.any() else np.nan
     return float(rho), acc, int(keep.sum())
 
 
-def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, use_u=False, **kw):
+def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, **kw):
     """For each paper: drop all its tasks, refit, predict each dropped task's model ordering from lambda = sum of its
     learned group blocks (u_t is unknown for an unseen task, so it is 0), for models that keep >= min_theta_tasks
     observed tasks elsewhere. Returns per-task rows: paper, task index, n models scored, Spearman, pairwise accuracy.
@@ -161,7 +198,7 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
         m2 = mask.copy(); m2[:, hold] = False
         if m2[:, ~hold].sum() == 0:
             continue
-        fit = fit_structured(Y, m2, K, groups, **kw)
+        fit = fit_heteroskedastic(Y, m2, K, groups, **kw)[0] if hetero else fit_structured(Y, m2, K, groups, **kw)
         L = fit.lam(include_u=False)
         gen = (fit.mu[None, ~hold] + fit.theta @ fit.lam()[~hold].T).mean(1)   # global "general ability" score
         ntr = m2.sum(1)
@@ -178,7 +215,7 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
     return pd.DataFrame(rows)
 
 
-def heldout_cell_cv(Y, mask, K, groups, folds=5, min_keep=4, seed=0, **kw):
+def heldout_cell_cv(Y, mask, K, groups, folds=5, min_keep=4, seed=0, hetero=True, sd_floor=0.5, **kw):
     """Held-out cell CV (as in the current pipeline) for the structured model; RMSE and within-task pairwise accuracy."""
     rng = np.random.default_rng(seed)
     cells = np.argwhere(mask); per_task = mask.sum(0)
@@ -190,16 +227,22 @@ def heldout_cell_cv(Y, mask, K, groups, folds=5, min_keep=4, seed=0, **kw):
         bad = m2.sum(0) < min_keep
         if bad.any():
             back = bad[held[:, 1]]; m2[held[back, 0], held[back, 1]] = True; held = held[~back]
-        P = fit_structured(Y, m2, K, groups, seed=seed + f, **kw).predict()
-        e = Y[held[:, 0], held[:, 1]] - P[held[:, 0], held[:, 1]]
-        rmse.append(float(np.sqrt((e ** 2).mean())))
+        if hetero:
+            fit, psi = fit_heteroskedastic(Y, m2, K, groups, seed=seed + f, **kw)
+        else:
+            fit = fit_structured(Y, m2, K, groups, seed=seed + f, **kw); psi = np.ones(Y.shape[1])
+        P = fit.predict()
+        sd_tr = np.array([Y[m2[:, t], t].std(ddof=1) if m2[:, t].sum() > 1 else np.nan for t in range(Y.shape[1])])
+        sd_tr = np.maximum(sd_tr, sd_floor)                # near-tied comparisons would otherwise dominate the RMSE
+        e = (Y[held[:, 0], held[:, 1]] - P[held[:, 0], held[:, 1]]) / sd_tr[held[:, 1]]
+        rmse.append(float(np.sqrt(np.nanmean(e ** 2))))   # in units of the task's training-fold spread: same for every K
         df = pd.DataFrame({"t": held[:, 1], "y": Y[held[:, 0], held[:, 1]], "p": P[held[:, 0], held[:, 1]]})
         ok = tot = 0
         for _, g in df.groupby("t"):
             if len(g) < 2: continue
             dy = np.sign(g.y.values[:, None] - g.y.values[None, :]); dp = np.sign(g.p.values[:, None] - g.p.values[None, :])
             iu = np.triu_indices(len(g), 1); k = dy[iu] != 0
-            ok += int((dy[iu][k] == dp[iu][k]).sum()); tot += int(k.sum())
+            ok += float(np.where(dp[iu][k] == 0, 0.5, (dy[iu][k] == dp[iu][k])).sum()); tot += int(k.sum())
         acc.append(ok / tot if tot else np.nan)
     return dict(rmse=float(np.mean(rmse)), rmse_se=float(np.std(rmse, ddof=1) / np.sqrt(folds)),
                 pair_acc=float(np.nanmean(acc)), pair_acc_se=float(np.nanstd(acc, ddof=1) / np.sqrt(folds)), n_heldout=int(len(cand)))
@@ -259,6 +302,21 @@ def communality_by_dataset(Y, mask, fit: StructuredFit, task_dataset):
             num += ((y - y.mean()) ** 2).sum() - (e ** 2).sum(); den += ((y - y.mean()) ** 2).sum()
         out[n] = float(np.clip(num / den, 0, 1)) if den > 0 else np.nan
     return out
+
+
+def dataset_shapley(Ld, n_perm=500, seed=0):
+    """Redundancy-adjusted contribution of each dataset to the information a suite gives about shared capabilities
+    (note Eq. 8), with one entry per DATASET (its tasks pooled, so a dataset reported in 15 comparisons is not counted 15
+    times): V(A) = log det(I + sum_{d in A} lambda_d lambda_d'), lambda_d in residual-SD units, Sigma_theta = I.
+    Monte-Carlo Shapley over random orderings; returns (mean contribution, Monte-Carlo SE) per dataset."""
+    rng = np.random.default_rng(seed); D, K = Ld.shape
+    if K == 0: return np.zeros(D), np.zeros(D)
+    C = np.zeros((n_perm, D))
+    for b in range(n_perm):
+        Mx = np.eye(K); prev = 0.0
+        for d in rng.permutation(D):
+            Mx = Mx + np.outer(Ld[d], Ld[d]); v = np.linalg.slogdet(Mx)[1]; C[b, d] = v - prev; prev = v
+    return C.mean(0), C.std(0, ddof=1) / np.sqrt(n_perm)
 
 
 # ============================================================================ 4. cross-paper reproducibility
@@ -323,25 +381,26 @@ def cross_paper_reproducibility(df, min_papers=2, min_shared=3, n_boot=500, seed
 
 # ============================================================================ 5. simulation under a given mask
 def simulate(mask, task_dataset, task_paper, K_true, snr=1.0, dataset_share=0.7, paper_effect=0.0, seed=0):
-    """Synthetic table on the real missingness mask. Tasks of one dataset share a loading (dataset_share of its variance),
-    plus a task-specific part; optional paper-level random offsets per (paper, model) mimic implementation effects.
-    Values are standardised within task exactly as the pipeline does. Returns Y, true dataset loadings, names."""
+    """Synthetic table on the real missingness mask, on a points-like scale (no standardisation, matching the fixed-scale
+    analysis). Tasks of one dataset share a loading (dataset_share of its variance) plus a task-specific part; tasks get
+    their own level (~60 +/- 15 pts) and spread (log-normal); snr = shared-signal variance / noise variance per task;
+    paper_effect adds a (paper, model) offset, in noise SDs, mimicking implementation effects. Returns Y (0 where
+    unobserved), true dataset loadings (in units of the task spread), dataset names."""
     rng = np.random.default_rng(seed); M, T = mask.shape
     task_dataset = np.asarray(task_dataset); task_paper = np.asarray(task_paper)
     names = sorted(set(task_dataset) - {""}); di = {n: i for i, n in enumerate(names)}
     theta = rng.normal(size=(M, K_true))
-    Ld = rng.normal(size=(len(names), K_true))
-    L = np.array([np.sqrt(dataset_share) * Ld[di[d]] if d in di else np.zeros(K_true) for d in task_dataset]) + np.sqrt(1 - dataset_share) * rng.normal(size=(T, K_true))
-    S = theta @ L.T
-    sig = np.sqrt(np.var(S) / snr) if snr > 0 else 1.0
-    Y = S + sig * rng.normal(size=(M, T))
+    Ld = rng.normal(size=(len(names), K_true)) / np.sqrt(K_true)
+    L = np.array([np.sqrt(dataset_share) * Ld[di[d]] if d in di else np.zeros(K_true) for d in task_dataset]) \
+        + np.sqrt(1 - dataset_share) * rng.normal(size=(T, K_true)) / np.sqrt(K_true)
+    scale = np.exp(rng.normal(np.log(4.0), 0.5, size=T)); level = rng.normal(60, 15, size=T)
+    noise_sd = 1.0 / np.sqrt(snr)
+    E = noise_sd * rng.normal(size=(M, T))
     if paper_effect > 0:
         for p in np.unique(task_paper):
-            Y[:, task_paper == p] += paper_effect * sig * rng.normal(size=(M, 1))
-    Y = np.where(mask, Y, np.nan)
-    mu = np.nanmean(Y, 0); sd = np.nanstd(Y, 0, ddof=1)
-    Z = np.where(mask, (Y - mu) / np.where(sd > 0, sd, 1), 0.0)
-    return Z, Ld, names
+            E[:, task_paper == p] += paper_effect * noise_sd * rng.normal(size=(M, 1))
+    Y = level[None, :] + scale[None, :] * (theta @ L.T + E)
+    return np.where(mask, Y, 0.0), Ld, names
 
 
 def recovery(Ld_true, Ld_hat):
