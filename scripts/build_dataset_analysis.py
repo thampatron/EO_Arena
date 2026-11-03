@@ -211,7 +211,11 @@ k = kw(MAIN); g = k.pop("groups"); k.update(n_restarts=3, n_iter=400)
 fit, psi = db.fit_heteroskedastic(Y, mask, K, g, **k)
 names, Ld, ntask = db.dataset_loadings(fit, td, mask)
 comm = db.communality_by_dataset(Y, mask, fit, td)
-shap, shap_se = db.dataset_shapley(Ld, n_perm=200 if QUICK else 1000)
+# dataset-level quantities need independent evidence: a dataset reported by one paper has a loading that mixes that
+# paper's model set and implementation with what the dataset measures, and Eq. 8 would credit it for looking distinct
+MULTI = np.array([dpp.get(n, 0) >= 2 for n in names])
+shap = np.full(len(names), np.nan); shap_se = np.full(len(names), np.nan)
+_s, _se = db.dataset_shapley(Ld[MULTI], n_perm=200 if QUICK else 1000); shap[MULTI] = _s; shap_se[MULTI] = _se
 k2 = kw("dataset + task"); g2 = k2.pop("groups")            # metadata association on a fit with no metadata blocks but dataset
 fit2, _ = db.fit_heteroskedastic(Y, mask, K, g2, **k2); _, Ld2, _ = db.dataset_loadings(fit2, td, mask)
 dmeta = TI.groupby("canonical_dataset").agg(domain=("domain", "first"), subdomain=("subdomain", "first"),
@@ -239,6 +243,17 @@ rr["group"] = rr.canonical_dataset + " | " + rr.benchmark_id.astype(str) + " | "
 rr = rr.groupby(["group", "paper_key", "model_id"], as_index=False).y.mean()
 rep = db.cross_paper_reproducibility(rr.rename(columns={"paper_key": "paper", "model_id": "model"})[["group", "paper", "model", "y"]], n_boot=100 if QUICK else 500)
 log(f"reproducibility: {len(rep)} groups with >= 5 shared models and df >= 5")
+repl = []
+for gname, gg in rr.groupby("group"):
+    ps = gg.paper_key.unique()
+    if len(ps) < 2: continue
+    mc = gg.groupby("model_id").paper_key.nunique()
+    repl.append({"group": gname, "papers": int(len(ps)), "geofms_in_2plus_papers": int((mc >= 2).sum())})
+repl = pd.DataFrame(repl)
+replication = {"groups_with_2plus_papers": int(len(repl)), "with_3plus_shared_geofms": int((repl.geofms_in_2plus_papers >= 3).sum()) if len(repl) else 0,
+               "with_5plus_shared_geofms": int((repl.geofms_in_2plus_papers >= 5).sum()) if len(repl) else 0,
+               "groups": repl.sort_values("geofms_in_2plus_papers", ascending=False).head(15).to_dict("records") if len(repl) else []}
+log("replication", {k: v for k, v in replication.items() if k != "groups"})
 
 # ============================================================================= write
 def rnd(x, d=3):
@@ -256,11 +271,12 @@ out = {"as_of": time.strftime("%Y-%m-%d"),
        "datasets": {n: {"papers": int(dmeta.at[n, "papers"]), "tasks": int(ntask[i]), "models_per_task": round(nmods[n], 1),
                         "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],
                         "reported_separation_pts": rnd(tau_obs[n], 2), "residual_sd_pts": rnd(float(np.sqrt(np.median(psi[td == n]))), 2),
-                        "shared_signal_to_residual": rnd(sig[i]), "communality_in_sample": rnd(comm.get(n, np.nan)),
-                        "info_share": rnd(shap[i] / max(shap.sum(), 1e-12), 4) if K else None, "info_share_mc_se": rnd(shap_se[i] / max(shap.sum(), 1e-12), 4) if K else None,
+                        "shared_signal_to_residual": rnd(sig[i]) if MULTI[i] else None, "communality_in_sample": rnd(comm.get(n, np.nan)) if MULTI[i] else None,
+                        "evidence": "independent (>= 2 papers)" if MULTI[i] else "single paper: dataset-level quantities not estimable",
+                        "info_share_among_multi_paper": rnd(shap[i] / np.nansum(shap), 4) if (K and MULTI[i]) else None, "info_share_mc_se": rnd(shap_se[i] / np.nansum(shap), 4) if (K and MULTI[i]) else None,
                         "lopo_rho": rnd(Lsel[Lsel.dataset == n].rho_struct.mean()), "lopo_rho_one_ordering": rnd(Lsel[Lsel.dataset == n].rho_global.mean()),
                         "nearest": ([{"name": names[j], "similarity": round(float(S[i, j]), 3)} for j in np.argsort(-S[i])[1:6]] if (GEOMETRY_OK and multi[i]) else None)}
                     for i, n in enumerate(names)},
-       "reproducibility": rep.round(4).to_dict("records")}
+       "reproducibility": rep.round(4).to_dict("records"), "replication_evidence": replication}
 (ROOT / "data" / "dataset_analysis.json").write_text(json.dumps(out, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
 log("wrote data/dataset_analysis.json")
