@@ -180,19 +180,22 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
     with prior_n pseudo-observations, so 4-model comparisons do not get extreme scales. NB with single reported scores
     psi_t = Psi_tt + sigma_t^2 (stable task-specific interaction plus evaluation noise, not separable: note Eq. 9).
     Returns (fit, psi); fit.scale = sqrt(psi) and fit.predict() is on the original scale."""
-    T = Y.shape[1]; psi = None; fit = None
-    sd0 = np.array([Y[mask[:, t], t].std(ddof=1) if mask[:, t].sum() > 1 else 1.0 for t in range(T)])
-    psi = np.maximum(sd0, 1e-3) ** 2                      # start: observed spread (replaced after the first round)
+    T = Y.shape[1]; fit = None
+    n = mask.sum(0)
+    sd0 = np.array([Y[mask[:, t], t].std(ddof=1) if n[t] > 1 else np.nan for t in range(T)])
+    psi = np.full(T, np.nanmedian(sd0) ** 2)              # start: one pooled level for every task
     for _ in range(n_rounds):
         s = np.sqrt(psi)
         fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
         fit.scale = s
-        E = np.where(mask, Y - fit.predict(), 0.0); n = mask.sum(0)
+        E = np.where(mask, Y - fit.predict(), 0.0)
         dof = np.maximum(n - K - 1, 1.0)
-        raw = (E ** 2).sum(0) / dof
-        pooled_rel = np.median((raw / psi)[n > K + 2]) if (n > K + 2).any() else 1.0
-        target = pooled_rel * psi                         # shrink toward the pooled residual/scale ratio, task by task
-        psi = np.maximum((dof * raw + prior_n * target) / (dof + prior_n), 1e-6)
+        raw = np.maximum((E ** 2).sum(0) / dof, 1e-6)
+        # hierarchical prior on log psi: shrink each task's log residual variance toward the pooled mean, with
+        # prior_n pseudo-degrees of freedom; the target no longer depends on the task's own observed spread
+        lr = np.log(raw); ok = n > K + 2
+        m0 = np.average(lr[ok], weights=dof[ok]) if ok.any() else lr.mean()
+        psi = np.exp((dof * lr + prior_n * m0) / (dof + prior_n))
     s_new = np.sqrt(psi)                                  # express the final fit in the final psi's units
     fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, **kw); fit.scale = s_new
     return fit, psi
@@ -277,19 +280,14 @@ def heldout_cell_cv(Y, mask, K, groups, folds=5, min_keep=4, seed=0, hetero=True
 
 
 # ============================================================================ 3. dataset-level geometry
-def dataset_loadings(fit: StructuredFit, task_dataset, dataset_group="dataset"):
-    """Position of each dataset in capability space: its block loading if the model has a dataset block, else the mean
-    loading of its tasks. Returns (names, L_d, n_tasks)."""
+def dataset_loadings(fit: StructuredFit, task_dataset, mask=None):
+    """Position of each dataset in capability space: the model-count-weighted mean of the FULL loadings lambda_t of its
+    tasks (all metadata blocks + task part), so structured and free fits are summarised the same way. Returns
+    (names, L_d, n_tasks)."""
     task_dataset = np.asarray(task_dataset)
     names = sorted(set(task_dataset) - {""})
-    L = fit.lam()
-    Ld = np.array([L[task_dataset == n].mean(0) for n in names])
-    if dataset_group in fit.groups and fit.K:
-        idx = fit.groups[dataset_group]
-        for i, n in enumerate(names):
-            lev = np.unique(idx[(task_dataset == n) & (idx >= 0)])
-            if len(lev) == 1:
-                Ld[i] = fit.B[dataset_group][lev[0]] + (fit.U[task_dataset == n].mean(0))
+    L = fit.lam(); w = mask.sum(0).astype(float) if mask is not None else np.ones(L.shape[0])
+    Ld = np.array([np.average(L[task_dataset == n], axis=0, weights=w[task_dataset == n]) for n in names]) if fit.K else np.zeros((len(names), 0))
     return names, Ld, np.array([(task_dataset == n).sum() for n in names])
 
 
@@ -348,16 +346,20 @@ def dataset_shapley(Ld, n_perm=500, seed=0):
 
 
 # ============================================================================ 4. cross-paper reproducibility
-def cross_paper_reproducibility(df, min_papers=2, min_shared=3, n_boot=500, seed=0):
+def cross_paper_reproducibility(df, min_papers=2, min_shared=5, min_df=5, n_boot=500, seed=0):
     """df: one row per (group, paper, model) with columns group, paper, model, y — y on a common fixed scale within a
     group (same dataset, protocol family and metric). For each group with >= min_papers papers that each share
     >= min_shared models with another paper:
       - pairwise Kendall tau of model orderings between papers on their shared models (median over pairs),
-      - additive fit y_mp = a_p + b_m + e on the connected cells; sigma2_xp = RSS / df_resid is the cross-implementation
-        disagreement about the same model (upper bound on single-evaluation noise),
+      - additive fit y_mp = a_p + b_m + e on the connected cells; sigma2_xp = RSS / df_resid is the CROSS-IMPLEMENTATION
+        DISAGREEMENT about the same model: implementation/protocol differences plus seed noise of a (mean of n seeds)
+        published value. It is not seed noise, and it is not in general an upper bound on sigma2_t (a mean of n seeds
+        carries sigma2_t / n),
       - tau2_b = Var_m(b_m) - mean sampling variance of b_m: stable between-model variance in the group,
-      - reproducibility = tau2_b / (tau2_b + sigma2_xp), the note's Eq. 6 with sigma2 replaced by its cross-paper upper
-        bound, so it is a LOWER bound on the seed-noise score. Bootstrap over models gives a 90% interval."""
+      - reproducibility = tau2_b / (tau2_b + sigma2_xp): the share of between-model variance that independent groups
+        agree on (Eq. 6 form, with cross-implementation disagreement in place of seed noise). Requires >= min_shared
+        models seen by >= 2 papers and df_resid >= min_df. Bootstrap over models gives a 90% interval. Input must be free
+        of reprinted (recited) values, which would count as perfect agreement."""
     rng = np.random.default_rng(seed); out = []
     for gname, g in df.groupby("group"):
         papers = g.paper.unique()
@@ -392,6 +394,7 @@ def cross_paper_reproducibility(df, min_papers=2, min_shared=3, n_boot=500, seed
         a = additive(h)
         if a is None: continue
         s2, tau2, dfr = a
+        if dfr < min_df: continue
         boots = []
         Ms = np.array(sorted(h.model.unique()))
         for _ in range(n_boot):

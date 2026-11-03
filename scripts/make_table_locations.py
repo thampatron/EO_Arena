@@ -44,7 +44,9 @@ out = {
     "ablation_axes": ["reproduction", "pretrain_band_subset", "pretrain_data_fraction", "patch_embedding_training", "masking_strategy",
                       "model_size", "channel_grouping", "init", "finetune_augmentation", "temporal_input_handling", "spectral_crop_size",
                       "pretrain_scales", "embedding_prefix_dim", "inference_window", "finetune_epochs", "decoder_config", "fusion_strategy",
-                      "probe_strategy", "downstream_module", "source_table"],
+                      "probe_strategy", "downstream_module", "source_table",
+                      # recipe sweeps of a fixed encoder (training loss, fusion scenario): ablation-type, no headline setting known
+                      "loss_function", "change_direction_subset_x_training_loss", "scenario"],
     "headline_variants": {"embedding_prefix_dim": "128", "probe_strategy": "standard_ridge", "source_table": "main_table"},
     "tables": recs,
 }

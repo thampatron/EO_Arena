@@ -1,0 +1,20 @@
+{
+ "about": "Which models count as geospatial foundation models (GeoFMs) in the dataset-benchmarking analysis. A model is in scope if its workbook registry category is one of geofm_categories, or it is listed in geofm_uncategorised (no registry category, but pretrained on Earth-observation data and offered as a reusable representation). Everything else is out of scope: generic vision models (ImageNet / CLIP / ADE20K), random initialisation, task architectures trained from scratch, classical / trivial / feature baselines, and paper-internal baselines or reproductions. Out-of-scope models would inflate spread and the shared signal of datasets whose comparisons include them.",
+ "geofm_categories": ["GFM_self_supervised", "GFM_supervised", "GFM_vlm", "location_encoder"],
+ "geofm_uncategorised": {
+  "remoteclip_vitb32": "RemoteCLIP (remote-sensing CLIP)", "remoteclip_rn50": "RemoteCLIP (remote-sensing CLIP)",
+  "satlas_swinb_naip": "SatlasPretrain", "satlas_swint": "SatlasPretrain", "satlas_resnet50": "SatlasPretrain", "satlas_vitb": "SatlasPretrain",
+  "skysense": "SkySense", "skysense_v2": "SkySense v2", "gfm_swin_swint": "GFM (GeoPile continual pretraining)",
+  "clay_vitb": "Clay", "terramind_v1t": "TerraMind", "terramind_v1s": "TerraMind", "prithvi_v2_100m": "Prithvi-EO-2.0",
+  "gassl": "Geography-aware SSL (fMoW)", "ofanet": "OFA-Net (multimodal RS)", "ramen": "RAMEN (resolution-adjustable multimodal encoder)",
+  "senpamae": "SenPa-MAE", "fgmae": "FG-MAE", "crossscale_mae": "Cross-Scale MAE", "matter": "MATTER", "satvit_v2": "SatViT-V2",
+  "caco": "CaCo (change-aware contrastive)", "cmid": "CMID", "smarties_vitl": "SMARTIES", "ringmo": "RingMo", "rvsa": "RVSA (MillionAID MAE)",
+  "tov": "TOV", "ssl4eo_vits_unspecified": "SSL4EO-S12 ViT-S"
+ },
+ "excluded_uncategorised": {
+  "generic vision pretraining (ImageNet / CLIP / ADE20K)": ["swinb_imagenet_baseline", "clip_rn50", "clip_vit", "clip_vitl14", "resnet50_baseline", "vitae_vitb", "swav_resnet50", "barlowtwins_resnet50", "vicreg_resnet50", "vitb_ijepa", "resnet18_imagenet", "convnext_b_imagenet", "convnext_t_imagenet", "swin_t_imagenet", "swin_ade20k_pretrained"],
+  "random init / scratch / task architecture": ["vits_random", "resnet18_baseline", "linknet", "pspnet", "unet_resnet50_supervised", "u_tae_pastis_baseline", "vivit_sen4map_scratch", "resnet50_scheibenreif_fusion"],
+  "paper-internal baseline or reproduction": ["decur_bl_vicreg_sar", "decur_bl_supervised_geonrw", "decur_bl_simclr_cross_sar", "decur_bl_simclr_cross_geonrw", "decur_bl_clip_cross_geonrw", "decur_bl_clip_cross_sar", "decur_bl_barlow_twins_sar", "decur_bl_barlow_twins_geonrw", "decur_bl_vicreg_geonrw", "decur_bl_bt_sar", "decur_bl_barlow_twins_rgb_geonrw", "decur_bl_supervised_sar", "ssl4eo_resnet50_moco_repro_sen12ms_allbands", "ssl4eo_resnet50_moco_repro_seco", "csp_imageonly_tile2vec"],
+  "ambiguous id (EO-pretrained in some papers, ImageNet in others)": ["vanilla_mae", "convmae_convvitl"]
+ }
+}

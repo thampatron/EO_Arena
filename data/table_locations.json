@@ -28,7 +28,10 @@
   "fusion_strategy",
   "probe_strategy",
   "downstream_module",
-  "source_table"
+  "source_table",
+  "loss_function",
+  "change_direction_subset_x_training_loss",
+  "scenario"
  ],
  "headline_variants": {
   "embedding_prefix_dim": "128",
