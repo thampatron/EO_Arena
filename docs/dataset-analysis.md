@@ -2,9 +2,16 @@
 
 Analysis of 2026-11-03 on the GeoFM meta-analysis workbook v4, following *GeoFM Benchmark Scoring* (S. Wang, Oct 2026). Object of study: the benchmark **datasets** — what they measure, how much they overlap, and whether independent groups agree on the model differences they show. Model capability vectors are nuisance parameters; nothing here ranks models. Built by `scripts/build_dataset_analysis.py`; numbers in `data/dataset_analysis.json`.
 
+## Findings
+
+1. **One leaderboard does not describe GeoFM performance.** Predicting how GeoFMs order on an unseen paper's tasks from all other papers, a one-factor model does no better than a naive leaderboard (-0.09 (90% CI -0.23 to +0.05)); the best multi-factor model (K = 4) beats it by Δρ = +0.12 (90% CI +0.07 to +0.18). Out-of-paper accuracy rises with K (ρ = 0.09, 0.21, 0.27, 0.30 for K = 1, 2, 3, 4); the smallest K not credibly worse than the best is 2, and on this mask that rule is conservative (in simulation it selects K = 1 for K_true = 1, K = 1 for K_true = 2, K = 1 for K_true = 3). So there are at least two shared dimensions and plausibly more; the exact number is not identifiable. Even the best model predicts little of each paper's ordering (ρ ≈ 0.30).
+2. **What a dataset measures does not carry over across papers.** For datasets that other papers also report, adding the dataset's own loading changes out-of-paper accuracy by -0.06 (90% CI -0.13 to +0.01). Dataset-to-dataset similarity is not recoverable on this evidence and is not reported.
+3. **No metadata label credibly organises the datasets.** Domain, subdomain, task type and sensor all fail to explain dataset loadings beyond chance after correcting for the four labels tested.
+4. **No dataset's reliability can be judged from the main-text literature.** After removing reprints, no dataset version × protocol has ≥ 5 GeoFMs evaluated by two independent papers; σ²_t, EDI and the Eq. 6 score need repeated standardised runs (the replicate design).
+
 ## 1. Evidence base
 
-11,580 extracted results → **3,100** kept. Rules, in order:
+11,580 extracted results → **3,433** kept. Rules, in order:
 
 | Rule | Rows dropped |
 |---|---|
@@ -13,16 +20,16 @@ Analysis of 2026-11-03 on the GeoFM meta-analysis workbook v4, following *GeoFM 
 | ablation-study table | 73 |
 | registry ablation model | 15 |
 | ablation variant axis (non-headline setting) | 452 |
-| not a GeoFM (baseline / task architecture / uncategorised) | 1,503 |
-| metric not bounded in points (error metrics, R^2) | 749 |
-| recitation of an earlier paper's value | 57 |
+| not a GeoFM (baseline / task architecture / uncategorised) | 1,118 |
+| metric not bounded in points (error metrics, R^2) | 792 |
+| recitation of an earlier paper's value | 66 |
 | metric twin (one metric kept per comparison) | 170 |
 
-Reprinted results (kept only in the earliest source): terrafm reprints copernicus (32 shared cells, 100% identical); anysat reprints pangea (18 shared cells, 83% identical).
+Reprinted results (kept only in the earliest source): anysat reprints pangea (22 shared cells, 77% identical); terrafm reprints copernicus (32 shared cells, 100% identical).
 
 Main-text placement of every source table is in `data/table_locations.json` (file-name rule, or checked against the arXiv version); model scope in `data/model_scope.json`.
 
-Imagery comparisons with ≥ 4 GeoFMs: **85 GeoFMs × 218 tasks** (59 datasets, 19 papers), 11.7% of cells observed, median 9 GeoFMs per comparison. 53 of 85 GeoFMs are evaluated by a single paper and only 18 by three or more; 20 of 59 datasets are reported by more than one paper. Everything below is limited by this overlap.
+Imagery comparisons with ≥ 4 GeoFMs: **93 GeoFMs × 228 tasks** (59 datasets, 20 papers), 11.9% of cells observed, median 10 GeoFMs per comparison. 57 of 93 GeoFMs are evaluated by a single paper and only 22 by three or more; 20 of 59 datasets are reported by more than one paper. Everything below is limited by this overlap.
 
 ## 2. How many shared capability dimensions? (the note's one-leaderboard test)
 
@@ -30,54 +37,68 @@ Model: y_mt = μ_t + λ_t′θ_m + c_{m,p(t)} + η_mt on the points scale, each 
 
 **Primary criterion — leave one paper out.** Drop every task a paper reports, refit, predict the order of its GeoFMs from what the rest of the literature says about those GeoFMs and about the task's dataset, protocol and sensor. Spearman ρ between predicted and reported order, averaged over held-out tasks:
 
-| K | structured prediction | one ordering for all tasks |
-|---|---|---|
-| 1 | 0.119 | 0.131 |
-| 2 | 0.332 | 0.272 |
-| 3 | 0.327 | 0.265 |
-| 4 | 0.331 | 0.284 |
+| K | structured prediction | its own one-ordering | naive leaderboard (fixed) |
+|---|---|---|---|
+| 1 | 0.091 | -0.066 | 0.178 |
+| 2 | 0.214 | 0.223 | 0.178 |
+| 3 | 0.268 | 0.235 | 0.178 |
+| 4 | 0.298 | 0.180 | 0.178 |
 
-Chosen **K = 2** (leave-one-paper-out Spearman of predicted within-task model order; smallest K not credibly worse than the best (paired bootstrap over papers)). Paired differences to the best K: K=1: -0.213 (90% CI -0.358 to -0.085; 201 tasks, 15 papers); K=3: -0.006 (90% CI -0.105 to +0.100; 201 tasks, 15 papers); K=4: -0.001 (90% CI -0.102 to +0.125; 201 tasks, 15 papers).
+The naive leaderboard orders the held-out paper's GeoFMs by their mean within-comparison z-score in all other papers: a single ranking that does not depend on K, so it is the fair one-leaderboard baseline.
 
-Gain of the structured prediction over a single ordering: +0.060 (90% CI -0.011 to +0.144; 201 tasks, 15 papers). Split: datasets reported by other papers +0.012 (90% CI -0.041 to +0.077; 110 tasks, 13 papers); datasets reported only by the held-out paper (prediction from protocol and sensor alone) +0.119 (90% CI +0.007 to +0.228; 91 tasks, 10 papers).
+Selection rule: the smallest K whose leave-one-paper-out accuracy is not credibly below the best K (paired bootstrap over papers) gives **K = 2**; the dataset outputs in §5 use it. Paired differences to the best K: K=1: -0.206 (90% CI -0.328 to -0.101; 213 tasks, 16 papers); K=2: -0.083 (90% CI -0.201 to +0.005; 213 tasks, 16 papers); K=3: -0.030 (90% CI -0.077 to +0.008; 213 tasks, 16 papers).
+
+**One leaderboard vs more dimensions.** Structured prediction minus the naive leaderboard: K = 1 -0.087 (90% CI -0.229 to +0.047; 213 tasks, 16 papers); K = 2 +0.037 (90% CI -0.083 to +0.118; 213 tasks, 16 papers); K = 4 (best) +0.120 (90% CI +0.067 to +0.181; 213 tasks, 16 papers).
+
+**Does knowing the dataset help?** Gain over the K-factor model's own single ordering: datasets also reported by other papers -0.063 (90% CI -0.132 to +0.014; 122 tasks, 14 papers); datasets reported only by the held-out paper (prediction from protocol and sensor) +0.064 (90% CI -0.011 to +0.138; 91 tasks, 10 papers). What a dataset 'measures', as estimated from other papers, does not carry over to a new paper's evaluation of it.
 
 **Held-out cells (secondary).** Pairwise ordering accuracy of held-out cells (within-paper information leaks into this criterion through c_{m,p}, so it is not used to choose K):
 
 | spec | paper offset | K=0 | K=1 | K=2 | K=3 | K=4 |
 |---|---|---|---|---|---|---|
-| free (current) | yes | 0.736 | 0.726 | 0.720 | 0.724 | 0.730 |
-| dataset + task | yes | – | 0.740 | 0.744 | 0.742 | 0.740 |
-| dataset + protocol + sensor + task | yes | – | 0.739 | 0.750 | 0.738 | 0.742 |
-| dataset + protocol + sensor + task | no | – | 0.706 | 0.747 | 0.747 | 0.737 |
+| free (current) | yes | 0.710 | 0.746 | 0.749 | 0.740 | 0.723 |
+| dataset + task | yes | – | 0.746 | 0.745 | 0.741 | 0.740 |
+| dataset + protocol + sensor + task | yes | – | 0.746 | 0.748 | 0.745 | 0.734 |
+| dataset + protocol + sensor + task | no | – | 0.696 | 0.723 | 0.740 | 0.737 |
 
-**Can K be recovered on this mask?** Simulation with the real missingness pattern, a dataset-shared loading (60% of its variance), and paper × model implementation effects (0.5 noise SD):
+**Can K be recovered on this mask?** Simulation with the real missingness pattern, a dataset-shared loading (60% of its variance), and paper × model implementation effects (0.5 noise SD). Selection by the same leave-one-paper-out rule as the real data (SNR 1):
 
-| K true | SNR | K selected | dataset-similarity recovery (all / datasets in ≥ 2 papers) |
+| K true | K selected (LOPO) | LOPO ρ by K |
+|---|---|---|
+| 1 | 1 | K1: 0.284, K2: 0.172, K3: 0.144, K4: 0.121 |
+| 2 | 1 | K1: 0.137, K2: 0.112, K3: 0.116, K4: 0.079 |
+| 3 | 1 | K1: 0.080, K2: 0.044, K3: 0.087, K4: 0.101 |
+
+Held-out-cell selection and geometry recovery over three signal levels:
+
+| K true | SNR | K selected (held-out cells) | dataset-similarity recovery (all / datasets in ≥ 2 papers) |
 |---|---|---|---|
 | 1 | 0.5 | 1 | – |
 | 1 | 1.0 | 1 | – |
 | 1 | 2.0 | 1 | – |
-| 2 | 0.5 | 1 | 0.15 / 0.33 |
-| 2 | 1.0 | 2 | 0.42 / 0.69 |
-| 2 | 2.0 | 2 | 0.47 / 0.68 |
-| 3 | 0.5 | 0 | 0.28 / 0.49 |
-| 3 | 1.0 | 2 | 0.31 / 0.47 |
-| 3 | 2.0 | 3 | 0.36 / 0.55 |
+| 2 | 0.5 | 2 | 0.17 / 0.28 |
+| 2 | 1.0 | 1 | 0.18 / 0.17 |
+| 2 | 2.0 | 2 | 0.53 / 0.37 |
+| 3 | 0.5 | 0 | 0.14 / 0.26 |
+| 3 | 1.0 | 0 | 0.25 / 0.31 |
+| 3 | 2.0 | 3 | 0.36 / 0.74 |
 
-With the paper × model offset, selection never over-shoots K; at low signal it under-shoots. Without the offset (earlier run) it over-selected (K_true 1 → 2, 2 → 3): implementation effects masquerade as capabilities, which is why the current site's K = 3 should not be read as three capabilities.
+Under the same leave-one-paper-out rule the simulation selects K = 1 even when K_true is 2 or 3: with this little cross-paper overlap, extra dimensions only pay off out of paper when they are strong. That the real data keeps improving up to K = 4 is therefore evidence of more than one shared dimension; K = 2 is a floor, not an estimate. In an earlier run without the paper × model offset, held-out selection over-selected (K_true 1 → 2, 2 → 3): implementation effects can masquerade as capabilities, so the current site's K = 3 may partly reflect implementation effects and its broader model scope.
 
 ## 3. What organises the datasets
 
-Share of variance in dataset loadings explained by each label (datasets reported by ≥ 2 papers; permutation null shuffles labels across datasets):
+Share of variance in dataset loadings explained by each label, over datasets reported by ≥ 2 papers (blank labels treated as missing; permutation null shuffles labels across datasets; p adjusted for the 4 labels tested). 'Direction only' normalises each loading to unit length: it asks what a dataset measures, not how strongly it separates GeoFMs.
 
-| label | R² | null mean | p |
-|---|---|---|---|
-| domain | 0.14 | 0.21 | 0.760 |
-| subdomain | 0.51 | 0.53 | 0.547 |
-| task_type | 0.01 | 0.11 | 0.970 |
-| sensor | 0.74 | 0.42 | 0.002 |
+| label | R² (full) | null | p (Bonf.) | R² (direction only) | null | p (Bonf.) | datasets |
+|---|---|---|---|---|---|---|---|
+| domain | 0.39 | 0.21 | 0.27 | 0.29 | 0.21 | 0.51 | 20 |
+| subdomain | 0.62 | 0.52 | 0.98 | 0.66 | 0.53 | 0.26 | 20 |
+| task_type | 0.07 | 0.10 | 1.00 | 0.24 | 0.10 | 0.08 | 20 |
+| sensor | 0.50 | 0.35 | 0.61 | 0.45 | 0.35 | 0.28 | 18 |
 
-Dataset-to-dataset similarity is **not published**: simulated recovery of the similarity geometry on this mask stays below 0.7 (geometry_recoverable = False). The evidence supports how many dimensions there are and what label aligns with them, not which specific datasets are near-duplicates.
+Read these as weak evidence at best: about 20 datasets, many-level labels, and loadings that do not transfer across papers (§2).
+
+Dataset-to-dataset similarity is **not published**: simulated recovery of the similarity geometry on this mask stays below 0.7 (geometry_recoverable = False). The evidence supports a minimum number of dimensions, not which specific datasets are near-duplicates.
 
 ## 4. Do independent groups agree on what a dataset shows?
 
@@ -98,34 +119,32 @@ Grouping by exact benchmark version × protocol × training fraction × metric �
 
 ## 5. Datasets with independent evidence (≥ 2 papers)
 
-Reported separation = model-count-weighted SD of reported scores within the dataset's comparisons, over each paper's own GeoFM set (note Eq. 10: not quality). Shared signal = |λ_d|², shared-capability variance in units of residual variance (residual = stable task-specific interaction + evaluation noise, not separable from single scores). Info share = Shapley share of V(A) = log det(I + Σ λ_dλ_d′) among these datasets (Eq. 8; each dataset once). LOPO ρ = mean leave-one-paper-out Spearman of its tasks (structured / one ordering).
+Descriptive evidence only. Reported separation = model-count-weighted SD of reported scores within the dataset's comparisons, over each paper's own GeoFM set (note Eq. 10: reported separation, not quality or discriminative power). LOPO ρ = mean leave-one-paper-out Spearman over the dataset's tasks (structured / naive leaderboard), with the number of tasks and median GeoFMs behind it. In-sample loading summaries (shared signal, Eq. 8 information share) are kept in the JSON but not shown: they do not transfer across papers (§2) and are driven by single small comparisons (e.g. RESISC45 rests on one 4-GeoFM comparison).
 
-| dataset | domain | papers | tasks | GeoFMs/task | reported separation (pts) | shared signal | info share (± MC SE) | LOPO ρ |
-|---|---|---|---|---|---|---|---|---|
-| RESISC45 | Terrestrial ecosystems | 2 | 3 | 6 | 14.2 | 8.02 | 0.170 (± 0.003) | -0.35 / -0.05 |
-| Chesapeake land cover | Terrestrial ecosystems | 2 | 2 | 8 | 6.5 | 6.48 | 0.128 (± 0.003) | 0.55 / 0.34 |
-| Sen1Floods11 | Inland water | 3 | 6 | 11 | 5.8 | 3.28 | 0.085 (± 0.002) | 0.57 / 0.54 |
-| So2Sat LCZ42 (LCZ-S2) | Human systems | 6 | 7 | 11 | 7.2 | 3.82 | 0.083 (± 0.002) | 0.30 / 0.35 |
-| fMoW | Human systems | 4 | 11 | 5 | 5.2 | 4.43 | 0.078 (± 0.002) | 0.72 / 0.65 |
-| NeonTreeEvaluation | Terrestrial ecosystems | 2 | 2 | 8 | 4.0 | 4.55 | 0.077 (± 0.002) | 0.34 / 0.58 |
-| Cashew plantation | Agriculture | 4 | 6 | 12 | 10.3 | 1.93 | 0.045 (± 0.002) | 0.29 / 0.20 |
-| PASTIS / PASTIS-R | Agriculture | 4 | 14 | 11 | 8.1 | 1.43 | 0.041 (± 0.001) | 0.21 / 0.19 |
-| MADOS | Oceans and coasts | 3 | 6 | 12 | 7.3 | 1.73 | 0.036 (± 0.001) | 0.43 / 0.43 |
-| BigEarthNet v1 / v2 (reBEN) | Terrestrial ecosystems | 8 | 15 | 8 | 3.6 | 1.17 | 0.035 (± 0.001) | 0.35 / 0.17 |
-| EuroSAT | Terrestrial ecosystems | 6 | 12 | 8 | 4.5 | 1.20 | 0.032 (± 0.001) | 0.44 / 0.45 |
-| PV4GER | Human systems | 2 | 5 | 7 | 2.9 | 1.03 | 0.031 (± 0.001) | 0.20 / 0.63 |
-| BreizhCrops | Agriculture | 2 | 2 | 14 | 4.6 | 0.62 | 0.026 (± 0.001) | 0.43 / 0.45 |
-| HLS Burn Scars | Terrestrial ecosystems | 3 | 5 | 8 | 3.2 | 0.78 | 0.025 (± 0.001) | 0.67 / 0.41 |
-| NZ cattle | Agriculture | 2 | 3 | 7 | 2.5 | 1.08 | 0.025 (± 0.001) | 0.67 / 0.57 |
-| CropHarvest | Agriculture | 3 | 10 | 15 | 4.5 | 0.48 | 0.023 (± 0.001) | 0.26 / 0.25 |
-| DFC2020 | Terrestrial ecosystems | 2 | 3 | 4 | 2.0 | 0.64 | 0.019 (± 0.001) | -0.33 / -0.40 |
-| ForestNet | Terrestrial ecosystems | 3 | 4 | 9 | 3.7 | 0.70 | 0.019 (± 0.001) | 0.53 / 0.38 |
-| South Africa crop type | Agriculture | 4 | 5 | 14 | 3.7 | 0.69 | 0.018 (± 0.001) | 0.06 / 0.23 |
-| Brick kilns | Human systems | 4 | 5 | 14 | 2.0 | 0.21 | 0.005 (± 0.000) | 0.09 / 0.04 |
+| dataset | domain | papers | comparisons | smallest comparison | reported separation (pts) | LOPO ρ: structured / leaderboard (tasks, GeoFMs) |
+|---|---|---|---|---|---|---|
+| BigEarthNet v1 / v2 (reBEN) | Terrestrial ecosystems | 9 | 19 | 4 | 3.2 | 0.20 / 0.21 (15, 6) |
+| EuroSAT | Terrestrial ecosystems | 7 | 14 | 4 | 4.3 | 0.32 / 0.21 (14, 6) |
+| So2Sat LCZ42 (LCZ-S2) | Human systems | 7 | 11 | 4 | 6.3 | -0.03 / 0.04 (11, 4) |
+| PASTIS / PASTIS-R | Agriculture | 4 | 14 | 5 | 8.1 | -0.04 / -0.05 (14, 8) |
+| fMoW | Human systems | 4 | 11 | 4 | 5.0 | 0.66 / 0.36 (6, 6) |
+| Cashew plantation | Agriculture | 4 | 6 | 8 | 10.2 | 0.10 / 0.57 (6, 8) |
+| Brick kilns | Human systems | 4 | 5 | 8 | 2.0 | 0.05 / 0.24 (5, 8) |
+| South Africa crop type | Agriculture | 4 | 5 | 8 | 3.7 | -0.14 / 0.45 (5, 8) |
+| CropHarvest | Agriculture | 3 | 10 | 4 | 4.5 | 0.12 / 0.13 (9, 13) |
+| MADOS | Oceans and coasts | 3 | 6 | 10 | 7.3 | 0.47 / 0.45 (6, 11) |
+| Sen1Floods11 | Inland water | 3 | 6 | 5 | 5.6 | 0.25 / 0.09 (5, 11) |
+| HLS Burn Scars | Terrestrial ecosystems | 3 | 5 | 5 | 2.9 | 0.26 / 0.01 (4, 11) |
+| ForestNet | Terrestrial ecosystems | 3 | 4 | 5 | 4.1 | 0.49 / 0.51 (3, 6) |
+| PV4GER | Human systems | 2 | 5 | 6 | 3.1 | 0.35 / 0.24 (5, 6) |
+| DFC2020 | Terrestrial ecosystems | 2 | 3 | 4 | 4.7 | -0.32 / -0.18 (3, 4) |
+| NZ cattle | Agriculture | 2 | 3 | 8 | 3.5 | -0.13 / 0.07 (3, 8) |
+| RESISC45 | Terrestrial ecosystems | 2 | 3 | 4 | 14.2 | -0.80 / -0.50 (2, 4) |
+| BreizhCrops | Agriculture | 2 | 2 | 5 | 10.0 | 0.54 / 0.39 (2, 10) |
+| Chesapeake land cover | Terrestrial ecosystems | 2 | 2 | 8 | 6.5 | 0.14 / 0.57 (2, 6) |
+| NeonTreeEvaluation | Terrestrial ecosystems | 2 | 2 | 8 | 3.8 | 0.24 / 0.33 (2, 6) |
 
 39 further datasets are reported by a single paper; their loadings cannot be separated from that paper's GeoFM selection and implementation, so no dataset-level quantity is reported for them.
-
-Shared signal vs GeoFMs per comparison: Spearman -0.217 (the ridge shrinks small comparisons; read signal alongside GeoFMs/task).
 
 ## 6. Limits and open decisions
 
@@ -133,4 +152,5 @@ Shared signal vs GeoFMs per comparison: Spearman -0.217 (the ridge shrinks small
 - **GEO-Bench-2 leaderboard** is excluded as not a paper's main text; `--include-leaderboard` adds it.
 - Uncategorised models were scoped by hand (`data/model_scope.json`); `vanilla_mae` and `convmae` are excluded because the same id is EO-pretrained in some papers and ImageNet-pretrained in others.
 - Geography and time blocks of Eq. 11 are not fitted: the workbook has no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.
-- K is a lower bound at the signal levels seen here (simulation under-shoots at SNR ≤ 1).
+- The number of shared dimensions is not identifiable on this evidence (≥ 2; out-of-paper accuracy still rising at K = 4).
+- `data/model_profiles.json` (existing build) still publishes θ as a nuisance output and `benchmarks.html` is still titled 'Benchmark ranking'; both predate this analysis.

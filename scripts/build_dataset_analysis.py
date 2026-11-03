@@ -174,7 +174,8 @@ log("K by LOPO", K, "best", bestK, k_tests)
 Lsel = lopo_rows[K]
 lopo_gain = {"all": paired_boot(Lsel.rho_struct, Lsel.rho_global, Lsel.paper),
              "vs_naive_leaderboard": paired_boot(Lsel.rho_struct, Lsel.rho_board, Lsel.paper),
-             "K1_vs_naive_leaderboard": paired_boot(lopo_rows[1].rho_struct, lopo_rows[1].rho_board, lopo_rows[1].paper)}
+             "K1_vs_naive_leaderboard": paired_boot(lopo_rows[1].rho_struct, lopo_rows[1].rho_board, lopo_rows[1].paper),
+             "bestK_vs_naive_leaderboard": dict(K=int(bestK), **paired_boot(lopo_rows[bestK].rho_struct, lopo_rows[bestK].rho_board, lopo_rows[bestK].paper))}
 for flag, name in ((True, "dataset_seen_in_other_papers"), (False, "dataset_only_in_held_out_paper")):
     s = Lsel[Lsel.dataset_seen_elsewhere == flag]
     if len(s): lopo_gain[name] = paired_boot(s.rho_struct, s.rho_global, s.paper)
