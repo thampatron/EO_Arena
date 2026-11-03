@@ -80,7 +80,7 @@ w(f"Grouping by exact benchmark version × protocol × training fraction × metr
 w()
 if re_["groups"]:
     w("| group | papers | GeoFMs in ≥ 2 papers |"); w("|---|---|---|")
-    for x in re_["groups"][:10]: w(f"| {x['group']} | {x['papers']} | {x['geofms_in_2plus_papers']} |")
+    for x in re_["groups"][:10]: w(f"| {x['group'].replace(' | ', ' · ')} | {x['papers']} | {x['geofms_in_2plus_papers']} |")
     w()
 w("## 5. Datasets with independent evidence (≥ 2 papers)")
 w()
