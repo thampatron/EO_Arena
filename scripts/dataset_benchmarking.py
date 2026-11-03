@@ -45,6 +45,8 @@ class StructuredFit:
     n_iter: int = 0
     meta: dict = field(default_factory=dict)
     scale: np.ndarray | None = None     # (T,) residual SD per task when fitted in noise units (fit_heteroskedastic)
+    C: np.ndarray | None = None         # (M, P) paper x model offsets (implementation effects), if fitted
+    paper_idx: np.ndarray | None = None # (T,) paper index of each task, for C
 
     def lam(self, include_u: bool = True) -> np.ndarray:
         L = self.U.copy() if include_u else np.zeros_like(self.U)
@@ -56,6 +58,8 @@ class StructuredFit:
     def predict(self) -> np.ndarray:
         """Predictions on the original (points) scale."""
         P = self.mu[None, :] + self.theta @ self.lam().T
+        if self.C is not None:
+            P = P + self.C[:, self.paper_idx]
         return P if self.scale is None else P * self.scale[None, :]
 
 
@@ -70,11 +74,14 @@ def _group_parts(B, groups, T, K, skip=None):
 
 
 def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g: dict | None = None, ridge_theta=10.0,
-                   n_iter=400, tol=1e-7, seed=0, n_restarts=3, theta_init=None, task_weight=None) -> StructuredFit:
+                   n_iter=400, tol=1e-7, seed=0, n_restarts=3, theta_init=None, task_weight=None, paper=None, ridge_pm=3.0) -> StructuredFit:
     """Block-coordinate ridge (weighted) least squares on observed cells. Every block update solves its exact ridge
     subproblem, so the penalised objective decreases monotonically. groups=None or {} gives the free-loading model (the
     current EOArena fit). task_weight (T,) multiplies each task's squared residuals: pass 1/psi_t for the note's
-    heteroskedastic residual variance (Eq. 1: eps ~ N(0, sigma_t^2)); see fit_heteroskedastic."""
+    heteroskedastic residual variance (Eq. 1: eps ~ N(0, sigma_t^2)); see fit_heteroskedastic.
+    paper (T,) int, optional: adds a ridge-shrunk offset c_{m,p} shared by all tasks a paper p reports for model m — the
+    implementation effect of how that paper trained/evaluated m (note: 'differences in evaluation protocol' confound eta).
+    Without it, such paper x model structure is absorbed by extra latent factors and inflates K."""
     groups = {g: np.asarray(v, int) for g, v in (groups or {}).items()}
     ridge_g = {g: (ridge_g or {}).get(g, 1.0) for g in groups}
     M, T = Y.shape
@@ -84,13 +91,29 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     nlev = {g: int(idx.max()) + 1 if (idx >= 0).any() else 0 for g, idx in groups.items()}
     rng = np.random.default_rng(seed)
     mu0 = np.array([Y[mask[:, t], t].mean() if mask[:, t].any() else 0.0 for t in range(T)])
+    pidx = None if paper is None else np.asarray(paper, int)
+    nP = 0 if pidx is None else int(pidx.max()) + 1
+    def c_update(R):
+        """Exact ridge update of the paper x model offsets given residuals R (weighted, observed cells)."""
+        num = np.zeros((M, nP)); den = np.zeros((M, nP))
+        np.add.at(num.T, pidx, R.T); np.add.at(den.T, pidx, W.T)
+        return num / (den + ridge_pm)
     if K == 0:
-        return StructuredFit(0, mu0, np.zeros((M, 0)), {g: np.zeros((n, 0)) for g, n in nlev.items()}, np.zeros((T, 0)), groups)
+        f = StructuredFit(0, mu0, np.zeros((M, 0)), {g: np.zeros((n, 0)) for g, n in nlev.items()}, np.zeros((T, 0)), groups)
+        if pidx is not None:
+            C = np.zeros((M, nP)); mu = mu0
+            for _ in range(50):
+                C = c_update(WY - W * mu[None, :])
+                Ce = C[:, pidx]
+                mu = np.array([((WY[:, t] - W[:, t] * Ce[:, t]).sum() / max(W[:, t].sum(), 1e-12)) for t in range(T)])
+            f.mu, f.C, f.paper_idx = mu, C, pidx
+        return f
 
-    def objective(mu, th, B, U):
+    def objective(mu, th, B, U, C):
         L = U + _group_parts(B, groups, T, K)
-        P = mu[None, :] + th @ L.T
+        P = mu[None, :] + th @ L.T + (C[:, pidx] if C is not None else 0)
         pen = ridge_u * (U ** 2).sum() + ridge_theta * (th ** 2).sum() + sum(ridge_g[g] * (B[g] ** 2).sum() for g in groups)
+        pen += ridge_pm * (C ** 2).sum() if C is not None else 0
         return float((((Y - P) ** 2) * W).sum() + pen)
 
     R0 = np.where(mask, Y - mu0[None, :], 0.0)
@@ -100,13 +123,15 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     best = None
     for th in starts:
         th = th.copy(); mu = mu0.copy(); U = np.zeros((T, K)); B = {g: np.zeros((n, K)) for g, n in nlev.items()}
+        C = None if pidx is None else np.zeros((M, nP))
         prev = np.inf; it = 0
         for it in range(1, n_iter + 1):
+            WYc = WY if C is None else WY - W * C[:, pidx]                       # data net of implementation offsets
             # (a) mu_t and u_t jointly, with the group parts as a fixed offset
             off = _group_parts(B, groups, T, K)
             X = np.c_[np.ones(M), th]                                            # M x (K+1)
             A = np.einsum('mt,mi,mj->tij', W, X, X) + np.diag([1e-8] + [ridge_u] * K)[None]
-            rhs = np.einsum('mt,mi->ti', WY - W * (th @ off.T), X)
+            rhs = np.einsum('mt,mi->ti', WYc - W * (th @ off.T), X)
             coef = np.linalg.solve(A, rhs[..., None])[..., 0]
             mu, U = coef[:, 0], coef[:, 1:]
             # (b) each group's block loadings
@@ -115,7 +140,7 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
                 if nlev[g] == 0:
                     continue
                 rest = U + _group_parts(B, groups, T, K, skip=g)
-                Rt = WY - W * (mu[None, :] + th @ rest.T)                         # residual for g, observed cells
+                Rt = WYc - W * (mu[None, :] + th @ rest.T)                        # residual for g, observed cells
                 b = Rt.T @ th                                                    # T x K
                 ok = idx >= 0
                 A_g = np.zeros((nlev[g], K, K)); b_g = np.zeros((nlev[g], K))
@@ -125,21 +150,24 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
             # (c) theta
             L = U + _group_parts(B, groups, T, K)
             A2 = np.einsum('mt,ti,tj->mij', W, L, L) + ridge_theta * np.eye(K)[None]
-            b2 = (WY - W * mu[None, :]) @ L
+            b2 = (WYc - W * mu[None, :]) @ L
             th = np.linalg.solve(A2, b2[..., None])[..., 0]
-            obj = objective(mu, th, B, U)
+            # (d) paper x model offsets
+            if C is not None:
+                C = c_update(WY - W * (mu[None, :] + th @ L.T))
+            obj = objective(mu, th, B, U, C)
             if prev - obj < tol * max(obj, 1e-12):
                 break
             prev = obj
         if best is None or obj < best[0]:
-            best = (obj, mu, th, B, U, it)
-    obj, mu, th, B, U, it = best
+            best = (obj, mu, th, B, U, it, C)
+    obj, mu, th, B, U, it, C = best
     # identifiability convention: centre and whiten theta over models; push the transform into the loadings
     c = th.mean(0); mu = mu + (U + _group_parts(B, groups, T, K)) @ c; th = th - c
     Lc = np.linalg.cholesky(np.cov(th, rowvar=False).reshape(K, K) + 1e-9 * np.eye(K))
     th = th @ np.linalg.inv(Lc).T
     U = U @ Lc; B = {g: v @ Lc for g, v in B.items()}
-    return StructuredFit(K, mu, th, B, U, groups, obj, it)
+    return StructuredFit(K, mu, th, B, U, groups, obj, it, C=C, paper_idx=pidx)
 
 
 def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
