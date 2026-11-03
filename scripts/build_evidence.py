@@ -403,19 +403,19 @@ for m in sorted(set(PR_all) | set(PR_ind)):
     a = PR_all.get(m); b = PR_ind.get(m); inreg = m in mreg.index
     rec = {"id": m, "name": m, "backbone": str(mreg.at[m, "backbone"]) if inreg and "backbone" in mreg else "", "pretraining_dataset": str(mreg.at[m, "pretraining_dataset"]) if inreg and "pretraining_dataset" in mreg else "",
            "category": str(mreg.at[m, "category"]) if inreg and "category" in mreg else "", "all": a, "independent": b}
-    rec["ranked"] = bool(b and b["n_tasks"] >= 10 and b["n_datasets"] >= 5)
+    for side in ("all", "independent"):
+        if rec[side]:
+            for k in ("general", "general_obs", "mean_z_obs"): rec[side].pop(k, None)   # no scalar model score: datasets are the object of study
     mp.append(rec)
-mp.sort(key=lambda x: (not x["ranked"], -(x["independent"]["general"] if x["independent"] and x["independent"]["general"] is not None else -9)))
-for i, x in enumerate(mp): x["rank"] = i + 1 if x["ranked"] else None
+mp.sort(key=lambda x: x["id"])
 (ROOT / "data" / "model_profiles.json").write_text(json.dumps({
-    "as_of": AS_OF, "K": K, "axes": axes, "n_ranked": sum(x["ranked"] for x in mp),
+    "as_of": AS_OF, "K": K, "axes": axes,
     "method": ("theta_m from the latent-factor regression y_mt = mu_t + lambda_t'theta_m + eta_mt (alternating ridge least squares, ridge 10, K factors chosen by held-out CV and bootstrap stability) "
                "on standardised imagery comparisons. Axes are the principal axes of the task loadings (a display convention: the fit is rotation-invariant), with Cov(theta) = I over models. "
-               "general = mean over ALL imagery tasks of the predicted standardised score lambda_t'theta_m: the scalar a one-factor leaderboard would give, computed from the full profile. "
-               "general_obs = the same mean over the tasks the model was actually evaluated on; mean_z_obs = the raw within-comparison z-score mean (the previous ranking). "
-               "independent = fitted on evaluations by papers that did not introduce the model; all = every evaluation. Ranked with >= 10 independent tasks on >= 5 datasets."),
+               "Capability vectors are nuisance parameters of the task geometry, not a ranking: EOArena benchmarks datasets. "
+               "independent = fitted on evaluations by papers that did not introduce the model; all = every evaluation."),
     "models": mp}, indent=1), encoding="utf-8")
-log(f"model profiles: {len(mp)} models, {sum(x['ranked'] for x in mp)} ranked")
+log(f"model profiles: {len(mp)} models (no ranking)")
 
 # ----------------------------------------------------------------------------- 6. replicate plan: where measured noise is missing
 plan = []
