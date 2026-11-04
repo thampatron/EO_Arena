@@ -96,5 +96,31 @@
   "dinov3_sat_vit7b": "DINOv3 on SAT-493M",
   "mocov3_vitb": "MoCo-v3 on fMoW-Sentinel"
  },
- "scope_rule": "In scope = pretrained on Earth-observation data and offered as a reusable representation. Registry category 'baseline_pretrained' is decided by pretraining corpus: EO corpora (SSL4EO-S12, SAT-493M, fMoW-Sentinel) are in; ImageNet / LVD / im2gps are out. Neural-compression priors (NeuCo factorized_prior_*) and paper reproductions are out."
+ "scope_rule": "In scope = pretrained on Earth-observation data and offered as a reusable representation. Registry category 'baseline_pretrained' is decided by pretraining corpus: EO corpora (SSL4EO-S12, SAT-493M, fMoW-Sentinel) are in; ImageNet / LVD / im2gps are out. Neural-compression priors (NeuCo factorized_prior_*) and paper reproductions are out.",
+ "paper_internal_variants": {
+  "about": "Variants of the introducing paper's own method (alternative objectives, input subsets, data fractions) and baselines it trained itself, reported side by side in one table: an ablation in effect, even when the registry gives them a GeoFM category. The paper's released / full model is kept.",
+  "csp": [
+   "csp_mse_fmow",
+   "csp_mse_inat",
+   "csp_nce_bld_fmow",
+   "csp_nce_bld_inat",
+   "supervised_dual_encoder_grid",
+   "supervised_dual_encoder_wrap"
+  ],
+  "melt-salt": [
+   "ms_melt_sn_100",
+   "ms_melt_st_100",
+   "ms_melt_stn_10",
+   "ms_melt_stn_50",
+   "ms_melt_tn_100",
+   "ms_salt_sn_100",
+   "ms_salt_st_100",
+   "ms_salt_stn_10",
+   "ms_salt_stn_50",
+   "ms_salt_tn_100",
+   "ms_natclip_100",
+   "ms_satclip_100",
+   "ms_textclip_100"
+  ]
+ }
 }

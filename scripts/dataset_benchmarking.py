@@ -63,6 +63,35 @@ class StructuredFit:
         return P if self.scale is None else P * self.scale[None, :]
 
 
+def board_start(Y, mask, K):
+    """Start for theta: column 1 = each model's mean within-task z-score (a naive leaderboard, the general factor);
+    further columns = leading singular vectors of the task-standardised residual after removing it. Without this start,
+    the SVD of the zero-filled matrix can land the K=1 fit in a local optimum whose factor is not the general one."""
+    M, T = Y.shape
+    Z = np.zeros((M, T)); W = np.zeros((M, T))
+    for t in range(T):
+        o = mask[:, t]
+        if o.sum() > 1:
+            v = Y[o, t]; sd = v.std(ddof=1)
+            if sd > 0: Z[o, t] = (v - v.mean()) / sd; W[o, t] = 1.0
+    cnt = W.sum(1); g = np.where(cnt > 0, Z.sum(1) / np.maximum(cnt, 1), 0.0)
+    g = (g - g.mean()) / (g.std() + 1e-12)
+    cols = [g]
+    if K > 1:
+        lam1 = (Z * g[:, None]).sum(0) / np.maximum((W * g[:, None] ** 2).sum(0), 1e-12)
+        R = np.where(W > 0, Z - g[:, None] * lam1[None, :], 0.0)
+        U, S, _ = np.linalg.svd(R, full_matrices=False)
+        for k in range(K - 1):
+            u = U[:, k] * S[k]; cols.append(u / (u.std() + 1e-12))
+    return np.column_stack(cols)
+
+
+def svd_start(Y, mask, mu0, K):
+    R0 = np.where(mask, Y - mu0[None, :], 0.0)
+    Us, Ss, _ = np.linalg.svd(R0, full_matrices=False)
+    return Us[:, :K] * Ss[:K] / np.sqrt(max(mask.mean(), 1e-3) * Y.shape[1])
+
+
 def _group_parts(B, groups, T, K, skip=None):
     out = np.zeros((T, K))
     for g, idx in groups.items():
@@ -74,7 +103,7 @@ def _group_parts(B, groups, T, K, skip=None):
 
 
 def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g: dict | None = None, ridge_theta=10.0,
-                   n_iter=400, tol=1e-7, seed=0, n_restarts=3, theta_init=None, task_weight=None, paper=None, ridge_pm=3.0) -> StructuredFit:
+                   n_iter=400, tol=1e-7, seed=0, n_restarts=4, theta_init=None, task_weight=None, paper=None, ridge_pm=3.0, warm=False) -> StructuredFit:
     """Block-coordinate ridge (weighted) least squares on observed cells. Every block update solves its exact ridge
     subproblem, so the penalised objective decreases monotonically. groups=None or {} gives the free-loading model (the
     current EOArena fit). task_weight (T,) multiplies each task's squared residuals: pass 1/psi_t for the note's
@@ -121,10 +150,10 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
         pen += ridge_pm * (C ** 2).sum() if C is not None else 0
         return float((((Y - P) ** 2) * W).sum() + pen)
 
-    R0 = np.where(mask, Y - mu0[None, :], 0.0)
-    Us, Ss, _ = np.linalg.svd(R0, full_matrices=False)
-    starts = [theta_init] if theta_init is not None else [Us[:, :K] * Ss[:K] / np.sqrt(max(mask.mean(), 1e-3) * T)]
-    starts += [rng.normal(size=(M, K)) * 0.5 for _ in range(n_restarts)]
+    starts = [theta_init] if theta_init is not None else []
+    if not (warm and theta_init is not None):             # warm: refine from theta_init only (later reweighting rounds)
+        starts += [board_start(Y, mask, K), svd_start(Y, mask, mu0, K)]
+        starts += [rng.normal(size=(M, K)) * 0.5 for _ in range(n_restarts)]
     best = None
     for th in starts:
         th = th.copy(); mu = mu0.copy(); U = np.zeros((T, K)); B = {g: np.zeros((n, K)) for g, n in nlev.items()}
@@ -193,9 +222,15 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_
     psi = np.ones(T)
     for gg in np.unique(grp):                              # start: one pooled level per metric family
         psi[grp == gg] = np.nanmedian(sd0[grp == gg]) ** 2
-    for _ in range(n_rounds):
+    th_prev = None
+    for rnd_ in range(n_rounds):
         s = np.sqrt(psi)
-        fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
+        if rnd_ == 0 or th_prev is None:
+            fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
+        else:
+            kw_w = {k_: v_ for k_, v_ in kw.items() if k_ not in ("theta_init", "warm")}
+            fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, theta_init=th_prev, warm=True, **kw_w)
+        th_prev = fit.theta if K else None
         fit.scale = s
         E = np.where(mask, Y - fit.predict(), 0.0)
         dof = np.maximum(n - K - 1, 1.0)
@@ -208,7 +243,8 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_
             m0[sel] = np.average(lr[o], weights=dof[o]) if o.any() else lr[sel].mean()
         psi = np.exp((dof * lr + prior_n * m0) / (dof + prior_n))
     s_new = np.sqrt(psi)                                  # express the final fit in the final psi's units
-    fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, **kw); fit.scale = s_new
+    kw_w = {k_: v_ for k_, v_ in kw.items() if k_ not in ("theta_init", "warm")}
+    fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, theta_init=th_prev, warm=th_prev is not None, **kw_w); fit.scale = s_new
     return fit, psi
 
 
@@ -227,14 +263,33 @@ def _rank_scores(y, p):
     return float(rho), acc, int(keep.sum())
 
 
-def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, **kw):
+def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, anchor_splits=10, anchor_min=6, anchor_ridge=1.0, **kw):
     """For each paper: drop all its tasks, refit, predict each dropped task's model ordering from lambda = sum of its
     learned group blocks (u_t is unknown for an unseen task, so it is 0), for models that keep >= min_theta_tasks
     observed tasks elsewhere. Returns per-task rows: paper, task index, n models scored, Spearman, pairwise accuracy.
     The 'global' baseline orders models by their mean predicted score over all training tasks (a one-ranking-fits-all
-    predictor), so  structured - global  is what dataset/protocol/sensor identity adds."""
+    predictor), so  structured - global  is what dataset/protocol/sensor identity adds.
+
+    ANCHORED test (does not depend on block-predicted loadings or their sign): for held-out tasks with >= anchor_min
+    eligible models, split the models into halves anchor_splits times; estimate the task's loading on theta (ridge
+    regression with intercept, theta from the fit without this paper) from half A and predict the order of half B
+    (rho_anch); the one-ranking comparator does the same with the naive leaderboard as a 1-d predictor (rho_anch_board),
+    so both use half A identically. rho_anch - rho_anch_board is what K-dimensional capability adds to a single ranking."""
     task_paper = np.asarray(task_paper)
     rows = []
+    arng = np.random.default_rng(12345)
+    def _anchored(Xf, y, n_spl):
+        out = []
+        n = len(y); h = n // 2
+        for _ in range(n_spl):
+            perm = arng.permutation(n); a, b = perm[:h], perm[h:]
+            Xa = np.c_[np.ones(len(a)), Xf[a]]
+            P = np.eye(Xa.shape[1]) * anchor_ridge; P[0, 0] = 1e-8
+            beta = np.linalg.solve(Xa.T @ Xa + P, Xa.T @ y[a])
+            pb = np.c_[np.ones(len(b)), Xf[b]] @ beta
+            r_, _, _ = _rank_scores(y[b], pb)
+            if np.isfinite(r_): out.append(r_)
+        return float(np.mean(out)) if out else np.nan
     for p in np.unique(task_paper):
         hold = task_paper == p
         m2 = mask.copy(); m2[:, hold] = False
@@ -259,8 +314,13 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
             r_s, a_s, n_pairs = _rank_scores(y, ps) if has_group else (np.nan, np.nan, 0)
             r_g, a_g, _ = _rank_scores(y, gen[ms])
             r_b, a_b, _ = _rank_scores(y, np.nan_to_num(board[ms]))
+            ra = rab = np.nan
+            if len(ms) >= anchor_min and np.ptp(y) > 0 and fit.K:
+                ra = _anchored(fit.theta[ms], y, anchor_splits)
+                bz = np.nan_to_num(board[ms]); bz = (bz - bz.mean()) / (bz.std() + 1e-12)
+                rab = _anchored(bz[:, None], y, anchor_splits)
             rows.append(dict(paper=p, task=int(t), n_models=len(ms), n_pairs=n_pairs, rho_struct=r_s, acc_struct=a_s, rho_global=r_g, acc_global=a_g,
-                             rho_board=r_b, acc_board=a_b))
+                             rho_board=r_b, acc_board=a_b, rho_anch=ra, rho_anch_board=rab))
     return pd.DataFrame(rows)
 
 
@@ -295,6 +355,81 @@ def heldout_cell_cv(Y, mask, K, groups, folds=5, min_keep=4, seed=0, hetero=True
         acc.append(ok / tot if tot else np.nan)
     return dict(rmse=float(np.mean(rmse)), rmse_se=float(np.std(rmse, ddof=1) / np.sqrt(folds)),
                 pair_acc=float(np.nanmean(acc)), pair_acc_se=float(np.nanstd(acc, ddof=1) / np.sqrt(folds)), n_heldout=int(len(cand)))
+
+
+def tau_pairs(Y, mask, min_shared=4):
+    """Kendall tau between every pair of tasks over the GeoFMs both report (>= min_shared, non-constant)."""
+    from scipy.stats import kendalltau
+    T = Y.shape[1]; rows = []
+    for i in range(T):
+        for j in range(i + 1, T):
+            sh = mask[:, i] & mask[:, j]
+            if sh.sum() < min_shared: continue
+            a, b = Y[sh, i], Y[sh, j]
+            if np.ptp(a) == 0 or np.ptp(b) == 0: continue
+            rows.append((i, j, kendalltau(a, b).statistic, int(sh.sum())))
+    return pd.DataFrame(rows, columns=["i", "j", "tau", "n"])
+
+
+def tau_contrasts(P, task_source, task_dataset, task_protocol, exclude_source_pairs=(), B=2000, seed=0):
+    """Model-free test of dataset identity and of paper specificity from pairwise Kendall tau.
+    Cell means of tau by (same/different dataset) x (same/different source); and two contrasts with 90% intervals from a
+    cluster bootstrap over sources (each resampled source multiplies the weight of every pair it is part of):
+      dataset_identity = tau(same dataset, different sources) - tau(different datasets, different sources): under one
+        ranking plus task noise it is 0; > 0 means a dataset's model ordering carries over to other groups' evaluations.
+        Also per dataset (each dataset as its own control: its cross-source same-dataset pairs vs its cross-source pairs
+        with other datasets), weighted by its same-dataset pairs.
+      paper_specificity = tau(different datasets, same source) - tau(different datasets, different sources).
+    Computed on all pairs, on same-protocol-family pairs, and without source pairs flagged as possible shared codebases."""
+    ts = np.asarray(task_source); td = np.asarray(task_dataset); tpf = np.asarray(task_protocol)
+    src = sorted(set(ts)); si = {s_: k for k, s_ in enumerate(src)}
+    P = P.copy()
+    P["a"] = [si[ts[i]] for i in P.i]; P["b"] = [si[ts[j]] for j in P.j]
+    P["same_src"] = P.a == P.b; P["same_ds"] = td[P.i.values] == td[P.j.values]; P["same_pf"] = tpf[P.i.values] == tpf[P.j.values]
+    ex = {tuple(sorted(p)) for p in exclude_source_pairs}
+    P["cb"] = [tuple(sorted((ts[i], ts[j]))) in ex for i, j in zip(P.i, P.j)]
+    rng = np.random.default_rng(seed)
+    def wmean(D, w, m):
+        ww = w[D.a.values] * w[D.b.values] * m
+        return np.average(D.tau.values, weights=ww) if ww.sum() > 0 else np.nan
+    def c_identity(D, w):
+        x = D[~D.same_src]; return wmean(x, w, x.same_ds.values) - wmean(x, w, ~x.same_ds.values)
+    def c_identity_perds(D, w):
+        x = D[~D.same_src]; ww = w[x.a.values] * w[x.b.values]; di = td[x.i.values]; dj = td[x.j.values]; out = []; W = []
+        for d in set(di[x.same_ds.values]):
+            same = x.same_ds.values & (di == d); inv = (~x.same_ds.values) & ((di == d) | (dj == d))
+            if ww[same].sum() > 0 and ww[inv].sum() > 0:
+                out.append(np.average(x.tau.values[same], weights=ww[same]) - np.average(x.tau.values[inv], weights=ww[inv])); W.append(ww[same].sum())
+        return np.average(out, weights=W) if out else np.nan
+    def c_paper(D, w):
+        x = D[~D.same_ds]; return wmean(x, w, x.same_src.values) - wmean(x, w, ~x.same_src.values)
+    def boot(fn, D):
+        pt = fn(D, np.ones(len(src))); bs = []
+        for _ in range(B):
+            w = np.bincount(rng.integers(0, len(src), len(src)), minlength=len(src)).astype(float); v = fn(D, w)
+            if np.isfinite(v): bs.append(v)
+        return {"estimate": round(float(pt), 4), "ci90": [round(float(np.percentile(bs, 5)), 4), round(float(np.percentile(bs, 95)), 4)]}
+    cells = P.groupby(["same_ds", "same_src"]).tau.agg(["mean", "size"]).reset_index()
+    out = {"cells": [{"same_dataset": bool(r_.same_ds), "same_source": bool(r_.same_src), "mean_tau": round(float(r_["mean"]), 4), "pairs": int(r_["size"])} for _, r_ in cells.iterrows()],
+           "median_shared_models": float(P.n.median()), "flagged_source_pairs": sorted(ex)}
+    for name, D in (("all", P), ("same_protocol_family", P[P.same_pf]), ("excluding_flagged_source_pairs", P[~P.cb])):
+        out[name] = {"dataset_identity": boot(c_identity, D), "dataset_identity_per_dataset": boot(c_identity_perds, D), "paper_specificity": boot(c_paper, D),
+                     "cross_source_same_dataset_pairs": int((~D.same_src & D.same_ds).sum())}
+    return out
+
+
+def shared_codebase_pairs(Y, mask, task_source, keys, max_med_abs=1.0, min_cells=3):
+    """Source pairs whose matched cells (same model and key, e.g. dataset x protocol family x fraction) differ by a median
+    of <= max_med_abs: possibly the same evaluation code (not independent replications). keys: (T,) hashable per task."""
+    rows = []
+    for t in range(Y.shape[1]):
+        for m in np.where(mask[:, t])[0]: rows.append((m, keys[t], task_source[t], Y[m, t]))
+    C = pd.DataFrame(rows, columns=["m", "k", "s", "y"]).groupby(["m", "k", "s"]).y.mean().reset_index()
+    M = C.merge(C, on=["m", "k"]); M = M[M.s_x < M.s_y]
+    out = []
+    for (a, b), x in M.groupby(["s_x", "s_y"]):
+        if len(x) >= min_cells and np.median(np.abs(x.y_x - x.y_y)) <= max_med_abs: out.append((a, b, int(len(x)), round(float(np.median(np.abs(x.y_x - x.y_y))), 3)))
+    return out
 
 
 # ============================================================================ 3. dataset-level geometry
@@ -433,12 +568,13 @@ def cross_paper_reproducibility(df, min_papers=2, min_shared=5, min_df=5, n_boot
 
 
 # ============================================================================ 5. simulation under a given mask
-def simulate(mask, task_dataset, task_paper, K_true, snr=1.0, dataset_share=0.7, paper_effect=0.0, seed=0):
-    """Synthetic table on the real missingness mask, on a points-like scale (no standardisation, matching the fixed-scale
-    analysis). Tasks of one dataset share a loading (dataset_share of its variance) plus a task-specific part; tasks get
-    their own level (~60 +/- 15 pts) and spread (log-normal); snr = shared-signal variance / noise variance per task;
-    paper_effect adds a (paper, model) offset, in noise SDs, mimicking implementation effects. Returns Y (0 where
-    unobserved), true dataset loadings (in units of the task spread), dataset names."""
+def simulate(mask, task_dataset, task_paper, K_true, snr=1.0, dataset_share=0.7, paper_effect=0.0, general_mean=0.0, seed=0):
+    """Synthetic table on the real missingness mask, on a points-like scale. Factor 1 is a GENERAL factor when
+    general_mean > 0: every task's loading on it has mean general_mean (a single leaderboard exists); further factors are
+    specific (mean-zero loadings). Tasks of one dataset share their loading (dataset_share of its variance) plus a task
+    part; tasks get their own level and spread; snr = specific-plus-general signal variance / noise variance per task;
+    paper_effect adds a (paper, model) offset in noise SDs. K_true = 1 with general_mean > 0 is 'one leaderboard'.
+    Returns Y (0 where unobserved), true dataset loadings, dataset names."""
     rng = np.random.default_rng(seed); M, T = mask.shape
     task_dataset = np.asarray(task_dataset); task_paper = np.asarray(task_paper)
     names = sorted(set(task_dataset) - {""}); di = {n: i for i, n in enumerate(names)}
@@ -446,14 +582,35 @@ def simulate(mask, task_dataset, task_paper, K_true, snr=1.0, dataset_share=0.7,
     Ld = rng.normal(size=(len(names), K_true)) / np.sqrt(K_true)
     L = np.array([np.sqrt(dataset_share) * Ld[di[d]] if d in di else np.zeros(K_true) for d in task_dataset]) \
         + np.sqrt(1 - dataset_share) * rng.normal(size=(T, K_true)) / np.sqrt(K_true)
+    L[:, 0] += general_mean
+    Ld = Ld.copy(); Ld[:, 0] += general_mean / np.sqrt(dataset_share)
     scale = np.exp(rng.normal(np.log(4.0), 0.5, size=T)); level = rng.normal(60, 15, size=T)
-    noise_sd = 1.0 / np.sqrt(snr)
+    S = theta @ L.T
+    noise_sd = np.sqrt(np.mean(S ** 2) / snr)
     E = noise_sd * rng.normal(size=(M, T))
     if paper_effect > 0:
         for p in np.unique(task_paper):
             E[:, task_paper == p] += paper_effect * noise_sd * rng.normal(size=(M, 1))
-    Y = level[None, :] + scale[None, :] * (theta @ L.T + E)
+    Y = level[None, :] + scale[None, :] * (S + E)
     return np.where(mask, Y, 0.0), Ld, names
+
+
+def board_lopo_rho(Y, mask, task_paper, min_models=4):
+    """Leave-one-paper-out Spearman of the naive leaderboard alone (no fitting): for calibrating simulations."""
+    task_paper = np.asarray(task_paper); out = []
+    Z = np.full(Y.shape, np.nan)
+    for t in range(Y.shape[1]):
+        o = mask[:, t]
+        if o.sum() > 1 and Y[o, t].std() > 0: Z[o, t] = (Y[o, t] - Y[o, t].mean()) / Y[o, t].std(ddof=1)
+    for p in np.unique(task_paper):
+        hold = task_paper == p; Zp = Z.copy(); Zp[:, hold] = np.nan
+        board = np.nanmean(Zp, axis=1); ntr = (~np.isnan(Zp)).sum(1)
+        for t in np.where(hold)[0]:
+            ms = np.where(mask[:, t] & (ntr >= 3))[0]
+            if len(ms) >= min_models and np.ptp(Y[ms, t]) > 0:
+                r_, _, _ = _rank_scores(Y[ms, t], np.nan_to_num(board[ms]))
+                if np.isfinite(r_): out.append(r_)
+    return float(np.mean(out)) if out else np.nan
 
 
 def recovery(Ld_true, Ld_hat):

@@ -47,6 +47,13 @@ out = {
                       "probe_strategy", "downstream_module", "source_table",
                       # recipe sweeps of a fixed encoder (training loss, fusion scenario): ablation-type, no headline setting known
                       "loss_function", "change_direction_subset_x_training_loss", "scenario"],
+    # per-class / per-subset breakdowns of a headline result reported elsewhere in the same paper: sub-scores of the same
+    # runs, not separate comparisons
+    "subscore_tables": [{"paper": "better-together", "table_id": "tab:r2_scores_lc_classes", "evidence": "per-class R2 of the Dynamic World land-cover task reported in tab:r2_scores_main_tasks"}],
+    "subscore_benchmarks": {"geoid-flood-bench": ["geoid_flood_3class_bg_s1", "geoid_flood_3class_bg_s1s2", "geoid_flood_3class_flood_s1", "geoid_flood_3class_flood_s1s2",
+                                                  "geoid_flood_3class_perm_s1", "geoid_flood_3class_perm_s1s2", "geoid_flood_heldout_3class_bg", "geoid_flood_heldout_3class_flood",
+                                                  "geoid_flood_heldout_3class_perm"],
+                            "evidence": "per-class IoU (background / flood / permanent water) of the 3-class flood tasks, whose overall score is reported as geoid_flood_3class_* and geoid_flood_heldout_3class"},
     "headline_variants": {"embedding_prefix_dim": "128", "probe_strategy": "standard_ridge", "source_table": "main_table"},
     "tables": recs,
 }
