@@ -247,23 +247,23 @@ Reported separation = model-count-weighted SD of reported scores within the data
 
 ## 8. Sensitivity: which findings depend on the analysis decisions
 
-| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | **v2.1 (this report)** |
-|---|---|---|---|
-| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 100×496, 27 src |
-| datasets in ≥ 2 sources | 20 | 27 | 29 |
-| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) |
-| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 11/14 (p = 0.03) |
-| K chosen / best | 2 / 4 | 2 / 2 | 2 / 3 |
-| offset | all | none | none |
-| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.04 (90% CI -0.14 to +0.05) |
-| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.05 (90% CI -0.02 to +0.11) |
-| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.09 (90% CI +0.03 to +0.14) |
-| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.13 (90% CI +0.03 to +0.21) |
-| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | -0.00 (90% CI -0.08 to +0.07) |
-| labels surviving correction | none | domain | none |
-| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | yes / no |
-| comparisons with seed-noise score | 0 | 32 | 152 |
-| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 |
+| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | v2 · b_no_leaderboard | **v2.1 (this report)** |
+|---|---|---|---|---|
+| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 98×464, 26 src | 100×496, 27 src |
+| datasets in ≥ 2 sources | 20 | 27 | 23 | 29 |
+| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.00 to +0.49) | +0.15 (90% CI +0.01 to +0.48) |
+| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 10/13 (p = 0.05) | 11/14 (p = 0.03) |
+| K chosen / best | 2 / 4 | 2 / 2 | 3 / 3 | 2 / 3 |
+| offset | all | none | none | none |
+| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.07 (90% CI -0.16 to +0.02) | -0.04 (90% CI -0.14 to +0.05) |
+| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.05 (90% CI -0.02 to +0.11) |
+| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.09 (90% CI +0.03 to +0.14) |
+| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.13 (90% CI +0.03 to +0.21) |
+| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | -0.00 (90% CI -0.08 to +0.07) |
+| labels surviving correction | none | domain | none | none |
+| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | yes / no |
+| comparisons with seed-noise score | 0 | 32 | 120 | 152 |
+| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 2 |
 
 ## 9. Limits
 
