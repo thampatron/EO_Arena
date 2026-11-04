@@ -1,6 +1,6 @@
 # Agent backlog
 
-Ordered; the scheduled job takes the first item that is `open` and has no open PR. See [`agent-team.md`](agent-team.md). Status values: `open`, `in PR #n`, `done`, `blocked: <reason>`.
+Ordered; the scheduled job takes the first item that is `open` and has no remote `agent/<id>-*` branch. See [`agent-team.md`](agent-team.md). Status values: `open`, `in PR #n`, `done`, `blocked: <reason>`.
 
 ## Ready
 
