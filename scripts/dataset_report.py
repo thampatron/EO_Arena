@@ -37,10 +37,11 @@ def tci(x): return f"{x['estimate']:+.2f} (90% CI {x['ci90'][0]:+.2f} to {x['ci9
 def tcred(x): return x["ci90"][0] > 0
 w(f"1. **Datasets {'do' if tcred(di) else 'do not credibly'} carry their own GeoFM ordering across papers.** Over {cells[(True, False)]['pairs']:,} pairs of comparisons on the same dataset by different sources, orderings agree with Kendall τ = {cells[(True, False)]['mean_tau']:.2f}, against {cells[(False, False)]['mean_tau']:.2f} for different datasets across sources ({cells[(False, False)]['pairs']:,} pairs): a dataset-identity effect of {tci(di)} (cluster bootstrap over sources). It holds with each dataset as its own control ({tci(dpd)}), within the same protocol family ({tci(dpf)}) and without possible shared-codebase source pairs ({tci(dcb)}). Under a single ranking plus noise this contrast would be zero. Model-free; median {TA['median_shared_models']:.0f} shared GeoFMs per pair.")
 w(f"2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = {cells[(False, True)]['mean_tau']:.2f}) than across papers ({cells[(False, False)]['mean_tau']:.2f}): {tci(ps)}. A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.")
-ak1, akb, akc = g["anchored_K1_vs_board"], g["anchored_bestK_vs_board"], g["anchored_Kchosen_vs_board"]
+k1g, kbg, kcg = g["K1_vs_leaderboard"], g["bestK_vs_leaderboard"], g["Kchosen_vs_leaderboard"]
+ank = g.get("anchored_bestK_vs_leaderboard_same_half")
 simK = d.get("simulation_K") or []
 sk = "; ".join(f"K_true = {x['K_true']} → selected {x['K_selected']} (best {x['best_K']})" for x in simK)
-w(f"3. **Out of paper, more than one capability dimension {'beats' if credible(akb) and akb['mean'] > 0 else 'does not credibly beat'} a single leaderboard.** With each held-out comparison's loading estimated from half its GeoFMs and the other half predicted, the best model (K = {akb['K']}, selected among 12 configurations) differs from the naive leaderboard used the same way by {ci(akb)}; K = 1 by {ci(ak1)}. The smallest K not credibly worse than the best is {Kc}." + (f" Calibrated simulation of this rule: {sk}." if simK else ""))
+w(f"3. **Out of paper, more than one capability dimension {'beats' if credible(kbg) and kbg['mean'] > 0 else 'does not credibly beat'} a single leaderboard.** Predicting a held-out source's orderings from what other sources say about the GeoFMs and about each comparison's dataset, protocol and sensor, the best model (K = {kbg['K']}, selected among 12 configurations) beats the naive leaderboard by {ci(kbg)}; K = 1 differs by {ci(k1g)}. The leaderboard gets its direction for free, so this is conservative toward one ranking." + (f" Anchored check (loading from half a comparison's GeoFMs, other half predicted): K = {ank['K']} vs the leaderboard on the same half {ci(ank)}." if ank else "") + f" The smallest K not credibly worse than the best is {Kc}" + (f"; calibrated simulation of this rule: {sk}." if simK else "."))
 seen_ = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
 if seen_:
     w(f"4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by {ci(seen_)}. Finding 1 shows the information is there; the estimated dataset loadings, from a median of 2 comparisons per dataset, are too noisy to carry it. Dataset-to-dataset similarity is therefore not published (D13).")
@@ -90,33 +91,33 @@ w("## 3. How many shared dimensions? (the note's one-leaderboard test)")
 w()
 w("Model: y_mt = μ_t + λ_t′θ_m + c_{m,p(t)} + η_mt, each task in units of its residual SD (pooled prior within metric family); λ_t = dataset + protocol-family + sensor blocks + task part (Eq. 11/12 group ridge); c = paper × model implementation offset. Leave-one-paper-out Spearman ρ of predicted vs reported within-task order (naive leaderboard = mean within-comparison z-score in all other sources, a K-independent single ranking):")
 w()
-w("Anchored (primary, D9): a held-out comparison's loading is estimated from half its GeoFMs and the other half is predicted; the leaderboard is used the same way. Block-predicted (secondary): nothing from the held-out comparison is used.")
+w("Block-predicted (primary, D9): nothing from the held-out comparison is used; the plain leaderboard likewise. Anchored (secondary): the comparison's loading is estimated from half its GeoFMs and the other half predicted; the leaderboard is scored on the same half.")
 w()
 w("| offset | " + " | ".join(f"anchored K={k}" for k in lt) + " | anchored leaderboard | " + " | ".join(f"blocks K={k}" for k in lt) + " | leaderboard |"); w("|---|" + "---|" * (2 * len(lt) + 2))
 for s, row in K["lopo_by_spec_and_K"].items():
     f0 = row[next(iter(row))]
-    w(f"| {s}{' (chosen)' if s == off['chosen'] else ''} | " + " | ".join(f"{row[k]['rho_anch']:.3f}" for k in row) + f" | {f0['rho_anch_board']:.3f} | " + " | ".join(f"{row[k]['rho_struct']:.3f}" for k in row) + f" | {f0['rho_board']:.3f} |")
+    w(f"| {s}{' (chosen)' if s == off['chosen'] else ''} | " + " | ".join(f"{row[k]['rho_struct']:.3f}" for k in row) + f" | {f0['rho_board']:.3f} | " + " | ".join(f"{row[k]['rho_anch']:.3f}" for k in row) + f" | {f0['rho_half_board']:.3f} |")
 w()
 if off["paired_vs_chosen"]:
     w("Offset choice (D8): " + "; ".join(f"{s} (K={v['K']}) minus chosen (K={v['vs_K']}): {ci(v)}" for s, v in off["paired_vs_chosen"].items()) + ".")
     w()
 w(f"K (D9): best K = {bestK}; chosen (smallest not credibly worse) K = {Kc}. Paired differences to the best: " + ("; ".join(f"K={k}: {ci(v)}" for k, v in K["paired_vs_best"].items()) or "–") + ".")
 w()
-w(f"Anchored, against the leaderboard: K = 1 {ci(g['anchored_K1_vs_board'])}; K = {Kc} (chosen) {ci(g['anchored_Kchosen_vs_board'])}; K = {g['anchored_bestK_vs_board']['K']} (best, selected — optimistic) {ci(g['anchored_bestK_vs_board'])}. Block-predicted best K against the leaderboard: {ci(g['blocks_bestK_vs_naive_leaderboard'])}.")
+w(f"Against the leaderboard: K = 1 {ci(g['K1_vs_leaderboard'])}; K = {Kc} (chosen) {ci(g['Kchosen_vs_leaderboard'])}; K = {g['bestK_vs_leaderboard']['K']} (best, selected — optimistic) {ci(g['bestK_vs_leaderboard'])}. Anchored: K = 1 {ci(g['anchored_K1_vs_leaderboard_same_half'])}; K = {g['anchored_bestK_vs_leaderboard_same_half']['K']} {ci(g['anchored_bestK_vs_leaderboard_same_half'])}.")
 w()
 cal = d.get("simulation_calibration") or {}
 if cal:
     w(f"**Calibrated simulation (D16).** A general factor (one leaderboard) plus specific factors, dataset-shared loadings and implementation effects, fitted on a {cal['grid_size']}-point grid to the real data: targets " + ", ".join(f"{k} {v:.3f}" for k, v in cal["targets"].items()) + "; achieved " + ", ".join(f"{k} {v:.3f}" for k, v in cal["achieved"].items()) + f" with general-factor mean {cal['chosen']['general_mean']}, SNR {cal['chosen']['snr']}, dataset share {cal['chosen']['dataset_share']}, implementation effect {cal['chosen']['paper_effect']} noise SD.")
     w()
 if d["simulation_K"]:
-    w("| K true | K selected by the rule | best K | anchored ρ by K | anchored leaderboard | best K − leaderboard |"); w("|---|---|---|---|---|---|")
-    for x in d["simulation_K"]: w(f"| {x['K_true']} | {x['K_selected']} | {x['best_K']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in x["anchored_rho"].items()) + f" | {x['board']:.3f} | {ci(x['bestK_vs_board'])} |")
+    w("| K true | K selected by the rule | best K | ρ by K | leaderboard | best K − leaderboard |"); w("|---|---|---|---|---|---|")
+    for x in d["simulation_K"]: w(f"| {x['K_true']} | {x['K_selected']} | {x['best_K']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in x["rho_by_K"].items()) + f" | {x['board']:.3f} | {ci(x['bestK_vs_board'])} |")
     w()
 if d["simulation_offset"]:
     w("Offset options under the calibrated truth (K = 2):")
     w()
-    w("| offset | anchored ρ | anchored leaderboard | block-predicted dataset gain (seen datasets) | geometry recovery (≥ 2-source datasets) |"); w("|---|---|---|---|---|")
-    for x in d["simulation_offset"]: w(f"| {x['offset']} | {x['anchored_rho']:.3f} | {x['anchored_board']:.3f} | {x['dataset_gain_seen']:+.3f} | {x['recovery_multi_source_datasets']:.2f} |")
+    w("| offset | ρ (K = 2) | leaderboard | dataset gain (seen datasets) | geometry recovery (≥ 2-source datasets) |"); w("|---|---|---|---|---|")
+    for x in d["simulation_offset"]: w(f"| {x['offset']} | {x['rho']:.3f} | {x['board']:.3f} | {x['dataset_gain_seen']:+.3f} | {x['recovery_multi_source_datasets']:.2f} |")
     w()
 
 # ------------------------------------------------------------------ 4 datasets
@@ -187,7 +188,7 @@ def head(j):
     if j.get("version") == 2:
         g_ = j["lopo_gain"]; bk_ = j["K"]["best"]
         se = next((v for k, v in g_.items() if k.startswith("dataset_seen_in_other_sources")), None)
-        k1_ = g_.get("anchored_K1_vs_board", g_.get("K1_vs_naive_leaderboard")); kb_ = g_.get("anchored_bestK_vs_board", g_.get("bestK_vs_naive_leaderboard"))
+        k1_ = g_.get("K1_vs_leaderboard", g_.get("K1_vs_naive_leaderboard")); kb_ = g_.get("bestK_vs_leaderboard", g_.get("bestK_vs_naive_leaderboard"))
         ta_ = j.get("tau_tests", {}).get("all", {}).get("dataset_identity")
         return dict(ev=f"{j['overlap']['models']}×{j['overlap']['tasks']}, {j['overlap']['sources']} src", multi=j["overlap"]["datasets_in_2plus_sources"], K=f"{j['K']['chosen']} / {bk_}",
                     off=j["offset"]["chosen"], k1=ci(k1_), kb=ci(kb_), seen=ci(se) if se else "–", tau=tci(ta_) if ta_ else "–",
@@ -198,7 +199,7 @@ def head(j):
                 K=f"{j['K']['chosen']} / {g_.get('bestK_vs_naive_leaderboard', {}).get('K', '–')}", off="all", k1=ci(g_["K1_vs_naive_leaderboard"]),
                 kb=ci(g_["bestK_vs_naive_leaderboard"]) if "bestK_vs_naive_leaderboard" in g_ else "–", seen=ci(se) if se else "–",
                 lab=labs(j["metadata_association_multi_paper"]), geo="yes" if j["geometry_recoverable"] else "no", rel="0", rep=f"{len(j['reproducibility'])} / –", tau="–")
-cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sources"), ("tau", "dataset identity, model-free τ (v2.1+)"), ("K", "K chosen / best"), ("off", "offset"), ("k1", "K=1 vs leaderboard (v1/v2: block-predicted; v2.1: anchored)"), ("kb", "best K vs leaderboard (same)"),
+cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sources"), ("tau", "dataset identity, model-free τ (v2.1+)"), ("K", "K chosen / best"), ("off", "offset"), ("k1", "K=1 vs leaderboard (block-predicted)"), ("kb", "best K vs leaderboard (block-predicted)"),
         ("seen", "dataset transfer (seen)"), ("lab", "labels surviving correction"), ("geo", "similarity recoverable"), ("rel", "comparisons with seed-noise score"), ("rep", "reproducibility groups (strict / loose)")]
 H = [(nm_, head(json.loads(p.read_text()))) for nm_, p in runs if p.exists()]
 w("| | " + " | ".join(nm_ for nm_, _ in H) + " |"); w("|---|" + "---|" * len(H))

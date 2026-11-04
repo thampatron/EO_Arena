@@ -74,12 +74,12 @@ Excluded at three levels:
   Pick the option with the highest best-K accuracy.
 - A calibrated simulation (D16) reports what each option costs in recovering dataset structure.
 
-## D9 — Number of dimensions K · frozen (rule)
-- **Primary criterion: anchored leave-one-paper-out.** Hold out every comparison of a source and refit. For each held-out comparison with ≥ 6 eligible GeoFMs, estimate its loading on the fitted capability vectors from a random half of its GeoFMs, then predict the order of the other half (10 random splits).
-  - The one-ranking comparator does exactly the same with the naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources) as a one-dimensional predictor.
-  - This tests whether K-dimensional capability vectors beat a single ranking without depending on predicted loadings or their sign.
-- **K rule:** the smallest K whose anchored accuracy is not credibly below the best K (paired bootstrap over sources).
-- **Secondary, block-predicted:** no information from the held-out comparison. It tests whether what is known about its dataset, protocol and sensor transfers.
+## D9 — Number of dimensions K and the one-leaderboard test · frozen (rule)
+- **Primary, block-predicted leave-one-paper-out.** Hold out every comparison of a source and refit. Predict each held-out comparison's GeoFM order from its dataset, protocol and sensor blocks and the GeoFMs' capability vectors, using nothing from the comparison itself.
+- **One-ranking comparator:** the plain naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources). It also uses nothing from the comparison, and its sign is known a priori, so the test is conservative toward one ranking.
+- **K rule:** the smallest K whose accuracy is not credibly below the best K (paired bootstrap over sources). The offset option (D8) uses the same criterion.
+- **Secondary, anchored.** Estimate the held-out comparison's loading from a random half of its GeoFMs and predict the other half (10 splits), against the plain leaderboard scored on the same half.
+- An earlier v2.1 draft compared the anchored model with a leaderboard whose sign was also re-estimated from 3–5 GeoFMs. That comparator scored ρ 0.05 against 0.21 for the plain leaderboard and was replaced before any result was reported.
 - Dataset-level summaries use the best K.
 
 ## D10 — Ridge strength 3 for all blocks · frozen
