@@ -8,7 +8,7 @@ Analysis of 2026-11-04 on the GeoFM meta-analysis workbook v4, following *GeoFM 
 2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = 0.26) than across papers (0.09): +0.17 (90% CI +0.04 to +0.27). A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.
 3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = 3) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14) — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = 2 gives +0.05 (90% CI -0.02 to +0.11). Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = 3 against K = 1 within the same model — gives +0.13 (90% CI +0.03 to +0.21), also after selection. Anchored check: +0.06 (90% CI -0.04 to +0.14). Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.
 4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by -0.00 (90% CI -0.08 to +0.07). Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).
-5. **Metadata labels do not credibly organise the datasets.** Domain, subdomain, task type and sensor all fail after correction for the four labels tested.
+5. **Metadata labels do not credibly organise the datasets.** Domain, subdomain, task type and sensor all fail after correction for the four labels tested. Domain is the label closest to the threshold: it survives correction in two sensitivity runs (main text only; no regression tasks; p ≈ 0.04), so whether domain organises datasets is unresolved rather than ruled out (§8).
 6. **Where seed noise is reported, model differences mostly survive re-seeding — with wide uncertainty.** 152 comparisons (≥ 6 GeoFMs, seed SDs printed for ≥ 3) across 57 dataset × protocol pairs: 73 have a 90% lower bound ≥ 0.8 on the share of model spread that survives re-seeding (note Eq. 6), 112 ≥ 0.5; comparisons from one paper share settings and are not independent (per dataset × protocol counts in §5). This is reliability within one implementation, and rounding of printed SDs is not yet propagated.
 7. **Independent groups rarely evaluate the same GeoFMs on the same dataset and protocol.** Cross-source reproducibility is estimable for 0 strict and 2 loose dataset groups: BioMassters (2 sources, 6 GeoFMs, agreement 0.99); PASTIS / PASTIS-R (4 sources, 8 GeoFMs, agreement 0.89). Close values between sources can mean a shared evaluation codebase rather than independent replication. Standardised re-evaluation of the same GeoFMs by different groups is the missing evidence.
 
@@ -247,23 +247,25 @@ Reported separation = model-count-weighted SD of reported scores within the data
 
 ## 8. Sensitivity: which findings depend on the analysis decisions
 
-| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | v2 · b_no_leaderboard | v2 · c_no_regression | **v2.1 (this report)** |
-|---|---|---|---|---|---|
-| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 98×464, 26 src | 98×440, 25 src | 100×496, 27 src |
-| datasets in ≥ 2 sources | 20 | 27 | 23 | 28 | 29 |
-| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.00 to +0.49) | +0.14 (90% CI +0.01 to +0.46) | +0.15 (90% CI +0.01 to +0.48) |
-| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 10/13 (p = 0.05) | 10/14 (p = 0.09) | 11/14 (p = 0.03) |
-| K chosen / best | 2 / 4 | 2 / 2 | 3 / 3 | 2 / 3 | 2 / 3 |
-| offset | all | none | none | none | none |
-| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.07 (90% CI -0.16 to +0.02) | -0.10 (90% CI -0.23 to +0.03) | -0.04 (90% CI -0.14 to +0.05) |
-| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.06 (90% CI -0.02 to +0.13) | +0.05 (90% CI -0.02 to +0.11) |
-| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.11 (90% CI +0.05 to +0.17) | +0.09 (90% CI +0.03 to +0.14) |
-| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.21 (90% CI +0.09 to +0.30) | +0.13 (90% CI +0.03 to +0.21) |
-| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | +0.04 (90% CI -0.03 to +0.10) | -0.00 (90% CI -0.08 to +0.07) |
-| labels surviving correction | none | domain | none | domain | none |
-| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | yes / no |
-| comparisons with seed-noise score | 0 | 32 | 120 | 146 | 152 |
-| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 1 | 0 / 2 |
+| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | v2 · b_no_leaderboard | v2 · c_no_regression | v2 · d_all_v1_decisions | **v2.1 (this report)** |
+|---|---|---|---|---|---|---|
+| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 98×464, 26 src | 98×440, 25 src | 88×218, 19 src | 100×496, 27 src |
+| datasets in ≥ 2 sources | 20 | 27 | 23 | 28 | 20 | 29 |
+| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.00 to +0.49) | +0.14 (90% CI +0.01 to +0.46) | +0.43 (90% CI +0.09 to +0.67) | +0.15 (90% CI +0.01 to +0.48) |
+| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 10/13 (p = 0.05) | 10/14 (p = 0.09) | 3/4 (p = 0.31) | 11/14 (p = 0.03) |
+| K chosen / best | 2 / 4 | 2 / 2 | 3 / 3 | 2 / 3 | 2 / 2 | 2 / 3 |
+| offset | all | none | none | none | all | none |
+| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.07 (90% CI -0.16 to +0.02) | -0.10 (90% CI -0.23 to +0.03) | -0.19 (90% CI -0.33 to -0.06) | -0.04 (90% CI -0.14 to +0.05) |
+| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.06 (90% CI -0.02 to +0.13) | +0.13 (90% CI +0.08 to +0.16) | +0.05 (90% CI -0.02 to +0.11) |
+| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.11 (90% CI +0.05 to +0.17) | +0.13 (90% CI +0.08 to +0.16) | +0.09 (90% CI +0.03 to +0.14) |
+| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.21 (90% CI +0.09 to +0.30) | +0.31 (90% CI +0.19 to +0.44) | +0.13 (90% CI +0.03 to +0.21) |
+| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | +0.04 (90% CI -0.03 to +0.10) | +0.06 (90% CI -0.09 to +0.24) | -0.00 (90% CI -0.08 to +0.07) |
+| labels surviving correction | none | domain | none | domain | none | none |
+| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | not run / no | yes / no |
+| comparisons with seed-noise score | 0 | 32 | 120 | 146 | 0 | 152 |
+| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 1 | 0 / 3 | 0 / 2 |
+
+Across the 5 v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in 5; best K beats K = 1 with an interval above 0 in 5 of 5 (range +0.13 to +0.31; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in 3. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).
 
 ## 9. Limits
 

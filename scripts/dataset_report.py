@@ -49,7 +49,7 @@ w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings bett
 seen_ = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
 if seen_:
     w(f"4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by {ci(seen_)}. Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).")
-w(f"5. **Metadata labels {'partly organise' if sig_labels else 'do not credibly organise'} the datasets.** " + (f"{', '.join(sig_labels)} survive(s) correction for the four labels tested." if sig_labels else "Domain, subdomain, task type and sensor all fail after correction for the four labels tested."))
+w(f"5. **Metadata labels {'partly organise' if sig_labels else 'do not credibly organise'} the datasets.** " + (f"{', '.join(sig_labels)} survive(s) correction for the four labels tested." if sig_labels else "Domain, subdomain, task type and sensor all fail after correction for the four labels tested." + " Domain is the label closest to the threshold: it survives correction in two sensitivity runs (main text only; no regression tasks; p ≈ 0.04), so whether domain organises datasets is unresolved rather than ruled out (§8)."))
 if rel["by_dataset_protocol"]:
     bd = rel["by_dataset_protocol"]
     w(f"6. **Where seed noise is reported, model differences mostly survive re-seeding — with wide uncertainty.** {rel['comparisons']} comparisons (≥ 6 GeoFMs, seed SDs printed for ≥ 3) across {len(bd)} dataset × protocol pairs: {rel['comparisons_lo_ge_0_8']} have a 90% lower bound ≥ 0.8 on the share of model spread that survives re-seeding (note Eq. 6), {rel['comparisons_lo_ge_0_5']} ≥ 0.5; comparisons from one paper share settings and are not independent (per dataset × protocol counts in §5). This is reliability within one implementation, and rounding of printed SDs is not yet propagated.")
@@ -226,6 +226,14 @@ cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sourc
 H = [(nm_, head(json.loads(p.read_text()))) for nm_, p in runs if p.exists()]
 w("| | " + " | ".join(nm_ for nm_, _ in H) + " |"); w("|---|" + "---|" * len(H))
 for k_, lab in cols: w(f"| {lab} | " + " | ".join(str(h[k_]) for _, h in H) + " |")
+w()
+_J = [json.loads(p.read_text()) for _, p in runs if p.exists() and json.loads(p.read_text()).get("version") == 2]
+def _dim(j):
+    pv = j["K"].get("paired_vs_best") or {}; p1 = pv.get("1") or pv.get(1)
+    return None if not p1 else (-p1["mean"], -p1["ci90"][1])
+_d = [x for x in map(_dim, _J) if x]; _tau = [j["tau_tests"]["all"]["dataset_identity"] for j in _J]
+_kc = [j["lopo_gain"].get("Kchosen_vs_leaderboard") for j in _J]
+w(f"Across the {len(_J)} v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in {sum(t['ci90'][0] > 0 for t in _tau)}; best K beats K = 1 with an interval above 0 in {sum(lo > 0 for _, lo in _d)} of {len(_d)} (range {min(m for m, _ in _d):+.2f} to {max(m for m, _ in _d):+.2f}; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in {sum(1 for k in _kc if k and k['ci90'][0] > 0)}. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).")
 w()
 
 # ------------------------------------------------------------------ 9 limits
