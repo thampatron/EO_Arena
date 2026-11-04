@@ -288,8 +288,14 @@ assoc = {c: {"full_loading": db.metadata_association(Ld2[multi], dmeta[c].fillna
 for c in assoc:
     for v_ in assoc[c].values(): v_["p_bonferroni_4_labels"] = min(1.0, 4 * v_["p_value"])
 log("assoc", {c: {kk: (round(a["r2"], 3), round(a["null_mean"], 3), a["p_value"], a["n"]) for kk, a in v_.items()} for c, v_ in assoc.items()})
+# D13: publish dataset similarity only if (a) simulation shows it would be recoverable on this mask and (b) the real data
+# shows dataset loadings transfer out of paper (credible positive gain for datasets seen in other sources): (a) is
+# conditional on structure existing; (b) tests whether it does.
 rec_ok = [s_["recovery_multi_source_datasets"] for s_ in sim_spec if s_["offset"] == SPEC]
-GEOMETRY_OK = bool(rec_ok) and float(np.median(rec_ok)) >= 0.7
+_seen = next((v_ for k_, v_ in lopo_gain.items() if k_.startswith("dataset_seen_in_other_sources")), None)
+GEOMETRY_RECOVERABLE = bool(rec_ok) and float(np.median(rec_ok)) >= 0.7
+DATASET_TRANSFER = bool(_seen) and _seen["ci90"][0] > 0
+GEOMETRY_OK = GEOMETRY_RECOVERABLE and DATASET_TRANSFER
 S = db.similarity(Ld)
 tau_obs = {}
 for n in names:
@@ -365,6 +371,8 @@ out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
              "lopo_by_spec_and_K": lopo_table, "paired_vs_best": k_tests},
        "lopo_gain": lopo_gain, "heldout_cells_within_paper": heldout,
        "simulation_offset": sim_spec, "simulation_K": sim_K, "geometry_recoverable": GEOMETRY_OK,
+       "geometry_gate": {"simulated_recovery_median": rnd(float(np.median(rec_ok))) if rec_ok else None, "recoverable_in_simulation": GEOMETRY_RECOVERABLE,
+                         "dataset_loadings_transfer_out_of_paper": DATASET_TRANSFER, "published": GEOMETRY_OK},
        "metadata_association_multi_source": assoc,
        "datasets": {n: {"sources": int(dmeta.at[n, "sources"]), "comparisons": int((td == n).sum()), "models_per_comparison": round(float(np.mean(mask[:, td == n].sum(0))), 1),
                         "smallest_comparison": int(mask[:, td == n].sum(0).min()), "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],

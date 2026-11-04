@@ -68,7 +68,7 @@ Chosen in v1 (best of 1 / 3 / 10 for every specification) and deliberately not r
 
 ## D13 — Publication gates · frozen
 - Dataset-level quantities only for datasets reported by ≥ 2 independent sources.
-- Dataset-to-dataset similarity only if simulated recovery on the real mask (chosen offset) has median ≥ 0.7.
+- Dataset-to-dataset similarity only if **both** (a) simulated recovery on the real mask (chosen offset) has median ≥ 0.7 **and** (b) on the real data, dataset loadings credibly improve out-of-paper prediction for datasets seen in other sources (90% CI > 0). (a) says the similarity structure *would* be recoverable if it existed; (b) tests whether it does. v2 added (b) after (a) passed marginally (0.70) while (b) showed no transfer.
 - No model ranking anywhere.
 
 ## D14 — Selection effects

@@ -120,7 +120,9 @@ for c, v in assoc.items():
     a, b = v["full_loading"], v["direction_only"]
     w(f"| {c} | {a['r2']:.2f} | {a['null_mean']:.2f} | {a['p_bonferroni_4_labels']:.2f} | {b['r2']:.2f} | {b['null_mean']:.2f} | {b['p_bonferroni_4_labels']:.2f} | {a['n']} |")
 w()
-w("Dataset-to-dataset similarity " + ("is reported in the JSON (`nearest`) for datasets in ≥ 2 sources: simulated recovery on this mask ≥ 0.7." if d["geometry_recoverable"] else "is **not published**: simulated recovery on this mask is below 0.7."))
+gg_ = d.get("geometry_gate", {})
+w("Dataset-to-dataset similarity " + ("is reported in the JSON (`nearest`) for datasets in ≥ 2 sources." if d["geometry_recoverable"] else
+  f"is **not published** (D13): simulated recovery on this mask {'would allow it' if gg_.get('recoverable_in_simulation') else 'is too low'} (median {gg_.get('simulated_recovery_median')}), but " + ("dataset loadings do not credibly transfer across papers on the real data, so the estimated similarities would describe single papers, not datasets." if not gg_.get("dataset_loadings_transfer_out_of_paper") else "the recovery gate fails.")))
 w()
 
 # ------------------------------------------------------------------ 5 reliability
