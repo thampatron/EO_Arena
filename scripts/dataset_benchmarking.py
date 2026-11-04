@@ -274,15 +274,15 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
     eligible models, split the models into halves anchor_splits times; estimate the task's loading on theta (ridge
     regression with intercept, theta from the fit without this paper) from half A and predict the order of half B
     (rho_anch); the one-ranking comparator does the same with the naive leaderboard as a 1-d predictor (rho_anch_board),
-    so both use half A identically. rho_anch - rho_anch_board is what K-dimensional capability adds to a single ranking."""
+    and rho_half_board scores the plain leaderboard (sign known a priori) on the same half B: rho_anch - rho_half_board
+    is a test of K-dimensional capability against a single ranking that favours the ranking. rho_anch_board re-estimates
+    the leaderboard's sign from half A and is handicapped (kept for reference only)."""
     task_paper = np.asarray(task_paper)
     rows = []
     arng = np.random.default_rng(12345)
-    def _anchored(Xf, y, n_spl):
+    def _anchored(Xf, y, splits):
         out = []
-        n = len(y); h = n // 2
-        for _ in range(n_spl):
-            perm = arng.permutation(n); a, b = perm[:h], perm[h:]
+        for a, b in splits:
             Xa = np.c_[np.ones(len(a)), Xf[a]]
             P = np.eye(Xa.shape[1]) * anchor_ridge; P[0, 0] = 1e-8
             beta = np.linalg.solve(Xa.T @ Xa + P, Xa.T @ y[a])
@@ -315,12 +315,18 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
             r_g, a_g, _ = _rank_scores(y, gen[ms])
             r_b, a_b, _ = _rank_scores(y, np.nan_to_num(board[ms]))
             ra = rab = np.nan
+            rhb = np.nan
             if len(ms) >= anchor_min and np.ptp(y) > 0 and fit.K:
-                ra = _anchored(fit.theta[ms], y, anchor_splits)
+                n_ = len(ms); h_ = n_ // 2; spl = []
+                for _ in range(anchor_splits):
+                    perm = arng.permutation(n_); spl.append((perm[:h_], perm[h_:]))
+                ra = _anchored(fit.theta[ms], y, spl)
                 bz = np.nan_to_num(board[ms]); bz = (bz - bz.mean()) / (bz.std() + 1e-12)
-                rab = _anchored(bz[:, None], y, anchor_splits)
+                rab = _anchored(bz[:, None], y, spl)                      # leaderboard with its sign re-estimated (handicapped)
+                hb = [_rank_scores(y[b_], bz[b_])[0] for _, b_ in spl]; hb = [x_ for x_ in hb if np.isfinite(x_)]
+                rhb = float(np.mean(hb)) if hb else np.nan                # plain leaderboard on the same half B (fair comparator)
             rows.append(dict(paper=p, task=int(t), n_models=len(ms), n_pairs=n_pairs, rho_struct=r_s, acc_struct=a_s, rho_global=r_g, acc_global=a_g,
-                             rho_board=r_b, acc_board=a_b, rho_anch=ra, rho_anch_board=rab))
+                             rho_board=r_b, acc_board=a_b, rho_anch=ra, rho_anch_board=rab, rho_half_board=rhb))
     return pd.DataFrame(rows)
 
 

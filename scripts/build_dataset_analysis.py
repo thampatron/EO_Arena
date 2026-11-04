@@ -246,17 +246,18 @@ TAU["flagged_source_pairs_detail"] = [{"a": a_, "b": b_, "matched_cells": n_, "m
 log("tau cells", TAU["cells"]); log("tau contrasts (all)", TAU["all"]); log("flagged codebase pairs", CODEBASE)
 
 # ============================================================================= 3. leave-one-paper-out over offset specs x K (D8, D9)
-# Primary out-of-paper criterion: ANCHORED prediction (loading of the held-out task estimated from half its GeoFMs, the
-# other half predicted), which tests whether K-dimensional capability vectors beat a single ranking without depending on
-# block-predicted loadings. Secondary: block-predicted (no information from the held-out task), which tests whether
-# what is known about the task's dataset / protocol / sensor transfers.
+# Primary out-of-paper criterion: BLOCK-PREDICTED order of a held-out comparison (from its dataset / protocol / sensor
+# blocks and the GeoFMs' capability vectors; nothing from the comparison itself), against the plain naive leaderboard
+# (also nothing from the comparison; its sign is known a priori, so the test is conservative toward one ranking).
+# Secondary: ANCHORED (loading estimated from half the comparison's GeoFMs, other half predicted) against the plain
+# leaderboard on the same half.
 specs = ["all", "multi_domain", "none"] if OFFSET == "select" else [OFFSET]
 LO = run_parallel([(Y, s, K_) for s in specs for K_ in KS_LOPO])
 for (s, K_), L_ in LO.items():
     L_["dataset"] = [td[t] for t in L_.task]; L_["dataset_seen_elsewhere"] = [dpp.get(td[t], 0) >= 2 for t in L_.task]
-COLS = ("rho_anch", "rho_anch_board", "rho_struct", "rho_global", "rho_board", "acc_struct", "acc_board")
+COLS = ("rho_struct", "rho_board", "rho_global", "rho_anch", "rho_half_board", "rho_anch_board", "acc_struct", "acc_board")
 lopo_table = {s: {K_: {c: round(float(LO[(s, K_)][c].mean()), 4) for c in COLS} for K_ in KS_LOPO} for s in specs}
-for s in specs: log("LOPO", s, {K_: (v_["rho_anch"], v_["rho_struct"]) for K_, v_ in lopo_table[s].items()}, "board", lopo_table[s][1]["rho_anch_board"], lopo_table[s][1]["rho_board"])
+for s in specs: log("LOPO", s, {K_: (v_["rho_struct"], v_["rho_anch"]) for K_, v_ in lopo_table[s].items()}, "board", lopo_table[s][1]["rho_board"], "half-board", lopo_table[s][1]["rho_half_board"])
 def choose_K_on(rows, col):
     means = {K_: float(v_[col].mean()) for K_, v_ in rows.items()}; bk = max(means, key=means.get); tests = {}
     for K_, v_ in rows.items():
@@ -264,21 +265,24 @@ def choose_K_on(rows, col):
         Aa = v_.set_index("task"); Bb = rows[bk].set_index("task"); j = Aa.index.intersection(Bb.index)
         tests[K_] = paired_boot(Aa.loc[j, col], Bb.loc[j, col], Aa.loc[j, "paper"])
     return min([bk] + [k_ for k_, t_ in tests.items() if t_["ci90"][1] >= 0]), bk, tests, means
-SPEC = max(specs, key=lambda s: max(lopo_table[s][K_]["rho_anch"] for K_ in KS_LOPO))
+PRIMARY = "rho_struct"
+SPEC = max(specs, key=lambda s: max(lopo_table[s][K_][PRIMARY] for K_ in KS_LOPO))
 spec_tests = {}
 for s in specs:
     if s == SPEC: continue
-    Ks_, Kb_ = max(KS_LOPO, key=lambda K_: lopo_table[s][K_]["rho_anch"]), max(KS_LOPO, key=lambda K_: lopo_table[SPEC][K_]["rho_anch"])
+    Ks_, Kb_ = max(KS_LOPO, key=lambda K_: lopo_table[s][K_][PRIMARY]), max(KS_LOPO, key=lambda K_: lopo_table[SPEC][K_][PRIMARY])
     Aa = LO[(s, Ks_)].set_index("task"); Bb = LO[(SPEC, Kb_)].set_index("task"); j = Aa.index.intersection(Bb.index)
-    spec_tests[s] = dict(K=Ks_, vs_K=Kb_, **paired_boot(Aa.loc[j, "rho_anch"], Bb.loc[j, "rho_anch"], Aa.loc[j, "paper"]))
+    spec_tests[s] = dict(K=Ks_, vs_K=Kb_, **paired_boot(Aa.loc[j, PRIMARY], Bb.loc[j, PRIMARY], Aa.loc[j, "paper"]))
 rows = {K_: LO[(SPEC, K_)] for K_ in KS_LOPO}
-K, bestK, k_tests, _ = choose_K_on(rows, "rho_anch")
+K, bestK, k_tests, _ = choose_K_on(rows, PRIMARY)
+_, bestK_anch, k_tests_anch, _ = choose_K_on(rows, "rho_anch")
 log("offset spec", SPEC, spec_tests, "| K", K, "best", bestK, k_tests)
 Lsel = rows[K]; Lbest = rows[bestK]
-lopo_gain = {"anchored_K1_vs_board": paired_boot(rows[1].rho_anch, rows[1].rho_anch_board, rows[1].paper),
-             "anchored_Kchosen_vs_board": dict(K=int(K), **paired_boot(Lsel.rho_anch, Lsel.rho_anch_board, Lsel.paper)),
-             "anchored_bestK_vs_board": dict(K=int(bestK), **paired_boot(Lbest.rho_anch, Lbest.rho_anch_board, Lbest.paper)),
-             "blocks_bestK_vs_naive_leaderboard": dict(K=int(bestK), **paired_boot(Lbest.rho_struct, Lbest.rho_board, Lbest.paper))}
+lopo_gain = {"K1_vs_leaderboard": paired_boot(rows[1].rho_struct, rows[1].rho_board, rows[1].paper),
+             "Kchosen_vs_leaderboard": dict(K=int(K), **paired_boot(Lsel.rho_struct, Lsel.rho_board, Lsel.paper)),
+             "bestK_vs_leaderboard": dict(K=int(bestK), **paired_boot(Lbest.rho_struct, Lbest.rho_board, Lbest.paper)),
+             "anchored_K1_vs_leaderboard_same_half": paired_boot(rows[1].rho_anch, rows[1].rho_half_board, rows[1].paper),
+             "anchored_bestK_vs_leaderboard_same_half": dict(K=int(bestK_anch), **paired_boot(rows[bestK_anch].rho_anch, rows[bestK_anch].rho_half_board, rows[bestK_anch].paper))}
 for flag, name in ((True, "dataset_seen_in_other_sources"), (False, "dataset_only_in_held_out_source")):
     s_ = Lbest[Lbest.dataset_seen_elsewhere == flag]
     if len(s_): lopo_gain[f"{name} (K={bestK}, blocks vs own one-ordering)"] = paired_boot(s_.rho_struct, s_.rho_global, s_.paper)
@@ -313,7 +317,7 @@ if not SKIP_SIM:
     for s_, L_, n2, Lh in res:
         multi = [i for i, n in enumerate(n2) if dpp.get(n, 0) >= 2]; Lt = np.array([Ld_true[nmz.index(n)] for n in n2])
         L_["seen"] = [dpp.get(td[t], 0) >= 2 for t in L_.task]; seen = L_[L_.seen]
-        sim_spec.append(dict(offset=s_, anchored_rho=round(float(L_.rho_anch.mean()), 4), anchored_board=round(float(L_.rho_anch_board.mean()), 4),
+        sim_spec.append(dict(offset=s_, rho=round(float(L_.rho_struct.mean()), 4), board=round(float(L_.rho_board.mean()), 4),
                              dataset_gain_seen=round(float((seen.rho_struct - seen.rho_global).mean()), 4),
                              recovery_multi_source_datasets=round(db.recovery(Lt[multi], Lh[multi]), 3), recovery_all=round(db.recovery(Lt, Lh), 3)))
         log("sim offset", sim_spec[-1])
@@ -321,10 +325,10 @@ if not SKIP_SIM:
     for Kt in (1, 2, 3):
         Ys, _, _ = db.simulate(mask, td, tp, Kt, snr=SNR, dataset_share=DS, paper_effect=PE, general_mean=GM, seed=500 + Kt)
         R_ = run_parallel([(Ys, SPEC, K_) for K_ in KS_LOPO]); rr_ = {K_: R_[(SPEC, K_)] for K_ in KS_LOPO}
-        Kc_, bk_, _, means = choose_K_on(rr_, "rho_anch")
-        vb = rr_[bk_]; gain = paired_boot(vb.rho_anch, vb.rho_anch_board, vb.paper)
-        sim_K.append(dict(K_true=Kt, K_selected=Kc_, best_K=bk_, anchored_rho={K_: round(m_, 4) for K_, m_ in means.items()},
-                          board=round(float(rr_[1].rho_anch_board.mean()), 4), bestK_vs_board=gain))
+        Kc_, bk_, _, means = choose_K_on(rr_, PRIMARY)
+        vb = rr_[bk_]; gain = paired_boot(vb.rho_struct, vb.rho_board, vb.paper)
+        sim_K.append(dict(K_true=Kt, K_selected=Kc_, best_K=bk_, rho_by_K={K_: round(m_, 4) for K_, m_ in means.items()},
+                          board=round(float(rr_[1].rho_board.mean()), 4), bestK_vs_board=gain))
         log("sim K", sim_K[-1])
 
 # ============================================================================= 5. dataset outputs at the best K (describes structure; see D9)
@@ -425,7 +429,8 @@ out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
        "offset": {"specs": specs, "chosen": SPEC, "rule": "highest best-K leave-one-paper-out Spearman among the prespecified specs", "paired_vs_chosen": spec_tests,
                   "multi_domain_sources": sorted(MULTI_DOM)},
        "K": {"chosen": int(K), "best": int(bestK), "rule": "smallest K not credibly worse than the best (paired bootstrap over sources); K is a floor",
-             "lopo_by_spec_and_K": lopo_table, "paired_vs_best": k_tests},
+             "lopo_by_spec_and_K": lopo_table, "paired_vs_best": k_tests, "primary_criterion": PRIMARY,
+             "anchored": {"best": int(bestK_anch), "paired_vs_best": k_tests_anch}},
        "lopo_gain": lopo_gain, "board_lopo_rho_real": rnd(REAL_BOARD), "tau_tests": TAU, "simulation_calibration": sim_cal,
        "simulation_offset": sim_spec, "simulation_K": sim_K, "geometry_recoverable": GEOMETRY_OK,
        "geometry_gate": {"simulated_recovery_median": rnd(float(np.median(rec_ok))) if rec_ok else None, "recoverable_in_simulation": GEOMETRY_RECOVERABLE,
