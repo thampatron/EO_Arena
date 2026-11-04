@@ -1,54 +1,58 @@
 #!/usr/bin/env python3
-"""Dataset-level benchmarking analysis: what each benchmark dataset measures, how much it overlaps with others, and how
-reproducibly independent groups agree on the model differences it shows.  Statistics in scripts/dataset_benchmarking.py;
-base rows from scripts/evidence_rows.py.  Follows "GeoFM Benchmark Scoring" (S. Wang, Oct 2026).
+"""Dataset-level benchmarking analysis (v2): what each benchmark dataset measures, how much it overlaps with others,
+how reproducibly independent groups agree on the model differences it shows, and — where seed noise is reported — how
+reliably it separates GeoFMs (note Eq. 6).  Statistics in scripts/dataset_benchmarking.py; base rows from
+scripts/evidence_rows.py.  Follows "GeoFM Benchmark Scoring" (S. Wang, Oct 2026).  Every analysis decision and its
+justification is in docs/analysis-decisions.md; each revised decision has a switch for sensitivity runs.
 
-Usage: python3 scripts/build_dataset_analysis.py <dir with metaanalysis_benchmark_table_v4.xlsx> [--quick] [--include-leaderboard]
-
-Writes (summary statistics only; no individual scores leave the workbook):
-  data/dataset_analysis.json
+Usage: python3 scripts/build_dataset_analysis.py <dir with metaanalysis_benchmark_table_v4.xlsx> [options]
+  --main-text-only     drop appendix / supplementary tables (v1 rule)
+  --no-leaderboard     drop the GEO-Bench-2 leaderboard source (v1 rule)
+  --no-regression      drop regression tasks (v1 rule)
+  --offset S           paper x model offset for: select (default: chosen by leave-one-paper-out among all /
+                       multi_domain / none) | all | multi_domain | none
+  --skip-sim           skip the simulation studies (sensitivity runs)
+  --out PATH           output JSON (default data/dataset_analysis.json)
+Writes summary statistics only; no individual scores leave the workbook.
 """
-import json, sys, time
+import os
+os.environ.setdefault("OMP_NUM_THREADS", "1"); os.environ.setdefault("OPENBLAS_NUM_THREADS", "1"); os.environ.setdefault("MKL_NUM_THREADS", "1")
+import json, sys, time, multiprocessing as mp
 from pathlib import Path
 import numpy as np, pandas as pd
+from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import dataset_benchmarking as db
 from evidence_rows import load
 
-SRC = Path(sys.argv[1]); QUICK = "--quick" in sys.argv; WITH_LB = "--include-leaderboard" in sys.argv
-SEED = 0; KS = (0, 1, 2, 3, 4); FOLDS = 5; RIDGE = 3.0; RIDGE_PM = 3.0
+A = sys.argv
+SRC = Path(A[1]); QUICK = "--quick" in A
+MAIN_ONLY = "--main-text-only" in A; WITH_LB = "--no-leaderboard" not in A; WITH_REG = "--no-regression" not in A
+OFFSET = A[A.index("--offset") + 1] if "--offset" in A else "select"; SKIP_SIM = "--skip-sim" in A
+OUT = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis.json"
+SEED = 0; KS_LOPO = (1, 2, 3, 4); FOLDS = 5; RIDGE = 3.0; RIDGE_PM = 3.0; MIN_MODELS = 4
+NPROC = max(1, min(2, os.cpu_count() or 1))
 t0 = time.time()
 def log(*a): print(f"[{time.time()-t0:6.0f}s]", *a, flush=True)
 
 r, _TINFO, _make_cells, breg, _mreg, srcs = load(SRC)
 mreg_all = pd.read_excel(SRC / "metaanalysis_benchmark_table_v4.xlsx", "model_registry")
 
-# ============================================================================= inclusion rules
-# (1) main-text results of papers only: table placement from data/table_locations.json (file-name rule, or checked
-#     against the arXiv version); appendix / supplementary / unclear tables dropped; the public GEO-Bench-2 leaderboard
-#     snapshot is not a paper's main text and is excluded unless --include-leaderboard.
-# (2) no ablations: registry ablation models, ablation-study tables, and variant axes that change the model,
-#     pretraining or training recipe (the paper's headline setting is kept where it is known).
-# (3) GeoFMs only: models whose registry category is a geospatial foundation model / representation; random-init,
-#     ImageNet, task-architecture, trivial, classical and feature baselines are dropped.
-# (4) no recitations: a value reprinted from an earlier paper (same model, benchmark version, protocol, fraction, metric,
-#     setting and value) is kept only in the earliest source.
-# (5) evaluation-setting variants are part of the comparison key; comparison = paper | table | benchmark version |
-#     protocol | fraction | setting; one canonical metric per comparison.
-# (6) fixed scale: bounded metrics in points (percent, fraction x 100). R^2 (unbounded below) and error metrics are
-#     not in the fit.
+# ============================================================================= 1. inclusion (docs/analysis-decisions.md, D1-D7)
 LOC = json.loads((ROOT / "data" / "table_locations.json").read_text())
 loc = pd.DataFrame(LOC["tables"]).set_index(["paper", "file", "table_id"])
 r["file"] = r.locator.astype(str).str.replace(r":(\d+|p\d+)$", "", regex=True); r["table_id"] = r.table_id.astype(str)
-k = list(zip(r.paper_key, r.file, r.table_id))
-r["location"] = [loc.location.get(x, "unclear") for x in k]
+key = list(zip(r.paper_key, r.file, r.table_id))
+r["location"] = [loc.location.get(x, "unclear") for x in key]
 _line = pd.to_numeric(r.locator.astype(str).str.extract(r":(\d+)$")[0], errors="coerce")
 for o in LOC.get("line_overrides", []):
     r.loc[(r.paper_key == o["paper"]) & (r.file == o["file"]) & (_line >= o["appendix_from_line"]), "location"] = "appendix"
 r["is_leaderboard"] = r.source_kind.astype(str).eq("leaderboard")
-r["table_ablation"] = [bool(loc.ablation.get(x, False)) for x in k]
+_abl = [loc.ablation.get(x, None) for x in key]
+r["table_ablation_unknown"] = [a is None or (isinstance(a, float) and np.isnan(a)) for a in _abl]
+r["table_ablation"] = [bool(a) if not u else False for a, u in zip(_abl, r.table_ablation_unknown)]
 role = mreg_all.groupby("model_id").row_role.agg(lambda s: "ablation" if (s == "ablation").any() else "")
 r["model_ablation"] = r.model_id.map(role).eq("ablation") | r.model_id.astype(str).str.contains("_abl")
 AX = set(LOC["ablation_axes"]); HEAD = LOC.get("headline_variants", {})
@@ -58,63 +62,95 @@ GFM_CATS = set(SCOPE["geofm_categories"]); GFM_EXTRA = set(SCOPE["geofm_uncatego
 cat = mreg_all.dropna(subset=["category"]).groupby("model_id").category.agg(lambda s: s.mode().iat[0])
 r["category"] = r.model_id.map(cat).fillna("")
 r["is_geofm"] = r.category.isin(GFM_CATS) | r.model_id.isin(GFM_EXTRA)
+r["metric_s"] = r.metric.astype(str)
 
 steps, n0 = [], len(r)
-def keep(mask, why):
+def keep(m, why):
     global r
-    steps.append({"rule": why, "dropped": int((~mask).sum())}); r = r[mask].copy()
-keep(r.location.eq("main") | r.is_leaderboard, "appendix / supplementary / unclear table")
-if not WITH_LB: keep(~r.is_leaderboard, "GEO-Bench-2 leaderboard snapshot (not a paper)")
+    m = np.asarray(m, bool); steps.append({"rule": why, "dropped": int((~m).sum())}); r = r[m].copy()
+keep(~r.location.eq("unclear") | r.is_leaderboard, "table placement unclear")
+if MAIN_ONLY: keep(r.location.eq("main") | r.is_leaderboard, "appendix / supplementary table (--main-text-only)")
+if not WITH_LB: keep(~r.is_leaderboard, "GEO-Bench-2 leaderboard (--no-leaderboard)")
+keep(~r.table_ablation_unknown | r.is_leaderboard, "ablation status of table not checked")
 keep(~r.table_ablation, "ablation-study table")
 keep(~r.model_ablation, "registry ablation model")
 keep(~r.variant_ablation, "ablation variant axis (non-headline setting)")
 keep(r.is_geofm, "not a GeoFM (baseline / task architecture / uncategorised)")
-r["metric_s"] = r.metric.astype(str)
-UNBOUNDED = {"rmse", "mse", "mae", "l1", "nmae", "rmse_utility", "far", "crps", "mape", "rel_l2", "r2"}
-keep(r.pts.astype(bool) & ~r.metric_s.isin(UNBOUNDED), "metric not bounded in points (error metrics, R^2)")
-# recitations
+
+# D4: metric scales. Bounded classification/segmentation metrics stay in points. Regression metrics go on a log-error
+# scale, y = -100 ln(err) with err = RMSE (or sqrt(MSE), MAE, L1, nMAE as reported) and, for R^2, err^2 = 1 - R^2
+# (so -100 ln sqrt(1-R^2) = -100 ln RMSE + const within a task: R^2 and RMSE of the same runs agree up to the task mean).
+REG = {"r2", "rmse", "mse", "mae", "l1", "nmae"}
+r["family"] = np.where(r.metric_s.isin(REG), "logerr", np.where(r.pts.astype(bool), "points", "other"))
+if WITH_REG:
+    reg = r.family.eq("logerr")
+    v = r.v.astype(float)
+    R2 = np.where((r.scale_basis == "percent_printed") & (v.abs() > 1.5), v / 100.0, v)
+    sdv = r.sd.astype(float)
+    sdR2 = np.where((r.scale_basis == "percent_printed") & (v.abs() > 1.5), sdv / 100.0, sdv)
+    err = np.select([r.metric_s.eq("r2"), r.metric_s.eq("mse")], [np.sqrt(np.clip(1 - R2, 1e-12, None)), np.sqrt(np.clip(v, 1e-12, None))], v)
+    sd_err = np.select([r.metric_s.eq("r2"), r.metric_s.eq("mse")], [sdR2 / (2 * np.sqrt(np.clip(1 - R2, 1e-12, None))), sdv / (2 * np.sqrt(np.clip(v, 1e-12, None)))], sdv)
+    ok_reg = reg & (((r.metric_s == "r2") & (R2 < 1)) | ((r.metric_s != "r2") & (v > 0)))
+    r.loc[reg, "y"] = np.where(ok_reg[reg], -100 * np.log(np.where(ok_reg, err, 1.0)[reg]), np.nan)
+    r.loc[reg, "sd"] = 100 * sd_err[reg] / np.where(ok_reg, err, 1.0)[reg]                  # delta method on -100 ln(err)
+    keep(~reg | ok_reg, "regression value outside the metric's domain")
+    keep(r.family.isin(["points", "logerr"]), "metric not on a bounded-points or log-error scale (skill scores etc.)")
+else:
+    keep(r.family.eq("points"), "regression or other unbounded metric (--no-regression)")
+
+# D5: within-paper duplicates — an appendix table repeating a main-text value (same model, benchmark, protocol,
+# fraction, metric, value; the setting label is ignored because appendices name the headline setting that main tables
+# leave blank, e.g. PANGAEA 'joint') is one measurement, kept once (main text first)
 r["variant"] = r.config_variant.astype(str).where(r.variant_axis.notna(), "")
+r["loc_rank"] = (r.location != "main").astype(int)
+dk = ["paper_key", "model_id", "benchmark_id", "evaluation_protocol", "train_fraction_norm", "metric_s"]
+r["_yr"] = r.y.round(1)
+r = r.sort_values(["loc_rank", "table_id"])
+keep(~r.duplicated(dk + ["_yr"], keep="first").values, "within-paper duplicate (appendix repeats a main-text value)")
+
+# D6: reprints across papers — kept only in the earliest source (month, then arXiv number)
 _arx = srcs.identifier.astype(str).str.extract(r"(\d{4}\.\d{4,5})")[0].fillna("9999.99999")
-REL = (srcs.release_year_month.astype(str) + "|" + _arx).to_dict()      # month, then arXiv number, as the precedence key
+REL = (srcs.release_year_month.astype(str) + "|" + _arx).to_dict()
 r["release"] = r.paper_key.map(REL).fillna("9999")
-# a reprint often relabels the protocol (e.g. 'frozen' for the source's 'frozen_dec' or 'LP'), so values are matched on
-# model x benchmark version x metric x value (1 decimal), ignoring protocol and fraction labels; and a later paper whose
-# shared cells with an earlier paper are mostly identical (>= 50% of >= 3) is treated as reprinting all of them
-r["vkey"] = list(zip(r.model_id, r.benchmark_id, r.metric_s, r.y.round(1)))
+r["vkey"] = list(zip(r.model_id, r.benchmark_id, r.metric_s, r._yr))
 first = r.sort_values(["release", "paper_key"]).drop_duplicates("vkey").set_index("vkey").paper_key
 recited = r.paper_key.values != r.vkey.map(first).values
-r["vkey2"] = list(zip(r.model_id, r.canonical_dataset, r.metric_s, r.y.round(1)))       # same value under a relabelled benchmark id
+r["vkey2"] = list(zip(r.model_id, r.canonical_dataset, r.metric_s, r._yr))
 first2 = r.sort_values(["release", "paper_key"]).drop_duplicates("vkey2").set_index("vkey2").paper_key
 recited |= (r.paper_key.values != r.vkey2.map(first2).values) & (r.canonical_dataset.values != "")
-sk = list(zip(r.model_id, r.benchmark_id, r.metric_s))
-r["skey"] = sk
-rel = REL
+r["skey"] = list(zip(r.model_id, r.benchmark_id, r.metric_s))
 reprint_pairs = []
-for (pa, pb) in {(a_, b_) for a_ in r.paper_key.unique() for b_ in r.paper_key.unique() if a_ < b_}:
-    A = r[r.paper_key == pa].groupby("skey").y.first().round(1); Bv = r[r.paper_key == pb].groupby("skey").y.first().round(1)
-    sh = A.index.intersection(Bv.index)
-    if len(sh) >= 3 and (A[sh] == Bv[sh]).mean() >= 0.5:
-        later = pb if (rel.get(pb, ""), pb) > (rel.get(pa, ""), pa) else pa
-        reprint_pairs.append({"earlier": pa if later == pb else pb, "later": later, "shared_cells": int(len(sh)), "identical_share": round(float((A[sh] == Bv[sh]).mean()), 2)})
-        recited |= (r.paper_key.values == later) & r.skey.isin(set(sh)).values
-pair = r[recited].groupby(["paper_key"]).size().to_dict()
+pk = r.paper_key.unique()
+for pa in pk:
+    for pb in pk:
+        if pa >= pb: continue
+        Av = r[r.paper_key == pa].groupby("skey")._yr.first(); Bv = r[r.paper_key == pb].groupby("skey")._yr.first()
+        sh = Av.index.intersection(Bv.index)
+        if len(sh) >= 3 and (Av[sh] == Bv[sh]).mean() >= 0.5:
+            later = pb if (REL.get(pb, ""), pb) > (REL.get(pa, ""), pa) else pa
+            reprint_pairs.append({"earlier": pa if later == pb else pb, "later": later, "shared_cells": int(len(sh)), "identical_share": round(float((Av[sh] == Bv[sh]).mean()), 2)})
+            recited |= (r.paper_key.values == later) & r.skey.isin(set(sh)).values
+recited_by = r[recited].groupby("paper_key").size().to_dict()
 keep(~recited, "recitation of an earlier paper's value")
+
+# comparisons and one canonical metric each
 r["comparison"] = (r.paper_key.astype(str) + "|" + r.table_id + "|" + r.benchmark_id.astype(str) + "|" + r.evaluation_protocol.astype(str)
                    + "|" + r.train_fraction_norm.astype(str) + "|" + r.variant)
-PRIORITY = ["miou", "iou", "f1", "map", "acc", "acc_top1", "oa", "bal_acc", "micro_f1", "weighted_f1", "acc_avg"]
+PRIORITY = ["miou", "iou", "f1", "map", "acc", "acc_top1", "oa", "bal_acc", "micro_f1", "weighted_f1", "acc_avg", "r2", "rmse", "mae", "l1", "mse", "nmae"]
 nm = r.groupby(["comparison", "metric_s"]).model_id.nunique().reset_index(name="n")
 nm["prio"] = nm.metric_s.map({m: i for i, m in enumerate(PRIORITY)}).fillna(len(PRIORITY))
 canon = nm.sort_values(["comparison", "n", "prio", "metric_s"], ascending=[True, False, True, True]).drop_duplicates("comparison").set_index("comparison").metric_s
 keep(r.metric_s.values == r.comparison.map(canon).values, "metric twin (one metric kept per comparison)")
 r["task"] = r.comparison + "|" + r.metric_s
 log(f"rows {n0} -> {len(r)}"); [log(f"   dropped {s['dropped']:5d}  {s['rule']}") for s in steps]
-log(f"   recitations by citing paper: {dict(sorted(pair.items(), key=lambda x: -x[1])[:8])}; reprint pairs: {reprint_pairs}")
+log(f"   recitations by citing paper: {recited_by}; reprint pairs: {reprint_pairs}")
 
-TINFO = r.drop_duplicates("task").set_index("task")[["paper_key", "benchmark_id", "evaluation_protocol", "pf", "metric_s", "train_fraction_norm", "variant",
-                                                    "canonical_dataset", "eoarena_id", "domain", "subdomain", "input_kind"]]
+TINFO = r.drop_duplicates("task").set_index("task")[["paper_key", "benchmark_id", "evaluation_protocol", "pf", "metric_s", "family", "train_fraction_norm", "variant",
+                                                    "canonical_dataset", "eoarena_id", "domain", "subdomain", "input_kind", "location", "is_leaderboard"]]
 TINFO["task_type"] = TINFO.benchmark_id.map(breg.task_type).fillna(""); TINFO["sensor"] = TINFO.benchmark_id.map(breg.sensor).fillna("")
-cell = r.groupby(["task", "model_id"]).agg(y=("y", "mean"), n_rows=("y", "size"), selfrep=("self", "max")).reset_index()
-nmod = cell.groupby("task").model_id.nunique(); cell = cell[cell.task.isin(nmod[nmod >= 4].index)]
+cell = r.groupby(["task", "model_id"]).agg(y=("y", "mean"), n_rows=("y", "size"), sd=("sd", "mean"), n_reps=("n_reps", "max"),
+                                            n_known=("n_reps_known", "max"), selfrep=("self", "max")).reset_index()
+nmod = cell.groupby("task").model_id.nunique(); cell = cell[cell.task.isin(nmod[nmod >= MIN_MODELS].index)]
 assert (cell.n_rows == 1).all(), "a (task, model) cell still averages several rows"
 
 IMG = TINFO[(TINFO.input_kind == "eo_imagery") & (~TINFO.domain.isin(["composite", "outside_taxonomy"])) & (TINFO.canonical_dataset != "")].index
@@ -124,185 +160,221 @@ mi = {m: i for i, m in enumerate(models)}; ti = {t: i for i, t in enumerate(task
 Y = np.zeros((len(models), len(tasks))); mask = np.zeros_like(Y, bool)
 Y[lc.model_id.map(mi), lc.task.map(ti)] = lc.y; mask[lc.model_id.map(mi), lc.task.map(ti)] = True
 TI = TINFO.loc[tasks]; td = TI.canonical_dataset.values; tp = TI.paper_key.values
+FAM = (TI.family.values == "logerr").astype(int)
 PIDX = np.asarray(pd.factorize(tp)[0])
 def lev(col):
-    v = pd.Series(TI[col].values).astype(str).replace({"": np.nan, "nan": np.nan}); return np.asarray(pd.factorize(v)[0], int)
+    v_ = pd.Series(TI[col].values).astype(str).replace({"": np.nan, "nan": np.nan}); return np.asarray(pd.factorize(v_)[0], int)
 G_ALL = {"dataset": lev("canonical_dataset"), "protocol": lev("pf"), "sensor": lev("sensor")}
 ppm = pd.DataFrame({"m": np.nonzero(mask)[0], "p": tp[np.nonzero(mask)[1]]}).groupby("m").p.nunique()
 dpp = TI.groupby("canonical_dataset").paper_key.nunique()
-overlap = {"models": len(models), "tasks": len(tasks), "datasets": int(len(set(td))), "papers": int(len(set(tp))), "density": round(float(mask.mean()), 4),
-           "models_in_1_paper": int((ppm == 1).sum()), "models_in_3plus_papers": int((ppm >= 3).sum()), "datasets_in_2plus_papers": int((dpp >= 2).sum()),
-           "models_per_task_median": float(np.median(mask.sum(0)))}
+dom_per_paper = TI.groupby("paper_key").domain.nunique()
+overlap = {"models": len(models), "tasks": len(tasks), "datasets": int(len(set(td))), "sources": int(len(set(tp))), "density": round(float(mask.mean()), 4),
+           "models_in_1_source": int((ppm == 1).sum()), "models_in_3plus_sources": int((ppm >= 3).sum()), "datasets_in_2plus_sources": int((dpp >= 2).sum()),
+           "models_per_task_median": float(np.median(mask.sum(0))), "tasks_logerr": int(FAM.sum()), "tasks_from_appendix": int((TI.location == "appendix").sum()),
+           "tasks_from_leaderboard": int(TI.is_leaderboard.sum()), "single_domain_sources": int((dom_per_paper == 1).sum())}
 log("matrix", overlap)
 
-SPECS = {"free (current)": ([], True), "dataset + task": (["dataset"], True), "dataset + protocol + sensor + task": (["dataset", "protocol", "sensor"], True)}
-MAIN = "dataset + protocol + sensor + task"
-def kw(spec, paper_offset=True):
-    """paper_offset adds the paper x model implementation effect c_{m,p}. Without it, simulation on this mask shows
-    held-out CV over-selects K (K_true 1 -> 2, 2 -> 3): extra factors absorb implementation effects."""
-    gs, _ = SPECS[spec]
-    k = dict(groups={g: G_ALL[g] for g in gs}, ridge_u=RIDGE, ridge_g={g: RIDGE for g in gs}, ridge_theta=RIDGE, n_restarts=1, n_iter=200, tol=1e-6)
-    if paper_offset: k.update(paper=PIDX, ridge_pm=RIDGE_PM)
+# D8: paper x model offset — for every source, only for sources spanning >= 2 domains, or none
+MULTI_DOM = set(dom_per_paper[dom_per_paper >= 2].index)
+OFFSETS = {"all": PIDX, "multi_domain": np.where(np.isin(tp, list(MULTI_DOM)), PIDX, -1), "none": None}
+def kw(offset, groups=("dataset", "protocol", "sensor")):
+    k = dict(groups={g: G_ALL[g] for g in groups}, ridge_u=RIDGE, ridge_g={g: RIDGE for g in groups}, ridge_theta=RIDGE,
+             n_restarts=1, n_iter=200, tol=1e-6, prior_group=FAM)
+    if OFFSETS[offset] is not None: k.update(paper=OFFSETS[offset], ridge_pm=RIDGE_PM)
     return k
 
-# ============================================================================= 1. K: leave-one-paper-out (primary) and held-out cells
-seen_elsewhere = lambda t, p: (dpp.get(td[t], 0) >= 2)
-lopo_by_K, lopo_rows = {}, {}
-for K in (1, 2, 3, 4):
-    k = kw(MAIN); g = k.pop("groups")
-    L = db.leave_one_paper_out(Y, mask, tp, K, g, **k)
-    L["dataset_seen_elsewhere"] = [seen_elsewhere(t, None) for t in L.task]; L["dataset"] = [td[t] for t in L.task]
-    lopo_rows[K] = L
-    lopo_by_K[K] = {c: round(float(L[c].mean()), 4) for c in ("rho_struct", "rho_global", "rho_board", "acc_struct", "acc_global", "acc_board")}
-    log("LOPO K", K, lopo_by_K[K], len(L))
-
 def paired_boot(a, b, papers, B=2000):
-    """Mean of (a - b) over tasks, 90% interval and P(<=0) by resampling papers (tasks of one paper are not independent)."""
-    d = pd.DataFrame({"d": np.asarray(a) - np.asarray(b), "p": papers}).dropna(); groups = [g.d.values for _, g in d.groupby("p")]
+    d = pd.DataFrame({"d": np.asarray(a, float) - np.asarray(b, float), "p": papers}).dropna(); groups = [g_.d.values for _, g_ in d.groupby("p")]
     rng = np.random.default_rng(SEED); bs = np.array([np.concatenate([groups[i] for i in rng.integers(0, len(groups), len(groups))]).mean() for _ in range(B)])
     return {"mean": round(float(d.d.mean()), 4), "ci90": [round(float(np.percentile(bs, 5)), 4), round(float(np.percentile(bs, 95)), 4)],
             "p_le_0": round(float((bs <= 0).mean()), 4), "n_tasks": int(len(d)), "n_papers": len(groups)}
-# K by LOPO: smallest K whose paired difference to the best K is not credibly negative
-bestK = max(lopo_by_K, key=lambda K: lopo_by_K[K]["rho_struct"])
-k_tests = {}
-for K in lopo_by_K:
-    if K == bestK: continue
-    A = lopo_rows[K].set_index("task"); Bm = lopo_rows[bestK].set_index("task"); j = A.index.intersection(Bm.index)
-    k_tests[K] = paired_boot(A.loc[j, "rho_struct"], Bm.loc[j, "rho_struct"], A.loc[j, "paper"])
-K = min([bestK] + [k_ for k_, t in k_tests.items() if t["ci90"][1] >= 0])
-log("K by LOPO", K, "best", bestK, k_tests)
-Lsel = lopo_rows[K]
-lopo_gain = {"all": paired_boot(Lsel.rho_struct, Lsel.rho_global, Lsel.paper),
-             "vs_naive_leaderboard": paired_boot(Lsel.rho_struct, Lsel.rho_board, Lsel.paper),
-             "K1_vs_naive_leaderboard": paired_boot(lopo_rows[1].rho_struct, lopo_rows[1].rho_board, lopo_rows[1].paper),
-             "bestK_vs_naive_leaderboard": dict(K=int(bestK), **paired_boot(lopo_rows[bestK].rho_struct, lopo_rows[bestK].rho_board, lopo_rows[bestK].paper))}
-for flag, name in ((True, "dataset_seen_in_other_papers"), (False, "dataset_only_in_held_out_paper")):
-    s = Lsel[Lsel.dataset_seen_elsewhere == flag]
-    if len(s): lopo_gain[name] = paired_boot(s.rho_struct, s.rho_global, s.paper)
+
+def _lopo_job(args):
+    Yx, offset, K = args
+    k = kw(offset); g = k.pop("groups")
+    return (offset, K), db.leave_one_paper_out(Yx, mask, tp, K, g, **k)
+def run_parallel(jobs):
+    if NPROC > 1:
+        with mp.get_context("fork").Pool(NPROC) as pool: return dict(pool.map(_lopo_job, jobs))
+    return dict(map(_lopo_job, jobs))
+
+def choose_K(rows):
+    means = {K_: float(v_.rho_struct.mean()) for K_, v_ in rows.items()}; bk = max(means, key=means.get); tests = {}
+    for K_, v_ in rows.items():
+        if K_ == bk: continue
+        Aa = v_.set_index("task"); Bb = rows[bk].set_index("task"); j = Aa.index.intersection(Bb.index)
+        tests[K_] = paired_boot(Aa.loc[j, "rho_struct"], Bb.loc[j, "rho_struct"], Aa.loc[j, "paper"])
+    return min([bk] + [k_ for k_, t_ in tests.items() if t_["ci90"][1] >= 0]), bk, tests, means
+
+# ============================================================================= 2. leave-one-paper-out over offset specs x K
+specs = ["all", "multi_domain", "none"] if OFFSET == "select" else [OFFSET]
+LO = run_parallel([(Y, s, K_) for s in specs for K_ in KS_LOPO])
+for (s, K_), L_ in LO.items():
+    L_["dataset"] = [td[t] for t in L_.task]; L_["dataset_seen_elsewhere"] = [dpp.get(td[t], 0) >= 2 for t in L_.task]
+lopo_table = {s: {K_: {c: round(float(LO[(s, K_)][c].mean()), 4) for c in ("rho_struct", "rho_global", "rho_board", "acc_struct", "acc_board")} for K_ in KS_LOPO} for s in specs}
+for s in specs: log("LOPO", s, {K_: v_["rho_struct"] for K_, v_ in lopo_table[s].items()}, "board", lopo_table[s][1]["rho_board"])
+SPEC = max(specs, key=lambda s: max(lopo_table[s][K_]["rho_struct"] for K_ in KS_LOPO))   # prespecified: best attainable out-of-paper accuracy
+spec_tests = {}
+for s in specs:
+    if s == SPEC: continue
+    Ks_, Kb_ = max(KS_LOPO, key=lambda K_: lopo_table[s][K_]["rho_struct"]), max(KS_LOPO, key=lambda K_: lopo_table[SPEC][K_]["rho_struct"])
+    Aa = LO[(s, Ks_)].set_index("task"); Bb = LO[(SPEC, Kb_)].set_index("task"); j = Aa.index.intersection(Bb.index)
+    spec_tests[s] = dict(K=Ks_, vs_K=Kb_, **paired_boot(Aa.loc[j, "rho_struct"], Bb.loc[j, "rho_struct"], Aa.loc[j, "paper"]))
+rows = {K_: LO[(SPEC, K_)] for K_ in KS_LOPO}
+K, bestK, k_tests, _ = choose_K(rows)
+log("offset spec", SPEC, spec_tests, "| K", K, "best", bestK, k_tests)
+Lsel = rows[K]; Lbest = rows[bestK]
+lopo_gain = {"K_chosen_vs_naive_leaderboard": paired_boot(Lsel.rho_struct, Lsel.rho_board, Lsel.paper),
+             "K1_vs_naive_leaderboard": paired_boot(rows[1].rho_struct, rows[1].rho_board, rows[1].paper),
+             "bestK_vs_naive_leaderboard": dict(K=int(bestK), **paired_boot(Lbest.rho_struct, Lbest.rho_board, Lbest.paper))}
+for flag, name in ((True, "dataset_seen_in_other_sources"), (False, "dataset_only_in_held_out_source")):
+    s_ = Lbest[Lbest.dataset_seen_elsewhere == flag]
+    if len(s_): lopo_gain[f"{name} (K={bestK}, structured vs own one-ordering)"] = paired_boot(s_.rho_struct, s_.rho_global, s_.paper)
 log("LOPO gain", lopo_gain)
 
-sel = []
-for spec in SPECS:
-    for Kc in KS:
-        if Kc == 0 and spec != "free (current)": continue
-        k = kw(spec); g = k.pop("groups")
-        cv = db.heldout_cell_cv(Y, mask, Kc, g, folds=FOLDS, seed=SEED, **k)
-        sel.append(dict(spec=spec, K=Kc, paper_offset=True, pair_acc=round(cv["pair_acc"], 4), pair_acc_se=round(cv["pair_acc_se"], 4)))
-        log("cv", spec, Kc, sel[-1]["pair_acc"])
-for Kc in KS[1:]:
-    k = kw(MAIN, paper_offset=False); g = k.pop("groups")
-    cv = db.heldout_cell_cv(Y, mask, Kc, g, folds=FOLDS, seed=SEED, **k)
-    sel.append(dict(spec=MAIN, K=Kc, paper_offset=False, pair_acc=round(cv["pair_acc"], 4), pair_acc_se=round(cv["pair_acc_se"], 4)))
-    log("cv no-offset", Kc, sel[-1]["pair_acc"])
+# within- vs out-of-paper consistency: held-out cells (within paper) at the chosen spec
+heldout = {}
+k_ = kw(SPEC); g_ = k_.pop("groups")
+for Kc in (0, 1, bestK):
+    cv = db.heldout_cell_cv(Y, mask, Kc, g_, folds=FOLDS, seed=SEED, **k_)
+    heldout[Kc] = {"pair_acc": round(cv["pair_acc"], 4), "pair_acc_se": round(cv["pair_acc_se"], 4)}
+log("held-out cells (within paper)", heldout)
 
-# ============================================================================= 2. simulation on the real mask
-sim = []
-k = kw(MAIN); g = k.pop("groups")
-for Kt in (1, 2, 3):
-    for snr in ((1.0,) if QUICK else (0.5, 1.0, 2.0)):
-        Ys, Ld_true, nmz = db.simulate(mask, td, tp, Kt, snr=snr, dataset_share=0.6, paper_effect=0.5, seed=10 * Kt + int(4 * snr))
-        cvs = {Kf: db.heldout_cell_cv(Ys, mask, Kf, g, folds=3, seed=SEED, **k) for Kf in KS}
-        acc = {Kf: v["pair_acc"] for Kf, v in cvs.items()}; bk = max(acc, key=acc.get)
-        kc = min(Kf for Kf in KS if acc[Kf] >= acc[bk] - cvs[bk]["pair_acc_se"])
-        f, _ = db.fit_heteroskedastic(Ys, mask, Kt, g, **k); n2, Lh, _ = db.dataset_loadings(f, td, mask)
-        multi = [i for i, n in enumerate(n2) if dpp.get(n, 0) >= 2]
-        Lt = np.array([Ld_true[nmz.index(n)] for n in n2])
-        rec_all = db.recovery(Lt, Lh) if Kt > 1 else None
-        rec_multi = db.recovery(Lt[multi], Lh[multi]) if Kt > 1 and len(multi) > 3 else None
-        sim.append(dict(K_true=Kt, snr=snr, K_selected_cv=kc, recovery_all=rec_all, recovery_multi_paper_datasets=rec_multi, pair_acc={Kf: round(a, 4) for Kf, a in acc.items()}))
-        log("sim", sim[-1])
-
-sim_lopo = []
-if not QUICK:
+# ============================================================================= 3. simulations on the real mask
+sim_spec, sim_K = [], []
+if not SKIP_SIM:
+    # (a) does the offset absorb genuine dataset signal? true K=2 with dataset-shared loadings; implementation effects 0 or 0.5 noise SD
+    jobs, truths = [], {}
+    for pe in (0.0, 0.5):
+        Ys, Ld_true, nmz = db.simulate(mask, td, tp, 2, snr=1.0, dataset_share=0.6, paper_effect=pe, seed=700 + int(10 * pe))
+        truths[pe] = (Ys, Ld_true, nmz)
+        jobs += [(Ys, s, 2) for s in ("all", "multi_domain", "none")]
+    def _sim_job(a):
+        Ys, s, K_ = a; k = kw(s); g = k.pop("groups")
+        L_ = db.leave_one_paper_out(Ys, mask, tp, K_, g, **k)
+        f, _ = db.fit_heteroskedastic(Ys, mask, K_, g, **k); n2, Lh, _ = db.dataset_loadings(f, td, mask)
+        return s, L_, n2, Lh
+    with mp.get_context("fork").Pool(NPROC) as pool: res = pool.map(_sim_job, jobs)
+    for (Ys_, s_, _), (s2, L_, n2, Lh) in zip(jobs, res):
+        pe = [p for p, t in truths.items() if t[0] is Ys_][0]; _, Ld_true, nmz = truths[pe]
+        multi = [i for i, n in enumerate(n2) if dpp.get(n, 0) >= 2]; Lt = np.array([Ld_true[nmz.index(n)] for n in n2])
+        L_["seen"] = [dpp.get(td[t], 0) >= 2 for t in L_.task]; seen = L_[L_.seen]
+        sim_spec.append(dict(paper_effect=pe, offset=s_, lopo_rho=round(float(L_.rho_struct.mean()), 4),
+                             dataset_gain_seen=round(float((seen.rho_struct - seen.rho_global).mean()), 4),
+                             recovery_multi_source_datasets=round(db.recovery(Lt[multi], Lh[multi]), 3), recovery_all=round(db.recovery(Lt, Lh), 3)))
+        log("sim offset", sim_spec[-1])
+    # (b) can leave-one-paper-out recover K at the chosen offset spec?
     for Kt in (1, 2, 3):
         Ys, _, _ = db.simulate(mask, td, tp, Kt, snr=1.0, dataset_share=0.6, paper_effect=0.5, seed=500 + Kt)
-        rows_ = {Kf: db.leave_one_paper_out(Ys, mask, tp, Kf, g, **k) for Kf in (1, 2, 3, 4)}
-        means = {Kf: float(v.rho_struct.mean()) for Kf, v in rows_.items()}; bk = max(means, key=means.get)
-        ok_ = [bk]
-        for Kf, v in rows_.items():
-            if Kf == bk: continue
-            A = v.set_index("task"); Bm = rows_[bk].set_index("task"); j = A.index.intersection(Bm.index)
-            if paired_boot(A.loc[j, "rho_struct"], Bm.loc[j, "rho_struct"], A.loc[j, "paper"])["ci90"][1] >= 0: ok_.append(Kf)
-        sim_lopo.append(dict(K_true=Kt, snr=1.0, K_selected_lopo=min(ok_), lopo_rho={Kf: round(m_, 4) for Kf, m_ in means.items()}))
-        log("sim LOPO", sim_lopo[-1])
+        R_ = run_parallel([(Ys, SPEC, K_) for K_ in KS_LOPO]); rr_ = {K_: R_[(SPEC, K_)] for K_ in KS_LOPO}
+        Kc_, bk_, _, means = choose_K(rr_)
+        sim_K.append(dict(K_true=Kt, snr=1.0, K_selected=Kc_, best_K=bk_, lopo_rho={K_: round(m_, 4) for K_, m_ in means.items()}))
+        log("sim K", sim_K[-1])
 
-# ============================================================================= 3. dataset outputs at K
-k = kw(MAIN); g = k.pop("groups"); k.update(n_restarts=3, n_iter=400)
-fit, psi = db.fit_heteroskedastic(Y, mask, K, g, **k)
+# ============================================================================= 4. dataset outputs (bestK: the analysis summarises structure, K is a floor)
+k = kw(SPEC); g = k.pop("groups"); k.update(n_restarts=3, n_iter=400)
+fit, psi = db.fit_heteroskedastic(Y, mask, bestK, g, **k)
 names, Ld, ntask = db.dataset_loadings(fit, td, mask)
-comm = db.communality_by_dataset(Y, mask, fit, td)
-# dataset-level quantities need independent evidence: a dataset reported by one paper has a loading that mixes that
-# paper's model set and implementation with what the dataset measures, and Eq. 8 would credit it for looking distinct
-MULTI = np.array([dpp.get(n, 0) >= 2 for n in names])
-shap = np.full(len(names), np.nan); shap_se = np.full(len(names), np.nan)
-_s, _se = db.dataset_shapley(Ld[MULTI], n_perm=200 if QUICK else 1000); shap[MULTI] = _s; shap_se[MULTI] = _se
-k2 = kw("dataset + task"); g2 = k2.pop("groups")            # metadata association on a fit with no metadata blocks but dataset
-fit2, _ = db.fit_heteroskedastic(Y, mask, K, g2, **k2); _, Ld2, _ = db.dataset_loadings(fit2, td, mask)
+k2 = kw(SPEC, groups=("dataset",)); g2 = k2.pop("groups")
+fit2, _ = db.fit_heteroskedastic(Y, mask, bestK, g2, **k2); _, Ld2, _ = db.dataset_loadings(fit2, td, mask)
 dmeta = TI.groupby("canonical_dataset").agg(domain=("domain", "first"), subdomain=("subdomain", "first"),
                                             task_type=("task_type", lambda s: s.mode().iat[0] if len(s.mode()) else ""),
-                                            sensor=("sensor", lambda s: s.mode().iat[0] if len(s.mode()) else ""), papers=("paper_key", "nunique")).reindex(names)
-multi = np.array([dmeta.at[n, "papers"] >= 2 for n in names])
-assoc = {c: {"full_loading": db.metadata_association(Ld2[multi], dmeta[c].fillna("").values[multi], n_perm=500 if QUICK else 2000),
-             "direction_only": db.metadata_association(Ld2[multi], dmeta[c].fillna("").values[multi], n_perm=500 if QUICK else 2000, direction_only=True)}
-         for c in ("domain", "subdomain", "task_type", "sensor")} if K else {}
+                                            sensor=("sensor", lambda s: s.mode().iat[0] if len(s.mode()) else ""), sources=("paper_key", "nunique")).reindex(names)
+multi = np.array([dmeta.at[n, "sources"] >= 2 for n in names])
+NPERM = 500 if QUICK else 2000
+assoc = {c: {"full_loading": db.metadata_association(Ld2[multi], dmeta[c].fillna("").values[multi], n_perm=NPERM),
+             "direction_only": db.metadata_association(Ld2[multi], dmeta[c].fillna("").values[multi], n_perm=NPERM, direction_only=True)}
+         for c in ("domain", "subdomain", "task_type", "sensor")}
 for c in assoc:
-    for v in assoc[c].values(): v["p_bonferroni_4_labels"] = min(1.0, 4 * v["p_value"])
-log("assoc (datasets in >= 2 papers)", {c: {kk: (round(a["r2"], 3), round(a["null_mean"], 3), a["p_value"], a["n"]) for kk, a in v.items()} for c, v in assoc.items()})
-nmods = {n: float(np.mean(mask[:, td == n].sum(0))) for n in names}
+    for v_ in assoc[c].values(): v_["p_bonferroni_4_labels"] = min(1.0, 4 * v_["p_value"])
+log("assoc", {c: {kk: (round(a["r2"], 3), round(a["null_mean"], 3), a["p_value"], a["n"]) for kk, a in v_.items()} for c, v_ in assoc.items()})
+rec_ok = [s_["recovery_multi_source_datasets"] for s_ in sim_spec if s_["offset"] == SPEC]
+GEOMETRY_OK = bool(rec_ok) and float(np.median(rec_ok)) >= 0.7
+S = db.similarity(Ld)
 tau_obs = {}
 for n in names:
-    v = [(Y[mask[:, t], t].var(ddof=1), mask[:, t].sum()) for t in np.where(td == n)[0]]
-    tau_obs[n] = float(np.sqrt(np.average([a for a, _ in v], weights=[w for _, w in v])))
-sig = np.array([Ld[i] @ Ld[i] for i in range(len(names))]) if K else np.zeros(len(names))
-from scipy.stats import spearmanr
-sig_vs_n = float(spearmanr(sig, [nmods[n] for n in names]).statistic) if K else None
-rec_ok = [s["recovery_multi_paper_datasets"] for s in sim if s["K_true"] == max(K, 2) and s["recovery_multi_paper_datasets"] is not None]
-GEOMETRY_OK = bool(rec_ok) and float(np.median(rec_ok)) >= 0.7
-S = db.similarity(Ld) if K else None
-log(f"signal vs models-per-task rho={sig_vs_n}; geometry recoverable={GEOMETRY_OK} ({rec_ok})")
+    vv = [(Y[mask[:, t], t].var(ddof=1), mask[:, t].sum(), TI.family.values[t]) for t in np.where(td == n)[0]]
+    pts = [(a_, w_) for a_, w_, f_ in vv if f_ == "points"]
+    tau_obs[n] = float(np.sqrt(np.average([a_ for a_, _ in pts], weights=[w_ for _, w_ in pts]))) if pts else np.nan
 
-# ============================================================================= 4. cross-paper reproducibility (exact version x protocol x fraction x metric x setting)
-rr = cell[cell.task.isin(IMG)].merge(TINFO, left_on="task", right_index=True)
-rr["group"] = rr.canonical_dataset + " | " + rr.benchmark_id.astype(str) + " | " + rr.evaluation_protocol.astype(str) + " | " + rr.train_fraction_norm.astype(str) + " | " + rr.metric_s + (" | " + rr.variant).where(rr.variant != "", "")
-rr = rr.groupby(["group", "paper_key", "model_id"], as_index=False).y.mean()
-rep = db.cross_paper_reproducibility(rr.rename(columns={"paper_key": "paper", "model_id": "model"})[["group", "paper", "model", "y"]], n_boot=100 if QUICK else 500)
-log(f"reproducibility: {len(rep)} groups with >= 5 shared models and df >= 5")
-repl = []
-for gname, gg in rr.groupby("group"):
-    ps = gg.paper_key.unique()
-    if len(ps) < 2: continue
-    mc = gg.groupby("model_id").paper_key.nunique()
-    repl.append({"group": gname, "papers": int(len(ps)), "geofms_in_2plus_papers": int((mc >= 2).sum())})
-repl = pd.DataFrame(repl)
-replication = {"groups_with_2plus_papers": int(len(repl)), "with_3plus_shared_geofms": int((repl.geofms_in_2plus_papers >= 3).sum()) if len(repl) else 0,
-               "with_5plus_shared_geofms": int((repl.geofms_in_2plus_papers >= 5).sum()) if len(repl) else 0,
-               "groups": repl.sort_values("geofms_in_2plus_papers", ascending=False).head(15).to_dict("records") if len(repl) else []}
-log("replication", {k: v for k, v in replication.items() if k != "groups"})
+# ============================================================================= 5. seed-noise reliability where seed SDs are reported (note Eq. 3-6)
+# sigma2_t: median over models of the squared seed SD of ONE evaluation, from the task's own cells (>= 3 models with an
+# SD; never borrowed). tau2_t = tau2_obs - sigma2_t / n_reps (reported values are means of n_reps seeds).
+# score = tau2 / (tau2 + sigma2): share of the comparison's model spread that is repeatable under re-seeding, for that
+# comparison's models and implementation (not cross-implementation reproducibility; not a property of the dataset alone).
+rel_rows, rng = [], np.random.default_rng(SEED)
+for t in tasks:
+    c_ = lc[lc.task == t]; s_ = c_[c_.sd.notna()]
+    if len(s_) < 3: continue
+    y_ = c_.y.values; n_rep = float(np.median(s_.n_reps)); known = bool(s_.n_known.all())
+    def score(y, sd, n):
+        s2 = float(np.median(sd ** 2)); t2 = max(float(np.var(y, ddof=1)) - s2 / n, 0.0)
+        return (t2 / (t2 + s2) if (t2 + s2) > 0 else np.nan), s2, t2
+    sc, s2, t2 = score(y_, s_.sd.values, n_rep)
+    boots = []
+    for _ in range(500):                                   # resample models: spread and noise jointly
+        i = rng.integers(0, len(c_), len(c_)); cc = c_.iloc[i]; ss = cc[cc.sd.notna()]
+        if len(ss) >= 2 and cc.y.nunique() > 1: boots.append(score(cc.y.values, ss.sd.values, n_rep)[0])
+    rel_rows.append(dict(task=t, dataset=TI.at[t, "canonical_dataset"], protocol=TI.at[t, "pf"], family=TI.at[t, "family"], source=TI.at[t, "paper_key"],
+                         models=int(len(c_)), models_with_sd=int(len(s_)), n_reps=n_rep, n_reps_known=known, sigma=np.sqrt(s2), spread=float(np.std(y_, ddof=1)),
+                         score=sc, score_lo=float(np.nanpercentile(boots, 5)) if boots else np.nan, score_hi=float(np.nanpercentile(boots, 95)) if boots else np.nan,
+                         score_if_single_runs=score(y_, s_.sd.values, 1.0)[0]))
+REL_T = pd.DataFrame(rel_rows)
+rel_ds = []
+if len(REL_T):
+    for (d_, p_), gg in REL_T.groupby(["dataset", "protocol"]):
+        w_ = gg.models.values.astype(float)
+        rel_ds.append(dict(dataset=d_, protocol=p_, comparisons=int(len(gg)), sources=int(gg.source.nunique()), models_median=float(np.median(gg.models)),
+                           sigma_median=round(float(np.median(gg.sigma)), 3), spread_median=round(float(np.median(gg.spread)), 3),
+                           score=round(float(np.average(gg.score, weights=w_)), 3), score_min=round(float(gg.score.min()), 3), score_max=round(float(gg.score.max()), 3),
+                           score_lo_min=round(float(gg.score_lo.min()), 3), score_if_single_runs=round(float(np.average(gg.score_if_single_runs, weights=w_)), 3),
+                           n_reps_known=bool(gg.n_reps_known.all()), family=gg.family.iat[0]))
+log(f"seed-noise reliability: {len(REL_T)} comparisons, {len(rel_ds)} dataset x protocol")
+
+# ============================================================================= 6. cross-source reproducibility
+base = cell[cell.task.isin(IMG)].merge(TINFO, left_on="task", right_index=True)
+def repro(group_cols, label, min_shared, min_df):
+    rr = base[base.variant == ""].copy()
+    rr["group"] = rr[group_cols].astype(str).agg(" | ".join, axis=1)
+    rr = rr.groupby(["group", "paper_key", "model_id"], as_index=False).y.mean()
+    rep = db.cross_paper_reproducibility(rr.rename(columns={"paper_key": "paper", "model_id": "model"})[["group", "paper", "model", "y"]],
+                                         min_shared=min_shared, min_df=min_df, n_boot=100 if QUICK else 500)
+    cnt = []
+    for gname, gg in rr.groupby("group"):
+        if gg.paper_key.nunique() < 2: continue
+        mc = gg.groupby("model_id").paper_key.nunique(); cnt.append(int((mc >= 2).sum()))
+    cnt = np.array(cnt)
+    return {"grouping": label, "min_shared": min_shared, "min_df": min_df, "groups_with_2plus_sources": int(len(cnt)),
+            "with_3plus_shared": int((cnt >= 3).sum()), "with_5plus_shared": int((cnt >= 5).sum()), "estimable": rep.round(4).to_dict("records")}
+REPRO = {"strict": repro(["canonical_dataset", "benchmark_id", "evaluation_protocol", "train_fraction_norm", "metric_s"], "dataset version x protocol x fraction x metric", 5, 5),
+         "loose": repro(["canonical_dataset", "pf", "train_fraction_norm", "metric_s"], "dataset x protocol family x fraction x metric (versions pooled within source)", 4, 3)}
+log("reproducibility", {k_: (v_["groups_with_2plus_sources"], len(v_["estimable"])) for k_, v_ in REPRO.items()})
 
 # ============================================================================= write
 def rnd(x, d=3):
-    return None if x is None or not np.isfinite(x) else round(float(x), d)
-out = {"as_of": time.strftime("%Y-%m-%d"),
-       "scope": {"rows_in": n0, "rows_kept": int(len(r)), "dropped": steps, "reprint_pairs": reprint_pairs, "include_leaderboard": WITH_LB, "model_scope": "data/model_scope.json"},
+    try: return None if x is None or not np.isfinite(x) else round(float(x), d)
+    except TypeError: return None
+Lb = Lbest
+out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
+       "config": {"main_text_only": MAIN_ONLY, "leaderboard": WITH_LB, "regression": WITH_REG, "offset": OFFSET, "ridge": RIDGE, "ridge_paper_offset": RIDGE_PM},
+       "scope": {"rows_in": n0, "rows_kept": int(len(r)), "dropped": steps, "reprint_pairs": reprint_pairs, "recited_by": recited_by, "model_scope": "data/model_scope.json"},
        "overlap": overlap,
-       "K": {"chosen": K, "criterion": "leave-one-paper-out Spearman of predicted within-task model order; smallest K not credibly worse than the best (paired bootstrap over papers)",
-             "lopo_by_K": lopo_by_K, "paired_vs_best": k_tests, "heldout_cells": sel},
-       "lopo_gain_vs_one_ordering": lopo_gain,
-       "simulation": sim, "simulation_lopo_selection": sim_lopo,
-       "geometry_recoverable": GEOMETRY_OK,
-       "metadata_association_multi_paper": assoc,
-       "signal_vs_models_per_task_spearman": rnd(sig_vs_n),
-       "datasets": {n: {"papers": int(dmeta.at[n, "papers"]), "tasks": int(ntask[i]), "models_per_task": round(nmods[n], 1),
-                        "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],
-                        "reported_separation_pts": rnd(tau_obs[n], 2), "residual_sd_pts": rnd(float(np.sqrt(np.median(psi[td == n]))), 2),
-                        "shared_signal_to_residual": rnd(sig[i]) if MULTI[i] else None, "communality_in_sample": rnd(comm.get(n, np.nan)) if MULTI[i] else None,
-                        "evidence": "independent (>= 2 papers)" if MULTI[i] else "single paper: dataset-level quantities not estimable",
-                        "info_share_among_multi_paper": rnd(shap[i] / np.nansum(shap), 4) if (K and MULTI[i]) else None, "info_share_mc_se": rnd(shap_se[i] / np.nansum(shap), 4) if (K and MULTI[i]) else None,
-                        "lopo_rho": rnd(Lsel[Lsel.dataset == n].rho_struct.mean()), "lopo_rho_naive_leaderboard": rnd(Lsel[Lsel.dataset == n].rho_board.mean()),
-                        "lopo_tasks": int((Lsel.dataset == n).sum()), "lopo_models_median": rnd(Lsel[Lsel.dataset == n].n_models.median(), 0),
-                        "smallest_comparison": int(mask[:, td == n].sum(0).min()), "comparisons": int((td == n).sum()),
-                        "nearest": ([{"name": names[j], "similarity": round(float(S[i, j]), 3)} for j in np.argsort(-S[i])[1:6]] if (GEOMETRY_OK and multi[i]) else None)}
+       "offset": {"specs": specs, "chosen": SPEC, "rule": "highest best-K leave-one-paper-out Spearman among the prespecified specs", "paired_vs_chosen": spec_tests,
+                  "multi_domain_sources": sorted(MULTI_DOM)},
+       "K": {"chosen": int(K), "best": int(bestK), "rule": "smallest K not credibly worse than the best (paired bootstrap over sources); K is a floor",
+             "lopo_by_spec_and_K": lopo_table, "paired_vs_best": k_tests},
+       "lopo_gain": lopo_gain, "heldout_cells_within_paper": heldout,
+       "simulation_offset": sim_spec, "simulation_K": sim_K, "geometry_recoverable": GEOMETRY_OK,
+       "metadata_association_multi_source": assoc,
+       "datasets": {n: {"sources": int(dmeta.at[n, "sources"]), "comparisons": int((td == n).sum()), "models_per_comparison": round(float(np.mean(mask[:, td == n].sum(0))), 1),
+                        "smallest_comparison": int(mask[:, td == n].sum(0).min()), "domain": dmeta.at[n, "domain"], "task_type": dmeta.at[n, "task_type"], "sensor": dmeta.at[n, "sensor"],
+                        "families": sorted(set(TI.family.values[td == n])), "reported_separation_pts": rnd(tau_obs[n], 2),
+                        "lopo_rho": rnd(Lb[Lb.dataset == n].rho_struct.mean()), "lopo_rho_naive_leaderboard": rnd(Lb[Lb.dataset == n].rho_board.mean()),
+                        "lopo_tasks": int((Lb.dataset == n).sum()), "lopo_models_median": rnd(Lb[Lb.dataset == n].n_models.median(), 0),
+                        "nearest": ([{"name": names[j], "similarity": round(float(S[i, j]), 3)} for j in np.argsort(-S[i])[1:6] if multi[j]][:5] if (GEOMETRY_OK and multi[i]) else None)}
                     for i, n in enumerate(names)},
-       "reproducibility": rep.round(4).to_dict("records"), "replication_evidence": replication}
-(ROOT / "data" / "dataset_analysis.json").write_text(json.dumps(out, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
-log("wrote data/dataset_analysis.json")
+       "seed_noise_reliability": {"comparisons": int(len(REL_T)), "by_dataset_protocol": rel_ds,
+                                  "n_reps_assumed_3_share": round(float((~REL_T.n_reps_known).mean()), 3) if len(REL_T) else None},
+       "reproducibility": REPRO}
+OUT.write_text(json.dumps(out, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
+log(f"wrote {OUT}")

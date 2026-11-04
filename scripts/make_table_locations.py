@@ -14,7 +14,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 inv = pd.read_json(sys.argv[1])
-checked = pd.concat([pd.read_json(f) for f in sys.argv[2:]], ignore_index=True)
+checked = pd.concat([pd.read_json(f) for f in sys.argv[2:]], ignore_index=True).drop_duplicates(["paper", "file", "table_id"], keep="last")
 checked["table_id"] = checked.table_id.astype(str)
 APP = re.compile(r"append|suppl|supp|supporting|ablation|X_suppl|final_sup", re.I)
 
@@ -24,19 +24,19 @@ for _, x in inv.iterrows():
     key = (x.paper, x.file, str(x.table_id))
     if x.file.startswith("results/"):
         loc, abl, how, ev = "main", False, "rule", "public leaderboard snapshot (no paper body/appendix split)"
-    elif APP.search(x.file):
-        loc, abl, how, ev = "appendix", bool(re.search("ablation", x.file, re.I)), "rule", f"source file name '{x.file}'"
-    elif key in ck.index:
+    elif key in ck.index:                                  # a check against the arXiv version overrides the file-name rule
         c = ck.loc[key]
         c = c.iloc[0] if isinstance(c, pd.DataFrame) else c
         loc, abl, how, ev = c.location, (None if pd.isna(c.ablation) else bool(c.ablation)), "checked against arXiv", f"{c.paper_table_number or ''} — {c.section or ''}: {c.evidence or ''}"
+    elif APP.search(x.file):
+        loc, abl, how, ev = "appendix", bool(re.search("ablation", x.file, re.I)), "rule (not checked)", f"source file name '{x.file}'"
     else:
         loc, abl, how, ev = "unclear", None, "not checked", ""
     recs.append({"paper": x.paper, "file": x.file, "table_id": str(x.table_id), "n_rows": int(x.n_rows), "location": loc,
-                 "ablation": bool(abl) if abl is not None else False, "how": how, "evidence": ev})
+                 "ablation": bool(abl) if abl is not None else None, "how": how, "evidence": ev})
 
 out = {
-    "about": "Placement of every extracted results table in its paper. build_dataset_analysis.py keeps location == 'main' and ablation == false only.",
+    "about": "Placement (main text / appendix) and ablation status of every extracted results table. build_dataset_analysis.py keeps tables with ablation == false in the main text and, unless --main-text-only, in the appendix; location == unclear is dropped.",
     # rows of one table group that sit in a supplementary section of a single-file paper (checked by line number)
     "line_overrides": [{"paper": "alphaearth", "file": "main.tex", "appendix_from_line": 956,
                         "evidence": "Supplementary heading at main.tex:956 (bibliography at 176); rows at line 1129 are an S16.2.4 weight sweep"}],

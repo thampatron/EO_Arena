@@ -1,5 +1,5 @@
 {
- "about": "Placement of every extracted results table in its paper. build_dataset_analysis.py keeps location == 'main' and ablation == false only.",
+ "about": "Placement (main text / appendix) and ablation status of every extracted results table. build_dataset_analysis.py keeps tables with ablation == false in the main text and, unless --main-text-only, in the appendix; location == unclear is dropped.",
  "line_overrides": [
   {
    "paper": "alphaearth",
@@ -216,8 +216,8 @@
    "n_rows": 28,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'A_supplementary.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table A — A Detailed Results: arXiv HTML S2.T1 \"Model Performance on the Test Sets of GeoPlex\" after References; full per-dataset comparison of AnySat vs other GeoFMs (OmniSat, DOFA, ...)."
   },
   {
    "paper": "anysat",
@@ -226,8 +226,8 @@
    "n_rows": 6,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'A_supplementary.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table B — A Detailed Results: arXiv HTML S2.T2 after References; AnySat FT/LP (89.3/82.0 on SICKLE, 80.9 BraDD) listed against literature baselines (UTAE, CROMA, Prithvi, DOFA) on external datasets, not a design ablation."
   },
   {
    "paper": "better-together",
@@ -265,9 +265,9 @@
    "table_id": "tab:ablate1",
    "n_rows": 10,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix/a2_copernicusfm.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — App. B.1 Subtractive ablation: Caption 'Subtractive ablation. w/o means without.' removes Copernicus-FM components one at a time (e.g. w/o variable hypernetwork)."
   },
   {
    "paper": "copernicus",
@@ -275,9 +275,9 @@
    "table_id": "tab:ablate2",
    "n_rows": 10,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix/a2_copernicusfm.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — App. B.3 Variable hypernetwork - Ablation on different variable encoding options: Compares variable-name encoding options (e.g. hashing vs language encoder) for Copernicus-FM's own variable hypernetwork."
   },
   {
    "paper": "copernicus",
@@ -376,8 +376,8 @@
    "n_rows": 62,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'X_suppl.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S.1 (arXiv v2/v3; supplement dropped in v4/v5) — Supplementary Material: Full fine-tuning results of many GFMs (CROMA, etc.) on the five Cryo-Bench datasets with mIoU and average rank: a benchmark comparison."
   },
   {
    "paper": "cryo-bench",
@@ -455,9 +455,9 @@
    "table_id": "tab:attention",
    "n_rows": 6,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — App. 0.C Additional results - Additional results with attention mechanisms: Compares attention designs (DA, Cross DA, CBAM, RDA) inside DeCUR to support adopting residual deformable attention."
   },
   {
    "paper": "decur",
@@ -466,8 +466,8 @@
    "n_rows": 6,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — App. 0.C Additional results - Additional results with ViT backbones: Rand. init vs SimCLR vs DeCUR, all with ViT-S/16, frozen-encoder on BigEarthNet-SAR-1% and GeoNRW-RGB-1%: a method comparison showing architecture-agnosticism, not a variation of DeCUR's design (borderline)."
   },
   {
    "paper": "decur",
@@ -656,8 +656,8 @@
    "n_rows": 32,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.6 Fires: Section 6 Supplementary follows References; table compares 9 models (U-Net, SegFormer 69.39/89.57, Prithvi, DOFA, ClimaX...) under frozen/full-FT/random-init strategies, a benchmark comparison."
   },
   {
    "paper": "exe-bench",
@@ -666,8 +666,8 @@
    "n_rows": 56,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.7 Flood: Supplementary Table 10 after References; per-class F1/IoU of several models (SegFormer, ...) in frozen-body and fine-tune settings on the flood task."
   },
   {
    "paper": "exe-bench",
@@ -676,8 +676,8 @@
    "n_rows": 18,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.2 Cold waves: Supplementary Table 4 after References; ACC/nRMSE/RMSE of the benchmarked models for 5-day cold-wave forecasting."
   },
   {
    "paper": "exe-bench",
@@ -686,8 +686,8 @@
    "n_rows": 117,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.5 Extreme Precipitations: Supplementary Table 8 after References; probability scores of six benchmarked models across nowcasting horizons/thresholds."
   },
   {
    "paper": "exe-bench",
@@ -696,8 +696,8 @@
    "n_rows": 18,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.1 Heatwaves: Supplementary Table 3 after References; ACC/nRMSE/RMSE of the benchmarked models for 10-day heatwave forecasting."
   },
   {
    "paper": "exe-bench",
@@ -706,8 +706,8 @@
    "n_rows": 39,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.4 Storms: Supplementary Table 7 after References; probability scores of the benchmarked models at a 2-hour nowcasting window."
   },
   {
    "paper": "exe-bench",
@@ -716,8 +716,8 @@
    "n_rows": 30,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.3 Tropical Cyclones: Supplementary Table 6 after References; ACC/RMSE per atmospheric variable for the benchmarked models (Aurora etc.)."
   },
   {
    "paper": "exe-bench",
@@ -726,18 +726,18 @@
    "n_rows": 6,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sources/5_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — 6 Supplementary Material / 6.4 Results and Discussion / 6.4.3 Tropical Cyclones: Supplementary Table 5 after References; ACC/RMSE per surface variable for the benchmarked models (Aurora etc.)."
   },
   {
    "paper": "galileo",
    "file": "combined_ablations.tex",
    "table_id": "tab:combined_ablation",
    "n_rows": 24,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'combined_ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — Sec. 4.1 Ablations: Main-text ablation (input before \\appendix) showing the dual-objective algorithm beats the single-objective global/local variants."
   },
   {
    "paper": "galileo",
@@ -746,28 +746,28 @@
    "n_rows": 29,
    "location": "appendix",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'data_ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — App. B.1 A globally sampled pretraining dataset: Caption 'Ablating the Galileo dataset': removes pretraining modalities/data (e.g. no S1, no NDVI)."
   },
   {
    "paper": "galileo",
    "file": "global_ablations.tex",
    "table_id": "tab:global_ablation",
    "n_rows": 24,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'global_ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — Sec. 4.1 Ablations: Main-text ablation (input before \\appendix) of target depth and masking strategy for the global objective."
   },
   {
    "paper": "galileo",
    "file": "local_ablations.tex",
    "table_id": "tab:local_ablation",
    "n_rows": 24,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'local_ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — Sec. 4.1 Ablations: Main-text ablation (input before \\appendix) of loss and masking choices for the local objective."
   },
   {
    "paper": "galileo",
@@ -976,8 +976,8 @@
    "n_rows": 24,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/X_suppl.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — Appendix 0.B Permanent Water Layer Generation / 0.B.3 Results: arXiv HTML Pt0.A2.T6 in Appendix B; compares JRC-GSW, ResNet50+DeepLabV3+, AEF and TESSERA embeddings with linear/MLP heads on Earth Surface Water."
   },
   {
    "paper": "geoid-flood-bench",
@@ -1004,10 +1004,10 @@
    "file": "tables/modality_ablation.tex",
    "table_id": "tab:modality_ablation",
    "n_rows": 16,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'tables/modality_ablation.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 4 — 5 Experiments / 5.4 Modality ablation: Despite the separate tables/ file, arXiv HTML S5.T4 sits in main Section 5.4 (before References); it varies SAR/S2/DEM input combinations for a fixed TerraMind setup, an input-recipe ablation."
   },
   {
    "paper": "geoid-flood-bench",
@@ -1026,8 +1026,8 @@
    "n_rows": 28,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S10 — Supporting Information (after References): Supporting-information Table S10 after the bibliography; accuracy of all foundation models and baselines under LP/FT at 1.0x and 0.3x data."
   },
   {
    "paper": "infra-bench",
@@ -1036,8 +1036,8 @@
    "n_rows": 28,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S11 — Supporting Information (after References): Supporting-information Table S11 after the bibliography; macro precision of all foundation models and baselines under LP/FT at both data scales."
   },
   {
    "paper": "infra-bench",
@@ -1046,8 +1046,8 @@
    "n_rows": 28,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S12 — Supporting Information (after References): Supporting-information Table S12 after the bibliography; macro recall of all foundation models and baselines under LP/FT at both data scales."
   },
   {
    "paper": "infra-bench",
@@ -1056,8 +1056,8 @@
    "n_rows": 28,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S13 — Supporting Information (after References): Supporting-information Table S13 after the bibliography; weighted precision of all foundation models and baselines under LP/FT at both data scales."
   },
   {
    "paper": "infra-bench",
@@ -1066,8 +1066,8 @@
    "n_rows": 32,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S8 — Supporting Information (after References): Supporting-information Table S8 after the bibliography; per-class LP F1 for Satlas S1/S2, CROMA, Prithvi, AlphaEarth, OlmoEarth, DINOv3, Random Features."
   },
   {
    "paper": "infra-bench",
@@ -1076,8 +1076,8 @@
    "n_rows": 24,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'supporting_documents/supporting_info.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table S9 — Supporting Information (after References): Supporting-information Table S9 after the bibliography; per-class FT F1 for all evaluated foundation models and the ResNet-18 baseline."
   },
   {
    "paper": "melt-salt",
@@ -1165,9 +1165,9 @@
    "table_id": "tab:loss_weighting_results",
    "n_rows": 6,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'main_suppl_content.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table A3 — Appendix 0.D Additional results / 0.D.1 Ablation of multi-pretext loss strategy: arXiv HTML Pt0.A4.T3 in Appendix D.1; compares equal vs uncertainty loss weighting when pretraining MP-MAE on MMEarth64, a pretraining-objective ablation."
   },
   {
    "paper": "mmearth",
@@ -1175,9 +1175,9 @@
    "table_id": "tab:taster_results",
    "n_rows": 6,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'main_suppl_content.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table A2 — Appendix 0.C Taster pretraining datasets: MMEarth100k and MMEarth64: arXiv HTML Pt0.A3.T2 in Appendix C; MP-MAE pretrained on smaller taster datasets, varying the authors' own pretraining data."
   },
   {
    "paper": "mmearth-bench",
@@ -1186,8 +1186,8 @@
    "n_rows": 80,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table A.14 — App. A.4.2 Model rankings (Additional results): Average test performance of all benchmarked pretrained models (ScaleMAE, etc.) after fine-tuning on all training data, per task: a full benchmark results table."
   },
   {
    "paper": "mosaiks",
@@ -1216,8 +1216,8 @@
    "n_rows": 77,
    "location": "appendix",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'sec/ablation.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 6 — App. C Additional Ablations: Removes components of the OlmoEarth base model and recipe one by one (plus an MAE baseline trained by the authors), each trained 300k steps."
   },
   {
    "paper": "olmoearth",
@@ -1226,8 +1226,8 @@
    "n_rows": 21,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sec/appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — App. D Comparison to AlphaEarth Foundations: Compares AlphaEarth embeddings with OlmoEarth ViT-Base on partner tasks under kNN, frozen+decoder and fine-tuning: a benchmark comparison."
   },
   {
    "paper": "olmoearth",
@@ -1244,10 +1244,10 @@
    "file": "sec/ablations.tex",
    "table_id": "tab:ablations",
    "n_rows": 20,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'sec/ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 3 Experiments & Results / 3.3 Ablations: arXiv v1 HTML S3.T3 \"Ablation experiments on the OlmoEarth v1.1 base model\" in main Section 3.3; row Updated/0.2/nonlinear/Masked negatives = 75.6/92.6/55.2/63.6 matches."
   },
   {
    "paper": "olmoearth_v11",
@@ -1274,10 +1274,10 @@
    "file": "sec/ablations.tex",
    "table_id": "tab:ablations",
    "n_rows": 4,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'sec/ablations.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 3 Experiments & Results / 3.3 Ablations: arXiv v2 HTML S3.T3 \"Ablation experiments on the OlmoEarth v1.2 Base model\" in main Section 3.3; RoPE row 73.6/91.8/55.9/65.0 matches (record holds only the final-config row)."
   },
   {
    "paper": "olmoearth_v12",
@@ -1285,9 +1285,9 @@
    "table_id": "tab:pos-enc-full-no-cropharvest",
    "n_rows": 85,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sec/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — Appendix A RoPE encoding strategies: arXiv v2 HTML A1.T5 \"Positional encoding ablations on the v1.2 Base models\" in Appendix A; varies the model's positional encoding (APE vs RoPE variants)."
   },
   {
    "paper": "olmoearth_v12",
@@ -1515,9 +1515,9 @@
    "table_id": "tab:abl_cumulative",
    "n_rows": 7,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 7 — App. D.3 Influence of individual design decisions: Removes individual Panopticon design choices (progressive pretraining, sensor augmentation, channel attention, DINOv2 init, ...) and reports the Avg drop."
   },
   {
    "paper": "panopticon",
@@ -1525,9 +1525,9 @@
    "table_id": "tab:cropsplit",
    "n_rows": 4,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 14 — App. G Additional ablations - Spectral augmentation: Varies the spectral crop size s in {2,4,8,13} used in Panopticon pretraining augmentation."
   },
   {
    "paper": "panopticon",
@@ -1536,8 +1536,8 @@
    "n_rows": 41,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — App. D.2 Geo-Bench (full results; float placed in App. F.2): Linear-probe results of DINOv2, CROMA, SoftCon, AnySat, Galileo, SenPaMAE, DOFA and Panopticon on GEO-Bench classification and reBEN."
   },
   {
    "paper": "panopticon",
@@ -1546,8 +1546,8 @@
    "n_rows": 36,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — App. D.2 Geo-Bench (full results; float placed in App. F.2): Full GEO-Bench segmentation comparison across baseline GeoFMs and Panopticon, reported as macro Jaccard."
   },
   {
    "paper": "panopticon",
@@ -1556,8 +1556,8 @@
    "n_rows": 36,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — App. D.2 Geo-Bench (full results; float placed in App. F.2): Full GEO-Bench segmentation comparison across baseline GeoFMs and Panopticon, reported as micro Jaccard."
   },
   {
    "paper": "panopticon",
@@ -1566,8 +1566,8 @@
    "n_rows": 36,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — App. D.2 Geo-Bench (full results; float placed in App. F.2): Full GEO-Bench segmentation comparison across baseline GeoFMs and Panopticon, reported as mIoU."
   },
   {
    "paper": "panopticon",
@@ -1575,9 +1575,9 @@
    "table_id": "tab:sup-sipe-results",
    "n_rows": 18,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'final_sup.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 8 — App. E Utilizing complete spectral information - Evaluation: Results for Panopticon-IPE, an alternative spectral-positional-encoding variant of the authors' own model that was rejected because it performs worse on average."
   },
   {
    "paper": "presto",
@@ -1925,9 +1925,9 @@
    "table_id": "tab:appendix:satclipmodels",
    "n_rows": 114,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 6 (a,b) — Appendix 0.E Details and Additional Results for Downstream Experiments / 0.E.4 Results of Different SatCLIP Configurations: Appendix E.4 Table 6 reports SatCLIP with different vision backbones (ResNet18/50, ViT16) and L=10/40 location encoders, varying the paper's own model configuration."
   },
   {
    "paper": "satclip",
@@ -1936,8 +1936,8 @@
    "n_rows": 35,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 9 — Appendix 0.E / 0.E.7 Additional Results: Combining Embeddings: Appendix E.7 Table 9 evaluates concatenated pairs of location embeddings (SatCLIP+GeoCLIP, CSP+GPS2Vec, ...); a comparison of embedding combinations, not an ablation of SatCLIP design choices (borderline)."
   },
   {
    "paper": "satclip",
@@ -2115,9 +2115,9 @@
    "table_id": "tab:results_rgb_mask_ratio_patch_size",
    "n_rows": 4,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — App. A.4 Impact of masking ratio and patch size on fMoW-RGB-temporal: Varies the SatMAE masking ratio (0.6/0.9 vs 0.75) and patch size (vs 16)."
   },
   {
    "paper": "satmae",
@@ -2125,9 +2125,9 @@
    "table_id": "tab:results_sentinel_further_improvments",
    "n_rows": 2,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — App. A.3.3 Training Details - SatMAE Further Improvements: Pretrains SatMAE for 200 instead of 50 epochs, i.e. varies the pretraining length of the authors' own model."
   },
   {
    "paper": "satmae",
@@ -2135,9 +2135,9 @@
    "table_id": "tab:results_spectral_mask_ratio_patch_size",
    "n_rows": 3,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — App. A.5 Impact of masking ratio and patch size on fMoW-Sentinel: Varies the masking ratio and patch size of multi-spectral SatMAE ViT-L."
   },
   {
    "paper": "satmae++",
@@ -2376,8 +2376,8 @@
    "n_rows": 8,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table XI — App. A-C SSL4EO-S12-ML Dataset - Benchmark: Benchmarks the new SSL4EO-S12-ML dataset with rand. init, supervised, SSL4EO (MoCo) and SoftCon."
   },
   {
    "paper": "softcon",
@@ -2385,9 +2385,9 @@
    "table_id": "tab:pecp",
    "n_rows": 14,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table XII — App. B Parameter Efficient Continual Pretraining: Compares pretraining strategies (from scratch, full continual pretraining, PECP bias/prompt/LoRA) on 100%/10% pretraining data to justify SoftCon's full continual pretraining."
   },
   {
    "paper": "softcon",
@@ -2785,9 +2785,9 @@
    "table_id": "tab:abl-fusion",
    "n_rows": 8,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sec/05_supp.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table A1 — App. S1 Multi-Modal Fusion Strategies: Caption 'Ablation study on multi-modal fusion strategies': compares fusion designs for TerraFM-B (DINO S2-only, multi-student-teacher, cross-attn Q=196, Q=1/Q=5)."
   },
   {
    "paper": "terrafm",
@@ -2796,8 +2796,8 @@
    "n_rows": 4,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sec/05_supp.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table A2 — App. S3 Landslide Detection: Compares Prithvi-EO-2.0 (300M) and TerraFM on the Landslide4Sense test set."
   },
   {
    "paper": "terramind",
@@ -2856,8 +2856,8 @@
    "n_rows": 60,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name '12_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 11 — 11 Additional experiments / 11.2 Few-shot experiments: Sections 8-12 follow References (supplementary); Table 11 compares CLIP, DeCUR, Prithvi, TerraMind etc. on EuroSAT/METER-ML few-shot with different inputs."
   },
   {
    "paper": "terramind",
@@ -2865,9 +2865,9 @@
    "table_id": "tab:sacrop",
    "n_rows": 1,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name '12_appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — 11 Additional experiments / 11.5 TiM tuning for crop mapping: Supplementary Table 13 compares TerraMindv1-B standard fine-tuning (41.87) with the paper's TiM tuning (42.74) on SA Crop, varying the authors' own fine-tuning recipe."
   },
   {
    "paper": "terramind",
@@ -2876,8 +2876,8 @@
    "n_rows": 1,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name '12_appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 12 — 11 Additional experiments / 11.4 Comparing generations and pseudo-labels: Supplementary Table 12 compares flood maps from TerraMind LULC generations (69.87) against Dynamic World pseudo-labels (71.98) and a fine-tuned TerraMind, a method comparison rather than a design ablation."
   },
   {
    "paper": "tessera",
@@ -2894,10 +2894,10 @@
    "file": "sec/5_discussion_and_ablation.tex",
    "table_id": "tab:ablation",
    "n_rows": 7,
-   "location": "appendix",
+   "location": "main",
    "ablation": true,
-   "how": "rule",
-   "evidence": "source file name 'sec/5_discussion_and_ablation.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — 5 Discussion & Ablation Studies: Despite the file name, arXiv HTML S5.T3 is in main Section 5 (before References); removes shuffling, mixup, S1, quantization, pretraining from TESSERA."
   },
   {
    "paper": "tessera",
@@ -2906,8 +2906,8 @@
    "n_rows": 4,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sec/X_suppl.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 5 — Appendix A Supplementary Material / A.6 Geographic Generalization: arXiv HTML A1.T5 in Appendix A.6; compares CROMA, AlphaEarth and TESSERA on Togo (CropHarvest) and Ethiopia crop benchmarks."
   },
   {
    "paper": "tessera_v2",
@@ -2915,9 +2915,9 @@
    "table_id": "tab:arch-sweep",
    "n_rows": 117,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 3 — App. F Architecture Sweep Details: Architecture sweep varying each design axis of the authors' own model with the others fixed; the selected scheme-A candidate is in bold."
   },
   {
    "paper": "tessera_v2",
@@ -2926,8 +2926,8 @@
    "n_rows": 16,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 15 — App. P The Evaluation Head Matters: CityRep under a Linear Probe: Linear-probe CityRep results for TESSERA v2-2B-L, TESSERA v1, AlphaEarth and OlmoEarth-L with ranks."
   },
   {
    "paper": "tessera_v2",
@@ -2935,9 +2935,9 @@
    "table_id": "tab:distill-scaling",
    "n_rows": 6,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 10 — App. K Distillation Data Scaling: Varies the amount of distillation data (0.1-1.2B d-pixels) for the student, with the deployed 1.2B run in bold."
   },
   {
    "paper": "tessera_v2",
@@ -2946,8 +2946,8 @@
    "n_rows": 16,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 26 — App. W.5 Storage and deployment trade-offs (under App. W Ablations): Per-prefix composite scores of the released N/S/M/L students, a storage/accuracy trade-off for the deployed models rather than a design ablation (borderline: it sits under the Ablations appendix)."
   },
   {
    "paper": "tessera_v2",
@@ -2955,9 +2955,9 @@
    "table_id": "tab:from-scratch",
    "n_rows": 2,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 22 — App. W.1 Distillation versus same-size from-scratch training: Compares an L-size encoder trained from scratch with Barlow Twins against one distilled from the 2B teacher, to justify train-large-then-distil."
   },
   {
    "paper": "tessera_v2",
@@ -2965,9 +2965,9 @@
    "table_id": "tab:full-pixel-matryoshka",
    "n_rows": 120,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 16 — App. Q Full Pixel-wise Results: Per-dataset scores of a preliminary distillation checkpoint comparing distilled Matryoshka with the naive Matryoshka-Barlow Twins baseline; the text says only the gap between them is meaningful."
   },
   {
    "paper": "tessera_v2",
@@ -2976,8 +2976,8 @@
    "n_rows": 24,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 13 — App. M Held-out Generalisation Suite - Per-task variability: Per-task held-out scores with seed std for TESSERA v2-2B-L, TESSERA v1, AlphaEarth and OlmoEarth-L."
   },
   {
    "paper": "tessera_v2",
@@ -2985,9 +2985,9 @@
    "table_id": "tab:matryoshka-cls-composite",
    "n_rows": 6,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 21 — App. V Why naive Matryoshka self-supervision fails - Composite scores behind Figure 8(b): Compares distilled Matryoshka with the naive Matryoshka-Barlow Twins training objective under first-d and random-d prefixes."
   },
   {
    "paper": "tessera_v2",
@@ -2995,9 +2995,9 @@
    "table_id": "tab:teacher-size",
    "n_rows": 4,
    "location": "appendix",
-   "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "ablation": true,
+   "how": "checked against arXiv",
+   "evidence": "Table 25 — App. W.4 Teacher size: Varies the teacher size (500M/1B/2B) used to distil the TESSERA v2-L student."
   },
   {
    "paper": "tessera_v2",
@@ -3006,8 +3006,8 @@
    "n_rows": 2,
    "location": "appendix",
    "ablation": false,
-   "how": "rule",
-   "evidence": "source file name 'sections/appendix.tex'"
+   "how": "checked against arXiv",
+   "evidence": "Table 2 — App. E Inference-time Temporal Windows: Mixed: AlphaEarth reference row plus TESSERA v2-2B-L at annual vs monthly inference window (an inference-time evaluation setting with unchanged weights, not a pretraining/recipe ablation); the monthly-window row is a non-default variant (borderline)."
   },
   {
    "paper": "tree-height-change",

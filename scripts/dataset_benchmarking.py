@@ -92,12 +92,17 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     rng = np.random.default_rng(seed)
     mu0 = np.array([Y[mask[:, t], t].mean() if mask[:, t].any() else 0.0 for t in range(T)])
     pidx = None if paper is None else np.asarray(paper, int)
-    nP = 0 if pidx is None else int(pidx.max()) + 1
+    if pidx is not None and (pidx < 0).all():
+        pidx = None                                       # no paper carries an offset
+    nP = 0 if pidx is None else int(pidx.max()) + 2       # last column = 'no offset' dummy, held at 0
+    if pidx is not None:
+        pidx = np.where(pidx < 0, nP - 1, pidx)
     def c_update(R):
         """Exact ridge update of the paper x model offsets given residuals R (weighted, observed cells)."""
         num = np.zeros((M, nP)); den = np.zeros((M, nP))
         np.add.at(num.T, pidx, R.T); np.add.at(den.T, pidx, W.T)
-        return num / (den + ridge_pm)
+        C_ = num / (den + ridge_pm); C_[:, -1] = 0.0
+        return C_
     if K == 0:
         f = StructuredFit(0, mu0, np.zeros((M, 0)), {g: np.zeros((n, 0)) for g, n in nlev.items()}, np.zeros((T, 0)), groups)
         if pidx is not None:
@@ -170,7 +175,7 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     return StructuredFit(K, mu, th, B, U, groups, obj, it, C=C, paper_idx=pidx)
 
 
-def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
+def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_group=None, **kw):
     """Fit with a residual variance per task, psi_t (note Eq. 1/9: each task has its own noise scale). Each task is
     divided by its current residual SD sqrt(psi_t) and the structured model is fitted in these noise units; psi_t is then
     re-estimated on the original scale, three rounds. Unlike standardising by the observed spread of the models a paper
@@ -179,11 +184,15 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
     the same meaning for every task. psi_t is the df-corrected residual mean square shrunk toward the median over tasks
     with prior_n pseudo-observations, so 4-model comparisons do not get extreme scales. NB with single reported scores
     psi_t = Psi_tt + sigma_t^2 (stable task-specific interaction plus evaluation noise, not separable: note Eq. 9).
+    prior_group (T,) ints: tasks on different metric scales (points vs log-error) get separate pooled priors.
     Returns (fit, psi); fit.scale = sqrt(psi) and fit.predict() is on the original scale."""
     T = Y.shape[1]; fit = None
     n = mask.sum(0)
+    grp = np.zeros(T, int) if prior_group is None else np.asarray(prior_group, int)
     sd0 = np.array([Y[mask[:, t], t].std(ddof=1) if n[t] > 1 else np.nan for t in range(T)])
-    psi = np.full(T, np.nanmedian(sd0) ** 2)              # start: one pooled level for every task
+    psi = np.ones(T)
+    for gg in np.unique(grp):                              # start: one pooled level per metric family
+        psi[grp == gg] = np.nanmedian(sd0[grp == gg]) ** 2
     for _ in range(n_rounds):
         s = np.sqrt(psi)
         fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
@@ -193,8 +202,10 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, **kw):
         raw = np.maximum((E ** 2).sum(0) / dof, 1e-6)
         # hierarchical prior on log psi: shrink each task's log residual variance toward the pooled mean, with
         # prior_n pseudo-degrees of freedom; the target no longer depends on the task's own observed spread
-        lr = np.log(raw); ok = n > K + 2
-        m0 = np.average(lr[ok], weights=dof[ok]) if ok.any() else lr.mean()
+        lr = np.log(raw); ok = n > K + 2; m0 = np.zeros(T)
+        for gg in np.unique(grp):
+            sel = grp == gg; o = sel & ok
+            m0[sel] = np.average(lr[o], weights=dof[o]) if o.any() else lr[sel].mean()
         psi = np.exp((dof * lr + prior_n * m0) / (dof + prior_n))
     s_new = np.sqrt(psi)                                  # express the final fit in the final psi's units
     fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, **kw); fit.scale = s_new
