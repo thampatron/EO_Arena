@@ -11,7 +11,7 @@
  },
  "scope": {
   "rows_in": 11580,
-  "rows_kept": 7333,
+  "rows_kept": 6687,
   "dropped": [
    {
     "rule": "table placement unclear",
@@ -38,6 +38,14 @@
     "dropped": 2055
    },
    {
+    "rule": "paper-internal variant of the introducing paper's own method (D7)",
+    "dropped": 188
+   },
+   {
+    "rule": "per-class sub-score of a headline result (D5)",
+    "dropped": 120
+   },
+   {
     "rule": "regression value outside the metric's domain",
     "dropped": 0
    },
@@ -46,19 +54,25 @@
     "dropped": 226
    },
    {
-    "rule": "within-paper duplicate (appendix repeats a main-text value)",
-    "dropped": 83
+    "rule": "within-paper duplicate (appendix repeats main text; leaderboard 'best of' repeats s2_main)",
+    "dropped": 14
    },
    {
     "rule": "recitation of an earlier paper's value",
-    "dropped": 151
+    "dropped": 156
    },
    {
-    "rule": "metric twin (one metric kept per comparison)",
-    "dropped": 946
+    "rule": "metric twin (one metric per paper x benchmark x protocol x fraction x setting)",
+    "dropped": 1348
    }
   ],
   "reprint_pairs": [
+   {
+    "earlier": "pangea",
+    "later": "anysat",
+    "shared_cells": 22,
+    "identical_share": 0.77
+   },
    {
     "earlier": "copernicus",
     "later": "terrafm",
@@ -74,9 +88,9 @@
   ],
   "recited_by": {
    "GFM": 1,
-   "anysat": 32,
+   "anysat": 36,
    "galileo": 1,
-   "geobench_v2_leaderboard": 1,
+   "geobench_v2_leaderboard": 2,
    "geocross-bench": 2,
    "olmoearth_v12": 7,
    "prithvi_v2": 1,
@@ -88,19 +102,19 @@
   "model_scope": "data/model_scope.json"
  },
  "overlap": {
-  "models": 105,
-  "tasks": 563,
+  "models": 100,
+  "tasks": 496,
   "datasets": 95,
-  "sources": 28,
-  "density": 0.0964,
-  "models_in_1_source": 56,
+  "sources": 27,
+  "density": 0.1049,
+  "models_in_1_source": 52,
   "models_in_3plus_sources": 32,
   "datasets_in_2plus_sources": 29,
   "models_per_task_median": 9.0,
-  "tasks_logerr": 64,
-  "tasks_from_appendix": 256,
+  "tasks_logerr": 56,
+  "tasks_from_appendix": 207,
   "tasks_from_leaderboard": 32,
-  "single_domain_sources": 9
+  "single_domain_sources": 8
  },
  "offset": {
   "specs": [
@@ -113,26 +127,26 @@
   "paired_vs_chosen": {
    "all": {
     "K": 3,
-    "vs_K": 4,
-    "mean": -0.0507,
+    "vs_K": 3,
+    "mean": -0.1331,
     "ci90": [
-     -0.1584,
-     0.0687
+     -0.2435,
+     -0.036
     ],
-    "p_le_0": 0.773,
-    "n_tasks": 502,
+    "p_le_0": 0.991,
+    "n_tasks": 464,
     "n_papers": 22
    },
    "multi_domain": {
-    "K": 3,
-    "vs_K": 4,
-    "mean": -0.0488,
+    "K": 4,
+    "vs_K": 3,
+    "mean": -0.1264,
     "ci90": [
-     -0.1716,
-     0.0887
+     -0.2541,
+     -0.0113
     ],
-    "p_le_0": 0.747,
-    "n_tasks": 502,
+    "p_le_0": 0.9715,
+    "n_tasks": 464,
     "n_papers": 22
    }
   },
@@ -160,351 +174,569 @@
  },
  "K": {
   "chosen": 2,
-  "best": 4,
+  "best": 3,
   "rule": "smallest K not credibly worse than the best (paired bootstrap over sources); K is a floor",
   "lopo_by_spec_and_K": {
    "all": {
     "1": {
-     "rho_struct": 0.0126,
-     "rho_global": -0.0659,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5035,
-     "acc_board": 0.5865
+     "rho_struct": -0.0169,
+     "rho_board": 0.2088,
+     "rho_global": 0.0074,
+     "rho_anch": 0.1318,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.4982,
+     "acc_board": 0.5782
     },
     "2": {
-     "rho_struct": 0.0819,
-     "rho_global": -0.0395,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5308,
-     "acc_board": 0.5865
+     "rho_struct": 0.0377,
+     "rho_board": 0.2088,
+     "rho_global": -0.0283,
+     "rho_anch": 0.1913,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.515,
+     "acc_board": 0.5782
     },
     "3": {
-     "rho_struct": 0.1971,
-     "rho_global": 0.2,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5776,
-     "acc_board": 0.5865
+     "rho_struct": 0.1651,
+     "rho_board": 0.2088,
+     "rho_global": 0.1541,
+     "rho_anch": 0.2061,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5649,
+     "acc_board": 0.5782
     },
     "4": {
-     "rho_struct": 0.1509,
-     "rho_global": 0.15,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5543,
-     "acc_board": 0.5865
+     "rho_struct": 0.1493,
+     "rho_board": 0.2088,
+     "rho_global": 0.164,
+     "rho_anch": 0.1527,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5552,
+     "acc_board": 0.5782
     }
    },
    "multi_domain": {
     "1": {
-     "rho_struct": 0.0223,
-     "rho_global": -0.1391,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5071,
-     "acc_board": 0.5865
+     "rho_struct": 0.0159,
+     "rho_board": 0.2088,
+     "rho_global": -0.0095,
+     "rho_anch": 0.1323,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.51,
+     "acc_board": 0.5782
     },
     "2": {
-     "rho_struct": 0.0957,
-     "rho_global": 0.0384,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5378,
-     "acc_board": 0.5865
+     "rho_struct": 0.0539,
+     "rho_board": 0.2088,
+     "rho_global": -0.0406,
+     "rho_anch": 0.185,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5212,
+     "acc_board": 0.5782
     },
     "3": {
-     "rho_struct": 0.199,
-     "rho_global": 0.2185,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5758,
-     "acc_board": 0.5865
+     "rho_struct": 0.1513,
+     "rho_board": 0.2088,
+     "rho_global": 0.1446,
+     "rho_anch": 0.2129,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5588,
+     "acc_board": 0.5782
     },
     "4": {
-     "rho_struct": 0.1353,
-     "rho_global": 0.139,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5475,
-     "acc_board": 0.5865
+     "rho_struct": 0.1718,
+     "rho_board": 0.2088,
+     "rho_global": 0.1639,
+     "rho_anch": 0.1549,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5653,
+     "acc_board": 0.5782
     }
    },
    "none": {
     "1": {
-     "rho_struct": 0.0435,
-     "rho_global": -0.0753,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5151,
-     "acc_board": 0.5865
+     "rho_struct": 0.1679,
+     "rho_board": 0.2088,
+     "rho_global": 0.1632,
+     "rho_anch": 0.0867,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5652,
+     "acc_board": 0.5782
     },
     "2": {
-     "rho_struct": 0.2243,
-     "rho_global": 0.2577,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5857,
-     "acc_board": 0.5865
+     "rho_struct": 0.2582,
+     "rho_board": 0.2088,
+     "rho_global": 0.2481,
+     "rho_anch": 0.2035,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5989,
+     "acc_board": 0.5782
     },
     "3": {
-     "rho_struct": 0.2057,
-     "rho_global": 0.2172,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5809,
-     "acc_board": 0.5865
+     "rho_struct": 0.2982,
+     "rho_board": 0.2088,
+     "rho_global": 0.2663,
+     "rho_anch": 0.2422,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.6147,
+     "acc_board": 0.5782
     },
     "4": {
-     "rho_struct": 0.2478,
-     "rho_global": 0.2405,
-     "rho_board": 0.2272,
-     "acc_struct": 0.5954,
-     "acc_board": 0.5865
+     "rho_struct": 0.2207,
+     "rho_board": 0.2088,
+     "rho_global": 0.2454,
+     "rho_anch": 0.1209,
+     "rho_half_board": 0.1821,
+     "rho_anch_board": 0.0554,
+     "acc_struct": 0.5857,
+     "acc_board": 0.5782
     }
    }
   },
   "paired_vs_best": {
    "1": {
-    "mean": -0.2042,
+    "mean": -0.1304,
     "ci90": [
-     -0.329,
-     -0.0971
+     -0.2094,
+     -0.0332
     ],
-    "p_le_0": 1.0,
-    "n_tasks": 502,
+    "p_le_0": 0.9855,
+    "n_tasks": 464,
     "n_papers": 22
    },
    "2": {
-    "mean": -0.0235,
+    "mean": -0.04,
     "ci90": [
-     -0.1427,
-     0.106
+     -0.0894,
+     0.0102
     ],
-    "p_le_0": 0.6345,
-    "n_tasks": 502,
+    "p_le_0": 0.909,
+    "n_tasks": 464,
     "n_papers": 22
    },
-   "3": {
-    "mean": -0.042,
+   "4": {
+    "mean": -0.0775,
     "ci90": [
-     -0.1116,
-     0.0259
+     -0.1199,
+     -0.038
     ],
-    "p_le_0": 0.833,
-    "n_tasks": 502,
+    "p_le_0": 0.999,
+    "n_tasks": 464,
     "n_papers": 22
+   }
+  },
+  "primary_criterion": "rho_struct",
+  "anchored": {
+   "best": 3,
+   "paired_vs_best": {
+    "1": {
+     "mean": -0.1555,
+     "ci90": [
+      -0.2255,
+      -0.0702
+     ],
+     "p_le_0": 0.998,
+     "n_tasks": 416,
+     "n_papers": 19
+    },
+    "2": {
+     "mean": -0.0387,
+     "ci90": [
+      -0.0957,
+      0.02
+     ],
+     "p_le_0": 0.8615,
+     "n_tasks": 416,
+     "n_papers": 19
+    },
+    "4": {
+     "mean": -0.1212,
+     "ci90": [
+      -0.1618,
+      -0.0696
+     ],
+     "p_le_0": 0.9995,
+     "n_tasks": 416,
+     "n_papers": 19
+    }
    }
   }
  },
  "lopo_gain": {
-  "K_chosen_vs_naive_leaderboard": {
-   "mean": -0.0028,
+  "K1_vs_leaderboard": {
+   "mean": -0.041,
    "ci90": [
-    -0.0694,
-    0.0652
+    -0.1406,
+    0.0485
    ],
-   "p_le_0": 0.537,
-   "n_tasks": 502,
+   "p_le_0": 0.697,
+   "n_tasks": 464,
    "n_papers": 22
   },
-  "K1_vs_naive_leaderboard": {
-   "mean": -0.1836,
+  "Kchosen_vs_leaderboard": {
+   "K": 2,
+   "mean": 0.0494,
    "ci90": [
-    -0.3307,
-    -0.0543
+    -0.0207,
+    0.1121
    ],
-   "p_le_0": 0.9915,
-   "n_tasks": 502,
+   "p_le_0": 0.11,
+   "n_tasks": 464,
    "n_papers": 22
   },
-  "bestK_vs_naive_leaderboard": {
-   "K": 4,
-   "mean": 0.0206,
+  "bestK_vs_leaderboard": {
+   "K": 3,
+   "mean": 0.0894,
    "ci90": [
-    -0.1333,
-    0.1485
+    0.0299,
+    0.1412
    ],
-   "p_le_0": 0.3905,
-   "n_tasks": 502,
+   "p_le_0": 0.0075,
+   "n_tasks": 464,
    "n_papers": 22
   },
-  "dataset_seen_in_other_sources (K=4, structured vs own one-ordering)": {
-   "mean": 0.0174,
+  "anchored_K1_vs_leaderboard_same_half": {
+   "mean": -0.0954,
    "ci90": [
-    -0.1369,
-    0.1598
+    -0.187,
+    -0.0145
    ],
-   "p_le_0": 0.4565,
-   "n_tasks": 336,
+   "p_le_0": 0.9805,
+   "n_tasks": 416,
+   "n_papers": 19
+  },
+  "anchored_bestK_vs_leaderboard_same_half": {
+   "K": 3,
+   "mean": 0.0601,
+   "ci90": [
+    -0.0368,
+    0.1436
+   ],
+   "p_le_0": 0.147,
+   "n_tasks": 416,
+   "n_papers": 19
+  },
+  "dataset_seen_in_other_sources (K=3, blocks vs own one-ordering)": {
+   "mean": -0.0007,
+   "ci90": [
+    -0.0794,
+    0.0698
+   ],
+   "p_le_0": 0.4925,
+   "n_tasks": 317,
    "n_papers": 17
   },
-  "dataset_only_in_held_out_source (K=4, structured vs own one-ordering)": {
-   "mean": -0.0132,
+  "dataset_only_in_held_out_source (K=3, blocks vs own one-ordering)": {
+   "mean": 0.1023,
    "ci90": [
-    -0.1484,
-    0.1107
+    -0.0003,
+    0.1923
    ],
-   "p_le_0": 0.5715,
-   "n_tasks": 166,
+   "p_le_0": 0.051,
+   "n_tasks": 147,
    "n_papers": 17
   }
  },
- "heldout_cells_within_paper": {
-  "0": {
-   "pair_acc": 0.5,
-   "pair_acc_se": 0.0
+ "board_lopo_rho_real": 0.209,
+ "tau_tests": {
+  "cells": [
+   {
+    "same_dataset": false,
+    "same_source": false,
+    "mean_tau": 0.0932,
+    "pairs": 21583
+   },
+   {
+    "same_dataset": false,
+    "same_source": true,
+    "mean_tau": 0.263,
+    "pairs": 7207
+   },
+   {
+    "same_dataset": true,
+    "same_source": false,
+    "mean_tau": 0.2405,
+    "pairs": 814
+   },
+   {
+    "same_dataset": true,
+    "same_source": true,
+    "mean_tau": 0.4457,
+    "pairs": 813
+   }
+  ],
+  "median_shared_models": 4.0,
+  "flagged_source_pairs": [],
+  "all": {
+   "dataset_identity": {
+    "estimate": 0.1473,
+    "ci90": [
+     0.0128,
+     0.481
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1305,
+    "ci90": [
+     0.0218,
+     0.4275
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1698,
+    "ci90": [
+     0.0441,
+     0.2704
+    ]
+   },
+   "cross_source_same_dataset_pairs": 814
   },
-  "1": {
-   "pair_acc": 0.6524,
-   "pair_acc_se": 0.0051
+  "same_protocol_family": {
+   "dataset_identity": {
+    "estimate": 0.1802,
+    "ci90": [
+     0.0278,
+     0.4814
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1601,
+    "ci90": [
+     0.0444,
+     0.437
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1711,
+    "ci90": [
+     0.0431,
+     0.2977
+    ]
+   },
+   "cross_source_same_dataset_pairs": 427
   },
-  "4": {
-   "pair_acc": 0.7112,
-   "pair_acc_se": 0.005
-  }
+  "excluding_flagged_source_pairs": {
+   "dataset_identity": {
+    "estimate": 0.1473,
+    "ci90": [
+     0.0235,
+     0.4845
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1305,
+    "ci90": [
+     0.011,
+     0.4325
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1698,
+    "ci90": [
+     0.0481,
+     0.2718
+    ]
+   },
+   "cross_source_same_dataset_pairs": 814
+  },
+  "flagged_source_pairs_detail": []
+ },
+ "simulation_calibration": {
+  "targets": {
+   "board": 0.2088,
+   "tau_xs_dd": 0.0932,
+   "tau_xs_sd": 0.2405,
+   "tau_ss_dd": 0.263
+  },
+  "chosen": {
+   "general_mean": 0.6,
+   "snr": 2.0,
+   "dataset_share": 0.9,
+   "paper_effect": 0.5
+  },
+  "achieved": {
+   "board": 0.1951,
+   "tau_xs_dd": 0.0428,
+   "tau_xs_sd": 0.2635,
+   "tau_ss_dd": 0.1196
+  },
+  "grid_size": 54,
+  "K_true_used": 2
  },
  "simulation_offset": [
   {
-   "paper_effect": 0.0,
    "offset": "all",
-   "lopo_rho": 0.2256,
-   "dataset_gain_seen": 0.2144,
-   "recovery_multi_source_datasets": 0.641,
-   "recovery_all": 0.428
+   "rho": 0.5288,
+   "board": 0.3616,
+   "dataset_gain_seen": 0.2094,
+   "recovery_multi_source_datasets": 0.794,
+   "recovery_all": 0.641
   },
   {
-   "paper_effect": 0.0,
    "offset": "multi_domain",
-   "lopo_rho": 0.2224,
-   "dataset_gain_seen": 0.2214,
-   "recovery_multi_source_datasets": 0.626,
-   "recovery_all": 0.428
+   "rho": 0.5338,
+   "board": 0.3616,
+   "dataset_gain_seen": 0.2124,
+   "recovery_multi_source_datasets": 0.791,
+   "recovery_all": 0.643
   },
   {
-   "paper_effect": 0.0,
    "offset": "none",
-   "lopo_rho": 0.1978,
-   "dataset_gain_seen": 0.1668,
-   "recovery_multi_source_datasets": 0.641,
-   "recovery_all": 0.396
-  },
-  {
-   "paper_effect": 0.5,
-   "offset": "all",
-   "lopo_rho": 0.3034,
-   "dataset_gain_seen": 0.3098,
-   "recovery_multi_source_datasets": 0.822,
-   "recovery_all": 0.438
-  },
-  {
-   "paper_effect": 0.5,
-   "offset": "multi_domain",
-   "lopo_rho": 0.2981,
-   "dataset_gain_seen": 0.3091,
-   "recovery_multi_source_datasets": 0.821,
-   "recovery_all": 0.432
-  },
-  {
-   "paper_effect": 0.5,
-   "offset": "none",
-   "lopo_rho": 0.2961,
-   "dataset_gain_seen": 0.2854,
-   "recovery_multi_source_datasets": 0.767,
-   "recovery_all": 0.505
+   "rho": 0.5186,
+   "board": 0.3616,
+   "dataset_gain_seen": 0.1981,
+   "recovery_multi_source_datasets": 0.716,
+   "recovery_all": 0.65
   }
  ],
  "simulation_K": [
   {
    "K_true": 1,
-   "snr": 1.0,
    "K_selected": 1,
    "best_K": 1,
-   "lopo_rho": {
-    "1": 0.1149,
-    "2": 0.0934,
-    "3": 0.0787,
-    "4": 0.0451
+   "rho_by_K": {
+    "1": 0.4095,
+    "2": 0.3851,
+    "3": 0.3714,
+    "4": 0.3536
+   },
+   "board": 0.1321,
+   "bestK_vs_board": {
+    "mean": 0.2774,
+    "ci90": [
+     0.1913,
+     0.347
+    ],
+    "p_le_0": 0.0,
+    "n_tasks": 464,
+    "n_papers": 22
    }
   },
   {
    "K_true": 2,
-   "snr": 1.0,
-   "K_selected": 1,
-   "best_K": 1,
-   "lopo_rho": {
-    "1": 0.1262,
-    "2": 0.0896,
-    "3": 0.0909,
-    "4": 0.0822
+   "K_selected": 2,
+   "best_K": 2,
+   "rho_by_K": {
+    "1": 0.4409,
+    "2": 0.4636,
+    "3": 0.4222,
+    "4": 0.3941
+   },
+   "board": 0.4137,
+   "bestK_vs_board": {
+    "mean": 0.0498,
+    "ci90": [
+     0.0197,
+     0.0799
+    ],
+    "p_le_0": 0.005,
+    "n_tasks": 464,
+    "n_papers": 22
    }
   },
   {
    "K_true": 3,
-   "snr": 1.0,
-   "K_selected": 1,
-   "best_K": 4,
-   "lopo_rho": {
-    "1": 0.1593,
-    "2": 0.127,
-    "3": 0.1773,
-    "4": 0.2159
+   "K_selected": 3,
+   "best_K": 3,
+   "rho_by_K": {
+    "1": 0.3193,
+    "2": 0.3472,
+    "3": 0.4024,
+    "4": 0.3761
+   },
+   "board": 0.2569,
+   "bestK_vs_board": {
+    "mean": 0.1455,
+    "ci90": [
+     0.1067,
+     0.1855
+    ],
+    "p_le_0": 0.0,
+    "n_tasks": 464,
+    "n_papers": 22
    }
   }
  ],
  "geometry_recoverable": false,
+ "geometry_gate": {
+  "simulated_recovery_median": 0.716,
+  "recoverable_in_simulation": true,
+  "dataset_loadings_transfer_out_of_paper": false,
+  "published": false
+ },
  "metadata_association_multi_source": {
   "domain": {
    "full_loading": {
-    "r2": 0.2856303113130684,
-    "null_mean": 0.2134122389331342,
-    "null_p95": 0.35273025347320647,
-    "excess": 0.07221807237993416,
-    "p_value": 0.1934032983508246,
+    "r2": 0.2942985228752867,
+    "null_mean": 0.21421524396365196,
+    "null_p95": 0.34222459407346173,
+    "excess": 0.08008327891163472,
+    "p_value": 0.14842578710644677,
     "n_levels": 7,
     "n": 29,
-    "p_bonferroni_4_labels": 0.7736131934032984
+    "p_bonferroni_4_labels": 0.5937031484257871
    },
    "direction_only": {
-    "r2": 0.30820532063620476,
-    "null_mean": 0.21500776671334587,
-    "null_p95": 0.3289107213817834,
-    "excess": 0.09319755392285889,
-    "p_value": 0.07596201899050475,
+    "r2": 0.29511323265418865,
+    "null_mean": 0.21434929293328192,
+    "null_p95": 0.3499156969205753,
+    "excess": 0.08076393972090673,
+    "p_value": 0.14742628685657172,
     "n_levels": 7,
     "n": 29,
-    "p_bonferroni_4_labels": 0.303848075962019
+    "p_bonferroni_4_labels": 0.5897051474262869
    }
   },
   "subdomain": {
    "full_loading": {
-    "r2": 0.4725249202666274,
-    "null_mean": 0.46431572227368645,
-    "null_p95": 0.6344163175544844,
-    "excess": 0.008209197992940953,
-    "p_value": 0.456271864067966,
+    "r2": 0.4786966245831873,
+    "null_mean": 0.4654223860325711,
+    "null_p95": 0.6146327606320308,
+    "excess": 0.013274238550616213,
+    "p_value": 0.43228385807096453,
     "n_levels": 14,
     "n": 29,
     "p_bonferroni_4_labels": 1.0
    },
    "direction_only": {
-    "r2": 0.5213189031482641,
-    "null_mean": 0.46406851119004505,
-    "null_p95": 0.5881401863178262,
-    "excess": 0.05725039195821907,
-    "p_value": 0.21639180409795103,
+    "r2": 0.46731917418784574,
+    "null_mean": 0.4631219740971301,
+    "null_p95": 0.6146543341359885,
+    "excess": 0.004197200090715669,
+    "p_value": 0.4702648675662169,
     "n_levels": 14,
     "n": 29,
-    "p_bonferroni_4_labels": 0.8655672163918041
+    "p_bonferroni_4_labels": 1.0
    }
   },
   "task_type": {
    "full_loading": {
-    "r2": 0.07443000861831073,
-    "null_mean": 0.10748101264681915,
-    "null_p95": 0.2487346394350379,
-    "excess": -0.03305100402850843,
-    "p_value": 0.6206896551724138,
+    "r2": 0.11357490930137248,
+    "null_mean": 0.10676255252808503,
+    "null_p95": 0.2196763971118485,
+    "excess": 0.0068123567732874535,
+    "p_value": 0.40729635182408797,
     "n_levels": 4,
     "n": 29,
     "p_bonferroni_4_labels": 1.0
    },
    "direction_only": {
-    "r2": 0.12482559574330754,
-    "null_mean": 0.10785826459990097,
-    "null_p95": 0.1928236764277518,
-    "excess": 0.016967331143406567,
-    "p_value": 0.33033483258370816,
+    "r2": 0.13554289460331903,
+    "null_mean": 0.10735533858069554,
+    "null_p95": 0.21362398542261407,
+    "excess": 0.02818755602262349,
+    "p_value": 0.2783608195902049,
     "n_levels": 4,
     "n": 29,
     "p_bonferroni_4_labels": 1.0
@@ -512,24 +744,24 @@
   },
   "sensor": {
    "full_loading": {
-    "r2": 0.4028726527490579,
-    "null_mean": 0.42002159508416137,
-    "null_p95": 0.6164678277026224,
-    "excess": -0.017148942335103445,
-    "p_value": 0.5432283858070964,
+    "r2": 0.47073753731437795,
+    "null_mean": 0.4202284881836543,
+    "null_p95": 0.5826237765240982,
+    "excess": 0.05050904913072363,
+    "p_value": 0.30134932533733133,
     "n_levels": 12,
     "n": 27,
     "p_bonferroni_4_labels": 1.0
    },
    "direction_only": {
-    "r2": 0.49562051937259377,
-    "null_mean": 0.4209028663901754,
-    "null_p95": 0.5471549045353471,
-    "excess": 0.07471765298241839,
-    "p_value": 0.1504247876061969,
+    "r2": 0.4453822558070416,
+    "null_mean": 0.4194425729962206,
+    "null_p95": 0.5774367971436548,
+    "excess": 0.025939682810820985,
+    "p_value": 0.3568215892053973,
     "n_levels": 12,
     "n": 27,
-    "p_bonferroni_4_labels": 0.6016991504247876
+    "p_bonferroni_4_labels": 1.0
    }
   }
  },
@@ -546,8 +778,8 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.175,
-   "lopo_rho_naive_leaderboard": 0.375,
+   "lopo_rho": -0.475,
+   "lopo_rho_naive_leaderboard": 0.433,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
    "nearest": null
@@ -564,15 +796,15 @@
     "points"
    ],
    "reported_separation_pts": 4.05,
-   "lopo_rho": 0.12,
-   "lopo_rho_naive_leaderboard": -0.007,
+   "lopo_rho": 0.01,
+   "lopo_rho_naive_leaderboard": 0.032,
    "lopo_tasks": 3,
    "lopo_models_median": 13.0,
    "nearest": null
   },
   "AI4SmallFarms": {
    "sources": 1,
-   "comparisons": 4,
+   "comparisons": 3,
    "models_per_comparison": 12.0,
    "smallest_comparison": 12,
    "domain": "1 \u00b7 Agriculture",
@@ -581,10 +813,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 4.22,
-   "lopo_rho": 0.194,
-   "lopo_rho_naive_leaderboard": 0.538,
-   "lopo_tasks": 4,
+   "reported_separation_pts": 4.72,
+   "lopo_rho": 0.207,
+   "lopo_rho_naive_leaderboard": 0.492,
+   "lopo_tasks": 3,
    "lopo_models_median": 12.0,
    "nearest": null
   },
@@ -600,8 +832,8 @@
     "points"
    ],
    "reported_separation_pts": 7.98,
-   "lopo_rho": 0.07,
-   "lopo_rho_naive_leaderboard": -0.119,
+   "lopo_rho": -0.086,
+   "lopo_rho_naive_leaderboard": -0.173,
    "lopo_tasks": 5,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -618,8 +850,8 @@
     "points"
    ],
    "reported_separation_pts": 8.31,
-   "lopo_rho": 0.151,
-   "lopo_rho_naive_leaderboard": 0.499,
+   "lopo_rho": 0.278,
+   "lopo_rho_naive_leaderboard": 0.492,
    "lopo_tasks": 6,
    "lopo_models_median": 10.0,
    "nearest": null
@@ -636,8 +868,8 @@
     "points"
    ],
    "reported_separation_pts": 7.1,
-   "lopo_rho": 0.119,
-   "lopo_rho_naive_leaderboard": 0.288,
+   "lopo_rho": 0.211,
+   "lopo_rho_naive_leaderboard": 0.271,
    "lopo_tasks": 36,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -654,8 +886,8 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.673,
-   "lopo_rho_naive_leaderboard": 0.457,
+   "lopo_rho": 0.569,
+   "lopo_rho_naive_leaderboard": 0.453,
    "lopo_tasks": 9,
    "lopo_models_median": 10.0,
    "nearest": null
@@ -672,8 +904,8 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.602,
-   "lopo_rho_naive_leaderboard": 0.487,
+   "lopo_rho": 0.378,
+   "lopo_rho_naive_leaderboard": 0.483,
    "lopo_tasks": 6,
    "lopo_models_median": 10.0,
    "nearest": null
@@ -690,8 +922,8 @@
     "points"
    ],
    "reported_separation_pts": 10.02,
-   "lopo_rho": 0.392,
-   "lopo_rho_naive_leaderboard": -0.076,
+   "lopo_rho": 0.712,
+   "lopo_rho_naive_leaderboard": -0.103,
    "lopo_tasks": 2,
    "lopo_models_median": 11.0,
    "nearest": null
@@ -699,7 +931,7 @@
   "Brick kilns": {
    "sources": 7,
    "comparisons": 20,
-   "models_per_comparison": 13.7,
+   "models_per_comparison": 13.8,
    "smallest_comparison": 7,
    "domain": "8 \u00b7 Human systems",
    "task_type": "classification",
@@ -707,9 +939,9 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 3.54,
-   "lopo_rho": 0.218,
-   "lopo_rho_naive_leaderboard": 0.317,
+   "reported_separation_pts": 3.53,
+   "lopo_rho": 0.407,
+   "lopo_rho_naive_leaderboard": 0.291,
    "lopo_tasks": 20,
    "lopo_models_median": 12.0,
    "nearest": null
@@ -726,8 +958,8 @@
     "points"
    ],
    "reported_separation_pts": 3.18,
-   "lopo_rho": 0.024,
-   "lopo_rho_naive_leaderboard": -0.429,
+   "lopo_rho": 0.238,
+   "lopo_rho_naive_leaderboard": -0.452,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -744,7 +976,7 @@
     "points"
    ],
    "reported_separation_pts": 7.62,
-   "lopo_rho": 0.76,
+   "lopo_rho": 0.86,
    "lopo_rho_naive_leaderboard": 0.76,
    "lopo_tasks": 2,
    "lopo_models_median": 5.0,
@@ -762,8 +994,8 @@
     "points"
    ],
    "reported_separation_pts": 9.3,
-   "lopo_rho": 0.54,
-   "lopo_rho_naive_leaderboard": -0.036,
+   "lopo_rho": 0.651,
+   "lopo_rho_naive_leaderboard": -0.029,
    "lopo_tasks": 5,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -780,7 +1012,7 @@
     "points"
    ],
    "reported_separation_pts": 3.7,
-   "lopo_rho": 0.806,
+   "lopo_rho": 0.851,
    "lopo_rho_naive_leaderboard": 0.737,
    "lopo_tasks": 5,
    "lopo_models_median": 6.0,
@@ -788,8 +1020,8 @@
   },
   "Cashew plantation": {
    "sources": 7,
-   "comparisons": 19,
-   "models_per_comparison": 11.8,
+   "comparisons": 17,
+   "models_per_comparison": 12.4,
    "smallest_comparison": 7,
    "domain": "1 \u00b7 Agriculture",
    "task_type": "segmentation",
@@ -797,17 +1029,17 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 8.62,
-   "lopo_rho": 0.254,
-   "lopo_rho_naive_leaderboard": 0.366,
-   "lopo_tasks": 19,
+   "reported_separation_pts": 8.55,
+   "lopo_rho": 0.359,
+   "lopo_rho_naive_leaderboard": 0.249,
+   "lopo_tasks": 17,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "Chesapeake land cover": {
    "sources": 4,
-   "comparisons": 6,
-   "models_per_comparison": 6.7,
+   "comparisons": 4,
+   "models_per_comparison": 8.0,
    "smallest_comparison": 4,
    "domain": "2 \u00b7 Terrestrial ecosystems",
    "task_type": "segmentation",
@@ -815,9 +1047,9 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 6.22,
-   "lopo_rho": 0.241,
-   "lopo_rho_naive_leaderboard": 0.459,
+   "reported_separation_pts": 5.72,
+   "lopo_rho": 0.418,
+   "lopo_rho_naive_leaderboard": 0.392,
    "lopo_tasks": 3,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -834,7 +1066,7 @@
     "points"
    ],
    "reported_separation_pts": 2.67,
-   "lopo_rho": 0.21,
+   "lopo_rho": 0.136,
    "lopo_rho_naive_leaderboard": 0.341,
    "lopo_tasks": 3,
    "lopo_models_median": 7.0,
@@ -852,27 +1084,27 @@
     "points"
    ],
    "reported_separation_pts": 4.44,
-   "lopo_rho": 0.232,
-   "lopo_rho_naive_leaderboard": 0.148,
+   "lopo_rho": 0.12,
+   "lopo_rho_naive_leaderboard": 0.141,
    "lopo_tasks": 9,
    "lopo_models_median": 14.0,
    "nearest": null
   },
   "CropTypeMapping Ghana / South Sudan": {
    "sources": 1,
-   "comparisons": 6,
-   "models_per_comparison": 11.7,
-   "smallest_comparison": 10,
+   "comparisons": 3,
+   "models_per_comparison": 12.0,
+   "smallest_comparison": 12,
    "domain": "1 \u00b7 Agriculture",
    "task_type": "segmentation",
    "sensor": "s1;s2",
    "families": [
     "points"
    ],
-   "reported_separation_pts": 8.38,
-   "lopo_rho": 0.424,
-   "lopo_rho_naive_leaderboard": 0.298,
-   "lopo_tasks": 6,
+   "reported_separation_pts": 7.09,
+   "lopo_rho": 0.476,
+   "lopo_rho_naive_leaderboard": 0.359,
+   "lopo_tasks": 3,
    "lopo_models_median": 12.0,
    "nearest": null
   },
@@ -888,8 +1120,8 @@
     "points"
    ],
    "reported_separation_pts": 4.65,
-   "lopo_rho": 0.114,
-   "lopo_rho_naive_leaderboard": 0.076,
+   "lopo_rho": -0.057,
+   "lopo_rho_naive_leaderboard": 0.41,
    "lopo_tasks": 3,
    "lopo_models_median": 4.0,
    "nearest": null
@@ -906,10 +1138,10 @@
     "points"
    ],
    "reported_separation_pts": 4.57,
-   "lopo_rho": 0.6,
-   "lopo_rho_naive_leaderboard": 1.0,
+   "lopo_rho": 0.8,
+   "lopo_rho_naive_leaderboard": 0.8,
    "lopo_tasks": 1,
-   "lopo_models_median": 5.0,
+   "lopo_models_median": 4.0,
    "nearest": null
   },
   "DSE": {
@@ -924,8 +1156,8 @@
     "points"
    ],
    "reported_separation_pts": 2.65,
-   "lopo_rho": 0.167,
-   "lopo_rho_naive_leaderboard": 0.143,
+   "lopo_rho": 0.286,
+   "lopo_rho_naive_leaderboard": 0.286,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -942,8 +1174,8 @@
     "points"
    ],
    "reported_separation_pts": 10.41,
-   "lopo_rho": -0.113,
-   "lopo_rho_naive_leaderboard": -0.417,
+   "lopo_rho": 0.107,
+   "lopo_rho_naive_leaderboard": -0.512,
    "lopo_tasks": 4,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -968,7 +1200,7 @@
   },
   "Dynamic World": {
    "sources": 1,
-   "comparisons": 10,
+   "comparisons": 1,
    "models_per_comparison": 4.0,
    "smallest_comparison": 4,
    "domain": "2 \u00b7 Terrestrial ecosystems",
@@ -996,7 +1228,7 @@
     "points"
    ],
    "reported_separation_pts": 5.1,
-   "lopo_rho": 0.657,
+   "lopo_rho": 0.886,
    "lopo_rho_naive_leaderboard": 0.543,
    "lopo_tasks": 1,
    "lopo_models_median": 6.0,
@@ -1004,8 +1236,8 @@
   },
   "DynamicEarthNet": {
    "sources": 2,
-   "comparisons": 8,
-   "models_per_comparison": 11.4,
+   "comparisons": 5,
+   "models_per_comparison": 11.0,
    "smallest_comparison": 8,
    "domain": "2 \u00b7 Terrestrial ecosystems",
    "task_type": "segmentation",
@@ -1013,10 +1245,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 3.18,
-   "lopo_rho": 0.286,
-   "lopo_rho_naive_leaderboard": 0.161,
-   "lopo_tasks": 8,
+   "reported_separation_pts": 3.2,
+   "lopo_rho": 0.247,
+   "lopo_rho_naive_leaderboard": 0.104,
+   "lopo_tasks": 5,
    "lopo_models_median": 12.0,
    "nearest": null
   },
@@ -1032,8 +1264,8 @@
     "points"
    ],
    "reported_separation_pts": 10.45,
-   "lopo_rho": 0.19,
-   "lopo_rho_naive_leaderboard": 0.146,
+   "lopo_rho": 0.218,
+   "lopo_rho_naive_leaderboard": 0.15,
    "lopo_tasks": 33,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1050,7 +1282,7 @@
     "points"
    ],
    "reported_separation_pts": 1.51,
-   "lopo_rho": 0.657,
+   "lopo_rho": -0.086,
    "lopo_rho_naive_leaderboard": 0.029,
    "lopo_tasks": 1,
    "lopo_models_median": 6.0,
@@ -1068,7 +1300,7 @@
     "points"
    ],
    "reported_separation_pts": 4.26,
-   "lopo_rho": 0.66,
+   "lopo_rho": -0.035,
    "lopo_rho_naive_leaderboard": -0.187,
    "lopo_tasks": 2,
    "lopo_models_median": 8.0,
@@ -1076,7 +1308,7 @@
   },
   "FLUXNET2015": {
    "sources": 1,
-   "comparisons": 3,
+   "comparisons": 4,
    "models_per_comparison": 4.0,
    "smallest_comparison": 4,
    "domain": "2 \u00b7 Terrestrial ecosystems",
@@ -1086,9 +1318,9 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.422,
-   "lopo_rho_naive_leaderboard": 0.527,
-   "lopo_tasks": 3,
+   "lopo_rho": 0.653,
+   "lopo_rho_naive_leaderboard": 0.445,
+   "lopo_tasks": 4,
    "lopo_models_median": 4.0,
    "nearest": null
   },
@@ -1104,15 +1336,15 @@
     "points"
    ],
    "reported_separation_pts": 1.78,
-   "lopo_rho": 0.136,
-   "lopo_rho_naive_leaderboard": 0.117,
+   "lopo_rho": 0.179,
+   "lopo_rho_naive_leaderboard": 0.131,
    "lopo_tasks": 18,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "Five Billion Pixels": {
    "sources": 1,
-   "comparisons": 5,
+   "comparisons": 4,
    "models_per_comparison": 12.0,
    "smallest_comparison": 12,
    "domain": "2 \u00b7 Terrestrial ecosystems",
@@ -1121,10 +1353,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 10.2,
-   "lopo_rho": -0.199,
-   "lopo_rho_naive_leaderboard": -0.234,
-   "lopo_tasks": 5,
+   "reported_separation_pts": 10.08,
+   "lopo_rho": 0.164,
+   "lopo_rho_naive_leaderboard": -0.219,
+   "lopo_tasks": 4,
    "lopo_models_median": 12.0,
    "nearest": null
   },
@@ -1140,8 +1372,8 @@
     "points"
    ],
    "reported_separation_pts": 8.22,
-   "lopo_rho": 0.102,
-   "lopo_rho_naive_leaderboard": 0.149,
+   "lopo_rho": 0.245,
+   "lopo_rho_naive_leaderboard": 0.066,
    "lopo_tasks": 1,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -1158,8 +1390,8 @@
     "points"
    ],
    "reported_separation_pts": 4.31,
-   "lopo_rho": 0.674,
-   "lopo_rho_naive_leaderboard": 0.101,
+   "lopo_rho": 0.422,
+   "lopo_rho_naive_leaderboard": 0.153,
    "lopo_tasks": 6,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1176,8 +1408,8 @@
     "points"
    ],
    "reported_separation_pts": 1.95,
-   "lopo_rho": 0.143,
-   "lopo_rho_naive_leaderboard": -0.19,
+   "lopo_rho": 0.452,
+   "lopo_rho_naive_leaderboard": -0.143,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1194,15 +1426,15 @@
     "points"
    ],
    "reported_separation_pts": 5.02,
-   "lopo_rho": -0.147,
-   "lopo_rho_naive_leaderboard": -0.116,
+   "lopo_rho": 0.077,
+   "lopo_rho_naive_leaderboard": -0.039,
    "lopo_tasks": 1,
    "lopo_models_median": 12.0,
    "nearest": null
   },
   "GEOID-Flood": {
    "sources": 1,
-   "comparisons": 10,
+   "comparisons": 4,
    "models_per_comparison": 9.0,
    "smallest_comparison": 9,
    "domain": "3 \u00b7 Inland water",
@@ -1211,10 +1443,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 4.33,
-   "lopo_rho": -0.121,
-   "lopo_rho_naive_leaderboard": 0.658,
-   "lopo_tasks": 10,
+   "reported_separation_pts": 3.51,
+   "lopo_rho": 0.486,
+   "lopo_rho_naive_leaderboard": 0.557,
+   "lopo_tasks": 4,
    "lopo_models_median": 6.0,
    "nearest": null
   },
@@ -1230,8 +1462,8 @@
     "points"
    ],
    "reported_separation_pts": 3.6,
-   "lopo_rho": 0.643,
-   "lopo_rho_naive_leaderboard": 0.483,
+   "lopo_rho": 0.479,
+   "lopo_rho_naive_leaderboard": 0.44,
    "lopo_tasks": 3,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -1248,8 +1480,8 @@
     "points"
    ],
    "reported_separation_pts": 7.76,
-   "lopo_rho": 0.279,
-   "lopo_rho_naive_leaderboard": -0.116,
+   "lopo_rho": 0.255,
+   "lopo_rho_naive_leaderboard": -0.138,
    "lopo_tasks": 3,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -1284,8 +1516,8 @@
     "points"
    ],
    "reported_separation_pts": 4.09,
-   "lopo_rho": 0.348,
-   "lopo_rho_naive_leaderboard": 0.306,
+   "lopo_rho": 0.255,
+   "lopo_rho_naive_leaderboard": 0.247,
    "lopo_tasks": 3,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -1302,8 +1534,8 @@
     "points"
    ],
    "reported_separation_pts": 9.52,
-   "lopo_rho": -0.319,
-   "lopo_rho_naive_leaderboard": 0.323,
+   "lopo_rho": 0.292,
+   "lopo_rho_naive_leaderboard": 0.298,
    "lopo_tasks": 12,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1320,16 +1552,16 @@
     "points"
    ],
    "reported_separation_pts": 0.85,
-   "lopo_rho": 0.452,
-   "lopo_rho_naive_leaderboard": 0.405,
+   "lopo_rho": 0.405,
+   "lopo_rho_naive_leaderboard": 0.333,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "HLS Burn Scars": {
    "sources": 4,
-   "comparisons": 10,
-   "models_per_comparison": 10.6,
+   "comparisons": 7,
+   "models_per_comparison": 10.0,
    "smallest_comparison": 5,
    "domain": "2 \u00b7 Terrestrial ecosystems",
    "task_type": "segmentation",
@@ -1337,11 +1569,11 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 3.91,
-   "lopo_rho": 0.418,
-   "lopo_rho_naive_leaderboard": 0.238,
-   "lopo_tasks": 10,
-   "lopo_models_median": 12.0,
+   "reported_separation_pts": 4.49,
+   "lopo_rho": 0.454,
+   "lopo_rho_naive_leaderboard": 0.334,
+   "lopo_tasks": 7,
+   "lopo_models_median": 9.0,
    "nearest": null
   },
   "Hyperview": {
@@ -1356,7 +1588,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.41,
+   "lopo_rho": 0.61,
    "lopo_rho_naive_leaderboard": 0.103,
    "lopo_tasks": 2,
    "lopo_models_median": 5.0,
@@ -1364,7 +1596,7 @@
   },
   "Infra-Bench": {
    "sources": 1,
-   "comparisons": 20,
+   "comparisons": 4,
    "models_per_comparison": 5.5,
    "smallest_comparison": 5,
    "domain": "8 \u00b7 Human systems",
@@ -1373,10 +1605,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 7.94,
-   "lopo_rho": -0.017,
-   "lopo_rho_naive_leaderboard": -0.145,
-   "lopo_tasks": 10,
+   "reported_separation_pts": 8.16,
+   "lopo_rho": -0.9,
+   "lopo_rho_naive_leaderboard": -0.9,
+   "lopo_tasks": 2,
    "lopo_models_median": 4.0,
    "nearest": null
   },
@@ -1392,8 +1624,8 @@
     "points"
    ],
    "reported_separation_pts": 9.75,
-   "lopo_rho": 0.413,
-   "lopo_rho_naive_leaderboard": -0.356,
+   "lopo_rho": -0.221,
+   "lopo_rho_naive_leaderboard": -0.222,
    "lopo_tasks": 3,
    "lopo_models_median": 7.0,
    "nearest": null
@@ -1410,8 +1642,8 @@
     "points"
    ],
    "reported_separation_pts": 1.42,
-   "lopo_rho": 0.19,
-   "lopo_rho_naive_leaderboard": -0.19,
+   "lopo_rho": 0.548,
+   "lopo_rho_naive_leaderboard": -0.238,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1428,16 +1660,16 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.221,
-   "lopo_rho_naive_leaderboard": -0.355,
+   "lopo_rho": 0.047,
+   "lopo_rho_naive_leaderboard": -0.39,
    "lopo_tasks": 2,
    "lopo_models_median": 11.0,
    "nearest": null
   },
   "MADOS": {
    "sources": 4,
-   "comparisons": 11,
-   "models_per_comparison": 15.8,
+   "comparisons": 10,
+   "models_per_comparison": 16.2,
    "smallest_comparison": 10,
    "domain": "4 \u00b7 Oceans and coasts",
    "task_type": "segmentation",
@@ -1445,11 +1677,11 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 6.63,
-   "lopo_rho": 0.171,
-   "lopo_rho_naive_leaderboard": 0.246,
-   "lopo_tasks": 11,
-   "lopo_models_median": 13.0,
+   "reported_separation_pts": 6.65,
+   "lopo_rho": 0.306,
+   "lopo_rho_naive_leaderboard": 0.209,
+   "lopo_tasks": 10,
+   "lopo_models_median": 14.0,
    "nearest": null
   },
   "MARIDA": {
@@ -1464,7 +1696,7 @@
     "points"
    ],
    "reported_separation_pts": 7.11,
-   "lopo_rho": 0.6,
+   "lopo_rho": 0.829,
    "lopo_rho_naive_leaderboard": 0.429,
    "lopo_tasks": 1,
    "lopo_models_median": 6.0,
@@ -1500,7 +1732,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.261,
+   "lopo_rho": 0.054,
    "lopo_rho_naive_leaderboard": 0.054,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1518,7 +1750,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.321,
+   "lopo_rho": 0.536,
    "lopo_rho_naive_leaderboard": 0.536,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1554,7 +1786,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.565,
+   "lopo_rho": 0.474,
    "lopo_rho_naive_leaderboard": 0.474,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1572,7 +1804,7 @@
     "points"
    ],
    "reported_separation_pts": 8.54,
-   "lopo_rho": 0.36,
+   "lopo_rho": 0.676,
    "lopo_rho_naive_leaderboard": 0.676,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1590,16 +1822,16 @@
     "points"
    ],
    "reported_separation_pts": 4.42,
-   "lopo_rho": 0.048,
-   "lopo_rho_naive_leaderboard": -0.357,
+   "lopo_rho": 0.357,
+   "lopo_rho_naive_leaderboard": -0.333,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "NZ cattle": {
    "sources": 5,
-   "comparisons": 8,
-   "models_per_comparison": 6.9,
+   "comparisons": 6,
+   "models_per_comparison": 7.8,
    "smallest_comparison": 4,
    "domain": "1 \u00b7 Agriculture",
    "task_type": "segmentation",
@@ -1607,9 +1839,9 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 5.37,
-   "lopo_rho": 0.145,
-   "lopo_rho_naive_leaderboard": -0.052,
+   "reported_separation_pts": 4.7,
+   "lopo_rho": 0.193,
+   "lopo_rho_naive_leaderboard": -0.132,
    "lopo_tasks": 5,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1626,16 +1858,16 @@
     "points"
    ],
    "reported_separation_pts": 9.77,
-   "lopo_rho": -0.121,
-   "lopo_rho_naive_leaderboard": -0.036,
+   "lopo_rho": 0.065,
+   "lopo_rho_naive_leaderboard": -0.078,
    "lopo_tasks": 5,
    "lopo_models_median": 13.0,
    "nearest": null
   },
   "NeonTreeEvaluation": {
    "sources": 4,
-   "comparisons": 6,
-   "models_per_comparison": 6.7,
+   "comparisons": 4,
+   "models_per_comparison": 8.0,
    "smallest_comparison": 4,
    "domain": "2 \u00b7 Terrestrial ecosystems",
    "task_type": "segmentation",
@@ -1643,9 +1875,9 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 2.97,
-   "lopo_rho": 0.453,
-   "lopo_rho_naive_leaderboard": 0.461,
+   "reported_separation_pts": 3.13,
+   "lopo_rho": 0.721,
+   "lopo_rho_naive_leaderboard": 0.361,
    "lopo_tasks": 3,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1662,7 +1894,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.179,
+   "lopo_rho": 0.143,
    "lopo_rho_naive_leaderboard": 0.357,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1680,7 +1912,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.143,
+   "lopo_rho": 0.143,
    "lopo_rho_naive_leaderboard": 0.357,
    "lopo_tasks": 1,
    "lopo_models_median": 7.0,
@@ -1698,7 +1930,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.786,
+   "lopo_rho": 0.357,
    "lopo_rho_naive_leaderboard": 0.143,
    "lopo_tasks": 1,
    "lopo_models_median": 7.0,
@@ -1716,7 +1948,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.107,
+   "lopo_rho": 0.268,
    "lopo_rho_naive_leaderboard": 0.429,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1734,7 +1966,7 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.875,
+   "lopo_rho": 0.446,
    "lopo_rho_naive_leaderboard": 0.125,
    "lopo_tasks": 2,
    "lopo_models_median": 7.0,
@@ -1752,8 +1984,8 @@
     "points"
    ],
    "reported_separation_pts": 0.84,
-   "lopo_rho": -0.202,
-   "lopo_rho_naive_leaderboard": 0.024,
+   "lopo_rho": 0.607,
+   "lopo_rho_naive_leaderboard": -0.095,
    "lopo_tasks": 2,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1761,17 +1993,17 @@
   "OSCD": {
    "sources": 1,
    "comparisons": 6,
-   "models_per_comparison": 8.8,
-   "smallest_comparison": 8,
+   "models_per_comparison": 9.0,
+   "smallest_comparison": 9,
    "domain": "8 \u00b7 Human systems",
    "task_type": "change_detection (F1)",
    "sensor": "s2_s1",
    "families": [
     "points"
    ],
-   "reported_separation_pts": 7.95,
-   "lopo_rho": -0.167,
-   "lopo_rho_naive_leaderboard": 0.627,
+   "reported_separation_pts": 7.88,
+   "lopo_rho": 0.302,
+   "lopo_rho_naive_leaderboard": 0.71,
    "lopo_tasks": 6,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1788,8 +2020,8 @@
     "points"
    ],
    "reported_separation_pts": 5.24,
-   "lopo_rho": -0.394,
-   "lopo_rho_naive_leaderboard": -0.128,
+   "lopo_rho": -0.069,
+   "lopo_rho_naive_leaderboard": -0.155,
    "lopo_tasks": 2,
    "lopo_models_median": 12.0,
    "nearest": null
@@ -1806,8 +2038,8 @@
     "points"
    ],
    "reported_separation_pts": 3.75,
-   "lopo_rho": -0.247,
-   "lopo_rho_naive_leaderboard": -0.297,
+   "lopo_rho": 0.17,
+   "lopo_rho_naive_leaderboard": -0.357,
    "lopo_tasks": 1,
    "lopo_models_median": 13.0,
    "nearest": null
@@ -1824,7 +2056,7 @@
     "points"
    ],
    "reported_separation_pts": 2.1,
-   "lopo_rho": -0.1,
+   "lopo_rho": 0.1,
    "lopo_rho_naive_leaderboard": -0.9,
    "lopo_tasks": 1,
    "lopo_models_median": 5.0,
@@ -1842,8 +2074,8 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": -0.03,
-   "lopo_rho_naive_leaderboard": 0.224,
+   "lopo_rho": 0.164,
+   "lopo_rho_naive_leaderboard": 0.127,
    "lopo_tasks": 1,
    "lopo_models_median": 10.0,
    "nearest": null
@@ -1860,16 +2092,16 @@
     "points"
    ],
    "reported_separation_pts": 8.51,
-   "lopo_rho": 0.133,
-   "lopo_rho_naive_leaderboard": 0.267,
+   "lopo_rho": 0.3,
+   "lopo_rho_naive_leaderboard": 0.15,
    "lopo_tasks": 1,
    "lopo_models_median": 9.0,
    "nearest": null
   },
   "PASTIS / PASTIS-R": {
    "sources": 7,
-   "comparisons": 25,
-   "models_per_comparison": 12.1,
+   "comparisons": 22,
+   "models_per_comparison": 12.4,
    "smallest_comparison": 4,
    "domain": "1 \u00b7 Agriculture",
    "task_type": "segmentation",
@@ -1877,17 +2109,17 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 7.53,
-   "lopo_rho": 0.627,
-   "lopo_rho_naive_leaderboard": 0.228,
-   "lopo_tasks": 24,
+   "reported_separation_pts": 7.32,
+   "lopo_rho": 0.477,
+   "lopo_rho_naive_leaderboard": 0.193,
+   "lopo_tasks": 21,
    "lopo_models_median": 10.0,
    "nearest": null
   },
   "PV4GER": {
    "sources": 4,
-   "comparisons": 11,
-   "models_per_comparison": 7.0,
+   "comparisons": 9,
+   "models_per_comparison": 7.7,
    "smallest_comparison": 4,
    "domain": "8 \u00b7 Human systems",
    "task_type": "segmentation",
@@ -1895,9 +2127,9 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 4.09,
-   "lopo_rho": 0.621,
-   "lopo_rho_naive_leaderboard": 0.363,
+   "reported_separation_pts": 3.48,
+   "lopo_rho": 0.645,
+   "lopo_rho_naive_leaderboard": 0.29,
    "lopo_tasks": 7,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1932,8 +2164,8 @@
     "points"
    ],
    "reported_separation_pts": 18.3,
-   "lopo_rho": 0.339,
-   "lopo_rho_naive_leaderboard": -0.185,
+   "lopo_rho": -0.015,
+   "lopo_rho_naive_leaderboard": -0.229,
    "lopo_tasks": 8,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -1950,16 +2182,16 @@
     "points"
    ],
    "reported_separation_pts": 3.16,
-   "lopo_rho": -0.048,
-   "lopo_rho_naive_leaderboard": -0.476,
+   "lopo_rho": 0.167,
+   "lopo_rho_naive_leaderboard": -0.524,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "Sen1Floods11": {
    "sources": 6,
-   "comparisons": 22,
-   "models_per_comparison": 10.5,
+   "comparisons": 20,
+   "models_per_comparison": 10.3,
    "smallest_comparison": 5,
    "domain": "3 \u00b7 Inland water",
    "task_type": "segmentation",
@@ -1967,10 +2199,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 8.93,
-   "lopo_rho": 0.041,
-   "lopo_rho_naive_leaderboard": 0.214,
-   "lopo_tasks": 22,
+   "reported_separation_pts": 9.28,
+   "lopo_rho": 0.205,
+   "lopo_rho_naive_leaderboard": 0.238,
+   "lopo_tasks": 20,
    "lopo_models_median": 8.0,
    "nearest": null
   },
@@ -1986,8 +2218,8 @@
     "points"
    ],
    "reported_separation_pts": 1.21,
-   "lopo_rho": -0.452,
-   "lopo_rho_naive_leaderboard": -0.667,
+   "lopo_rho": -0.667,
+   "lopo_rho_naive_leaderboard": -0.643,
    "lopo_tasks": 1,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -2004,16 +2236,16 @@
     "points"
    ],
    "reported_separation_pts": 7.2,
-   "lopo_rho": 0.294,
-   "lopo_rho_naive_leaderboard": 0.171,
+   "lopo_rho": 0.18,
+   "lopo_rho_naive_leaderboard": 0.163,
    "lopo_tasks": 28,
    "lopo_models_median": 8.0,
    "nearest": null
   },
   "South Africa crop type": {
    "sources": 7,
-   "comparisons": 18,
-   "models_per_comparison": 12.1,
+   "comparisons": 16,
+   "models_per_comparison": 12.8,
    "smallest_comparison": 7,
    "domain": "1 \u00b7 Agriculture",
    "task_type": "segmentation",
@@ -2021,10 +2253,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 3.63,
-   "lopo_rho": 0.198,
-   "lopo_rho_naive_leaderboard": 0.48,
-   "lopo_tasks": 18,
+   "reported_separation_pts": 3.38,
+   "lopo_rho": 0.404,
+   "lopo_rho_naive_leaderboard": 0.346,
+   "lopo_tasks": 16,
    "lopo_models_median": 8.0,
    "nearest": null
   },
@@ -2040,7 +2272,7 @@
     "points"
    ],
    "reported_separation_pts": 1.64,
-   "lopo_rho": 0.9,
+   "lopo_rho": 0.7,
    "lopo_rho_naive_leaderboard": 0.9,
    "lopo_tasks": 1,
    "lopo_models_median": 5.0,
@@ -2058,7 +2290,7 @@
     "points"
    ],
    "reported_separation_pts": 1.41,
-   "lopo_rho": 0.468,
+   "lopo_rho": 0.727,
    "lopo_rho_naive_leaderboard": -0.107,
    "lopo_tasks": 2,
    "lopo_models_median": 8.0,
@@ -2066,8 +2298,8 @@
   },
   "SpaceNet 7": {
    "sources": 2,
-   "comparisons": 8,
-   "models_per_comparison": 11.4,
+   "comparisons": 5,
+   "models_per_comparison": 11.0,
    "smallest_comparison": 8,
    "domain": "8 \u00b7 Human systems",
    "task_type": "change detection",
@@ -2075,10 +2307,10 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 3.81,
-   "lopo_rho": 0.368,
-   "lopo_rho_naive_leaderboard": 0.058,
-   "lopo_tasks": 8,
+   "reported_separation_pts": 3.43,
+   "lopo_rho": 0.359,
+   "lopo_rho_naive_leaderboard": 0.063,
+   "lopo_tasks": 5,
    "lopo_models_median": 12.0,
    "nearest": null
   },
@@ -2094,7 +2326,7 @@
     "points"
    ],
    "reported_separation_pts": 2.1,
-   "lopo_rho": 0.086,
+   "lopo_rho": 0.029,
    "lopo_rho_naive_leaderboard": -0.143,
    "lopo_tasks": 1,
    "lopo_models_median": 6.0,
@@ -2112,8 +2344,8 @@
     "logerr"
    ],
    "reported_separation_pts": null,
-   "lopo_rho": 0.246,
-   "lopo_rho_naive_leaderboard": 0.339,
+   "lopo_rho": 0.277,
+   "lopo_rho_naive_leaderboard": 0.375,
    "lopo_tasks": 5,
    "lopo_models_median": 8.0,
    "nearest": null
@@ -2130,7 +2362,7 @@
     "points"
    ],
    "reported_separation_pts": 2.54,
-   "lopo_rho": 0.132,
+   "lopo_rho": -0.1,
    "lopo_rho_naive_leaderboard": 0.194,
    "lopo_tasks": 8,
    "lopo_models_median": 8.0,
@@ -2209,8 +2441,8 @@
    "nearest": null
   },
   "fMoW": {
-   "sources": 4,
-   "comparisons": 12,
+   "sources": 3,
+   "comparisons": 8,
    "models_per_comparison": 6.1,
    "smallest_comparison": 4,
    "domain": "8 \u00b7 Human systems",
@@ -2219,8 +2451,8 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 4.85,
-   "lopo_rho": 0.92,
+   "reported_separation_pts": 5.88,
+   "lopo_rho": 0.751,
    "lopo_rho_naive_leaderboard": 0.584,
    "lopo_tasks": 7,
    "lopo_models_median": 6.0,
@@ -2228,7 +2460,7 @@
   },
   "xBD / xView2": {
    "sources": 1,
-   "comparisons": 4,
+   "comparisons": 3,
    "models_per_comparison": 12.0,
    "smallest_comparison": 12,
    "domain": "Disasters",
@@ -2237,33 +2469,17 @@
    "families": [
     "points"
    ],
-   "reported_separation_pts": 5.49,
-   "lopo_rho": 0.869,
-   "lopo_rho_naive_leaderboard": 0.122,
-   "lopo_tasks": 4,
+   "reported_separation_pts": 5.88,
+   "lopo_rho": 0.818,
+   "lopo_rho_naive_leaderboard": 0.124,
+   "lopo_tasks": 3,
    "lopo_models_median": 12.0,
    "nearest": null
   }
  },
  "seed_noise_reliability": {
-  "comparisons": 203,
+  "comparisons": 152,
   "by_dataset_protocol": [
-   {
-    "dataset": "Austrian Crop",
-    "protocol": "frozen",
-    "comparisons": 1,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 2.119,
-    "spread_median": 10.468,
-    "score": 0.96,
-    "score_min": 0.96,
-    "score_max": 0.96,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.959,
-    "n_reps_known": true,
-    "family": "points"
-   },
    {
     "dataset": "BigEarthNet v1 / v2 (reBEN)",
     "protocol": "fine-tuned",
@@ -2275,10 +2491,12 @@
     "score": 0.879,
     "score_min": 0.544,
     "score_max": 0.999,
-    "score_lo_min": 0.208,
+    "score_lo_min": 0.189,
     "score_if_single_runs": 0.835,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 5
    },
    {
     "dataset": "BigEarthNet v1 / v2 (reBEN)",
@@ -2291,26 +2509,12 @@
     "score": 0.908,
     "score_min": 0.454,
     "score_max": 0.999,
-    "score_lo_min": 0.032,
+    "score_lo_min": 0.04,
     "score_if_single_runs": 0.842,
     "n_reps_known": true,
-    "family": "points"
-   },
-   {
-    "dataset": "BioMassters",
-    "protocol": "frozen",
-    "comparisons": 1,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 6.346,
-    "spread_median": 1.865,
-    "score": 0.0,
-    "score_min": 0.0,
-    "score_max": 0.0,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.0,
-    "n_reps_known": true,
-    "family": "logerr"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 5,
+    "comparisons_lo_ge_0_5": 5
    },
    {
     "dataset": "Brick kilns",
@@ -2318,15 +2522,17 @@
     "comparisons": 4,
     "sources": 2,
     "models_median": 9.0,
-    "sigma_median": 0.291,
+    "sigma_median": 0.265,
     "spread_median": 0.774,
-    "score": 0.724,
+    "score": 0.738,
     "score_min": 0.291,
     "score_max": 0.999,
-    "score_lo_min": 0.043,
-    "score_if_single_runs": 0.627,
+    "score_lo_min": 0.031,
+    "score_if_single_runs": 0.646,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Brick kilns",
@@ -2339,10 +2545,12 @@
     "score": 0.967,
     "score_min": 0.92,
     "score_max": 0.998,
-    "score_lo_min": 0.745,
+    "score_lo_min": 0.737,
     "score_if_single_runs": 0.965,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
    },
    {
     "dataset": "CaFFe",
@@ -2355,10 +2563,12 @@
     "score": 0.696,
     "score_min": 0.696,
     "score_max": 0.696,
-    "score_lo_min": 0.403,
+    "score_lo_min": 0.453,
     "score_if_single_runs": 0.598,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "CaFFe",
@@ -2371,10 +2581,12 @@
     "score": 0.946,
     "score_min": 0.946,
     "score_max": 0.946,
-    "score_lo_min": 0.844,
+    "score_lo_min": 0.845,
     "score_if_single_runs": 0.944,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Cashew plantation",
@@ -2387,10 +2599,12 @@
     "score": 0.759,
     "score_min": 0.405,
     "score_max": 0.918,
-    "score_lo_min": 0.224,
+    "score_lo_min": 0.229,
     "score_if_single_runs": 0.635,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 3
    },
    {
     "dataset": "Cashew plantation",
@@ -2403,10 +2617,12 @@
     "score": 0.946,
     "score_min": 0.853,
     "score_max": 0.997,
-    "score_lo_min": 0.253,
+    "score_lo_min": 0.155,
     "score_if_single_runs": 0.94,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "Chesapeake land cover",
@@ -2419,10 +2635,12 @@
     "score": 0.937,
     "score_min": 0.937,
     "score_max": 0.937,
-    "score_lo_min": 0.787,
+    "score_lo_min": 0.761,
     "score_if_single_runs": 0.933,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "CloudSEN12 (Cloud-S2)",
@@ -2435,58 +2653,30 @@
     "score": 0.982,
     "score_min": 0.982,
     "score_max": 0.982,
-    "score_lo_min": 0.951,
+    "score_lo_min": 0.959,
     "score_if_single_runs": 0.982,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "CloudSEN12 (Cloud-S2)",
     "protocol": "frozen",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 6.0,
-    "sigma_median": 0.364,
-    "spread_median": 1.403,
-    "score": 0.932,
-    "score_min": 0.916,
-    "score_max": 0.964,
-    "score_lo_min": 0.4,
-    "score_if_single_runs": 0.928,
-    "n_reps_known": false,
-    "family": "points"
-   },
-   {
-    "dataset": "CropHarvest",
-    "protocol": "frozen",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 4.0,
-    "sigma_median": 1.188,
-    "spread_median": 3.818,
-    "score": 0.496,
-    "score_min": 0.0,
-    "score_max": 0.993,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.496,
-    "n_reps_known": false,
-    "family": "points"
-   },
-   {
-    "dataset": "DFC2020",
-    "protocol": "frozen",
-    "comparisons": 2,
+    "comparisons": 1,
     "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 0.1,
-    "spread_median": 1.702,
-    "score": 0.996,
-    "score_min": 0.995,
-    "score_max": 0.997,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.996,
-    "n_reps_known": false,
-    "family": "points"
+    "models_median": 8.0,
+    "sigma_median": 0.528,
+    "spread_median": 1.763,
+    "score": 0.916,
+    "score_min": 0.916,
+    "score_max": 0.916,
+    "score_lo_min": 0.496,
+    "score_if_single_runs": 0.91,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
@@ -2499,10 +2689,12 @@
     "score": 0.957,
     "score_min": 0.937,
     "score_max": 0.977,
-    "score_lo_min": 0.36,
+    "score_lo_min": 0.451,
     "score_if_single_runs": 0.955,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
@@ -2515,26 +2707,12 @@
     "score": 0.991,
     "score_min": 0.982,
     "score_max": 0.999,
-    "score_lo_min": 0.641,
+    "score_lo_min": 0.683,
     "score_if_single_runs": 0.99,
     "n_reps_known": true,
-    "family": "points"
-   },
-   {
-    "dataset": "Dynamic World",
-    "protocol": "frozen",
-    "comparisons": 10,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 0.923,
-    "spread_median": 23.842,
-    "score": 0.995,
-    "score_min": 0.969,
-    "score_max": 0.999,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.995,
-    "n_reps_known": false,
-    "family": "logerr"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "DynamicEarthNet",
@@ -2547,10 +2725,12 @@
     "score": 0.677,
     "score_min": 0.677,
     "score_max": 0.677,
-    "score_lo_min": 0.359,
+    "score_lo_min": 0.291,
     "score_if_single_runs": 0.565,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "DynamicEarthNet",
@@ -2566,7 +2746,9 @@
     "score_lo_min": 0.0,
     "score_if_single_runs": 0.0,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "EuroSAT",
@@ -2579,26 +2761,30 @@
     "score": 0.963,
     "score_min": 0.897,
     "score_max": 0.999,
-    "score_lo_min": 0.663,
+    "score_lo_min": 0.655,
     "score_if_single_runs": 0.961,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 6
    },
    {
     "dataset": "EuroSAT",
     "protocol": "frozen",
-    "comparisons": 7,
-    "sources": 3,
-    "models_median": 8.0,
-    "sigma_median": 0.53,
-    "spread_median": 12.381,
-    "score": 0.995,
-    "score_min": 0.963,
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 9.0,
+    "sigma_median": 0.56,
+    "spread_median": 18.149,
+    "score": 0.997,
+    "score_min": 0.994,
     "score_max": 1.0,
-    "score_lo_min": 0.4,
-    "score_if_single_runs": 0.995,
-    "n_reps_known": false,
-    "family": "points"
+    "score_lo_min": 0.906,
+    "score_if_single_runs": 0.997,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 5,
+    "comparisons_lo_ge_0_5": 5
    },
    {
     "dataset": "EverWatch",
@@ -2611,10 +2797,12 @@
     "score": 0.911,
     "score_min": 0.911,
     "score_max": 0.911,
-    "score_lo_min": 0.361,
+    "score_lo_min": 0.478,
     "score_if_single_runs": 0.904,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "FLAIR / FLAIR 2",
@@ -2627,10 +2815,12 @@
     "score": 0.939,
     "score_min": 0.939,
     "score_max": 0.939,
-    "score_lo_min": 0.752,
+    "score_lo_min": 0.766,
     "score_if_single_runs": 0.936,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "FLAIR / FLAIR 2",
@@ -2643,10 +2833,12 @@
     "score": 0.975,
     "score_min": 0.975,
     "score_max": 0.975,
-    "score_lo_min": 0.919,
+    "score_lo_min": 0.917,
     "score_if_single_runs": 0.975,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Fields of The World",
@@ -2662,7 +2854,9 @@
     "score_lo_min": 0.0,
     "score_if_single_runs": 0.778,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "Fields of The World",
@@ -2675,10 +2869,12 @@
     "score": 0.925,
     "score_min": 0.778,
     "score_max": 0.978,
-    "score_lo_min": 0.402,
+    "score_lo_min": 0.392,
     "score_if_single_runs": 0.914,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 7
    },
    {
     "dataset": "ForestNet",
@@ -2691,10 +2887,12 @@
     "score": 0.785,
     "score_min": 0.73,
     "score_max": 0.839,
-    "score_lo_min": 0.275,
+    "score_lo_min": 0.272,
     "score_if_single_runs": 0.734,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "ForestNet",
@@ -2707,26 +2905,12 @@
     "score": 0.946,
     "score_min": 0.946,
     "score_max": 0.946,
-    "score_lo_min": 0.709,
+    "score_lo_min": 0.64,
     "score_if_single_runs": 0.944,
     "n_reps_known": true,
-    "family": "points"
-   },
-   {
-    "dataset": "GRIP4 distance to road",
-    "protocol": "frozen",
-    "comparisons": 1,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 0.602,
-    "spread_median": 1.163,
-    "score": 0.773,
-    "score_min": 0.773,
-    "score_max": 0.773,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.732,
-    "n_reps_known": false,
-    "family": "logerr"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "GeoCrossBench Hurricane Harvey",
@@ -2739,10 +2923,12 @@
     "score": 0.949,
     "score_min": 0.855,
     "score_max": 0.989,
-    "score_lo_min": 0.443,
+    "score_lo_min": 0.475,
     "score_if_single_runs": 0.945,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 5
    },
    {
     "dataset": "GeoCrossBench Hurricane Harvey",
@@ -2755,26 +2941,30 @@
     "score": 0.872,
     "score_min": 0.645,
     "score_max": 0.999,
-    "score_lo_min": 0.082,
+    "score_lo_min": 0.074,
     "score_if_single_runs": 0.839,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "HLS Burn Scars",
     "protocol": "fine-tuned",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 8.0,
-    "sigma_median": 0.697,
-    "spread_median": 3.801,
-    "score": 0.934,
-    "score_min": 0.818,
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 11.0,
+    "sigma_median": 0.694,
+    "spread_median": 6.1,
+    "score": 0.987,
+    "score_min": 0.987,
     "score_max": 0.987,
-    "score_lo_min": 0.222,
-    "score_if_single_runs": 0.923,
+    "score_lo_min": 0.248,
+    "score_if_single_runs": 0.987,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "HLS Burn Scars",
@@ -2787,42 +2977,30 @@
     "score": 0.995,
     "score_min": 0.995,
     "score_max": 0.995,
-    "score_lo_min": 0.861,
+    "score_lo_min": 0.823,
     "score_if_single_runs": 0.995,
     "n_reps_known": true,
-    "family": "points"
-   },
-   {
-    "dataset": "Infra-Bench",
-    "protocol": "fine-tuned",
-    "comparisons": 10,
-    "sources": 1,
-    "models_median": 5.0,
-    "sigma_median": 1.05,
-    "spread_median": 11.809,
-    "score": 0.989,
-    "score_min": 0.972,
-    "score_max": 0.997,
-    "score_lo_min": 0.1,
-    "score_if_single_runs": 0.989,
-    "n_reps_known": false,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Infra-Bench",
     "protocol": "frozen",
-    "comparisons": 10,
+    "comparisons": 2,
     "sources": 1,
     "models_median": 6.0,
-    "sigma_median": 1.255,
-    "spread_median": 2.829,
-    "score": 0.819,
+    "sigma_median": 1.562,
+    "spread_median": 2.407,
+    "score": 0.672,
     "score_min": 0.659,
-    "score_max": 0.948,
+    "score_max": 0.686,
     "score_lo_min": 0.0,
-    "score_if_single_runs": 0.787,
+    "score_if_single_runs": 0.581,
     "n_reps_known": false,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "Kuro Siwo (Flood-S1)",
@@ -2835,42 +3013,30 @@
     "score": 0.992,
     "score_min": 0.992,
     "score_max": 0.992,
-    "score_lo_min": 0.79,
+    "score_lo_min": 0.803,
     "score_if_single_runs": 0.992,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Kuro Siwo (Flood-S1)",
     "protocol": "frozen",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 6.0,
-    "sigma_median": 0.985,
-    "spread_median": 6.154,
-    "score": 0.977,
-    "score_min": 0.974,
-    "score_max": 0.982,
-    "score_lo_min": 0.5,
-    "score_if_single_runs": 0.977,
-    "n_reps_known": false,
-    "family": "points"
-   },
-   {
-    "dataset": "MMEarth Biomass",
-    "protocol": "frozen",
-    "comparisons": 2,
+    "comparisons": 1,
     "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 1.824,
-    "spread_median": 15.119,
-    "score": 0.986,
-    "score_min": 0.984,
-    "score_max": 0.987,
-    "score_lo_min": 0.347,
-    "score_if_single_runs": 0.986,
-    "n_reps_known": false,
-    "family": "logerr"
+    "models_median": 8.0,
+    "sigma_median": 1.871,
+    "spread_median": 11.563,
+    "score": 0.974,
+    "score_min": 0.974,
+    "score_max": 0.974,
+    "score_lo_min": 0.526,
+    "score_if_single_runs": 0.974,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "MMEarth-Bench Biomass",
@@ -2886,7 +3052,9 @@
     "score_lo_min": 0.941,
     "score_if_single_runs": 0.991,
     "n_reps_known": false,
-    "family": "logerr"
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "MMEarth-Bench soil nitrogen",
@@ -2899,10 +3067,12 @@
     "score": 0.979,
     "score_min": 0.972,
     "score_max": 0.987,
-    "score_lo_min": 0.661,
+    "score_lo_min": 0.725,
     "score_if_single_runs": 0.979,
     "n_reps_known": false,
-    "family": "logerr"
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "MMEarth-Bench soil organic carbon",
@@ -2915,10 +3085,12 @@
     "score": 0.994,
     "score_min": 0.992,
     "score_max": 0.997,
-    "score_lo_min": 0.958,
+    "score_lo_min": 0.963,
     "score_if_single_runs": 0.994,
     "n_reps_known": false,
-    "family": "logerr"
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "MMEarth-Bench soil pH",
@@ -2931,10 +3103,12 @@
     "score": 0.979,
     "score_min": 0.979,
     "score_max": 0.979,
-    "score_lo_min": 0.7,
+    "score_lo_min": 0.744,
     "score_if_single_runs": 0.978,
     "n_reps_known": false,
-    "family": "logerr"
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "NZ cattle",
@@ -2947,10 +3121,12 @@
     "score": 0.98,
     "score_min": 0.96,
     "score_max": 0.992,
-    "score_lo_min": 0.749,
+    "score_lo_min": 0.797,
     "score_if_single_runs": 0.979,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "NeonTreeEvaluation",
@@ -2963,10 +3139,12 @@
     "score": 0.933,
     "score_min": 0.933,
     "score_max": 0.933,
-    "score_lo_min": 0.739,
+    "score_lo_min": 0.752,
     "score_if_single_runs": 0.929,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "OSCD",
@@ -2979,10 +3157,12 @@
     "score": 0.732,
     "score_min": 0.71,
     "score_max": 0.757,
-    "score_lo_min": 0.232,
+    "score_lo_min": 0.274,
     "score_if_single_runs": 0.659,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
    },
    {
     "dataset": "OSCD",
@@ -2992,13 +3172,15 @@
     "models_median": 9.0,
     "sigma_median": 2.11,
     "spread_median": 8.839,
-    "score": 0.932,
-    "score_min": 0.897,
+    "score": 0.939,
+    "score_min": 0.922,
     "score_max": 0.949,
-    "score_lo_min": 0.333,
-    "score_if_single_runs": 0.928,
+    "score_lo_min": 0.652,
+    "score_if_single_runs": 0.936,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
    },
    {
     "dataset": "PASTIS / PASTIS-R",
@@ -3011,26 +3193,30 @@
     "score": 0.982,
     "score_min": 0.978,
     "score_max": 0.99,
-    "score_lo_min": 0.87,
+    "score_lo_min": 0.881,
     "score_if_single_runs": 0.982,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "PASTIS / PASTIS-R",
     "protocol": "frozen",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 6.0,
-    "sigma_median": 1.457,
-    "spread_median": 6.08,
-    "score": 0.957,
-    "score_min": 0.906,
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 8.0,
+    "sigma_median": 0.711,
+    "spread_median": 5.237,
+    "score": 0.982,
+    "score_min": 0.982,
     "score_max": 0.982,
-    "score_lo_min": 0.037,
-    "score_if_single_runs": 0.954,
+    "score_lo_min": 0.951,
+    "score_if_single_runs": 0.982,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "PV4GER",
@@ -3043,10 +3229,12 @@
     "score": 0.893,
     "score_min": 0.822,
     "score_max": 0.972,
-    "score_lo_min": 0.501,
+    "score_lo_min": 0.532,
     "score_if_single_runs": 0.875,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "RESISC45 / UCMerced (EarthShift)",
@@ -3059,10 +3247,12 @@
     "score": 0.993,
     "score_min": 0.976,
     "score_max": 0.999,
-    "score_lo_min": 0.797,
+    "score_lo_min": 0.845,
     "score_if_single_runs": 0.992,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "RESISC45 / UCMerced (EarthShift)",
@@ -3075,26 +3265,30 @@
     "score": 0.998,
     "score_min": 0.998,
     "score_max": 0.999,
-    "score_lo_min": 0.964,
+    "score_lo_min": 0.967,
     "score_if_single_runs": 0.998,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "Sen1Floods11",
     "protocol": "fine-tuned",
-    "comparisons": 6,
-    "sources": 3,
-    "models_median": 8.0,
-    "sigma_median": 1.889,
-    "spread_median": 11.816,
-    "score": 0.944,
-    "score_min": 0.869,
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 9.0,
+    "sigma_median": 2.46,
+    "spread_median": 13.769,
+    "score": 0.959,
+    "score_min": 0.872,
     "score_max": 1.0,
-    "score_lo_min": 0.032,
-    "score_if_single_runs": 0.939,
+    "score_lo_min": 0.271,
+    "score_if_single_runs": 0.955,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 3
    },
    {
     "dataset": "Sen1Floods11",
@@ -3107,10 +3301,12 @@
     "score": 0.96,
     "score_min": 0.875,
     "score_max": 1.0,
-    "score_lo_min": 0.33,
+    "score_lo_min": 0.328,
     "score_if_single_runs": 0.956,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "So2Sat LCZ42 (LCZ-S2)",
@@ -3123,10 +3319,12 @@
     "score": 0.822,
     "score_min": 0.573,
     "score_max": 0.971,
-    "score_lo_min": 0.249,
+    "score_lo_min": 0.228,
     "score_if_single_runs": 0.759,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "So2Sat LCZ42 (LCZ-S2)",
@@ -3139,10 +3337,12 @@
     "score": 0.99,
     "score_min": 0.979,
     "score_max": 0.998,
-    "score_lo_min": 0.57,
+    "score_lo_min": 0.521,
     "score_if_single_runs": 0.99,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 4
    },
    {
     "dataset": "South Africa crop type",
@@ -3150,15 +3350,17 @@
     "comparisons": 4,
     "sources": 2,
     "models_median": 9.0,
-    "sigma_median": 0.898,
-    "spread_median": 3.296,
-    "score": 0.853,
-    "score_min": 0.687,
+    "sigma_median": 0.88,
+    "spread_median": 3.667,
+    "score": 0.88,
+    "score_min": 0.764,
     "score_max": 0.99,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.815,
+    "score_lo_min": 0.388,
+    "score_if_single_runs": 0.858,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
    },
    {
     "dataset": "South Africa crop type",
@@ -3171,10 +3373,12 @@
     "score": 0.942,
     "score_min": 0.892,
     "score_max": 0.978,
-    "score_lo_min": 0.761,
+    "score_lo_min": 0.763,
     "score_if_single_runs": 0.937,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
    },
    {
     "dataset": "SpaceNet 2",
@@ -3187,10 +3391,12 @@
     "score": 0.933,
     "score_min": 0.933,
     "score_max": 0.933,
-    "score_lo_min": 0.849,
+    "score_lo_min": 0.846,
     "score_if_single_runs": 0.93,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "SpaceNet 2",
@@ -3203,10 +3409,12 @@
     "score": 0.984,
     "score_min": 0.984,
     "score_max": 0.984,
-    "score_lo_min": 0.953,
+    "score_lo_min": 0.956,
     "score_if_single_runs": 0.984,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "SpaceNet 7",
@@ -3219,10 +3427,12 @@
     "score": 0.821,
     "score_min": 0.821,
     "score_max": 0.821,
-    "score_lo_min": 0.654,
+    "score_lo_min": 0.627,
     "score_if_single_runs": 0.791,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "SpaceNet 7",
@@ -3235,10 +3445,12 @@
     "score": 0.921,
     "score_min": 0.921,
     "score_max": 0.921,
-    "score_lo_min": 0.691,
+    "score_lo_min": 0.67,
     "score_if_single_runs": 0.916,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "Substations",
@@ -3251,10 +3463,12 @@
     "score": 0.933,
     "score_min": 0.933,
     "score_max": 0.933,
-    "score_lo_min": 0.816,
+    "score_lo_min": 0.81,
     "score_if_single_runs": 0.929,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "TreeSatAI",
@@ -3267,77 +3481,37 @@
     "score": 0.978,
     "score_min": 0.978,
     "score_max": 0.978,
-    "score_lo_min": 0.835,
+    "score_lo_min": 0.833,
     "score_if_single_runs": 0.978,
     "n_reps_known": true,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    },
    {
     "dataset": "TreeSatAI",
     "protocol": "frozen",
-    "comparisons": 2,
-    "sources": 2,
-    "models_median": 6.0,
-    "sigma_median": 1.051,
-    "spread_median": 2.861,
-    "score": 0.864,
-    "score_min": 0.648,
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 8.0,
+    "sigma_median": 0.61,
+    "spread_median": 3.59,
+    "score": 0.972,
+    "score_min": 0.972,
     "score_max": 0.972,
-    "score_lo_min": 0.0,
-    "score_if_single_runs": 0.817,
+    "score_lo_min": 0.87,
+    "score_if_single_runs": 0.971,
     "n_reps_known": true,
-    "family": "points"
-   },
-   {
-    "dataset": "WorldClim Bioclim",
-    "protocol": "frozen",
-    "comparisons": 1,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 1.064,
-    "spread_median": 9.095,
-    "score": 0.986,
-    "score_min": 0.986,
-    "score_max": 0.986,
-    "score_lo_min": 0.91,
-    "score_if_single_runs": 0.986,
-    "n_reps_known": false,
-    "family": "logerr"
-   },
-   {
-    "dataset": "WorldPop population density",
-    "protocol": "frozen",
-    "comparisons": 1,
-    "sources": 1,
-    "models_median": 4.0,
-    "sigma_median": 1.673,
-    "spread_median": 7.875,
-    "score": 0.956,
-    "score_min": 0.956,
-    "score_max": 0.956,
-    "score_lo_min": 0.756,
-    "score_if_single_runs": 0.955,
-    "n_reps_known": false,
-    "family": "logerr"
-   },
-   {
-    "dataset": "fMoW",
-    "protocol": "frozen",
-    "comparisons": 4,
-    "sources": 1,
-    "models_median": 6.0,
-    "sigma_median": 0.025,
-    "spread_median": 0.936,
-    "score": 0.999,
-    "score_min": 0.998,
-    "score_max": 1.0,
-    "score_lo_min": 0.945,
-    "score_if_single_runs": 0.999,
-    "n_reps_known": false,
-    "family": "points"
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
    }
   ],
-  "n_reps_assumed_3_share": 0.256
+  "min_geofms": 6,
+  "comparisons_lo_ge_0_8": 73,
+  "comparisons_lo_ge_0_5": 112,
+  "cells_sd_floored_to_print_precision": 0,
+  "n_reps_assumed_3_share": 0.053
  },
  "reproducibility": {
   "strict": {
@@ -3353,7 +3527,7 @@
    "grouping": "dataset x protocol family x fraction x metric (versions pooled within source)",
    "min_shared": 4,
    "min_df": 3,
-   "groups_with_2plus_sources": 43,
+   "groups_with_2plus_sources": 42,
    "with_3plus_shared": 15,
    "with_5plus_shared": 5,
    "estimable": [
@@ -3387,12 +3561,5 @@
     }
    ]
   }
- },
- "geometry_gate": {
-  "simulated_recovery_median": 0.704,
-  "recoverable_in_simulation": true,
-  "dataset_loadings_transfer_out_of_paper": false,
-  "published": false,
-  "note": "gate applied after the run (D13 tightened during the run); same rule as scripts/build_dataset_analysis.py"
  }
 }
