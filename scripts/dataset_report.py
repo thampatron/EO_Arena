@@ -32,7 +32,7 @@ w("## Findings")
 w()
 wp = ho[str(bestK)]["pair_acc"] if str(bestK) in ho else ho["1"]["pair_acc"]; op = lt[str(bestK)]["acc_struct"]
 off_only = f" (a per-paper model offset alone: {100*ho['0']['pair_acc']:.0f}%)" if off["chosen"] != "none" else ""
-w(f"1. **GeoFM orderings are far more consistent within a paper than across papers.** At K = {bestK}, a paper's own other comparisons predict a GeoFM's held-out position with {100*wp:.0f}% pairwise accuracy{off_only}; the rest of the literature predicts a new paper's orderings with {100*op:.0f}% (Spearman ρ = {lt[str(bestK)]['rho_struct']:.2f}). Much of what a paper reports as a GeoFM's advantage is specific to that paper's model set, protocol and implementation.")
+w(f"1. **GeoFM orderings are far more consistent within a paper than across papers.** At K = {bestK}, a paper's own other comparisons predict a GeoFM's held-out position with {100*wp:.0f}% pairwise accuracy{off_only}; the rest of the literature predicts a new paper's orderings with {100*op:.0f}% (Spearman ρ = {lt[str(bestK)]['rho_struct']:.2f}). Much of a GeoFM's reported advantage is specific to the paper — its suite of tasks, protocol, model set or implementation. In the two cases where independent groups ran the same dataset and protocol (finding 6) they agree well, which points to task suite and protocol rather than implementation; two cases are too few to decide.")
 k1, kb = g["K1_vs_naive_leaderboard"], g["bestK_vs_naive_leaderboard"]
 board = lt[next(iter(lt))]["rho_board"]
 simK = d.get("simulation_K") or []
@@ -43,13 +43,15 @@ if credible(kb) and kb["mean"] > 0:
 else:
     w(f"2. **Out of paper, no multi-factor model beats a single ranking.** A naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources) predicts a new source's orderings with ρ = {board:.2f}; the best structured model (K = {kb['K']}, selected among 12 configurations) differs by {ci(kb)}. Extra dimensions fit within papers but do not transfer across them.{power} (A one-factor structured model scores below the naive leaderboard, {ci(k1)}, because it predicts each held-out task's loading from dataset, protocol and sensor blocks whose sign can be wrong; that is a weakness of the predictor, not evidence against a single ranking.)")
 if seen:
-    w(f"3. **What a dataset measures {'carries over' if credible(seen) and seen['mean']>0 else 'does not measurably carry over'} across papers.** For datasets other sources also report, the dataset-structured prediction differs from the model's own single ordering by {ci(seen)}" + (f"; for datasets seen only in the held-out source (protocol and sensor carry the prediction) by {ci(unseen)}." if unseen else ".") + (" Dataset-to-dataset similarity is recoverable and reported." if d["geometry_recoverable"] else " Dataset-to-dataset similarity is not recoverable on this evidence and is not reported."))
+    w(f"3. **What a dataset measures {'carries over' if credible(seen) and seen['mean']>0 else 'does not measurably carry over'} across papers.** For datasets other sources also report, the dataset-structured prediction differs from the model's own single ordering by {ci(seen)}" + (f"; for datasets seen only in the held-out source (protocol and sensor carry the prediction) by {ci(unseen)}." if unseen else ".") + (" Dataset-to-dataset similarity is recoverable and reported." if d["geometry_recoverable"] else (" Dataset-to-dataset similarity is therefore not reported: simulation shows it would be recoverable if datasets measured distinct things this strongly, but the real data shows no such transfer." if d.get("geometry_gate", {}).get("recoverable_in_simulation") else " Dataset-to-dataset similarity is not recoverable on this evidence and is not reported.")))
 w(f"4. **Metadata labels {'partly organise' if sig_labels else 'do not credibly organise'} the datasets.** " + (f"{', '.join(sig_labels)} survive(s) correction for the four labels tested." if sig_labels else "Domain, subdomain, task type and sensor all fail after correction for the four labels tested."))
 if rel["by_dataset_protocol"]:
     bd = rel["by_dataset_protocol"]; hi = sum(1 for x in bd if x["score"] >= 0.8); lo = sum(1 for x in bd if x["score"] < 0.5)
     w(f"5. **Seed-noise reliability (note Eq. 6) is now measurable for {len(bd)} dataset × protocol pairs** ({rel['comparisons']} comparisons with seed SDs for ≥ 3 GeoFMs): {hi} have ≥ 80% of their model spread repeatable under re-seeding, {lo} have < 50%. This is reliability within one implementation, not agreement across groups.")
 rs, rl = rep["strict"], rep["loose"]
-w(f"6. **Independent groups rarely evaluate the same GeoFMs on the same dataset.** With appendix tables and the GEO-Bench-2 leaderboard, cross-source reproducibility is estimable for {len(rs['estimable'])} strict and {len(rl['estimable'])} loose dataset groups. Standardised re-evaluation of the same GeoFMs by different groups is the missing evidence.")
+est = rs["estimable"] + [x for x in rl["estimable"] if x["group"] not in {y["group"] for y in rs["estimable"]}]
+est_txt = (" Where it is estimable, independent sources agree well: " + "; ".join(f"{x['group'].split(' | ')[0]} ({x['group'].split(' | ')[1]}, {x['n_papers']} sources, {x['n_models']} GeoFMs): Kendall τ {x['kendall_tau_median']:.2f}, agreement {x['reproducibility']:.2f}" for x in est) + ".") if est else ""
+w(f"6. **Independent groups rarely evaluate the same GeoFMs on the same dataset.** With appendix tables and the GEO-Bench-2 leaderboard, cross-source reproducibility is estimable for {len(rs['estimable'])} strict and {len(rl['estimable'])} loose dataset groups.{est_txt} Two groups cannot characterise the literature: standardised re-evaluation of the same GeoFMs by different groups is the missing evidence.")
 w()
 
 # ------------------------------------------------------------------ 1 evidence
@@ -148,7 +150,7 @@ for nm_, R in (("Strict", rs), ("Loose", rl)):
     if R["estimable"]:
         w("| group | sources | GeoFMs | median Kendall τ between sources | cross-source disagreement σ_xp | stable between-model SD | agreement τ²/(τ²+σ²_xp) (90% CI) |"); w("|---|---|---|---|---|---|---|")
         for x in R["estimable"]:
-            w(f"| {x['group']} | {x['n_papers']} | {x['n_models']} | {x['kendall_tau_median']:.2f} | {x['sigma_xp']:.2f} | {x['tau_b']:.2f} | {x['reproducibility']:.2f} ({f(x['rep_lo'])}–{f(x['rep_hi'])}) |")
+            w(f"| {x['group'].replace(' | ', ' · ')} | {x['n_papers']} | {x['n_models']} | {x['kendall_tau_median']:.2f} | {x['sigma_xp']:.2f} | {x['tau_b']:.2f} | {x['reproducibility']:.2f} ({f(x['rep_lo'])}–{f(x['rep_hi'])}) |")
         w()
 w("σ_xp is disagreement between implementations about the same GeoFM (protocol and implementation differences plus seed noise of a mean); it is not seed noise.")
 w()
@@ -200,5 +202,6 @@ w("- The best-K figures are selected among 12 configurations and are optimistic 
 w("- In single-domain sources, domain-specific capability and implementation effects are not separable (D8).")
 w("- Geography and time blocks of Eq. 11 are not fitted: no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.")
 w("- Points near the ceiling compress differences for classification benchmarks (D4).")
+w("- Seed-noise scores come only from papers that print seed SDs, which may be the more careful ones; a printed SD below 0.1 point (e.g. fMoW) makes the score close to 1 by construction.")
 (ROOT / "docs" / "dataset-analysis.md").write_text("\n".join(L) + "\n")
 print("wrote docs/dataset-analysis.md")
