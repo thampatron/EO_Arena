@@ -428,7 +428,143 @@
    },
    "cross_source_same_dataset_pairs": 67
   },
-  "flagged_source_pairs_detail": []
+  "flagged_source_pairs_detail": [],
+  "robustness": {
+   "source_pairs_with_same_dataset_pairs": 4,
+   "positive_contrasts": 3,
+   "sign_test_p_one_sided": 0.3125,
+   "unweighted_mean_contrast": 0.246,
+   "leave_one_source_out_range": [
+    0.273,
+    0.579
+   ],
+   "per_source_pair": [
+    {
+     "sources": [
+      "pangea",
+      "tessera"
+     ],
+     "same_dataset_pairs": 36,
+     "contrast": 0.575,
+     "datasets": [
+      "BioMassters",
+      "PASTIS / PASTIS-R"
+     ]
+    },
+    {
+     "sources": [
+      "galileo",
+      "olmoearth_v12"
+     ],
+     "same_dataset_pairs": 19,
+     "contrast": -0.084,
+     "datasets": [
+      "BreizhCrops",
+      "CropHarvest"
+     ]
+    },
+    {
+     "sources": [
+      "olmoearth_v12",
+      "terrafm"
+     ],
+     "same_dataset_pairs": 6,
+     "contrast": 0.188,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "pangea",
+      "sustainfm"
+     ],
+     "same_dataset_pairs": 6,
+     "contrast": 0.305,
+     "datasets": [
+      "HLS Burn Scars",
+      "MADOS"
+     ]
+    }
+   ],
+   "same_dataset_pairs_by_dataset": {
+    "CropHarvest": 18,
+    "BioMassters": 18,
+    "PASTIS / PASTIS-R": 18,
+    "HLS Burn Scars": 3,
+    "MADOS": 3,
+    "BreizhCrops": 1,
+    "BigEarthNet v1 / v2 (reBEN)": 1,
+    "Brick kilns": 1,
+    "Cashew plantation": 1,
+    "EuroSAT": 1,
+    "South Africa crop type": 1,
+    "So2Sat LCZ42 (LCZ-S2)": 1
+   },
+   "sensitivity_post_hoc": {
+    "min_shared_4": {
+     "pair_weighted": 0.4652,
+     "pair_weighted_ci90": [
+      0.1311,
+      0.6305
+     ],
+     "inverse_variance": 0.482,
+     "inverse_variance_ci90": [
+      0.1477,
+      0.6347
+     ],
+     "same_dataset_pairs": 67,
+     "source_pairs": 4
+    },
+    "min_shared_5": {
+     "pair_weighted": 0.4652,
+     "pair_weighted_ci90": [
+      0.149,
+      0.6251
+     ],
+     "inverse_variance": 0.4819,
+     "inverse_variance_ci90": [
+      0.1652,
+      0.6212
+     ],
+     "same_dataset_pairs": 61,
+     "source_pairs": 3
+    },
+    "min_shared_6": {
+     "pair_weighted": 0.5616,
+     "pair_weighted_ci90": [
+      0.2397,
+      0.6046
+     ],
+     "inverse_variance": 0.5534,
+     "inverse_variance_ci90": [
+      0.2501,
+      0.623
+     ],
+     "same_dataset_pairs": 36,
+     "source_pairs": 2
+    },
+    "min_shared_7": {
+     "pair_weighted": 0.2738,
+     "pair_weighted_ci90": [
+      0.2308,
+      0.3079
+     ],
+     "inverse_variance": 0.2768,
+     "inverse_variance_ci90": [
+      0.2308,
+      0.3064
+     ],
+     "same_dataset_pairs": 6,
+     "source_pairs": 1
+    }
+   }
+  }
  },
  "simulation_calibration": {},
  "simulation_offset": [],

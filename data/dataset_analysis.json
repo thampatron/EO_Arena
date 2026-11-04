@@ -770,12 +770,70 @@
     "South Africa crop type": 58,
     "Sen1Floods11": 44,
     "PASTIS / PASTIS-R": 30,
-    "BioMassters": 18,
     "CropHarvest": 18,
+    "BioMassters": 18,
     "MADOS": 11,
     "HLS Burn Scars": 3,
     "BreizhCrops": 1,
     "ForestNet": 1
+   },
+   "sensitivity_post_hoc": {
+    "min_shared_4": {
+     "pair_weighted": 0.1473,
+     "pair_weighted_ci90": [
+      0.0275,
+      0.4729
+     ],
+     "inverse_variance": 0.1797,
+     "inverse_variance_ci90": [
+      0.0185,
+      0.4883
+     ],
+     "same_dataset_pairs": 814,
+     "source_pairs": 14
+    },
+    "min_shared_5": {
+     "pair_weighted": 0.3349,
+     "pair_weighted_ci90": [
+      0.0256,
+      0.6117
+     ],
+     "inverse_variance": 0.3477,
+     "inverse_variance_ci90": [
+      0.0434,
+      0.5923
+     ],
+     "same_dataset_pairs": 156,
+     "source_pairs": 6
+    },
+    "min_shared_6": {
+     "pair_weighted": 0.3395,
+     "pair_weighted_ci90": [
+      0.0657,
+      0.5626
+     ],
+     "inverse_variance": 0.3546,
+     "inverse_variance_ci90": [
+      0.081,
+      0.57
+     ],
+     "same_dataset_pairs": 116,
+     "source_pairs": 4
+    },
+    "min_shared_7": {
+     "pair_weighted": 0.421,
+     "pair_weighted_ci90": [
+      0.1908,
+      0.4381
+     ],
+     "inverse_variance": 0.432,
+     "inverse_variance_ci90": [
+      0.1908,
+      0.4401
+     ],
+     "same_dataset_pairs": 50,
+     "source_pairs": 2
+    }
    }
   }
  },

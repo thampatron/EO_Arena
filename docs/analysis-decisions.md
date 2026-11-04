@@ -31,6 +31,11 @@ Changes the agent team may not make on its own: everything below marked **frozen
   - the setting is part of the comparison key;
   - metric twins and sub-scores are collapsed;
   - the τ tests and leave-one-paper-out resample whole sources.
+- **Re-examined with the v2.1 main-text-only sensitivity run** (all v2.1 fixes, offset none). Main text alone gives *larger* point estimates: τ dataset identity +0.47 vs +0.15; chosen K vs leaderboard +0.19 vs +0.05; best K minus K = 1 +0.31 vs +0.13; and the domain label survives correction. The decision stands, for three reasons:
+  - **Breadth of evidence.** Main text alone has 67 cross-source same-dataset pairs from **4** source pairs (3 positive; sign test p = 0.31). With appendices: 814 pairs from 14 source pairs (11 positive; p = 0.03). The larger estimate rests on too few independent sources to carry a claim.
+  - **The gap is overlap, not appendix quality.** Within the full data, the τ contrast rises with the number of GeoFMs a pair shares (+0.15 at ≥ 4, +0.33 at ≥ 5, +0.42 at ≥ 7), and pairs involving appendix tables at ≥ 7 shared GeoFMs show +0.32. Main-text pairs share more GeoFMs (median 7 vs 4); the many low-overlap pairs that appendices add pull the pooled mean toward 0. Appendix rows dilute the point estimate by adding noisy pairs; they do not reverse it.
+  - **Seed noise and reproducibility need appendices:** 152 vs 32 comparisons with a seed-noise score (with vs without appendices); 29 vs 27 datasets in ≥ 2 sources.
+- The leave-one-paper-out gap (main text +0.19 vs +0.05) is not yet decomposed: it may be that appendix comparisons (low-data fractions, shift settings) are harder to predict for every method, or that they degrade the fit. Scoring the full-data fit on main-text comparisons only separates the two (agent backlog N7).
 
 ## D2 — Ablations · frozen
 Excluded at three levels:
@@ -114,6 +119,8 @@ For every pair of comparisons sharing ≥ 4 GeoFMs, compute Kendall τ of their 
 - **Paper specificity:** τ(different datasets, same source) − τ(different datasets, different sources).
 
 90% intervals come from a cluster bootstrap over sources. Each contrast is computed on all pairs, on same-protocol-family pairs, and without source pairs flagged as possible shared codebases. These tests need no model, no optimiser and no transform choice beyond each metric's direction.
+
+Robustness (reproduced by `tau_robustness`): per-source-pair contrasts, a sign test over source pairs, leave-one-source-out range. Post hoc sensitivity: inverse-null-variance weighting of pairs and minimum shared GeoFMs 5 / 6 / 7. The primary estimate keeps pair weighting at ≥ 4 shared GeoFMs; the sensitivity shows it is conservative (larger contrasts at higher overlap, on fewer source pairs).
 
 ## D16 — Simulations calibrated to the real data · frozen (rule)
 - **Truth:** a general factor (every task's loading on factor 1 has a positive mean: a single leaderboard exists) plus mean-zero specific factors. Dataset-shared loadings and paper × model implementation effects are included.

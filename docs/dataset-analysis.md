@@ -4,7 +4,7 @@ Analysis of 2026-11-04 on the GeoFM meta-analysis workbook v4, following *GeoFM 
 
 ## Findings
 
-1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = 0.24) than different-dataset comparisons across sources (0.09); under a single ranking plus noise the two would be equal. The evidence comes from 14 source pairs: 11 of them show a positive contrast (one-sided sign test p = 0.029; unweighted mean +0.16), and leaving out any one source keeps it between +0.12 and +0.23. 85% of the same-dataset pairs come from six datasets (EuroSAT, BigEarthNet v1 / v2 (reBEN), So2Sat LCZ42 (LCZ-S2), Brick kilns, Cashew plantation, South Africa crop type), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone. Pooled estimate +0.15 (90% CI +0.01 to +0.48); the interval is wide and skewed because few source pairs are informative.
+1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = 0.24) than different-dataset comparisons across sources (0.09); under a single ranking plus noise the two would be equal. The evidence comes from 14 source pairs: 11 of them show a positive contrast (one-sided sign test p = 0.029; unweighted mean +0.16), and leaving out any one source keeps it between +0.12 and +0.23. 85% of the same-dataset pairs come from six datasets (EuroSAT, BigEarthNet v1 / v2 (reBEN), So2Sat LCZ42 (LCZ-S2), Brick kilns, Cashew plantation, South Africa crop type), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone. Pooled estimate +0.15 (90% CI +0.01 to +0.48); the interval is wide and skewed because few source pairs are informative. This estimate is conservative: pairs sharing only four GeoFMs pull it toward 0, and among pairs sharing ≥ 5 it is +0.33 (post hoc, 6 source pairs; §2).
 2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = 0.26) than across papers (0.09): +0.17 (90% CI +0.04 to +0.27). A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.
 3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = 3) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14) — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = 2 gives +0.05 (90% CI -0.02 to +0.11). Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = 3 against K = 1 within the same model — gives +0.13 (90% CI +0.03 to +0.21), also after selection. Anchored check: +0.06 (90% CI -0.04 to +0.14). Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.
 4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by -0.00 (90% CI -0.08 to +0.07). Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).
@@ -69,6 +69,15 @@ Per source pair (cross-source pairs on the same dataset vs on different datasets
 | anysat × galileo | 8 | +0.18 | So2Sat LCZ42 (LCZ-S2) |
 | pangea × sustainfm | 6 | +0.30 | HLS Burn Scars, MADOS |
 | geobench_v2_leaderboard × prithvi_v2 | 3 | +0.37 | BigEarthNet v1 / v2 (reBEN), ForestNet, So2Sat LCZ42 (LCZ-S2) |
+
+Sensitivity of the pooled contrast to pair overlap (post hoc: added after the main estimate was seen). Kendall τ over 4 shared GeoFMs is noisy and, where the shared GeoFMs are close in capability, pulled toward 0 in both cells. Weighting pairs by the inverse of τ's null variance, or requiring more shared GeoFMs, raises the contrast but rests on fewer source pairs:
+
+| pairs sharing ≥ | same-dataset pairs | source pairs | pair-weighted | inverse-variance weighted |
+|---|---|---|---|---|
+| 4 GeoFMs | 814 | 14 | +0.15 (90% CI +0.03 to +0.47) | +0.18 (90% CI +0.02 to +0.49) |
+| 5 GeoFMs | 156 | 6 | +0.33 (90% CI +0.03 to +0.61) | +0.35 (90% CI +0.04 to +0.59) |
+| 6 GeoFMs | 116 | 4 | +0.34 (90% CI +0.07 to +0.56) | +0.35 (90% CI +0.08 to +0.57) |
+| 7 GeoFMs | 50 | 2 | +0.42 (90% CI +0.19 to +0.44) | +0.43 (90% CI +0.19 to +0.44) |
 
 Possible shared-codebase source pairs (matched values within a median of 1 point): none. Intervals: cluster bootstrap over sources (2,000 draws).
 
@@ -238,20 +247,23 @@ Reported separation = model-count-weighted SD of reported scores within the data
 
 ## 8. Sensitivity: which findings depend on the analysis decisions
 
-| | v1 (main text, no leaderboard, no regression, offset all) | **v2 (this report)** |
-|---|---|---|
-| evidence (GeoFMs × tasks) | 93×228, 20 src | 100×496, 27 src |
-| datasets in ≥ 2 sources | 20 | 29 |
-| dataset identity, model-free τ (v2.1+) | – | +0.15 (90% CI +0.01 to +0.48) |
-| K chosen / best | 2 / 4 | 2 / 3 |
-| offset | all | none |
-| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.04 (90% CI -0.14 to +0.05) |
-| best K vs leaderboard (block-predicted) | +0.12 (90% CI +0.07 to +0.18) | +0.09 (90% CI +0.03 to +0.14) |
-| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | -0.00 (90% CI -0.08 to +0.07) |
-| labels surviving correction | none | none |
-| similarity recoverable | no | no |
-| comparisons with seed-noise score | 0 | 152 |
-| reproducibility groups (strict / loose) | 0 / – | 0 / 2 |
+| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | **v2.1 (this report)** |
+|---|---|---|---|
+| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 100×496, 27 src |
+| datasets in ≥ 2 sources | 20 | 27 | 29 |
+| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) |
+| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 11/14 (p = 0.03) |
+| K chosen / best | 2 / 4 | 2 / 2 | 2 / 3 |
+| offset | all | none | none |
+| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.04 (90% CI -0.14 to +0.05) |
+| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.05 (90% CI -0.02 to +0.11) |
+| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.09 (90% CI +0.03 to +0.14) |
+| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.13 (90% CI +0.03 to +0.21) |
+| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | -0.00 (90% CI -0.08 to +0.07) |
+| labels surviving correction | none | domain | none |
+| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | yes / no |
+| comparisons with seed-noise score | 0 | 32 | 152 |
+| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 |
 
 ## 9. Limits
 

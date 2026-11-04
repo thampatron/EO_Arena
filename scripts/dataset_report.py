@@ -38,7 +38,7 @@ def tcred(x): return x["ci90"][0] > 0
 RB = TA.get("robustness", {})
 top_ds = list((RB.get("same_dataset_pairs_by_dataset") or {}).items())[:6]
 share_top = sum(v for _, v in top_ds) / max(sum((RB.get("same_dataset_pairs_by_dataset") or {}).values()), 1)
-w(f"1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = {cells[(True, False)]['mean_tau']:.2f}) than different-dataset comparisons across sources ({cells[(False, False)]['mean_tau']:.2f}); under a single ranking plus noise the two would be equal." + (f" The evidence comes from {RB['source_pairs_with_same_dataset_pairs']} source pairs: {RB['positive_contrasts']} of them show a positive contrast (one-sided sign test p = {RB['sign_test_p_one_sided']:.3f}; unweighted mean {RB['unweighted_mean_contrast']:+.2f}), and leaving out any one source keeps it between {RB['leave_one_source_out_range'][0]:+.2f} and {RB['leave_one_source_out_range'][1]:+.2f}. {100*share_top:.0f}% of the same-dataset pairs come from six datasets ({', '.join(k for k, _ in top_ds)}), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone." if RB else "") + f" Pooled estimate {tci(di)}; the interval is wide and skewed because few source pairs are informative.")
+w(f"1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = {cells[(True, False)]['mean_tau']:.2f}) than different-dataset comparisons across sources ({cells[(False, False)]['mean_tau']:.2f}); under a single ranking plus noise the two would be equal." + (f" The evidence comes from {RB['source_pairs_with_same_dataset_pairs']} source pairs: {RB['positive_contrasts']} of them show a positive contrast (one-sided sign test p = {RB['sign_test_p_one_sided']:.3f}; unweighted mean {RB['unweighted_mean_contrast']:+.2f}), and leaving out any one source keeps it between {RB['leave_one_source_out_range'][0]:+.2f} and {RB['leave_one_source_out_range'][1]:+.2f}. {100*share_top:.0f}% of the same-dataset pairs come from six datasets ({', '.join(k for k, _ in top_ds)}), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone." if RB else "") + f" Pooled estimate {tci(di)}; the interval is wide and skewed because few source pairs are informative." + (f" This estimate is conservative: pairs sharing only four GeoFMs pull it toward 0, and among pairs sharing ≥ 5 it is {RB['sensitivity_post_hoc']['min_shared_5']['pair_weighted']:+.2f} (post hoc, {RB['sensitivity_post_hoc']['min_shared_5']['source_pairs']} source pairs; §2)." if RB.get('sensitivity_post_hoc', {}).get('min_shared_5') else ""))
 w(f"2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = {cells[(False, True)]['mean_tau']:.2f}) than across papers ({cells[(False, False)]['mean_tau']:.2f}): {tci(ps)}. A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.")
 k1g, kbg, kcg = g["K1_vs_leaderboard"], g["bestK_vs_leaderboard"], g["Kchosen_vs_leaderboard"]
 ank = g.get("anchored_bestK_vs_leaderboard_same_half")
@@ -93,6 +93,14 @@ if RB:
     w("| sources | same-dataset pairs | contrast | datasets |"); w("|---|---|---|---|")
     for x in RB["per_source_pair"]: w(f"| {' × '.join(x['sources'])} | {x['same_dataset_pairs']} | {x['contrast']:+.2f} | {', '.join(x['datasets'][:4])}{' …' if len(x['datasets']) > 4 else ''} |")
     w()
+    SP = RB.get("sensitivity_post_hoc") or {}
+    if SP:
+        w("Sensitivity of the pooled contrast to pair overlap (post hoc: added after the main estimate was seen). Kendall τ over 4 shared GeoFMs is noisy and, where the shared GeoFMs are close in capability, pulled toward 0 in both cells. Weighting pairs by the inverse of τ's null variance, or requiring more shared GeoFMs, raises the contrast but rests on fewer source pairs:")
+        w()
+        w("| pairs sharing ≥ | same-dataset pairs | source pairs | pair-weighted | inverse-variance weighted |"); w("|---|---|---|---|---|")
+        for k_, v_ in SP.items():
+            w(f"| {k_.split('_')[-1]} GeoFMs | {v_['same_dataset_pairs']} | {v_['source_pairs']} | {v_['pair_weighted']:+.2f} (90% CI {v_['pair_weighted_ci90'][0]:+.2f} to {v_['pair_weighted_ci90'][1]:+.2f}) | {v_['inverse_variance']:+.2f} (90% CI {v_['inverse_variance_ci90'][0]:+.2f} to {v_['inverse_variance_ci90'][1]:+.2f}) |")
+        w()
 w("Possible shared-codebase source pairs (matched values within a median of 1 point): " + ("; ".join(f"{x['a']}–{x['b']} ({x['matched_cells']} cells, median |Δ| {x['median_abs_diff']})" for x in fl) if fl else "none") + ". Intervals: cluster bootstrap over sources (2,000 draws).")
 w()
 
@@ -192,7 +200,7 @@ w()
 w("## 8. Sensitivity: which findings depend on the analysis decisions")
 w()
 runs = [("v1 (main text, no leaderboard, no regression, offset all)", ROOT / "data" / "dataset_analysis_v1.json")] + \
-       [(p.stem.replace("dataset_analysis_sens_", "v2 · "), p) for p in sorted((ROOT / "data").glob("dataset_analysis_sens_*.json"))] + [("**v2 (this report)**", ROOT / "data" / "dataset_analysis.json")]
+       [(p.stem.replace("dataset_analysis_sens_", "v2 · "), p) for p in sorted((ROOT / "data").glob("dataset_analysis_sens_*.json"))] + [("**v2.1 (this report)**", ROOT / "data" / "dataset_analysis.json")]
 def labs(a_): return ", ".join(c for c, v in a_.items() if min(v["full_loading"]["p_bonferroni_4_labels"], v["direction_only"]["p_bonferroni_4_labels"]) < 0.05) or "none"
 def head(j):
     if j.get("version") == 2:
@@ -200,17 +208,21 @@ def head(j):
         se = next((v for k, v in g_.items() if k.startswith("dataset_seen_in_other_sources")), None)
         k1_ = g_.get("K1_vs_leaderboard", g_.get("K1_vs_naive_leaderboard")); kb_ = g_.get("bestK_vs_leaderboard", g_.get("bestK_vs_naive_leaderboard"))
         ta_ = j.get("tau_tests", {}).get("all", {}).get("dataset_identity")
+        kc_ = g_.get("Kchosen_vs_leaderboard"); pv_ = j["K"].get("paired_vs_best") or {}; p1_ = pv_.get("1") or pv_.get(1)
+        dim_ = "–" if not p1_ or bk_ == 1 else f"{-p1_['mean']:+.2f} (90% CI {-p1_['ci90'][1]:+.2f} to {-p1_['ci90'][0]:+.2f})"
+        gg_ = j.get("geometry_gate") or {}
+        geo_ = (("not run" if gg_.get("simulated_recovery_median") is None else ("yes" if gg_.get("recoverable_in_simulation") else "no")) + " / " + ("yes" if gg_.get("dataset_loadings_transfer_out_of_paper") else "no")) if gg_ else ("yes" if j["geometry_recoverable"] else "no")
         return dict(ev=f"{j['overlap']['models']}×{j['overlap']['tasks']}, {j['overlap']['sources']} src", multi=j["overlap"]["datasets_in_2plus_sources"], K=f"{j['K']['chosen']} / {bk_}",
-                    off=j["offset"]["chosen"], k1=ci(k1_), kb=ci(kb_), seen=ci(se) if se else "–", tau=tci(ta_) if ta_ else "–",
-                    lab=labs(j["metadata_association_multi_source"]), geo="yes" if j["geometry_recoverable"] else "no", rel=str(j["seed_noise_reliability"]["comparisons"]),
+                    off=j["offset"]["chosen"], k1=ci(k1_), kc=ci(kc_) if kc_ else "–", kb=ci(kb_), dim=dim_, seen=ci(se) if se else "–", tau=tci(ta_) if ta_ else "–", tsp=(lambda r_: f"{r_['positive_contrasts']}/{r_['source_pairs_with_same_dataset_pairs']} (p = {r_['sign_test_p_one_sided']:.2f})" if r_ else "–")(j.get("tau_tests", {}).get("robustness")),
+                    lab=labs(j["metadata_association_multi_source"]), geo=geo_, rel=str(j["seed_noise_reliability"]["comparisons"]),
                     rep=f"{len(j['reproducibility']['strict']['estimable'])} / {len(j['reproducibility']['loose']['estimable'])}")
     g_ = j["lopo_gain_vs_one_ordering"]; se = g_.get("dataset_seen_in_other_papers")
     return dict(ev=f"{j['overlap']['models']}×{j['overlap']['tasks']}, {j['overlap']['papers']} src", multi=j["overlap"]["datasets_in_2plus_papers"],
                 K=f"{j['K']['chosen']} / {g_.get('bestK_vs_naive_leaderboard', {}).get('K', '–')}", off="all", k1=ci(g_["K1_vs_naive_leaderboard"]),
                 kb=ci(g_["bestK_vs_naive_leaderboard"]) if "bestK_vs_naive_leaderboard" in g_ else "–", seen=ci(se) if se else "–",
-                lab=labs(j["metadata_association_multi_paper"]), geo="yes" if j["geometry_recoverable"] else "no", rel="0", rep=f"{len(j['reproducibility'])} / –", tau="–")
-cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sources"), ("tau", "dataset identity, model-free τ (v2.1+)"), ("K", "K chosen / best"), ("off", "offset"), ("k1", "K=1 vs leaderboard (block-predicted)"), ("kb", "best K vs leaderboard (block-predicted)"),
-        ("seen", "dataset transfer (seen)"), ("lab", "labels surviving correction"), ("geo", "similarity recoverable"), ("rel", "comparisons with seed-noise score"), ("rep", "reproducibility groups (strict / loose)")]
+                lab=labs(j["metadata_association_multi_paper"]), geo="yes" if j["geometry_recoverable"] else "no", rel="0", rep=f"{len(j['reproducibility'])} / –", tau="–", kc="–", dim="–", tsp="–")
+cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sources"), ("tau", "dataset identity, model-free τ (v2.1+)"), ("tsp", "τ: source pairs with positive contrast (sign test)"), ("K", "K chosen / best"), ("off", "offset"), ("k1", "K=1 vs leaderboard (block-predicted)"), ("kc", "chosen K vs leaderboard"), ("kb", "best K vs leaderboard (selected)"), ("dim", "best K minus K=1 (dimensionality, selected)"),
+        ("seen", "dataset transfer (seen)"), ("lab", "labels surviving correction"), ("geo", "similarity gate: recoverable in simulation / loadings transfer"), ("rel", "comparisons with seed-noise score"), ("rep", "reproducibility groups (strict / loose)")]
 H = [(nm_, head(json.loads(p.read_text()))) for nm_, p in runs if p.exists()]
 w("| | " + " | ".join(nm_ for nm_, _ in H) + " |"); w("|---|" + "---|" * len(H))
 for k_, lab in cols: w(f"| {lab} | " + " | ".join(str(h[k_]) for _, h in H) + " |")

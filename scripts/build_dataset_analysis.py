@@ -242,6 +242,7 @@ P_tau = db.tau_pairs(Y, mask, min_shared=4)
 _keys = [f"{td[t]}|{TI.pf.values[t]}|{TI.train_fraction_norm.astype(str).values[t]}" for t in range(len(tasks))]
 CODEBASE = db.shared_codebase_pairs(Y, mask, tp, _keys)
 TAU = db.tau_contrasts(P_tau, tp, td, TI.pf.values, exclude_source_pairs=[(a_, b_) for a_, b_, _, _ in CODEBASE], B=2000, seed=SEED)
+TAU["robustness"] = db.tau_robustness(P_tau, tp, td, B=1000, seed=SEED)
 TAU["flagged_source_pairs_detail"] = [{"a": a_, "b": b_, "matched_cells": n_, "median_abs_diff": m_} for a_, b_, n_, m_ in CODEBASE]
 log("tau cells", TAU["cells"]); log("tau contrasts (all)", TAU["all"]); log("flagged codebase pairs", CODEBASE)
 

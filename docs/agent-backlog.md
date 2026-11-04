@@ -24,22 +24,25 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 6. **N6 — Seed-noise dependence** · `open`
    Comparisons from one paper share settings. Report seed-noise Eq. 6 counts aggregated per dataset × protocol and per source (one vote per source), alongside the per-comparison counts.
 
-7. **T1 — Tests and CI for the dataset analysis** · `open`
+7. **N7 — Decompose the main-text vs full-data gap in leave-one-paper-out** · `open`
+   Main text alone gives chosen K vs leaderboard +0.19 against +0.05 with appendices (D1). Score the full-data leave-one-paper-out predictions on main-text comparisons only, and on appendix comparisons only, for structured K = 1..4 and the leaderboard. If main-text comparisons score like the main-text-only run, appendix comparisons are simply harder to predict (keep D1); if not, appendix comparisons degrade the fit (open a `needs-decision` PR with the evidence). Also break the appendix comparisons down by setting (training fraction < 100%, shift settings).
+
+8. **T1 — Tests and CI for the dataset analysis** · `open`
    `tests/` with pytest: monotone objective of `fit_structured` (with and without the paper × model offset); multi-start keeps the lowest objective and includes the leaderboard start; `fit_heteroskedastic` scale independent of a task's own spread; K = 1 recovery on a small synthetic mask with a general factor; τ contrasts equal 0 in expectation under one ranking plus noise; recitation detection (relabelled protocol and benchmark id); `compare_headlines.py` exit codes; `workbook_from_archive.py` round trip on a tiny synthetic archive. A GitHub Actions workflow running the tests on PRs (no workbook needed: synthetic data only).
 
-8. **T2 — Uncertainty for dataset-level outputs** · `open`
+9. **T2 — Uncertainty for dataset-level outputs** · `open`
    Bootstrap over sources (and models within comparisons) for the per-dataset τ contrasts and per-dataset outputs in §5; intervals in `data/dataset_analysis.json` and the §5 table. Flag datasets resting on one comparison of ≤ 5 GeoFMs. Report only.
 
-9. **T4 — Replicate design from the evidence** · `open`
+10. **T4 — Replicate design from the evidence** · `open`
    Replace `docs/replicate-plan.md` with a stage-2 design: which datasets × protocols × GeoFMs × seeds × independent implementations would make σ²_t, cross-source reproducibility and dataset similarity estimable, chosen to cover the multi-source datasets outside the GEO-Bench family and the protocol/sensor blocks with the fewest runs. Power calculation from the fitted residual scales and the τ contrasts. Planning document only.
 
-10. **T5 — Robustness table, remaining variants** · `open`
+11. **T5 — Robustness table, remaining variants** · `open`
     v2.1 has sensitivity runs for main-text-only, no leaderboard, no regression and all v1 decisions. Add: ridge 1 and 10; datasets with ≥ 3 sources only; frozen vs fine-tuned protocols separately. Extend the report's sensitivity table. Sensitivity only.
 
-11. **T6 — Site alignment with the new analysis** · `open`
+12. **T6 — Site alignment with the new analysis** · `open`
     `benchmarks.html`: retitle from "Benchmark ranking" to an evidence map, remove verdicts and scores that rest on plug-in seed noise, and show the dataset analysis (evidence base, τ dataset-identity per dataset, seed-noise lower bounds where measured, sources). No model ranking. Update About/method text. Visual check at phone and desktop width.
 
-12. **T7 — Geography and time metadata (Eq. 11)** · `open`
+13. **T7 — Geography and time metadata (Eq. 11)** · `open`
     From `data/datasets.json`, `data/footprints.json` and dataset papers, attach region (continent / climate zone) and acquisition period to each dataset; add them to the metadata association test (blanks as missing, multiplicity correction updated). Report whether the design is crossed enough to separate them from dataset.
 
 Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2), most of T5.

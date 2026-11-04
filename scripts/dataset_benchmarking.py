@@ -424,6 +424,58 @@ def tau_contrasts(P, task_source, task_dataset, task_protocol, exclude_source_pa
     return out
 
 
+def tau_robustness(P, task_source, task_dataset, thresholds=(5, 6, 7), B=2000, seed=0):
+    """Robustness of the tau dataset-identity contrast (D15), all cross-source pairs.
+    Per source pair: tau(same dataset) - tau(different datasets) within that source pair; sign test over source pairs;
+    leave-one-source-out range of the pooled contrast; same-dataset pairs per dataset. Sensitivity (added 2026-11-04,
+    after the main estimate was seen, so labelled post hoc): the contrast with each pair weighted by the inverse of
+    Kendall tau's null variance, 9n(n-1)/(2(2n+5)), and restricted to pairs sharing >= 5/6/7 GeoFMs, with 90% intervals
+    from the same cluster bootstrap over sources."""
+    from scipy.stats import binomtest
+    ts = np.asarray(task_source); td = np.asarray(task_dataset)
+    Q = P.copy(); Q["a"] = ts[Q.i.values]; Q["b"] = ts[Q.j.values]
+    Q = Q[Q.a != Q.b].copy(); Q["sd"] = td[Q.i.values] == td[Q.j.values]
+    Q["sp"] = [tuple(sorted(x)) for x in zip(Q.a, Q.b)]; Q["w"] = 9 * Q.n * (Q.n - 1) / (2 * (2 * Q.n + 5))
+    def con(x, wcol=None):
+        s_, d_ = x[x.sd], x[~x.sd]
+        if len(s_) == 0 or len(d_) == 0: return np.nan
+        if wcol is None: return float(s_.tau.mean() - d_.tau.mean())
+        return float(np.average(s_.tau, weights=s_[wcol]) - np.average(d_.tau, weights=d_[wcol]))
+    per = []
+    for sp, x in Q.groupby("sp"):
+        if x.sd.sum() == 0 or (~x.sd).sum() == 0: continue
+        per.append({"sources": list(sp), "same_dataset_pairs": int(x.sd.sum()), "contrast": round(con(x), 3),
+                    "datasets": sorted(set(td[x[x.sd].i.values]))})
+    per.sort(key=lambda r: -r["same_dataset_pairs"])
+    npos = sum(r["contrast"] > 0 for r in per)
+    src = sorted(set(Q.a) | set(Q.b))
+    loso = [con(Q[(Q.a != s_) & (Q.b != s_)]) for s_ in src]; loso = [v for v in loso if np.isfinite(v)]
+    byds = pd.Series(td[Q[Q.sd].i.values]).value_counts()
+    rng = np.random.default_rng(seed)
+    def boot(x, wcol):
+        S = sorted(set(x.a) | set(x.b)); out = []
+        for _ in range(B):
+            cnt = pd.Series(rng.integers(0, len(S), len(S))).value_counts(); m = {S[k]: v for k, v in cnt.items()}
+            mult = x.a.map(m).fillna(0).values * x.b.map(m).fillna(0).values
+            y = x[mult > 0].copy(); y["bw"] = (y[wcol] if wcol else 1.0) * mult[mult > 0]
+            v = con(y, "bw")
+            if np.isfinite(v): out.append(v)
+        return [round(float(np.percentile(out, 5)), 4), round(float(np.percentile(out, 95)), 4)]
+    sens = {}
+    for thr in (4,) + tuple(thresholds):
+        x = Q[Q.n >= thr]
+        if x.sd.sum() < 5: continue
+        sens[f"min_shared_{thr}"] = {"pair_weighted": round(con(x), 4), "pair_weighted_ci90": boot(x, None),
+                                     "inverse_variance": round(con(x, "w"), 4), "inverse_variance_ci90": boot(x, "w"),
+                                     "same_dataset_pairs": int(x.sd.sum()), "source_pairs": int(x[x.sd].sp.nunique())}
+    return {"source_pairs_with_same_dataset_pairs": len(per), "positive_contrasts": int(npos),
+            "sign_test_p_one_sided": round(float(binomtest(npos, len(per), 0.5, alternative="greater").pvalue), 4),
+            "unweighted_mean_contrast": round(float(np.mean([r["contrast"] for r in per])), 3),
+            "leave_one_source_out_range": [round(min(loso), 3), round(max(loso), 3)],
+            "per_source_pair": per, "same_dataset_pairs_by_dataset": {k: int(v) for k, v in byds.items()},
+            "sensitivity_post_hoc": sens}
+
+
 def shared_codebase_pairs(Y, mask, task_source, keys, max_med_abs=1.0, min_cells=3):
     """Source pairs whose matched cells (same model and key, e.g. dataset x protocol family x fraction) differ by a median
     of <= max_med_abs: possibly the same evaluation code (not independent replications). keys: (T,) hashable per task."""
