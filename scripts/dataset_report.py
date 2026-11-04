@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Render docs/dataset-analysis.md from data/dataset_analysis.json (written by build_dataset_analysis.py)."""
+"""Render docs/dataset-analysis.md from data/dataset_analysis.json (v2), with a sensitivity table against
+data/dataset_analysis_v1.json and any data/dataset_analysis_sens_*.json runs."""
 import json
 from pathlib import Path
 
@@ -7,132 +8,193 @@ ROOT = Path(__file__).resolve().parent.parent
 d = json.loads((ROOT / "data" / "dataset_analysis.json").read_text())
 L = []
 def w(s=""): L.append(s)
-def ci(x): return f"{x['mean']:+.3f} (90% CI {x['ci90'][0]:+.3f} to {x['ci90'][1]:+.3f}; {x['n_tasks']} tasks, {x['n_papers']} papers)"
+def ci(x, p=2): return f"{x['mean']:+.{p}f} (90% CI {x['ci90'][0]:+.{p}f} to {x['ci90'][1]:+.{p}f})"
+def credible(x): return x["ci90"][0] > 0 or x["ci90"][1] < 0
+f = lambda v, p=2: "–" if v is None else f"{v:.{p}f}"
 
-o, sc, K = d["overlap"], d["scope"], d["K"]
-w("# What existing benchmarks measure: dataset-level latent-factor analysis")
+o, sc, K, off, g = d["overlap"], d["scope"], d["K"], d["offset"], d["lopo_gain"]
+lt = K["lopo_by_spec_and_K"][off["chosen"]]
+bestK, Kc = K["best"], K["chosen"]
+ho = d["heldout_cells_within_paper"]
+rel = d["seed_noise_reliability"]; rep = d["reproducibility"]
+seen = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
+unseen = next((v for k, v in g.items() if k.startswith("dataset_only_in_held_out_source")), None)
+assoc = d["metadata_association_multi_source"]
+sig_labels = [c for c, v in assoc.items() if min(v["full_loading"]["p_bonferroni_4_labels"], v["direction_only"]["p_bonferroni_4_labels"]) < 0.05]
+
+w("# What existing benchmarks measure: dataset-level latent-factor analysis (v2)")
 w()
-w(f"Analysis of {d['as_of']} on the GeoFM meta-analysis workbook v4, following *GeoFM Benchmark Scoring* (S. Wang, Oct 2026). Object of study: the benchmark **datasets** — what they measure, how much they overlap, and whether independent groups agree on the model differences they show. Model capability vectors are nuisance parameters; nothing here ranks models. Built by `scripts/build_dataset_analysis.py`; numbers in `data/dataset_analysis.json`.")
+w(f"Analysis of {d['as_of']} on the GeoFM meta-analysis workbook v4, following *GeoFM Benchmark Scoring* (S. Wang, Oct 2026). Object of study: the benchmark **datasets** — what they measure, how much they overlap, whether independent groups agree on the model differences they show, and how reliably they separate GeoFMs where seed noise is reported. Model capability vectors are nuisance parameters; nothing here ranks models. Every analysis decision, with its justification and a switch to undo it, is in [`analysis-decisions.md`](analysis-decisions.md). Built by `scripts/build_dataset_analysis.py`; numbers in `data/dataset_analysis.json`.")
 w()
-g0 = d["lopo_gain_vs_one_ordering"]; Kc = d["K"]["chosen"]; bk = g0.get("bestK_vs_naive_leaderboard")
-lk = d["K"]["lopo_by_K"]; simL = d.get("simulation_lopo_selection", [])
-def iv(x): return f"{x['mean']:+.2f} (90% CI {x['ci90'][0]:+.2f} to {x['ci90'][1]:+.2f})"
-assoc_ok = [c for c, v in d["metadata_association_multi_paper"].items() if min(v["full_loading"]["p_bonferroni_4_labels"], v["direction_only"]["p_bonferroni_4_labels"]) < 0.05]
+
+# ------------------------------------------------------------------ findings
 w("## Findings")
 w()
-credible = bk and bk["ci90"][0] > 0
-w(f"1. **One leaderboard does not describe GeoFM performance{'' if credible else ' — but the evidence is weak'}.** Predicting how GeoFMs order on an unseen paper's tasks from all other papers, a one-factor model does no better than a naive leaderboard ({iv(g0['K1_vs_naive_leaderboard'])}); "
-  + (f"the best multi-factor model (K = {bk['K']}) beats it by Δρ = {iv(bk)}. " if bk else "")
-  + f"Out-of-paper accuracy rises with K (ρ = " + ", ".join(f"{lk[k]['rho_struct']:.2f}" for k in sorted(lk)) + f" for K = {', '.join(sorted(lk))}); the smallest K not credibly worse than the best is {Kc}, and on this mask that rule is conservative (in simulation it selects " + ", ".join(f"K = {x['K_selected_lopo']} for K_true = {x['K_true']}" for x in simL) + "). So there are at least two shared dimensions and plausibly more; the exact number is not identifiable. Even the best model predicts little of each paper's ordering (ρ ≈ " + f"{max(v['rho_struct'] for v in lk.values()):.2f}).")
-w(f"2. **What a dataset measures does not carry over across papers.** For datasets that other papers also report, adding the dataset's own loading changes out-of-paper accuracy by {iv(g0['dataset_seen_in_other_papers'])}. Dataset-to-dataset similarity is not recoverable on this evidence and is not reported.")
-w(f"3. **No metadata label credibly organises the datasets.** " + ("Domain, subdomain, task type and sensor all fail to explain dataset loadings beyond chance after correcting for the four labels tested." if not assoc_ok else f"Only {', '.join(assoc_ok)} survive(s) correction for the four labels tested."))
-w(f"4. **No dataset's reliability can be judged from the main-text literature.** After removing reprints, no dataset version × protocol has ≥ 5 GeoFMs evaluated by two independent papers; σ²_t, EDI and the Eq. 6 score need repeated standardised runs (the replicate design).")
+wp = ho[str(bestK)]["pair_acc"] if str(bestK) in ho else ho["1"]["pair_acc"]; op = lt[str(bestK)]["acc_struct"]
+w(f"1. **GeoFM orderings are far more consistent within a paper than across papers.** A paper's own other comparisons predict a GeoFM's held-out position with {100*wp:.0f}% pairwise accuracy (a per-paper model offset alone: {100*ho['0']['pair_acc']:.0f}%); the rest of the literature predicts a new paper's orderings with {100*op:.0f}% (Spearman ρ = {lt[str(bestK)]['rho_struct']:.2f}). Much of what a paper reports as a GeoFM's advantage is specific to that paper's model set, protocol and implementation.")
+k1, kb = g["K1_vs_naive_leaderboard"], g["bestK_vs_naive_leaderboard"]
+board = lt[next(iter(lt))]["rho_board"]
+simK = d.get("simulation_K") or []
+under = [x for x in simK if x["K_selected"] < x["K_true"]]
+power = (f" Simulation on this evidence: the selection rule picks " + ", ".join(f"K = {x['K_selected']} when the truth is {x['K_true']}" for x in simK) + (", so the test cannot detect moderate structure: absence of evidence, not evidence of a single dimension." if under else ".")) if simK else ""
+if credible(kb) and kb["mean"] > 0:
+    w(f"2. **One leaderboard does not describe GeoFM performance.** Out of paper, the best model (K = {kb['K']}, selected) beats a naive leaderboard (ρ = {board:.2f}) by {ci(kb)}. The smallest K not credibly worse than the best is {Kc}.{power}")
+else:
+    w(f"2. **Out of paper, no multi-factor model beats a single ranking.** A naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources) predicts a new source's orderings with ρ = {board:.2f}; the best structured model (K = {kb['K']}, selected among 12 configurations) differs by {ci(kb)}. Extra dimensions fit within papers but do not transfer across them.{power} (A one-factor structured model scores below the naive leaderboard, {ci(k1)}, because it predicts each held-out task's loading from dataset, protocol and sensor blocks whose sign can be wrong; that is a weakness of the predictor, not evidence against a single ranking.)")
+if seen:
+    w(f"3. **What a dataset measures {'carries over' if credible(seen) and seen['mean']>0 else 'does not measurably carry over'} across papers.** For datasets other sources also report, the dataset-structured prediction differs from the model's own single ordering by {ci(seen)}" + (f"; for datasets seen only in the held-out source (protocol and sensor carry the prediction) by {ci(unseen)}." if unseen else ".") + (" Dataset-to-dataset similarity is recoverable and reported." if d["geometry_recoverable"] else " Dataset-to-dataset similarity is not recoverable on this evidence and is not reported."))
+w(f"4. **Metadata labels {'partly organise' if sig_labels else 'do not credibly organise'} the datasets.** " + (f"{', '.join(sig_labels)} survive(s) correction for the four labels tested." if sig_labels else "Domain, subdomain, task type and sensor all fail after correction for the four labels tested."))
+if rel["by_dataset_protocol"]:
+    bd = rel["by_dataset_protocol"]; hi = sum(1 for x in bd if x["score"] >= 0.8); lo = sum(1 for x in bd if x["score"] < 0.5)
+    w(f"5. **Seed-noise reliability (note Eq. 6) is now measurable for {len(bd)} dataset × protocol pairs** ({rel['comparisons']} comparisons with seed SDs for ≥ 3 GeoFMs): {hi} have ≥ 80% of their model spread repeatable under re-seeding, {lo} have < 50%. This is reliability within one implementation, not agreement across groups.")
+rs, rl = rep["strict"], rep["loose"]
+w(f"6. **Independent groups rarely evaluate the same GeoFMs on the same dataset.** With appendix tables and the GEO-Bench-2 leaderboard, cross-source reproducibility is estimable for {len(rs['estimable'])} strict and {len(rl['estimable'])} loose dataset groups. Standardised re-evaluation of the same GeoFMs by different groups is the missing evidence.")
 w()
+
+# ------------------------------------------------------------------ 1 evidence
 w("## 1. Evidence base")
 w()
-w(f"{sc['rows_in']:,} extracted results → **{sc['rows_kept']:,}** kept. Rules, in order:")
+w(f"{sc['rows_in']:,} extracted results → **{sc['rows_kept']:,}** kept (configuration: " + ", ".join(f"{k}={v}" for k, v in d["config"].items()) + "). Rules in order:")
 w()
-w("| Rule | Rows dropped |")
-w("|---|---|")
+w("| Rule | Rows dropped |"); w("|---|---|")
 for s in sc["dropped"]: w(f"| {s['rule']} | {s['dropped']:,} |")
 w()
 if sc.get("reprint_pairs"):
-    w("Reprinted results (kept only in the earliest source): " + "; ".join(f"{p['later']} reprints {p['earlier']} ({p['shared_cells']} shared cells, {100*p['identical_share']:.0f}% identical)" for p in sc["reprint_pairs"]) + ".")
+    w("Reprinting papers (kept only in the earliest source): " + "; ".join(f"{p['later']} ← {p['earlier']} ({p['shared_cells']} cells, {100*p['identical_share']:.0f}% identical)" for p in sc["reprint_pairs"]) + ".")
     w()
-w("Main-text placement of every source table is in `data/table_locations.json` (file-name rule, or checked against the arXiv version); model scope in `data/model_scope.json`.")
+w(f"Imagery comparisons with ≥ 4 GeoFMs: **{o['models']} GeoFMs × {o['tasks']} tasks** ({o['datasets']} datasets, {o['sources']} sources: papers plus the GEO-Bench-2 leaderboard), {100*o['density']:.1f}% of cells observed, median {o['models_per_task_median']:.0f} GeoFMs per comparison; {o['tasks_from_appendix']} comparisons come from appendix tables, {o['tasks_from_leaderboard']} from the leaderboard, {o['tasks_logerr']} are regression tasks. {o['models_in_1_source']} of {o['models']} GeoFMs appear in a single source, {o['models_in_3plus_sources']} in three or more; {o['datasets_in_2plus_sources']} of {o['datasets']} datasets are reported by more than one source; {o['single_domain_sources']} sources cover a single domain.")
 w()
-w(f"Imagery comparisons with ≥ 4 GeoFMs: **{o['models']} GeoFMs × {o['tasks']} tasks** ({o['datasets']} datasets, {o['papers']} papers), {100*o['density']:.1f}% of cells observed, median {o['models_per_task_median']:.0f} GeoFMs per comparison. {o['models_in_1_paper']} of {o['models']} GeoFMs are evaluated by a single paper and only {o['models_in_3plus_papers']} by three or more; {o['datasets_in_2plus_papers']} of {o['datasets']} datasets are reported by more than one paper. Everything below is limited by this overlap.")
+
+# ------------------------------------------------------------------ 2 within vs out of paper
+w("## 2. Within-paper vs out-of-paper consistency")
 w()
-w("## 2. How many shared capability dimensions? (the note's one-leaderboard test)")
+w("Held-out cells (a random fifth of results hidden and predicted from everything else, including the same paper's other comparisons) vs leave-one-paper-out (all of a source's comparisons hidden). Pairwise ordering accuracy, 50% = chance:")
 w()
-w("Model: y_mt = μ_t + λ_t′θ_m + c_{m,p(t)} + η_mt on the points scale, each task in units of its residual SD; λ_t = dataset + protocol-family + sensor blocks + task part (Eq. 11/12 group ridge); c_{m,p} = paper × model implementation offset.")
+w("| | within paper (held-out cells) | out of paper (leave-one-paper-out) |"); w("|---|---|---|")
+for k_ in sorted(ho, key=int):
+    op_ = lt.get(k_, {}).get("acc_struct")
+    w(f"| K = {k_}{' (paper offset only)' if k_ == '0' else ''} | {100*ho[k_]['pair_acc']:.1f}% | {'–' if op_ is None else f'{100*op_:.1f}%'} |")
 w()
-w("**Primary criterion — leave one paper out.** Drop every task a paper reports, refit, predict the order of its GeoFMs from what the rest of the literature says about those GeoFMs and about the task's dataset, protocol and sensor. Spearman ρ between predicted and reported order, averaged over held-out tasks:")
+
+# ------------------------------------------------------------------ 3 one leaderboard / K / offset
+w("## 3. How many shared dimensions? (the note's one-leaderboard test)")
 w()
-w("| K | structured prediction | its own one-ordering | naive leaderboard (fixed) |")
-w("|---|---|---|---|")
-for k, v in K["lopo_by_K"].items(): w(f"| {k} | {v['rho_struct']:.3f} | {v['rho_global']:.3f} | {v.get('rho_board', float('nan')):.3f} |")
+w("Model: y_mt = μ_t + λ_t′θ_m + c_{m,p(t)} + η_mt, each task in units of its residual SD (pooled prior within metric family); λ_t = dataset + protocol-family + sensor blocks + task part (Eq. 11/12 group ridge); c = paper × model implementation offset. Leave-one-paper-out Spearman ρ of predicted vs reported within-task order (naive leaderboard = mean within-comparison z-score in all other sources, a K-independent single ranking):")
 w()
-w("The naive leaderboard orders the held-out paper's GeoFMs by their mean within-comparison z-score in all other papers: a single ranking that does not depend on K, so it is the fair one-leaderboard baseline.")
+w("| offset | " + " | ".join(f"K={k}" for k in lt) + " | naive leaderboard |"); w("|---|" + "---|" * (len(lt) + 1))
+for s, row in K["lopo_by_spec_and_K"].items():
+    w(f"| {s}{' (chosen)' if s == off['chosen'] else ''} | " + " | ".join(f"{row[k]['rho_struct']:.3f}" for k in row) + f" | {row[next(iter(row))]['rho_board']:.3f} |")
 w()
-w(f"Selection rule: the smallest K whose leave-one-paper-out accuracy is not credibly below the best K (paired bootstrap over papers) gives **K = {K['chosen']}**; the dataset outputs in §5 use it. Paired differences to the best K: " + "; ".join(f"K={k}: {ci(v)}" for k, v in K["paired_vs_best"].items()) + ".")
-w()
-g = d["lopo_gain_vs_one_ordering"]
-bk_ = g.get("bestK_vs_naive_leaderboard")
-w(f"**One leaderboard vs more dimensions.** Structured prediction minus the naive leaderboard: K = 1 {ci(g['K1_vs_naive_leaderboard'])}; K = {K['chosen']} {ci(g['vs_naive_leaderboard'])}" + (f"; K = {bk_['K']} (best) {ci(bk_)}." if bk_ else "."))
-w()
-w(f"**Does knowing the dataset help?** Gain over the K-factor model's own single ordering: datasets also reported by other papers {ci(g['dataset_seen_in_other_papers'])}; datasets reported only by the held-out paper (prediction from protocol and sensor) {ci(g['dataset_only_in_held_out_paper'])}. What a dataset 'measures', as estimated from other papers, does not carry over to a new paper's evaluation of it.")
-w()
-w("**Held-out cells (secondary).** Pairwise ordering accuracy of held-out cells (within-paper information leaks into this criterion through c_{m,p}, so it is not used to choose K):")
-w()
-w("| spec | paper offset | " + " | ".join(f"K={k}" for k in sorted({r['K'] for r in K['heldout_cells']})) + " |")
-w("|---|---|" + "---|" * len({r['K'] for r in K['heldout_cells']}))
-rows = {}
-for r in K["heldout_cells"]: rows.setdefault((r["spec"], r["paper_offset"]), {})[r["K"]] = r["pair_acc"]
-for (spec, po), v in rows.items(): w(f"| {spec} | {'yes' if po else 'no'} | " + " | ".join(f"{v[k]:.3f}" if k in v else "–" for k in sorted({r['K'] for r in K['heldout_cells']})) + " |")
-w()
-w("**Can K be recovered on this mask?** Simulation with the real missingness pattern, a dataset-shared loading (60% of its variance), and paper × model implementation effects (0.5 noise SD). Selection by the same leave-one-paper-out rule as the real data (SNR 1):")
-w()
-w("| K true | K selected (LOPO) | LOPO ρ by K |"); w("|---|---|---|")
-for s_ in d.get("simulation_lopo_selection", []): w(f"| {s_['K_true']} | {s_['K_selected_lopo']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in s_["lopo_rho"].items()) + " |")
-w()
-w("Held-out-cell selection and geometry recovery over three signal levels:")
-w()
-w("| K true | SNR | K selected (held-out cells) | dataset-similarity recovery (all / datasets in ≥ 2 papers) |")
-w("|---|---|---|---|")
-for s_ in d["simulation"]:
-    rec = "–" if s_["recovery_all"] is None else f"{s_['recovery_all']:.2f} / {s_['recovery_multi_paper_datasets']:.2f}"
-    w(f"| {s_['K_true']} | {s_['snr']} | {s_['K_selected_cv']} | {rec} |")
-w()
-w(f"Under the same leave-one-paper-out rule the simulation selects K = 1 even when K_true is 2 or 3: with this little cross-paper overlap, extra dimensions only pay off out of paper when they are strong. That the real data keeps improving up to K = 4 is therefore evidence of more than one shared dimension; K = {K['chosen']} is a floor, not an estimate. In an earlier run without the paper × model offset, held-out selection over-selected (K_true 1 → 2, 2 → 3): implementation effects can masquerade as capabilities, so the current site's K = 3 may partly reflect implementation effects and its broader model scope.")
-w()
-w("## 3. What organises the datasets")
-w()
-a = d["metadata_association_multi_paper"]
-w("Share of variance in dataset loadings explained by each label, over datasets reported by ≥ 2 papers (blank labels treated as missing; permutation null shuffles labels across datasets; p adjusted for the 4 labels tested). 'Direction only' normalises each loading to unit length: it asks what a dataset measures, not how strongly it separates GeoFMs.")
-w()
-w("| label | R² (full) | null | p (Bonf.) | R² (direction only) | null | p (Bonf.) | datasets |")
-w("|---|---|---|---|---|---|---|---|")
-for c, v in a.items():
-    fl, dr = v["full_loading"], v["direction_only"]
-    w(f"| {c} | {fl['r2']:.2f} | {fl['null_mean']:.2f} | {fl['p_bonferroni_4_labels']:.2f} | {dr['r2']:.2f} | {dr['null_mean']:.2f} | {dr['p_bonferroni_4_labels']:.2f} | {fl['n']} |")
-w()
-w("Read these as weak evidence at best: about 20 datasets, many-level labels, and loadings that do not transfer across papers (§2).")
-w()
-w(f"Dataset-to-dataset similarity is **not published**: simulated recovery of the similarity geometry on this mask stays below 0.7 (geometry_recoverable = {d['geometry_recoverable']}). The evidence supports a minimum number of dimensions, not which specific datasets are near-duplicates.")
-w()
-w("## 4. Do independent groups agree on what a dataset shows?")
-w()
-re_ = d["replication_evidence"]
-w(f"Grouping by exact benchmark version × protocol × training fraction × metric × setting, after removing reprints: {re_['groups_with_2plus_papers']} groups are reported by ≥ 2 papers; {re_['with_3plus_shared_geofms']} share ≥ 3 GeoFMs and {re_['with_5plus_shared_geofms']} share ≥ 5. Cross-paper reproducibility (additive paper + model fit, ≥ 5 shared GeoFMs, ≥ 5 residual df) is estimable for **{len(d['reproducibility'])}** groups. Main-text literature does not contain the independent re-evaluations needed to judge any dataset's reliability; the note's σ²_t (and with it EDI and the Eq. 6 score) requires repeated standardised runs.")
-w()
-if re_["groups"]:
-    w("| group | papers | GeoFMs in ≥ 2 papers |"); w("|---|---|---|")
-    for x in re_["groups"][:10]: w(f"| {x['group'].replace(' | ', ' · ')} | {x['papers']} | {x['geofms_in_2plus_papers']} |")
+if off["paired_vs_chosen"]:
+    w("Offset choice (D8): " + "; ".join(f"{s} (K={v['K']}) minus chosen (K={v['vs_K']}): {ci(v)}" for s, v in off["paired_vs_chosen"].items()) + ".")
     w()
-w("## 5. Datasets with independent evidence (≥ 2 papers)")
+w(f"K (D9): best K = {bestK}; chosen (smallest not credibly worse) K = {Kc}. Paired differences to the best: " + ("; ".join(f"K={k}: {ci(v)}" for k, v in K["paired_vs_best"].items()) or "–") + ".")
 w()
-w("Descriptive evidence only. Reported separation = model-count-weighted SD of reported scores within the dataset's comparisons, over each paper's own GeoFM set (note Eq. 10: reported separation, not quality or discriminative power). LOPO ρ = mean leave-one-paper-out Spearman over the dataset's tasks (structured / naive leaderboard), with the number of tasks and median GeoFMs behind it. In-sample loading summaries (shared signal, Eq. 8 information share) are kept in the JSON but not shown: they do not transfer across papers (§2) and are driven by single small comparisons (e.g. RESISC45 rests on one 4-GeoFM comparison).")
+w(f"Against a single ranking (naive leaderboard, ρ = {lt[next(iter(lt))]['rho_board']:.3f}): K = 1 {ci(g['K1_vs_naive_leaderboard'])}; K = {Kc} (chosen) {ci(g['K_chosen_vs_naive_leaderboard'])}; K = {kb['K']} (best, selected — optimistic) {ci(kb)}.")
 w()
-w("| dataset | domain | papers | comparisons | smallest comparison | reported separation (pts) | LOPO ρ: structured / leaderboard (tasks, GeoFMs) |")
-w("|---|---|---|---|---|---|---|")
-ds = [(n, x) for n, x in d["datasets"].items() if x["papers"] >= 2]
-ds.sort(key=lambda t: (-t[1]["papers"], -t[1]["comparisons"]))
-f = lambda v, p=2: "–" if v is None else f"{v:.{p}f}"
-for n, x in ds:
-    lo = f"{f(x['lopo_rho'])} / {f(x['lopo_rho_naive_leaderboard'])} ({x['lopo_tasks']}, {f(x['lopo_models_median'],0)})" if x["lopo_tasks"] else "–"
-    w(f"| {n} | {str(x['domain']).split('· ')[-1]} | {x['papers']} | {x['comparisons']} | {x['smallest_comparison']} | {f(x['reported_separation_pts'],1)} | {lo} |")
+if d["simulation_offset"]:
+    w("**What the offset costs (simulation on the real mask, true K = 2 with dataset-shared loadings, SNR 1).** Recovery = correlation of true and estimated dataset-similarity structure among datasets in ≥ 2 sources; dataset gain = how much the dataset-structured prediction beats the model's own single ordering out of paper.")
+    w()
+    w("| implementation effects | offset | LOPO ρ | dataset gain (seen datasets) | geometry recovery |"); w("|---|---|---|---|---|")
+    for s in d["simulation_offset"]:
+        w(f"| {s['paper_effect']} SD | {s['offset']} | {s['lopo_rho']:.3f} | {s['dataset_gain_seen']:+.3f} | {s['recovery_multi_source_datasets']:.2f} |")
+    w()
+if d["simulation_K"]:
+    w("**Can leave-one-paper-out recover K?** (chosen offset, SNR 1)")
+    w()
+    w("| K true | K chosen by the rule | best K | LOPO ρ by K |"); w("|---|---|---|---|")
+    for s in d["simulation_K"]: w(f"| {s['K_true']} | {s['K_selected']} | {s['best_K']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in s["lopo_rho"].items()) + " |")
+    w()
+
+# ------------------------------------------------------------------ 4 datasets
+w("## 4. Do datasets measure different things?")
 w()
-n1 = sum(1 for x in d["datasets"].values() if x["papers"] < 2)
-w(f"{n1} further datasets are reported by a single paper; their loadings cannot be separated from that paper's GeoFM selection and implementation, so no dataset-level quantity is reported for them.")
+if seen: w(f"Out of paper, for datasets also reported by other sources: {ci(seen)}." + (f" Datasets seen only in the held-out source: {ci(unseen)}." if unseen else ""))
 w()
-w("## 6. Limits and open decisions")
+w("Variance in dataset loadings explained by each label, over datasets reported by ≥ 2 sources (blank labels missing; permutation null over datasets; Bonferroni over 4 labels). 'Direction only' asks what a dataset measures, not how strongly it separates GeoFMs:")
 w()
-w("- **Main-text rule loses some results.** Several papers' main-text tables are condensed versions of appendix tables that the workbook extracted instead (e.g. Galileo, SatCLIP, Prithvi-EO-2.0 GEO-Bench results). Those main-text numbers are currently lost. Decide whether to re-extract the main tables or keep appendix rows that a main table reprints.")
-w("- **GEO-Bench-2 leaderboard** is excluded as not a paper's main text; `--include-leaderboard` adds it.")
-w("- Uncategorised models were scoped by hand (`data/model_scope.json`); `vanilla_mae` and `convmae` are excluded because the same id is EO-pretrained in some papers and ImageNet-pretrained in others.")
-w("- Geography and time blocks of Eq. 11 are not fitted: the workbook has no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.")
-w("- The number of shared dimensions is not identifiable on this evidence (≥ 2; out-of-paper accuracy still rising at K = 4).")
-w("- `data/model_profiles.json` (existing build) still publishes θ as a nuisance output and `benchmarks.html` is still titled 'Benchmark ranking'; both predate this analysis.")
+w("| label | R² (full) | null | p (Bonf.) | R² (direction) | null | p (Bonf.) | datasets |"); w("|---|---|---|---|---|---|---|---|")
+for c, v in assoc.items():
+    a, b = v["full_loading"], v["direction_only"]
+    w(f"| {c} | {a['r2']:.2f} | {a['null_mean']:.2f} | {a['p_bonferroni_4_labels']:.2f} | {b['r2']:.2f} | {b['null_mean']:.2f} | {b['p_bonferroni_4_labels']:.2f} | {a['n']} |")
+w()
+w("Dataset-to-dataset similarity " + ("is reported in the JSON (`nearest`) for datasets in ≥ 2 sources: simulated recovery on this mask ≥ 0.7." if d["geometry_recoverable"] else "is **not published**: simulated recovery on this mask is below 0.7."))
+w()
+
+# ------------------------------------------------------------------ 5 reliability
+w("## 5. Seed-noise reliability where it is reported (note Eq. 3–6)")
+w()
+if rel["by_dataset_protocol"]:
+    w(f"Comparisons where ≥ 3 GeoFMs report a seed SD: {rel['comparisons']}. σ = median seed SD of one evaluation (points, or log-error ×100 for regression); spread = SD of the reported scores; score = τ²/(τ²+σ²) with τ² = spread² − σ²/n_reps: the share of the comparison's model differences that survives re-seeding, for its models and implementation. 'If single runs' treats every reported value as one run (most conservative). {100*rel['n_reps_assumed_3_share']:.0f}% of comparisons do not state how many runs a reported mean averages; 3 is assumed.")
+    w()
+    w("| dataset | protocol | comparisons | sources | GeoFMs | σ | spread | score (range) | lowest 5% bound | if single runs |"); w("|---|---|---|---|---|---|---|---|---|---|")
+    for x in sorted(rel["by_dataset_protocol"], key=lambda x: (-x["sources"], x["score"])):
+        w(f"| {x['dataset']} | {x['protocol']} | {x['comparisons']} | {x['sources']} | {x['models_median']:.0f} | {x['sigma_median']:.2f} | {x['spread_median']:.2f} | {x['score']:.2f} ({x['score_min']:.2f}–{x['score_max']:.2f}) | {f(x['score_lo_min'])} | {x['score_if_single_runs']:.2f} |")
+    w()
+else:
+    w("No comparison reports seed SDs for ≥ 3 GeoFMs in this configuration.")
+    w()
+
+# ------------------------------------------------------------------ 6 reproducibility
+w("## 6. Do independent sources agree? (cross-source reproducibility)")
+w()
+for nm_, R in (("Strict", rs), ("Loose", rl)):
+    w(f"**{nm_}** — {R['grouping']}; ≥ {R['min_shared']} GeoFMs shared, ≥ {R['min_df']} residual df: {R['groups_with_2plus_sources']} groups reported by ≥ 2 sources, {R['with_3plus_shared']} share ≥ 3 GeoFMs, {R['with_5plus_shared']} share ≥ 5; estimable: {len(R['estimable'])}.")
+    w()
+    if R["estimable"]:
+        w("| group | sources | GeoFMs | median Kendall τ between sources | cross-source disagreement σ_xp | stable between-model SD | agreement τ²/(τ²+σ²_xp) (90% CI) |"); w("|---|---|---|---|---|---|---|")
+        for x in R["estimable"]:
+            w(f"| {x['group']} | {x['n_papers']} | {x['n_models']} | {x['kendall_tau_median']:.2f} | {x['sigma_xp']:.2f} | {x['tau_b']:.2f} | {x['reproducibility']:.2f} ({f(x['rep_lo'])}–{f(x['rep_hi'])}) |")
+        w()
+w("σ_xp is disagreement between implementations about the same GeoFM (protocol and implementation differences plus seed noise of a mean); it is not seed noise.")
+w()
+
+# ------------------------------------------------------------------ 7 datasets table
+w("## 7. Datasets reported by ≥ 2 sources (descriptive)")
+w()
+w("Reported separation = model-count-weighted SD of reported scores within the dataset's comparisons (points-scale comparisons only), over each source's own GeoFMs (note Eq. 10: not quality). LOPO ρ = leave-one-paper-out Spearman over the dataset's comparisons at the best K (structured / naive leaderboard), with comparisons and median GeoFMs behind it.")
+w()
+w("| dataset | domain | sources | comparisons | smallest | reported separation | LOPO ρ: structured / leaderboard (n, GeoFMs) |"); w("|---|---|---|---|---|---|---|")
+for n, x in sorted(((n, x) for n, x in d["datasets"].items() if x["sources"] >= 2), key=lambda t: (-t[1]["sources"], -t[1]["comparisons"])):
+    lo_ = f"{f(x['lopo_rho'])} / {f(x['lopo_rho_naive_leaderboard'])} ({x['lopo_tasks']}, {f(x['lopo_models_median'],0)})" if x["lopo_tasks"] else "–"
+    w(f"| {n} | {str(x['domain']).split('· ')[-1]} | {x['sources']} | {x['comparisons']} | {x['smallest_comparison']} | {f(x['reported_separation_pts'],1)} | {lo_} |")
+w()
+w(f"{sum(1 for x in d['datasets'].values() if x['sources'] < 2)} further datasets are reported by a single source; no dataset-level quantity is reported for them.")
+w()
+
+# ------------------------------------------------------------------ 8 sensitivity
+w("## 8. Sensitivity: which findings depend on the analysis decisions")
+w()
+runs = [("v1 (main text, no leaderboard, no regression, offset all)", ROOT / "data" / "dataset_analysis_v1.json")] + \
+       [(p.stem.replace("dataset_analysis_sens_", "v2 · "), p) for p in sorted((ROOT / "data").glob("dataset_analysis_sens_*.json"))] + [("**v2 (this report)**", ROOT / "data" / "dataset_analysis.json")]
+def labs(a_): return ", ".join(c for c, v in a_.items() if min(v["full_loading"]["p_bonferroni_4_labels"], v["direction_only"]["p_bonferroni_4_labels"]) < 0.05) or "none"
+def head(j):
+    if j.get("version") == 2:
+        g_ = j["lopo_gain"]; bk_ = j["K"]["best"]
+        se = next((v for k, v in g_.items() if k.startswith("dataset_seen_in_other_sources")), None)
+        return dict(ev=f"{j['overlap']['models']}×{j['overlap']['tasks']}, {j['overlap']['sources']} src", multi=j["overlap"]["datasets_in_2plus_sources"], K=f"{j['K']['chosen']} / {bk_}",
+                    off=j["offset"]["chosen"], k1=ci(g_["K1_vs_naive_leaderboard"]), kb=ci(g_["bestK_vs_naive_leaderboard"]), seen=ci(se) if se else "–",
+                    lab=labs(j["metadata_association_multi_source"]), geo="yes" if j["geometry_recoverable"] else "no", rel=str(j["seed_noise_reliability"]["comparisons"]),
+                    rep=f"{len(j['reproducibility']['strict']['estimable'])} / {len(j['reproducibility']['loose']['estimable'])}")
+    g_ = j["lopo_gain_vs_one_ordering"]; se = g_.get("dataset_seen_in_other_papers")
+    return dict(ev=f"{j['overlap']['models']}×{j['overlap']['tasks']}, {j['overlap']['papers']} src", multi=j["overlap"]["datasets_in_2plus_papers"],
+                K=f"{j['K']['chosen']} / {g_.get('bestK_vs_naive_leaderboard', {}).get('K', '–')}", off="all", k1=ci(g_["K1_vs_naive_leaderboard"]),
+                kb=ci(g_["bestK_vs_naive_leaderboard"]) if "bestK_vs_naive_leaderboard" in g_ else "–", seen=ci(se) if se else "–",
+                lab=labs(j["metadata_association_multi_paper"]), geo="yes" if j["geometry_recoverable"] else "no", rel="0", rep=f"{len(j['reproducibility'])} / –")
+cols = [("ev", "evidence (GeoFMs × tasks)"), ("multi", "datasets in ≥ 2 sources"), ("K", "K chosen / best"), ("off", "offset"), ("k1", "K=1 vs leaderboard"), ("kb", "best K vs leaderboard"),
+        ("seen", "dataset transfer (seen)"), ("lab", "labels surviving correction"), ("geo", "similarity recoverable"), ("rel", "comparisons with seed-noise score"), ("rep", "reproducibility groups (strict / loose)")]
+H = [(nm_, head(json.loads(p.read_text()))) for nm_, p in runs if p.exists()]
+w("| | " + " | ".join(nm_ for nm_, _ in H) + " |"); w("|---|" + "---|" * len(H))
+for k_, lab in cols: w(f"| {lab} | " + " | ".join(str(h[k_]) for _, h in H) + " |")
+w()
+
+# ------------------------------------------------------------------ 9 limits
+w("## 9. Limits")
+w()
+w("- Single reported scores: the residual mixes stable task-specific interaction with evaluation noise (note Eq. 9); seed-noise scores exist only where seed SDs are printed, and describe one implementation.")
+w("- The best-K figures are selected among 12 configurations and are optimistic (D14); the leave-one-paper-out test has limited power on this evidence (§3 simulation).")
+w("- In single-domain sources, domain-specific capability and implementation effects are not separable (D8).")
+w("- Geography and time blocks of Eq. 11 are not fitted: no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.")
+w("- Points near the ceiling compress differences for classification benchmarks (D4).")
 (ROOT / "docs" / "dataset-analysis.md").write_text("\n".join(L) + "\n")
 print("wrote docs/dataset-analysis.md")
