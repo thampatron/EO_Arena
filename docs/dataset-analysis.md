@@ -4,12 +4,12 @@ Analysis of 2026-11-04 on the GeoFM meta-analysis workbook v4, following *GeoFM 
 
 ## Findings
 
-1. **Datasets do carry their own GeoFM ordering across papers.** Over 814 pairs of comparisons on the same dataset by different sources, orderings agree with Kendall τ = 0.24, against 0.09 for different datasets across sources (21,583 pairs): a dataset-identity effect of +0.15 (90% CI +0.01 to +0.48) (cluster bootstrap over sources). It holds with each dataset as its own control (+0.13 (90% CI +0.02 to +0.43)), within the same protocol family (+0.18 (90% CI +0.03 to +0.48)) and without possible shared-codebase source pairs (+0.15 (90% CI +0.02 to +0.48)). Under a single ranking plus noise this contrast would be zero. Model-free; median 4 shared GeoFMs per pair.
+1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = 0.24) than different-dataset comparisons across sources (0.09); under a single ranking plus noise the two would be equal. The evidence comes from 14 source pairs: 11 of them show a positive contrast (one-sided sign test p = 0.029; unweighted mean +0.16), and leaving out any one source keeps it between +0.12 and +0.23. 85% of the same-dataset pairs come from six datasets (EuroSAT, BigEarthNet v1 / v2 (reBEN), So2Sat LCZ42 (LCZ-S2), Brick kilns, Cashew plantation, South Africa crop type), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone. Pooled estimate +0.15 (90% CI +0.01 to +0.48); the interval is wide and skewed because few source pairs are informative.
 2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = 0.26) than across papers (0.09): +0.17 (90% CI +0.04 to +0.27). A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.
-3. **Out of paper, more than one capability dimension beats a single leaderboard.** Predicting a held-out source's orderings from what other sources say about the GeoFMs and about each comparison's dataset, protocol and sensor, the best model (K = 3, selected among 12 configurations) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14); K = 1 differs by -0.04 (90% CI -0.14 to +0.05). The leaderboard gets its direction for free, so this is conservative toward one ranking. Anchored check (loading from half a comparison's GeoFMs, other half predicted): K = 3 vs the leaderboard on the same half +0.06 (90% CI -0.04 to +0.14). The smallest K not credibly worse than the best is 2; calibrated simulation of this rule: K_true = 1 → selected 1 (best 1); K_true = 2 → selected 2 (best 2); K_true = 3 → selected 3 (best 3).
+3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = 3) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14) — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = 2 gives +0.05 (90% CI -0.02 to +0.11). Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = 3 against K = 1 within the same model — gives +0.13 (90% CI +0.03 to +0.21), also after selection. Anchored check: +0.06 (90% CI -0.04 to +0.14). Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.
 4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by -0.00 (90% CI -0.08 to +0.07). Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).
 5. **Metadata labels do not credibly organise the datasets.** Domain, subdomain, task type and sensor all fail after correction for the four labels tested.
-6. **Where seed noise is reported, model differences mostly survive re-seeding — with wide uncertainty.** 152 comparisons (≥ 6 GeoFMs, seed SDs printed for ≥ 3) across 57 dataset × protocol pairs: 73 have a 90% lower bound ≥ 0.8 on the share of model spread that survives re-seeding (note Eq. 6), 112 ≥ 0.5. This is reliability within one implementation.
+6. **Where seed noise is reported, model differences mostly survive re-seeding — with wide uncertainty.** 152 comparisons (≥ 6 GeoFMs, seed SDs printed for ≥ 3) across 57 dataset × protocol pairs: 73 have a 90% lower bound ≥ 0.8 on the share of model spread that survives re-seeding (note Eq. 6), 112 ≥ 0.5; comparisons from one paper share settings and are not independent (per dataset × protocol counts in §5). This is reliability within one implementation, and rounding of printed SDs is not yet propagated.
 7. **Independent groups rarely evaluate the same GeoFMs on the same dataset and protocol.** Cross-source reproducibility is estimable for 0 strict and 2 loose dataset groups: BioMassters (2 sources, 6 GeoFMs, agreement 0.99); PASTIS / PASTIS-R (4 sources, 8 GeoFMs, agreement 0.89). Close values between sources can mean a shared evaluation codebase rather than independent replication. Standardised re-evaluation of the same GeoFMs by different groups is the missing evidence.
 
 ## 1. Evidence base
@@ -50,6 +50,25 @@ Kendall τ between the GeoFM orderings of every pair of comparisons sharing ≥ 
 | dataset identity (same − different dataset, across sources) | +0.15 (90% CI +0.01 to +0.48) | +0.18 (90% CI +0.03 to +0.48) | +0.15 (90% CI +0.02 to +0.48) |
 | … each dataset as its own control | +0.13 (90% CI +0.02 to +0.43) | +0.16 (90% CI +0.04 to +0.44) | +0.13 (90% CI +0.01 to +0.43) |
 | paper specificity (same − different source, different datasets) | +0.17 (90% CI +0.04 to +0.27) | +0.17 (90% CI +0.04 to +0.30) | +0.17 (90% CI +0.05 to +0.27) |
+
+Per source pair (cross-source pairs on the same dataset vs on different datasets): 11 of 14 positive, one-sided sign test p = 0.029; leave-one-source-out range +0.12 to +0.23.
+
+| sources | same-dataset pairs | contrast | datasets |
+|---|---|---|---|
+| galileo × geocross-bench | 232 | +0.13 | BigEarthNet v1 / v2 (reBEN), Brick kilns, Cashew plantation, EuroSAT … |
+| galileo × olmoearth_v12 | 127 | +0.21 | BigEarthNet v1 / v2 (reBEN), BreizhCrops, Brick kilns, Cashew plantation … |
+| geocross-bench × olmoearth_v12 | 82 | +0.20 | BigEarthNet v1 / v2 (reBEN), Brick kilns, Cashew plantation, EuroSAT … |
+| earthshift × geocross-bench | 72 | -0.06 | BigEarthNet v1 / v2 (reBEN), EuroSAT, Sen1Floods11 |
+| earthshift × galileo | 64 | +0.31 | BigEarthNet v1 / v2 (reBEN), EuroSAT |
+| croma × galileo | 48 | -0.16 | BigEarthNet v1 / v2 (reBEN), EuroSAT |
+| dofa × galileo | 40 | +0.08 | BigEarthNet v1 / v2 (reBEN), Brick kilns, Cashew plantation, EuroSAT … |
+| galileo × panopticon | 40 | +0.14 | BigEarthNet v1 / v2 (reBEN), Brick kilns, Cashew plantation, EuroSAT … |
+| geocross-bench × panopticon | 40 | +0.02 | BigEarthNet v1 / v2 (reBEN), Brick kilns, Cashew plantation, EuroSAT … |
+| pangea × tessera | 36 | +0.57 | BioMassters, PASTIS / PASTIS-R |
+| earthshift × olmoearth_v12 | 16 | -0.01 | BigEarthNet v1 / v2 (reBEN), EuroSAT |
+| anysat × galileo | 8 | +0.18 | So2Sat LCZ42 (LCZ-S2) |
+| pangea × sustainfm | 6 | +0.30 | HLS Burn Scars, MADOS |
+| geobench_v2_leaderboard × prithvi_v2 | 3 | +0.37 | BigEarthNet v1 / v2 (reBEN), ForestNet, So2Sat LCZ42 (LCZ-S2) |
 
 Possible shared-codebase source pairs (matched values within a median of 1 point): none. Intervals: cluster bootstrap over sources (2,000 draws).
 

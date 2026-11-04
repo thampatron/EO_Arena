@@ -76,7 +76,8 @@ Excluded at three levels:
 
 ## D9 — Number of dimensions K and the one-leaderboard test · frozen (rule)
 - **Primary, block-predicted leave-one-paper-out.** Hold out every comparison of a source and refit. Predict each held-out comparison's GeoFM order from its dataset, protocol and sensor blocks and the GeoFMs' capability vectors, using nothing from the comparison itself.
-- **One-ranking comparator:** the plain naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources). It also uses nothing from the comparison, and its sign is known a priori, so the test is conservative toward one ranking.
+- **Leaderboard comparator:** the plain naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources). It also uses nothing from the comparison. Beating it shows that a dataset- and protocol-aware model predicts better than a fixed ranking. It is **not** a dimensionality test: in calibrated simulation with one true dimension, a one-factor structured model beats the leaderboard by +0.28, because block-predicted loadings learn each dataset's direction and size. (An earlier v2.1 draft called this test "conservative toward one ranking"; that was wrong.)
+- **Dimensionality test:** structured K ≥ 2 against structured K = 1, in the same block-predicted family. The best K is selected among 12 configurations on the same criterion it is scored on, so its gains are optimistic. Nested selection (choose offset and K within the training sources) is an agent-backlog item.
 - **K rule:** the smallest K whose accuracy is not credibly below the best K (paired bootstrap over sources). The offset option (D8) uses the same criterion.
 - **Secondary, anchored.** Estimate the held-out comparison's loading from a random half of its GeoFMs and predict the other half (10 splits), against the plain leaderboard scored on the same half.
 - An earlier v2.1 draft compared the anchored model with a leaderboard whose sign was also re-estimated from 3–5 GeoFMs. That comparator scored ρ 0.05 against 0.21 for the plain leaderboard and was replaced before any result was reported.
@@ -90,6 +91,7 @@ Chosen in v1 (best of 1 / 3 / 10 for every specification). Not re-tuned, to avoi
 - **σ²_t:** median over models of the squared seed SD of one evaluation. Each printed SD is floored at half its last printed digit, because a printed "± 0.1" means only that the SD is at least 0.05.
 - **Score:** τ² = τ²_obs − σ²_t / n_reps (3 runs assumed when the paper does not say, with a single-run sensitivity), and score = τ² / (τ² + σ²_t).
 - **Interval:** 90% by bootstrap over models. Comparisons are counted by their **lower bound**, not their point estimate.
+- **Note:** in v2.1 the floor binds on no cell (it is a no-op). Rounding uncertainty in printed SDs is not yet propagated; that is an agent-backlog item.
 - **Meaning:** the share of the comparison's model spread that survives re-seeding, for its models and implementation. It is not cross-implementation reproducibility, and it is never computed from borrowed or assumed noise.
 
 ## D12 — Cross-source reproducibility at two groupings · frozen
@@ -121,6 +123,7 @@ For every pair of comparisons sharing ≥ 4 GeoFMs, compute Kendall τ of their 
   - τ for the same dataset across sources;
   - τ for different datasets within a source.
 - The calibrated truth is used to test K recovery under the D9 rule and the cost of each D8 option.
+- **Limit:** the calibration is imperfect. Within-source τ is 0.12 simulated vs 0.26 real, and two parameters sit at grid edges, so the simulated world is easier than the real one (higher predictability, weaker paper effects). Its K recovery shows the rule is unbiased in that world, not that K is identified on the real data. Recalibration on an extended grid is an agent-backlog item.
 
 ## D17 — Optimiser · frozen
 Each structured fit starts from:
@@ -128,4 +131,4 @@ Each structured fit starts from:
 - the SVD of the zero-filled matrix;
 - four random starts.
 
-It keeps the lowest penalised objective. Multi-start runs on the first reweighting round; later rounds warm-start from the previous solution. At K ≥ 3 different starts reach different optima (K = 4: objectives 1267–1294 from six starts on the full data), so restarts are needed.
+It keeps the lowest penalised objective. Multi-start runs on the first reweighting round; later rounds warm-start from the previous solution, which the review checked does not reintroduce a bad optimum. **As run in v2.1, leave-one-paper-out fits use 1 random start (3 starts in all) and final fits use 3.** At K ≥ 3 different starts reach different optima (K = 4: objectives 1267–1294 from six starts on the full data), so the "K = 4 worse than K = 3" comparison may partly be an optimiser artefact. Raising restarts for K ≥ 3 is an agent-backlog item.
