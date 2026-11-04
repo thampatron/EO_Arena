@@ -31,7 +31,8 @@ w()
 w("## Findings")
 w()
 wp = ho[str(bestK)]["pair_acc"] if str(bestK) in ho else ho["1"]["pair_acc"]; op = lt[str(bestK)]["acc_struct"]
-w(f"1. **GeoFM orderings are far more consistent within a paper than across papers.** A paper's own other comparisons predict a GeoFM's held-out position with {100*wp:.0f}% pairwise accuracy (a per-paper model offset alone: {100*ho['0']['pair_acc']:.0f}%); the rest of the literature predicts a new paper's orderings with {100*op:.0f}% (Spearman ρ = {lt[str(bestK)]['rho_struct']:.2f}). Much of what a paper reports as a GeoFM's advantage is specific to that paper's model set, protocol and implementation.")
+off_only = f" (a per-paper model offset alone: {100*ho['0']['pair_acc']:.0f}%)" if off["chosen"] != "none" else ""
+w(f"1. **GeoFM orderings are far more consistent within a paper than across papers.** At K = {bestK}, a paper's own other comparisons predict a GeoFM's held-out position with {100*wp:.0f}% pairwise accuracy{off_only}; the rest of the literature predicts a new paper's orderings with {100*op:.0f}% (Spearman ρ = {lt[str(bestK)]['rho_struct']:.2f}). Much of what a paper reports as a GeoFM's advantage is specific to that paper's model set, protocol and implementation.")
 k1, kb = g["K1_vs_naive_leaderboard"], g["bestK_vs_naive_leaderboard"]
 board = lt[next(iter(lt))]["rho_board"]
 simK = d.get("simulation_K") or []
@@ -73,6 +74,7 @@ w()
 w("| | within paper (held-out cells) | out of paper (leave-one-paper-out) |"); w("|---|---|---|")
 for k_ in sorted(ho, key=int):
     op_ = lt.get(k_, {}).get("acc_struct")
+    if k_ == "0" and off["chosen"] == "none": continue
     w(f"| K = {k_}{' (paper offset only)' if k_ == '0' else ''} | {100*ho[k_]['pair_acc']:.1f}% | {'–' if op_ is None else f'{100*op_:.1f}%'} |")
 w()
 
