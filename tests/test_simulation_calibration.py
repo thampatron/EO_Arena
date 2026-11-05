@@ -95,3 +95,13 @@ def test_choose_calibration_picks_closest_and_flags_edges():
     # non-finite statistics are never chosen
     res3 = res + [((0.0, 2.0), {k: np.nan for k in db.CAL_TARGETS})]
     assert db.choose_calibration(res3, targets, axes)["params"] == (0.5, 1.0)
+
+
+@pytest.mark.xfail(strict=True, raises=IndexError,
+                   reason="calibration_target_intervals has no zero-width / missing interval for a single-source table (backlog P-N2e)")
+def test_single_source_table_gives_zero_width_intervals():
+    mask, td, tp = design(papers=1, tasks_per_paper=12)
+    Y, _, _ = db.simulate(mask, td, tp, 2, snr=2.0, general_mean=0.6, seed=5)
+    T = db.calibration_target_intervals(Y, mask, td, tp, B=50)
+    for k in ("tau_ss_dd",):
+        assert T[k]["ci90"][0] == T[k]["ci90"][1] == T[k]["value"]
