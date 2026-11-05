@@ -154,7 +154,7 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     if not (warm and theta_init is not None):             # warm: refine from theta_init only (later reweighting rounds)
         starts += [board_start(Y, mask, K), svd_start(Y, mask, mu0, K)]
         starts += [rng.normal(size=(M, K)) * 0.5 for _ in range(n_restarts)]
-    best = None
+    best = None; start_objs = []; start_iters = []                          # penalised objective reached from every start (recorded)
     for th in starts:
         th = th.copy(); mu = mu0.copy(); U = np.zeros((T, K)); B = {g: np.zeros((n, K)) for g, n in nlev.items()}
         C = None if pidx is None else np.zeros((M, nP))
@@ -193,15 +193,18 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
             if prev - obj < tol * max(obj, 1e-12):
                 break
             prev = obj
+        start_objs.append(float(obj)); start_iters.append(int(it))
         if best is None or obj < best[0]:
             best = (obj, mu, th, B, U, it, C)
     obj, mu, th, B, U, it, C = best
+    labels = (["init"] if theta_init is not None else []) + (["board", "svd"] + ["random"] * n_restarts if len(starts) > (theta_init is not None) else [])
     # identifiability convention: centre and whiten theta over models; push the transform into the loadings
     c = th.mean(0); mu = mu + (U + _group_parts(B, groups, T, K)) @ c; th = th - c
     Lc = np.linalg.cholesky(np.cov(th, rowvar=False).reshape(K, K) + 1e-9 * np.eye(K))
     th = th @ np.linalg.inv(Lc).T
     U = U @ Lc; B = {g: v @ Lc for g, v in B.items()}
-    return StructuredFit(K, mu, th, B, U, groups, obj, it, C=C, paper_idx=pidx)
+    return StructuredFit(K, mu, th, B, U, groups, obj, it, C=C, paper_idx=pidx,
+                         meta={"start_objs": start_objs, "start_iters": start_iters, "start_labels": labels, "best_start": int(np.argmin(start_objs))})
 
 
 def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_group=None, **kw):
@@ -222,11 +225,12 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_
     psi = np.ones(T)
     for gg in np.unique(grp):                              # start: one pooled level per metric family
         psi[grp == gg] = np.nanmedian(sd0[grp == gg]) ** 2
-    th_prev = None
+    th_prev = None; round0 = {}
     for rnd_ in range(n_rounds):
         s = np.sqrt(psi)
         if rnd_ == 0 or th_prev is None:
             fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, **kw)
+            round0 = dict(fit.meta)                        # the multi-start choice is made here (later rounds warm-start)
         else:
             kw_w = {k_: v_ for k_, v_ in kw.items() if k_ not in ("theta_init", "warm")}
             fit = fit_structured(np.where(mask, Y / s[None, :], 0.0), mask, K, groups, theta_init=th_prev, warm=True, **kw_w)
@@ -245,6 +249,7 @@ def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_
     s_new = np.sqrt(psi)                                  # express the final fit in the final psi's units
     kw_w = {k_: v_ for k_, v_ in kw.items() if k_ not in ("theta_init", "warm")}
     fit = fit_structured(np.where(mask, Y / s_new[None, :], 0.0), mask, K, groups, theta_init=th_prev, warm=th_prev is not None, **kw_w); fit.scale = s_new
+    fit.meta["round0"] = round0
     return fit, psi
 
 
@@ -263,7 +268,8 @@ def _rank_scores(y, p):
     return float(rho), acc, int(keep.sum())
 
 
-def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, anchor_splits=10, anchor_min=6, anchor_ridge=1.0, **kw):
+def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, anchor_splits=10, anchor_min=6, anchor_ridge=1.0,
+                        fold_meta=None, **kw):
     """For each paper: drop all its tasks, refit, predict each dropped task's model ordering from lambda = sum of its
     learned group blocks (u_t is unknown for an unseen task, so it is 0), for models that keep >= min_theta_tasks
     observed tasks elsewhere. Returns per-task rows: paper, task index, n models scored, Spearman, pairwise accuracy.
@@ -276,7 +282,10 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
     (rho_anch); the one-ranking comparator does the same with the naive leaderboard as a 1-d predictor (rho_anch_board),
     and rho_half_board scores the plain leaderboard (sign known a priori) on the same half B: rho_anch - rho_half_board
     is a test of K-dimensional capability against a single ranking that favours the ranking. rho_anch_board re-estimates
-    the leaderboard's sign from half A and is handicapped (kept for reference only)."""
+    the leaderboard's sign from half A and is handicapped (kept for reference only).
+
+    fold_meta: optional list; one dict per held-out paper is appended with the fit's multi-start record (objective
+    reached from every start, at the round where starts are compared), for optimiser-sensitivity reports."""
     task_paper = np.asarray(task_paper)
     rows = []
     arng = np.random.default_rng(12345)
@@ -296,6 +305,8 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
         if m2[:, ~hold].sum() == 0:
             continue
         fit = fit_heteroskedastic(Y, m2, K, groups, **kw)[0] if hetero else fit_structured(Y, m2, K, groups, **kw)
+        if fold_meta is not None:
+            fold_meta.append(dict(paper=p, **(fit.meta.get("round0", fit.meta) if hetero else fit.meta)))
         L = fit.lam(include_u=False)
         gen = (fit.mu[None, ~hold] + fit.theta @ fit.lam()[~hold].T).mean(1)   # global "general ability" score
         Z = np.full(Y.shape, np.nan)

@@ -8,6 +8,10 @@ ROOT = Path(__file__).resolve().parent.parent
 d = json.loads((ROOT / "data" / "dataset_analysis.json").read_text())
 L = []
 def w(s=""): L.append(s)
+_rs_p = ROOT / "data" / "dataset_analysis_sens_restarts.json"     # optimiser-restart sensitivity (D17, backlog N3), if run
+RS = json.loads(_rs_p.read_text()) if _rs_p.exists() else None
+if RS and RS.get("offset_spec") != d["offset"]["chosen"]: RS = None
+RS_BASE = "v2.1 (3 starts)"; RS_BIG = next((k for k in RS["by_setting"] if k != RS_BASE), None) if RS else None
 def ci(x, p=2): return f"{x['mean']:+.{p}f} (90% CI {x['ci90'][0]:+.{p}f} to {x['ci90'][1]:+.{p}f})"
 def credible(x): return x["ci90"][0] > 0 or x["ci90"][1] < 0
 f = lambda v, p=2: "–" if v is None else f"{v:.{p}f}"
@@ -46,6 +50,9 @@ simK = d.get("simulation_K") or []
 sk = "; ".join(f"K_true = {x['K_true']} → selected {x['K_selected']} (best {x['best_K']})" for x in simK)
 kv = K["paired_vs_best"]; k1best = kv.get("1") or kv.get(1)
 w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + " Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.")
+if RS and (RS["by_setting"][RS_BIG].get("K_rule") or {}).get("smallest_not_credibly_worse") not in (None, Kc):
+    _kr = RS["by_setting"][RS_BIG]["K_rule"]
+    L[-1] += f" With {RS_BIG} per held-out source instead of 3 (optimiser sensitivity, §3) the same rule chooses K = {_kr['smallest_not_credibly_worse']}, so the chosen K and its comparison with the leaderboard depend on the optimiser."
 seen_ = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
 if seen_:
     w(f"4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by {ci(seen_)}. Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).")
@@ -138,6 +145,40 @@ if d["simulation_offset"]:
     for x in d["simulation_offset"]: w(f"| {x['offset']} | {x['rho']:.3f} | {x['board']:.3f} | {x['dataset_gain_seen']:+.3f} | {x['recovery_multi_source_datasets']:.2f} |")
     w()
 
+if RS:
+    big, nb = RS_BIG, RS_BIG.split()[0]
+    bs, bo, fo, cs = RS["by_setting"][big], RS["by_setting"][RS_BASE], RS["folds"], RS["contrasts"]
+    Ks_ = [k for k in ("3", "4") if k in fo]; allK = sorted(k for k in bs if k.isdigit())
+    repro = all(bo[k].get("reproduces_build") for k in allK)
+    w(f"**Optimiser restarts (D17, sensitivity).** The leave-one-paper-out fits above use 3 starts (naive-leaderboard seed, SVD, 1 random). Every fold of the chosen offset was refitted with {nb} starts: the same 3 plus {RS['random_starts'] - 1} more random starts, keeping the lowest objective at the reweighting round where the build compares starts"
+      + ("; rerunning with 3 starts reproduces the table above exactly. " if repro else ". ")
+      + "Within a fold the objectives reached from the starts span a median of " + " and ".join(f"{100 * fo[k]['rel_range_median']:.1f}% of the fold's best (max {100 * fo[k]['rel_range_max']:.1f}%) at K = {k}" for k in Ks_)
+      + "; a median of " + " and ".join(f"{fo[k]['starts_within_tol_median']:.0f}" for k in Ks_) + f" start(s) reach the fold's best to within {100 * RS['rel_tol']:.1f}%, and one of the added starts gives the lowest objective in "
+      + " and ".join(f"{fo[k]['folds_best_from_extra_start']} of {fo[k]['n_folds']} folds" for k in Ks_) + " respectively. "
+      + "Most of these starts stop at the 200-iteration cap (" + ", ".join(f"K = {k}: {fo[k]['starts_at_iteration_cap']} of {fo[k]['starts_total']}" for k in Ks_) + "), so the spread reflects incomplete convergence as well as distinct optima.")
+    w()
+    w("| block-predicted ρ | " + " | ".join(f"K={k}" for k in allK) + " | leaderboard |"); w("|---|" + "---|" * (len(allK) + 1))
+    for nm_, row_ in ((RS_BASE, bo), (f"{nb} starts", bs)):
+        w(f"| {nm_} | " + " | ".join(f"{row_[k]['rho_struct']:.3f}" for k in allK) + f" | {row_[allK[0]]['rho_board']:.3f} |")
+    w()
+    c43, c43o = cs.get(f"{big}: K=4 minus K=3"), cs.get(f"{RS_BASE}: K=4 minus K=3")
+    if c43 and c43o:
+        worse = c43["ci90"][1] < 0
+        txt = f"K = 4 minus K = 3: {ci(c43)} with {nb} starts, against {ci(c43o)} with 3. "
+        txt += (f"K = 4 remains credibly worse than K = 3, so the 3-start result is confirmed at {nb} starts (K ≥ 3 objectives still vary between starts, so this does not show the global optimum was found). " if worse else
+                "K = 4 is therefore no longer credibly worse than K = 3: " + ("the point estimate is about the same, but its interval now includes 0. " if abs(c43["mean"] - c43o["mean"]) < 0.03 else "the 3-start gap does not survive more starts. "))
+        txt += f"Against the leaderboard with {nb} starts: " + "; ".join(f"K = {k} {ci(bs[k]['vs_leaderboard'])}" for k in allK) + "."
+        w(txt)
+        w()
+    kr, kro = bs.get("K_rule"), bo.get("K_rule")
+    if kr and kro and len(kr["Ks_compared"]) == 4:
+        lower = [k for k in allK if bs[k]["rho_struct"] < bo[k]["rho_struct"] - 0.02]
+        w(f"Applying the D9 K rule to the {nb}-start fits gives best K = {kr['best']} and chosen K = {kr['smallest_not_credibly_worse']} (3 starts: {kro['best']} and {kro['smallest_not_credibly_worse']}); the best-K figure is again selected on the criterion it is scored on (D14). "
+          + (f"At K = {', '.join(lower)} the fits with lower objectives predict held-out sources less well (ρ above). " if lower else "")
+          + ("The prespecified chosen K and its comparison with the leaderboard therefore depend on the optimiser's starts, not only on the data; the dimensionality figures in this section should be read with that in mind. " if kr["smallest_not_credibly_worse"] != kro["smallest_not_credibly_worse"] else "")
+          + "Sensitivity only: the frozen analysis and the figures above are unchanged.")
+        w()
+
 # ------------------------------------------------------------------ 4 datasets
 w("## 4. Do datasets measure different things?")
 w()
@@ -197,10 +238,11 @@ w(f"{sum(1 for x in d['datasets'].values() if x['sources'] < 2)} further dataset
 w()
 
 # ------------------------------------------------------------------ 8 sensitivity
+OPTIMISER_SENS = {"dataset_analysis_sens_restarts.json"}          # optimiser sensitivity (§3), not an inclusion variant
 w("## 8. Sensitivity: which findings depend on the analysis decisions")
 w()
 runs = [("v1 (main text, no leaderboard, no regression, offset all)", ROOT / "data" / "dataset_analysis_v1.json")] + \
-       [(p.stem.replace("dataset_analysis_sens_", "v2 · "), p) for p in sorted((ROOT / "data").glob("dataset_analysis_sens_*.json"))] + [("**v2.1 (this report)**", ROOT / "data" / "dataset_analysis.json")]
+       [(p.stem.replace("dataset_analysis_sens_", "v2 · "), p) for p in sorted((ROOT / "data").glob("dataset_analysis_sens_*.json")) if p.name not in OPTIMISER_SENS] + [("**v2.1 (this report)**", ROOT / "data" / "dataset_analysis.json")]
 def labs(a_): return ", ".join(c for c, v in a_.items() if min(v["full_loading"]["p_bonferroni_4_labels"], v["direction_only"]["p_bonferroni_4_labels"]) < 0.05) or "none"
 def head(j):
     if j.get("version") == 2:

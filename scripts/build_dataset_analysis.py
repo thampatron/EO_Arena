@@ -13,6 +13,9 @@ Usage: python3 scripts/build_dataset_analysis.py <dir with metaanalysis_benchmar
                        multi_domain / none) | all | multi_domain | none
   --skip-sim           skip the simulation studies (sensitivity runs)
   --out PATH           output JSON (default data/dataset_analysis.json)
+  --restarts-sens [N]  instead of the analysis: optimiser-restart sensitivity (D17, backlog N3) for the chosen offset of
+                       data/dataset_analysis.json, N random starts (default 8) vs the 3 starts of v2.1, at the K values
+                       of --restarts-sens-K (default 3,4); writes data/dataset_analysis_sens_restarts.json (--out overrides)
 Writes summary statistics only; no individual scores leave the workbook.
 """
 import os
@@ -236,6 +239,18 @@ def choose_K(rows):
         Aa = v_.set_index("task"); Bb = rows[bk].set_index("task"); j = Aa.index.intersection(Bb.index)
         tests[K_] = paired_boot(Aa.loc[j, "rho_struct"], Bb.loc[j, "rho_struct"], Aa.loc[j, "paper"])
     return min([bk] + [k_ for k_, t_ in tests.items() if t_["ci90"][1] >= 0]), bk, tests, means
+
+# ============================================================================= optimiser-restart sensitivity (D17, N3): separate run, exits here
+if "--restarts-sens" in A:
+    import sens_restarts
+    _i = A.index("--restarts-sens"); _n = int(A[_i + 1]) if len(A) > _i + 1 and A[_i + 1].isdigit() else 8
+    _Ks = tuple(int(x_) for x_ in A[A.index("--restarts-sens-K") + 1].split(",")) if "--restarts-sens-K" in A else (3, 4)
+    _ref = json.loads((ROOT / "data" / "dataset_analysis.json").read_text())
+    _spec = _ref["offset"]["chosen"] if OFFSET == "select" else OFFSET
+    sens_restarts.run(Y, mask, tp, kw, paired_boot, _spec, _Ks, _n, db.leave_one_paper_out,
+                      Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis_sens_restarts.json",
+                      nproc=NPROC, log=log, reference=_ref["K"]["lopo_by_spec_and_K"].get(_spec))
+    sys.exit(0)
 
 # ============================================================================= 2. model-free tests from pairwise Kendall tau (primary, D15)
 P_tau = db.tau_pairs(Y, mask, min_shared=4)

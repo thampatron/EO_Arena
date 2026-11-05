@@ -12,7 +12,7 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 2. **N2 — Recalibrate the simulation on an extended grid** · `open`
    v2.1 calibration hits grid edges and under-matches within-source τ (0.12 simulated vs 0.26 real). Extend the grid (larger paper × model effects, lower SNR, finer general-factor strength) until all four targets (board ρ, τ cells) are within their bootstrap intervals or the misfit is documented. Rerun the K-recovery and offset-cost simulations at the new calibration (K_true 1–4, ≥ 5 seeds). Update D16 text.
 
-3. **N3 — Optimiser restarts at K ≥ 3** · `open`
+3. **N3 — Optimiser restarts at K ≥ 3** · `in PR`
    Leave-one-paper-out fits use 3 starts. Rerun the K = 3 vs K = 4 comparison with ≥ 8 random starts (and report the spread of objectives per fold). If K = 4 is no longer credibly worse, say so in §3 and D17.
 
 4. **N4 — Rounding uncertainty in seed-noise Eq. 6** · `open`
@@ -53,3 +53,7 @@ Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2),
 - ~~D2 — GEO-Bench-2 leaderboard in the main analysis~~ — decided 2026-11-04: included (D3); `--no-leaderboard` is the sensitivity variant.
 
 ## Proposed (added by runs; a maintainer moves items up)
+
+- **P-N3a — §3 leave-one-paper-out table has swapped column headers** (found in N3). `dataset_report.py` labels the first four ρ columns "anchored K=…" and the next four "blocks K=…", but prints `rho_struct` (block-predicted) first and `rho_anch` second; the leaderboard columns are swapped likewise (0.209 is the plain leaderboard, 0.182 the same-half one). Text figures are correct; only the headers are wrong.
+- **P-N3b — Leave-one-paper-out fits are start-dependent and mostly unconverged (needs-decision)** (found in N3). With `n_iter=200` in the build's `kw`, 165 / 270 (K = 2), 220 / 270 (K = 3) and 253 / 270 (K = 4) starts stop at the iteration cap, and 10 starts instead of 3 change the D9 chosen K from 2 to 3 (`data/dataset_analysis_sens_restarts.json`). Proposal for a `needs-decision` PR: more starts and iterations (or a convergence check) in the frozen fit.
+- **P-N3c — Same random starts in every fold** (found in N3). The build's `kw` passes no seed, so every fold and K draws its random starts from seed 0 and the "random" starts are the same matrices across folds (at K = 4 the second random draw gives the lowest objective in 24 / 27 folds). A per-fold seed would make restarts independent across folds.
