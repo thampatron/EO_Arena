@@ -12,7 +12,7 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 2. **N2 — Recalibrate the simulation on an extended grid** · `open`
    v2.1 calibration hits grid edges and under-matches within-source τ (0.12 simulated vs 0.26 real). Extend the grid (larger paper × model effects, lower SNR, finer general-factor strength) until all four targets (board ρ, τ cells) are within their bootstrap intervals or the misfit is documented. Rerun the K-recovery and offset-cost simulations at the new calibration (K_true 1–4, ≥ 5 seeds). Update D16 text.
 
-3. **N3 — Optimiser restarts at K ≥ 3** · `open`
+3. **N3 — Optimiser restarts at K ≥ 3** · `in PR #5`
    Leave-one-paper-out fits use 3 starts. Rerun the K = 3 vs K = 4 comparison with ≥ 8 random starts (and report the spread of objectives per fold). If K = 4 is no longer credibly worse, say so in §3 and D17.
 
 4. **N4 — Rounding uncertainty in seed-noise Eq. 6** · `open`
@@ -53,3 +53,7 @@ Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2),
 - ~~D2 — GEO-Bench-2 leaderboard in the main analysis~~ — decided 2026-11-04: included (D3); `--no-leaderboard` is the sensitivity variant.
 
 ## Proposed (added by runs; a maintainer moves items up)
+
+- **P-N3a — §3 leave-one-paper-out table has swapped column headers** (found in N3). `dataset_report.py` labels the first four ρ columns "anchored K=…" and the next four "blocks K=…", but prints `rho_struct` (block-predicted) first and `rho_anch` second; the leaderboard columns are swapped likewise (0.209 is the plain leaderboard, 0.182 the same-half one). Text figures are correct; only the headers are wrong.
+- **P-N3b — Leave-one-paper-out results depend on the optimiser's starts at every K (needs-decision)** (found in N3). Within a fold, objectives from 10 starts span a median of 4–7% at every K, including K = 1 where fits converge, so these are distinct optima and not only the 200-iteration cap (which most K ≥ 3 starts hit). Across 3 sets of 10 starts, the D9 chosen K is 3, 2, 2 (v2.1: 2), K = 1 ρ falls from 0.168 to 0.03–0.11, and the best K credibly beats the leaderboard in only 1 set (`data/dataset_analysis_sens_restarts.json`). Lower objectives do not predict better, so more starts alone is not a fix. Diagnostic to add (summary statistics only, no θ published): per fold, the Spearman correlation of the lowest-objective K = 1 θ with the naive leaderboard and the share of negative task loadings, to check for the anti-aligned K = 1 optimum seen in v2. Proposal for a `needs-decision` PR: an optimiser protocol (starts, iterations, per-fold seeds) and possibly a K and leaderboard criterion averaged over optima or seed sets.
+- **P-N3c — Same random starts in every fold** (found in N3). The build's `kw` passes no seed, so every fold and K draws its random starts from seed 0 and the "random" starts are the same matrices across folds (at K = 4 the second random draw gives the lowest objective in 24 / 27 folds). A per-fold seed would make restarts independent across folds.
