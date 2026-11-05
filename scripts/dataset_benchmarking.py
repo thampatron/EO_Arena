@@ -653,8 +653,18 @@ def simulate(mask, task_dataset, task_paper, K_true, snr=1.0, dataset_share=0.7,
     return np.where(mask, Y, 0.0), Ld, names
 
 
-def board_lopo_rho(Y, mask, task_paper, min_models=4):
-    """Leave-one-paper-out Spearman of the naive leaderboard alone (no fitting): for calibrating simulations."""
+def _spearman_small(y, p):
+    """Spearman rho as in _rank_scores (nan if < 3 values or y constant, 0 if p constant), with average ranks computed
+    by pairwise comparison: identical values, much faster than scipy for the short vectors of one comparison."""
+    if len(y) < 3 or np.ptp(y) == 0: return np.nan
+    if np.ptp(p) == 0: return 0.0
+    def rk(a): return (a[:, None] > a[None, :]).sum(1) + 0.5 * ((a[:, None] == a[None, :]).sum(1) - 1)
+    return float(np.corrcoef(rk(y), rk(p))[0, 1])
+
+
+def board_lopo_rho(Y, mask, task_paper, min_models=4, per_task=False):
+    """Leave-one-paper-out Spearman of the naive leaderboard alone (no fitting): for calibrating simulations.
+    per_task=True returns a DataFrame (paper, rho) with one row per scored held-out task instead of the mean."""
     task_paper = np.asarray(task_paper); out = []
     Z = np.full(Y.shape, np.nan)
     for t in range(Y.shape[1]):
@@ -666,9 +676,10 @@ def board_lopo_rho(Y, mask, task_paper, min_models=4):
         for t in np.where(hold)[0]:
             ms = np.where(mask[:, t] & (ntr >= 3))[0]
             if len(ms) >= min_models and np.ptp(Y[ms, t]) > 0:
-                r_, _, _ = _rank_scores(Y[ms, t], np.nan_to_num(board[ms]))
-                if np.isfinite(r_): out.append(r_)
-    return float(np.mean(out)) if out else np.nan
+                r_ = _spearman_small(Y[ms, t], np.nan_to_num(board[ms]))
+                if np.isfinite(r_): out.append((p, r_))
+    if per_task: return pd.DataFrame(out, columns=["paper", "rho"])
+    return float(np.mean([r_ for _, r_ in out])) if out else np.nan
 
 
 def recovery(Ld_true, Ld_hat):
@@ -676,3 +687,81 @@ def recovery(Ld_true, Ld_hat):
     estimated dataset similarity matrices."""
     iu = np.triu_indices(len(Ld_true), 1)
     return float(np.corrcoef(similarity(Ld_true)[iu], similarity(Ld_hat)[iu])[0, 1])
+
+
+# ============================================================================ 6. simulation calibration (D16)
+def tau_pair_index(mask, min_shared=4):
+    """Pairs of tasks sharing >= min_shared models on a fixed mask, grouped by their shared-model count, for
+    tau_pairs_fast. Returns {n: (i, j, rows)} with rows (n_pairs, n) the shared model indices of each pair."""
+    T = mask.shape[1]; M = mask.astype(np.int32); C = M.T @ M; out = {}
+    ii, jj = np.nonzero(np.triu(C >= min_shared, 1))
+    for i, j in zip(ii, jj):
+        out.setdefault(int(C[i, j]), []).append((i, j, np.nonzero(mask[:, i] & mask[:, j])[0]))
+    return {n: (np.array([a for a, _, _ in v]), np.array([b for _, b, _ in v]), np.array([r for _, _, r in v])) for n, v in out.items()}
+
+
+def tau_pairs_fast(Y, index):
+    """Same output as tau_pairs (Kendall tau-b, constant pairs skipped) on the pairs of tau_pair_index, vectorised by
+    shared-model count. Row order may differ from tau_pairs."""
+    parts = []
+    for n, (i, j, rows) in index.items():
+        A = Y[rows, i[:, None]]; B = Y[rows, j[:, None]]                    # (pairs, n)
+        iu = np.triu_indices(n, 1)
+        sa = np.sign(A[:, iu[0]] - A[:, iu[1]]); sb = np.sign(B[:, iu[0]] - B[:, iu[1]])
+        n0 = len(iu[0]); ta = (sa == 0).sum(1); tb = (sb == 0).sum(1)
+        ok = (ta < n0) & (tb < n0)                                            # np.ptp(a) > 0 and np.ptp(b) > 0
+        tau = (sa * sb).sum(1)[ok] / np.sqrt((n0 - ta[ok]) * (n0 - tb[ok]).astype(float))
+        parts.append(pd.DataFrame({"i": i[ok], "j": j[ok], "tau": tau, "n": n}))
+    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["i", "j", "tau", "n"])
+
+
+CAL_TARGETS = ("board", "tau_xs_dd", "tau_xs_sd", "tau_ss_dd")
+
+
+def calibration_stats(Y, mask, task_dataset, task_paper, index):
+    """The four D16 calibration statistics of a (real or simulated) table: naive-leaderboard leave-one-paper-out
+    Spearman, and mean Kendall tau for different datasets across sources, the same dataset across sources and
+    different datasets within a source."""
+    td = np.asarray(task_dataset); tp = np.asarray(task_paper)
+    P = tau_pairs_fast(Y, index); ss = tp[P.i.values] == tp[P.j.values]; sd = td[P.i.values] == td[P.j.values]
+    return {"board": board_lopo_rho(Y, mask, tp), "tau_xs_dd": float(P.tau[~ss & ~sd].mean()),
+            "tau_xs_sd": float(P.tau[~ss & sd].mean()), "tau_ss_dd": float(P.tau[ss & ~sd].mean())}
+
+
+def calibration_target_intervals(Y, mask, task_dataset, task_paper, P=None, B=2000, seed=0):
+    """Real-data calibration targets with 90% intervals from a cluster bootstrap over sources (as in tau_contrasts: a
+    resampled source multiplies the weight of every tau pair it is in; for the leaderboard rho, of every held-out task
+    it contributes). Returns {target: {"value", "ci90", "se"}}, se = bootstrap SD."""
+    td = np.asarray(task_dataset); tp = np.asarray(task_paper)
+    if P is None: P = tau_pairs(Y, mask)
+    src = sorted(set(tp)); si = {s_: k for k, s_ in enumerate(src)}
+    a = np.array([si[tp[i]] for i in P.i]); b = np.array([si[tp[j]] for j in P.j]); tau = P.tau.values
+    ss = a == b; sd = td[P.i.values] == td[P.j.values]
+    cells = {"tau_xs_dd": ~ss & ~sd, "tau_xs_sd": ~ss & sd, "tau_ss_dd": ss & ~sd}
+    R = board_lopo_rho(Y, mask, tp, per_task=True); rp = np.array([si[x] for x in R.paper]); rr = R.rho.values
+    def stats(w):
+        out = {"board": np.average(rr, weights=w[rp]) if w[rp].sum() > 0 else np.nan}
+        ww = w[a] * w[b]
+        for k, m in cells.items(): out[k] = np.average(tau[m], weights=ww[m]) if ww[m].sum() > 0 else np.nan
+        return out
+    pt = stats(np.ones(len(src))); rng = np.random.default_rng(seed); bs = {k: [] for k in pt}
+    for _ in range(B):
+        w = np.bincount(rng.integers(0, len(src), len(src)), minlength=len(src)).astype(float)
+        for k, v in stats(w).items():
+            if np.isfinite(v): bs[k].append(v)
+    return {k: {"value": round(float(pt[k]), 4), "ci90": [round(float(np.percentile(bs[k], 5)), 4), round(float(np.percentile(bs[k], 95)), 4)],
+                "se": round(float(np.std(bs[k], ddof=1)), 4)} for k in CAL_TARGETS}
+
+
+def choose_calibration(results, targets, axes):
+    """results: list of (params tuple, achieved stats dict). targets: {k: {"value", "ci90", "se"}}. axes: the grid
+    values of each parameter, in params order. Chooses the point minimising the misfit sum_k ((sim_k - real_k)/se_k)^2
+    (targets measured less precisely count less) and reports per target the real value, its interval, the achieved
+    value and whether it is inside, and which parameters sit on an edge of the grid."""
+    def misfit(st): return float(sum(((st[k] - targets[k]["value"]) / targets[k]["se"]) ** 2 for k in targets))
+    scored = [(p, st, misfit(st)) for p, st in results if all(np.isfinite(st[k]) for k in targets)]
+    p, st, m = min(scored, key=lambda x: x[2])
+    fit = {k: {"real": targets[k]["value"], "ci90": targets[k]["ci90"], "simulated": round(float(st[k]), 4),
+               "inside": bool(targets[k]["ci90"][0] <= st[k] <= targets[k]["ci90"][1])} for k in targets}
+    edges = [i for i, (v, ax) in enumerate(zip(p, axes)) if len(ax) > 1 and v in (min(ax), max(ax))]
+    return {"params": p, "misfit": round(m, 3), "fit": fit, "all_inside": all(f["inside"] for f in fit.values()), "edge_params": edges}
