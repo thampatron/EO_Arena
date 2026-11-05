@@ -16,6 +16,8 @@ Usage: python3 scripts/build_dataset_analysis.py <dir with metaanalysis_benchmar
   --restarts-sens [N]  instead of the analysis: optimiser-restart sensitivity (D17, backlog N3) for the chosen offset of
                        data/dataset_analysis.json, N random starts (default 8) vs the 3 starts of v2.1, at the K values
                        of --restarts-sens-K (default 3,4); writes data/dataset_analysis_sens_restarts.json (--out overrides)
+  --restarts-sens-seeds B1,B2  with --restarts-sens: further seed sets (fold i draws its random starts with seed B + i),
+                       appended to the existing restart-sensitivity output
 Writes summary statistics only; no individual scores leave the workbook.
 """
 import os
@@ -247,9 +249,13 @@ if "--restarts-sens" in A:
     _Ks = tuple(int(x_) for x_ in A[A.index("--restarts-sens-K") + 1].split(",")) if "--restarts-sens-K" in A else (3, 4)
     _ref = json.loads((ROOT / "data" / "dataset_analysis.json").read_text())
     _spec = _ref["offset"]["chosen"] if OFFSET == "select" else OFFSET
-    sens_restarts.run(Y, mask, tp, kw, paired_boot, _spec, _Ks, _n, db.leave_one_paper_out,
-                      Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis_sens_restarts.json",
-                      nproc=NPROC, log=log, reference=_ref["K"]["lopo_by_spec_and_K"].get(_spec))
+    _out = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis_sens_restarts.json"
+    if "--restarts-sens-seeds" in A:                      # further seed sets, appended to an existing output
+        sens_restarts.run_seed_sets(Y, mask, tp, kw, paired_boot, _spec, _Ks, _n, db.leave_one_paper_out, _out,
+                                    [int(x_) for x_ in A[A.index("--restarts-sens-seeds") + 1].split(",")], nproc=NPROC, log=log)
+    else:
+        sens_restarts.run(Y, mask, tp, kw, paired_boot, _spec, _Ks, _n, db.leave_one_paper_out, _out,
+                          nproc=NPROC, log=log, reference=_ref["K"]["lopo_by_spec_and_K"].get(_spec))
     sys.exit(0)
 
 # ============================================================================= 2. model-free tests from pairwise Kendall tau (primary, D15)

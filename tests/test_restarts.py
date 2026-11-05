@@ -81,3 +81,30 @@ def test_sensitivity_run_smoke(tmp_path):
     if f["folds_best_from_extra_start"] == 0:
         assert f["tasks_rho_changed"] == 0
     assert r["by_setting"]["5 starts"]["K_rule"]["best"] in (1, 2)
+
+
+def test_fold_seed_varies_random_starts():
+    Y, mask, paper, groups = synth()
+    a, b = [], []
+    db.leave_one_paper_out(Y, mask, paper, 2, groups, fold_meta=a, n_restarts=2, n_iter=20, tol=1e-6)
+    db.leave_one_paper_out(Y, mask, paper, 2, groups, fold_meta=b, fold_seed_base=100, n_restarts=2, n_iter=20, tol=1e-6)
+    for m, n in zip(a, b):
+        assert m["start_objs"][:2] == pytest.approx(n["start_objs"][:2])                     # board and SVD starts unchanged
+    assert any(m["start_objs"][2:] != pytest.approx(n["start_objs"][2:]) for m, n in zip(a, b))
+    assert all(len(m["start_last_rel_change"]) == 4 for m in b)
+
+
+def test_seed_sets_smoke(tmp_path):
+    Y, mask, paper, groups = synth()
+    def kw(spec):
+        return dict(groups=groups, ridge_u=3.0, ridge_g={"dataset": 3.0}, ridge_theta=3.0, n_restarts=1, n_iter=15, tol=1e-6)
+    def paired_boot(a, b, papers, B=100):
+        d = pd.DataFrame({"d": np.asarray(a, float) - np.asarray(b, float), "p": papers}).dropna(); g = [x.d.values for _, x in d.groupby("p")]
+        rng = np.random.default_rng(0); bs = np.array([np.concatenate([g[i] for i in rng.integers(0, len(g), len(g))]).mean() for _ in range(B)])
+        return {"mean": float(d.d.mean()), "ci90": [float(np.percentile(bs, 5)), float(np.percentile(bs, 95))]}
+    out = tmp_path / "s.json"
+    sens_restarts.run(Y, mask, paper, kw, paired_boot, "none", (1, 2, 3, 4), 2, db.leave_one_paper_out, out, nproc=1, log=lambda *a: None)
+    d = sens_restarts.run_seed_sets(Y, mask, paper, kw, paired_boot, "none", (1, 2, 3, 4), 2, db.leave_one_paper_out, out, [7], nproc=1, log=lambda *a: None)
+    assert len(d["seed_sets"]) == 2 and d["n_iter"] == 15
+    assert d["seed_set_range"]["n_sets"] == 2 and len(d["seed_set_range"]["K_rule"]) == 2
+    assert d["seed_sets"][1]["by_K"]["4"]["starts_total"] == 4 * 4

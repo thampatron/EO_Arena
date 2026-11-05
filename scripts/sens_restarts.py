@@ -9,6 +9,8 @@ repeated alongside as a reproduction check of data/dataset_analysis.json. Sensit
 headline numbers are not changed. Summary statistics only are written.
 
 Entry point: python3 scripts/build_dataset_analysis.py <workbook dir> --restarts-sens [N_RANDOM] [--restarts-sens-K 3,4]
+Further seed sets (random starts drawn with seed base + fold index, so they differ across folds and from the first set),
+appended to an existing output: add --restarts-sens-seeds 1000,2000 (run_seed_sets).
 """
 import json
 import time
@@ -61,7 +63,7 @@ def run(Y, mask, tp, kw, paired_boot, spec, Ks, n_random, lopo, out, nproc=2, lo
              "offset_spec": spec, "Ks": list(Ks), "random_starts": n_random,
              "starts": f"naive-leaderboard seed + SVD + {n_random} random (seed 0; the first random start is the v2.1 one, so the v2.1 starts are a subset)",
              "objective": "penalised weighted least squares in noise units at reweighting round 0, where the build compares starts; later rounds warm-start from the selected start",
-             "rel_tol": REL_TOL, "by_setting": {}, "folds": {}, "contrasts": {}}
+             "rel_tol": REL_TOL, "n_iter": int(kw(spec)["n_iter"]), "by_setting": {}, "folds": {}, "contrasts": {}}
     for name in settings:
         out_d["by_setting"][name] = {}
         for K in Ks:
@@ -106,3 +108,89 @@ def run(Y, mask, tp, kw, paired_boot, spec, Ks, n_random, lopo, out, nproc=2, lo
     out.write_text(json.dumps(out_d, indent=1, default=lambda x: x.item() if hasattr(x, "item") else str(x)) + "\n")
     log(f"wrote {out}")
     return out_d
+
+
+def k_rule(rho, contrast):
+    """D9 rule on given mean rho by K; contrast(a, b) -> paired_boot of rho_a - rho_b. Returns best, chosen, tests."""
+    bk = max(rho, key=rho.get); tests = {K: contrast(K, bk) for K in rho if K != bk}
+    return int(bk), int(min([bk] + [K for K, t in tests.items() if t["ci90"][1] >= 0])), tests
+
+
+def _set_summary(R, Ks, paired_boot, n_original, cap):
+    """R: K -> (rows, fold_meta) for one seed set."""
+    out = {"by_K": {}, "contrasts": {}}
+    for K in Ks:
+        rows, fm = R[K]
+        folds = [summarise_starts(m["start_objs"], m["start_labels"], n_original=n_original, iters=m.get("start_iters"), n_iter_cap=cap) for m in fm]
+        best_idx = [f["best_start"] for f in folds]; top = max(set(best_idx), key=best_idx.count)
+        lr = [abs(x) for m in fm for x, i in zip(m.get("start_last_rel_change", []), m.get("start_iters", [])) if i >= cap and np.isfinite(x)]
+        rr = np.array([f["rel_range"] for f in folds])
+        out["by_K"][str(K)] = {"rho_struct": round(float(rows.rho_struct.mean()), 4), "rho_board": round(float(rows.rho_board.mean()), 4),
+                               "vs_leaderboard": paired_boot(rows.rho_struct, rows.rho_board, rows.paper),
+                               "rel_range_median": round(float(np.median(rr)), 5), "rel_range_max": round(float(rr.max()), 5),
+                               "starts_within_tol_median": float(np.median([f["n_within_tol_of_best"] for f in folds])),
+                               "starts_at_iteration_cap": int(sum(f["starts_at_iteration_cap"] or 0 for f in folds)), "starts_total": int(sum(f["n_starts"] for f in folds)),
+                               "capped_last_rel_change_median": round(float(np.median(lr)), 7) if lr else None,
+                               "most_common_best_start": {"index": int(top), "folds": int(best_idx.count(top)), "n_folds": len(folds)},
+                               "folds_best_from_random_start": int(sum(f["best_label"] == "random" for f in folds))}
+    def con(a, b):
+        A_ = R[a][0].set_index("task"); B_ = R[b][0].set_index("task"); j = A_.index.intersection(B_.index)
+        return paired_boot(A_.loc[j, "rho_struct"], B_.loc[j, "rho_struct"], A_.loc[j, "paper"])
+    for a in Ks:
+        for b in Ks:
+            if a > b: out["contrasts"][f"K={a} minus K={b}"] = con(a, b)
+    if len(Ks) == 4:
+        bk, ck, _ = k_rule({K: out["by_K"][str(K)]["rho_struct"] for K in Ks}, con)
+        out["K_rule"] = {"best": bk, "smallest_not_credibly_worse": ck}
+    return out
+
+
+def run_seed_sets(Y, mask, tp, kw, paired_boot, spec, Ks, n_random, lopo, out, bases, nproc=2, log=print):
+    """Rerun the n_random-start leave-one-paper-out with random starts drawn from seed base + fold index for each base,
+    and append a 'seed_sets' section to the existing output of run() (which used seed 0 in every fold)."""
+    d = json.loads(out.read_text()); cap = int(kw(spec)["n_iter"]); d["n_iter"] = cap
+    big = f"{n_random + 2} starts"
+    sets = d.get("seed_sets") or []
+    if not sets:                                           # set 0 = the run() result, summarised in the same form
+        s0 = {"label": "seed 0 in every fold (first run)", "by_K": {}}
+        for K in Ks:
+            b, f = d["by_setting"][big][str(K)], d["folds"][str(K)]
+            bi = [x["best_start"] for x in f["per_fold"]]; top = max(set(bi), key=bi.count)
+            s0["by_K"][str(K)] = {"rho_struct": b["rho_struct"], "rho_board": b["rho_board"], "vs_leaderboard": b["vs_leaderboard"],
+                                  "rel_range_median": f["rel_range_median"], "rel_range_max": f["rel_range_max"], "starts_within_tol_median": f["starts_within_tol_median"],
+                                  "starts_at_iteration_cap": f["starts_at_iteration_cap"], "starts_total": f["starts_total"], "capped_last_rel_change_median": None,
+                                  "most_common_best_start": {"index": int(top), "folds": int(bi.count(top)), "n_folds": len(bi)},
+                                  "folds_best_from_random_start": int(sum(x["best_label"] == "random" for x in f["per_fold"]))}
+        s0["contrasts"] = {k.split(": ", 1)[1]: v for k, v in d["contrasts"].items() if k.startswith(big + ":")}
+        if "K_rule" in d["by_setting"][big]:
+            s0["K_rule"] = {k: v for k, v in d["by_setting"][big]["K_rule"].items() if k != "Ks_compared"}
+        sets.append(s0)
+    d["seed_sets"] = sets
+    for base in bases:
+        t0 = time.time(); jobs = []
+        for K in sorted(Ks, reverse=True):
+            k = kw(spec); g = k.pop("groups"); k["n_restarts"] = n_random; k["fold_seed_base"] = int(base)
+            jobs.append((lopo, Y, mask, tp, K, g, k))
+        if nproc > 1:
+            with mp.get_context("fork").Pool(nproc) as pool:
+                res = pool.map(_job, jobs, chunksize=1)
+        else:
+            res = list(map(_job, jobs))
+        R = dict(zip(sorted(Ks, reverse=True), res))
+        s_ = {"label": f"seed {base} + fold index", **_set_summary(R, Ks, paired_boot, 2, cap)}
+        sets = [x for x in sets if x["label"] != s_["label"]] + [s_]
+        log(f"seed set {base}: {time.time() - t0:.0f}s", {K: s_["by_K"][str(K)]["rho_struct"] for K in Ks}, s_.get("K_rule"), s_["contrasts"].get("K=4 minus K=3"))
+        d["seed_sets"] = sets
+        out.write_text(json.dumps(d, indent=1, default=lambda x: x.item() if hasattr(x, "item") else str(x)) + "\n")
+    if len(sets) > 1 and "4" in sets[0]["by_K"] and "3" in sets[0]["by_K"]:
+        c = [x["contrasts"]["K=4 minus K=3"] for x in sets]
+        d["seed_set_range"] = {"n_sets": len(sets),
+                               "K4_minus_K3_mean": [min(x["mean"] for x in c), max(x["mean"] for x in c)],
+                               "K4_minus_K3_ci_upper": [min(x["ci90"][1] for x in c), max(x["ci90"][1] for x in c)],
+                               "K4_minus_K3_credibly_negative_in": int(sum(x["ci90"][1] < 0 for x in c)),
+                               "rho_by_K": {K: [min(x["by_K"][K]["rho_struct"] for x in sets), max(x["by_K"][K]["rho_struct"] for x in sets)] for K in sets[0]["by_K"]},
+                               "K_rule": [x.get("K_rule") for x in sets]}
+    out.write_text(json.dumps(d, indent=1, default=lambda x: x.item() if hasattr(x, "item") else str(x)) + "\n")
+    log(f"wrote {out}")
+    return d
+

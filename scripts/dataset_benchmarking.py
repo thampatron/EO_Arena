@@ -154,11 +154,11 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     if not (warm and theta_init is not None):             # warm: refine from theta_init only (later reweighting rounds)
         starts += [board_start(Y, mask, K), svd_start(Y, mask, mu0, K)]
         starts += [rng.normal(size=(M, K)) * 0.5 for _ in range(n_restarts)]
-    best = None; start_objs = []; start_iters = []                          # penalised objective reached from every start (recorded)
+    best = None; start_objs = []; start_iters = []; start_last_rel = []                          # penalised objective reached from every start (recorded)
     for th in starts:
         th = th.copy(); mu = mu0.copy(); U = np.zeros((T, K)); B = {g: np.zeros((n, K)) for g, n in nlev.items()}
         C = None if pidx is None else np.zeros((M, nP))
-        prev = np.inf; it = 0
+        prev = np.inf; it = 0; last_rel = np.nan
         for it in range(1, n_iter + 1):
             WYc = WY if C is None else WY - W * C[:, pidx]                       # data net of implementation offsets
             # (a) mu_t and u_t jointly, with the group parts as a fixed offset
@@ -190,10 +190,12 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
             if C is not None:
                 C = c_update(WY - W * (mu[None, :] + th @ L.T))
             obj = objective(mu, th, B, U, C)
+            last_rel = (prev - obj) / max(abs(obj), 1e-12)
             if prev - obj < tol * max(obj, 1e-12):
                 break
             prev = obj
         start_objs.append(float(obj)); start_iters.append(int(it))
+        start_last_rel.append(float(last_rel) if np.isfinite(last_rel) else np.nan)   # relative decrease at the last iteration
         if best is None or obj < best[0]:
             best = (obj, mu, th, B, U, it, C)
     obj, mu, th, B, U, it, C = best
@@ -204,7 +206,7 @@ def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g
     th = th @ np.linalg.inv(Lc).T
     U = U @ Lc; B = {g: v @ Lc for g, v in B.items()}
     return StructuredFit(K, mu, th, B, U, groups, obj, it, C=C, paper_idx=pidx,
-                         meta={"start_objs": start_objs, "start_iters": start_iters, "start_labels": labels, "best_start": int(np.argmin(start_objs))})
+                         meta={"start_objs": start_objs, "start_iters": start_iters, "start_last_rel_change": start_last_rel, "start_labels": labels, "best_start": int(np.argmin(start_objs))})
 
 
 def fit_heteroskedastic(Y, mask, K, groups=None, n_rounds=3, prior_n=3.0, prior_group=None, **kw):
@@ -269,7 +271,7 @@ def _rank_scores(y, p):
 
 
 def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_tasks=3, hetero=True, anchor_splits=10, anchor_min=6, anchor_ridge=1.0,
-                        fold_meta=None, **kw):
+                        fold_meta=None, fold_seed_base=None, **kw):
     """For each paper: drop all its tasks, refit, predict each dropped task's model ordering from lambda = sum of its
     learned group blocks (u_t is unknown for an unseen task, so it is 0), for models that keep >= min_theta_tasks
     observed tasks elsewhere. Returns per-task rows: paper, task index, n models scored, Spearman, pairwise accuracy.
@@ -285,7 +287,9 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
     the leaderboard's sign from half A and is handicapped (kept for reference only).
 
     fold_meta: optional list; one dict per held-out paper is appended with the fit's multi-start record (objective
-    reached from every start, at the round where starts are compared), for optimiser-sensitivity reports."""
+    reached from every start, at the round where starts are compared), for optimiser-sensitivity reports.
+    fold_seed_base: optional int; fold i then draws its random starts with seed fold_seed_base + i (default: the
+    seed in kw, or fit_structured's default, for every fold)."""
     task_paper = np.asarray(task_paper)
     rows = []
     arng = np.random.default_rng(12345)
@@ -299,12 +303,13 @@ def leave_one_paper_out(Y, mask, task_paper, K, groups, min_models=4, min_theta_
             r_, _, _ = _rank_scores(y[b], pb)
             if np.isfinite(r_): out.append(r_)
         return float(np.mean(out)) if out else np.nan
-    for p in np.unique(task_paper):
+    for i_fold, p in enumerate(np.unique(task_paper)):
         hold = task_paper == p
         m2 = mask.copy(); m2[:, hold] = False
         if m2[:, ~hold].sum() == 0:
             continue
-        fit = fit_heteroskedastic(Y, m2, K, groups, **kw)[0] if hetero else fit_structured(Y, m2, K, groups, **kw)
+        kf = kw if fold_seed_base is None else dict(kw, seed=int(fold_seed_base) + i_fold)
+        fit = fit_heteroskedastic(Y, m2, K, groups, **kf)[0] if hetero else fit_structured(Y, m2, K, groups, **kf)
         if fold_meta is not None:
             fold_meta.append(dict(paper=p, **(fit.meta.get("round0", fit.meta) if hetero else fit.meta)))
         L = fit.lam(include_u=False)
