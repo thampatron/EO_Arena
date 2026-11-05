@@ -1,12 +1,12 @@
 # What existing benchmarks measure: dataset-level analysis (v2.1)
 
-Analysis of 2026-11-04 on the GeoFM meta-analysis workbook v4, following *GeoFM Benchmark Scoring* (S. Wang, Oct 2026). Object of study: the benchmark **datasets** — what they measure, how much they overlap, whether independent groups agree on the model differences they show, and how reliably they separate GeoFMs where seed noise is reported. Model capability vectors are nuisance parameters; nothing here ranks models. Every analysis decision, with its justification and a switch to undo it, is in [`analysis-decisions.md`](analysis-decisions.md). Built by `scripts/build_dataset_analysis.py`; numbers in `data/dataset_analysis.json`.
+Analysis of 2026-11-05 on the GeoFM meta-analysis workbook v4, following *GeoFM Benchmark Scoring* (S. Wang, Oct 2026). Object of study: the benchmark **datasets** — what they measure, how much they overlap, whether independent groups agree on the model differences they show, and how reliably they separate GeoFMs where seed noise is reported. Model capability vectors are nuisance parameters; nothing here ranks models. Every analysis decision, with its justification and a switch to undo it, is in [`analysis-decisions.md`](analysis-decisions.md). Built by `scripts/build_dataset_analysis.py`; numbers in `data/dataset_analysis.json`.
 
 ## Findings
 
 1. **Where several groups evaluate the same dataset, its GeoFM ordering carries over — directionally robust, narrow in scope.** Same-dataset comparisons by different sources agree more (Kendall τ = 0.24) than different-dataset comparisons across sources (0.09); under a single ranking plus noise the two would be equal. The evidence comes from 14 source pairs: 11 of them show a positive contrast (one-sided sign test p = 0.029; unweighted mean +0.16), and leaving out any one source keeps it between +0.12 and +0.23. 85% of the same-dataset pairs come from six datasets (EuroSAT, BigEarthNet v1 / v2 (reBEN), So2Sat LCZ42 (LCZ-S2), Brick kilns, Cashew plantation, South Africa crop type), mostly GEO-Bench-family benchmarks, so the claim holds for widely re-evaluated benchmarks, not datasets in general. Possible shared evaluation code between sources cannot be ruled out from values alone. Pooled estimate +0.15 (90% CI +0.01 to +0.48); the interval is wide and skewed because few source pairs are informative. This estimate is conservative: pairs sharing only four GeoFMs pull it toward 0, and among pairs sharing ≥ 5 it is +0.33 (post hoc, 6 source pairs; §2).
 2. **Orderings are also paper-specific.** Different datasets evaluated in the same paper agree more (τ = 0.26) than across papers (0.09): +0.17 (90% CI +0.04 to +0.27). A paper's task suite, protocol, model set or implementation shapes its orderings; these cannot be separated with published results.
-3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = 3) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14) — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = 2 gives +0.05 (90% CI -0.02 to +0.11). Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = 3 against K = 1 within the same model — gives +0.13 (90% CI +0.03 to +0.21), also after selection. Anchored check: +0.06 (90% CI -0.04 to +0.14). Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.
+3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = 3) beats the naive leaderboard by +0.09 (90% CI +0.03 to +0.14) — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = 2 gives +0.05 (90% CI -0.02 to +0.11). Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = 3 against K = 1 within the same model — gives +0.13 (90% CI +0.03 to +0.21), also after selection. Anchored check: +0.06 (90% CI -0.04 to +0.14). In a simulation calibrated to the real data (all four calibration targets inside their 90% intervals), the rule selects the true K in 5/5 for K_true = 1, 1/5 for K_true = 2, 2/5 for K_true = 3, 1/5 for K_true = 4 simulated tables; when it misses, it picks fewer dimensions than the truth in 11 of 11 tables, so a chosen K is best read as a floor. That checks the rule in a world resembling these data; it does not identify K on the real data, and that world is still easier to predict (best structured ρ 0.39 simulated vs 0.30 real).
 4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by -0.00 (90% CI -0.08 to +0.07). Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).
 5. **Metadata labels do not credibly organise the datasets.** Domain, subdomain, task type and sensor all fail after correction for the four labels tested. Domain is the label closest to the threshold: it survives correction in two sensitivity runs (main text only; no regression tasks; p ≈ 0.04), so whether domain organises datasets is unresolved rather than ruled out (§8).
 6. **Where seed noise is reported, model differences mostly survive re-seeding — with wide uncertainty.** 152 comparisons (≥ 6 GeoFMs, seed SDs printed for ≥ 3) across 57 dataset × protocol pairs: 73 have a 90% lower bound ≥ 0.8 on the share of model spread that survives re-seeding (note Eq. 6), 112 ≥ 0.5; comparisons from one paper share settings and are not independent (per dataset × protocol counts in §5). This is reliability within one implementation, and rounding of printed SDs is not yet propagated.
@@ -99,21 +99,35 @@ K (D9): best K = 3; chosen (smallest not credibly worse) K = 2. Paired differenc
 
 Against the leaderboard: K = 1 -0.04 (90% CI -0.14 to +0.05); K = 2 (chosen) +0.05 (90% CI -0.02 to +0.11); K = 3 (best, selected — optimistic) +0.09 (90% CI +0.03 to +0.14). Anchored: K = 1 -0.10 (90% CI -0.19 to -0.01); K = 3 +0.06 (90% CI -0.04 to +0.14).
 
-**Calibrated simulation (D16).** A general factor (one leaderboard) plus specific factors, dataset-shared loadings and implementation effects, fitted on a 54-point grid to the real data: targets board 0.209, tau_xs_dd 0.093, tau_xs_sd 0.240, tau_ss_dd 0.263; achieved board 0.195, tau_xs_dd 0.043, tau_xs_sd 0.264, tau_ss_dd 0.120 with general-factor mean 0.6, SNR 2.0, dataset share 0.9, implementation effect 0.5 noise SD.
+**Calibrated simulation (D16).** Truth: a general factor (one leaderboard) plus specific factors, dataset-shared loadings and paper × model implementation effects (K_true = 2 for calibration). Calibrated on a two-stage grid (2345 points: a coarse grid of 720 over general-factor mean 0.2, 0.4, 0.6, 0.8, 1.0; SNR 0.5, 1.0, 2.0, 4.0, 8.0, 16.0; dataset share 0.5, 0.75, 0.9, 1.0; implementation effect 0.0, 0.5, 1.0, 1.5, 2.0, 3.0 noise SD; then 3 finer rounds around the best point), choosing the point closest to the four real targets in units of their bootstrap SE (cluster bootstrap over sources). Chosen: general-factor mean 0.7, SNR 2.38, dataset share 0.8, implementation effect 0.875 noise SD. The chosen point lies strictly inside the coarse grid's range on every parameter; edges of the last fine round: none (best coarse point's edges: dataset share = 1 (a bound of the parameter)). Fit checked on 20 fresh seeds:
 
-| K true | K selected by the rule | best K | ρ by K | leaderboard | best K − leaderboard |
+| target | real | 90% interval | simulated (fresh seeds, mean ± SD) | inside |
+|---|---|---|---|---|
+| naive leaderboard, out-of-paper ρ | 0.209 | 0.121 to 0.310 | 0.251 ± 0.091 | yes |
+| τ different datasets, different sources | 0.093 | -0.003 to 0.220 | 0.089 ± 0.056 | yes |
+| τ same dataset, different sources | 0.240 | 0.084 to 0.617 | 0.248 ± 0.094 | yes |
+| τ different datasets, same source | 0.263 | 0.163 to 0.353 | 0.248 ± 0.034 | yes |
+
+The four targets do not pin down the four parameters: 58 of the 720 coarse points put all four simulated means inside the intervals, spanning general mean 0.4–1.0; snr 0.5–16.0; dataset share 0.5–1.0; paper effect 0.5–2.0. The simulation results below hold at the chosen point, not across that region.
+
+Diagnostic, not a calibration target — out-of-paper accuracy levels (offset none): real structured ρ by K K1: 0.168, K2: 0.258, K3: 0.298, K4: 0.221, leaderboard 0.209; simulated (K_true = 2, mean over tables) K1: 0.371, K2: 0.390, K3: 0.371, K4: 0.373, leaderboard 0.299.
+
+K recovery under the D9 rule at the calibrated truth (5 simulated tables per K_true; the K columns count tables). This checks the rule, not the number of dimensions in the real data:
+
+| K true | K selected by the rule (K1 / K2 / K3 / K4) | best K (K1 / K2 / K3 / K4) | mean ρ by K | mean leaderboard ρ | mean best K − leaderboard |
 |---|---|---|---|---|---|
-| 1 | 1 | 1 | K1: 0.409, K2: 0.385, K3: 0.371, K4: 0.354 | 0.132 | +0.28 (90% CI +0.19 to +0.35) |
-| 2 | 2 | 2 | K1: 0.441, K2: 0.464, K3: 0.422, K4: 0.394 | 0.414 | +0.05 (90% CI +0.02 to +0.08) |
-| 3 | 3 | 3 | K1: 0.319, K2: 0.347, K3: 0.402, K4: 0.376 | 0.257 | +0.15 (90% CI +0.11 to +0.19) |
+| 1 | 5 / 0 / 0 / 0 | 3 / 1 / 1 / 0 | K1: 0.363, K2: 0.344, K3: 0.323, K4: 0.312 | 0.216 | +0.149 |
+| 2 | 4 / 1 / 0 / 0 | 0 / 3 / 2 / 0 | K1: 0.371, K2: 0.390, K3: 0.371, K4: 0.373 | 0.299 | +0.108 |
+| 3 | 0 / 3 / 2 / 0 | 0 / 1 / 3 / 1 | K1: 0.273, K2: 0.361, K3: 0.371, K4: 0.355 | 0.258 | +0.129 |
+| 4 | 2 / 1 / 1 / 1 | 0 / 1 / 1 / 3 | K1: 0.363, K2: 0.395, K3: 0.405, K4: 0.414 | 0.314 | +0.110 |
 
-Offset options under the calibrated truth (K = 2):
+Offset options (D8) under the calibrated truth (K_true = K = 2; means over 5 simulated tables; geometry recovery as the median, with each table in brackets):
 
 | offset | ρ (K = 2) | leaderboard | dataset gain (seen datasets) | geometry recovery (≥ 2-source datasets) |
 |---|---|---|---|---|
-| all | 0.529 | 0.362 | +0.209 | 0.79 |
-| multi_domain | 0.534 | 0.362 | +0.212 | 0.79 |
-| none | 0.519 | 0.362 | +0.198 | 0.72 |
+| all | 0.444 | 0.296 | +0.147 | 0.80 (0.68, 0.88, 0.88, 0.80, 0.71) |
+| multi_domain | 0.446 | 0.296 | +0.147 | 0.81 (0.68, 0.88, 0.88, 0.81, 0.72) |
+| none | 0.406 | 0.296 | +0.128 | 0.67 (0.59, 0.89, 0.69, 0.67, 0.65) |
 
 ## 4. Do datasets measure different things?
 
@@ -128,7 +142,7 @@ Variance in dataset loadings explained by each label, over datasets reported by 
 | task_type | 0.11 | 0.11 | 1.00 | 0.14 | 0.11 | 1.00 | 29 |
 | sensor | 0.47 | 0.42 | 1.00 | 0.45 | 0.42 | 1.00 | 27 |
 
-Dataset-to-dataset similarity is **not published** (D13): simulated recovery on this mask would allow it (median 0.716), but dataset loadings do not credibly transfer across papers on the real data, so the estimated similarities would describe single papers, not datasets.
+Dataset-to-dataset similarity is **not published** (D13): simulated recovery on this mask is below 0.7 (median 0.669 over simulated tables at the calibrated truth); and dataset loadings do not credibly transfer across papers on the real data, so the estimated similarities would describe single papers, not datasets.
 
 ## 5. Seed-noise reliability where it is reported (note Eq. 3–6)
 
@@ -261,7 +275,7 @@ Reported separation = model-count-weighted SD of reported scores within the data
 | best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.21 (90% CI +0.09 to +0.30) | +0.31 (90% CI +0.19 to +0.44) | +0.13 (90% CI +0.03 to +0.21) |
 | dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | +0.04 (90% CI -0.03 to +0.10) | +0.06 (90% CI -0.09 to +0.24) | -0.00 (90% CI -0.08 to +0.07) |
 | labels surviving correction | none | domain | none | domain | none | none |
-| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | not run / no | yes / no |
+| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | not run / no | no / no |
 | comparisons with seed-noise score | 0 | 32 | 120 | 146 | 0 | 152 |
 | reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 1 | 0 / 3 | 0 / 2 |
 
@@ -275,4 +289,5 @@ Across the 5 v2-code runs: the τ dataset-identity contrast is positive with a 9
 - In single-domain sources, domain-specific capability and implementation effects are not separable (D8).
 - Geography and time blocks of Eq. 11 are not fitted: no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.
 - Points near the ceiling compress differences for classification benchmarks (D4).
+- The calibrated simulation (D16) matches four summary statistics, which do not identify its parameters; its structured models predict held-out papers better than on the real data, so its K recovery and offset costs describe a somewhat easier world.
 - Seed-noise scores come only from papers that print seed SDs, which may be the more careful ones; a printed SD below 0.1 point (e.g. fMoW) makes the score close to 1 by construction.

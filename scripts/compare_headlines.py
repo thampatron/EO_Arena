@@ -44,6 +44,7 @@ def headlines(d):
             h[f"assoc {lab} ({kind}) significant"] = None if p is None else p < 0.05
     g = d.get("geometry_gate") or {}
     h["geometry published"] = g.get("published", d.get("geometry_recoverable"))
+    h["geometry recoverable in simulation (D13 gate a)"] = g.get("recoverable_in_simulation")
     h["dataset loadings transfer out of paper"] = g.get("dataset_loadings_transfer_out_of_paper")
     sn = d.get("seed_noise_reliability") or {}
     for k in ("comparisons", "comparisons_lo_ge_0_8", "comparisons_lo_ge_0_5"):

@@ -9,7 +9,7 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 1. **N1 — Nested selection for the K and offset choice** · `open`
    The best K (and offset) is chosen among 12 configurations on the same leave-one-paper-out criterion it is scored on (D14). Implement nested selection: for each held-out source, choose offset and K by inner leave-one-paper-out on the training sources only, then score on the held-out source; paired bootstrap over sources vs the leaderboard and vs K = 1. Report next to the selected figures in §3. Also report a bootstrap of the max over the 12 configurations.
 
-2. **N2 — Recalibrate the simulation on an extended grid** · `open`
+2. **N2 — Recalibrate the simulation on an extended grid** · `in PR`
    v2.1 calibration hits grid edges and under-matches within-source τ (0.12 simulated vs 0.26 real). Extend the grid (larger paper × model effects, lower SNR, finer general-factor strength) until all four targets (board ρ, τ cells) are within their bootstrap intervals or the misfit is documented. Rerun the K-recovery and offset-cost simulations at the new calibration (K_true 1–4, ≥ 5 seeds). Update D16 text.
 
 3. **N3 — Optimiser restarts at K ≥ 3** · `open`
@@ -53,3 +53,6 @@ Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2),
 - ~~D2 — GEO-Bench-2 leaderboard in the main analysis~~ — decided 2026-11-04: included (D3); `--no-leaderboard` is the sensitivity variant.
 
 ## Proposed (added by runs; a maintainer moves items up)
+- **P-N2a — A fifth calibration target for D16** (from N2). The four targets do not identify the four simulation parameters: 58 of 720 coarse points fit all four, across most of the grid. The calibrated world is still easier than the real one (structured out-of-paper ρ 0.37–0.39 vs 0.17–0.30; dataset loadings transfer in simulation, +0.13, but not in the real data, −0.00). Candidates: the unused τ cell (same dataset, same source; 0.45), the real structured ρ at K = 1, or the real dataset-transfer gain. Changes the D16 calibration, not the rule.
+- **P-N2b — K recovery across the acceptable calibration region** (from N2). The N2 K-recovery check runs at one point, with 5 tables per K_true, and the rule picked fewer dimensions than the truth in 11 of 11 misses. Repeat at 3–5 points spanning the region where all targets fit, with ≥ 10 tables per K_true, to see whether the under-selection is robust. The D13 gate (a) median (0.669 vs threshold 0.7) also needs more tables to settle.
+- **P-N2c — Build time** (from N2). The full build now takes ~3.6 h on 2 cores (≈ 13,100 s), up from ~35 min. The 95 simulated leave-one-paper-out fits for K recovery and offset cost (≈ 2.8 h) dominate it. A `--sim-seeds N` switch or caching the simulation section by calibration and code hash would keep verifier reruns practical.

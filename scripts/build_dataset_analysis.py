@@ -291,46 +291,116 @@ log("LOPO gain", lopo_gain)
 REAL_BOARD = db.board_lopo_rho(Y, mask, tp)
 
 # ============================================================================= 4. simulations calibrated to the real data (D16)
-sim_cal, sim_spec, sim_K = {}, [], []
+# Truth: a general factor plus specific factors, dataset-shared loadings and paper x model implementation effects
+# (db.simulate, K_true = 2 for calibration). Calibration (v2.2, agent backlog N2): two-stage grid search for the point
+# whose simulated statistics (mean over common seeds) are closest to the four real targets in units of their bootstrap
+# SE (cluster bootstrap over sources); the fine stage is re-centred while its best point sits on a fine-grid edge that is
+# not a bound of the parameter. Fit is then checked on fresh seeds. The calibrated truth is used to check the D9 K rule
+# (K_true 1-4) and the cost of each D8 offset option, over SIM_SEEDS seeds each.
+SIM_SEEDS = 5; CAL_SEEDS_1, CAL_SEEDS_2, CAL_SEEDS_CHECK = range(900, 908), range(2000, 2016), range(3000, 3020)
+CAL_AXES_1 = ((0.2, 0.4, 0.6, 0.8, 1.0), (0.5, 1.0, 2.0, 4.0, 8.0, 16.0), (0.5, 0.75, 0.9, 1.0), (0.0, 0.5, 1.0, 1.5, 2.0, 3.0))
+CAL_NAMES = ("general_mean", "snr", "dataset_share", "paper_effect"); CAL_BOUNDS = ((0.0, None), (0.0, None), (0.3, 1.0), (0.0, None))
+sim_cal, sim_spec, sim_K, sim_rho_level = {}, [], [], {}
 if not SKIP_SIM:
-    real_cells = {(c_["same_dataset"], c_["same_source"]): c_["mean_tau"] for c_ in TAU["cells"]}
-    targets = {"board": REAL_BOARD, "tau_xs_dd": real_cells[(False, False)], "tau_xs_sd": real_cells[(True, False)], "tau_ss_dd": real_cells[(False, True)]}
+    CAL_T = db.calibration_target_intervals(Y, mask, td, tp, P=P_tau, B=2000, seed=SEED)
+    IDX = db.tau_pair_index(mask)
     def _cal_job(a):
-        gm, snr, ds, pe = a
-        Ys, _, _ = db.simulate(mask, td, tp, 2, snr=snr, dataset_share=ds, paper_effect=pe, general_mean=gm, seed=900)
-        Pt = db.tau_pairs(Ys, mask); ss = tp[Pt.i.values] == tp[Pt.j.values]; sd = td[Pt.i.values] == td[Pt.j.values]
-        st = {"board": db.board_lopo_rho(Ys, mask, tp), "tau_xs_dd": float(Pt.tau[~ss & ~sd].mean()), "tau_xs_sd": float(Pt.tau[~ss & sd].mean()), "tau_ss_dd": float(Pt.tau[ss & ~sd].mean())}
-        return a, st, float(sum((st[k_] - targets[k_]) ** 2 for k_ in targets))
-    grid = [(gm, snr, ds, pe) for gm in (0.3, 0.6, 1.0) for snr in (0.5, 1.0, 2.0) for ds in (0.3, 0.6, 0.9) for pe in (0.5, 1.0)]
-    with mp.get_context("fork").Pool(NPROC) as pool: cal = pool.map(_cal_job, grid)
-    best = min(cal, key=lambda x_: x_[2]); GM, SNR, DS, PE = best[0]
-    sim_cal = {"targets": {k_: round(v_, 4) for k_, v_ in targets.items()}, "chosen": {"general_mean": GM, "snr": SNR, "dataset_share": DS, "paper_effect": PE},
-               "achieved": {k_: round(v_, 4) for k_, v_ in best[1].items()}, "grid_size": len(grid), "K_true_used": 2}
-    log("calibration", sim_cal)
-    # (a) offset cost under the calibrated truth (K=2: a general factor plus one specific)
+        p_, seeds = a; gm, snr, ds, pe = p_
+        sts = [db.calibration_stats(db.simulate(mask, td, tp, 2, snr=snr, dataset_share=ds, paper_effect=pe, general_mean=gm, seed=s_)[0], mask, td, tp, IDX) for s_ in seeds]
+        return p_, {k_: float(np.mean([x_[k_] for x_ in sts])) for k_ in sts[0]}, {k_: float(np.std([x_[k_] for x_ in sts], ddof=1)) for k_ in sts[0]}
+    def _cal_run(points, seeds):
+        with mp.get_context("fork").Pool(NPROC) as pool: return pool.map(_cal_job, [(p_, seeds) for p_ in points], chunksize=8)
+    import itertools
+    def _fine_axes(c):
+        """Five values per parameter around the centre (snr on a log scale), clipped to the parameter's bounds."""
+        out = []
+        for v_, (lo_, hi_), steps in zip(c, CAL_BOUNDS, ((-0.1, -0.05, 0, 0.05, 0.1), None, (-0.1, -0.05, 0, 0.05, 0.1), (-0.25, -0.125, 0, 0.125, 0.25))):
+            vals = [v_ * 2 ** e_ for e_ in (-0.5, -0.25, 0, 0.25, 0.5)] if steps is None else [v_ + d_ for d_ in steps]
+            out.append(tuple(sorted({round(float(np.clip(x_, lo_, hi_ if hi_ is not None else np.inf)), 4) for x_ in vals})))
+        return tuple(out)
+    def _edge_names(ch, axes):
+        out = []
+        for i_ in ch["edge_params"]:
+            v_ = ch["params"][i_]; lo_, hi_ = CAL_BOUNDS[i_]
+            out.append({"param": CAL_NAMES[i_], "value": v_, "parameter_bound": v_ == lo_ or v_ == hi_})
+        return out
+    R1 = _cal_run(list(itertools.product(*CAL_AXES_1)), CAL_SEEDS_1)
+    C1 = db.choose_calibration([(p_, st_) for p_, st_, _ in R1], CAL_T, CAL_AXES_1)
+    inside1 = [p_ for p_, st_, _ in R1 if all(CAL_T[k_]["ci90"][0] <= st_[k_] <= CAL_T[k_]["ci90"][1] for k_ in CAL_T)]
+    log("calibration stage 1", C1, "points with all targets inside:", len(inside1))
+    centre, rounds, C2 = C1["params"], [], None
+    for _ in range(3):
+        AX2 = _fine_axes(centre); R2 = _cal_run(list(itertools.product(*AX2)), CAL_SEEDS_2)
+        C2 = db.choose_calibration([(p_, st_) for p_, st_, _ in R2], CAL_T, AX2)
+        e2 = _edge_names(C2, AX2); rounds.append({"axes": dict(zip(CAL_NAMES, AX2)), "points": len(R2), "chosen": dict(zip(CAL_NAMES, C2["params"])), "misfit": C2["misfit"], "edges": e2})
+        log("calibration stage 2", rounds[-1])
+        if all(x_["parameter_bound"] for x_ in e2) or C2["params"] == centre: break
+        centre = C2["params"]
+    GM, SNR, DS, PE = C2["params"]
+    _, chk_m, chk_sd = _cal_job((C2["params"], CAL_SEEDS_CHECK))
+    fit_chk = {k_: {"real": CAL_T[k_]["value"], "ci90": CAL_T[k_]["ci90"], "simulated": round(chk_m[k_], 4), "simulated_seed_sd": round(chk_sd[k_], 4),
+                    "simulated_selection_seeds": C2["fit"][k_]["simulated"], "inside": bool(CAL_T[k_]["ci90"][0] <= chk_m[k_] <= CAL_T[k_]["ci90"][1]),
+                    "miss": round(0.0 if CAL_T[k_]["ci90"][0] <= chk_m[k_] <= CAL_T[k_]["ci90"][1] else (chk_m[k_] - CAL_T[k_]["ci90"][1] if chk_m[k_] > CAL_T[k_]["ci90"][1] else chk_m[k_] - CAL_T[k_]["ci90"][0]), 4)}
+               for k_ in CAL_T}
+    sim_cal = {"method": "two-stage grid; misfit = sum over targets of ((simulated mean - real) / bootstrap SE)^2; coarse stage 8 common seeds, fine stage 16, re-centred up to 3 rounds while the best point is on a fine-grid edge that is not a parameter bound; fit checked on 20 fresh seeds",
+               "targets": {k_: CAL_T[k_]["value"] for k_ in CAL_T}, "target_intervals": CAL_T,
+               "chosen": {"general_mean": GM, "snr": SNR, "dataset_share": DS, "paper_effect": PE},
+               "achieved": {k_: round(chk_m[k_], 4) for k_ in CAL_T}, "fit": fit_chk, "all_targets_inside": all(v_["inside"] for v_ in fit_chk.values()),
+               "coarse": {"axes": dict(zip(CAL_NAMES, CAL_AXES_1)), "points": len(R1), "chosen": dict(zip(CAL_NAMES, C1["params"])), "misfit": C1["misfit"], "edges": _edge_names(C1, CAL_AXES_1),
+                          "points_all_targets_inside": len(inside1),
+                          "inside_region_range": {n_: [min(p_[i_] for p_ in inside1), max(p_[i_] for p_ in inside1)] for i_, n_ in enumerate(CAL_NAMES)} if inside1 else None},
+               "fine_rounds": rounds, "grid_size": len(R1) + sum(r_["points"] for r_ in rounds), "K_true_used": 2,
+               "previous_v2_1": {"grid_size": 54, "chosen": {"general_mean": 0.6, "snr": 2.0, "dataset_share": 0.9, "paper_effect": 0.5}, "edges": ["snr", "dataset_share"]}}
+    log("calibration", {k_: sim_cal[k_] for k_ in ("chosen", "fit", "all_targets_inside")})
+    # one pool for all simulation fits: (a) K recovery under the D9 rule, K_true = 1..4 (K_true = 1 is a single
+    # leaderboard: general factor only), SIM_SEEDS seeds each; (b) offset cost under the calibrated truth (K_true = 2)
     def _sim_job(a):
-        Ys, s, K_ = a; k = kw(s); g = k.pop("groups")
-        L_ = db.leave_one_paper_out(Ys, mask, tp, K_, g, **k)
-        f, _ = db.fit_heteroskedastic(Ys, mask, K_, g, **k); n2, Lh, _ = db.dataset_loadings(f, td, mask)
-        return s, L_, n2, Lh
-    Ys2, Ld_true, nmz = db.simulate(mask, td, tp, 2, snr=SNR, dataset_share=DS, paper_effect=PE, general_mean=GM, seed=701)
-    with mp.get_context("fork").Pool(NPROC) as pool: res = pool.map(_sim_job, [(Ys2, s_, 2) for s_ in ("all", "multi_domain", "none")])
-    for s_, L_, n2, Lh in res:
-        multi = [i for i, n in enumerate(n2) if dpp.get(n, 0) >= 2]; Lt = np.array([Ld_true[nmz.index(n)] for n in n2])
-        L_["seen"] = [dpp.get(td[t], 0) >= 2 for t in L_.task]; seen = L_[L_.seen]
-        sim_spec.append(dict(offset=s_, rho=round(float(L_.rho_struct.mean()), 4), board=round(float(L_.rho_board.mean()), 4),
-                             dataset_gain_seen=round(float((seen.rho_struct - seen.rho_global).mean()), 4),
-                             recovery_multi_source_datasets=round(db.recovery(Lt[multi], Lh[multi]), 3), recovery_all=round(db.recovery(Lt, Lh), 3)))
+        kind, Kt, s_, arg = a
+        if kind == "K":
+            Ys, _, _ = db.simulate(mask, td, tp, Kt, snr=SNR, dataset_share=DS, paper_effect=PE, general_mean=GM, seed=500 + Kt + 10 * s_)
+            k = kw(SPEC); g = k.pop("groups"); return a, db.leave_one_paper_out(Ys, mask, tp, arg, g, **k)
+        Ys, Ld_true, nmz = db.simulate(mask, td, tp, 2, snr=SNR, dataset_share=DS, paper_effect=PE, general_mean=GM, seed=701 + s_)
+        k = kw(arg); g = k.pop("groups")
+        L_ = db.leave_one_paper_out(Ys, mask, tp, 2, g, **k)
+        f, _ = db.fit_heteroskedastic(Ys, mask, 2, g, **k); n2, Lh, _ = db.dataset_loadings(f, td, mask)
+        return a, (L_, n2, Lh, Ld_true, nmz)
+    jobs = [("K", Kt, s_, K_) for Kt in (1, 2, 3, 4) for s_ in range(SIM_SEEDS) for K_ in KS_LOPO] + \
+           [("off", 2, s_, o_) for s_ in range(SIM_SEEDS) for o_ in ("all", "multi_domain", "none")]
+    jobs.sort(key=lambda j_: -(j_[3] if j_[0] == "K" else 3))                # longest first, for load balance
+    with mp.get_context("fork").Pool(NPROC) as pool: SIMR = dict(pool.map(_sim_job, jobs, chunksize=1))
+    log("simulation fits done:", len(SIMR))
+    for o_ in ("all", "multi_domain", "none"):
+        per = []
+        for s_ in range(SIM_SEEDS):
+            L_, n2, Lh, Ld_true, nmz = SIMR[("off", 2, s_, o_)]
+            multi_ = [i for i, n in enumerate(n2) if dpp.get(n, 0) >= 2]; Lt = np.array([Ld_true[nmz.index(n)] for n in n2])
+            seen = L_[[dpp.get(td[t], 0) >= 2 for t in L_.task]]
+            per.append(dict(rho=float(L_.rho_struct.mean()), board=float(L_.rho_board.mean()), dataset_gain_seen=float((seen.rho_struct - seen.rho_global).mean()),
+                            recovery_multi_source_datasets=db.recovery(Lt[multi_], Lh[multi_]), recovery_all=db.recovery(Lt, Lh)))
+        agg = {k_: round(float(np.mean([x_[k_] for x_ in per])), 4) for k_ in ("rho", "board", "dataset_gain_seen", "recovery_all")}
+        agg.update({f"{k_}_sd": round(float(np.std([x_[k_] for x_ in per], ddof=1)), 4) for k_ in ("rho", "dataset_gain_seen")})
+        rm = [x_["recovery_multi_source_datasets"] for x_ in per]
+        sim_spec.append(dict(offset=o_, seeds=SIM_SEEDS, **agg, recovery_multi_source_datasets=round(float(np.median(rm)), 3),
+                             recovery_multi_source_datasets_by_seed=[round(x_, 3) for x_ in rm]))
         log("sim offset", sim_spec[-1])
-    # (b) can the anchored rule recover K? K_true = 1 is a single leaderboard (general factor only)
-    for Kt in (1, 2, 3):
-        Ys, _, _ = db.simulate(mask, td, tp, Kt, snr=SNR, dataset_share=DS, paper_effect=PE, general_mean=GM, seed=500 + Kt)
-        R_ = run_parallel([(Ys, SPEC, K_) for K_ in KS_LOPO]); rr_ = {K_: R_[(SPEC, K_)] for K_ in KS_LOPO}
-        Kc_, bk_, _, means = choose_K_on(rr_, PRIMARY)
-        vb = rr_[bk_]; gain = paired_boot(vb.rho_struct, vb.rho_board, vb.paper)
-        sim_K.append(dict(K_true=Kt, K_selected=Kc_, best_K=bk_, rho_by_K={K_: round(m_, 4) for K_, m_ in means.items()},
-                          board=round(float(rr_[1].rho_board.mean()), 4), bestK_vs_board=gain))
-        log("sim K", sim_K[-1])
+    for Kt in (1, 2, 3, 4):
+        per = []
+        for s_ in range(SIM_SEEDS):
+            rr_ = {K_: SIMR[("K", Kt, s_, K_)] for K_ in KS_LOPO}
+            Kc_, bk_, _, means = choose_K_on(rr_, PRIMARY)
+            per.append(dict(seed=500 + Kt + 10 * s_, K_selected=int(Kc_), best_K=int(bk_), rho_by_K={K_: round(m_, 4) for K_, m_ in means.items()},
+                            board=round(float(rr_[1].rho_board.mean()), 4), bestK_minus_board=round(float(rr_[bk_].rho_struct.mean() - rr_[1].rho_board.mean()), 4)))
+        sim_K.append(dict(K_true=Kt, seeds=SIM_SEEDS, K_selected_counts={K_: sum(x_["K_selected"] == K_ for x_ in per) for K_ in KS_LOPO},
+                          best_K_counts={K_: sum(x_["best_K"] == K_ for x_ in per) for K_ in KS_LOPO},
+                          rho_by_K={K_: round(float(np.mean([x_["rho_by_K"][K_] for x_ in per])), 4) for K_ in KS_LOPO},
+                          board=round(float(np.mean([x_["board"] for x_ in per])), 4), bestK_minus_board=round(float(np.mean([x_["bestK_minus_board"] for x_ in per])), 4),
+                          per_seed=per))
+        log("sim K", {k_: v_ for k_, v_ in sim_K[-1].items() if k_ != "per_seed"})
+    # diagnostic, not a calibration target: leave-one-paper-out accuracy levels in the calibrated world (K_true = 2) vs real
+    k2_ = next(x_ for x_ in sim_K if x_["K_true"] == 2)
+    sim_rho_level = {"real": {"rho_struct_by_K": {K_: lopo_table[SPEC][K_]["rho_struct"] for K_ in KS_LOPO}, "board": lopo_table[SPEC][1]["rho_board"]},
+                     "simulated_K_true_2": {"rho_struct_by_K": k2_["rho_by_K"], "board": k2_["board"]}, "offset": SPEC}
+    log("rho level", sim_rho_level)
 
 # ============================================================================= 5. dataset outputs at the best K (describes structure; see D9)
 k = kw(SPEC); g = k.pop("groups"); k.update(n_restarts=3, n_iter=400)
@@ -352,7 +422,7 @@ log("assoc", {c: {kk: (round(a["r2"], 3), round(a["null_mean"], 3), a["p_value"]
 # D13: publish dataset similarity only if (a) simulation shows it would be recoverable on this mask and (b) the real data
 # shows dataset loadings transfer out of paper (credible positive gain for datasets seen in other sources): (a) is
 # conditional on structure existing; (b) tests whether it does.
-rec_ok = [s_["recovery_multi_source_datasets"] for s_ in sim_spec if s_["offset"] == SPEC]
+rec_ok = next((s_["recovery_multi_source_datasets_by_seed"] for s_ in sim_spec if s_["offset"] == SPEC), [])   # median over seeds
 _seen = next((v_ for k_, v_ in lopo_gain.items() if k_.startswith("dataset_seen_in_other_sources")), None)
 GEOMETRY_RECOVERABLE = bool(rec_ok) and float(np.median(rec_ok)) >= 0.7
 DATASET_TRANSFER = bool(_seen) and _seen["ci90"][0] > 0
@@ -433,7 +503,7 @@ out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
              "lopo_by_spec_and_K": lopo_table, "paired_vs_best": k_tests, "primary_criterion": PRIMARY,
              "anchored": {"best": int(bestK_anch), "paired_vs_best": k_tests_anch}},
        "lopo_gain": lopo_gain, "board_lopo_rho_real": rnd(REAL_BOARD), "tau_tests": TAU, "simulation_calibration": sim_cal,
-       "simulation_offset": sim_spec, "simulation_K": sim_K, "geometry_recoverable": GEOMETRY_OK,
+       "simulation_offset": sim_spec, "simulation_K": sim_K, "simulation_rho_level": sim_rho_level, "geometry_recoverable": GEOMETRY_OK,
        "geometry_gate": {"simulated_recovery_median": rnd(float(np.median(rec_ok))) if rec_ok else None, "recoverable_in_simulation": GEOMETRY_RECOVERABLE,
                          "dataset_loadings_transfer_out_of_paper": DATASET_TRANSFER, "published": GEOMETRY_OK},
        "metadata_association_multi_source": assoc,

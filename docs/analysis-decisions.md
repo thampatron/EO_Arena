@@ -81,7 +81,7 @@ Excluded at three levels:
 
 ## D9 — Number of dimensions K and the one-leaderboard test · frozen (rule)
 - **Primary, block-predicted leave-one-paper-out.** Hold out every comparison of a source and refit. Predict each held-out comparison's GeoFM order from its dataset, protocol and sensor blocks and the GeoFMs' capability vectors, using nothing from the comparison itself.
-- **Leaderboard comparator:** the plain naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources). It also uses nothing from the comparison. Beating it shows that a dataset- and protocol-aware model predicts better than a fixed ranking. It is **not** a dimensionality test: in calibrated simulation with one true dimension, a one-factor structured model beats the leaderboard by +0.28, because block-predicted loadings learn each dataset's direction and size. (An earlier v2.1 draft called this test "conservative toward one ranking"; that was wrong.)
+- **Leaderboard comparator:** the plain naive leaderboard (each GeoFM's mean within-comparison z-score in the other sources). It also uses nothing from the comparison. Beating it shows that a dataset- and protocol-aware model predicts better than a fixed ranking. It is **not** a dimensionality test: in calibrated simulation with one true dimension, a one-factor structured model beats the leaderboard (by +0.15 on average over 5 tables at the v2.2 calibration; +0.28 at v2.1's), because block-predicted loadings learn each dataset's direction and size. (An earlier v2.1 draft called this test "conservative toward one ranking"; that was wrong.)
 - **Dimensionality test:** structured K ≥ 2 against structured K = 1, in the same block-predicted family. The best K is selected among 12 configurations on the same criterion it is scored on, so its gains are optimistic. Nested selection (choose offset and K within the training sources) is an agent-backlog item.
 - **K rule:** the smallest K whose accuracy is not credibly below the best K (paired bootstrap over sources). The offset option (D8) uses the same criterion.
 - **Secondary, anchored.** Estimate the held-out comparison's loading from a random half of its GeoFMs and predict the other half (10 splits), against the plain leaderboard scored on the same half.
@@ -107,7 +107,7 @@ Chosen in v1 (best of 1 / 3 / 10 for every specification). Not re-tuned, to avoi
 
 ## D13 — Publication gates · frozen
 - Dataset-level quantities only for datasets reported by ≥ 2 independent sources.
-- Dataset-to-dataset similarity only if (a) simulated recovery on the real mask has median ≥ 0.7, and (b) block-predicted dataset loadings credibly improve out-of-paper prediction for datasets seen in other sources. (a) says the structure would be recoverable if it existed; (b) tests whether the model's estimated loadings capture it.
+- Dataset-to-dataset similarity only if (a) simulated recovery on the real mask has median ≥ 0.7 (since v2.2 (N2), the median over 5 simulated tables at the D16 calibration under the chosen offset), and (b) block-predicted dataset loadings credibly improve out-of-paper prediction for datasets seen in other sources. (a) says the structure would be recoverable if it existed; (b) tests whether the model's estimated loadings capture it.
 - No model ranking anywhere.
 
 ## D14 — Selection effects
@@ -123,14 +123,26 @@ For every pair of comparisons sharing ≥ 4 GeoFMs, compute Kendall τ of their 
 Robustness (reproduced by `tau_robustness`): per-source-pair contrasts, a sign test over source pairs, leave-one-source-out range. Post hoc sensitivity: inverse-null-variance weighting of pairs and minimum shared GeoFMs 5 / 6 / 7. The primary estimate keeps pair weighting at ≥ 4 shared GeoFMs; the sensitivity shows it is conservative (larger contrasts at higher overlap, on fewer source pairs).
 
 ## D16 — Simulations calibrated to the real data · frozen (rule)
-- **Truth:** a general factor (every task's loading on factor 1 has a positive mean: a single leaderboard exists) plus mean-zero specific factors. Dataset-shared loadings and paper × model implementation effects are included.
-- **Calibration:** a 54-point grid over general-factor strength, signal-to-noise, dataset share and implementation-effect size is fitted to four real-data targets:
+- **Truth:** a general factor (every task's loading on factor 1 has a positive mean: a single leaderboard exists) plus mean-zero specific factors. Dataset-shared loadings and paper × model implementation effects are included (`simulate`; the implementation effect is in units of the noise SD, so the implementation-plus-noise variance is noise² × (1 + effect²)).
+- **Targets:** four real-data statistics, each with a 90% interval from a cluster bootstrap over sources (as in D15):
   - the naive leaderboard's out-of-paper ρ;
   - τ for different datasets across sources;
   - τ for the same dataset across sources;
   - τ for different datasets within a source.
-- The calibrated truth is used to test K recovery under the D9 rule and the cost of each D8 option.
-- **Limit:** the calibration is imperfect. Within-source τ is 0.12 simulated vs 0.26 real, and two parameters sit at grid edges, so the simulated world is easier than the real one (higher predictability, weaker paper effects). Its K recovery shows the rule is unbiased in that world, not that K is identified on the real data. Recalibration on an extended grid is an agent-backlog item.
+- **Calibration (v2.2, agent backlog N2; replaces v2.1's 54-point grid).** K_true = 2. Misfit = Σ ((simulated mean − real) / bootstrap SE)², so less precisely measured targets count less. Two stages:
+  - coarse: 720 points over general-factor mean 0.2–1.0, SNR 0.5–16, dataset share 0.5–1.0 and implementation effect 0–3 noise SD, each point averaged over the same 8 seeds;
+  - fine: 375–625 points around the best point (16 seeds), re-centred while the best point sits on a fine-grid edge that is not a bound of the parameter (3 rounds; 2,345 points in all);
+  - the chosen point is then re-simulated on 20 fresh seeds, and inside / outside is judged on those.
+- **Result.** Chosen: general-factor mean 0.7, SNR 2.38, dataset share 0.8, implementation effect 0.875 noise SD. It is strictly inside the coarse grid's range on every parameter and on no edge of the last fine round. All four targets are inside their intervals (fresh seeds, mean ± seed SD): leaderboard ρ 0.251 ± 0.091 (real 0.209, 0.121–0.310); τ different datasets across sources 0.089 ± 0.056 (0.093, −0.003–0.220); τ same dataset across sources 0.248 ± 0.094 (0.240, 0.084–0.617); τ different datasets within a source 0.248 ± 0.034 (0.263, 0.163–0.353). v2.1's under-matched within-source τ (0.12) is explained by too small an implementation effect (0.5 noise SD, the top of its grid), not by too high an SNR: once the effect could grow, SNR settled near 2.4, close to v2.1's edge value of 2.
+- **K recovery under the D9 rule (5 tables per K_true).** Selected K = K_true in 5/5 tables for K_true = 1, 1/5 for 2, 2/5 for 3 and 1/5 for 4. Every miss (11 of 11) picks fewer dimensions than the truth. In this world the rule does not add spurious dimensions, but it under-selects: a chosen K is a floor. v2.1's "recovers K = 1, 2, 3" came from one table per K_true in an easier world and does not hold here.
+- **Offset cost (D8, 5 tables, K_true = K = 2).** `all` and `multi_domain` recover dataset geometry for ≥ 2-source datasets with medians 0.80 and 0.81; `none`, the option chosen on the real data, gives 0.67 and slightly lower out-of-paper ρ (0.41 vs 0.44–0.45).
+- **D13 gate (a) changes.** Simulated recovery under the chosen offset is now a median over 5 tables: 0.669, below 0.7 (v2.1: 0.716 from one table at the old calibration). Similarity was not published before and is not now; gate (b) still fails as well.
+- **Limits.**
+  - The four targets do not identify the four parameters. 58 of the 720 coarse points put all four simulated means inside the intervals, spanning general-factor mean 0.4–1.0, SNR 0.5–16, dataset share 0.5–1.0 and implementation effect 0.5–2. The results above hold at the chosen point, not across that region.
+  - Each statistic varies a lot between simulated tables (seed SD up to 0.09 for the leaderboard ρ). The chosen point's misfit (0.05) is within that noise, so neighbouring points fit as well.
+  - The simulated world is still easier for the structured model. This is a diagnostic, not a target: out-of-paper structured ρ at K_true = 2 is 0.37–0.39 for K = 1–4, against 0.17–0.30 on the real data. Simulated dataset loadings also transfer out of paper (dataset gain +0.13 to +0.15), where real ones do not (−0.00).
+  - So K recovery here checks the rule in a world that matches four summary statistics of these data. It does not identify K on the real data.
+- The sensitivity runs (`data/dataset_analysis_sens_*.json`) skip the simulation (`--skip-sim`), so they are unaffected.
 
 ## D17 — Optimiser · frozen
 Each structured fit starts from:

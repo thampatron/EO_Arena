@@ -43,9 +43,22 @@ w(f"2. **Orderings are also paper-specific.** Different datasets evaluated in th
 k1g, kbg, kcg = g["K1_vs_leaderboard"], g["bestK_vs_leaderboard"], g["Kchosen_vs_leaderboard"]
 ank = g.get("anchored_bestK_vs_leaderboard_same_half")
 simK = d.get("simulation_K") or []
-sk = "; ".join(f"K_true = {x['K_true']} → selected {x['K_selected']} (best {x['best_K']})" for x in simK)
+cal_ = d.get("simulation_calibration") or {}
+def _kc(x): return x.get("K_selected_counts") or {str(x["K_selected"]): 1}
+def _hits(x): return int(_kc(x).get(str(x["K_true"]), _kc(x).get(x["K_true"], 0)))
+sk = ", ".join(f"{_hits(x)}/{x.get('seeds', 1)} for K_true = {x['K_true']}" for x in simK)
+rl_ = d.get("simulation_rho_level") or {}
+def _rl(side): return max((rl_.get(side) or {}).get("rho_struct_by_K", {"_": float("nan")}).values())
+sim_sentence = ""
+if simK:
+    _miss = [(int(k_), n_, x["K_true"]) for x in simK for k_, n_ in _kc(x).items() if int(k_) != x["K_true"] and n_]
+    _below = sum(n_ for k_, n_, t_ in _miss if k_ < t_); _above = sum(n_ for k_, n_, t_ in _miss if k_ > t_)
+    sim_sentence = (f" In a simulation calibrated to the real data ({'all four calibration targets inside their 90% intervals' if cal_.get('all_targets_inside') else 'not all calibration targets matched; see D16'}), the rule selects the true K in {sk} simulated tables"
+                    + (f"; when it misses, it picks fewer dimensions than the truth in {_below} of {_below + _above} tables, so a chosen K is best read as a floor" if _below + _above else "")
+                    + ". That checks the rule in a world resembling these data; it does not identify K on the real data"
+                    + (f", and that world is still easier to predict (best structured ρ {_rl('simulated_K_true_2'):.2f} simulated vs {_rl('real'):.2f} real)." if rl_ and _rl('simulated_K_true_2') > _rl('real') + 0.05 else "."))
 kv = K["paired_vs_best"]; k1best = kv.get("1") or kv.get(1)
-w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + " Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.")
+w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + sim_sentence)
 seen_ = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
 if seen_:
     w(f"4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by {ci(seen_)}. Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).")
@@ -124,18 +137,46 @@ w()
 w(f"Against the leaderboard: K = 1 {ci(g['K1_vs_leaderboard'])}; K = {Kc} (chosen) {ci(g['Kchosen_vs_leaderboard'])}; K = {g['bestK_vs_leaderboard']['K']} (best, selected — optimistic) {ci(g['bestK_vs_leaderboard'])}. Anchored: K = 1 {ci(g['anchored_K1_vs_leaderboard_same_half'])}; K = {g['anchored_bestK_vs_leaderboard_same_half']['K']} {ci(g['anchored_bestK_vs_leaderboard_same_half'])}.")
 w()
 cal = d.get("simulation_calibration") or {}
-if cal:
-    w(f"**Calibrated simulation (D16).** A general factor (one leaderboard) plus specific factors, dataset-shared loadings and implementation effects, fitted on a {cal['grid_size']}-point grid to the real data: targets " + ", ".join(f"{k} {v:.3f}" for k, v in cal["targets"].items()) + "; achieved " + ", ".join(f"{k} {v:.3f}" for k, v in cal["achieved"].items()) + f" with general-factor mean {cal['chosen']['general_mean']}, SNR {cal['chosen']['snr']}, dataset share {cal['chosen']['dataset_share']}, implementation effect {cal['chosen']['paper_effect']} noise SD.")
+if cal and "fit" in cal:
+    ch_ = cal["chosen"]; co_ = cal["coarse"]
+    def _edges(e_): return ", ".join(f"{x['param'].replace('_', ' ')} = {x['value']:.3g}" + (" (a bound of the parameter)" if x["parameter_bound"] else "") for x in e_) or "none"
+    _out = [n_.replace("_", " ") for n_, ax_ in co_["axes"].items() if not (min(ax_) < ch_[n_] < max(ax_))]
+    _edge_txt = ("The chosen point lies strictly inside the coarse grid's range on every parameter" if not _out else "The chosen point is at or beyond the coarse grid's range on " + ", ".join(_out)) + \
+                f"; edges of the last fine round: {_edges(cal['fine_rounds'][-1]['edges'])} (best coarse point's edges: {_edges(co_['edges'])})."
+    w(f"**Calibrated simulation (D16).** Truth: a general factor (one leaderboard) plus specific factors, dataset-shared loadings and paper × model implementation effects (K_true = {cal['K_true_used']} for calibration). Calibrated on a two-stage grid ({cal['grid_size']} points: a coarse grid of {co_['points']} over general-factor mean {', '.join(map(str, co_['axes']['general_mean']))}; SNR {', '.join(map(str, co_['axes']['snr']))}; dataset share {', '.join(map(str, co_['axes']['dataset_share']))}; implementation effect {', '.join(map(str, co_['axes']['paper_effect']))} noise SD; then {len(cal['fine_rounds'])} finer round{'s' if len(cal['fine_rounds']) > 1 else ''} around the best point), choosing the point closest to the four real targets in units of their bootstrap SE (cluster bootstrap over sources). Chosen: general-factor mean {ch_['general_mean']:.3g}, SNR {ch_['snr']:.3g}, dataset share {ch_['dataset_share']:.3g}, implementation effect {ch_['paper_effect']:.3g} noise SD. {_edge_txt} Fit checked on 20 fresh seeds:")
+    w()
+    w("| target | real | 90% interval | simulated (fresh seeds, mean ± SD) | inside |"); w("|---|---|---|---|---|")
+    _lab = {"board": "naive leaderboard, out-of-paper ρ", "tau_xs_dd": "τ different datasets, different sources", "tau_xs_sd": "τ same dataset, different sources", "tau_ss_dd": "τ different datasets, same source"}
+    for k_, v_ in cal["fit"].items(): w(f"| {_lab.get(k_, k_)} | {v_['real']:.3f} | {v_['ci90'][0]:.3f} to {v_['ci90'][1]:.3f} | {v_['simulated']:.3f} ± {v_['simulated_seed_sd']:.3f} | {'yes' if v_['inside'] else 'no (' + format(v_['miss'], '+.3f') + ')'} |")
+    w()
+    if co_.get("inside_region_range"):
+        w(f"The four targets do not pin down the four parameters: {co_['points_all_targets_inside']} of the {co_['points']} coarse points put all four simulated means inside the intervals, spanning " + "; ".join(f"{k_.replace('_', ' ')} {v_[0]}–{v_[1]}" for k_, v_ in co_["inside_region_range"].items()) + ". The simulation results below hold at the chosen point, not across that region.")
+        w()
+    rlv = d.get("simulation_rho_level") or {}
+    if rlv:
+        w(f"Diagnostic, not a calibration target — out-of-paper accuracy levels (offset {rlv['offset']}): real structured ρ by K " + ", ".join(f"K{k_}: {v_:.3f}" for k_, v_ in rlv["real"]["rho_struct_by_K"].items()) + f", leaderboard {rlv['real']['board']:.3f}; simulated (K_true = 2, mean over tables) " + ", ".join(f"K{k_}: {v_:.3f}" for k_, v_ in rlv["simulated_K_true_2"]["rho_struct_by_K"].items()) + f", leaderboard {rlv['simulated_K_true_2']['board']:.3f}.")
+        w()
+elif cal:
+    w(f"**Calibrated simulation (D16).** Fitted on a {cal['grid_size']}-point grid: targets " + ", ".join(f"{k} {v:.3f}" for k, v in cal["targets"].items()) + "; achieved " + ", ".join(f"{k} {v:.3f}" for k, v in cal["achieved"].items()) + ".")
     w()
 if d["simulation_K"]:
-    w("| K true | K selected by the rule | best K | ρ by K | leaderboard | best K − leaderboard |"); w("|---|---|---|---|---|---|")
-    for x in d["simulation_K"]: w(f"| {x['K_true']} | {x['K_selected']} | {x['best_K']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in x["rho_by_K"].items()) + f" | {x['board']:.3f} | {ci(x['bestK_vs_board'])} |")
+    _s = d["simulation_K"][0].get("seeds", 1)
+    w(f"K recovery under the D9 rule at the calibrated truth ({_s} simulated tables per K_true; the K columns count tables). This checks the rule, not the number of dimensions in the real data:")
+    w()
+    w("| K true | K selected by the rule (K1 / K2 / K3 / K4) | best K (K1 / K2 / K3 / K4) | mean ρ by K | mean leaderboard ρ | mean best K − leaderboard |"); w("|---|---|---|---|---|---|")
+    for x in d["simulation_K"]:
+        if "K_selected_counts" in x:
+            w(f"| {x['K_true']} | " + " / ".join(str(v) for v in x["K_selected_counts"].values()) + " | " + " / ".join(str(v) for v in x["best_K_counts"].values()) + " | " + ", ".join(f"K{k}: {v:.3f}" for k, v in x["rho_by_K"].items()) + f" | {x['board']:.3f} | {x['bestK_minus_board']:+.3f} |")
+        else:
+            w(f"| {x['K_true']} | {x['K_selected']} | {x['best_K']} | " + ", ".join(f"K{k}: {v:.3f}" for k, v in x["rho_by_K"].items()) + f" | {x['board']:.3f} | {ci(x['bestK_vs_board'])} |")
     w()
 if d["simulation_offset"]:
-    w("Offset options under the calibrated truth (K = 2):")
+    _s = d["simulation_offset"][0].get("seeds", 1)
+    w(f"Offset options (D8) under the calibrated truth (K_true = K = 2; means over {_s} simulated tables; geometry recovery as the median, with each table in brackets):")
     w()
     w("| offset | ρ (K = 2) | leaderboard | dataset gain (seen datasets) | geometry recovery (≥ 2-source datasets) |"); w("|---|---|---|---|---|")
-    for x in d["simulation_offset"]: w(f"| {x['offset']} | {x['rho']:.3f} | {x['board']:.3f} | {x['dataset_gain_seen']:+.3f} | {x['recovery_multi_source_datasets']:.2f} |")
+    for x in d["simulation_offset"]:
+        w(f"| {x['offset']} | {x['rho']:.3f} | {x['board']:.3f} | {x['dataset_gain_seen']:+.3f} | {x['recovery_multi_source_datasets']:.2f}" + (" (" + ", ".join(f"{v:.2f}" for v in x["recovery_multi_source_datasets_by_seed"]) + ")" if "recovery_multi_source_datasets_by_seed" in x else "") + " |")
     w()
 
 # ------------------------------------------------------------------ 4 datasets
@@ -151,8 +192,11 @@ for c, v in assoc.items():
     w(f"| {c} | {a['r2']:.2f} | {a['null_mean']:.2f} | {a['p_bonferroni_4_labels']:.2f} | {b['r2']:.2f} | {b['null_mean']:.2f} | {b['p_bonferroni_4_labels']:.2f} | {a['n']} |")
 w()
 gg_ = d.get("geometry_gate", {})
+_rec, _tr = gg_.get("recoverable_in_simulation"), gg_.get("dataset_loadings_transfer_out_of_paper")
+_why = [] if _rec else [f"simulated recovery on this mask is below 0.7 (median {gg_.get('simulated_recovery_median')} over simulated tables at the calibrated truth)"]
+if not _tr: _why.append("dataset loadings do not credibly transfer across papers on the real data, so the estimated similarities would describe single papers, not datasets")
 w("Dataset-to-dataset similarity " + ("is reported in the JSON (`nearest`) for datasets in ≥ 2 sources." if d["geometry_recoverable"] else
-  f"is **not published** (D13): simulated recovery on this mask {'would allow it' if gg_.get('recoverable_in_simulation') else 'is too low'} (median {gg_.get('simulated_recovery_median')}), but " + ("dataset loadings do not credibly transfer across papers on the real data, so the estimated similarities would describe single papers, not datasets." if not gg_.get("dataset_loadings_transfer_out_of_paper") else "the recovery gate fails.")))
+  "is **not published** (D13): " + "; and ".join(_why) + "." + (f" Simulated recovery alone would allow it (median {gg_.get('simulated_recovery_median')} over simulated tables at the calibrated truth)." if _rec else "")))
 w()
 
 # ------------------------------------------------------------------ 5 reliability
@@ -245,6 +289,8 @@ w("- τ contrasts rest on a median of 4–5 shared GeoFMs per pair and on which 
 w("- In single-domain sources, domain-specific capability and implementation effects are not separable (D8).")
 w("- Geography and time blocks of Eq. 11 are not fitted: no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.")
 w("- Points near the ceiling compress differences for classification benchmarks (D4).")
+if cal_ and "fit" in cal_:
+    w("- The calibrated simulation (D16) matches four summary statistics, which do not identify its parameters; its structured models predict held-out papers better than on the real data, so its K recovery and offset costs describe a somewhat easier world.")
 w("- Seed-noise scores come only from papers that print seed SDs, which may be the more careful ones; a printed SD below 0.1 point (e.g. fMoW) makes the score close to 1 by construction.")
 (ROOT / "docs" / "dataset-analysis.md").write_text("\n".join(L) + "\n")
 print("wrote docs/dataset-analysis.md")
