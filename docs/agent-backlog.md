@@ -12,7 +12,7 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 2. **N2 — Recalibrate the simulation on an extended grid** · `open`
    v2.1 calibration hits grid edges and under-matches within-source τ (0.12 simulated vs 0.26 real). Extend the grid (larger paper × model effects, lower SNR, finer general-factor strength) until all four targets (board ρ, τ cells) are within their bootstrap intervals or the misfit is documented. Rerun the K-recovery and offset-cost simulations at the new calibration (K_true 1–4, ≥ 5 seeds). Update D16 text.
 
-3. **N3 — Optimiser restarts at K ≥ 3** · `in PR`
+3. **N3 — Optimiser restarts at K ≥ 3** · `in PR #5`
    Leave-one-paper-out fits use 3 starts. Rerun the K = 3 vs K = 4 comparison with ≥ 8 random starts (and report the spread of objectives per fold). If K = 4 is no longer credibly worse, say so in §3 and D17.
 
 4. **N4 — Rounding uncertainty in seed-noise Eq. 6** · `open`
