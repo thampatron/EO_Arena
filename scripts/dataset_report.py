@@ -49,7 +49,9 @@ ank = g.get("anchored_bestK_vs_leaderboard_same_half")
 simK = d.get("simulation_K") or []
 sk = "; ".join(f"K_true = {x['K_true']} → selected {x['K_selected']} (best {x['best_K']})" for x in simK)
 kv = K["paired_vs_best"]; k1best = kv.get("1") or kv.get(1)
-w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + " Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.")
+F3_HEAD = ("**A dataset- and protocol-aware model may predict new papers' orderings better than a fixed leaderboard — credibly only for the selected best configuration, and not robustly to the optimiser's starts; whether that needs more than one dimension is suggestive only.**"
+           if RS and RS.get("seed_sets") else "**A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.**")
+w(f"3. {F3_HEAD} Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + " Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.")
 if RS and RS.get("seed_sets"):
     _ss = RS["seed_sets"]; _b3 = RS["by_setting"][RS_BASE]; _nb = RS_BIG.split()[0]
     _rr = lambda K_: f"{min(x['by_K'][K_]['rho_struct'] for x in _ss):.3f}–{max(x['by_K'][K_]['rho_struct'] for x in _ss):.3f}"
@@ -161,11 +163,11 @@ if RS and RS.get("seed_sets"):
       f"This was done for {len(ss)} sets of random starts: the build's seed 0 in every fold (its 3 starts are a subset of the {nb}" + ("; rerunning those 3 reproduces the table above exactly" if repro else "") + f"), and {len(ss) - 1} sets whose random starts differ between folds.")
     w()
     bl = lambda x: x["by_K"][str(x["K_rule"]["best"])]["vs_leaderboard"]
-    w("| start set | " + " | ".join(f"ρ K={k}" for k in allK) + " | K=4 − K=3 | K rule: best / chosen | best K − leaderboard |"); w("|---|" + "---|" * (len(allK) + 3))
-    w(f"| 3 starts (v2.1) | " + " | ".join(f"{bo[k]['rho_struct']:.3f}" for k in allK) + f" | {ci(RS['contrasts'][RS_BASE + ': K=4 minus K=3'])} | {bo['K_rule']['best']} / {bo['K_rule']['smallest_not_credibly_worse']} | {ci(bo[str(bo['K_rule']['best'])]['vs_leaderboard'])} |")
+    w("| start set | " + " | ".join(f"ρ K={k}" for k in allK) + " | K=4 − K=3 | K rule: best / chosen | K=1 − leaderboard | best K − leaderboard |"); w("|---|" + "---|" * (len(allK) + 4))
+    w(f"| 3 starts (v2.1) | " + " | ".join(f"{bo[k]['rho_struct']:.3f}" for k in allK) + f" | {ci(RS['contrasts'][RS_BASE + ': K=4 minus K=3'])} | {bo['K_rule']['best']} / {bo['K_rule']['smallest_not_credibly_worse']} | {ci(bo['1']['vs_leaderboard'])} | {ci(bo[str(bo['K_rule']['best'])]['vs_leaderboard'])} |")
     for x in ss:
-        w(f"| {nb} starts, {x['label'].replace(' (first run)', ' (as the build)')} | " + " | ".join(f"{x['by_K'][k]['rho_struct']:.3f}" for k in allK) + f" | {ci(x['contrasts']['K=4 minus K=3'])} | {x['K_rule']['best']} / {x['K_rule']['smallest_not_credibly_worse']} | {ci(bl(x))} |")
-    w(f"| leaderboard | " + " | ".join(f"{bo[k]['rho_board']:.3f}" for k in allK) + " | | | |")
+        w(f"| {nb} starts, {x['label'].replace(' (first run)', ' (as the build)')} | " + " | ".join(f"{x['by_K'][k]['rho_struct']:.3f}" for k in allK) + f" | {ci(x['contrasts']['K=4 minus K=3'])} | {x['K_rule']['best']} / {x['K_rule']['smallest_not_credibly_worse']} | {ci(x['by_K']['1']['vs_leaderboard'])} | {ci(bl(x))} |")
+    w(f"| leaderboard | " + " | ".join(f"{bo[k]['rho_board']:.3f}" for k in allK) + " | | | | |")
     w()
     w(f"Within a fold, the objectives reached from the {nb} starts (range over the {len(ss)} sets):")
     w()
@@ -178,8 +180,8 @@ if RS and RS.get("seed_sets"):
     lr = [y["capped_last_rel_change_median"] for x in ss for k in allK for y in [x["by_K"][k]] if y.get("capped_last_rel_change_median") and int(k) >= 3]
     k1o = bo["1"]["rho_struct"]; k1w = all(x["by_K"]["1"]["rho_struct"] < k1o for x in ss)
     w(f"Start dependence is not confined to K ≥ 3 or to the iteration cap: K = 1 fits converge ({rng_([y['starts_at_iteration_cap'] for y in k1], 0)} of {k1[0]['starts_total']} starts at the cap) yet their objectives differ between starts by a median of {pct([y['rel_range_median'] for y in k1])}%. "
-      + (f"Where K ≥ 3 starts stop at the cap, their objective was still falling by a median of {1e6 * min(lr):.0f}–{1e6 * max(lr):.0f} millionths of its value per iteration ({sum(any(x["by_K"][k].get("capped_last_rel_change_median") for k in allK) for x in ss)} sets with this record); at that rate even 1,000 more iterations would lower it by under 1%, against spreads of several per cent. " if lr else "")
-      + "More starts lower the in-sample objective but do not improve out-of-paper prediction" + (f" (K = 1: ρ {k1o:.3f} with 3 starts, {rng_([y['rho_struct'] for y in k1])} with {nb})" if k1w else "") + f", so the {nb}-start figures are an alternative, not a correction. "
+      + (f"Where K ≥ 3 starts stop at the cap, their objective was still falling by a median of {1e6 * min(lr):.0f}–{1e6 * max(lr):.0f} millionths of its value per iteration ({sum(any(x["by_K"][k].get("capped_last_rel_change_median") for k in allK) for x in ss)} sets with this record); at that rate, if the per-iteration decrease does not rise, even 1,000 more iterations would lower it by under 1%, against spreads of several per cent. " if lr else "")
+      + f"The {nb}-start fits keep the lowest of {nb} objectives (in the seed-0 set never above the 3-start fit), but do not improve out-of-paper prediction" + (f" (K = 1: ρ {k1o:.3f} with 3 starts, {rng_([y['rho_struct'] for y in k1])} with {nb})" if k1w else "") + f", so the {nb}-start figures are an alternative, not a correction. "
       "The scoring note asks that extra factors be kept only where the task geometry they describe is stable; a geometry that moves with the optimiser's starting point does not meet that, which is a further reason the dimensionality result (Finding 3) stays suggestive.")
     w()
     c = [x["contrasts"]["K=4 minus K=3"] for x in ss]; c0 = RS["contrasts"][RS_BASE + ": K=4 minus K=3"]; neg = sum(x["ci90"][1] < 0 for x in c)
@@ -196,8 +198,8 @@ if RS and RS.get("seed_sets"):
     kr = [x["K_rule"] for x in ss]; beat = sum(credible(bl(x)) and bl(x)["mean"] > 0 for x in ss)
     eq = all(x["best"] == x["smallest_not_credibly_worse"] for x in kr)
     w(f"Applying the D9 K rule to the {nb}-start fits gives best / chosen K = " + ", ".join(f"{x['best']} / {x['smallest_not_credibly_worse']}" for x in kr) + f" in the {len(kr)} sets (3 starts: {bo['K_rule']['best']} / {bo['K_rule']['smallest_not_credibly_worse']}). "
-      + ("Chosen K equals best K in every set, so its gain over the leaderboard is still the selected best-of-12 figure (D14), not a prespecified one" if eq else "Where chosen K equals best K, its gain over the leaderboard is still the selected best-of-12 figure (D14)")
-      + f"; that best K credibly beats the leaderboard in {beat} of the {len(ss)} sets. The chosen K changes because the ρ of every K moves with the starts, not because K is better identified; this does not strengthen the dimensionality evidence. Sensitivity only: the frozen analysis and the figures above are unchanged.")
+      + ("Chosen K equals best K in every set, so its gain over the leaderboard is still a selected figure (best of 4 K within the offset chosen in v2.1; D14), not a prespecified one" if eq else "Where chosen K equals best K, its gain over the leaderboard is still a selected figure (best of 4 K within the offset chosen in v2.1; D14)")
+      + f"; that best K credibly beats the leaderboard in {beat} of the {len(ss)} sets" + (" (the seed-0 set, whose random starts are shared across folds; backlog P-N3c)" if beat == 1 and all("every fold" in x["label"] for x in ss if credible(bl(x)) and bl(x)["mean"] > 0) else "") + f". The chosen K changes because the ρ of every K moves with the starts, not because K is better identified; this does not strengthen the dimensionality evidence. Sensitivity only: the frozen analysis and the figures above are unchanged.")
     w()
 
 # ------------------------------------------------------------------ 4 datasets
@@ -296,7 +298,7 @@ def _dim(j):
     return None if not p1 else (-p1["mean"], -p1["ci90"][1])
 _d = [x for x in map(_dim, _J) if x]; _tau = [j["tau_tests"]["all"]["dataset_identity"] for j in _J]
 _kc = [j["lopo_gain"].get("Kchosen_vs_leaderboard") for j in _J]
-w(f"Across the {len(_J)} v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in {sum(t['ci90'][0] > 0 for t in _tau)}; best K beats K = 1 with an interval above 0 in {sum(lo > 0 for _, lo in _d)} of {len(_d)} (range {min(m for m, _ in _d):+.2f} to {max(m for m, _ in _d):+.2f}; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in {sum(1 for k in _kc if k and k['ci90'][0] > 0)}. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).")
+w(f"Across the {len(_J)} v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in {sum(t['ci90'][0] > 0 for t in _tau)}; best K beats K = 1 with an interval above 0 in {sum(lo > 0 for _, lo in _d)} of {len(_d)} (range {min(m for m, _ in _d):+.2f} to {max(m for m, _ in _d):+.2f}; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in {sum(1 for k in _kc if k and k['ci90'][0] > 0)}. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1)." + (" All runs use the build's 3-start optimiser; see §3 for optimiser dependence." if RS else ""))
 w()
 
 # ------------------------------------------------------------------ 9 limits
