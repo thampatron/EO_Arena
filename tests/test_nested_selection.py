@@ -46,19 +46,24 @@ def test_inner_selection_ignores_held_out_source_values():
     Y2[:, tp == held] = rng.normal(scale=100.0, size=Y2[:, tp == held].shape)   # scramble the held-out source
     pert = ns.nested_select(Y2, mask, tp, held, kw_fn, specs=specs, Ks=Ks)
     assert base == pert
+    # changing which cells the held-out source observes does not change the inner selection either
+    m2 = mask.copy(); cols = np.where(tp == held)[0]; m2[:, cols[0]] = False; m2[:5, cols[1]] = ~m2[:5, cols[1]]
+    assert ns.nested_select(Y, m2, tp, held, kw_fn, specs=specs, Ks=Ks, sources=ns.scored_sources(mask, tp)) == base
     # control: scrambling a training source does change the inner table
     Y3 = Y.copy(); Y3[:, tp == "src0"] = rng.normal(scale=100.0, size=Y3[:, tp == "src0"].shape)
     assert ns.nested_select(Y3, mask, tp, held, kw_fn, specs=specs, Ks=Ks)["table"] != base["table"]
 
 
-def test_pair_fit_equals_inner_fit_without_outer_source():
+@pytest.mark.parametrize("spec,K", [("none", 1), ("all", 2), ("all", 3)])
+def test_pair_fit_equals_inner_fit_without_outer_source(spec, K):
     """The fit without {o, p} scores p exactly as an inner fold run on the matrix with o's comparisons deleted."""
     Y, mask, tp, kw_fn = toy(2)
-    k = kw_fn("none"); g = k.pop("groups"); o, p = "src1", "src3"
+    k = kw_fn(spec); g = k.pop("groups"); o, p = "src1", "src3"
     keep = tp != o
-    a = ns.fit_and_score(Y, mask, tp, frozenset((o, p)), 1, g, **k).query("paper == @p")
-    k2 = {kk: (v[keep] if kk == "prior_group" else v) for kk, v in k.items()}
-    b = ns.fit_and_score(Y[:, keep], mask[:, keep], tp[keep], frozenset((p,)), 1, {n: v[keep] for n, v in g.items()}, **k2)
+    a = ns.fit_and_score(Y, mask, tp, frozenset((o, p)), K, g, **k).query("paper == @p")
+    k2 = {kk: (np.asarray(v)[keep] if kk in ("prior_group", "paper") else v) for kk, v in k.items()}
+    b = ns.fit_and_score(Y[:, keep], mask[:, keep], tp[keep], frozenset((p,)), K, {n: v[keep] for n, v in g.items()}, **k2)
+    assert len(a) and list(a.task.map(lambda t: np.where(keep)[0].tolist().index(t))) == list(b.task)
     np.testing.assert_allclose(a.rho_struct.values, b.rho_struct.values, atol=1e-8)
     np.testing.assert_allclose(a.rho_board.values, b.rho_board.values, atol=1e-12)
 
@@ -91,6 +96,8 @@ def test_choose_K_on_is_the_builds_function():
     src = (Path(ns.__file__).parent / "build_dataset_analysis.py").read_text()
     names = {n.name for n in ast.parse(src).body if isinstance(n, ast.FunctionDef)}
     assert {"paired_boot", "choose_K_on"} <= names and ns.SEED == 0 and ns.KS == (1, 2, 3, 4)
+    for f in (ns.choose_K_on, ns.paired_boot):
+        assert f.__code__.co_filename.endswith("build_dataset_analysis.py")
 
 
 def test_max_bootstrap_single_and_identical_configs():

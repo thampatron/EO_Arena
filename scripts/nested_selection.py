@@ -30,7 +30,9 @@ deleting them — see tests/). Sources that leave-one-paper-out cannot score are
 fits are skipped. 22 scored sources: (22 + 231) x 12 = 3,036 fits, about 4.1 h on 2 CPUs; fits are cached (--cache).
 
 Usage: python3 scripts/nested_selection.py <workbook dir> [--cache DIR] [--out PATH]
-Writes summary statistics only (data/dataset_analysis_nested.json); per-task rows are cached outside the repository.
+Writes summary statistics only (data/dataset_analysis_nested.json). --cache DIR (default: <system temp dir>/
+eoarena_nested_cache, outside the repository) holds one pickle per fit with per-task rows (held-out source, task index,
+GeoFMs scored, rho_struct, rho_board): workbook-derived, never commit it; delete it to force a full refit.
 """
 import os
 os.environ.setdefault("OMP_NUM_THREADS", "1"); os.environ.setdefault("OPENBLAS_NUM_THREADS", "1"); os.environ.setdefault("MKL_NUM_THREADS", "1")
@@ -139,6 +141,11 @@ def max_bootstrap(diffs, B=2000, seed=SEED):
     distribution of the maximum, the same configuration's own (fixed) bootstrap distribution, and
       optimism      = mean bootstrap max - mean bootstrap of the observed-best configuration held fixed (>= 0);
       bias_of_max   = mean bootstrap max - observed max  (bootstrap bias of the max statistic); corrected = observed - bias;
+      winners_curse = mean over draws of (M*_b[j*_b] - obs[j*_b]), j*_b = the draw's best configuration: how far the
+                      draw's winner exceeds that configuration's full-sample mean (a bootstrap estimate of selection
+                      optimism that does not condition on the observed winner);
+      NB optimism and bias_of_max take the observed configuration means as the truth, so they cannot see optimism that is
+      already in the observed maximum; nested selection is the direct estimate.
       max-T interval: 90% simultaneous interval over all configurations (studentised by each configuration's bootstrap
                       SD; q = 90th percentile of max_c |m*_c - m_c| / sd_c), reported for the observed-best configuration."""
     cfgs = list(diffs)
@@ -163,6 +170,7 @@ def max_bootstrap(diffs, B=2000, seed=SEED):
             "bootstrap_max": {"mean": r4(np.mean(bmax)), "ci90": [r4(np.percentile(bmax, 5)), r4(np.percentile(bmax, 95))], "p_le_0": r4((bmax <= 0).mean())},
             "bootstrap_fixed_config": {"mean": r4(np.nanmean(fixed)), "ci90": [r4(np.nanpercentile(fixed, 5)), r4(np.nanpercentile(fixed, 95))], "p_le_0": r4((fixed <= 0).mean())},
             "share_draws_max_is_observed_max_config": r4(np.mean(np.nanargmax(np.where(np.isnan(M), -np.inf, M), axis=1) == j)),
+            "winners_curse": r4(np.mean(bmax - obs[np.nanargmax(np.where(np.isnan(M), -np.inf, M), axis=1)])),
             "optimism": r4(np.mean(bmax) - np.nanmean(fixed)), "bias_of_max": r4(np.mean(bmax) - obs[j]),
             "bias_corrected_max": r4(2 * obs[j] - np.mean(bmax)),
             "maxT_q90": r4(q), "maxT_ci90_for_max_config": [r4(obs[j] - q * sd[j]), r4(obs[j] + q * sd[j])] if np.isfinite(sd[j]) else None}

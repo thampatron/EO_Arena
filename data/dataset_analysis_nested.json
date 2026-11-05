@@ -274,6 +274,7 @@
    "p_le_0": 0.0075
   },
   "share_draws_max_is_observed_max_config": 0.892,
+  "winners_curse": 0.0079,
   "optimism": 0.0018,
   "bias_of_max": 0.0011,
   "bias_corrected_max": 0.0883,
@@ -284,6 +285,6 @@
   ]
  },
  "fits": 3036,
- "runtime_s_this_invocation": 21,
+ "runtime_s_this_invocation": 22,
  "runtime_note": "fits are cached outside the repository; the uncached run took about 4.1 h on 2 CPUs"
 }
