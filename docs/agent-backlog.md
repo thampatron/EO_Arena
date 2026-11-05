@@ -6,7 +6,7 @@ Ordered; the scheduled job takes the first item that is `open` and has no remote
 
 Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go first. All are sensitivity or robustness work: the frozen analysis stays as is, and results are reported next to it.
 
-1. **N1 — Nested selection for the K and offset choice** · `in PR (agent/N1-nested-selection)`
+1. **N1 — Nested selection for the K and offset choice** · `in PR #3`
    The best K (and offset) is chosen among 12 configurations on the same leave-one-paper-out criterion it is scored on (D14). Implement nested selection: for each held-out source, choose offset and K by inner leave-one-paper-out on the training sources only, then score on the held-out source; paired bootstrap over sources vs the leaderboard and vs K = 1. Report next to the selected figures in §3. Also report a bootstrap of the max over the 12 configurations.
 
 2. **N2 — Recalibrate the simulation on an extended grid** · `open`
