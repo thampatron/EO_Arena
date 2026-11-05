@@ -6,7 +6,7 @@ Ordered; the scheduled job takes the first item that is `open` and has no remote
 
 Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go first. All are sensitivity or robustness work: the frozen analysis stays as is, and results are reported next to it.
 
-1. **N1 — Nested selection for the K and offset choice** · `open`
+1. **N1 — Nested selection for the K and offset choice** · `in PR #3`
    The best K (and offset) is chosen among 12 configurations on the same leave-one-paper-out criterion it is scored on (D14). Implement nested selection: for each held-out source, choose offset and K by inner leave-one-paper-out on the training sources only, then score on the held-out source; paired bootstrap over sources vs the leaderboard and vs K = 1. Report next to the selected figures in §3. Also report a bootstrap of the max over the 12 configurations.
 
 2. **N2 — Recalibrate the simulation on an extended grid** · `open`
@@ -53,3 +53,7 @@ Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2),
 - ~~D2 — GEO-Bench-2 leaderboard in the main analysis~~ — decided 2026-11-04: included (D3); `--no-leaderboard` is the sensitivity variant.
 
 ## Proposed (added by runs; a maintainer moves items up)
+
+- **P1 — §3 LOPO table column labels swapped** (found in N1). `scripts/dataset_report.py` heads the first K block "anchored K=…" and the second "blocks K=…", but fills the first with `rho_struct` (block-predicted) and the leaderboard column with `rho_board`, the second with `rho_anch` and `rho_half_board`. The numbers are right; the headers are the wrong way round (e.g. the "anchored K=1" cell for `none` is the block-predicted 0.168 that §3's "K = 1 −0.04 vs leaderboard" is computed from). Report-only fix.
+- **P2 — Stale comment in `build_dataset_analysis.py` §3** (found in N1). The section comment still calls the plain-leaderboard comparison "conservative toward one ranking", which D9 records as wrong. Comment-only fix.
+- **P3 — needs-decision: D9/D14 K rule** (found in N1 review). The frozen rule keeps the smallest K not credibly worse than the best; the note retains a factor only when its predictive benefit exceeds uncertainty. Under nested selection the rule's K minus K = 1 is +0.08 (90% CI −0.01 to +0.15), which the note-style criterion would not retain. Decision for Jordi; no implementation.
