@@ -1,0 +1,289 @@
+{
+ "version": 1,
+ "as_of": "2026-11-05",
+ "item": "N1 nested selection (sensitivity for D8/D9/D14; frozen decisions unchanged)",
+ "design": {
+  "outer": "leave-one-source-out over the sources with >= 1 scored held-out comparison",
+  "inner": "leave-one-paper-out over the remaining sources with the outer source's comparisons removed (exact nesting, no reduction); the fit without sources {o, p} is computed once and serves inner fold p of outer o and inner fold o of outer p",
+  "selection": "build rules: offset = highest max-over-K mean rho_struct; K = smallest not credibly worse than the best (paired bootstrap over inner sources); best K = inner argmax",
+  "fit_settings": "build kw(): ridge 3 (blocks, task part, theta, paper x model offset), n_restarts=1 + leaderboard-seeded + SVD starts, n_iter 200, tol 1e-6, heteroskedastic, family priors",
+  "criterion": "rho_struct (block-predicted) vs rho_board (plain leaderboard from the training sources)",
+  "bootstrap": "paired_boot from the build: cluster bootstrap over outer sources, 2000 draws, seed 0",
+  "K1_comparator": "K = 1 at the same fold's nested offset, same held-out comparisons"
+ },
+ "reproduces_build_lopo_table": true,
+ "full_data_selection": {
+  "spec": "none",
+  "K_chosen": 2,
+  "K_best": 3
+ },
+ "outer_folds": 22,
+ "per_fold": [
+  {
+   "source": "agbd_eval",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 3,
+   "comparisons_scored": 2
+  },
+  {
+   "source": "anysat",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 3,
+   "comparisons_scored": 1
+  },
+  {
+   "source": "copernicus",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 9
+  },
+  {
+   "source": "croma",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 4,
+   "comparisons_scored": 22
+  },
+  {
+   "source": "cryo-bench",
+   "offset": "none",
+   "K_chosen": 1,
+   "K_best": 4,
+   "comparisons_scored": 15
+  },
+  {
+   "source": "dofa",
+   "offset": "none",
+   "K_chosen": 1,
+   "K_best": 2,
+   "comparisons_scored": 14
+  },
+  {
+   "source": "earthshift",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 3,
+   "comparisons_scored": 40
+  },
+  {
+   "source": "galileo",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 56
+  },
+  {
+   "source": "geobench_v2_leaderboard",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 32
+  },
+  {
+   "source": "geocross-bench",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 2,
+   "comparisons_scored": 60
+  },
+  {
+   "source": "geoid-flood-bench",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 3,
+   "comparisons_scored": 4
+  },
+  {
+   "source": "infra-bench",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 2
+  },
+  {
+   "source": "mmearth-bench",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 10
+  },
+  {
+   "source": "neuco-bench",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 8
+  },
+  {
+   "source": "olmoearth_v12",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 48
+  },
+  {
+   "source": "pangea",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 2,
+   "comparisons_scored": 34
+  },
+  {
+   "source": "panopticon",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 3,
+   "comparisons_scored": 15
+  },
+  {
+   "source": "prithvi_v2",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 20
+  },
+  {
+   "source": "satdifuser",
+   "offset": "none",
+   "K_chosen": 2,
+   "K_best": 2,
+   "comparisons_scored": 15
+  },
+  {
+   "source": "ssl4eo",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 10
+  },
+  {
+   "source": "sustainfm",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 3,
+   "comparisons_scored": 17
+  },
+  {
+   "source": "tessera",
+   "offset": "none",
+   "K_chosen": 3,
+   "K_best": 4,
+   "comparisons_scored": 30
+  }
+ ],
+ "fold_counts": {
+  "offset": {
+   "none": 22
+  },
+  "K_chosen": {
+   "1": 2,
+   "2": 9,
+   "3": 11
+  },
+  "K_best": {
+   "2": 4,
+   "3": 15,
+   "4": 3
+  },
+  "offset_x_K_chosen": {
+   "none|K=1": 2,
+   "none|K=2": 9,
+   "none|K=3": 11
+  },
+  "same_as_full_data_selection": 9
+ },
+ "nested": {
+  "chosen_K_vs_leaderboard": {
+   "mean": 0.037,
+   "ci90": [
+    -0.0334,
+    0.0992
+   ],
+   "p_le_0": 0.1815,
+   "n_tasks": 464,
+   "n_papers": 22
+  },
+  "best_K_vs_leaderboard": {
+   "mean": 0.0644,
+   "ci90": [
+    -0.0036,
+    0.1239
+   ],
+   "p_le_0": 0.0615,
+   "n_tasks": 464,
+   "n_papers": 22
+  },
+  "chosen_K_vs_K1": {
+   "mean": 0.078,
+   "ci90": [
+    -0.007,
+    0.1466
+   ],
+   "p_le_0": 0.064,
+   "n_tasks": 464,
+   "n_papers": 22
+  },
+  "best_K_vs_K1": {
+   "mean": 0.1053,
+   "ci90": [
+    0.0299,
+    0.1641
+   ],
+   "p_le_0": 0.0135,
+   "n_tasks": 464,
+   "n_papers": 22
+  }
+ },
+ "max_over_configurations": {
+  "configurations": 12,
+  "sources": 22,
+  "B": 2000,
+  "observed_by_config": {
+   "all|K=1": -0.2257,
+   "all|K=2": -0.1711,
+   "all|K=3": -0.0437,
+   "all|K=4": -0.0595,
+   "multi_domain|K=1": -0.1929,
+   "multi_domain|K=2": -0.1549,
+   "multi_domain|K=3": -0.0576,
+   "multi_domain|K=4": -0.037,
+   "none|K=1": -0.041,
+   "none|K=2": 0.0494,
+   "none|K=3": 0.0894,
+   "none|K=4": 0.0119
+  },
+  "observed_max": 0.0894,
+  "observed_max_config": "none|K=3",
+  "bootstrap_max": {
+   "mean": 0.0905,
+   "ci90": [
+    0.0329,
+    0.1423
+   ],
+   "p_le_0": 0.0055
+  },
+  "bootstrap_fixed_config": {
+   "mean": 0.0886,
+   "ci90": [
+    0.0299,
+    0.1412
+   ],
+   "p_le_0": 0.0075
+  },
+  "share_draws_max_is_observed_max_config": 0.892,
+  "optimism": 0.0018,
+  "bias_of_max": 0.0011,
+  "bias_corrected_max": 0.0883,
+  "maxT_q90": 2.2822,
+  "maxT_ci90_for_max_config": [
+   0.0105,
+   0.1683
+  ]
+ },
+ "fits": 3036,
+ "runtime_s_this_invocation": 21,
+ "runtime_note": "fits are cached outside the repository; the uncached run took about 4.1 h on 2 CPUs"
+}
