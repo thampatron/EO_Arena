@@ -248,25 +248,25 @@ Reported separation = model-count-weighted SD of reported scores within the data
 
 ## 8. Sensitivity: which findings depend on the analysis decisions
 
-| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | v2 · b_no_leaderboard | v2 · c_no_regression | v2 · core3 | v2 · d_all_v1_decisions | v2 · k6_linear_all | v2 · k6_linear_main | v2 · k6_log_all | v2 · k6_log_main | **v2.1 (this report)** |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 98×464, 26 src | 98×440, 25 src | 29×435, 22 src | 88×218, 19 src | 100×496, 27 src | 94×295, 22 src | 100×496, 27 src | 94×295, 22 src | 100×496, 27 src |
-| datasets in ≥ 2 sources | 20 | 27 | 23 | 28 | 25 | 20 | 29 | 27 | 29 | 27 | 29 |
-| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.00 to +0.49) | +0.14 (90% CI +0.01 to +0.46) | +0.16 (90% CI +0.03 to +0.52) | +0.43 (90% CI +0.09 to +0.67) | +0.15 (90% CI +0.01 to +0.48) | +0.46 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) |
-| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 10/13 (p = 0.05) | 10/14 (p = 0.09) | 10/12 (p = 0.02) | 3/4 (p = 0.31) | 11/14 (p = 0.03) | 3/4 (p = 0.31) | 11/14 (p = 0.03) | 3/4 (p = 0.31) | 11/14 (p = 0.03) |
-| K chosen / best | 2 / 4 | 2 / 2 | 3 / 3 | 2 / 3 | 2 / 4 | 2 / 2 | 3 / 3 | 3 / 3 | 1 / 3 | 2 / 3 | 2 / 3 |
-| offset | all | none | none | none | none | all | none | none | none | none | none |
-| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.07 (90% CI -0.16 to +0.02) | -0.10 (90% CI -0.23 to +0.03) | -0.19 (90% CI -0.34 to -0.05) | -0.19 (90% CI -0.33 to -0.06) | -0.10 (90% CI -0.22 to +0.01) | -0.11 (90% CI -0.21 to -0.01) | -0.04 (90% CI -0.14 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.04 (90% CI -0.14 to +0.05) |
-| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.06 (90% CI -0.02 to +0.13) | -0.09 (90% CI -0.26 to +0.06) | +0.13 (90% CI +0.08 to +0.16) | +0.11 (90% CI +0.03 to +0.18) | +0.20 (90% CI +0.16 to +0.25) | -0.04 (90% CI -0.14 to +0.05) | +0.17 (90% CI +0.11 to +0.23) | +0.05 (90% CI -0.02 to +0.11) |
-| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.11 (90% CI +0.05 to +0.17) | -0.06 (90% CI -0.15 to +0.03) | +0.13 (90% CI +0.08 to +0.16) | +0.11 (90% CI +0.03 to +0.18) | +0.20 (90% CI +0.16 to +0.25) | +0.02 (90% CI -0.15 to +0.15) | +0.19 (90% CI +0.14 to +0.23) | +0.09 (90% CI +0.03 to +0.14) |
-| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.21 (90% CI +0.09 to +0.30) | +0.14 (90% CI +0.03 to +0.25) | +0.31 (90% CI +0.19 to +0.44) | +0.21 (90% CI +0.11 to +0.30) | +0.31 (90% CI +0.23 to +0.39) | +0.06 (90% CI -0.03 to +0.14) | +0.30 (90% CI +0.19 to +0.41) | +0.13 (90% CI +0.03 to +0.21) |
-| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | +0.04 (90% CI -0.03 to +0.10) | -0.11 (90% CI -0.19 to -0.04) | +0.06 (90% CI -0.09 to +0.24) | -0.00 (90% CI -0.05 to +0.05) | +0.15 (90% CI +0.08 to +0.22) | -0.06 (90% CI -0.17 to +0.05) | +0.11 (90% CI +0.05 to +0.18) | -0.00 (90% CI -0.08 to +0.07) |
-| labels surviving correction | none | domain | none | domain | domain, sensor | none | none | domain, subdomain | none | sensor | none |
-| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / yes | not run / no | not run / yes | yes / no |
-| comparisons with seed-noise score | 0 | 32 | 120 | 146 | 118 | 0 | 152 | 32 | 152 | 32 | 152 |
-| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 1 | 0 / 2 | 0 / 3 | 0 / 2 | 0 / 4 | 0 / 2 | 0 / 4 | 0 / 2 |
+| | v1 (main text, no leaderboard, no regression, offset all) | v2 · a_main_text_only | v2 · b_no_leaderboard | v2 · c_no_regression | v2 · core3 | v2 · d_all_v1_decisions | v2 · families | v2 · frozen | v2 · k6_linear_all | v2 · k6_linear_main | v2 · k6_log_all | v2 · k6_log_main | **v2.1 (this report)** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| evidence (GeoFMs × tasks) | 93×228, 20 src | 94×295, 22 src | 98×464, 26 src | 98×440, 25 src | 29×435, 22 src | 88×218, 19 src | 56×479, 25 src | 85×317, 25 src | 100×496, 27 src | 94×295, 22 src | 100×496, 27 src | 94×295, 22 src | 100×496, 27 src |
+| datasets in ≥ 2 sources | 20 | 27 | 23 | 28 | 25 | 20 | 28 | 29 | 29 | 27 | 29 | 27 | 29 |
+| dataset identity, model-free τ (v2.1+) | – | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.00 to +0.49) | +0.14 (90% CI +0.01 to +0.46) | +0.16 (90% CI +0.03 to +0.52) | +0.43 (90% CI +0.09 to +0.67) | +0.16 (90% CI +0.08 to +0.40) | +0.19 (90% CI +0.03 to +0.53) | +0.15 (90% CI +0.01 to +0.48) | +0.46 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) | +0.47 (90% CI +0.13 to +0.63) | +0.15 (90% CI +0.01 to +0.48) |
+| τ: source pairs with positive contrast (sign test) | – | 3/4 (p = 0.31) | 10/13 (p = 0.05) | 10/14 (p = 0.09) | 10/12 (p = 0.02) | 3/4 (p = 0.31) | 20/23 (p = 0.00) | 11/13 (p = 0.01) | 11/14 (p = 0.03) | 3/4 (p = 0.31) | 11/14 (p = 0.03) | 3/4 (p = 0.31) | 11/14 (p = 0.03) |
+| K chosen / best | 2 / 4 | 2 / 2 | 3 / 3 | 2 / 3 | 2 / 4 | 2 / 2 | 2 / 3 | 2 / 4 | 3 / 3 | 3 / 3 | 1 / 3 | 2 / 3 | 2 / 3 |
+| offset | all | none | none | none | none | all | none | none | none | none | none | none | none |
+| K=1 vs leaderboard (block-predicted) | -0.09 (90% CI -0.23 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.07 (90% CI -0.16 to +0.02) | -0.10 (90% CI -0.23 to +0.03) | -0.19 (90% CI -0.34 to -0.05) | -0.19 (90% CI -0.33 to -0.06) | -0.11 (90% CI -0.25 to +0.02) | -0.22 (90% CI -0.36 to -0.08) | -0.10 (90% CI -0.22 to +0.01) | -0.11 (90% CI -0.21 to -0.01) | -0.04 (90% CI -0.14 to +0.05) | -0.12 (90% CI -0.21 to -0.02) | -0.04 (90% CI -0.14 to +0.05) |
+| chosen K vs leaderboard | – | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.06 (90% CI -0.02 to +0.13) | -0.09 (90% CI -0.26 to +0.06) | +0.13 (90% CI +0.08 to +0.16) | +0.06 (90% CI -0.04 to +0.15) | +0.09 (90% CI -0.01 to +0.17) | +0.11 (90% CI +0.03 to +0.18) | +0.20 (90% CI +0.16 to +0.25) | -0.04 (90% CI -0.14 to +0.05) | +0.17 (90% CI +0.11 to +0.23) | +0.05 (90% CI -0.02 to +0.11) |
+| best K vs leaderboard (selected) | +0.12 (90% CI +0.07 to +0.18) | +0.19 (90% CI +0.14 to +0.23) | +0.10 (90% CI +0.04 to +0.16) | +0.11 (90% CI +0.05 to +0.17) | -0.06 (90% CI -0.15 to +0.03) | +0.13 (90% CI +0.08 to +0.16) | +0.10 (90% CI +0.02 to +0.18) | +0.10 (90% CI +0.03 to +0.17) | +0.11 (90% CI +0.03 to +0.18) | +0.20 (90% CI +0.16 to +0.25) | +0.02 (90% CI -0.15 to +0.15) | +0.19 (90% CI +0.14 to +0.23) | +0.09 (90% CI +0.03 to +0.14) |
+| best K minus K=1 (dimensionality, selected) | – | +0.31 (90% CI +0.20 to +0.40) | +0.17 (90% CI +0.09 to +0.24) | +0.21 (90% CI +0.09 to +0.30) | +0.14 (90% CI +0.03 to +0.25) | +0.31 (90% CI +0.19 to +0.44) | +0.21 (90% CI +0.11 to +0.34) | +0.32 (90% CI +0.22 to +0.42) | +0.21 (90% CI +0.11 to +0.30) | +0.31 (90% CI +0.23 to +0.39) | +0.06 (90% CI -0.03 to +0.14) | +0.30 (90% CI +0.19 to +0.41) | +0.13 (90% CI +0.03 to +0.21) |
+| dataset transfer (seen) | -0.06 (90% CI -0.13 to +0.01) | +0.09 (90% CI -0.01 to +0.17) | +0.00 (90% CI -0.09 to +0.07) | +0.04 (90% CI -0.03 to +0.10) | -0.11 (90% CI -0.19 to -0.04) | +0.06 (90% CI -0.09 to +0.24) | +0.05 (90% CI -0.01 to +0.11) | +0.02 (90% CI -0.05 to +0.08) | -0.00 (90% CI -0.05 to +0.05) | +0.15 (90% CI +0.08 to +0.22) | -0.06 (90% CI -0.17 to +0.05) | +0.11 (90% CI +0.05 to +0.18) | -0.00 (90% CI -0.08 to +0.07) |
+| labels surviving correction | none | domain | none | domain | domain, sensor | none | none | none | none | domain, subdomain | none | sensor | none |
+| similarity gate: recoverable in simulation / loadings transfer | no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / no | not run / yes | not run / no | not run / yes | yes / no |
+| comparisons with seed-noise score | 0 | 32 | 120 | 146 | 118 | 0 | 152 | 66 | 152 | 32 | 152 | 32 | 152 |
+| reproducibility groups (strict / loose) | 0 / – | 0 / 4 | 0 / 2 | 0 / 1 | 0 / 2 | 0 / 3 | 0 / 2 | 0 / 2 | 0 / 2 | 0 / 4 | 0 / 2 | 0 / 4 | 0 / 2 |
 
-Across the 10 v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in 10; best K beats K = 1 with an interval above 0 in 9 of 10 (range +0.06 to +0.31; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in 6. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).
+Across the 12 v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in 12; best K beats K = 1 with an interval above 0 in 11 of 12 (range +0.06 to +0.32; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in 6. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).
 
 ## 9. Limits
 
@@ -324,6 +324,8 @@ Across the 10 v2-code runs: the τ dataset-identity contrast is positive with a 
 
 The contrast is +0.15 to +0.19 in every subset. Restricting to well-connected GeoFMs raises the fill from 10% to 27–33% without changing it. Merging size and version variants of one method (`data/model_attributes.json`, `--merge-families`) makes many more source pairs testable and gives the strongest evidence. Fine-tuning alone is not credible (few source pairs).
 - Pooled fit, GeoFMs in ≥ 3 sources (29 × 435): K = 1: 0.05, K = 2: 0.15, K = 3: 0.17, K = 4: 0.19; leaderboard 0.24; chosen K vs leaderboard -0.09 (90% CI -0.26 to +0.06).
+- Pooled fit, frozen-encoder protocols only (85 × 317): K = 1: 0.03, K = 2: 0.34, K = 3: 0.35, K = 4: 0.36; leaderboard 0.25; chosen K vs leaderboard +0.09 (90% CI -0.01 to +0.17).
+- Pooled fit, families merged (56 × 479): K = 1: 0.08, K = 2: 0.25, K = 3: 0.29, K = 4: 0.15; leaderboard 0.19; chosen K vs leaderboard +0.06 (90% CI -0.04 to +0.15).
 
 ### 10.3 Model attributes (exploratory; attribute table unverified)
 
