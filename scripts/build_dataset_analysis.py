@@ -32,7 +32,9 @@ SRC = Path(A[1]); QUICK = "--quick" in A
 MAIN_ONLY = "--main-text-only" in A; WITH_LB = "--no-leaderboard" not in A; WITH_REG = "--no-regression" not in A
 OFFSET = A[A.index("--offset") + 1] if "--offset" in A else "select"; SKIP_SIM = "--skip-sim" in A
 OUT = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis.json"
-SEED = 0; KS_LOPO = (1, 2, 3, 4); FOLDS = 5; RIDGE = 3.0; RIDGE_PM = 3.0; MIN_MODELS = 4
+REG_SCALE = A[A.index("--reg-scale") + 1] if "--reg-scale" in A else "log"       # log (D4) | linear (sensitivity)
+LOPO_RESTARTS = int(A[A.index("--lopo-restarts") + 1]) if "--lopo-restarts" in A else 1
+SEED = 0; KS_LOPO = tuple(int(x) for x in A[A.index("--ks") + 1].split(",")) if "--ks" in A else (1, 2, 3, 4); FOLDS = 5; RIDGE = 3.0; RIDGE_PM = 3.0; MIN_MODELS = 4
 NPROC = max(1, min(2, os.cpu_count() or 1))
 t0 = time.time()
 def log(*a): print(f"[{time.time()-t0:6.0f}s]", *a, flush=True)
@@ -113,10 +115,16 @@ if WITH_REG:
     err = np.select([r.metric_s.eq("r2"), r.metric_s.eq("mse")], [np.sqrt(np.clip(1 - R2, 1e-12, None)), np.sqrt(np.clip(v, 1e-12, None))], v)
     sd_err = np.select([r.metric_s.eq("r2"), r.metric_s.eq("mse")], [sdR2 / (2 * np.sqrt(np.clip(1 - R2, 1e-12, None))), sdv / (2 * np.sqrt(np.clip(v, 1e-12, None)))], sdv)
     ok_reg = reg & (((r.metric_s == "r2") & (R2 < 1)) | ((r.metric_s != "r2") & (v > 0)))
-    r.loc[reg, "y"] = np.where(ok_reg[reg], -100 * np.log(np.where(ok_reg, err, 1.0)[reg]), np.nan)
-    r.loc[reg, "sd"] = 100 * sd_err[reg] / np.where(ok_reg, err, 1.0)[reg]                  # delta method on -100 ln(err)
+    if REG_SCALE == "log":
+        r.loc[reg, "y"] = np.where(ok_reg[reg], -100 * np.log(np.where(ok_reg, err, 1.0)[reg]), np.nan)
+        r.loc[reg, "sd"] = 100 * sd_err[reg] / np.where(ok_reg, err, 1.0)[reg]                  # delta method on -100 ln(err)
+    else:   # --reg-scale linear (sensitivity to D4): R^2 in points; errors as -100 * err / (task median err), set once tasks exist
+        isr2 = (r.metric_s == "r2").values
+        r.loc[reg, "y"] = np.where(isr2, 100 * R2, -err)[reg]
+        r.loc[reg, "sd"] = np.where(isr2, 100 * sdR2, sd_err)[reg]
+        r.loc[reg, "family"] = "linreg"
     keep(~reg | ok_reg, "regression value outside the metric's domain")
-    keep(r.family.isin(["points", "logerr"]), "metric not on a bounded-points or log-error scale (skill scores etc.)")
+    keep(r.family.isin(["points", "logerr", "linreg"]), "metric not on a bounded-points or log-error scale (skill scores etc.)")
 else:
     keep(r.family.eq("points"), "regression or other unbounded metric (--no-regression)")
 
@@ -173,6 +181,10 @@ nm["prio"] = nm.metric_s.map({m: i for i, m in enumerate(PRIORITY)}).fillna(len(
 canon = nm.sort_values(["core", "n", "prio", "metric_s"], ascending=[True, False, True, True]).drop_duplicates("core").set_index("core").metric_s
 keep(r.metric_s.values == r.core.map(canon).values, "metric twin (one metric per paper x benchmark x protocol x fraction x setting)")
 r["task"] = r.comparison + "|" + r.metric_s
+if REG_SCALE != "log":                                   # relative error, in % of the task's median error (unit-free, linear)
+    _e = r.family.eq("linreg") & r.metric_s.ne("r2")
+    _med = r[_e].groupby("task").y.transform(lambda x: np.median(np.abs(x)))
+    r.loc[_e, "sd"] = 100 * r.loc[_e, "sd"] / _med; r.loc[_e, "y"] = 100 * r.loc[_e, "y"] / _med
 log(f"rows {n0} -> {len(r)}"); [log(f"   dropped {s['dropped']:5d}  {s['rule']}") for s in steps]
 log(f"   recitations by citing paper: {recited_by}; reprint pairs: {reprint_pairs}")
 
@@ -191,7 +203,7 @@ mi = {m: i for i, m in enumerate(models)}; ti = {t: i for i, t in enumerate(task
 Y = np.zeros((len(models), len(tasks))); mask = np.zeros_like(Y, bool)
 Y[lc.model_id.map(mi), lc.task.map(ti)] = lc.y; mask[lc.model_id.map(mi), lc.task.map(ti)] = True
 TI = TINFO.loc[tasks]; td = TI.canonical_dataset.values; tp = TI.paper_key.values
-FAM = (TI.family.values == "logerr").astype(int)
+FAM = np.isin(TI.family.values, ["logerr", "linreg"]).astype(int)
 PIDX = np.asarray(pd.factorize(tp)[0])
 def lev(col):
     v_ = pd.Series(TI[col].values).astype(str).replace({"": np.nan, "nan": np.nan}); return np.asarray(pd.factorize(v_)[0], int)
@@ -210,7 +222,7 @@ MULTI_DOM = set(dom_per_paper[dom_per_paper >= 2].index)
 OFFSETS = {"all": PIDX, "multi_domain": np.where(np.isin(tp, list(MULTI_DOM)), PIDX, -1), "none": None}
 def kw(offset, groups=("dataset", "protocol", "sensor")):
     k = dict(groups={g: G_ALL[g] for g in groups}, ridge_u=RIDGE, ridge_g={g: RIDGE for g in groups}, ridge_theta=RIDGE,
-             n_restarts=1, n_iter=200, tol=1e-6, prior_group=FAM)
+             n_restarts=LOPO_RESTARTS, n_iter=200, tol=1e-6, prior_group=FAM)
     if OFFSETS[offset] is not None: k.update(paper=OFFSETS[offset], ridge_pm=RIDGE_PM)
     return k
 
@@ -424,7 +436,7 @@ def rnd(x, d=3):
     except TypeError: return None
 Lb = Lbest
 out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
-       "config": {"main_text_only": MAIN_ONLY, "leaderboard": WITH_LB, "regression": WITH_REG, "offset": OFFSET, "ridge": RIDGE, "ridge_paper_offset": RIDGE_PM},
+       "config": {"main_text_only": MAIN_ONLY, "leaderboard": WITH_LB, "regression": WITH_REG, "regression_scale": REG_SCALE, "ks": list(KS_LOPO), "lopo_restarts": LOPO_RESTARTS, "offset": OFFSET, "ridge": RIDGE, "ridge_paper_offset": RIDGE_PM},
        "scope": {"rows_in": n0, "rows_kept": int(len(r)), "dropped": steps, "reprint_pairs": reprint_pairs, "recited_by": recited_by, "model_scope": "data/model_scope.json"},
        "overlap": overlap,
        "offset": {"specs": specs, "chosen": SPEC, "rule": "highest best-K leave-one-paper-out Spearman among the prespecified specs", "paired_vs_chosen": spec_tests,
