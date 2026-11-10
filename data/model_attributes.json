@@ -1,0 +1,505 @@
+{
+ "about": "Model attributes used ONLY to describe what datasets reward (never to rank models). 'family' links size / version variants of one method; 'size_tier' is 0 nano/atto, 1 tiny, 2 small, 3 base, 4 large, 5 huge; 'sar_pretrained' says whether the pretraining data include SAR. Curated 2026-11-10 from the models' own papers and repositories as a first pass; null = not established. To be verified before any use in a paper.",
+ "models": {
+  "alphaearth": {
+   "family": "alphaearth",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "anysat": {
+   "family": "anysat",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "caco": {
+   "family": "caco",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "chivit": {
+   "family": "chivit",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "clay": {
+   "family": "clay",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "clay_vitb": {
+   "family": "clay",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "cmid": {
+   "family": "cmid",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "copernicusfm": {
+   "family": "copernicusfm",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "croma_vitb": {
+   "family": "croma",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "croma_vitl": {
+   "family": "croma",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "crossscale_mae": {
+   "family": "crossscale_mae",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "decur": {
+   "family": "decur",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "decur_vits": {
+   "family": "decur",
+   "size_tier": 2,
+   "sar_pretrained": 1
+  },
+  "dinov3_sat_vit7b": {
+   "family": "dinov3_sat",
+   "size_tier": 5,
+   "sar_pretrained": 0
+  },
+  "dinov3_sat_vitl": {
+   "family": "dinov3_sat",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "dofa_plus_vitb": {
+   "family": "dofa_plus",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "dofa_plus_vitl": {
+   "family": "dofa_plus",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "dofa_vitb": {
+   "family": "dofa",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "dofa_vitl": {
+   "family": "dofa",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "fgmae": {
+   "family": "fgmae",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "galileo": {
+   "family": "galileo",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "galileo_base": {
+   "family": "galileo",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "galileo_nano": {
+   "family": "galileo",
+   "size_tier": 0,
+   "sar_pretrained": 1
+  },
+  "galileo_tiny": {
+   "family": "galileo",
+   "size_tier": 1,
+   "sar_pretrained": 1
+  },
+  "gassl": {
+   "family": "gassl",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "geoclip": {
+   "family": "geoclip",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "gfm_swin_swint": {
+   "family": "gfm",
+   "size_tier": 1,
+   "sar_pretrained": 0
+  },
+  "gfm_swinb": {
+   "family": "gfm",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "mmearth_cnn_atto": {
+   "family": "mmearth",
+   "size_tier": 0,
+   "sar_pretrained": 1
+  },
+  "ofanet": {
+   "family": "ofanet",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "olmoearth_v11_base": {
+   "family": "olmoearth",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v12_base": {
+   "family": "olmoearth",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v12_nano": {
+   "family": "olmoearth",
+   "size_tier": 0,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v12_small": {
+   "family": "olmoearth",
+   "size_tier": 2,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v12_tiny": {
+   "family": "olmoearth",
+   "size_tier": 1,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v1_base": {
+   "family": "olmoearth",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v1_large": {
+   "family": "olmoearth",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v1_nano": {
+   "family": "olmoearth",
+   "size_tier": 0,
+   "sar_pretrained": 1
+  },
+  "olmoearth_v1_tiny": {
+   "family": "olmoearth",
+   "size_tier": 1,
+   "sar_pretrained": 1
+  },
+  "panopticon": {
+   "family": "panopticon",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "presto": {
+   "family": "presto",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "prithvi_v1_100m": {
+   "family": "prithvi_v1",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "prithvi_v2_100m": {
+   "family": "prithvi_v2",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "prithvi_v2_300m": {
+   "family": "prithvi_v2",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "prithvi_v2_300m_tl": {
+   "family": "prithvi_v2",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "prithvi_v2_600m": {
+   "family": "prithvi_v2",
+   "size_tier": 5,
+   "sar_pretrained": 0
+  },
+  "prithvi_v2_600m_tl": {
+   "family": "prithvi_v2",
+   "size_tier": 5,
+   "sar_pretrained": 0
+  },
+  "ramen": {
+   "family": "ramen",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "remoteclip": {
+   "family": "remoteclip",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "resnet50_ssl4eo_dino": {
+   "family": "resnet50_ssl4eo_dino",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "resnet50_ssl4eo_moco": {
+   "family": "resnet50_ssl4eo_moco",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "resnet50_ssl4eo_moco_s1": {
+   "family": "resnet50_ssl4eo_moco_s1",
+   "size_tier": 2,
+   "sar_pretrained": 1
+  },
+  "ringmo": {
+   "family": "ringmo",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "rvsa": {
+   "family": "rvsa",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "satclip": {
+   "family": "satclip",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "satlas_aerial_swinb_si": {
+   "family": "satlas_aerial",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satlas_resnet50": {
+   "family": "satlas_s2",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "satlas_s1_swinb": {
+   "family": "satlas_s1",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "satlas_s2_resnet50_si_ms": {
+   "family": "satlas_s2",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "satlas_s2_swinb_mi_ms": {
+   "family": "satlas_s2",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satlas_s2_swinb_si_ms": {
+   "family": "satlas_s2",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satlas_s2_swint_si_ms": {
+   "family": "satlas_s2",
+   "size_tier": 1,
+   "sar_pretrained": 0
+  },
+  "satlas_swinb": {
+   "family": "satlas_s2",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satlas_swint": {
+   "family": "satlas_s2",
+   "size_tier": 1,
+   "sar_pretrained": 0
+  },
+  "satlas_vitb": {
+   "family": "satlas_s2",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satmae_pp": {
+   "family": "satmae_pp",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "satmae_pp_sentinel": {
+   "family": "satmae_pp",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "satmae_pp_vitb_sentinel": {
+   "family": "satmae_pp",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satmae_stack": {
+   "family": "satmae",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "satmae_vitb": {
+   "family": "satmae",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satmae_vitb_sentinel": {
+   "family": "satmae",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "satmae_vitl": {
+   "family": "satmae",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "scalemae_vitb": {
+   "family": "scalemae",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "scalemae_vitl": {
+   "family": "scalemae",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "scalemae_vitl_fmow_sentinel": {
+   "family": "scalemae",
+   "size_tier": 4,
+   "sar_pretrained": 0
+  },
+  "seco_resnet18": {
+   "family": "seco",
+   "size_tier": 1,
+   "sar_pretrained": 0
+  },
+  "seco_resnet18_100k": {
+   "family": "seco",
+   "size_tier": 1,
+   "sar_pretrained": 0
+  },
+  "seco_resnet50": {
+   "family": "seco",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "seco_resnet50_100k": {
+   "family": "seco",
+   "size_tier": 2,
+   "sar_pretrained": 0
+  },
+  "senpamae": {
+   "family": "senpamae",
+   "size_tier": null,
+   "sar_pretrained": 0
+  },
+  "skysense": {
+   "family": "skysense",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "skysense_v2": {
+   "family": "skysense_v2",
+   "size_tier": null,
+   "sar_pretrained": null
+  },
+  "smarties_vitl": {
+   "family": "smarties",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "softcon": {
+   "family": "softcon",
+   "size_tier": 3,
+   "sar_pretrained": null
+  },
+  "softcon_vits": {
+   "family": "softcon",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "spectralgpt": {
+   "family": "spectralgpt",
+   "size_tier": 3,
+   "sar_pretrained": 0
+  },
+  "ssl4eo_vits_data2vec": {
+   "family": "ssl4eo_vits_data2vec",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "ssl4eo_vits_dino": {
+   "family": "ssl4eo_vits_dino",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "ssl4eo_vits_mae": {
+   "family": "ssl4eo_vits_mae",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "ssl4eo_vits_moco": {
+   "family": "ssl4eo_vits_moco",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "ssl4eo_vits_unspecified": {
+   "family": "ssl4eo_vits_unspecified",
+   "size_tier": 2,
+   "sar_pretrained": null
+  },
+  "swint_baseline": {
+   "family": "swint_baseline",
+   "size_tier": 1,
+   "sar_pretrained": 1
+  },
+  "terrafm_vitb": {
+   "family": "terrafm",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "terramind_v1b": {
+   "family": "terramind",
+   "size_tier": 3,
+   "sar_pretrained": 1
+  },
+  "terramind_v1l": {
+   "family": "terramind",
+   "size_tier": 4,
+   "sar_pretrained": 1
+  },
+  "terramind_v1s": {
+   "family": "terramind",
+   "size_tier": 2,
+   "sar_pretrained": 1
+  },
+  "terramind_v1t": {
+   "family": "terramind",
+   "size_tier": 1,
+   "sar_pretrained": 1
+  },
+  "tessera": {
+   "family": "tessera",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "tessera_v2_l": {
+   "family": "tessera_v2_l",
+   "size_tier": null,
+   "sar_pretrained": 1
+  },
+  "tov": {
+   "family": "tov",
+   "size_tier": null,
+   "sar_pretrained": 0
+  }
+ }
+}

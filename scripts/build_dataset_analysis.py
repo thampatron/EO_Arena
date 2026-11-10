@@ -31,6 +31,9 @@ A = sys.argv
 SRC = Path(A[1]); QUICK = "--quick" in A
 MAIN_ONLY = "--main-text-only" in A; WITH_LB = "--no-leaderboard" not in A; WITH_REG = "--no-regression" not in A
 OFFSET = A[A.index("--offset") + 1] if "--offset" in A else "select"; SKIP_SIM = "--skip-sim" in A
+MIN_MODEL_SOURCES = int(A[A.index("--min-model-sources") + 1]) if "--min-model-sources" in A else 1   # keep GeoFMs reported by >= N sources
+PROTOCOL = A[A.index("--protocol") + 1] if "--protocol" in A else "all"                                # all | frozen | fine-tuned
+MERGE_FAM = "--merge-families" in A                                                                     # size / version variants of one method -> one unit
 OUT = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "dataset_analysis.json"
 REG_SCALE = A[A.index("--reg-scale") + 1] if "--reg-scale" in A else "log"       # log (D4) | linear (sensitivity)
 LOPO_RESTARTS = int(A[A.index("--lopo-restarts") + 1]) if "--lopo-restarts" in A else 1
@@ -198,6 +201,17 @@ assert (cell.n_rows == 1).all(), "a (task, model) cell still averages several ro
 
 IMG = TINFO[(TINFO.input_kind == "eo_imagery") & (~TINFO.domain.isin(["composite", "outside_taxonomy"])) & (TINFO.canonical_dataset != "")].index
 lc = cell[cell.task.isin(IMG)]
+if PROTOCOL != "all": lc = lc[lc.task.map(TINFO.pf).values == PROTOCOL]
+if MERGE_FAM:                                            # variants of one family in one comparison are averaged (sd no longer a seed sd)
+    _fam = {m_: v_["family"] for m_, v_ in json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"].items()}
+    lc = lc.assign(model_id=lc.model_id.map(lambda m_: _fam.get(m_, m_))).groupby(["task", "model_id"], as_index=False).agg(
+        y=("y", "mean"), n_rows=("y", "size"), sd=("sd", lambda x: x.iloc[0] if len(x) == 1 else np.nan), n_reps=("n_reps", "max"), n_known=("n_known", "max"), selfrep=("selfrep", "max"))
+if MIN_MODEL_SOURCES > 1 or MERGE_FAM or PROTOCOL != "all":
+    while True:                                          # iterate: dropping GeoFMs can drop comparisons, and the reverse
+        n_ = len(lc); _ns = lc.assign(p=lc.task.map(TINFO.paper_key)).groupby("model_id").p.nunique()
+        lc = lc[lc.model_id.isin(_ns[_ns >= MIN_MODEL_SOURCES].index)]
+        _nm = lc.groupby("task").model_id.nunique(); lc = lc[lc.task.isin(_nm[_nm >= MIN_MODELS].index)]
+        if len(lc) == n_: break
 models = sorted(lc.model_id.unique()); tasks = sorted(lc.task.unique())
 mi = {m: i for i, m in enumerate(models)}; ti = {t: i for i, t in enumerate(tasks)}
 Y = np.zeros((len(models), len(tasks))); mask = np.zeros_like(Y, bool)
@@ -436,7 +450,7 @@ def rnd(x, d=3):
     except TypeError: return None
 Lb = Lbest
 out = {"version": 2, "as_of": time.strftime("%Y-%m-%d"),
-       "config": {"main_text_only": MAIN_ONLY, "leaderboard": WITH_LB, "regression": WITH_REG, "regression_scale": REG_SCALE, "ks": list(KS_LOPO), "lopo_restarts": LOPO_RESTARTS, "offset": OFFSET, "ridge": RIDGE, "ridge_paper_offset": RIDGE_PM},
+       "config": {"main_text_only": MAIN_ONLY, "leaderboard": WITH_LB, "regression": WITH_REG, "regression_scale": REG_SCALE, "ks": list(KS_LOPO), "lopo_restarts": LOPO_RESTARTS, "min_model_sources": MIN_MODEL_SOURCES, "protocol": PROTOCOL, "merge_families": MERGE_FAM, "offset": OFFSET, "ridge": RIDGE, "ridge_paper_offset": RIDGE_PM},
        "scope": {"rows_in": n0, "rows_kept": int(len(r)), "dropped": steps, "reprint_pairs": reprint_pairs, "recited_by": recited_by, "model_scope": "data/model_scope.json"},
        "overlap": overlap,
        "offset": {"specs": specs, "chosen": SPEC, "rule": "highest best-K leave-one-paper-out Spearman among the prespecified specs", "paired_vs_chosen": spec_tests,
