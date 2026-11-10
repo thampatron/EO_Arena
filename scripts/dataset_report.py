@@ -46,6 +46,12 @@ simK = d.get("simulation_K") or []
 sk = "; ".join(f"K_true = {x['K_true']} → selected {x['K_selected']} (best {x['best_K']})" for x in simK)
 kv = K["paired_vs_best"]; k1best = kv.get("1") or kv.get(1)
 w(f"3. **A dataset- and protocol-aware model predicts new papers' orderings better than a fixed leaderboard; whether that needs more than one dimension is suggestive only.** Predicting a held-out source from the other sources, the best structured model (K = {kbg['K']}) beats the naive leaderboard by {ci(kbg)} — but this is the best of 12 configurations scored on the same criterion; the prespecified rule's K = {Kc} gives {ci(kcg)}. Beating the leaderboard is not itself evidence of several dimensions: in simulation with a single true dimension a one-factor structured model also beats it, by learning each dataset's direction. The dimensionality test proper — K = {kbg['K']} against K = 1 within the same model — gives {('+' if -k1best['mean']>=0 else '') + format(-k1best['mean'], '.2f')} (90% CI {-k1best['ci90'][1]:+.2f} to {-k1best['ci90'][0]:+.2f}), also after selection." + (f" Anchored check: {ci(ank)}." if ank else "") + " Calibrated simulation recovers K = 1, 2, 3 under this rule, but in a world easier than the real one (higher predictability, weaker paper effects), so it does not settle the number of dimensions.")
+def _sens(n):
+    p_ = ROOT / "data" / f"dataset_analysis_sens_{n}.json"; return json.loads(p_.read_text()) if p_.exists() else None
+_ka, _km = _sens("k6_log_all"), _sens("k6_log_main")
+if _ka and _km:
+    def _cur(j): return ", ".join(f"K = {k_}: {v_['rho_struct']:.2f}" for k_, v_ in sorted(j["K"]["lopo_by_spec_and_K"]["none"].items(), key=lambda x: int(x[0])))
+    w(f"   **Update 2026-11-10 (three optimiser starts, K = 1–6; this supersedes the single-start figures above for the question of K).** All rows: {_cur(_ka)}; leaderboard {_ka['K']['lopo_by_spec_and_K']['none']['1']['rho_board']:.2f}; chosen K vs leaderboard {ci(_ka['lopo_gain']['Kchosen_vs_leaderboard'])}. Main-text rows only: {_cur(_km)}; leaderboard {_km['K']['lopo_by_spec_and_K']['none']['1']['rho_board']:.2f}; chosen K vs leaderboard {ci(_km['lopo_gain']['Kchosen_vs_leaderboard'])}. With all rows no K credibly beats the leaderboard and K = 2–6 are indistinguishable; with main-text rows every K ≥ 2 beats it and the curve is flat. The single-start K = 3 figure was partly a favourable optimum. K = 1 scores below the plain leaderboard in every run, which a well-fitted one-factor model should not, so 'K ≥ 2 beats K = 1' is not evidence of a second dimension until that is explained. A linear regression scale (`--reg-scale linear`) is not better. **Dimensionality: unresolved; it depends on row inclusion (backlog N7).**")
 seen_ = next((v for k, v in g.items() if k.startswith("dataset_seen_in_other_sources")), None)
 if seen_:
     w(f"4. **The latent model does not yet turn dataset identity into out-of-paper predictions.** Predicting a held-out comparison from its dataset, protocol and sensor blocks alone, for datasets other sources report, differs from the model's own single ordering by {ci(seen_)}. Finding 1 shows the information exists in the raw orderings; a likely (untested) reason the model cannot use it is that each dataset's loading is estimated from few comparisons (median 2). Dataset-to-dataset similarity is therefore not published (D13).")
@@ -236,6 +242,35 @@ _kc = [j["lopo_gain"].get("Kchosen_vs_leaderboard") for j in _J]
 w(f"Across the {len(_J)} v2-code runs: the τ dataset-identity contrast is positive with a 90% interval above 0 in {sum(t['ci90'][0] > 0 for t in _tau)}; best K beats K = 1 with an interval above 0 in {sum(lo > 0 for _, lo in _d)} of {len(_d)} (range {min(m for m, _ in _d):+.2f} to {max(m for m, _ in _d):+.2f}; selected, so optimistic); the prespecified chosen K beats the leaderboard with an interval above 0 in {sum(1 for k in _kc if k and k['ci90'][0] > 0)}. Runs on main text only have the largest effects but rest on 4 source pairs for the τ test (D1).")
 w()
 
+# ------------------------------------------------------------------ 10 extensions (appended after the limits)
+def extensions():
+    p_ = ROOT / "data" / "dataset_extensions.json"
+    if not p_.exists(): return
+    e = json.loads(p_.read_text()); ws = e["within_source"]; idn = ws["identity"]; rp = ws["replication"]; at = e["model_attributes"]; pc = e["panel_completion"]
+    def m(x): return f"{x['mean']:+.2f} (90% CI {x['ci90'][0]:+.2f} to {x['ci90'][1]:+.2f})"
+    w(); w("## 10. Analyses that do not use the pooled fit (2026-11-10)"); w()
+    w("`scripts/build_dataset_extensions.py` → `data/dataset_extensions.json`. Pairs need ≥ 6 shared GeoFMs. Presentation draft: `findings.html`."); w()
+    w("### 10.1 Inside one source (same GeoFMs, one codebase)"); w()
+    w(f"- **Dataset identity holds with the source fixed.** Same dataset under another protocol or training fraction: τ = {idn['mean_same_dataset_other_setting']:.2f}; another dataset under the same setting: {idn['mean_other_dataset_same_setting']:.2f}; contrast {idn['mean_contrast']:+.2f} (90% CI over sources {idn['ci90_over_sources'][0]:+.2f} to {idn['ci90_over_sources'][1]:+.2f}), positive in {idn['positive']} of {idn['sources']} sources (sign test p = {idn['sign_test_p_one_sided']:.3f}). Caveat: settings of one dataset in one paper can share splits and checkpoints.")
+    b = sorted(ws["blocks"], key=lambda x: -x["mean_tau"])
+    w(f"- **Agreement between different datasets inside a source varies widely**: mean τ {ws['dataset_pair_tau']['mean']:.2f} (90% CI {ws['dataset_pair_tau']['ci90'][0]:.2f} to {ws['dataset_pair_tau']['ci90'][1]:.2f}) over {ws['dataset_pair_tau']['n_sources']} sources, from {b[-1]['mean_tau']:.2f} ({b[-1]['source']}) to {b[0]['mean_tau']:.2f} ({b[0]['source']}). High values come from sources comparing few GeoFMs of very different quality; low values can be distinct capabilities or noise among close GeoFMs.")
+    w(); w("| source | datasets | dataset pairs | median shared GeoFMs | mean τ | first eigenvalue share |"); w("|---|---|---|---|---|---|")
+    for x in b: w(f"| {x['source']} | {x['datasets']} | {x['dataset_pairs']} | {x['median_shared_geofms']:.0f} | {x['mean_tau']:.2f} | {'–' if x['first_eigen_share'] is None else format(x['first_eigen_share'], '.2f')} |")
+    w(); w(f"- **Dataset-to-dataset similarity does not replicate across sources.** Mantel test over {rp['raw']['source_pairs']} source pairs and {rp['raw']['dataset_pairs']} shared dataset pairs: pooled r = {rp['raw']['pooled_r']:+.2f} (one-sided p = {rp['raw']['mantel_p_one_sided']:.2f}); with dataset main effects removed r = {rp['residual']['pooled_r']:+.2f} (p = {rp['residual']['mantel_p_one_sided']:.2f}, {rp['residual']['source_pairs']} source pairs). Each τ rests on about nine GeoFMs and sources rarely share GeoFMs, so power is low: this is not evidence that datasets are interchangeable, but it confirms gate D13 by a route independent of the latent fit.")
+    w(); w("### 10.2 Dataset identity (D15) on restricted matrices"); w()
+    w("| subset | GeoFMs × comparisons | fill | contrast | source pairs positive | sign test p |"); w("|---|---|---|---|---|---|")
+    for k_, v_ in e["restricted_tau"].items():
+        w(f"| {k_.replace('_', ' ')} | {v_['matrix']['models']} × {v_['matrix']['tasks']} | {100*v_['matrix']['density']:.0f}% | {tci(v_['identity'])} | {v_['positive']}/{v_['source_pairs']} | {v_['sign_test_p']:.4f} |")
+    w(); w("The contrast is +0.15 to +0.19 in every subset. Restricting to well-connected GeoFMs raises the fill from 10% to 27–33% without changing it. Merging size and version variants of one method (`data/model_attributes.json`, `--merge-families`) makes many more source pairs testable and gives the strongest evidence. Fine-tuning alone is not credible (few source pairs).")
+    for n_, lab_ in (("core3", "GeoFMs in ≥ 3 sources"), ("frozen", "frozen-encoder protocols only"), ("families", "families merged")):
+        j = _sens(n_)
+        if j: w(f"- Pooled fit, {lab_} ({j['overlap']['models']} × {j['overlap']['tasks']}): " + ", ".join(f"K = {k_}: {v_['rho_struct']:.2f}" for k_, v_ in sorted(j['K']['lopo_by_spec_and_K']['none'].items(), key=lambda x: int(x[0]))) + f"; leaderboard {j['K']['lopo_by_spec_and_K']['none']['1']['rho_board']:.2f}; chosen K vs leaderboard {ci(j['lopo_gain']['Kchosen_vs_leaderboard'])}.")
+    s_, z_ = at["sar_pretrained"], at["size_tier"]
+    w(); w("### 10.3 Model attributes (exploratory; attribute table unverified)"); w()
+    w(f"Kendall τ between an attribute and the score inside a comparison, cluster bootstrap over sources. SAR in the pretraining data: {m(s_['all'])}; on comparisons with SAR input {m(s_['on_sar_input_comparisons'])}, optical only {m(s_['on_optical_only_comparisons'])}, difference {s_['sar_input_minus_optical']['mean']:+.2f} (90% CI {s_['sar_input_minus_optical']['ci90'][0]:+.2f} to {s_['sar_input_minus_optical']['ci90'][1]:+.2f}); frozen {m(s_['frozen'])}, fine-tuned {m(s_['fine_tuned'])}. Encoder size tier: {m(z_['all'])}; frozen {m(z_['frozen'])}, fine-tuned {m(z_['fine_tuned'])}. The SAR advantage is general rather than specific to SAR-input datasets, so the label mostly marks recent multi-sensor GeoFMs; these coarse attributes do not separate datasets. They describe what comparisons reward and are never a ranking of GeoFMs.")
+    w(); w("### 10.4 Design: a full panel"); w()
+    for p_ in pc["panels"]: w(f"- {p_['panel_size']} best-connected GeoFMs × {pc['datasets_in_2plus_sources']} datasets seen in ≥ 2 sources: {p_['cells']} cells, {p_['already_published']} published under some protocol by some source ({100*p_['share_published']:.0f}%), {p_['to_run']} never published.")
+    w("Published cells come from different sources and protocols, which §2 shows cannot be stacked; a rerun of the whole panel under one protocol with seeds is what would identify dataset similarity and the number of dimensions.")
 # ------------------------------------------------------------------ 9 limits
 w("## 9. Limits")
 w()
@@ -246,5 +281,6 @@ w("- In single-domain sources, domain-specific capability and implementation eff
 w("- Geography and time blocks of Eq. 11 are not fitted: no geography/time metadata, and the evaluation design is not crossed enough to separate them from dataset.")
 w("- Points near the ceiling compress differences for classification benchmarks (D4).")
 w("- Seed-noise scores come only from papers that print seed SDs, which may be the more careful ones; a printed SD below 0.1 point (e.g. fMoW) makes the score close to 1 by construction.")
+extensions()
 (ROOT / "docs" / "dataset-analysis.md").write_text("\n".join(L) + "\n")
 print("wrote docs/dataset-analysis.md")

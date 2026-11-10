@@ -1,0 +1,2992 @@
+{
+ "version": 2,
+ "as_of": "2026-11-10",
+ "config": {
+  "main_text_only": false,
+  "leaderboard": true,
+  "regression": true,
+  "regression_scale": "log",
+  "ks": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "lopo_restarts": 3,
+  "min_model_sources": 3,
+  "protocol": "all",
+  "merge_families": false,
+  "offset": "none",
+  "ridge": 3.0,
+  "ridge_paper_offset": 3.0
+ },
+ "scope": {
+  "rows_in": 11580,
+  "rows_kept": 6687,
+  "dropped": [
+   {
+    "rule": "table placement unclear",
+    "dropped": 72
+   },
+   {
+    "rule": "ablation status of table not checked",
+    "dropped": 0
+   },
+   {
+    "rule": "ablation-study table",
+    "dropped": 140
+   },
+   {
+    "rule": "registry ablation model",
+    "dropped": 50
+   },
+   {
+    "rule": "ablation variant axis (non-headline setting)",
+    "dropped": 524
+   },
+   {
+    "rule": "not a GeoFM (baseline / task architecture / uncategorised)",
+    "dropped": 2055
+   },
+   {
+    "rule": "paper-internal variant of the introducing paper's own method (D7)",
+    "dropped": 188
+   },
+   {
+    "rule": "per-class sub-score of a headline result (D5)",
+    "dropped": 120
+   },
+   {
+    "rule": "regression value outside the metric's domain",
+    "dropped": 0
+   },
+   {
+    "rule": "metric not on a bounded-points or log-error scale (skill scores etc.)",
+    "dropped": 226
+   },
+   {
+    "rule": "within-paper duplicate (appendix repeats main text; leaderboard 'best of' repeats s2_main)",
+    "dropped": 14
+   },
+   {
+    "rule": "recitation of an earlier paper's value",
+    "dropped": 156
+   },
+   {
+    "rule": "metric twin (one metric per paper x benchmark x protocol x fraction x setting)",
+    "dropped": 1348
+   }
+  ],
+  "reprint_pairs": [
+   {
+    "earlier": "pangea",
+    "later": "anysat",
+    "shared_cells": 22,
+    "identical_share": 0.77
+   },
+   {
+    "earlier": "copernicus",
+    "later": "terrafm",
+    "shared_cells": 32,
+    "identical_share": 1.0
+   },
+   {
+    "earlier": "galileo",
+    "later": "terrafm",
+    "shared_cells": 66,
+    "identical_share": 0.95
+   }
+  ],
+  "recited_by": {
+   "GFM": 1,
+   "anysat": 36,
+   "galileo": 1,
+   "geobench_v2_leaderboard": 2,
+   "geocross-bench": 2,
+   "olmoearth_v12": 7,
+   "prithvi_v2": 1,
+   "satdifuser": 4,
+   "terrafm": 98,
+   "tessera": 3,
+   "tessera_v2": 1
+  },
+  "model_scope": "data/model_scope.json"
+ },
+ "overlap": {
+  "models": 29,
+  "tasks": 435,
+  "datasets": 85,
+  "sources": 22,
+  "density": 0.266,
+  "models_in_1_source": 0,
+  "models_in_3plus_sources": 29,
+  "datasets_in_2plus_sources": 25,
+  "models_per_task_median": 7.0,
+  "tasks_logerr": 45,
+  "tasks_from_appendix": 189,
+  "tasks_from_leaderboard": 14,
+  "single_domain_sources": 5
+ },
+ "offset": {
+  "specs": [
+   "none"
+  ],
+  "chosen": "none",
+  "rule": "highest best-K leave-one-paper-out Spearman among the prespecified specs",
+  "paired_vs_chosen": {},
+  "multi_domain_sources": [
+   "copernicus",
+   "croma",
+   "dofa",
+   "earthshift",
+   "galileo",
+   "geobench_v2_leaderboard",
+   "geocross-bench",
+   "mmearth-bench",
+   "neuco-bench",
+   "olmoearth_v12",
+   "pangea",
+   "panopticon",
+   "prithvi_v2",
+   "satdifuser",
+   "ssl4eo",
+   "sustainfm",
+   "tessera"
+  ]
+ },
+ "K": {
+  "chosen": 2,
+  "best": 4,
+  "rule": "smallest K not credibly worse than the best (paired bootstrap over sources); K is a floor",
+  "lopo_by_spec_and_K": {
+   "none": {
+    "1": {
+     "rho_struct": 0.0495,
+     "rho_board": 0.2422,
+     "rho_global": -0.2119,
+     "rho_anch": 0.1608,
+     "rho_half_board": 0.2168,
+     "rho_anch_board": 0.0753,
+     "acc_struct": 0.5195,
+     "acc_board": 0.5896
+    },
+    "2": {
+     "rho_struct": 0.1549,
+     "rho_board": 0.2422,
+     "rho_global": 0.1816,
+     "rho_anch": 0.1763,
+     "rho_half_board": 0.2168,
+     "rho_anch_board": 0.0753,
+     "acc_struct": 0.5607,
+     "acc_board": 0.5896
+    },
+    "3": {
+     "rho_struct": 0.1748,
+     "rho_board": 0.2422,
+     "rho_global": 0.2653,
+     "rho_anch": 0.1793,
+     "rho_half_board": 0.2168,
+     "rho_anch_board": 0.0753,
+     "acc_struct": 0.5659,
+     "acc_board": 0.5896
+    },
+    "4": {
+     "rho_struct": 0.1858,
+     "rho_board": 0.2422,
+     "rho_global": 0.2641,
+     "rho_anch": 0.1492,
+     "rho_half_board": 0.2168,
+     "rho_anch_board": 0.0753,
+     "acc_struct": 0.5701,
+     "acc_board": 0.5896
+    }
+   }
+  },
+  "paired_vs_best": {
+   "1": {
+    "mean": -0.1363,
+    "ci90": [
+     -0.2541,
+     -0.031
+    ],
+    "p_le_0": 0.9885,
+    "n_tasks": 435,
+    "n_papers": 22
+   },
+   "2": {
+    "mean": -0.0309,
+    "ci90": [
+     -0.1137,
+     0.0542
+    ],
+    "p_le_0": 0.687,
+    "n_tasks": 435,
+    "n_papers": 22
+   },
+   "3": {
+    "mean": -0.011,
+    "ci90": [
+     -0.0949,
+     0.0701
+    ],
+    "p_le_0": 0.5665,
+    "n_tasks": 435,
+    "n_papers": 22
+   }
+  },
+  "primary_criterion": "rho_struct",
+  "anchored": {
+   "best": 3,
+   "paired_vs_best": {
+    "1": {
+     "mean": -0.0185,
+     "ci90": [
+      -0.0928,
+      0.0699
+     ],
+     "p_le_0": 0.638,
+     "n_tasks": 370,
+     "n_papers": 16
+    },
+    "2": {
+     "mean": -0.003,
+     "ci90": [
+      -0.0491,
+      0.0556
+     ],
+     "p_le_0": 0.5415,
+     "n_tasks": 370,
+     "n_papers": 16
+    },
+    "4": {
+     "mean": -0.0301,
+     "ci90": [
+      -0.0838,
+      0.0317
+     ],
+     "p_le_0": 0.801,
+     "n_tasks": 370,
+     "n_papers": 16
+    }
+   }
+  }
+ },
+ "lopo_gain": {
+  "K1_vs_leaderboard": {
+   "mean": -0.1927,
+   "ci90": [
+    -0.3385,
+    -0.0534
+   ],
+   "p_le_0": 0.991,
+   "n_tasks": 435,
+   "n_papers": 22
+  },
+  "Kchosen_vs_leaderboard": {
+   "K": 2,
+   "mean": -0.0873,
+   "ci90": [
+    -0.2582,
+    0.0551
+   ],
+   "p_le_0": 0.725,
+   "n_tasks": 435,
+   "n_papers": 22
+  },
+  "bestK_vs_leaderboard": {
+   "K": 4,
+   "mean": -0.0564,
+   "ci90": [
+    -0.1515,
+    0.0271
+   ],
+   "p_le_0": 0.8185,
+   "n_tasks": 435,
+   "n_papers": 22
+  },
+  "anchored_K1_vs_leaderboard_same_half": {
+   "mean": -0.056,
+   "ci90": [
+    -0.1675,
+    0.0766
+   ],
+   "p_le_0": 0.7665,
+   "n_tasks": 370,
+   "n_papers": 16
+  },
+  "anchored_bestK_vs_leaderboard_same_half": {
+   "K": 3,
+   "mean": -0.0375,
+   "ci90": [
+    -0.1194,
+    0.0469
+   ],
+   "p_le_0": 0.7635,
+   "n_tasks": 370,
+   "n_papers": 16
+  },
+  "dataset_seen_in_other_sources (K=4, blocks vs own one-ordering)": {
+   "mean": -0.1102,
+   "ci90": [
+    -0.191,
+    -0.0377
+   ],
+   "p_le_0": 0.9925,
+   "n_tasks": 282,
+   "n_papers": 17
+  },
+  "dataset_only_in_held_out_source (K=4, blocks vs own one-ordering)": {
+   "mean": -0.0195,
+   "ci90": [
+    -0.1342,
+    0.0722
+   ],
+   "p_le_0": 0.6405,
+   "n_tasks": 153,
+   "n_papers": 16
+  }
+ },
+ "board_lopo_rho_real": 0.242,
+ "tau_tests": {
+  "cells": [
+   {
+    "same_dataset": false,
+    "same_source": false,
+    "mean_tau": 0.1029,
+    "pairs": 18970
+   },
+   {
+    "same_dataset": false,
+    "same_source": true,
+    "mean_tau": 0.2458,
+    "pairs": 6203
+   },
+   {
+    "same_dataset": true,
+    "same_source": false,
+    "mean_tau": 0.2616,
+    "pairs": 716
+   },
+   {
+    "same_dataset": true,
+    "same_source": true,
+    "mean_tau": 0.4074,
+    "pairs": 763
+   }
+  ],
+  "median_shared_models": 4.0,
+  "flagged_source_pairs": [],
+  "all": {
+   "dataset_identity": {
+    "estimate": 0.1586,
+    "ci90": [
+     0.0285,
+     0.5246
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1326,
+    "ci90": [
+     0.0188,
+     0.502
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1429,
+    "ci90": [
+     0.0018,
+     0.2838
+    ]
+   },
+   "cross_source_same_dataset_pairs": 716
+  },
+  "same_protocol_family": {
+   "dataset_identity": {
+    "estimate": 0.1849,
+    "ci90": [
+     0.0761,
+     0.5345
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1518,
+    "ci90": [
+     0.0449,
+     0.4767
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1404,
+    "ci90": [
+     -0.0034,
+     0.2981
+    ]
+   },
+   "cross_source_same_dataset_pairs": 365
+  },
+  "excluding_flagged_source_pairs": {
+   "dataset_identity": {
+    "estimate": 0.1586,
+    "ci90": [
+     0.0387,
+     0.5094
+    ]
+   },
+   "dataset_identity_per_dataset": {
+    "estimate": 0.1326,
+    "ci90": [
+     0.018,
+     0.5033
+    ]
+   },
+   "paper_specificity": {
+    "estimate": 0.1429,
+    "ci90": [
+     -0.0013,
+     0.2703
+    ]
+   },
+   "cross_source_same_dataset_pairs": 716
+  },
+  "robustness": {
+   "source_pairs_with_same_dataset_pairs": 12,
+   "positive_contrasts": 10,
+   "sign_test_p_one_sided": 0.0193,
+   "unweighted_mean_contrast": 0.165,
+   "leave_one_source_out_range": [
+    0.132,
+    0.312
+   ],
+   "per_source_pair": [
+    {
+     "sources": [
+      "galileo",
+      "geocross-bench"
+     ],
+     "same_dataset_pairs": 232,
+     "contrast": 0.126,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "galileo",
+      "olmoearth_v12"
+     ],
+     "same_dataset_pairs": 104,
+     "contrast": 0.2,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "MADOS",
+      "PASTIS / PASTIS-R",
+      "Sen1Floods11",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "geocross-bench",
+      "olmoearth_v12"
+     ],
+     "same_dataset_pairs": 82,
+     "contrast": 0.196,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "Sen1Floods11",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "earthshift",
+      "galileo"
+     ],
+     "same_dataset_pairs": 64,
+     "contrast": 0.313,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "EuroSAT"
+     ]
+    },
+    {
+     "sources": [
+      "croma",
+      "galileo"
+     ],
+     "same_dataset_pairs": 48,
+     "contrast": -0.161,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "EuroSAT"
+     ]
+    },
+    {
+     "sources": [
+      "dofa",
+      "galileo"
+     ],
+     "same_dataset_pairs": 40,
+     "contrast": 0.09,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "galileo",
+      "panopticon"
+     ],
+     "same_dataset_pairs": 40,
+     "contrast": 0.139,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "geocross-bench",
+      "panopticon"
+     ],
+     "same_dataset_pairs": 40,
+     "contrast": 0.019,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "Brick kilns",
+      "Cashew plantation",
+      "EuroSAT",
+      "So2Sat LCZ42 (LCZ-S2)",
+      "South Africa crop type"
+     ]
+    },
+    {
+     "sources": [
+      "pangea",
+      "tessera"
+     ],
+     "same_dataset_pairs": 36,
+     "contrast": 0.573,
+     "datasets": [
+      "BioMassters",
+      "PASTIS / PASTIS-R"
+     ]
+    },
+    {
+     "sources": [
+      "earthshift",
+      "olmoearth_v12"
+     ],
+     "same_dataset_pairs": 16,
+     "contrast": -0.005,
+     "datasets": [
+      "BigEarthNet v1 / v2 (reBEN)",
+      "EuroSAT"
+     ]
+    },
+    {
+     "sources": [
+      "anysat",
+      "galileo"
+     ],
+     "same_dataset_pairs": 8,
+     "contrast": 0.185,
+     "datasets": [
+      "So2Sat LCZ42 (LCZ-S2)"
+     ]
+    },
+    {
+     "sources": [
+      "pangea",
+      "sustainfm"
+     ],
+     "same_dataset_pairs": 6,
+     "contrast": 0.305,
+     "datasets": [
+      "HLS Burn Scars",
+      "MADOS"
+     ]
+    }
+   ],
+   "same_dataset_pairs_by_dataset": {
+    "EuroSAT": 167,
+    "BigEarthNet v1 / v2 (reBEN)": 160,
+    "So2Sat LCZ42 (LCZ-S2)": 106,
+    "Brick kilns": 89,
+    "Cashew plantation": 58,
+    "South Africa crop type": 58,
+    "PASTIS / PASTIS-R": 30,
+    "BioMassters": 18,
+    "Sen1Floods11": 16,
+    "MADOS": 11,
+    "HLS Burn Scars": 3
+   },
+   "sensitivity_post_hoc": {
+    "min_shared_4": {
+     "pair_weighted": 0.1586,
+     "pair_weighted_ci90": [
+      0.0293,
+      0.5306
+     ],
+     "inverse_variance": 0.1855,
+     "inverse_variance_ci90": [
+      0.0462,
+      0.5346
+     ],
+     "same_dataset_pairs": 716,
+     "source_pairs": 12
+    },
+    "min_shared_5": {
+     "pair_weighted": 0.3653,
+     "pair_weighted_ci90": [
+      -0.0051,
+      0.6134
+     ],
+     "inverse_variance": 0.3633,
+     "inverse_variance_ci90": [
+      -0.005,
+      0.6092
+     ],
+     "same_dataset_pairs": 126,
+     "source_pairs": 5
+    },
+    "min_shared_6": {
+     "pair_weighted": 0.3003,
+     "pair_weighted_ci90": [
+      0.0483,
+      0.5715
+     ],
+     "inverse_variance": 0.3036,
+     "inverse_variance_ci90": [
+      0.0426,
+      0.5783
+     ],
+     "same_dataset_pairs": 64,
+     "source_pairs": 3
+    },
+    "min_shared_7": {
+     "pair_weighted": 0.2827,
+     "pair_weighted_ci90": [
+      0.2433,
+      0.3133
+     ],
+     "inverse_variance": 0.286,
+     "inverse_variance_ci90": [
+      0.2433,
+      0.3058
+     ],
+     "same_dataset_pairs": 6,
+     "source_pairs": 1
+    }
+   }
+  },
+  "flagged_source_pairs_detail": []
+ },
+ "simulation_calibration": {},
+ "simulation_offset": [],
+ "simulation_K": [],
+ "geometry_recoverable": false,
+ "geometry_gate": {
+  "simulated_recovery_median": null,
+  "recoverable_in_simulation": false,
+  "dataset_loadings_transfer_out_of_paper": false,
+  "published": false
+ },
+ "metadata_association_multi_source": {
+  "domain": {
+   "full_loading": {
+    "r2": 0.5686245060225582,
+    "null_mean": 0.2478610914621348,
+    "null_p95": 0.5038308848396639,
+    "excess": 0.3207634145604234,
+    "p_value": 0.01249375312343828,
+    "n_levels": 7,
+    "n": 25,
+    "p_bonferroni_4_labels": 0.04997501249375312
+   },
+   "direction_only": {
+    "r2": 0.35575729220405927,
+    "null_mean": 0.2485258477268532,
+    "null_p95": 0.36389140709532114,
+    "excess": 0.10723144447720606,
+    "p_value": 0.062468765617191405,
+    "n_levels": 7,
+    "n": 25,
+    "p_bonferroni_4_labels": 0.24987506246876562
+   }
+  },
+  "subdomain": {
+   "full_loading": {
+    "r2": 0.7294283925355252,
+    "null_mean": 0.5422048214100558,
+    "null_p95": 0.7520365011286567,
+    "excess": 0.1872235711254694,
+    "p_value": 0.08945527236381809,
+    "n_levels": 14,
+    "n": 25,
+    "p_bonferroni_4_labels": 0.35782108945527236
+   },
+   "direction_only": {
+    "r2": 0.5556038098726224,
+    "null_mean": 0.5410613502259829,
+    "null_p95": 0.6717930272802867,
+    "excess": 0.014542459646639472,
+    "p_value": 0.4217891054472764,
+    "n_levels": 14,
+    "n": 25,
+    "p_bonferroni_4_labels": 1.0
+   }
+  },
+  "task_type": {
+   "full_loading": {
+    "r2": 0.16063517255814075,
+    "null_mean": 0.12500857330844722,
+    "null_p95": 0.32489585756220696,
+    "excess": 0.035626599249693525,
+    "p_value": 0.2193903048475762,
+    "n_levels": 4,
+    "n": 25,
+    "p_bonferroni_4_labels": 0.8775612193903048
+   },
+   "direction_only": {
+    "r2": 0.12729958752765003,
+    "null_mean": 0.1253207976716222,
+    "null_p95": 0.22267912580678875,
+    "excess": 0.0019787898560278128,
+    "p_value": 0.41379310344827586,
+    "n_levels": 4,
+    "n": 25,
+    "p_bonferroni_4_labels": 1.0
+   }
+  },
+  "sensor": {
+   "full_loading": {
+    "r2": 0.7328374430524751,
+    "null_mean": 0.4353437319009379,
+    "null_p95": 0.6874535448375897,
+    "excess": 0.2974937111515372,
+    "p_value": 0.01199400299850075,
+    "n_levels": 11,
+    "n": 24,
+    "p_bonferroni_4_labels": 0.047976011994003
+   },
+   "direction_only": {
+    "r2": 0.6003406307370416,
+    "null_mean": 0.4341637715261834,
+    "null_p95": 0.576384739234559,
+    "excess": 0.16617685921085817,
+    "p_value": 0.026486756621689155,
+    "n_levels": 11,
+    "n": 24,
+    "p_bonferroni_4_labels": 0.10594702648675662
+   }
+  }
+ },
+ "datasets": {
+  "AGBD": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s2_s1",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.421,
+   "lopo_rho_naive_leaderboard": 0.555,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "AI4Arctic / AutoICE": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 12.3,
+   "smallest_comparison": 11,
+   "domain": "5 \u00b7 Cryosphere",
+   "task_type": "segmentation",
+   "sensor": "s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.07,
+   "lopo_rho": 0.023,
+   "lopo_rho_naive_leaderboard": -0.023,
+   "lopo_tasks": 3,
+   "lopo_models_median": 13.0,
+   "nearest": null
+  },
+  "AI4SmallFarms": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 11.0,
+   "smallest_comparison": 11,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.91,
+   "lopo_rho": 0.23,
+   "lopo_rho_naive_leaderboard": 0.445,
+   "lopo_tasks": 3,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "AWF": {
+   "sources": 1,
+   "comparisons": 5,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 9.08,
+   "lopo_rho": 0.34,
+   "lopo_rho_naive_leaderboard": 0.026,
+   "lopo_tasks": 5,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "Austrian Crop": {
+   "sources": 1,
+   "comparisons": 6,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 7,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s1;s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.89,
+   "lopo_rho": 0.596,
+   "lopo_rho_naive_leaderboard": 0.444,
+   "lopo_tasks": 6,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "BigEarthNet v1 / v2 (reBEN)": {
+   "sources": 12,
+   "comparisons": 35,
+   "models_per_comparison": 7.3,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.87,
+   "lopo_rho": 0.136,
+   "lopo_rho_naive_leaderboard": 0.337,
+   "lopo_tasks": 35,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "BioMassters": {
+   "sources": 2,
+   "comparisons": 9,
+   "models_per_comparison": 8.8,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.568,
+   "lopo_rho_naive_leaderboard": 0.341,
+   "lopo_tasks": 9,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "Borneo Canopy Height": {
+   "sources": 1,
+   "comparisons": 6,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 7,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.403,
+   "lopo_rho_naive_leaderboard": 0.35,
+   "lopo_tasks": 6,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "BreizhCrops": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 11.0,
+   "smallest_comparison": 11,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.8,
+   "lopo_rho": 0.755,
+   "lopo_rho_naive_leaderboard": -0.064,
+   "lopo_tasks": 1,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "Brick kilns": {
+   "sources": 7,
+   "comparisons": 20,
+   "models_per_comparison": 8.7,
+   "smallest_comparison": 5,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.03,
+   "lopo_rho": 0.22,
+   "lopo_rho_naive_leaderboard": 0.35,
+   "lopo_tasks": 20,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "CLCD": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "change detection",
+   "sensor": "gaofen-2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.2,
+   "lopo_rho": 0.262,
+   "lopo_rho_naive_leaderboard": -0.429,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "CORINE (Panopticon)": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "multilabel_classification",
+   "sensor": "modis",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.34,
+   "lopo_rho": 0.783,
+   "lopo_rho_naive_leaderboard": 0.76,
+   "lopo_tasks": 2,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "CaFFe": {
+   "sources": 2,
+   "comparisons": 4,
+   "models_per_comparison": 11.0,
+   "smallest_comparison": 5,
+   "domain": "5 \u00b7 Cryosphere",
+   "task_type": "segmentation",
+   "sensor": "multi SAR (ERS-1/2, Envisat, RADARSAT-1, ALOS PALSAR, TSX, TDX, S1)",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 9.98,
+   "lopo_rho": -0.121,
+   "lopo_rho_naive_leaderboard": -0.034,
+   "lopo_tasks": 4,
+   "lopo_models_median": 13.0,
+   "nearest": null
+  },
+  "Canadian Cropland": {
+   "sources": 1,
+   "comparisons": 5,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.31,
+   "lopo_rho": 0.874,
+   "lopo_rho_naive_leaderboard": 0.737,
+   "lopo_tasks": 5,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "Cashew plantation": {
+   "sources": 7,
+   "comparisons": 17,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 4,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 8.47,
+   "lopo_rho": 0.227,
+   "lopo_rho_naive_leaderboard": 0.341,
+   "lopo_tasks": 17,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "Chesapeake land cover": {
+   "sources": 3,
+   "comparisons": 3,
+   "models_per_comparison": 6.7,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 5.51,
+   "lopo_rho": 0.402,
+   "lopo_rho_naive_leaderboard": 0.428,
+   "lopo_tasks": 3,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "CloudSEN12 (Cloud-S2)": {
+   "sources": 2,
+   "comparisons": 2,
+   "models_per_comparison": 4.5,
+   "smallest_comparison": 4,
+   "domain": "6 \u00b7 Atmosphere",
+   "task_type": "segmentation",
+   "sensor": "s1;s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.76,
+   "lopo_rho": -0.316,
+   "lopo_rho_naive_leaderboard": 0.208,
+   "lopo_tasks": 2,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "CropHarvest": {
+   "sources": 1,
+   "comparisons": 6,
+   "models_per_comparison": 9.3,
+   "smallest_comparison": 8,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "classification",
+   "sensor": "s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.28,
+   "lopo_rho": 0.045,
+   "lopo_rho_naive_leaderboard": 0.109,
+   "lopo_tasks": 6,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "CropTypeMapping Ghana / South Sudan": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 12.0,
+   "smallest_comparison": 12,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s1;s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.09,
+   "lopo_rho": 0.476,
+   "lopo_rho_naive_leaderboard": 0.361,
+   "lopo_tasks": 3,
+   "lopo_models_median": 12.0,
+   "nearest": null
+  },
+  "DFC2020": {
+   "sources": 2,
+   "comparisons": 3,
+   "models_per_comparison": 4.7,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.65,
+   "lopo_rho": -0.286,
+   "lopo_rho_naive_leaderboard": 0.41,
+   "lopo_tasks": 3,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "DSE": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "s1+s2+landsat+viirs",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.46,
+   "lopo_rho": 0.238,
+   "lopo_rho_naive_leaderboard": 0.143,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "DeepGlobe Land Cover / DFC2022 (EarthShift)": {
+   "sources": 1,
+   "comparisons": 4,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "vhr_rgb",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 11.53,
+   "lopo_rho": -0.4,
+   "lopo_rho_naive_leaderboard": -0.729,
+   "lopo_tasks": 4,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "Digital Typhoon": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "6 \u00b7 Atmosphere",
+   "task_type": "regression",
+   "sensor": "geostationary",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.0,
+   "lopo_rho_naive_leaderboard": 0.7,
+   "lopo_tasks": 1,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "Dynamic World training set": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 5.1,
+   "lopo_rho": 0.886,
+   "lopo_rho_naive_leaderboard": 0.543,
+   "lopo_tasks": 1,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "DynamicEarthNet": {
+   "sources": 2,
+   "comparisons": 4,
+   "models_per_comparison": 10.2,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "planet",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.91,
+   "lopo_rho": -0.437,
+   "lopo_rho_naive_leaderboard": 0.225,
+   "lopo_tasks": 4,
+   "lopo_models_median": 12.0,
+   "nearest": null
+  },
+  "EuroSAT": {
+   "sources": 11,
+   "comparisons": 33,
+   "models_per_comparison": 7.5,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.6,
+   "lopo_rho": 0.053,
+   "lopo_rho_naive_leaderboard": 0.194,
+   "lopo_tasks": 33,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "FLAIR / FLAIR 2": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "aerial_rgb;dem",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.89,
+   "lopo_rho": -0.1,
+   "lopo_rho_naive_leaderboard": -0.5,
+   "lopo_tasks": 1,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "Fields of The World": {
+   "sources": 2,
+   "comparisons": 17,
+   "models_per_comparison": 5.9,
+   "smallest_comparison": 5,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.66,
+   "lopo_rho": -0.075,
+   "lopo_rho_naive_leaderboard": -0.048,
+   "lopo_tasks": 17,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "Five Billion Pixels": {
+   "sources": 1,
+   "comparisons": 4,
+   "models_per_comparison": 11.0,
+   "smallest_comparison": 11,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "gaofen",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.56,
+   "lopo_rho": 0.382,
+   "lopo_rho_naive_leaderboard": -0.225,
+   "lopo_tasks": 4,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "Forest Loss Driver": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 9.0,
+   "smallest_comparison": 9,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.73,
+   "lopo_rho": 0.293,
+   "lopo_rho_naive_leaderboard": 0.661,
+   "lopo_tasks": 1,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "ForestNet": {
+   "sources": 4,
+   "comparisons": 5,
+   "models_per_comparison": 5.8,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "landsat",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.89,
+   "lopo_rho": 0.04,
+   "lopo_rho_naive_leaderboard": 0.33,
+   "lopo_tasks": 5,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "GAZADeepDAV": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "Disasters",
+   "task_type": "classification",
+   "sensor": "planetscope",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.02,
+   "lopo_rho": 0.524,
+   "lopo_rho_naive_leaderboard": -0.19,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "GEA North Africa": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 9.0,
+   "smallest_comparison": 9,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 5.87,
+   "lopo_rho": -0.15,
+   "lopo_rho_naive_leaderboard": -0.117,
+   "lopo_tasks": 1,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "GEOID-Flood": {
+   "sources": 1,
+   "comparisons": 4,
+   "models_per_comparison": 4.0,
+   "smallest_comparison": 4,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "segmentation",
+   "sensor": "s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 5.08,
+   "lopo_rho": 0.5,
+   "lopo_rho_naive_leaderboard": 1.0,
+   "lopo_tasks": 4,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "GLD": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 12.3,
+   "smallest_comparison": 11,
+   "domain": "5 \u00b7 Cryosphere",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.6,
+   "lopo_rho": 0.235,
+   "lopo_rho_naive_leaderboard": 0.365,
+   "lopo_tasks": 3,
+   "lopo_models_median": 13.0,
+   "nearest": null
+  },
+  "GLID": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 12.3,
+   "smallest_comparison": 11,
+   "domain": "5 \u00b7 Cryosphere",
+   "task_type": "segmentation",
+   "sensor": "multi (WorldView-2, Sentinel-2, Landsat-8, Gaofen-2)",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 8.08,
+   "lopo_rho": 0.091,
+   "lopo_rho_naive_leaderboard": -0.04,
+   "lopo_tasks": 3,
+   "lopo_models_median": 13.0,
+   "nearest": null
+  },
+  "GSDD": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 12.7,
+   "smallest_comparison": 12,
+   "domain": "5 \u00b7 Cryosphere",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.21,
+   "lopo_rho": 0.093,
+   "lopo_rho_naive_leaderboard": 0.193,
+   "lopo_tasks": 3,
+   "lopo_models_median": 13.0,
+   "nearest": null
+  },
+  "GeoCrossBench Hurricane Harvey": {
+   "sources": 1,
+   "comparisons": 12,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "change_detection (bIoU, minority class only)",
+   "sensor": "s2_s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.41,
+   "lopo_rho": -0.253,
+   "lopo_rho_naive_leaderboard": 0.33,
+   "lopo_tasks": 12,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "GloSoFarID": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 0.93,
+   "lopo_rho": 0.619,
+   "lopo_rho_naive_leaderboard": 0.405,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "HLS Burn Scars": {
+   "sources": 3,
+   "comparisons": 5,
+   "models_per_comparison": 9.2,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "hls",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.0,
+   "lopo_rho": -0.02,
+   "lopo_rho_naive_leaderboard": 0.244,
+   "lopo_tasks": 5,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "Hyperview": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "regression",
+   "sensor": "modis",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.609,
+   "lopo_rho_naive_leaderboard": 0.103,
+   "lopo_tasks": 2,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "Infra-Bench": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 4.0,
+   "smallest_comparison": 4,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "classification",
+   "sensor": "s1_s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.89,
+   "lopo_rho": -0.9,
+   "lopo_rho_naive_leaderboard": -0.9,
+   "lopo_tasks": 2,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "Kuro Siwo (Flood-S1)": {
+   "sources": 2,
+   "comparisons": 2,
+   "models_per_comparison": 4.5,
+   "smallest_comparison": 4,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "change detection",
+   "sensor": "s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.74,
+   "lopo_rho": -0.05,
+   "lopo_rho_naive_leaderboard": -0.45,
+   "lopo_tasks": 2,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "LEVIR-CD": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "change detection",
+   "sensor": "google_earth",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.53,
+   "lopo_rho": 0.524,
+   "lopo_rho_naive_leaderboard": -0.19,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "Live Fuel Moisture Content": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 8.5,
+   "smallest_comparison": 8,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.002,
+   "lopo_rho_naive_leaderboard": -0.156,
+   "lopo_tasks": 2,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "MADOS": {
+   "sources": 4,
+   "comparisons": 10,
+   "models_per_comparison": 10.4,
+   "smallest_comparison": 8,
+   "domain": "4 \u00b7 Oceans and coasts",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 6.86,
+   "lopo_rho": 0.426,
+   "lopo_rho_naive_leaderboard": 0.416,
+   "lopo_tasks": 10,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "MARIDA": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "4 \u00b7 Oceans and coasts",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.11,
+   "lopo_rho": 0.829,
+   "lopo_rho_naive_leaderboard": 0.429,
+   "lopo_tasks": 1,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MMEarth-Bench Biomass": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s2;s1;dem;era5;landcover;coords",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.762,
+   "lopo_rho_naive_leaderboard": 0.62,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MMEarth-Bench soil nitrogen": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "7 \u00b7 Solid Earth",
+   "task_type": "regression",
+   "sensor": "s2;s1;dem;era5;landcover;coords",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.486,
+   "lopo_rho_naive_leaderboard": 0.657,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MMEarth-Bench soil organic carbon": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "7 \u00b7 Solid Earth",
+   "task_type": "regression",
+   "sensor": "s2;s1;dem;era5;landcover;coords",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.686,
+   "lopo_rho_naive_leaderboard": 0.543,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MMEarth-Bench soil pH": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "7 \u00b7 Solid Earth",
+   "task_type": "regression",
+   "sensor": "s2;s1;dem;era5;landcover;coords",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.734,
+   "lopo_rho_naive_leaderboard": 0.732,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MMEarth-Bench species": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "multilabel_classification",
+   "sensor": "s2;s1;dem;era5;landcover;coords",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 9.34,
+   "lopo_rho": 0.667,
+   "lopo_rho_naive_leaderboard": 0.826,
+   "lopo_tasks": 2,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "MineNetCD": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "change detection",
+   "sensor": "google_earth",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.77,
+   "lopo_rho": 0.381,
+   "lopo_rho_naive_leaderboard": -0.357,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "NZ cattle": {
+   "sources": 3,
+   "comparisons": 4,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 5,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "aerial_rgb",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.63,
+   "lopo_rho": 0.077,
+   "lopo_rho_naive_leaderboard": 0.082,
+   "lopo_tasks": 4,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "Nandi": {
+   "sources": 1,
+   "comparisons": 5,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 5,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 9.47,
+   "lopo_rho": 0.266,
+   "lopo_rho_naive_leaderboard": 0.062,
+   "lopo_tasks": 5,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "NeonTreeEvaluation": {
+   "sources": 3,
+   "comparisons": 3,
+   "models_per_comparison": 6.7,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "segmentation",
+   "sensor": "aerial_rgb;hyperspectral_other;dem",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.78,
+   "lopo_rho": 0.335,
+   "lopo_rho_naive_leaderboard": 0.457,
+   "lopo_tasks": 3,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "NeuCo-Bench Biomass": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": -0.607,
+   "lopo_rho_naive_leaderboard": 0.214,
+   "lopo_tasks": 2,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "NeuCo-Bench Clouds": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "6 \u00b7 Atmosphere",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": -0.536,
+   "lopo_rho_naive_leaderboard": 0.214,
+   "lopo_tasks": 1,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "NeuCo-Bench Crops": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.179,
+   "lopo_rho_naive_leaderboard": 0.143,
+   "lopo_tasks": 1,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "NeuCo-Bench Heatisland": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": -0.482,
+   "lopo_rho_naive_leaderboard": 0.321,
+   "lopo_tasks": 2,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "NeuCo-Bench Landcover": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "regression",
+   "sensor": "s1;s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.357,
+   "lopo_rho_naive_leaderboard": 0.232,
+   "lopo_tasks": 2,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "OMBRIA": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "change detection",
+   "sensor": "s1_s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 0.86,
+   "lopo_rho": 0.381,
+   "lopo_rho_naive_leaderboard": 0.024,
+   "lopo_tasks": 2,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "OSCD": {
+   "sources": 1,
+   "comparisons": 6,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "change_detection (F1)",
+   "sensor": "s2_s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.48,
+   "lopo_rho": 0.167,
+   "lopo_rho_naive_leaderboard": 0.494,
+   "lopo_tasks": 6,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "OlmoEarth Mangrove": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 7,
+   "domain": "4 \u00b7 Oceans and coasts",
+   "task_type": "classification",
+   "sensor": "s1;s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.8,
+   "lopo_rho": 0.086,
+   "lopo_rho_naive_leaderboard": 0.29,
+   "lopo_tasks": 2,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "OlmoEarth Solar Farm": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 9.0,
+   "smallest_comparison": 9,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.13,
+   "lopo_rho": 0.117,
+   "lopo_rho_naive_leaderboard": -0.167,
+   "lopo_tasks": 1,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "OlmoEarth Vessel Detection": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 4.0,
+   "smallest_comparison": 4,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "object detection",
+   "sensor": "s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.3,
+   "lopo_rho": 0.4,
+   "lopo_rho_naive_leaderboard": -0.8,
+   "lopo_tasks": 1,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "OlmoEarth Vessel Length": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "regression",
+   "sensor": "s2",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.286,
+   "lopo_rho_naive_leaderboard": 0.333,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "OlmoEarth Vessel Type": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 7.0,
+   "smallest_comparison": 7,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 10.83,
+   "lopo_rho": 0.429,
+   "lopo_rho_naive_leaderboard": 0.429,
+   "lopo_tasks": 1,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "PASTIS / PASTIS-R": {
+   "sources": 6,
+   "comparisons": 19,
+   "models_per_comparison": 8.7,
+   "smallest_comparison": 4,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.24,
+   "lopo_rho": 0.362,
+   "lopo_rho_naive_leaderboard": 0.202,
+   "lopo_tasks": 19,
+   "lopo_models_median": 9.0,
+   "nearest": null
+  },
+  "PV4GER": {
+   "sources": 3,
+   "comparisons": 7,
+   "models_per_comparison": 6.4,
+   "smallest_comparison": 5,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "aerial_rgb",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.43,
+   "lopo_rho": 0.322,
+   "lopo_rho_naive_leaderboard": 0.214,
+   "lopo_tasks": 7,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "RESISC45": {
+   "sources": 1,
+   "comparisons": 2,
+   "models_per_comparison": 4.0,
+   "smallest_comparison": 4,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.52,
+   "lopo_rho": 0.6,
+   "lopo_rho_naive_leaderboard": 0.6,
+   "lopo_tasks": 2,
+   "lopo_models_median": 4.0,
+   "nearest": null
+  },
+  "RESISC45 / UCMerced (EarthShift)": {
+   "sources": 1,
+   "comparisons": 8,
+   "models_per_comparison": 6.0,
+   "smallest_comparison": 6,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "aerial_rgb",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 14.18,
+   "lopo_rho": -0.136,
+   "lopo_rho_naive_leaderboard": -0.393,
+   "lopo_tasks": 8,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "RSBD": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "segmentation",
+   "sensor": "gaofen-2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.23,
+   "lopo_rho": 0.143,
+   "lopo_rho_naive_leaderboard": -0.476,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "Sen1Floods11": {
+   "sources": 5,
+   "comparisons": 19,
+   "models_per_comparison": 7.5,
+   "smallest_comparison": 6,
+   "domain": "3 \u00b7 Inland water",
+   "task_type": "segmentation",
+   "sensor": "s2_s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 9.74,
+   "lopo_rho": 0.295,
+   "lopo_rho_naive_leaderboard": 0.265,
+   "lopo_tasks": 19,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "SmokePlume": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "6 \u00b7 Atmosphere",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.37,
+   "lopo_rho": -0.095,
+   "lopo_rho_naive_leaderboard": -0.667,
+   "lopo_tasks": 1,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "So2Sat LCZ42 (LCZ-S2)": {
+   "sources": 11,
+   "comparisons": 27,
+   "models_per_comparison": 7.9,
+   "smallest_comparison": 4,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "classification",
+   "sensor": "s2;s1",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 7.45,
+   "lopo_rho": 0.071,
+   "lopo_rho_naive_leaderboard": 0.317,
+   "lopo_tasks": 27,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "South Africa crop type": {
+   "sources": 7,
+   "comparisons": 16,
+   "models_per_comparison": 8.1,
+   "smallest_comparison": 4,
+   "domain": "1 \u00b7 Agriculture",
+   "task_type": "segmentation",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.35,
+   "lopo_rho": 0.163,
+   "lopo_rho_naive_leaderboard": 0.352,
+   "lopo_tasks": 16,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "SpaceNet 1": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "worldview",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 1.05,
+   "lopo_rho": -0.5,
+   "lopo_rho_naive_leaderboard": 0.9,
+   "lopo_tasks": 1,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "SpaceNet 2": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "segmentation",
+   "sensor": "worldview",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 0.9,
+   "lopo_rho": 0.0,
+   "lopo_rho_naive_leaderboard": -0.5,
+   "lopo_tasks": 1,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "SpaceNet 7": {
+   "sources": 2,
+   "comparisons": 4,
+   "models_per_comparison": 9.5,
+   "smallest_comparison": 5,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "change detection",
+   "sensor": "planet",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 3.65,
+   "lopo_rho": 0.232,
+   "lopo_rho_naive_leaderboard": 0.016,
+   "lopo_tasks": 4,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  },
+  "SustainBench DHS tasks": {
+   "sources": 1,
+   "comparisons": 5,
+   "models_per_comparison": 8.0,
+   "smallest_comparison": 8,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "regression",
+   "sensor": "landsat+viirs",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.332,
+   "lopo_rho_naive_leaderboard": 0.339,
+   "lopo_tasks": 5,
+   "lopo_models_median": 8.0,
+   "nearest": null
+  },
+  "TreeSatAI": {
+   "sources": 2,
+   "comparisons": 7,
+   "models_per_comparison": 6.7,
+   "smallest_comparison": 5,
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "task_type": "classification",
+   "sensor": "s1;s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 2.62,
+   "lopo_rho": -0.282,
+   "lopo_rho_naive_leaderboard": 0.153,
+   "lopo_tasks": 7,
+   "lopo_models_median": 7.0,
+   "nearest": null
+  },
+  "TropicalCyclone": {
+   "sources": 1,
+   "comparisons": 1,
+   "models_per_comparison": 5.0,
+   "smallest_comparison": 5,
+   "domain": "6 \u00b7 Atmosphere",
+   "task_type": "regression",
+   "sensor": "geostationary",
+   "families": [
+    "logerr"
+   ],
+   "reported_separation_pts": null,
+   "lopo_rho": 0.8,
+   "lopo_rho_naive_leaderboard": 0.3,
+   "lopo_tasks": 1,
+   "lopo_models_median": 5.0,
+   "nearest": null
+  },
+  "fMoW": {
+   "sources": 2,
+   "comparisons": 7,
+   "models_per_comparison": 5.6,
+   "smallest_comparison": 4,
+   "domain": "8 \u00b7 Human systems",
+   "task_type": "classification",
+   "sensor": "s2",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 4.38,
+   "lopo_rho": 0.755,
+   "lopo_rho_naive_leaderboard": 0.584,
+   "lopo_tasks": 7,
+   "lopo_models_median": 6.0,
+   "nearest": null
+  },
+  "xBD / xView2": {
+   "sources": 1,
+   "comparisons": 3,
+   "models_per_comparison": 11.0,
+   "smallest_comparison": 11,
+   "domain": "Disasters",
+   "task_type": "change detection",
+   "sensor": "worldview",
+   "families": [
+    "points"
+   ],
+   "reported_separation_pts": 6.15,
+   "lopo_rho": 0.879,
+   "lopo_rho_naive_leaderboard": 0.033,
+   "lopo_tasks": 3,
+   "lopo_models_median": 11.0,
+   "nearest": null
+  }
+ },
+ "seed_noise_reliability": {
+  "comparisons": 118,
+  "by_dataset_protocol": [
+   {
+    "dataset": "BigEarthNet v1 / v2 (reBEN)",
+    "protocol": "fine-tuned",
+    "comparisons": 6,
+    "sources": 3,
+    "models_median": 7.0,
+    "sigma_median": 0.451,
+    "spread_median": 5.064,
+    "score": 0.88,
+    "score_min": 0.543,
+    "score_max": 1.0,
+    "score_lo_min": 0.038,
+    "score_if_single_runs": 0.83,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
+   },
+   {
+    "dataset": "BigEarthNet v1 / v2 (reBEN)",
+    "protocol": "frozen",
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 1.3,
+    "spread_median": 15.935,
+    "score": 0.885,
+    "score_min": 0.492,
+    "score_max": 0.999,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.82,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "Brick kilns",
+    "protocol": "fine-tuned",
+    "comparisons": 4,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 0.206,
+    "spread_median": 0.275,
+    "score": 0.59,
+    "score_min": 0.086,
+    "score_max": 1.0,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.477,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
+   },
+   {
+    "dataset": "Brick kilns",
+    "protocol": "frozen",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.66,
+    "spread_median": 6.149,
+    "score": 0.971,
+    "score_min": 0.934,
+    "score_max": 0.997,
+    "score_lo_min": 0.762,
+    "score_if_single_runs": 0.97,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "Cashew plantation",
+    "protocol": "fine-tuned",
+    "comparisons": 4,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 4.025,
+    "spread_median": 7.829,
+    "score": 0.726,
+    "score_min": 0.298,
+    "score_max": 0.936,
+    "score_lo_min": 0.125,
+    "score_if_single_runs": 0.635,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "Cashew plantation",
+    "protocol": "frozen",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.73,
+    "spread_median": 6.942,
+    "score": 0.964,
+    "score_min": 0.907,
+    "score_max": 0.998,
+    "score_lo_min": 0.573,
+    "score_if_single_runs": 0.962,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "Chesapeake land cover",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 1.85,
+    "spread_median": 5.82,
+    "score": 0.907,
+    "score_min": 0.907,
+    "score_max": 0.907,
+    "score_lo_min": 0.666,
+    "score_if_single_runs": 0.899,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+    "protocol": "fine-tuned",
+    "comparisons": 2,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 2.453,
+    "spread_median": 11.994,
+    "score": 0.959,
+    "score_min": 0.945,
+    "score_max": 0.974,
+    "score_lo_min": 0.354,
+    "score_if_single_runs": 0.958,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
+   },
+   {
+    "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+    "protocol": "frozen",
+    "comparisons": 2,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.875,
+    "spread_median": 10.974,
+    "score": 0.992,
+    "score_min": 0.984,
+    "score_max": 0.999,
+    "score_lo_min": 0.823,
+    "score_if_single_runs": 0.992,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "EuroSAT",
+    "protocol": "fine-tuned",
+    "comparisons": 6,
+    "sources": 3,
+    "models_median": 6.5,
+    "sigma_median": 1.204,
+    "spread_median": 5.917,
+    "score": 0.951,
+    "score_min": 0.865,
+    "score_max": 0.999,
+    "score_lo_min": 0.411,
+    "score_if_single_runs": 0.947,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 5
+   },
+   {
+    "dataset": "EuroSAT",
+    "protocol": "frozen",
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 0.56,
+    "spread_median": 12.22,
+    "score": 0.992,
+    "score_min": 0.969,
+    "score_max": 1.0,
+    "score_lo_min": 0.728,
+    "score_if_single_runs": 0.992,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 5
+   },
+   {
+    "dataset": "Fields of The World",
+    "protocol": "fine-tuned",
+    "comparisons": 8,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.398,
+    "spread_median": 1.024,
+    "score": 0.786,
+    "score_min": 0.218,
+    "score_max": 0.994,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.737,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "Fields of The World",
+    "protocol": "frozen",
+    "comparisons": 8,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.395,
+    "spread_median": 1.799,
+    "score": 0.874,
+    "score_min": 0.565,
+    "score_max": 0.98,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.837,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 6
+   },
+   {
+    "dataset": "ForestNet",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 1.4,
+    "spread_median": 3.49,
+    "score": 0.859,
+    "score_min": 0.859,
+    "score_max": 0.859,
+    "score_lo_min": 0.507,
+    "score_if_single_runs": 0.839,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "GeoCrossBench Hurricane Harvey",
+    "protocol": "fine-tuned",
+    "comparisons": 6,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 1.98,
+    "spread_median": 8.965,
+    "score": 0.941,
+    "score_min": 0.866,
+    "score_max": 0.993,
+    "score_lo_min": 0.224,
+    "score_if_single_runs": 0.936,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 4
+   },
+   {
+    "dataset": "GeoCrossBench Hurricane Harvey",
+    "protocol": "frozen",
+    "comparisons": 6,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 1.24,
+    "spread_median": 6.649,
+    "score": 0.86,
+    "score_min": 0.693,
+    "score_max": 0.999,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.823,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "MMEarth-Bench Biomass",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 1.031,
+    "spread_median": 9.962,
+    "score": 0.989,
+    "score_min": 0.989,
+    "score_max": 0.989,
+    "score_lo_min": 0.942,
+    "score_if_single_runs": 0.989,
+    "n_reps_known": false,
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "MMEarth-Bench soil nitrogen",
+    "protocol": "fine-tuned",
+    "comparisons": 2,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.944,
+    "spread_median": 7.595,
+    "score": 0.983,
+    "score_min": 0.976,
+    "score_max": 0.99,
+    "score_lo_min": 0.525,
+    "score_if_single_runs": 0.982,
+    "n_reps_known": false,
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "MMEarth-Bench soil organic carbon",
+    "protocol": "fine-tuned",
+    "comparisons": 2,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 1.19,
+    "spread_median": 19.774,
+    "score": 0.995,
+    "score_min": 0.993,
+    "score_max": 0.998,
+    "score_lo_min": 0.965,
+    "score_if_single_runs": 0.995,
+    "n_reps_known": false,
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "MMEarth-Bench soil pH",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.935,
+    "spread_median": 8.133,
+    "score": 0.987,
+    "score_min": 0.987,
+    "score_max": 0.987,
+    "score_lo_min": 0.708,
+    "score_if_single_runs": 0.987,
+    "n_reps_known": false,
+    "family": "logerr",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "NZ cattle",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.4,
+    "spread_median": 3.816,
+    "score": 0.989,
+    "score_min": 0.989,
+    "score_max": 0.989,
+    "score_lo_min": 0.968,
+    "score_if_single_runs": 0.989,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "NeonTreeEvaluation",
+    "protocol": "fine-tuned",
+    "comparisons": 1,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.55,
+    "spread_median": 2.228,
+    "score": 0.942,
+    "score_min": 0.942,
+    "score_max": 0.942,
+    "score_lo_min": 0.629,
+    "score_if_single_runs": 0.939,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 1
+   },
+   {
+    "dataset": "OSCD",
+    "protocol": "fine-tuned",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 3.57,
+    "spread_median": 6.182,
+    "score": 0.68,
+    "score_min": 0.597,
+    "score_max": 0.737,
+    "score_lo_min": 0.075,
+    "score_if_single_runs": 0.563,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 0,
+    "comparisons_lo_ge_0_5": 0
+   },
+   {
+    "dataset": "OSCD",
+    "protocol": "frozen",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 1.73,
+    "spread_median": 7.822,
+    "score": 0.948,
+    "score_min": 0.935,
+    "score_max": 0.956,
+    "score_lo_min": 0.582,
+    "score_if_single_runs": 0.946,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "PV4GER",
+    "protocol": "fine-tuned",
+    "comparisons": 2,
+    "sources": 1,
+    "models_median": 6.5,
+    "sigma_median": 0.243,
+    "spread_median": 0.858,
+    "score": 0.909,
+    "score_min": 0.872,
+    "score_max": 0.953,
+    "score_lo_min": 0.539,
+    "score_if_single_runs": 0.899,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "RESISC45 / UCMerced (EarthShift)",
+    "protocol": "fine-tuned",
+    "comparisons": 4,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.981,
+    "spread_median": 15.24,
+    "score": 0.991,
+    "score_min": 0.97,
+    "score_max": 0.999,
+    "score_lo_min": 0.143,
+    "score_if_single_runs": 0.99,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 3,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "RESISC45 / UCMerced (EarthShift)",
+    "protocol": "frozen",
+    "comparisons": 4,
+    "sources": 1,
+    "models_median": 6.0,
+    "sigma_median": 0.601,
+    "spread_median": 10.489,
+    "score": 0.996,
+    "score_min": 0.995,
+    "score_max": 0.998,
+    "score_lo_min": 0.887,
+    "score_if_single_runs": 0.996,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
+   },
+   {
+    "dataset": "Sen1Floods11",
+    "protocol": "fine-tuned",
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 3.59,
+    "spread_median": 15.345,
+    "score": 0.901,
+    "score_min": 0.645,
+    "score_max": 1.0,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.87,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "Sen1Floods11",
+    "protocol": "frozen",
+    "comparisons": 5,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 2.63,
+    "spread_median": 9.495,
+    "score": 0.889,
+    "score_min": 0.553,
+    "score_max": 1.0,
+    "score_lo_min": 0.0,
+    "score_if_single_runs": 0.835,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 4,
+    "comparisons_lo_ge_0_5": 4
+   },
+   {
+    "dataset": "So2Sat LCZ42 (LCZ-S2)",
+    "protocol": "fine-tuned",
+    "comparisons": 4,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 1.475,
+    "spread_median": 5.386,
+    "score": 0.92,
+    "score_min": 0.839,
+    "score_max": 0.985,
+    "score_lo_min": 0.111,
+    "score_if_single_runs": 0.91,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 3
+   },
+   {
+    "dataset": "So2Sat LCZ42 (LCZ-S2)",
+    "protocol": "frozen",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.78,
+    "spread_median": 12.844,
+    "score": 0.993,
+    "score_min": 0.985,
+    "score_max": 0.998,
+    "score_lo_min": 0.223,
+    "score_if_single_runs": 0.993,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 2,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "South Africa crop type",
+    "protocol": "fine-tuned",
+    "comparisons": 4,
+    "sources": 2,
+    "models_median": 7.0,
+    "sigma_median": 0.85,
+    "spread_median": 3.981,
+    "score": 0.871,
+    "score_min": 0.674,
+    "score_max": 0.985,
+    "score_lo_min": 0.053,
+    "score_if_single_runs": 0.838,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
+   },
+   {
+    "dataset": "South Africa crop type",
+    "protocol": "frozen",
+    "comparisons": 3,
+    "sources": 1,
+    "models_median": 7.0,
+    "sigma_median": 0.81,
+    "spread_median": 4.385,
+    "score": 0.923,
+    "score_min": 0.829,
+    "score_max": 0.981,
+    "score_lo_min": 0.4,
+    "score_if_single_runs": 0.914,
+    "n_reps_known": true,
+    "family": "points",
+    "comparisons_lo_ge_0_8": 1,
+    "comparisons_lo_ge_0_5": 2
+   }
+  ],
+  "min_geofms": 6,
+  "comparisons_lo_ge_0_8": 49,
+  "comparisons_lo_ge_0_5": 79,
+  "cells_sd_floored_to_print_precision": 0,
+  "n_reps_assumed_3_share": 0.051
+ },
+ "reproducibility": {
+  "strict": {
+   "grouping": "dataset version x protocol x fraction x metric",
+   "min_shared": 5,
+   "min_df": 5,
+   "groups_with_2plus_sources": 13,
+   "with_3plus_shared": 6,
+   "with_5plus_shared": 0,
+   "estimable": []
+  },
+  "loose": {
+   "grouping": "dataset x protocol family x fraction x metric (versions pooled within source)",
+   "min_shared": 4,
+   "min_df": 3,
+   "groups_with_2plus_sources": 42,
+   "with_3plus_shared": 15,
+   "with_5plus_shared": 5,
+   "estimable": [
+    {
+     "group": "BioMassters | frozen | 100% | rmse",
+     "n_papers": 2,
+     "n_models": 6,
+     "n_cells": 12,
+     "df_resid": 5,
+     "kendall_tau_median": 1.0,
+     "n_paper_pairs": 1,
+     "sigma_xp": 1.028,
+     "tau_b": 12.4582,
+     "reproducibility": 0.9932,
+     "rep_lo": 0.9815,
+     "rep_hi": 0.9975
+    },
+    {
+     "group": "PASTIS / PASTIS-R | frozen | 100% | miou",
+     "n_papers": 4,
+     "n_models": 8,
+     "n_cells": 18,
+     "df_resid": 7,
+     "kendall_tau_median": 0.7333,
+     "n_paper_pairs": 1,
+     "sigma_xp": 2.1929,
+     "tau_b": 6.3818,
+     "reproducibility": 0.8944,
+     "rep_lo": 0.7982,
+     "rep_hi": 0.9865
+    }
+   ]
+  }
+ }
+}

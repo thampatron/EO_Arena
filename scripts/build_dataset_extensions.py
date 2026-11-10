@@ -215,6 +215,7 @@ def panel_completion(mask, models, tp, td, sizes=(8, 12, 16)):
         out["panels"].append({"panel_size": k, "min_sources_per_model": int(ns.iloc[k - 1]), "cells": int(H.size), "already_published": int(H.values.sum()),
                               "to_run": int((~H.values).sum()), "share_published": r4(H.values.mean()), "models": sorted(panel),
                               "datasets_complete": int(H.all(0).sum()),
+                              "datasets": multi, "published": [[int(x) for x in H.loc[m].values] for m in sorted(panel)],
                               "missing_by_dataset": {d: int((~H[d]).sum()) for d in multi if (~H[d]).any()}})
     return out
 
@@ -240,7 +241,10 @@ within_summary = boot_mean(np.concatenate([np.array(b["tau"], float)[np.triu_ind
 
 attrs = json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"]
 E3 = attribute_effects(Y, mask, models, tp, td, TI, attrs); log("attributes", {k: (v["comparisons"], v["all"]) for k, v in E3.items()})
-E6 = panel_completion(mask, models, tp, td); log("panels", [(p["panel_size"], p["to_run"], p["cells"]) for p in E6["panels"]])
+E6 = panel_completion(mask, models, tp, td)
+if "--only-panels" in A:                                  # refresh the design block of an existing output without recomputing the rest
+    out = json.loads(OUT.read_text()); out["panel_completion"] = E6; OUT.write_text(json.dumps(out, indent=1)); log("updated panels in", OUT); sys.exit(0)
+log("panels", [(p["panel_size"], p["to_run"], p["cells"]) for p in E6["panels"]])
 
 def tau_block(flags, label):
     h = matrix(flags); Yh, mh, tph, tdh, TIh = h["Y"], h["mask"], h["tp"], h["td"], h["TI"]

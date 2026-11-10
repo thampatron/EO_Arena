@@ -47,6 +47,13 @@ Items N1–N6 come from the independent spec review of v2.1 (2026-11-04) and go 
 
 Done in the v2 / v2.1 revision: T3 (calibrated simulation — refinement is N2), most of T5.
 
+- **N8 — Why does K = 1 score below the plain leaderboard out of paper?** In every run (all rows, main text, linear scale, ≥ 3-source core) the one-factor structured model predicts held-out sources worse than the naive leaderboard. Diagnose: sign of block-predicted loadings, heteroskedastic weights, ridge on the dataset block, start. Until fixed, K ≥ 2 vs K = 1 is not a dimensionality test. Do this before N1–N3.
+- **N9 — Rerun the main analysis with `--lopo-restarts 3`** (with simulations) so `data/dataset_analysis.json` matches D18; then regenerate report and findings page.
+- **E1 — Verify `data/model_attributes.json`** against each model's paper (family, size tier, SAR in pretraining); add release year and multi-temporal pretraining; cite sources per row.
+- **E2 — Power of the similarity-replication test.** Simulate two-dimensional data on the real within-source masks and report the pooled Mantel r expected if structure existed, so the null result in report §10.1 can be read quantitatively.
+- **E3 — Seeded full-panel design.** Turn report §10.4 into a concrete run plan (protocol, seeds, compute) for 8 GeoFMs × 29 datasets; update docs/replicate-plan.md.
+- **E4 — Keep `findings.html` in step** with the JSON files (`python3 -I scripts/build_findings_page.py`); one conclusion per panel; no model ranking.
+
 ## Needs a decision before work (do not implement)
 
 - **D1 — Lost main-text results** (partly moot since v2 includes non-ablation appendix tables; still open for papers whose main table is not a subset of the appendix). Galileo (main Tables 3–5), SatCLIP (main Table 2) and Prithvi-EO-2.0 (main-text GEO-Bench results) print condensed versions of appendix tables the workbook extracted instead. Options: transcribe the main tables from arXiv into `data/extraction/` (published values only), or keep appendix rows that a main table reprints. Changes the evidence base.

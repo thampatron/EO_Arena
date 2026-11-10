@@ -1,0 +1,260 @@
+<title>EOArena Benchmark Findings</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one reading column; every panel is question -> one conclusion -> one chart -> how to read -> what limits it. */
+/* Tokens follow the EOArena site (assets/site.css): white canvas, system type, blue accent. Light only, by the site's design. */
+:root{
+  --bg:#FFFFFF; --surface-2:#F5F5F7; --line:#E8E8ED; --line-2:#D2D2D7;
+  --fg:#1D1D1F; --fg-2:#6E6E73; --fg-3:#86868B;
+  --accent:#0071E3; --accent-soft:#E8F1FC; --s2:#EB6834; --s2-soft:#FDEEE7; --ref:#A1A1A6;
+  --ok:#248A3D; --ok-bg:#E9F6EC; --warn:#B25000; --warn-bg:#FFF2E2; --bad:#D70015; --bad-bg:#FDEBED; --info:#3634A3; --info-bg:#EEEEFB; --muted-bg:#F2F2F7;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:40px 96px}
+h1,h2,h3,p{margin:0}
+h1{font-family:var(--display);font-size:clamp(28px,5vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.1;text-wrap:balance}
+.lede{font-size:18px;color:var(--fg-2);max-width:66ch;margin-top:12px}
+.draft{display:inline-block;font-size:12px;font-weight:600;color:var(--warn);background:var(--warn-bg);border-radius:999px;padding:2px 10px;margin-bottom:14px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px;padding-block:14px;border-block:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.facts b{color:var(--fg);font-variant-numeric:tabular-nums;font-weight:600}
+.sum{margin-top:36px}
+.sum h2{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:6px}
+.sum ol{list-style:none;margin:0;padding:0}
+.sum li{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:baseline;padding-block:11px;border-bottom:1px solid var(--line)}
+.sum li a{color:var(--fg);text-decoration:none} .sum li a:hover{color:var(--accent)}
+.chip{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px;white-space:nowrap;justify-self:start}
+.c-ok{color:var(--ok);background:var(--ok-bg)} .c-warn{color:var(--warn);background:var(--warn-bg)} .c-bad{color:var(--bad);background:var(--bad-bg)} .c-info{color:var(--info);background:var(--info-bg)}
+section.p{margin-top:72px;display:grid;gap:14px;scroll-margin-top:20px}
+.q{font-size:14px;color:var(--fg-2);font-weight:600;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+section.p h2{font-family:var(--display);font-size:clamp(22px,3.6vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.18;text-wrap:balance;max-width:30em}
+.fig{margin-top:8px;min-width:0}
+.fig svg{display:block;width:100%;height:auto;overflow:visible}
+.fig-t{font-size:13px;color:var(--fg-2);margin-bottom:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--fg-2);margin-bottom:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend i.ln{width:16px;height:0;border-radius:0;border-top:2px dashed var(--ref);vertical-align:3px}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 32px;margin-top:6px}
+.notes div{font-size:14.5px;color:var(--fg-2);min-width:0}
+.notes b{display:block;color:var(--fg);font-size:13px;font-weight:600;margin-bottom:2px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px 28px}
+.two>div{min-width:0}
+svg text{font-family:var(--sans);fill:var(--fg-2);font-size:12px}
+svg text.lab{fill:var(--fg);font-size:13px} svg text.val{fill:var(--fg);font-size:12.5px;font-variant-numeric:tabular-nums} svg text.sm{font-size:11px;fill:var(--fg-3)}
+svg .hit{cursor:default} svg .hit:focus{outline:none} svg .hit:focus-visible rect.bg,svg .hit:hover rect.bg{fill:var(--surface-2)}
+.scroll{overflow-x:auto}
+.grid{border-collapse:collapse;font-size:12px}
+.grid th{font-weight:500;color:var(--fg-2);text-align:left;padding:2px 8px 2px 0;white-space:nowrap}
+.grid thead th{vertical-align:bottom;padding:0 0 6px;height:150px}
+.grid thead th span{display:block;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;max-height:150px;overflow:hidden;text-overflow:ellipsis}
+.grid td{width:20px;height:20px;padding:1px}
+.grid td i{display:block;width:18px;height:18px;border-radius:4px;background:var(--accent)}
+.grid td i.no{background:var(--bg);border:1.5px dashed var(--line-2)}
+#tip{position:fixed;z-index:30;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12.5px;line-height:1.4;padding:7px 10px;border-radius:8px;max-width:280px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+#tip b{font-weight:600}
+footer{margin-top:80px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--fg-3);max-width:70ch}
+@media (max-width:560px){.sum li{grid-template-columns:1fr;gap:4px}}
+</style>
+
+<div class="wrap">
+  <span class="draft">Draft for lab discussion · not published</span>
+  <h1>What do existing GeoFM benchmarks measure?</h1>
+  <p class="lede">We collected the results tables of published geospatial foundation model papers and asked what the datasets, not the models, can tell us. Each panel answers one question with one conclusion.</p>
+  <div class="facts" id="facts"></div>
+
+  <div class="sum">
+    <h2>The nine conclusions</h2>
+    <ol id="sum"></ol>
+  </div>
+
+  <div id="panels"></div>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s), esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f2 = x => (x < 0 ? '−' : '') + Math.abs(x).toFixed(2), sg = x => (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(2);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C = {a: css('--accent'), b: css('--s2'), ref: css('--ref'), line: css('--line'), line2: css('--line-2'), fg: css('--fg'), bg: css('--bg')};
+const hit = (tip, inner) => `<g class="hit" tabindex="0" data-tip="${esc(tip)}">${inner}</g>`;
+
+/* ---------- chart helpers (SVG, one x scale each) ---------- */
+function axisX(x, ticks, y0, y1, fmt, zero){
+  return ticks.map(t => `<line x1="${x(t)}" x2="${x(t)}" y1="${y0}" y2="${y1}" stroke="${t === zero ? C.line2 : C.line}" stroke-width="1"/><text x="${x(t)}" y="${y1 + 16}" text-anchor="middle">${fmt(t)}</text>`).join('');
+}
+// rows: [{label, sub, est, lo, hi, note, tip}] dot with 90% interval
+function forest(rows, o){
+  const W = 760, L = o.left || 250, R = o.right || 150, rh = 34, top = 6, H = top + rows.length * rh + 34;
+  const x = v => L + (Math.max(o.min, Math.min(o.max, v)) - o.min) / (o.max - o.min) * (W - L - R);
+  let s = axisX(x, o.ticks, top, top + rows.length * rh, o.fmt || f2, 0);
+  rows.forEach((r, i) => { const y = top + i * rh + rh / 2;
+    s += hit(r.tip, `<rect class="bg" x="0" y="${y - rh / 2 + 1}" width="${W}" height="${rh - 2}" fill="transparent" rx="6"/>
+      <text class="lab" x="${/^\s/.test(r.label) ? 16 : 0}" y="${y + 4}"${/^\s/.test(r.label) ? ' style="fill:var(--fg-2)"' : ''}>${esc(r.label.trim())}</text>
+      ${r.lo != null ? `<line x1="${x(r.lo)}" x2="${x(r.hi)}" y1="${y}" y2="${y}" stroke="${r.color || C.a}" stroke-width="2" stroke-linecap="round"/>` : ''}
+      <circle cx="${x(r.est)}" cy="${y}" r="5.5" fill="${r.color || C.a}" stroke="${C.bg}" stroke-width="2"/>
+      <text class="val" x="${W - R + 14}" y="${y + 4}">${esc(r.note)}</text>`); });
+  s += `<text class="sm" x="${(L + W - R) / 2}" y="${H - 2}" text-anchor="middle">${esc(o.xlabel)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}">${s}</svg>`;
+}
+// rows: [{label, a, b, tip}] two dots joined
+function dumbbell(rows, o){
+  const W = 760, L = 190, R = 90, rh = 30, top = 6, H = top + rows.length * rh + 34;
+  const x = v => L + (v - o.min) / (o.max - o.min) * (W - L - R);
+  let s = axisX(x, o.ticks, top, top + rows.length * rh, f2, 0);
+  rows.forEach((r, i) => { const y = top + i * rh + rh / 2;
+    s += hit(r.tip, `<rect class="bg" x="0" y="${y - rh / 2 + 1}" width="${W}" height="${rh - 2}" fill="transparent" rx="6"/>
+      <text class="lab" x="0" y="${y + 4}">${esc(r.label)}</text>
+      <line x1="${x(r.a)}" x2="${x(r.b)}" y1="${y}" y2="${y}" stroke="${C.line2}" stroke-width="2"/>
+      <circle cx="${x(r.b)}" cy="${y}" r="5.5" fill="${C.b}" stroke="${C.bg}" stroke-width="2"/><circle cx="${x(r.a)}" cy="${y}" r="5.5" fill="${C.a}" stroke="${C.bg}" stroke-width="2"/>
+      <text class="val" x="${W - R + 14}" y="${y + 4}">${sg(r.a - r.b)}</text>`); });
+  s += `<text class="sm" x="${(L + W - R) / 2}" y="${H - 2}" text-anchor="middle">${esc(o.xlabel)}</text><text class="sm" x="${W - R + 14}" y="${H - 2}">gap</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}">${s}</svg>`;
+}
+// rows: [{label, v, note, tip, color}] horizontal bars from zero
+function bars(rows, o){
+  const W = 760, L = o.left || 190, R = o.right || 120, rh = o.rh || 26, top = 6, H = top + rows.length * rh + 34;
+  const x = v => L + (v - o.min) / (o.max - o.min) * (W - L - R);
+  let s = axisX(x, o.ticks, top, top + rows.length * rh, o.fmt || f2, 0);
+  rows.forEach((r, i) => { const y = top + i * rh + rh / 2, x0 = x(0), x1 = x(r.v);
+    s += hit(r.tip, `<rect class="bg" x="0" y="${y - rh / 2 + 1}" width="${W}" height="${rh - 2}" fill="transparent" rx="6"/>
+      <text class="lab" x="0" y="${y + 4}">${esc(r.label)}</text>
+      <rect x="${Math.min(x0, x1)}" y="${y - 6}" width="${Math.max(1, Math.abs(x1 - x0))}" height="12" rx="3" fill="${r.color || C.a}"/>
+      <text class="val" x="${W - R + 14}" y="${y + 4}">${esc(r.note)}</text>`); });
+  s += `<text class="sm" x="${(L + W - R) / 2}" y="${H - 2}" text-anchor="middle">${esc(o.xlabel)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}">${s}</svg>`;
+}
+function scatter(pts, o){
+  const W = 520, H = 420, m = {l: 54, r: 14, t: 10, b: 44}, lim = o.lim;
+  const x = v => m.l + (v + lim) / (2 * lim) * (W - m.l - m.r), y = v => H - m.b - (v + lim) / (2 * lim) * (H - m.t - m.b);
+  let s = ''; o.ticks.forEach(t => { s += `<line x1="${x(t)}" x2="${x(t)}" y1="${m.t}" y2="${H - m.b}" stroke="${t === 0 ? C.line2 : C.line}"/><line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="${t === 0 ? C.line2 : C.line}"/>
+    <text x="${x(t)}" y="${H - m.b + 16}" text-anchor="middle">${sg(t)}</text><text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end">${sg(t)}</text>`; });
+  pts.forEach(p => { const cx = x(Math.max(-lim, Math.min(lim, p[0]))), cy = y(Math.max(-lim, Math.min(lim, p[1])));
+    s += `<g class="hit" data-tip="${esc(`<b>${p[2]}</b><br>${p[3]}: ${sg(p[0])} vs its average<br>${p[4]}: ${sg(p[1])} vs its average`)}"><circle cx="${cx}" cy="${cy}" r="9" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="3.5" fill="${C.a}" fill-opacity=".45"/></g>`; });
+  s += `<text class="sm" x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">${esc(o.xlabel)}</text><text class="sm" transform="translate(12 ${(m.t + H - m.b) / 2}) rotate(-90)" text-anchor="middle">${esc(o.ylabel)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" style="max-width:560px" role="img" aria-label="${esc(o.aria)}">${s}</svg>`;
+}
+// series: [{name, color, k:[[K,rho]...]}], board = reference
+function lines(series, board, o){
+  const W = 380, H = 250, m = {l: 40, r: 14, t: 12, b: 40}, ks = series[0].k.map(d => d[0]);
+  const x = k => m.l + (k - ks[0]) / Math.max(1, ks[ks.length - 1] - ks[0]) * (W - m.l - m.r), y = v => H - m.b - (v - o.min) / (o.max - o.min) * (H - m.t - m.b);
+  let s = ''; o.ticks.forEach(t => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="${C.line}"/><text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end">${f2(t)}</text>`);
+  ks.forEach(k => s += `<text x="${x(k)}" y="${H - m.b + 16}" text-anchor="middle">${k}</text>`);
+  s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(board)}" y2="${y(board)}" stroke="${C.ref}" stroke-width="2" stroke-dasharray="5 4"/>`;
+  series.forEach(se => { s += `<polyline fill="none" stroke="${se.color}" stroke-width="2" stroke-linejoin="round" points="${se.k.map(d => x(d[0]) + ',' + y(d[1])).join(' ')}"/>`;
+    se.k.forEach(d => s += `<g class="hit" data-tip="${esc(`<b>${se.name}</b><br>${d[0]} dimension${d[0] > 1 ? 's' : ''}: ${f2(d[1])}<br>fixed leaderboard: ${f2(board)}`)}"><circle cx="${x(d[0])}" cy="${y(d[1])}" r="10" fill="transparent"/><circle cx="${x(d[0])}" cy="${y(d[1])}" r="4" fill="${se.color}" stroke="${C.bg}" stroke-width="2"/></g>`);
+  });
+  s += `<text class="sm" x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">number of capability dimensions allowed</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}">${s}</svg>`;
+}
+
+/* ---------- panels ---------- */
+const O = D.overlap, cell = (ds, src) => D.cells.find(c => c.ds === ds && c.src === src), F = D.forest, all = F[0], fam = F.find(r => r.label.startsWith('Model families'));
+const W = D.within, R = D.rep, A = D.attr, S = D.seed, P = D.panel;
+const cv = n => D.curves.find(c => c.rows === n), kAt = (c, k) => c.k.find(d => d[0] === k)[1];
+const blocks = D.blocks.slice().sort((a, b) => b.mean_tau - a.mean_tau), bmin = blocks[blocks.length - 1], bmax = blocks[0];
+const ci = v => `${sg(v.ci90[0])} to ${sg(v.ci90[1])}`;
+
+const panels = [
+{id: 'identity', chip: ['Supported', 'c-ok'], q: 'Does a dataset rank models the same way when a different lab runs it?',
+ h: `Yes, modestly: a dataset carries its own ranking from paper to paper.`,
+ fig: () => `<div class="fig-t">Extra rank agreement (Kendall τ) when two papers use the same dataset, compared with two papers using different datasets. Bars are 90% intervals.</div>` +
+   forest(F.map(r => ({label: r.label, est: r.est, lo: r.lo, hi: r.hi, note: `${sg(r.est)} · ${r.pos} of ${r.n} paper pairs`,
+     tip: `<b>${r.label}</b><br>${r.models} models, ${r.tasks} comparisons<br>Same-dataset advantage ${sg(r.est)} (90% interval ${sg(r.lo)} to ${sg(r.hi)})<br>Positive in ${r.pos} of ${r.n} pairs of papers (sign test p = ${r.p})`})),
+     {min: -0.1, max: 0.6, ticks: [0, 0.2, 0.4, 0.6], left: 270, right: 190, xlabel: 'same-dataset advantage in τ (0 = the dataset does not matter)', aria: 'Same-dataset advantage under eight subsets of the data'}),
+ read: `Two papers that evaluate the same dataset agree on the order of models at τ = ${f2(cell(true, false).tau)}; two papers on different datasets agree at ${f2(cell(false, false).tau)}. Each row repeats the test on a different subset. A dot to the right of zero means the dataset matters.`,
+ limit: `The advantage is small and the intervals are wide, because most pairs of papers share only four or five models. Most same-dataset pairs come from six GEO-Bench-family datasets, which may share evaluation code. Grouping size variants of one model (ViT-B, ViT-L) gives the cleanest result: ${fam.pos} of ${fam.n} paper pairs.`},
+
+{id: 'within', chip: ['Supported', 'c-ok'], q: 'With the lab held fixed, does the dataset still matter?',
+ h: `Yes: inside one paper, changing the dataset reorders models more than changing the protocol does.`,
+ fig: () => `<div class="legend"><span><i style="background:${C.a}"></i>Same dataset, different protocol or training fraction</span><span><i style="background:${C.b}"></i>Different dataset, same protocol</span></div>` +
+   dumbbell(W.per_source.slice().sort((a, b) => b.contrast - a.contrast).map(r => ({label: r.source, a: r.same_dataset_other_setting, b: r.other_dataset_same_setting,
+     tip: `<b>${r.source}</b><br>Same dataset, other setting: τ = ${f2(r.same_dataset_other_setting)} (${r.n_same} pairs)<br>Other dataset, same setting: τ = ${f2(r.other_dataset_same_setting)} (${r.n_other} pairs)`})),
+     {min: 0, max: 0.8, ticks: [0, 0.2, 0.4, 0.6, 0.8], xlabel: 'rank agreement between two comparisons in the same paper (Kendall τ)', aria: 'Within-paper agreement by source'}),
+ read: `Each row is one paper that ran the same models with one codebase. Blue is how well two runs of the same dataset agree when the protocol changes; orange is how well two different datasets agree under the same protocol. Blue is to the right in ${W.positive} of ${W.sources} papers (average ${f2(W.mean_same_dataset_other_setting)} against ${f2(W.mean_other_dataset_same_setting)}).`,
+ limit: `Only ${W.sources} papers report enough settings per dataset to make this comparison. Runs of one dataset in one paper can share training splits and checkpoints, which raises the blue dots for reasons other than what the dataset measures.`},
+
+{id: 'paper', chip: ['Firm', 'c-ok'], q: 'How much does it matter who ran the evaluation?',
+ h: `As much as the dataset: two different datasets in one paper agree as well as one dataset in two papers.`,
+ fig: () => bars([[true, true, 'Same dataset, same paper'], [false, true, 'Different datasets, same paper'], [true, false, 'Same dataset, different papers'], [false, false, 'Different datasets, different papers']].map(([a, b, l]) => { const c = cell(a, b);
+     return {label: l, v: c.tau, note: `${f2(c.tau)}`, color: b ? C.b : C.a, tip: `<b>${l}</b><br>Mean τ = ${f2(c.tau)} over ${c.pairs.toLocaleString()} pairs of comparisons`}; }),
+     {min: 0, max: 0.5, ticks: [0, 0.1, 0.2, 0.3, 0.4, 0.5], left: 270, right: 70, rh: 34, xlabel: 'average rank agreement between two comparisons (Kendall τ)', aria: 'Rank agreement by same or different dataset and paper'}),
+ read: `Every pair of comparisons falls in one of four groups. Orange bars are pairs from the same paper. Staying inside one paper adds ${sg(D.paper.estimate)} of agreement (90% interval ${sg(D.paper.ci90[0])} to ${sg(D.paper.ci90[1])}) even when the datasets differ.`,
+ limit: `A paper effect mixes several things we cannot separate from tables alone: the choice of models, the training recipe, preprocessing, and hyperparameter effort. This is why results from different papers cannot simply be stacked into one leaderboard.`},
+
+{id: 'agreement', chip: ['Descriptive', 'c-info'], q: 'Inside one benchmark, do all datasets tell the same story?',
+ h: `It depends on the benchmark: agreement between datasets runs from ${f2(bmin.mean_tau)} to ${f2(bmax.mean_tau)}.`,
+ fig: () => `<div class="fig-t">Average rank agreement between pairs of different datasets inside each paper. 1 would mean one ranking fits every dataset; 0 means the datasets are unrelated.</div>` +
+   bars(blocks.map(b => ({label: b.source, v: b.mean_tau, note: `${f2(b.mean_tau)} · ${b.datasets} datasets`, tip: `<b>${b.source}</b><br>${b.datasets} datasets, ${b.dataset_pairs} dataset pairs<br>Median ${b.median_shared_geofms} models shared per pair<br>Mean τ = ${f2(b.mean_tau)}`})),
+     {min: 0, max: 0.8, ticks: [0, 0.2, 0.4, 0.6, 0.8], right: 150, xlabel: 'average τ between different datasets in the same paper', aria: 'Mean dataset-to-dataset agreement per source'}),
+ read: `Across ${D.within_mean.n_sources} papers the average is ${f2(D.within_mean.mean)} (90% interval ${f2(D.within_mean.ci90[0])} to ${f2(D.within_mean.ci90[1])}). A single ranking of models would explain little in the papers at the bottom and most of the story in the papers at the top.`,
+ limit: `The papers at the top compare a small set of models that differ a lot in quality, so any dataset separates them the same way. The papers at the bottom compare many recent models of similar quality. Low agreement can therefore mean distinct capabilities or simply noise among close models; published tables cannot tell these apart without repeated runs.`},
+
+{id: 'similarity', chip: ['Not detectable', 'c-bad'], q: 'Which datasets give overlapping evidence?',
+ h: `We cannot say yet: two datasets that look alike in one benchmark do not look alike in the next.`,
+ fig: () => `<div class="fig-t">Each point is a pair of datasets evaluated in two papers: how much more (or less) alike the pair looks than average in the first paper, against the same in the second.</div>` +
+   scatter(D.pts, {lim: 0.9, ticks: [-0.8, -0.4, 0, 0.4, 0.8], xlabel: 'pair similarity in paper A, relative to that paper’s average', ylabel: 'same pair in paper B', aria: 'Replication of dataset-pair similarity across papers'}),
+ read: `If dataset similarity were a stable property, the points would line up along the diagonal. They form a cloud: the correlation is ${f2(R.raw.pooled_r)} over ${R.raw.dataset_pairs} dataset pairs from ${R.raw.source_pairs} pairs of papers (permutation p = ${R.raw.mantel_p_one_sided.toFixed(2)}). Removing each dataset’s overall noisiness gives ${sg(R.residual.pooled_r)} (p = ${R.residual.mantel_p_one_sided.toFixed(2)}).`,
+ limit: `This is absence of evidence, not evidence of absence. Each similarity is estimated from about ten models, so it is very noisy, and the two papers rarely test the same models. A redundancy map of datasets needs a designed experiment (last panel).`},
+
+{id: 'dimensions', chip: ['Unresolved', 'c-warn'], q: 'Is there one ranking of models, or several capability dimensions?',
+ h: `The latent-factor regression does not settle it: the answer changes with which tables are included.`,
+ fig: () => { const a = cv('all'), m = cv('main'), al = cv('all-linear'), ml = cv('main-linear'); const mk = (c, l) => [{name: c.label, short: 'log scale', color: C.a, k: c.k, dy: -6}].concat(l ? [{name: l.label, short: 'linear', color: C.b, k: l.k, dy: 8}] : []);
+   const extra = ['core3', 'frozen', 'families'].map(cv).filter(Boolean);
+   return `<div class="fig-t">How well the fitted model predicts the order of models in a paper it has never seen (rank correlation; higher is better), against a fixed leaderboard.</div>
+   <div class="legend"><span><i style="background:${C.a}"></i>Errors on a log scale (our default)</span><span><i style="background:${C.b}"></i>Errors on a linear scale</span><span><i class="ln"></i>Fixed leaderboard</span></div>
+   <div class="two"><div><div class="fig-t"><b style="color:var(--fg)">All tables</b> · ${a.tasks} comparisons</div>${lines(mk(a, al), a.board, {min: 0, max: 0.45, ticks: [0, 0.1, 0.2, 0.3, 0.4], aria: 'Out-of-paper accuracy by number of dimensions, all tables'})}</div>
+   <div><div class="fig-t"><b style="color:var(--fg)">Main-text tables only</b> · ${m.tasks} comparisons</div>${lines(mk(m, ml), m.board, {min: 0, max: 0.45, ticks: [0, 0.1, 0.2, 0.3, 0.4], aria: 'Out-of-paper accuracy by number of dimensions, main-text tables'})}</div></div>` +
+   (extra.length ? `<div class="fig-t" style="margin-top:14px">Other subsets, all tables, log scale (best of 1 to 4 dimensions against the leaderboard):</div>` + bars(extra.map(c => { const best = Math.max(...c.k.map(d => d[1])); return {label: c.label, v: best - c.board, note: `${f2(best)} vs ${f2(c.board)}`, color: best >= c.board ? C.a : C.b,
+       tip: `<b>${c.label}</b><br>${c.models} models, ${c.tasks} comparisons<br>Best fitted model ${f2(best)}; fixed leaderboard ${f2(c.board)}`}; }),
+       {min: -0.15, max: 0.15, ticks: [-0.1, 0, 0.1], fmt: sg, left: 270, right: 130, rh: 30, xlabel: 'fitted model minus fixed leaderboard', aria: 'Fitted model against leaderboard on other subsets'}) : ''); },
+ read: `With all tables, no number of dimensions beats a fixed leaderboard (${f2(kAt(cv('all'), 2))} against ${f2(cv('all').board)} at two dimensions). With main-text tables only, two or more dimensions beat it clearly (${f2(kAt(cv('main'), 2))} against ${f2(cv('main').board)}) and the curve is flat from two to six. Regressing errors on a linear scale instead of a log scale does not help.`,
+ limit: `The one-dimension fit scores below the plain leaderboard in every run, which a well-behaved one-factor model should not do, so the jump from one to two dimensions partly reflects that fit failing. Only about 10% of model and comparison cells are filled. Until we understand why appendix tables erase the gain, this panel supports neither “one ranking” nor “several”.`},
+
+{id: 'attributes', chip: ['Exploratory', 'c-info'], q: 'Do datasets reward particular kinds of models?',
+ h: `Models pretrained with radar score higher almost everywhere, not specifically on radar datasets, so coarse model labels do not separate datasets.`,
+ fig: () => { const s = A.sar_pretrained, z = A.size_tier; const row = (l, v, col) => ({label: l, est: v.mean, lo: v.ci90[0], hi: v.ci90[1], color: col, note: `${sg(v.mean)} · ${v.n} comparisons`, tip: `<b>${l}</b><br>Mean τ between the attribute and the score: ${sg(v.mean)}<br>90% interval ${ci(v)}<br>${v.n} comparisons from ${v.n_sources} papers`});
+   return `<div class="legend"><span><i style="background:${C.a}"></i>Radar (SAR) in the pretraining data</span><span><i style="background:${C.b}"></i>Larger encoder</span></div>` +
+   forest([row('SAR-pretrained: all comparisons', s.all, C.a), row('  on datasets with radar input', s.on_sar_input_comparisons, C.a), row('  on optical-only datasets', s.on_optical_only_comparisons, C.a), row('  frozen encoder', s.frozen, C.a), row('  fine-tuned', s.fine_tuned, C.a),
+           row('Larger encoder: all comparisons', z.all, C.b), row('  frozen encoder', z.frozen, C.b), row('  fine-tuned', z.fine_tuned, C.b)],
+     {min: -0.2, max: 0.4, ticks: [-0.2, 0, 0.2, 0.4], fmt: sg, left: 270, right: 190, xlabel: 'does the attribute go with a higher score inside a comparison? (τ; 0 = no)', aria: 'Association of model attributes with scores'}); },
+ read: `A dot to the right of zero means models with the attribute tend to score higher inside a comparison. If radar pretraining were a distinct capability, its advantage would be larger on radar datasets; the difference is ${sg(A.sar_pretrained.sar_input_minus_optical.mean)} (90% interval ${sg(A.sar_pretrained.sar_input_minus_optical.ci90[0])} to ${sg(A.sar_pretrained.sar_input_minus_optical.ci90[1])}). Encoder size helps a little with a frozen encoder and not with fine-tuning.`,
+ limit: `Radar pretraining goes together with being recent and multi-sensor, so this label is mostly a proxy for newer models. The attribute table was curated quickly from the models’ papers and has not been verified; 14 of 100 models have no radar label. Treat this as a first look.`},
+
+{id: 'seeds', chip: ['Limited scope', 'c-warn'], q: 'Can a dataset tell models apart beyond run-to-run noise?',
+ h: `Where papers report seeds, about half of the comparisons separate models far beyond seed noise, but most papers do not report seeds.`,
+ fig: () => { const W_ = 760, H_ = 44, n = S.total, x = v => v / n * W_; const seg = [[S.hi, C.a, 'Clearly above seed noise', `${S.hi} comparisons where at least 80% of the spread between models is real, even at the pessimistic end of the estimate`], [S.mid - S.hi, '#6DA8EB', 'Moderately', `${S.mid - S.hi} comparisons between 50% and 80%`], [S.n - S.mid, '#D2E4FA', 'Not shown', `${S.n - S.mid} comparisons below 50%`], [n - S.n, C.line2, 'No seeds reported', `${n - S.n} comparisons print no seed standard deviation, so nothing can be said`]];
+   let acc = 0, s = ''; seg.forEach(g => { s += hit(`<b>${g[2]}</b><br>${g[3]}`, `<rect x="${x(acc) + 1}" y="8" width="${Math.max(2, x(g[0]) - 2)}" height="28" rx="4" fill="${g[1]}"/>`); acc += g[0]; });
+   return `<div class="fig-t">All ${n} comparisons, by what their own printed seed standard deviations allow us to say.</div><div class="legend">${seg.map(g => `<span><i style="background:${g[1]};border-radius:3px"></i>${g[2]}: <b style="color:var(--fg);font-weight:600">${g[0]}</b></span>`).join('')}</div><svg viewBox="0 0 ${W_} ${H_}" role="img" aria-label="Comparisons by seed-noise evidence">${s}</svg>`; },
+ read: `Sherrie’s score asks what share of the spread between models on a task is real rather than noise. It can be computed for ${S.n} of ${S.total} comparisons, the ones that print seed standard deviations. In ${S.hi} of them at least 80% of the spread is real even at the pessimistic end of the estimate.`,
+ limit: `Seed noise is only the variation from rerunning one implementation. It leaves out the larger paper-to-paper variation shown in the third panel, so it flatters every dataset. A dataset can pass this test and still rank models differently in the next paper.`},
+
+{id: 'next', chip: ['Proposal', 'c-info'], q: 'What should we run ourselves?',
+ h: `A small full grid: ${P.models.length} well-connected models on the ${P.datasets.length} datasets that already appear in two or more papers, with seeds.`,
+ fig: () => `<div class="legend"><span><i style="background:${C.a};border-radius:3px"></i>A result is already published somewhere (${P.already_published} of ${P.cells})</span><span><i style="border:1.5px dashed ${C.line2};border-radius:3px;background:${C.bg}"></i>Never published (${P.to_run})</span></div>
+   <div class="scroll"><table class="grid"><thead><tr><th></th>${P.datasets.map(d => `<th><span>${esc(d)}</span></th>`).join('')}</tr></thead><tbody>${P.models.map((m, i) => `<tr><th>${esc(m)}</th>${P.published[i].map((v, j) => `<td title="${esc(m)} on ${esc(P.datasets[j])}: ${v ? 'published' : 'never published'}"><i class="${v ? '' : 'no'}"></i></td>`).join('')}</tr>`).join('')}</tbody></table></div>`,
+ read: `Models are listed alphabetically; they are the eight that appear in the most papers. A filled square means some paper has published that model on that dataset under some protocol. About three quarters of the grid exists in the literature, but spread over many labs and protocols, which is exactly what the third panel says we cannot stack.`,
+ limit: `Rerunning the whole grid under one protocol with three to five seeds (${P.cells} cells) is what would answer the two open questions above: which datasets are redundant, and whether there is more than one capability dimension. Larger panels cost ${D.panels.slice(1).map(p => `${p.cells} cells for ${p.panel_size} models`).join(' or ')}. The model list is a starting point chosen for overlap with prior work, not a recommendation of models.`}
+];
+
+$('#facts').innerHTML = `<span><b>${O.sources}</b> sources</span><span><b>${O.models}</b> GeoFMs</span><span><b>${O.datasets}</b> datasets</span><span><b>${O.tasks}</b> comparisons (a dataset under one protocol in one paper)</span><span><b>${Math.round(O.density * 100)}%</b> of model × comparison cells filled</span>`;
+$('#sum').innerHTML = panels.map(p => `<li><span class="chip ${p.chip[1]}">${p.chip[0]}</span><a href="#${p.id}">${p.h}</a></li>`).join('');
+$('#panels').innerHTML = panels.map(p => `<section class="p" id="${p.id}"><div class="q"><span class="chip ${p.chip[1]}">${p.chip[0]}</span><span>${p.q}</span></div><h2>${p.h}</h2><div class="fig">${p.fig()}</div>
+  <div class="notes"><div><b>How to read it</b>${p.read}</div><div><b>What limits it</b>${p.limit}</div></div></section>`).join('');
+$('#foot').innerHTML = `Kendall τ measures how similarly two comparisons order the models they share: 1 is the same order, 0 is unrelated, −1 is reversed. Intervals are 90% and resample whole papers. Figures are summary statistics from the lab’s meta-analysis workbook as of ${D.as_of}; no individual score and no ranking of models is shown. Methods and every decision are in docs/dataset-analysis.md and docs/analysis-decisions.md.`;
+
+/* tooltip: hover and keyboard focus */
+const tip = $('#tip');
+function show(el, e){ tip.innerHTML = el.dataset.tip; tip.hidden = false; const r = el.getBoundingClientRect(), px = e && e.clientX != null ? e.clientX : r.left + r.width / 2, py = e && e.clientY != null ? e.clientY : r.top;
+  const w = tip.offsetWidth, h = tip.offsetHeight; tip.style.left = Math.max(8, Math.min(innerWidth - w - 8, px + 14)) + 'px'; tip.style.top = Math.max(8, py - h - 12 < 8 ? py + 18 : py - h - 12) + 'px'; }
+document.addEventListener('mousemove', e => { const el = e.target.closest('[data-tip]'); if (el) show(el, e); else tip.hidden = true; });
+document.addEventListener('focusin', e => { const el = e.target.closest('[data-tip]'); if (el) show(el); });
+document.addEventListener('focusout', () => { tip.hidden = true; });
+document.addEventListener('scroll', () => { tip.hidden = true; }, {passive: true});
+</script>
