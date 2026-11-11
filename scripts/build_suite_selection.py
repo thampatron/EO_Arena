@@ -8,7 +8,7 @@ the posterior covariance (I + L_A' L_A)^-1 on a GeoFM's capabilities. Two readin
   coverage(A)  = V(A) / V(all eligible),  V = log det(I + L_A' L_A)         (note Eq. 8, relative to running everything)
   resolved_k(A) = 1 - [(I + L_A' L_A)^-1]_kk                                 (share of capability k pinned down, 0..1)
 Selection is made ROBUST to the uncertainty of the loadings: the chosen set maximises the mean coverage over B refits on
-resampled GeoFMs (greedy, then pairwise swaps; exhaustive for N <= 3), and every number is reported with its spread
+subsampled GeoFMs (greedy, then pairwise swaps; exhaustive for N <= 3), and every number is reported with its spread
 over those refits. Eligible = datasets seen in >= 2 sources. Dataset-level output only.
 """
 import contextlib, io, itertools, json, sys, time
@@ -22,6 +22,10 @@ import dataset_benchmarking as db
 A = sys.argv; SRC = A[1]
 OUT = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "suite_selection.json"
 B = int(A[A.index("--B") + 1]) if "--B" in A else 60
+SUB = None if "--bootstrap" in A else float(A[A.index("--subsample") + 1]) if "--subsample" in A else 0.8
+# Refits use 80% of the GeoFMs drawn WITHOUT replacement by default. A bootstrap with replacement duplicates GeoFMs, which
+# shrinks the residual variance of thinly supported datasets and inflates their loadings (seen 2026-11-11: refit strength
+# about twice the full-fit strength for datasets with 3-7 comparisons), biasing the selection toward them.
 K0 = 3; RIDGE = 3.0; NMAX = 10; t0 = time.time()
 def log(*a): print(f"[{time.time() - t0:6.0f}s]", *a, flush=True)
 r4 = lambda x: None if x is None or not np.isfinite(x) else round(float(x), 4)
@@ -47,7 +51,7 @@ sg = np.sign(L0.mean(0)); sg[sg == 0] = 1; L0 = L0 * sg
 def procrustes(Ax, Bx): U, _, Vt = np.linalg.svd(Ax.T @ Bx); return U @ Vt
 rng = np.random.default_rng(0); LB = []
 for b in range(B):
-    rows = rng.integers(0, M, M); fb = fit(Y[rows], mask[rows], seed=100 + b, restarts=2); Lb = ds_load(fb, mask[rows]); LB.append(Lb @ procrustes(Lb, L0))
+    rows = rng.integers(0, M, M) if SUB is None else np.sort(rng.choice(M, int(round(SUB * M)), replace=False)); fb = fit(Y[rows], mask[rows], seed=100 + b, restarts=2); Lb = ds_load(fb, mask[rows]); LB.append(Lb @ procrustes(Lb, L0))
     if b % 10 == 9: log("refit", b + 1)
 LB = np.array(LB)                                          # (B, D, K)
 
@@ -97,10 +101,10 @@ freq = {names[i]: {"top3": r4(np.mean([i in p[:3] for p in picks])), "top5": r4(
 single = {names[i]: r4(score([i])) for i in range(D)}
 loo = {names[i]: r4(1 - score([j for j in range(D) if j != i])) for i in range(D)}        # what the full suite loses without it
 
-out = {"as_of": "2026-11-11", "eligible_datasets": names, "B": B, "K": K0,
+out = {"as_of": "2026-11-11", "eligible_datasets": names, "B": B, "K": K0, "resampling": "bootstrap of GeoFMs with replacement" if SUB is None else f"{SUB:.0%} of GeoFMs without replacement",
        "definitions": {"coverage": "V(A) / V(all eligible datasets), V = log det(I + L_A' L_A) (note Eq. 8); 1 = as informative about the shared capabilities as running all eligible datasets",
                        "resolved": "1 - posterior variance of each capability given the suite; 0 = nothing learnt, 1 = pinned down",
-                       "robust": "sets maximise mean coverage over B refits on resampled GeoFMs; intervals are the 5th-95th percentile over refits"},
+                       "robust": "sets maximise mean coverage over B refits on subsampled GeoFMs; intervals are the 5th-95th percentile over refits"},
        "best_by_N": best, "selection_frequency": freq, "coverage_alone": single, "loss_if_removed": loo,
        "full_suite_resolved_mean": [r4(x) for x in np.mean([1 - np.diag(post(LB[b], list(range(D)))) for b in range(B)], axis=0)],
        "loadings_reference": [[r4(x) for x in r] for r in L0], "loadings_refits": LB.round(3).tolist()}
