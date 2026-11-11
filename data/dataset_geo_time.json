@@ -1,0 +1,385 @@
+{
+ "about": "Geographic scope and imagery period of each benchmark dataset, for the note's Eq. 12. First pass curated 2026-11-11 from the datasets' own papers as recalled, NOT yet checked against them one by one; null = not established. 'Global' = samples from several continents. Period is the imagery acquisition era; 'spans several periods' = crosses the era boundaries.",
+ "datasets": {
+  "AGBD": {
+   "geography": "Global",
+   "period": null
+  },
+  "AI4Arctic / AutoICE": {
+   "geography": "Polar",
+   "period": "spans several periods"
+  },
+  "AI4SmallFarms": {
+   "geography": "Asia",
+   "period": "2020 or later"
+  },
+  "AWF": {
+   "geography": "Africa",
+   "period": null
+  },
+  "Austrian Crop": {
+   "geography": "Europe",
+   "period": null
+  },
+  "BigEarthNet v1 / v2 (reBEN)": {
+   "geography": "Europe",
+   "period": "2016 to 2019"
+  },
+  "BioMassters": {
+   "geography": "Europe",
+   "period": "spans several periods"
+  },
+  "Borneo Canopy Height": {
+   "geography": "Asia",
+   "period": null
+  },
+  "BreizhCrops": {
+   "geography": "Europe",
+   "period": "2016 to 2019"
+  },
+  "Brick kilns": {
+   "geography": "Asia",
+   "period": "2016 to 2019"
+  },
+  "CLCD": {
+   "geography": "Asia",
+   "period": "2016 to 2019"
+  },
+  "CORINE (Panopticon)": {
+   "geography": "Europe",
+   "period": null
+  },
+  "CaFFe": {
+   "geography": "Polar",
+   "period": "spans several periods"
+  },
+  "Canadian Cropland": {
+   "geography": "North America",
+   "period": "spans several periods"
+  },
+  "Cashew plantation": {
+   "geography": "Africa",
+   "period": null
+  },
+  "Chesapeake land cover": {
+   "geography": "North America",
+   "period": "spans several periods"
+  },
+  "CloudSEN12 (Cloud-S2)": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "CropHarvest": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "CropTypeMapping Ghana / South Sudan": {
+   "geography": "Africa",
+   "period": "2016 to 2019"
+  },
+  "DFC2020": {
+   "geography": "Global",
+   "period": "2016 to 2019"
+  },
+  "DIOR": {
+   "geography": "Global",
+   "period": null
+  },
+  "DSE": {
+   "geography": null,
+   "period": null
+  },
+  "DeepGlobe Land Cover / DFC2022 (EarthShift)": {
+   "geography": null,
+   "period": null
+  },
+  "Digital Typhoon": {
+   "geography": "Asia",
+   "period": "spans several periods"
+  },
+  "Dynamic World": {
+   "geography": "Global",
+   "period": null
+  },
+  "Dynamic World training set": {
+   "geography": "Global",
+   "period": "2016 to 2019"
+  },
+  "DynamicEarthNet": {
+   "geography": "Global",
+   "period": "2016 to 2019"
+  },
+  "EuroSAT": {
+   "geography": "Europe",
+   "period": "2016 to 2019"
+  },
+  "EverWatch": {
+   "geography": "North America",
+   "period": null
+  },
+  "FLAIR / FLAIR 2": {
+   "geography": "Europe",
+   "period": "spans several periods"
+  },
+  "FLUXNET2015": {
+   "geography": "Global",
+   "period": "before 2016"
+  },
+  "Fields of The World": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "Five Billion Pixels": {
+   "geography": "Asia",
+   "period": null
+  },
+  "Forest Loss Driver": {
+   "geography": "South America",
+   "period": null
+  },
+  "ForestNet": {
+   "geography": "Asia",
+   "period": "before 2016"
+  },
+  "GAZADeepDAV": {
+   "geography": "Asia",
+   "period": "2020 or later"
+  },
+  "GEA North Africa": {
+   "geography": "Africa",
+   "period": null
+  },
+  "GEOID-Flood": {
+   "geography": null,
+   "period": null
+  },
+  "GLD": {
+   "geography": null,
+   "period": null
+  },
+  "GLID": {
+   "geography": null,
+   "period": null
+  },
+  "GRIP4 distance to road": {
+   "geography": "Global",
+   "period": null
+  },
+  "GSDD": {
+   "geography": null,
+   "period": null
+  },
+  "GeoCrossBench Hurricane Harvey": {
+   "geography": "North America",
+   "period": "2016 to 2019"
+  },
+  "GloSoFarID": {
+   "geography": "Global",
+   "period": "2020 or later"
+  },
+  "HLS Burn Scars": {
+   "geography": "North America",
+   "period": "spans several periods"
+  },
+  "Hyperview": {
+   "geography": "Europe",
+   "period": "2020 or later"
+  },
+  "Infra-Bench": {
+   "geography": null,
+   "period": null
+  },
+  "Kuro Siwo (Flood-S1)": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "LEVIR-CD": {
+   "geography": "North America",
+   "period": "spans several periods"
+  },
+  "Live Fuel Moisture Content": {
+   "geography": "North America",
+   "period": "spans several periods"
+  },
+  "MADOS": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MARIDA": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth Biomass": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth-Bench Biomass": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth-Bench soil nitrogen": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth-Bench soil organic carbon": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth-Bench soil pH": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MMEarth-Bench species": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "MineNetCD": {
+   "geography": "Global",
+   "period": null
+  },
+  "NZ cattle": {
+   "geography": "Oceania",
+   "period": null
+  },
+  "Nandi": {
+   "geography": "Africa",
+   "period": null
+  },
+  "NeonTreeEvaluation": {
+   "geography": "North America",
+   "period": "2016 to 2019"
+  },
+  "NeuCo-Bench Biomass": {
+   "geography": "Global",
+   "period": null
+  },
+  "NeuCo-Bench Clouds": {
+   "geography": "Global",
+   "period": null
+  },
+  "NeuCo-Bench Crops": {
+   "geography": "Global",
+   "period": null
+  },
+  "NeuCo-Bench Heatisland": {
+   "geography": "Global",
+   "period": null
+  },
+  "NeuCo-Bench Landcover": {
+   "geography": "Global",
+   "period": null
+  },
+  "OMBRIA": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "OSCD": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "OlmoEarth Mangrove": {
+   "geography": "Global",
+   "period": null
+  },
+  "OlmoEarth Solar Farm": {
+   "geography": "Global",
+   "period": null
+  },
+  "OlmoEarth Vessel Detection": {
+   "geography": "Global",
+   "period": null
+  },
+  "OlmoEarth Vessel Length": {
+   "geography": "Global",
+   "period": null
+  },
+  "OlmoEarth Vessel Type": {
+   "geography": "Global",
+   "period": null
+  },
+  "PASTIS / PASTIS-R": {
+   "geography": "Europe",
+   "period": "2016 to 2019"
+  },
+  "PV4GER": {
+   "geography": "Europe",
+   "period": null
+  },
+  "RESISC45": {
+   "geography": "Global",
+   "period": null
+  },
+  "RESISC45 / UCMerced (EarthShift)": {
+   "geography": null,
+   "period": null
+  },
+  "RSBD": {
+   "geography": null,
+   "period": null
+  },
+  "Sen1Floods11": {
+   "geography": "Global",
+   "period": "2016 to 2019"
+  },
+  "SmokePlume": {
+   "geography": null,
+   "period": null
+  },
+  "So2Sat LCZ42 (LCZ-S2)": {
+   "geography": "Global",
+   "period": "2016 to 2019"
+  },
+  "South Africa crop type": {
+   "geography": "Africa",
+   "period": "2016 to 2019"
+  },
+  "SpaceNet 1": {
+   "geography": "South America",
+   "period": "before 2016"
+  },
+  "SpaceNet 2": {
+   "geography": "Global",
+   "period": null
+  },
+  "SpaceNet 7": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "Substations": {
+   "geography": null,
+   "period": null
+  },
+  "SustainBench DHS tasks": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "TreeSatAI": {
+   "geography": "Europe",
+   "period": "spans several periods"
+  },
+  "TropicalCyclone": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "UrbanSARFloods": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "WorldClim Bioclim": {
+   "geography": "Global",
+   "period": "before 2016"
+  },
+  "WorldPop population density": {
+   "geography": "Global",
+   "period": null
+  },
+  "fMoW": {
+   "geography": "Global",
+   "period": "spans several periods"
+  },
+  "xBD / xView2": {
+   "geography": "Global",
+   "period": "spans several periods"
+  }
+ }
+}
