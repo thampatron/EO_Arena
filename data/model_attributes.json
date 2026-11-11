@@ -1,505 +1,605 @@
 {
- "about": "Model attributes used ONLY to describe what datasets reward (never to rank models). 'family' links size / version variants of one method; 'size_tier' is 0 nano/atto, 1 tiny, 2 small, 3 base, 4 large, 5 huge; 'sar_pretrained' says whether the pretraining data include SAR. Curated 2026-11-10 from the models' own papers and repositories as a first pass; null = not established. To be verified before any use in a paper.",
+ "about": "Model attributes used ONLY to describe what datasets reward (never to rank models). 'family' links size / version variants of one method; 'size_tier' is 0 nano/atto, 1 tiny, 2 small, 3 base, 4 large, 5 huge; 'sar_pretrained' says whether the pretraining data include SAR. Curated 2026-11-10 from the models' own papers and repositories as a first pass; null = not established. To be verified before any use in a paper. 'pretraining' is the main pretraining imagery (high-resolution RGB / multispectral optical such as Sentinel-2 or HLS / multi-sensor including SAR); same first-pass status.",
  "models": {
   "alphaearth": {
    "family": "alphaearth",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "anysat": {
    "family": "anysat",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "caco": {
    "family": "caco",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "chivit": {
    "family": "chivit",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "high-resolution RGB"
   },
   "clay": {
    "family": "clay",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "clay_vitb": {
    "family": "clay",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "cmid": {
    "family": "cmid",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "copernicusfm": {
    "family": "copernicusfm",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "croma_vitb": {
    "family": "croma",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "croma_vitl": {
    "family": "croma",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "crossscale_mae": {
    "family": "crossscale_mae",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "decur": {
    "family": "decur",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "decur_vits": {
    "family": "decur",
    "size_tier": 2,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "dinov3_sat_vit7b": {
    "family": "dinov3_sat",
    "size_tier": 5,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "dinov3_sat_vitl": {
    "family": "dinov3_sat",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "dofa_plus_vitb": {
    "family": "dofa_plus",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "dofa_plus_vitl": {
    "family": "dofa_plus",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "dofa_vitb": {
    "family": "dofa",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "dofa_vitl": {
    "family": "dofa",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "fgmae": {
    "family": "fgmae",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "galileo": {
    "family": "galileo",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "galileo_base": {
    "family": "galileo",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "galileo_nano": {
    "family": "galileo",
    "size_tier": 0,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "galileo_tiny": {
    "family": "galileo",
    "size_tier": 1,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "gassl": {
    "family": "gassl",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "geoclip": {
    "family": "geoclip",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": null
   },
   "gfm_swin_swint": {
    "family": "gfm",
    "size_tier": 1,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "gfm_swinb": {
    "family": "gfm",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "mmearth_cnn_atto": {
    "family": "mmearth",
    "size_tier": 0,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "ofanet": {
    "family": "ofanet",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v11_base": {
    "family": "olmoearth",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v12_base": {
    "family": "olmoearth",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v12_nano": {
    "family": "olmoearth",
    "size_tier": 0,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v12_small": {
    "family": "olmoearth",
    "size_tier": 2,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v12_tiny": {
    "family": "olmoearth",
    "size_tier": 1,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v1_base": {
    "family": "olmoearth",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v1_large": {
    "family": "olmoearth",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v1_nano": {
    "family": "olmoearth",
    "size_tier": 0,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "olmoearth_v1_tiny": {
    "family": "olmoearth",
    "size_tier": 1,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "panopticon": {
    "family": "panopticon",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "presto": {
    "family": "presto",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "prithvi_v1_100m": {
    "family": "prithvi_v1",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "prithvi_v2_100m": {
    "family": "prithvi_v2",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "prithvi_v2_300m": {
    "family": "prithvi_v2",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "prithvi_v2_300m_tl": {
    "family": "prithvi_v2",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "prithvi_v2_600m": {
    "family": "prithvi_v2",
    "size_tier": 5,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "prithvi_v2_600m_tl": {
    "family": "prithvi_v2",
    "size_tier": 5,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "ramen": {
    "family": "ramen",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": null
   },
   "remoteclip": {
    "family": "remoteclip",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "resnet50_ssl4eo_dino": {
    "family": "resnet50_ssl4eo_dino",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "resnet50_ssl4eo_moco": {
    "family": "resnet50_ssl4eo_moco",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "resnet50_ssl4eo_moco_s1": {
    "family": "resnet50_ssl4eo_moco_s1",
    "size_tier": 2,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "ringmo": {
    "family": "ringmo",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "rvsa": {
    "family": "rvsa",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "satclip": {
    "family": "satclip",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": null
   },
   "satlas_aerial_swinb_si": {
    "family": "satlas_aerial",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "satlas_resnet50": {
    "family": "satlas_s2",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_s1_swinb": {
    "family": "satlas_s1",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "satlas_s2_resnet50_si_ms": {
    "family": "satlas_s2",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_s2_swinb_mi_ms": {
    "family": "satlas_s2",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_s2_swinb_si_ms": {
    "family": "satlas_s2",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_s2_swint_si_ms": {
    "family": "satlas_s2",
    "size_tier": 1,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_swinb": {
    "family": "satlas_s2",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_swint": {
    "family": "satlas_s2",
    "size_tier": 1,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satlas_vitb": {
    "family": "satlas_s2",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satmae_pp": {
    "family": "satmae_pp",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "satmae_pp_sentinel": {
    "family": "satmae_pp",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satmae_pp_vitb_sentinel": {
    "family": "satmae_pp",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satmae_stack": {
    "family": "satmae",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "satmae_vitb": {
    "family": "satmae",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "satmae_vitb_sentinel": {
    "family": "satmae",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "satmae_vitl": {
    "family": "satmae",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "scalemae_vitb": {
    "family": "scalemae",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "scalemae_vitl": {
    "family": "scalemae",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   },
   "scalemae_vitl_fmow_sentinel": {
    "family": "scalemae",
    "size_tier": 4,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "seco_resnet18": {
    "family": "seco",
    "size_tier": 1,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "seco_resnet18_100k": {
    "family": "seco",
    "size_tier": 1,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "seco_resnet50": {
    "family": "seco",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "seco_resnet50_100k": {
    "family": "seco",
    "size_tier": 2,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "senpamae": {
    "family": "senpamae",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "skysense": {
    "family": "skysense",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "skysense_v2": {
    "family": "skysense_v2",
    "size_tier": null,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "smarties_vitl": {
    "family": "smarties",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "softcon": {
    "family": "softcon",
    "size_tier": 3,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "softcon_vits": {
    "family": "softcon",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "spectralgpt": {
    "family": "spectralgpt",
    "size_tier": 3,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical"
   },
   "ssl4eo_vits_data2vec": {
    "family": "ssl4eo_vits_data2vec",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "ssl4eo_vits_dino": {
    "family": "ssl4eo_vits_dino",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "ssl4eo_vits_mae": {
    "family": "ssl4eo_vits_mae",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "ssl4eo_vits_moco": {
    "family": "ssl4eo_vits_moco",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "ssl4eo_vits_unspecified": {
    "family": "ssl4eo_vits_unspecified",
    "size_tier": 2,
-   "sar_pretrained": null
+   "sar_pretrained": null,
+   "pretraining": "multispectral optical"
   },
   "swint_baseline": {
    "family": "swint_baseline",
    "size_tier": 1,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "terrafm_vitb": {
    "family": "terrafm",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "terramind_v1b": {
    "family": "terramind",
    "size_tier": 3,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "terramind_v1l": {
    "family": "terramind",
    "size_tier": 4,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "terramind_v1s": {
    "family": "terramind",
    "size_tier": 2,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "terramind_v1t": {
    "family": "terramind",
    "size_tier": 1,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "tessera": {
    "family": "tessera",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "tessera_v2_l": {
    "family": "tessera_v2_l",
    "size_tier": null,
-   "sar_pretrained": 1
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)"
   },
   "tov": {
    "family": "tov",
    "size_tier": null,
-   "sar_pretrained": 0
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB"
   }
  }
 }
