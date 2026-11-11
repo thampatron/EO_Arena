@@ -1,0 +1,5910 @@
+{
+ "as_of": "2026-11-11",
+ "K": 3,
+ "datasets": [
+  "AGBD",
+  "AI4Arctic / AutoICE",
+  "AI4SmallFarms",
+  "AWF",
+  "Austrian Crop",
+  "BigEarthNet v1 / v2 (reBEN)",
+  "BioMassters",
+  "Borneo Canopy Height",
+  "BreizhCrops",
+  "Brick kilns",
+  "CLCD",
+  "CORINE (Panopticon)",
+  "CaFFe",
+  "Canadian Cropland",
+  "Cashew plantation",
+  "Chesapeake land cover",
+  "CloudSEN12 (Cloud-S2)",
+  "CropHarvest",
+  "CropTypeMapping Ghana / South Sudan",
+  "DFC2020",
+  "DIOR",
+  "DSE",
+  "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+  "Digital Typhoon",
+  "Dynamic World",
+  "Dynamic World training set",
+  "DynamicEarthNet",
+  "EuroSAT",
+  "EverWatch",
+  "FLAIR / FLAIR 2",
+  "FLUXNET2015",
+  "Fields of The World",
+  "Five Billion Pixels",
+  "Forest Loss Driver",
+  "ForestNet",
+  "GAZADeepDAV",
+  "GEA North Africa",
+  "GEOID-Flood",
+  "GLD",
+  "GLID",
+  "GRIP4 distance to road",
+  "GSDD",
+  "GeoCrossBench Hurricane Harvey",
+  "GloSoFarID",
+  "HLS Burn Scars",
+  "Hyperview",
+  "Infra-Bench",
+  "Kuro Siwo (Flood-S1)",
+  "LEVIR-CD",
+  "Live Fuel Moisture Content",
+  "MADOS",
+  "MARIDA",
+  "MMEarth Biomass",
+  "MMEarth-Bench Biomass",
+  "MMEarth-Bench soil nitrogen",
+  "MMEarth-Bench soil organic carbon",
+  "MMEarth-Bench soil pH",
+  "MMEarth-Bench species",
+  "MineNetCD",
+  "NZ cattle",
+  "Nandi",
+  "NeonTreeEvaluation",
+  "NeuCo-Bench Biomass",
+  "NeuCo-Bench Clouds",
+  "NeuCo-Bench Crops",
+  "NeuCo-Bench Heatisland",
+  "NeuCo-Bench Landcover",
+  "OMBRIA",
+  "OSCD",
+  "OlmoEarth Mangrove",
+  "OlmoEarth Solar Farm",
+  "OlmoEarth Vessel Detection",
+  "OlmoEarth Vessel Length",
+  "OlmoEarth Vessel Type",
+  "PASTIS / PASTIS-R",
+  "PV4GER",
+  "RESISC45",
+  "RESISC45 / UCMerced (EarthShift)",
+  "RSBD",
+  "Sen1Floods11",
+  "SmokePlume",
+  "So2Sat LCZ42 (LCZ-S2)",
+  "South Africa crop type",
+  "SpaceNet 1",
+  "SpaceNet 2",
+  "SpaceNet 7",
+  "Substations",
+  "SustainBench DHS tasks",
+  "TreeSatAI",
+  "TropicalCyclone",
+  "UrbanSARFloods",
+  "WorldClim Bioclim",
+  "WorldPop population density",
+  "fMoW",
+  "xBD / xView2"
+ ],
+ "sources_per_dataset": [
+  1,
+  1,
+  1,
+  1,
+  2,
+  13,
+  3,
+  1,
+  2,
+  7,
+  1,
+  1,
+  2,
+  1,
+  7,
+  4,
+  2,
+  4,
+  1,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  11,
+  1,
+  1,
+  1,
+  2,
+  1,
+  1,
+  6,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  4,
+  1,
+  1,
+  2,
+  1,
+  1,
+  4,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  5,
+  1,
+  4,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  7,
+  4,
+  2,
+  1,
+  1,
+  6,
+  1,
+  11,
+  7,
+  1,
+  1,
+  2,
+  1,
+  1,
+  3,
+  1,
+  1,
+  1,
+  1,
+  3,
+  1
+ ],
+ "task_type": [
+  "regression",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "segmentation",
+  "classification",
+  "regression",
+  "regression",
+  "classification",
+  "classification",
+  "change detection",
+  "classification",
+  "segmentation",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "detection",
+  "segmentation",
+  "segmentation",
+  "regression",
+  "regression",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "detection",
+  "segmentation",
+  "regression",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "classification",
+  "classification",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "segmentation",
+  "regression",
+  "segmentation",
+  "change detection",
+  "segmentation",
+  "segmentation",
+  "regression",
+  "classification",
+  "segmentation",
+  "change detection",
+  "regression",
+  "segmentation",
+  "segmentation",
+  "regression",
+  "regression",
+  "regression",
+  "regression",
+  "regression",
+  "classification",
+  "change detection",
+  "segmentation",
+  "classification",
+  "segmentation",
+  "regression",
+  "regression",
+  "regression",
+  "regression",
+  "regression",
+  "change detection",
+  "change detection",
+  "classification",
+  "segmentation",
+  "detection",
+  "regression",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "segmentation",
+  "classification",
+  "segmentation",
+  "segmentation",
+  "segmentation",
+  "change detection",
+  "segmentation",
+  "regression",
+  "classification",
+  "regression",
+  "change detection",
+  "regression",
+  "regression",
+  "classification",
+  "change detection"
+ ],
+ "sensor": [
+  "SAR + optical",
+  "SAR",
+  "multispectral",
+  "multispectral",
+  "SAR + optical",
+  "multispectral",
+  "SAR + optical",
+  "SAR + optical",
+  "multispectral",
+  "multispectral",
+  "other",
+  "high-resolution optical",
+  "SAR",
+  "multispectral",
+  "multispectral",
+  "",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "multispectral",
+  "",
+  "SAR + optical",
+  "high-resolution optical",
+  "other",
+  "multispectral",
+  "multispectral",
+  "high-resolution optical",
+  "multispectral",
+  "high-resolution optical",
+  "high-resolution optical",
+  "multispectral",
+  "multispectral",
+  "other",
+  "multispectral",
+  "multispectral",
+  "high-resolution optical",
+  "multispectral",
+  "SAR",
+  "multispectral",
+  "multispectral",
+  "",
+  "multispectral",
+  "SAR + optical",
+  "multispectral",
+  "multispectral",
+  "high-resolution optical",
+  "SAR + optical",
+  "SAR",
+  "other",
+  "SAR + optical",
+  "multispectral",
+  "multispectral",
+  "",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "other",
+  "high-resolution optical",
+  "multispectral",
+  "high-resolution optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "SAR + optical",
+  "multispectral",
+  "SAR",
+  "multispectral",
+  "multispectral",
+  "SAR + optical",
+  "high-resolution optical",
+  "",
+  "high-resolution optical",
+  "other",
+  "SAR + optical",
+  "multispectral",
+  "SAR + optical",
+  "multispectral",
+  "high-resolution optical",
+  "high-resolution optical",
+  "high-resolution optical",
+  "multispectral",
+  "multispectral",
+  "SAR + optical",
+  "other",
+  "SAR",
+  "",
+  "",
+  "multispectral",
+  "high-resolution optical"
+ ],
+ "loading": [
+  [
+   0.7379,
+   -0.5119,
+   0.0849
+  ],
+  [
+   0.2778,
+   -0.1607,
+   -0.1182
+  ],
+  [
+   0.8624,
+   0.0343,
+   -0.1505
+  ],
+  [
+   1.2342,
+   -0.7066,
+   -0.3027
+  ],
+  [
+   1.4837,
+   0.2202,
+   0.2135
+  ],
+  [
+   0.8695,
+   -0.0485,
+   0.1256
+  ],
+  [
+   2.0706,
+   -0.6494,
+   -0.0451
+  ],
+  [
+   1.1945,
+   -0.0278,
+   0.1351
+  ],
+  [
+   0.889,
+   -1.1114,
+   -0.5657
+  ],
+  [
+   0.837,
+   0.0289,
+   0.2437
+  ],
+  [
+   0.4042,
+   1.1273,
+   0.3795
+  ],
+  [
+   1.4001,
+   0.3435,
+   0.4172
+  ],
+  [
+   0.5246,
+   1.824,
+   -0.0221
+  ],
+  [
+   1.644,
+   -0.1185,
+   0.253
+  ],
+  [
+   1.1838,
+   0.1718,
+   0.2819
+  ],
+  [
+   1.4982,
+   0.4392,
+   0.5107
+  ],
+  [
+   -0.0862,
+   -0.5888,
+   0.0039
+  ],
+  [
+   0.5802,
+   -0.5725,
+   -0.1225
+  ],
+  [
+   1.0278,
+   -0.2537,
+   0.072
+  ],
+  [
+   1.6145,
+   0.336,
+   0.2004
+  ],
+  [
+   3.0051,
+   1.2736,
+   0.4222
+  ],
+  [
+   0.6195,
+   0.3105,
+   0.0407
+  ],
+  [
+   0.4517,
+   1.8495,
+   0.2761
+  ],
+  [
+   0.894,
+   -0.5504,
+   0.2024
+  ],
+  [
+   2.4115,
+   -0.4218,
+   -0.6276
+  ],
+  [
+   2.1684,
+   0.8879,
+   -0.0518
+  ],
+  [
+   0.8415,
+   0.053,
+   0.732
+  ],
+  [
+   1.2746,
+   -0.0197,
+   0.2637
+  ],
+  [
+   0.0707,
+   0.5318,
+   -0.3986
+  ],
+  [
+   -0.7062,
+   1.9989,
+   0.2364
+  ],
+  [
+   1.9028,
+   0.6065,
+   0.5762
+  ],
+  [
+   -0.0739,
+   0.3573,
+   -0.5443
+  ],
+  [
+   -0.6514,
+   1.5761,
+   -1.6202
+  ],
+  [
+   1.3832,
+   -0.0513,
+   -0.0394
+  ],
+  [
+   1.0898,
+   0.5637,
+   0.5832
+  ],
+  [
+   0.6765,
+   0.7977,
+   0.2933
+  ],
+  [
+   0.3545,
+   -1.1738,
+   -0.5861
+  ],
+  [
+   1.3308,
+   1.345,
+   -0.1409
+  ],
+  [
+   1.3524,
+   -0.4419,
+   0.6784
+  ],
+  [
+   0.0025,
+   1.6465,
+   1.0212
+  ],
+  [
+   0.1867,
+   0.0972,
+   0.1356
+  ],
+  [
+   0.7917,
+   -0.1332,
+   0.2722
+  ],
+  [
+   0.215,
+   -0.2494,
+   0.4392
+  ],
+  [
+   0.9931,
+   0.3402,
+   -0.17
+  ],
+  [
+   0.9121,
+   -0.6115,
+   -0.1175
+  ],
+  [
+   -0.2233,
+   0.4268,
+   0.3458
+  ],
+  [
+   -0.3645,
+   0.1765,
+   1.7591
+  ],
+  [
+   1.0441,
+   1.5117,
+   -0.6929
+  ],
+  [
+   0.1623,
+   0.614,
+   0.3948
+  ],
+  [
+   0.9299,
+   -1.375,
+   -0.8304
+  ],
+  [
+   2.2292,
+   0.3957,
+   -0.072
+  ],
+  [
+   2.2334,
+   1.598,
+   0.2018
+  ],
+  [
+   1.2891,
+   -0.4745,
+   -0.8931
+  ],
+  [
+   0.9188,
+   -0.2654,
+   1.0703
+  ],
+  [
+   1.3345,
+   -0.1583,
+   1.1028
+  ],
+  [
+   0.578,
+   -0.7718,
+   0.5145
+  ],
+  [
+   1.3075,
+   -0.1685,
+   0.5642
+  ],
+  [
+   2.1501,
+   -0.6936,
+   1.0586
+  ],
+  [
+   0.5348,
+   1.9546,
+   0.7337
+  ],
+  [
+   0.6483,
+   0.2993,
+   0.4087
+  ],
+  [
+   1.2713,
+   -1.0496,
+   -0.3892
+  ],
+  [
+   1.0911,
+   0.4251,
+   0.3188
+  ],
+  [
+   1.0115,
+   1.4357,
+   -1.1137
+  ],
+  [
+   1.5129,
+   1.0815,
+   -1.1937
+  ],
+  [
+   2.8249,
+   -1.0559,
+   -0.3538
+  ],
+  [
+   0.9747,
+   1.1076,
+   -0.7954
+  ],
+  [
+   4.0857,
+   -1.2679,
+   -0.2603
+  ],
+  [
+   -0.0129,
+   0.2211,
+   0.4022
+  ],
+  [
+   0.6667,
+   0.1051,
+   0.3787
+  ],
+  [
+   0.5593,
+   -0.6578,
+   -0.2758
+  ],
+  [
+   0.7688,
+   -0.6938,
+   -0.3069
+  ],
+  [
+   0.9425,
+   0.0337,
+   0.1536
+  ],
+  [
+   1.1903,
+   -1.6647,
+   1.1203
+  ],
+  [
+   1.6165,
+   -2.3924,
+   1.019
+  ],
+  [
+   2.4391,
+   0.1853,
+   -1.0691
+  ],
+  [
+   0.6766,
+   0.7384,
+   0.4441
+  ],
+  [
+   1.789,
+   1.5221,
+   0.5236
+  ],
+  [
+   2.2759,
+   1.8863,
+   0.763
+  ],
+  [
+   0.1217,
+   0.7595,
+   0.249
+  ],
+  [
+   0.8134,
+   -0.1534,
+   0.411
+  ],
+  [
+   0.668,
+   0.6901,
+   -0.4273
+  ],
+  [
+   1.5381,
+   -0.2794,
+   0.355
+  ],
+  [
+   1.2243,
+   0.1,
+   0.069
+  ],
+  [
+   0.5548,
+   0.0566,
+   0.2027
+  ],
+  [
+   0.1971,
+   0.6688,
+   0.0049
+  ],
+  [
+   0.3787,
+   0.4676,
+   -0.2782
+  ],
+  [
+   0.4335,
+   0.1336,
+   -0.242
+  ],
+  [
+   0.5581,
+   0.071,
+   0.0943
+  ],
+  [
+   1.0184,
+   0.4619,
+   -0.1829
+  ],
+  [
+   1.2596,
+   0.5595,
+   0.3169
+  ],
+  [
+   1.2406,
+   -0.4287,
+   1.3667
+  ],
+  [
+   0.3094,
+   -0.7608,
+   -0.1455
+  ],
+  [
+   0.8246,
+   -0.0618,
+   -0.424
+  ],
+  [
+   2.3045,
+   0.1049,
+   0.8197
+  ],
+  [
+   -0.0181,
+   2.1093,
+   0.866
+  ]
+ ],
+ "varimax": {
+  "loading": [
+   [
+    0.8509,
+    -0.1545,
+    0.2566
+   ],
+   [
+    0.327,
+    -0.0841,
+    -0.0546
+   ],
+   [
+    0.8135,
+    0.278,
+    -0.1687
+   ],
+   [
+    1.4247,
+    -0.2877,
+    -0.039
+   ],
+   [
+    1.292,
+    0.7866,
+    0.0874
+   ],
+   [
+    0.8158,
+    0.3074,
+    0.1182
+   ],
+   [
+    2.1595,
+    0.1468,
+    0.1625
+   ],
+   [
+    1.1123,
+    0.4425,
+    0.1131
+   ],
+   [
+    1.2659,
+    -0.8531,
+    -0.1245
+   ],
+   [
+    0.7462,
+    0.4053,
+    0.1993
+   ],
+   [
+    -0.0387,
+    1.2532,
+    -0.0784
+   ],
+   [
+    1.1494,
+    0.9368,
+    0.2315
+   ],
+   [
+    -0.1105,
+    1.7551,
+    -0.7141
+   ],
+   [
+    1.5498,
+    0.5635,
+    0.2479
+   ],
+   [
+    1.0192,
+    0.6641,
+    0.1746
+   ],
+   [
+    1.1988,
+    1.0874,
+    0.2805
+   ],
+   [
+    0.1139,
+    -0.5387,
+    0.2259
+   ],
+   [
+    0.7471,
+    -0.3363,
+    0.0901
+   ],
+   [
+    1.0383,
+    0.166,
+    0.1425
+   ],
+   [
+    1.3776,
+    0.928,
+    0.0293
+   ],
+   [
+    2.3437,
+    2.306,
+    -0.1428
+   ],
+   [
+    0.4726,
+    0.5003,
+    -0.0904
+   ],
+   [
+    -0.2215,
+    1.8582,
+    -0.4459
+   ],
+   [
+    0.9963,
+    -0.0912,
+    0.377
+   ],
+   [
+    2.4703,
+    0.2551,
+    -0.4691
+   ],
+   [
+    1.7424,
+    1.5097,
+    -0.4218
+   ],
+   [
+    0.6864,
+    0.6022,
+    0.6428
+   ],
+   [
+    1.1699,
+    0.5236,
+    0.2278
+   ],
+   [
+    -0.0642,
+    0.3428,
+    -0.5701
+   ],
+   [
+    -1.3509,
+    1.5679,
+    -0.5168
+   ],
+   [
+    1.5148,
+    1.3974,
+    0.2708
+   ],
+   [
+    -0.1251,
+    0.089,
+    -0.6371
+   ],
+   [
+    -0.946,
+    0.5577,
+    -2.0803
+   ],
+   [
+    1.3169,
+    0.4259,
+    -0.0434
+   ],
+   [
+    0.7667,
+    1.0781,
+    0.3087
+   ],
+   [
+    0.3355,
+    1.0324,
+    -0.04
+   ],
+   [
+    0.7882,
+    -1.1016,
+    -0.1099
+   ],
+   [
+    0.8168,
+    1.5803,
+    -0.6599
+   ],
+   [
+    1.3349,
+    0.3334,
+    0.769
+   ],
+   [
+    -0.6606,
+    1.7914,
+    0.3293
+   ],
+   [
+    0.127,
+    0.198,
+    0.0857
+   ],
+   [
+    0.7542,
+    0.2592,
+    0.2873
+   ],
+   [
+    0.2335,
+    0.0163,
+    0.4965
+   ],
+   [
+    0.8369,
+    0.5816,
+    -0.3038
+   ],
+   [
+    1.0703,
+    -0.252,
+    0.1031
+   ],
+   [
+    -0.3903,
+    0.4149,
+    0.1648
+   ],
+   [
+    -0.602,
+    0.6537,
+    1.5712
+   ],
+   [
+    0.5566,
+    1.427,
+    -1.2286
+   ],
+   [
+    -0.0969,
+    0.7295,
+    0.1327
+   ],
+   [
+    1.4219,
+    -1.1616,
+    -0.2718
+   ],
+   [
+    1.9648,
+    1.0976,
+    -0.2571
+   ],
+   [
+    1.5389,
+    2.2379,
+    -0.4541
+   ],
+   [
+    1.4671,
+    -0.2785,
+    -0.6742
+   ],
+   [
+    0.8253,
+    0.4744,
+    1.0742
+   ],
+   [
+    1.1755,
+    0.7244,
+    1.0563
+   ],
+   [
+    0.7379,
+    -0.282,
+    0.7553
+   ],
+   [
+    1.2154,
+    0.5136,
+    0.5614
+   ],
+   [
+    2.1217,
+    0.5307,
+    1.2007
+   ],
+   [
+    -0.2312,
+    2.1418,
+    -0.0627
+   ],
+   [
+    0.461,
+    0.6322,
+    0.2544
+   ],
+   [
+    1.583,
+    -0.6026,
+    0.0088
+   ],
+   [
+    0.8442,
+    0.8641,
+    0.1156
+   ],
+   [
+    0.5996,
+    1.1994,
+    -1.5896
+   ],
+   [
+    1.1956,
+    1.0397,
+    -1.5404
+   ],
+   [
+    3.036,
+    -0.0513,
+    0.0146
+   ],
+   [
+    0.6372,
+    1.0162,
+    -1.1708
+   ],
+   [
+    4.2762,
+    0.2401,
+    0.157
+   ],
+   [
+    -0.1316,
+    0.3306,
+    0.2902
+   ],
+   [
+    0.546,
+    0.4598,
+    0.2991
+   ],
+   [
+    0.7734,
+    -0.4722,
+    -0.0196
+   ],
+   [
+    0.9851,
+    -0.4411,
+    -0.0389
+   ],
+   [
+    0.8538,
+    0.4142,
+    0.112
+   ],
+   [
+    1.5375,
+    -0.6242,
+    1.64
+   ],
+   [
+    2.1894,
+    -1.1412,
+    1.8109
+   ],
+   [
+    2.3457,
+    0.6327,
+    -1.1064
+   ],
+   [
+    0.3379,
+    1.035,
+    0.1221
+   ],
+   [
+    1.1108,
+    2.1315,
+    -0.1191
+   ],
+   [
+    1.4186,
+    2.7029,
+    -0.0428
+   ],
+   [
+    -0.1664,
+    0.7892,
+    -0.0562
+   ],
+   [
+    0.7653,
+    0.2989,
+    0.4231
+   ],
+   [
+    0.446,
+    0.6788,
+    -0.6673
+   ],
+   [
+    1.4922,
+    0.4236,
+    0.4048
+   ],
+   [
+    1.1054,
+    0.54,
+    0.0034
+   ],
+   [
+    0.4775,
+    0.3158,
+    0.1562
+   ],
+   [
+    -0.0376,
+    0.6498,
+    -0.2499
+   ],
+   [
+    0.2317,
+    0.438,
+    -0.4403
+   ],
+   [
+    0.3896,
+    0.181,
+    -0.2826
+   ],
+   [
+    0.4883,
+    0.2907,
+    0.0503
+   ],
+   [
+    0.8216,
+    0.6912,
+    -0.3619
+   ],
+   [
+    0.9578,
+    1.0388,
+    0.0602
+   ],
+   [
+    1.1467,
+    0.5516,
+    1.4041
+   ],
+   [
+    0.5585,
+    -0.6024,
+    0.1445
+   ],
+   [
+    0.8415,
+    0.0838,
+    -0.3854
+   ],
+   [
+    2.0291,
+    1.1907,
+    0.677
+   ],
+   [
+    -0.8155,
+    2.1294,
+    0.0123
+   ]
+  ],
+  "share": [
+   0.5336,
+   0.3276,
+   0.1388
+  ],
+  "axes": [
+   {
+    "top": [
+     [
+      "NeuCo-Bench Landcover",
+      4.2762
+     ],
+     [
+      "NeuCo-Bench Crops",
+      3.036
+     ],
+     [
+      "Dynamic World",
+      2.4703
+     ],
+     [
+      "PASTIS / PASTIS-R",
+      2.3457
+     ],
+     [
+      "DIOR",
+      2.3437
+     ],
+     [
+      "OlmoEarth Vessel Type",
+      2.1894
+     ],
+     [
+      "BioMassters",
+      2.1595
+     ],
+     [
+      "MMEarth-Bench species",
+      2.1217
+     ]
+    ],
+    "bottom": [
+     [
+      "FLAIR / FLAIR 2",
+      -1.3509
+     ],
+     [
+      "Five Billion Pixels",
+      -0.946
+     ],
+     [
+      "xBD / xView2",
+      -0.8155
+     ],
+     [
+      "GLID",
+      -0.6606
+     ],
+     [
+      "Infra-Bench",
+      -0.602
+     ],
+     [
+      "Hyperview",
+      -0.3903
+     ],
+     [
+      "MineNetCD",
+      -0.2312
+     ],
+     [
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+      -0.2215
+     ]
+    ],
+    "eta2_sensor": 0.2363,
+    "eta2_task_type": 0.1808,
+    "mean_by_sensor": {
+     "SAR": 0.5984,
+     "SAR + optical": 1.1169,
+     "high-resolution optical": 0.2041,
+     "multispectral": 1.1328,
+     "other": 0.0679
+    },
+    "mean_by_task_type": {
+     "change detection": 0.0938,
+     "classification": 1.137,
+     "detection": 1.0444,
+     "regression": 1.2422,
+     "segmentation": 0.635
+    }
+   },
+   {
+    "top": [
+     [
+      "RESISC45 / UCMerced (EarthShift)",
+      2.7029
+     ],
+     [
+      "DIOR",
+      2.306
+     ],
+     [
+      "MARIDA",
+      2.2379
+     ],
+     [
+      "MineNetCD",
+      2.1418
+     ],
+     [
+      "RESISC45",
+      2.1315
+     ],
+     [
+      "xBD / xView2",
+      2.1294
+     ],
+     [
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+      1.8582
+     ],
+     [
+      "GLID",
+      1.7914
+     ]
+    ],
+    "bottom": [
+     [
+      "Live Fuel Moisture Content",
+      -1.1616
+     ],
+     [
+      "OlmoEarth Vessel Type",
+      -1.1412
+     ],
+     [
+      "GEA North Africa",
+      -1.1016
+     ],
+     [
+      "BreizhCrops",
+      -0.8531
+     ],
+     [
+      "OlmoEarth Vessel Length",
+      -0.6242
+     ],
+     [
+      "Nandi",
+      -0.6026
+     ],
+     [
+      "WorldClim Bioclim",
+      -0.6024
+     ],
+     [
+      "CloudSEN12 (Cloud-S2)",
+      -0.5387
+     ]
+    ],
+    "eta2_sensor": 0.1675,
+    "eta2_task_type": 0.0962,
+    "mean_by_sensor": {
+     "SAR": 0.9407,
+     "SAR + optical": 0.2961,
+     "high-resolution optical": 1.0348,
+     "multispectral": 0.3845,
+     "other": 0.917
+    },
+    "mean_by_task_type": {
+     "change detection": 0.8945,
+     "classification": 0.4001,
+     "detection": 1.021,
+     "regression": 0.2596,
+     "segmentation": 0.7287
+    }
+   },
+   {
+    "top": [
+     [
+      "OlmoEarth Vessel Type",
+      1.8109
+     ],
+     [
+      "OlmoEarth Vessel Length",
+      1.64
+     ],
+     [
+      "Infra-Bench",
+      1.5712
+     ],
+     [
+      "UrbanSARFloods",
+      1.4041
+     ],
+     [
+      "MMEarth-Bench species",
+      1.2007
+     ],
+     [
+      "MMEarth-Bench Biomass",
+      1.0742
+     ],
+     [
+      "MMEarth-Bench soil nitrogen",
+      1.0563
+     ],
+     [
+      "GLD",
+      0.769
+     ]
+    ],
+    "bottom": [
+     [
+      "Five Billion Pixels",
+      -2.0803
+     ],
+     [
+      "NeuCo-Bench Biomass",
+      -1.5896
+     ],
+     [
+      "NeuCo-Bench Clouds",
+      -1.5404
+     ],
+     [
+      "Kuro Siwo (Flood-S1)",
+      -1.2286
+     ],
+     [
+      "NeuCo-Bench Heatisland",
+      -1.1708
+     ],
+     [
+      "PASTIS / PASTIS-R",
+      -1.1064
+     ],
+     [
+      "CaFFe",
+      -0.7141
+     ],
+     [
+      "MMEarth Biomass",
+      -0.6742
+     ]
+    ],
+    "eta2_sensor": 0.0353,
+    "eta2_task_type": 0.0929,
+    "mean_by_sensor": {
+     "SAR": -0.1902,
+     "SAR + optical": 0.1154,
+     "high-resolution optical": -0.0404,
+     "multispectral": 0.1012,
+     "other": -0.2439
+    },
+    "mean_by_task_type": {
+     "change detection": 0.2282,
+     "classification": 0.2817,
+     "detection": -0.2003,
+     "regression": 0.0351,
+     "segmentation": -0.1699
+    }
+   }
+  ],
+  "hoyer_sparsity_principal": 0.3683,
+  "hoyer_sparsity_varimax": 0.3559
+ },
+ "uniqueness": [
+  {
+   "dataset": "AGBD",
+   "sources": 1,
+   "unexplained_share": 0.4709,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "AI4Arctic / AutoICE",
+   "sources": 1,
+   "unexplained_share": 0.7184,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3105,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "AI4SmallFarms",
+   "sources": 1,
+   "unexplained_share": 0.8648,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3527,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "AWF",
+   "sources": 1,
+   "unexplained_share": 0.3059,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.0139,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "Austrian Crop",
+   "sources": 2,
+   "unexplained_share": 0.1862,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.4727,
+   "pairs_within_source": 15
+  },
+  {
+   "dataset": "BigEarthNet v1 / v2 (reBEN)",
+   "sources": 13,
+   "unexplained_share": 0.3026,
+   "residual_r_across_sources": 0.2783,
+   "pairs_across_sources": 16,
+   "residual_r_within_source": 0.3664,
+   "pairs_within_source": 59
+  },
+  {
+   "dataset": "BioMassters",
+   "sources": 3,
+   "unexplained_share": 0.2069,
+   "residual_r_across_sources": -0.0665,
+   "pairs_across_sources": 12,
+   "residual_r_within_source": 0.1551,
+   "pairs_within_source": 18
+  },
+  {
+   "dataset": "Borneo Canopy Height",
+   "sources": 1,
+   "unexplained_share": 0.2528,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.21,
+   "pairs_within_source": 15
+  },
+  {
+   "dataset": "BreizhCrops",
+   "sources": 2,
+   "unexplained_share": 0.2246,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Brick kilns",
+   "sources": 7,
+   "unexplained_share": 0.2758,
+   "residual_r_across_sources": -0.0598,
+   "pairs_across_sources": 15,
+   "residual_r_within_source": 0.1008,
+   "pairs_within_source": 44
+  },
+  {
+   "dataset": "CLCD",
+   "sources": 1,
+   "unexplained_share": 0.1105,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "CORINE (Panopticon)",
+   "sources": 1,
+   "unexplained_share": 0.0601,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.9048,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "CaFFe",
+   "sources": 2,
+   "unexplained_share": 0.1811,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.116,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "Canadian Cropland",
+   "sources": 1,
+   "unexplained_share": 0.1955,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.205,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "Cashew plantation",
+   "sources": 7,
+   "unexplained_share": 0.5037,
+   "residual_r_across_sources": 0.0279,
+   "pairs_across_sources": 4,
+   "residual_r_within_source": 0.3417,
+   "pairs_within_source": 23
+  },
+  {
+   "dataset": "Chesapeake land cover",
+   "sources": 4,
+   "unexplained_share": 0.1435,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "CloudSEN12 (Cloud-S2)",
+   "sources": 2,
+   "unexplained_share": 0.2924,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "CropHarvest",
+   "sources": 4,
+   "unexplained_share": 0.4595,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.1298,
+   "pairs_within_source": 15
+  },
+  {
+   "dataset": "CropTypeMapping Ghana / South Sudan",
+   "sources": 1,
+   "unexplained_share": 0.6511,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3738,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "DFC2020",
+   "sources": 2,
+   "unexplained_share": 0.1969,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "DIOR",
+   "sources": 1,
+   "unexplained_share": 0.0464,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "DSE",
+   "sources": 1,
+   "unexplained_share": 0.8241,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+   "sources": 1,
+   "unexplained_share": 0.1782,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.5779,
+   "pairs_within_source": 6
+  },
+  {
+   "dataset": "Digital Typhoon",
+   "sources": 1,
+   "unexplained_share": 0.1035,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Dynamic World",
+   "sources": 1,
+   "unexplained_share": 0.01,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Dynamic World training set",
+   "sources": 1,
+   "unexplained_share": 0.0659,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "DynamicEarthNet",
+   "sources": 2,
+   "unexplained_share": 0.5135,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2419,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "EuroSAT",
+   "sources": 11,
+   "unexplained_share": 0.238,
+   "residual_r_across_sources": 0.2656,
+   "pairs_across_sources": 16,
+   "residual_r_within_source": 0.1375,
+   "pairs_within_source": 61
+  },
+  {
+   "dataset": "EverWatch",
+   "sources": 1,
+   "unexplained_share": 0.3602,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "FLAIR / FLAIR 2",
+   "sources": 1,
+   "unexplained_share": 0.1432,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "FLUXNET2015",
+   "sources": 1,
+   "unexplained_share": 0.5253,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Fields of The World",
+   "sources": 2,
+   "unexplained_share": 0.3566,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3916,
+   "pairs_within_source": 120
+  },
+  {
+   "dataset": "Five Billion Pixels",
+   "sources": 1,
+   "unexplained_share": 0.1707,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.0494,
+   "pairs_within_source": 6
+  },
+  {
+   "dataset": "Forest Loss Driver",
+   "sources": 1,
+   "unexplained_share": 0.4014,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "ForestNet",
+   "sources": 6,
+   "unexplained_share": 0.2041,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.0196,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "GAZADeepDAV",
+   "sources": 1,
+   "unexplained_share": 0.1933,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "GEA North Africa",
+   "sources": 1,
+   "unexplained_share": 0.2469,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "GEOID-Flood",
+   "sources": 1,
+   "unexplained_share": 0.0763,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.0251,
+   "pairs_within_source": 6
+  },
+  {
+   "dataset": "GLD",
+   "sources": 1,
+   "unexplained_share": 0.2266,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3608,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "GLID",
+   "sources": 1,
+   "unexplained_share": 0.1546,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3206,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "GRIP4 distance to road",
+   "sources": 1,
+   "unexplained_share": 1.0,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "GSDD",
+   "sources": 1,
+   "unexplained_share": 0.4888,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.0941,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "GeoCrossBench Hurricane Harvey",
+   "sources": 1,
+   "unexplained_share": 0.4604,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.0285,
+   "pairs_within_source": 66
+  },
+  {
+   "dataset": "GloSoFarID",
+   "sources": 1,
+   "unexplained_share": 0.7512,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "HLS Burn Scars",
+   "sources": 4,
+   "unexplained_share": 0.2371,
+   "residual_r_across_sources": -0.0423,
+   "pairs_across_sources": 3,
+   "residual_r_within_source": 0.1278,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "Hyperview",
+   "sources": 1,
+   "unexplained_share": 0.1571,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.6203,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "Infra-Bench",
+   "sources": 1,
+   "unexplained_share": 0.1018,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2716,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "Kuro Siwo (Flood-S1)",
+   "sources": 2,
+   "unexplained_share": 0.1177,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "LEVIR-CD",
+   "sources": 1,
+   "unexplained_share": 0.2136,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Live Fuel Moisture Content",
+   "sources": 1,
+   "unexplained_share": 0.1957,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.4561,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MADOS",
+   "sources": 4,
+   "unexplained_share": 0.2826,
+   "residual_r_across_sources": 0.0409,
+   "pairs_across_sources": 7,
+   "residual_r_within_source": 0.1932,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "MARIDA",
+   "sources": 1,
+   "unexplained_share": 0.0539,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "MMEarth Biomass",
+   "sources": 1,
+   "unexplained_share": 0.0235,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "MMEarth-Bench Biomass",
+   "sources": 1,
+   "unexplained_share": 0.214,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.6463,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MMEarth-Bench soil nitrogen",
+   "sources": 1,
+   "unexplained_share": 0.065,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.5991,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MMEarth-Bench soil organic carbon",
+   "sources": 1,
+   "unexplained_share": 0.4828,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2969,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MMEarth-Bench soil pH",
+   "sources": 1,
+   "unexplained_share": 0.2164,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.4782,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MMEarth-Bench species",
+   "sources": 1,
+   "unexplained_share": 0.0418,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3405,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "MineNetCD",
+   "sources": 1,
+   "unexplained_share": 0.0375,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "NZ cattle",
+   "sources": 5,
+   "unexplained_share": 0.2183,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.9441,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "Nandi",
+   "sources": 1,
+   "unexplained_share": 0.2245,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.1219,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "NeonTreeEvaluation",
+   "sources": 4,
+   "unexplained_share": 0.2047,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "NeuCo-Bench Biomass",
+   "sources": 1,
+   "unexplained_share": 0.1139,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.945,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "NeuCo-Bench Clouds",
+   "sources": 1,
+   "unexplained_share": 0.2054,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "NeuCo-Bench Crops",
+   "sources": 1,
+   "unexplained_share": 0.1442,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "NeuCo-Bench Heatisland",
+   "sources": 1,
+   "unexplained_share": 0.2097,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.5806,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "NeuCo-Bench Landcover",
+   "sources": 1,
+   "unexplained_share": 0.0451,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.9181,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "OMBRIA",
+   "sources": 1,
+   "unexplained_share": 0.4764,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.4677,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "OSCD",
+   "sources": 1,
+   "unexplained_share": 0.3277,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2255,
+   "pairs_within_source": 15
+  },
+  {
+   "dataset": "OlmoEarth Mangrove",
+   "sources": 1,
+   "unexplained_share": 0.3856,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2013,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "OlmoEarth Solar Farm",
+   "sources": 1,
+   "unexplained_share": 0.3588,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "OlmoEarth Vessel Detection",
+   "sources": 1,
+   "unexplained_share": 0.5033,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.354,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "OlmoEarth Vessel Length",
+   "sources": 1,
+   "unexplained_share": 0.0909,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "OlmoEarth Vessel Type",
+   "sources": 1,
+   "unexplained_share": 0.0347,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "PASTIS / PASTIS-R",
+   "sources": 7,
+   "unexplained_share": 0.1143,
+   "residual_r_across_sources": 0.3375,
+   "pairs_across_sources": 23,
+   "residual_r_within_source": 0.2307,
+   "pairs_within_source": 28
+  },
+  {
+   "dataset": "PV4GER",
+   "sources": 4,
+   "unexplained_share": 0.1041,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.5966,
+   "pairs_within_source": 5
+  },
+  {
+   "dataset": "RESISC45",
+   "sources": 2,
+   "unexplained_share": 0.0133,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.4347,
+   "pairs_within_source": 1
+  },
+  {
+   "dataset": "RESISC45 / UCMerced (EarthShift)",
+   "sources": 1,
+   "unexplained_share": 0.1382,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.144,
+   "pairs_within_source": 28
+  },
+  {
+   "dataset": "RSBD",
+   "sources": 1,
+   "unexplained_share": 0.2669,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "Sen1Floods11",
+   "sources": 6,
+   "unexplained_share": 0.2205,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.3054,
+   "pairs_within_source": 31
+  },
+  {
+   "dataset": "SmokePlume",
+   "sources": 1,
+   "unexplained_share": 0.2761,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "So2Sat LCZ42 (LCZ-S2)",
+   "sources": 11,
+   "unexplained_share": 0.2003,
+   "residual_r_across_sources": 0.2795,
+   "pairs_across_sources": 16,
+   "residual_r_within_source": 0.1429,
+   "pairs_within_source": 50
+  },
+  {
+   "dataset": "South Africa crop type",
+   "sources": 7,
+   "unexplained_share": 0.3327,
+   "residual_r_across_sources": 0.8726,
+   "pairs_across_sources": 4,
+   "residual_r_within_source": 0.2548,
+   "pairs_within_source": 22
+  },
+  {
+   "dataset": "SpaceNet 1",
+   "sources": 1,
+   "unexplained_share": 0.0707,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "SpaceNet 2",
+   "sources": 1,
+   "unexplained_share": 0.2477,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "SpaceNet 7",
+   "sources": 2,
+   "unexplained_share": 0.6352,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.5292,
+   "pairs_within_source": 3
+  },
+  {
+   "dataset": "Substations",
+   "sources": 1,
+   "unexplained_share": 0.8298,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "SustainBench DHS tasks",
+   "sources": 1,
+   "unexplained_share": 0.5362,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.2,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "TreeSatAI",
+   "sources": 3,
+   "unexplained_share": 0.2477,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.1824,
+   "pairs_within_source": 15
+  },
+  {
+   "dataset": "TropicalCyclone",
+   "sources": 1,
+   "unexplained_share": 0.0437,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "UrbanSARFloods",
+   "sources": 1,
+   "unexplained_share": 0.0736,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "WorldClim Bioclim",
+   "sources": 1,
+   "unexplained_share": 0.1997,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "WorldPop population density",
+   "sources": 1,
+   "unexplained_share": 0.0547,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": null,
+   "pairs_within_source": 0
+  },
+  {
+   "dataset": "fMoW",
+   "sources": 3,
+   "unexplained_share": 0.0486,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": -0.0561,
+   "pairs_within_source": 10
+  },
+  {
+   "dataset": "xBD / xView2",
+   "sources": 1,
+   "unexplained_share": 0.0381,
+   "residual_r_across_sources": null,
+   "pairs_across_sources": 0,
+   "residual_r_within_source": 0.7483,
+   "pairs_within_source": 3
+  }
+ ],
+ "pretraining_by_group": {
+  "by_sensor": [
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "multispectral",
+    "mean_rank_percentile": 0.3812,
+    "ci90": [
+     0.3333,
+     0.425
+    ],
+    "tasks": 166,
+    "sources": 11
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "SAR + optical",
+    "mean_rank_percentile": 0.4663,
+    "ci90": [
+     0.2083,
+     0.6386
+    ],
+    "tasks": 147,
+    "sources": 14
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "SAR",
+    "mean_rank_percentile": 0.5828,
+    "ci90": [
+     0.3935,
+     0.7721
+    ],
+    "tasks": 14,
+    "sources": 3
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "high-resolution optical",
+    "mean_rank_percentile": 0.6122,
+    "ci90": [
+     0.4391,
+     0.7143
+    ],
+    "tasks": 46,
+    "sources": 7
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "multispectral",
+    "mean_rank_percentile": 0.581,
+    "ci90": [
+     0.544,
+     0.63
+    ],
+    "tasks": 184,
+    "sources": 13
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "SAR + optical",
+    "mean_rank_percentile": 0.5687,
+    "ci90": [
+     0.5188,
+     0.6406
+    ],
+    "tasks": 162,
+    "sources": 17
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "SAR",
+    "mean_rank_percentile": 0.5829,
+    "ci90": [
+     0.504,
+     0.6868
+    ],
+    "tasks": 34,
+    "sources": 8
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "high-resolution optical",
+    "mean_rank_percentile": 0.5886,
+    "ci90": [
+     0.5023,
+     0.6926
+    ],
+    "tasks": 54,
+    "sources": 8
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "multispectral",
+    "mean_rank_percentile": 0.4379,
+    "ci90": [
+     0.3789,
+     0.5081
+    ],
+    "tasks": 183,
+    "sources": 13
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "SAR + optical",
+    "mean_rank_percentile": 0.4404,
+    "ci90": [
+     0.4098,
+     0.4885
+    ],
+    "tasks": 161,
+    "sources": 16
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "SAR",
+    "mean_rank_percentile": 0.3713,
+    "ci90": [
+     0.2831,
+     0.4838
+    ],
+    "tasks": 34,
+    "sources": 8
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "high-resolution optical",
+    "mean_rank_percentile": 0.3413,
+    "ci90": [
+     0.2624,
+     0.4142
+    ],
+    "tasks": 50,
+    "sources": 7
+   }
+  ],
+  "by_task_type": [
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "classification",
+    "mean_rank_percentile": 0.4613,
+    "ci90": [
+     0.3306,
+     0.5927
+    ],
+    "tasks": 151,
+    "sources": 13
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "segmentation",
+    "mean_rank_percentile": 0.4815,
+    "ci90": [
+     0.3832,
+     0.5698
+    ],
+    "tasks": 175,
+    "sources": 13
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "regression",
+    "mean_rank_percentile": 0.197,
+    "ci90": [
+     0.1194,
+     0.2987
+    ],
+    "tasks": 31,
+    "sources": 6
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "change detection",
+    "mean_rank_percentile": 0.5435,
+    "ci90": [
+     0.4158,
+     0.7508
+    ],
+    "tasks": 27,
+    "sources": 4
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "classification",
+    "mean_rank_percentile": 0.5636,
+    "ci90": [
+     0.5332,
+     0.6052
+    ],
+    "tasks": 175,
+    "sources": 16
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "segmentation",
+    "mean_rank_percentile": 0.5681,
+    "ci90": [
+     0.5307,
+     0.6203
+    ],
+    "tasks": 200,
+    "sources": 16
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "regression",
+    "mean_rank_percentile": 0.645,
+    "ci90": [
+     0.5872,
+     0.6866
+    ],
+    "tasks": 45,
+    "sources": 8
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "change detection",
+    "mean_rank_percentile": 0.6549,
+    "ci90": [
+     0.5648,
+     0.8223
+    ],
+    "tasks": 28,
+    "sources": 5
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "classification",
+    "mean_rank_percentile": 0.3966,
+    "ci90": [
+     0.3498,
+     0.4407
+    ],
+    "tasks": 170,
+    "sources": 15
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "segmentation",
+    "mean_rank_percentile": 0.4418,
+    "ci90": [
+     0.3914,
+     0.4824
+    ],
+    "tasks": 196,
+    "sources": 16
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "regression",
+    "mean_rank_percentile": 0.4279,
+    "ci90": [
+     0.3795,
+     0.4796
+    ],
+    "tasks": 45,
+    "sources": 8
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "change detection",
+    "mean_rank_percentile": 0.3656,
+    "ci90": [
+     0.3104,
+     0.3995
+    ],
+    "tasks": 28,
+    "sources": 5
+   }
+  ],
+  "by_dimension2_band": [
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "low on dimension 2",
+    "mean_rank_percentile": 0.2783,
+    "ci90": [
+     0.1512,
+     0.4072
+    ],
+    "tasks": 130,
+    "sources": 15
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "middle",
+    "mean_rank_percentile": 0.4492,
+    "ci90": [
+     0.3208,
+     0.5613
+    ],
+    "tasks": 124,
+    "sources": 15
+   },
+   {
+    "pretraining": "high-resolution RGB",
+    "group": "high on dimension 2",
+    "mean_rank_percentile": 0.6376,
+    "ci90": [
+     0.5425,
+     0.7125
+    ],
+    "tasks": 133,
+    "sources": 14
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "low on dimension 2",
+    "mean_rank_percentile": 0.5675,
+    "ci90": [
+     0.531,
+     0.6141
+    ],
+    "tasks": 148,
+    "sources": 18
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "middle",
+    "mean_rank_percentile": 0.5769,
+    "ci90": [
+     0.5398,
+     0.6275
+    ],
+    "tasks": 148,
+    "sources": 18
+   },
+   {
+    "pretraining": "multi-sensor (SAR + optical)",
+    "group": "high on dimension 2",
+    "mean_rank_percentile": 0.5895,
+    "ci90": [
+     0.5448,
+     0.6509
+    ],
+    "tasks": 156,
+    "sources": 17
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "low on dimension 2",
+    "mean_rank_percentile": 0.5125,
+    "ci90": [
+     0.4488,
+     0.5813
+    ],
+    "tasks": 148,
+    "sources": 18
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "middle",
+    "mean_rank_percentile": 0.4086,
+    "ci90": [
+     0.3731,
+     0.4492
+    ],
+    "tasks": 146,
+    "sources": 18
+   },
+   {
+    "pretraining": "multispectral optical",
+    "group": "high on dimension 2",
+    "mean_rank_percentile": 0.3327,
+    "ci90": [
+     0.2508,
+     0.403
+    ],
+    "tasks": 149,
+    "sources": 16
+   }
+  ],
+  "geofms_per_group": {
+   "high-resolution RGB": 19,
+   "multi-sensor (SAR + optical)": 43,
+   "multispectral optical": 35
+  }
+ },
+ "extra_dimensions": {
+  "by_K": {
+   "3": [
+    {
+     "dimension": 1,
+     "share_of_loading_variance": 0.6579,
+     "top_source": "galileo",
+     "top_source_share": 0.3097,
+     "top3_sources_share": 0.5602,
+     "top_dataset": "PASTIS / PASTIS-R",
+     "top_dataset_share": 0.173,
+     "eta2_sensor": 0.1384,
+     "eta2_task_type": 0.1139,
+     "top": [
+      "NeuCo-Bench Landcover",
+      "DIOR",
+      "NeuCo-Bench Crops",
+      "PASTIS / PASTIS-R",
+      "Dynamic World"
+     ],
+     "bottom": [
+      "FLAIR / FLAIR 2",
+      "Five Billion Pixels",
+      "Infra-Bench",
+      "Hyperview",
+      "CloudSEN12 (Cloud-S2)"
+     ]
+    },
+    {
+     "dimension": 2,
+     "share_of_loading_variance": 0.2202,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.1849,
+     "top3_sources_share": 0.462,
+     "top_dataset": "CaFFe",
+     "top_dataset_share": 0.0799,
+     "eta2_sensor": 0.2517,
+     "eta2_task_type": 0.1646,
+     "top": [
+      "xBD / xView2",
+      "FLAIR / FLAIR 2",
+      "MineNetCD",
+      "RESISC45 / UCMerced (EarthShift)",
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)"
+     ],
+     "bottom": [
+      "OlmoEarth Vessel Type",
+      "OlmoEarth Vessel Length",
+      "Live Fuel Moisture Content",
+      "NeuCo-Bench Landcover",
+      "GEA North Africa"
+     ]
+    },
+    {
+     "dimension": 3,
+     "share_of_loading_variance": 0.1219,
+     "top_source": "geocross-bench",
+     "top_source_share": 0.1799,
+     "top3_sources_share": 0.4697,
+     "top_dataset": "PASTIS / PASTIS-R",
+     "top_dataset_share": 0.2033,
+     "eta2_sensor": 0.0203,
+     "eta2_task_type": 0.089,
+     "top": [
+      "Infra-Bench",
+      "UrbanSARFloods",
+      "OlmoEarth Vessel Length",
+      "MMEarth-Bench soil nitrogen",
+      "MMEarth-Bench Biomass"
+     ],
+     "bottom": [
+      "Five Billion Pixels",
+      "NeuCo-Bench Clouds",
+      "NeuCo-Bench Biomass",
+      "PASTIS / PASTIS-R",
+      "MMEarth Biomass"
+     ]
+    }
+   ],
+   "4": [
+    {
+     "dimension": 1,
+     "share_of_loading_variance": 0.5845,
+     "top_source": "galileo",
+     "top_source_share": 0.2939,
+     "top3_sources_share": 0.5736,
+     "top_dataset": "So2Sat LCZ42 (LCZ-S2)",
+     "top_dataset_share": 0.1451,
+     "eta2_sensor": 0.1567,
+     "eta2_task_type": 0.2328,
+     "top": [
+      "NeuCo-Bench Landcover",
+      "Dynamic World",
+      "DIOR",
+      "NeuCo-Bench Clouds",
+      "MMEarth-Bench species"
+     ],
+     "bottom": [
+      "Five Billion Pixels",
+      "Infra-Bench",
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+      "CloudSEN12 (Cloud-S2)",
+      "CaFFe"
+     ]
+    },
+    {
+     "dimension": 2,
+     "share_of_loading_variance": 0.2236,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.3063,
+     "top3_sources_share": 0.5679,
+     "top_dataset": "Live Fuel Moisture Content",
+     "top_dataset_share": 0.141,
+     "eta2_sensor": 0.2206,
+     "eta2_task_type": 0.0958,
+     "top": [
+      "RESISC45 / UCMerced (EarthShift)",
+      "xBD / xView2",
+      "DIOR",
+      "GEOID-Flood",
+      "RESISC45"
+     ],
+     "bottom": [
+      "Live Fuel Moisture Content",
+      "OlmoEarth Mangrove",
+      "GEA North Africa",
+      "BreizhCrops",
+      "Nandi"
+     ]
+    },
+    {
+     "dimension": 3,
+     "share_of_loading_variance": 0.1301,
+     "top_source": "earthshift",
+     "top_source_share": 0.176,
+     "top3_sources_share": 0.4666,
+     "top_dataset": "PASTIS / PASTIS-R",
+     "top_dataset_share": 0.095,
+     "eta2_sensor": 0.0539,
+     "eta2_task_type": 0.052,
+     "top": [
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+      "MMEarth-Bench soil organic carbon",
+      "RESISC45 / UCMerced (EarthShift)",
+      "OlmoEarth Vessel Length",
+      "NeuCo-Bench Landcover"
+     ],
+     "bottom": [
+      "Austrian Crop",
+      "NeuCo-Bench Biomass",
+      "NeuCo-Bench Clouds",
+      "NeuCo-Bench Heatisland",
+      "Kuro Siwo (Flood-S1)"
+     ]
+    },
+    {
+     "dimension": 4,
+     "share_of_loading_variance": 0.0618,
+     "top_source": "geocross-bench",
+     "top_source_share": 0.142,
+     "top3_sources_share": 0.3965,
+     "top_dataset": "EuroSAT",
+     "top_dataset_share": 0.1218,
+     "eta2_sensor": 0.0474,
+     "eta2_task_type": 0.1096,
+     "top": [
+      "NeuCo-Bench Landcover",
+      "NeuCo-Bench Crops",
+      "Five Billion Pixels",
+      "Live Fuel Moisture Content",
+      "Dynamic World training set"
+     ],
+     "bottom": [
+      "UrbanSARFloods",
+      "CORINE (Panopticon)",
+      "MMEarth-Bench soil organic carbon",
+      "MMEarth-Bench species",
+      "Infra-Bench"
+     ]
+    }
+   ],
+   "5": [
+    {
+     "dimension": 1,
+     "share_of_loading_variance": 0.4781,
+     "top_source": "galileo",
+     "top_source_share": 0.2583,
+     "top3_sources_share": 0.6007,
+     "top_dataset": "So2Sat LCZ42 (LCZ-S2)",
+     "top_dataset_share": 0.141,
+     "eta2_sensor": 0.2478,
+     "eta2_task_type": 0.2768,
+     "top": [
+      "Dynamic World",
+      "MMEarth-Bench species",
+      "DIOR",
+      "Live Fuel Moisture Content",
+      "RESISC45 / UCMerced (EarthShift)"
+     ],
+     "bottom": [
+      "Five Billion Pixels",
+      "xBD / xView2",
+      "FLAIR / FLAIR 2",
+      "RSBD",
+      "GLID"
+     ]
+    },
+    {
+     "dimension": 2,
+     "share_of_loading_variance": 0.2453,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.2321,
+     "top3_sources_share": 0.4863,
+     "top_dataset": "Live Fuel Moisture Content",
+     "top_dataset_share": 0.0964,
+     "eta2_sensor": 0.264,
+     "eta2_task_type": 0.1141,
+     "top": [
+      "xBD / xView2",
+      "RESISC45 / UCMerced (EarthShift)",
+      "DIOR",
+      "MineNetCD",
+      "Kuro Siwo (Flood-S1)"
+     ],
+     "bottom": [
+      "Live Fuel Moisture Content",
+      "Austrian Crop",
+      "OlmoEarth Mangrove",
+      "BreizhCrops",
+      "OlmoEarth Solar Farm"
+     ]
+    },
+    {
+     "dimension": 3,
+     "share_of_loading_variance": 0.1327,
+     "top_source": "galileo",
+     "top_source_share": 0.2401,
+     "top3_sources_share": 0.479,
+     "top_dataset": "PASTIS / PASTIS-R",
+     "top_dataset_share": 0.1764,
+     "eta2_sensor": 0.089,
+     "eta2_task_type": 0.0405,
+     "top": [
+      "NeuCo-Bench Biomass",
+      "NeuCo-Bench Clouds",
+      "RESISC45 / UCMerced (EarthShift)",
+      "Infra-Bench",
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)"
+     ],
+     "bottom": [
+      "Chesapeake land cover",
+      "RESISC45",
+      "PASTIS / PASTIS-R",
+      "CloudSEN12 (Cloud-S2)",
+      "DIOR"
+     ]
+    },
+    {
+     "dimension": 4,
+     "share_of_loading_variance": 0.0912,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.1988,
+     "top3_sources_share": 0.503,
+     "top_dataset": "Austrian Crop",
+     "top_dataset_share": 0.1681,
+     "eta2_sensor": 0.0486,
+     "eta2_task_type": 0.057,
+     "top": [
+      "Austrian Crop",
+      "NeuCo-Bench Crops",
+      "NeuCo-Bench Landcover",
+      "Five Billion Pixels",
+      "GEOID-Flood"
+     ],
+     "bottom": [
+      "RESISC45 / UCMerced (EarthShift)",
+      "Live Fuel Moisture Content",
+      "DIOR",
+      "UrbanSARFloods",
+      "MMEarth-Bench soil organic carbon"
+     ]
+    },
+    {
+     "dimension": 5,
+     "share_of_loading_variance": 0.0526,
+     "top_source": "earthshift",
+     "top_source_share": 0.1931,
+     "top3_sources_share": 0.4204,
+     "top_dataset": "RESISC45 / UCMerced (EarthShift)",
+     "top_dataset_share": 0.0929,
+     "eta2_sensor": 0.0156,
+     "eta2_task_type": 0.1169,
+     "top": [
+      "CORINE (Panopticon)",
+      "UrbanSARFloods",
+      "xBD / xView2",
+      "RESISC45",
+      "LEVIR-CD"
+     ],
+     "bottom": [
+      "Kuro Siwo (Flood-S1)",
+      "DIOR",
+      "NeuCo-Bench Landcover",
+      "MARIDA",
+      "CropTypeMapping Ghana / South Sudan"
+     ]
+    }
+   ],
+   "6": [
+    {
+     "dimension": 1,
+     "share_of_loading_variance": 0.4547,
+     "top_source": "galileo",
+     "top_source_share": 0.2631,
+     "top3_sources_share": 0.5649,
+     "top_dataset": "PASTIS / PASTIS-R",
+     "top_dataset_share": 0.2,
+     "eta2_sensor": 0.1866,
+     "eta2_task_type": 0.0884,
+     "top": [
+      "NeuCo-Bench Landcover",
+      "Dynamic World",
+      "PASTIS / PASTIS-R",
+      "NeuCo-Bench Crops",
+      "DIOR"
+     ],
+     "bottom": [
+      "RESISC45 / UCMerced (EarthShift)",
+      "Five Billion Pixels",
+      "GLID",
+      "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+      "xBD / xView2"
+     ]
+    },
+    {
+     "dimension": 2,
+     "share_of_loading_variance": 0.1948,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.3182,
+     "top3_sources_share": 0.5873,
+     "top_dataset": "Live Fuel Moisture Content",
+     "top_dataset_share": 0.1259,
+     "eta2_sensor": 0.222,
+     "eta2_task_type": 0.1725,
+     "top": [
+      "xBD / xView2",
+      "Kuro Siwo (Flood-S1)",
+      "GLID",
+      "Five Billion Pixels",
+      "RESISC45"
+     ],
+     "bottom": [
+      "Live Fuel Moisture Content",
+      "OlmoEarth Vessel Type",
+      "BreizhCrops",
+      "MMEarth-Bench soil organic carbon",
+      "OlmoEarth Mangrove"
+     ]
+    },
+    {
+     "dimension": 3,
+     "share_of_loading_variance": 0.1234,
+     "top_source": "galileo",
+     "top_source_share": 0.2985,
+     "top3_sources_share": 0.5845,
+     "top_dataset": "BigEarthNet v1 / v2 (reBEN)",
+     "top_dataset_share": 0.2502,
+     "eta2_sensor": 0.1037,
+     "eta2_task_type": 0.0568,
+     "top": [
+      "RESISC45 / UCMerced (EarthShift)",
+      "DIOR",
+      "FLUXNET2015",
+      "FLAIR / FLAIR 2",
+      "BigEarthNet v1 / v2 (reBEN)"
+     ],
+     "bottom": [
+      "Live Fuel Moisture Content",
+      "NeuCo-Bench Clouds",
+      "Kuro Siwo (Flood-S1)",
+      "OlmoEarth Mangrove",
+      "NeuCo-Bench Heatisland"
+     ]
+    },
+    {
+     "dimension": 4,
+     "share_of_loading_variance": 0.0996,
+     "top_source": "tessera",
+     "top_source_share": 0.1747,
+     "top3_sources_share": 0.4923,
+     "top_dataset": "Austrian Crop",
+     "top_dataset_share": 0.151,
+     "eta2_sensor": 0.0437,
+     "eta2_task_type": 0.0242,
+     "top": [
+      "Austrian Crop",
+      "Infra-Bench",
+      "OlmoEarth Vessel Length",
+      "OlmoEarth Vessel Type",
+      "GLID"
+     ],
+     "bottom": [
+      "NeuCo-Bench Landcover",
+      "PASTIS / PASTIS-R",
+      "NeuCo-Bench Crops",
+      "WorldClim Bioclim",
+      "HLS Burn Scars"
+     ]
+    },
+    {
+     "dimension": 5,
+     "share_of_loading_variance": 0.0706,
+     "top_source": "olmoearth_v12",
+     "top_source_share": 0.2227,
+     "top3_sources_share": 0.5242,
+     "top_dataset": "EuroSAT",
+     "top_dataset_share": 0.1506,
+     "eta2_sensor": 0.1454,
+     "eta2_task_type": 0.0687,
+     "top": [
+      "Five Billion Pixels",
+      "MMEarth-Bench soil organic carbon",
+      "MMEarth-Bench species",
+      "NeuCo-Bench Crops",
+      "MMEarth-Bench Biomass"
+     ],
+     "bottom": [
+      "UrbanSARFloods",
+      "RESISC45",
+      "CORINE (Panopticon)",
+      "FLAIR / FLAIR 2",
+      "Substations"
+     ]
+    },
+    {
+     "dimension": 6,
+     "share_of_loading_variance": 0.0569,
+     "top_source": "earthshift",
+     "top_source_share": 0.196,
+     "top3_sources_share": 0.4607,
+     "top_dataset": "RESISC45 / UCMerced (EarthShift)",
+     "top_dataset_share": 0.1051,
+     "eta2_sensor": 0.0709,
+     "eta2_task_type": 0.0392,
+     "top": [
+      "DIOR",
+      "MARIDA",
+      "DFC2020",
+      "OlmoEarth Vessel Length",
+      "NeuCo-Bench Heatisland"
+     ],
+     "bottom": [
+      "Austrian Crop",
+      "MMEarth-Bench species",
+      "Kuro Siwo (Flood-S1)",
+      "RESISC45",
+      "Borneo Canopy Height"
+     ]
+    }
+   ]
+  },
+  "largest_source_share_of_cells": 0.1864,
+  "largest_source": "olmoearth_v12"
+ },
+ "leave_one_source_out": [
+  {
+   "source": "geobench_v2_leaderboard",
+   "tasks": 32,
+   "share_of_cells": 0.0565,
+   "similarity_map_r_multi_source": 0.6434,
+   "dimension_r": [
+    0.8501,
+    0.8769,
+    0.8528
+   ]
+  },
+  {
+   "source": "olmoearth_v12",
+   "tasks": 49,
+   "share_of_cells": 0.1864,
+   "similarity_map_r_multi_source": 0.6443,
+   "dimension_r": [
+    0.7644,
+    0.6755,
+    0.4858
+   ]
+  },
+  {
+   "source": "geocross-bench",
+   "tasks": 60,
+   "share_of_cells": 0.1034,
+   "similarity_map_r_multi_source": 0.7186,
+   "dimension_r": [
+    0.8574,
+    0.8256,
+    0.69
+   ]
+  },
+  {
+   "source": "galileo",
+   "tasks": 56,
+   "share_of_cells": 0.1781,
+   "similarity_map_r_multi_source": 0.7331,
+   "dimension_r": [
+    0.8161,
+    0.6145,
+    -0.0544
+   ]
+  },
+  {
+   "source": "pangea",
+   "tasks": 34,
+   "share_of_cells": 0.0784,
+   "similarity_map_r_multi_source": 0.7612,
+   "dimension_r": [
+    0.8721,
+    0.8324,
+    0.593
+   ]
+  },
+  {
+   "source": "earthshift",
+   "tasks": 40,
+   "share_of_cells": 0.0615,
+   "similarity_map_r_multi_source": 0.7649,
+   "dimension_r": [
+    0.868,
+    0.7332,
+    0.0677
+   ]
+  },
+  {
+   "source": "tessera",
+   "tasks": 30,
+   "share_of_cells": 0.0571,
+   "similarity_map_r_multi_source": 0.7787,
+   "dimension_r": [
+    0.906,
+    0.65,
+    -0.1383
+   ]
+  },
+  {
+   "source": "exe-bench",
+   "tasks": 4,
+   "share_of_cells": 0.0031,
+   "similarity_map_r_multi_source": 0.8756,
+   "dimension_r": [
+    0.8786,
+    0.8717,
+    0.0943
+   ]
+  },
+  {
+   "source": "prithvi_v2",
+   "tasks": 20,
+   "share_of_cells": 0.0321,
+   "similarity_map_r_multi_source": 0.8773,
+   "dimension_r": [
+    0.9462,
+    0.7442,
+    -0.0175
+   ]
+  },
+  {
+   "source": "copernicus",
+   "tasks": 9,
+   "share_of_cells": 0.0069,
+   "similarity_map_r_multi_source": 0.879,
+   "dimension_r": [
+    0.9052,
+    0.8741,
+    0.3377
+   ]
+  },
+  {
+   "source": "panopticon",
+   "tasks": 22,
+   "share_of_cells": 0.0233,
+   "similarity_map_r_multi_source": 0.8851,
+   "dimension_r": [
+    0.8532,
+    0.8929,
+    0.3001
+   ]
+  },
+  {
+   "source": "agbd_eval",
+   "tasks": 2,
+   "share_of_cells": 0.0033,
+   "similarity_map_r_multi_source": 0.8886,
+   "dimension_r": [
+    0.914,
+    0.8901,
+    0.379
+   ]
+  },
+  {
+   "source": "tessera_v2",
+   "tasks": 5,
+   "share_of_cells": 0.0038,
+   "similarity_map_r_multi_source": 0.8892,
+   "dimension_r": [
+    0.912,
+    0.8876,
+    0.3534
+   ]
+  },
+  {
+   "source": "croma",
+   "tasks": 22,
+   "share_of_cells": 0.0281,
+   "similarity_map_r_multi_source": 0.8895,
+   "dimension_r": [
+    0.9064,
+    0.8909,
+    0.4224
+   ]
+  },
+  {
+   "source": "anysat",
+   "tasks": 1,
+   "share_of_cells": 0.0008,
+   "similarity_map_r_multi_source": 0.8904,
+   "dimension_r": [
+    0.9118,
+    0.89,
+    0.3642
+   ]
+  },
+  {
+   "source": "geoid-flood-bench",
+   "tasks": 4,
+   "share_of_cells": 0.0069,
+   "similarity_map_r_multi_source": 0.8904,
+   "dimension_r": [
+    0.9115,
+    0.8952,
+    0.3895
+   ]
+  },
+  {
+   "source": "cryo-bench",
+   "tasks": 15,
+   "share_of_cells": 0.0388,
+   "similarity_map_r_multi_source": 0.8915,
+   "dimension_r": [
+    0.8829,
+    0.8789,
+    0.5252
+   ]
+  },
+  {
+   "source": "satmae++",
+   "tasks": 1,
+   "share_of_cells": 0.0008,
+   "similarity_map_r_multi_source": 0.8917,
+   "dimension_r": [
+    0.9089,
+    0.888,
+    0.3742
+   ]
+  },
+  {
+   "source": "seco",
+   "tasks": 4,
+   "share_of_cells": 0.0031,
+   "similarity_map_r_multi_source": 0.8932,
+   "dimension_r": [
+    0.9155,
+    0.8923,
+    0.3917
+   ]
+  },
+  {
+   "source": "ssl4eo",
+   "tasks": 10,
+   "share_of_cells": 0.0115,
+   "similarity_map_r_multi_source": 0.8949,
+   "dimension_r": [
+    0.9207,
+    0.8934,
+    0.3914
+   ]
+  },
+  {
+   "source": "better-together",
+   "tasks": 7,
+   "share_of_cells": 0.0054,
+   "similarity_map_r_multi_source": 0.8967,
+   "dimension_r": [
+    0.9186,
+    0.8976,
+    0.4165
+   ]
+  },
+  {
+   "source": "dofa",
+   "tasks": 15,
+   "share_of_cells": 0.0259,
+   "similarity_map_r_multi_source": 0.9803,
+   "dimension_r": [
+    0.9657,
+    0.96,
+    0.9432
+   ]
+  },
+  {
+   "source": "satdifuser",
+   "tasks": 15,
+   "share_of_cells": 0.0223,
+   "similarity_map_r_multi_source": 0.9854,
+   "dimension_r": [
+    0.9745,
+    0.9916,
+    0.987
+   ]
+  },
+  {
+   "source": "mmearth-bench",
+   "tasks": 10,
+   "share_of_cells": 0.0135,
+   "similarity_map_r_multi_source": 0.9856,
+   "dimension_r": [
+    0.9959,
+    0.9961,
+    0.9861
+   ]
+  },
+  {
+   "source": "neuco-bench",
+   "tasks": 8,
+   "share_of_cells": 0.0123,
+   "similarity_map_r_multi_source": 0.9972,
+   "dimension_r": [
+    0.996,
+    0.9969,
+    0.9983
+   ]
+  },
+  {
+   "source": "infra-bench",
+   "tasks": 4,
+   "share_of_cells": 0.0042,
+   "similarity_map_r_multi_source": 0.9992,
+   "dimension_r": [
+    0.9995,
+    0.9994,
+    0.9994
+   ]
+  },
+  {
+   "source": "sustainfm",
+   "tasks": 17,
+   "share_of_cells": 0.0327,
+   "similarity_map_r_multi_source": 0.9992,
+   "dimension_r": [
+    0.9993,
+    0.999,
+    0.9991
+   ]
+  }
+ ],
+ "position_uncertainty": {
+  "B_each": 30,
+  "sd": [
+   [
+    2.0824,
+    1.1403,
+    0.8817
+   ],
+   [
+    0.4357,
+    0.3255,
+    0.3854
+   ],
+   [
+    0.5796,
+    0.4191,
+    0.5301
+   ],
+   [
+    0.8286,
+    0.8903,
+    0.8973
+   ],
+   [
+    1.1733,
+    1.1111,
+    1.7688
+   ],
+   [
+    0.5154,
+    0.4166,
+    0.3464
+   ],
+   [
+    0.942,
+    0.9755,
+    0.8454
+   ],
+   [
+    0.7887,
+    0.7815,
+    1.2531
+   ],
+   [
+    0.7668,
+    0.9624,
+    0.8828
+   ],
+   [
+    0.3292,
+    0.2111,
+    0.2089
+   ],
+   [
+    0.951,
+    1.1409,
+    0.8838
+   ],
+   [
+    1.939,
+    1.9205,
+    1.2988
+   ],
+   [
+    0.9204,
+    1.1411,
+    0.9666
+   ],
+   [
+    0.7997,
+    0.6338,
+    0.7346
+   ],
+   [
+    0.4097,
+    0.4913,
+    0.3474
+   ],
+   [
+    1.1723,
+    0.8048,
+    0.9327
+   ],
+   [
+    0.8176,
+    0.6213,
+    0.6095
+   ],
+   [
+    0.4008,
+    0.4743,
+    0.4053
+   ],
+   [
+    0.8305,
+    0.5956,
+    0.5509
+   ],
+   [
+    0.8489,
+    0.9042,
+    0.8919
+   ],
+   [
+    2.7576,
+    2.7472,
+    2.6342
+   ],
+   [
+    0.919,
+    0.7778,
+    0.7711
+   ],
+   [
+    1.6281,
+    2.0982,
+    1.8978
+   ],
+   [
+    1.394,
+    1.5113,
+    1.3249
+   ],
+   [
+    1.7277,
+    1.7131,
+    1.1011
+   ],
+   [
+    1.1715,
+    1.0869,
+    1.4235
+   ],
+   [
+    0.6248,
+    0.3952,
+    0.513
+   ],
+   [
+    0.586,
+    0.4267,
+    0.4315
+   ],
+   [
+    1.2585,
+    1.3341,
+    0.8556
+   ],
+   [
+    1.1133,
+    1.2755,
+    0.9246
+   ],
+   [
+    0.922,
+    0.8853,
+    1.0802
+   ],
+   [
+    0.5754,
+    0.5026,
+    0.5067
+   ],
+   [
+    1.4455,
+    1.8271,
+    1.7778
+   ],
+   [
+    0.831,
+    0.8682,
+    0.8378
+   ],
+   [
+    0.6208,
+    0.51,
+    0.519
+   ],
+   [
+    0.8052,
+    0.7984,
+    0.6998
+   ],
+   [
+    0.5464,
+    0.9295,
+    0.7469
+   ],
+   [
+    0.8006,
+    1.2134,
+    0.9123
+   ],
+   [
+    0.7784,
+    0.8435,
+    0.8177
+   ],
+   [
+    1.0591,
+    1.3827,
+    0.9188
+   ],
+   [
+    0.4182,
+    0.4447,
+    0.3999
+   ],
+   [
+    0.5428,
+    0.4074,
+    0.4054
+   ],
+   [
+    0.5881,
+    0.5847,
+    0.7028
+   ],
+   [
+    0.3752,
+    0.2879,
+    0.3822
+   ],
+   [
+    0.6906,
+    0.5175,
+    0.7191
+   ],
+   [
+    1.6551,
+    1.3992,
+    0.59
+   ],
+   [
+    1.2913,
+    1.6669,
+    1.4485
+   ],
+   [
+    2.2678,
+    2.5775,
+    2.7948
+   ],
+   [
+    0.6758,
+    0.8748,
+    0.7185
+   ],
+   [
+    2.2102,
+    2.8375,
+    2.495
+   ],
+   [
+    0.7336,
+    0.4389,
+    0.4321
+   ],
+   [
+    1.273,
+    1.6493,
+    1.8003
+   ],
+   [
+    1.7865,
+    1.8731,
+    0.9473
+   ],
+   [
+    1.4897,
+    1.3951,
+    2.0546
+   ],
+   [
+    1.1948,
+    1.1513,
+    1.362
+   ],
+   [
+    1.9388,
+    2.1217,
+    2.1164
+   ],
+   [
+    1.0924,
+    1.07,
+    1.1432
+   ],
+   [
+    1.5797,
+    1.4948,
+    1.449
+   ],
+   [
+    1.239,
+    1.736,
+    1.3161
+   ],
+   [
+    0.763,
+    0.6221,
+    0.609
+   ],
+   [
+    0.7105,
+    1.0937,
+    0.9513
+   ],
+   [
+    0.8628,
+    0.5275,
+    0.6094
+   ],
+   [
+    1.5663,
+    1.6748,
+    1.9064
+   ],
+   [
+    1.9219,
+    1.6812,
+    1.996
+   ],
+   [
+    1.2011,
+    1.687,
+    2.1079
+   ],
+   [
+    1.5295,
+    1.4548,
+    1.7622
+   ],
+   [
+    2.1358,
+    2.0051,
+    2.3246
+   ],
+   [
+    0.3711,
+    0.3753,
+    0.3713
+   ],
+   [
+    1.0239,
+    0.785,
+    0.5494
+   ],
+   [
+    0.6591,
+    1.1628,
+    0.8556
+   ],
+   [
+    0.543,
+    0.7054,
+    0.764
+   ],
+   [
+    0.7673,
+    0.7231,
+    0.889
+   ],
+   [
+    1.8107,
+    2.0357,
+    4.0154
+   ],
+   [
+    1.4526,
+    1.9015,
+    2.3248
+   ],
+   [
+    0.9271,
+    0.5406,
+    0.6585
+   ],
+   [
+    0.6905,
+    0.5289,
+    0.6151
+   ],
+   [
+    1.3283,
+    1.4674,
+    1.2306
+   ],
+   [
+    3.1319,
+    2.3874,
+    1.92
+   ],
+   [
+    0.6281,
+    0.7857,
+    0.6643
+   ],
+   [
+    0.6879,
+    0.5511,
+    0.4728
+   ],
+   [
+    0.7683,
+    0.4703,
+    0.4129
+   ],
+   [
+    0.8709,
+    0.624,
+    0.5524
+   ],
+   [
+    0.4637,
+    0.355,
+    0.2126
+   ],
+   [
+    1.2476,
+    0.6878,
+    0.7125
+   ],
+   [
+    0.6556,
+    0.6226,
+    0.5201
+   ],
+   [
+    0.4733,
+    0.3936,
+    0.4
+   ],
+   [
+    0.8131,
+    0.6258,
+    1.1915
+   ],
+   [
+    0.4198,
+    0.2982,
+    0.2992
+   ],
+   [
+    0.5513,
+    0.5641,
+    0.6685
+   ],
+   [
+    1.3162,
+    1.4915,
+    1.6419
+   ],
+   [
+    0.9123,
+    1.2922,
+    1.4646
+   ],
+   [
+    1.1001,
+    1.1173,
+    1.077
+   ],
+   [
+    1.0555,
+    1.1543,
+    0.561
+   ],
+   [
+    1.2237,
+    0.9026,
+    1.098
+   ],
+   [
+    1.1872,
+    1.4893,
+    1.4055
+   ]
+  ],
+  "cov_dim12": [
+   [
+    [
+     4.414,
+     -1.5658
+    ],
+    [
+     -1.5658,
+     1.3235
+    ]
+   ],
+   [
+    [
+     0.1932,
+     0.053
+    ],
+    [
+     0.053,
+     0.1078
+    ]
+   ],
+   [
+    [
+     0.3418,
+     0.0682
+    ],
+    [
+     0.0682,
+     0.1787
+    ]
+   ],
+   [
+    [
+     0.6983,
+     0.0761
+    ],
+    [
+     0.0761,
+     0.8061
+    ]
+   ],
+   [
+    [
+     1.4,
+     0.1879
+    ],
+    [
+     0.1879,
+     1.2555
+    ]
+   ],
+   [
+    [
+     0.2702,
+     -0.0272
+    ],
+    [
+     -0.0272,
+     0.1765
+    ]
+   ],
+   [
+    [
+     0.9025,
+     0.063
+    ],
+    [
+     0.063,
+     0.9678
+    ]
+   ],
+   [
+    [
+     0.6326,
+     -0.0379
+    ],
+    [
+     -0.0379,
+     0.6211
+    ]
+   ],
+   [
+    [
+     0.5988,
+     0.0154
+    ],
+    [
+     0.0154,
+     0.9433
+    ]
+   ],
+   [
+    [
+     0.1102,
+     0.0069
+    ],
+    [
+     0.0069,
+     0.0453
+    ]
+   ],
+   [
+    [
+     0.9241,
+     0.2599
+    ],
+    [
+     0.2599,
+     1.3299
+    ]
+   ],
+   [
+    [
+     3.8267,
+     -0.2459
+    ],
+    [
+     -0.2459,
+     3.754
+    ]
+   ],
+   [
+    [
+     0.8614,
+     -0.0924
+    ],
+    [
+     -0.0924,
+     1.3243
+    ]
+   ],
+   [
+    [
+     0.6504,
+     0.0647
+    ],
+    [
+     0.0647,
+     0.4085
+    ]
+   ],
+   [
+    [
+     0.1707,
+     -0.0335
+    ],
+    [
+     -0.0335,
+     0.2455
+    ]
+   ],
+   [
+    [
+     1.3976,
+     0.1255
+    ],
+    [
+     0.1255,
+     0.6586
+    ]
+   ],
+   [
+    [
+     0.6799,
+     0.2469
+    ],
+    [
+     0.2469,
+     0.3926
+    ]
+   ],
+   [
+    [
+     0.1634,
+     0.092
+    ],
+    [
+     0.092,
+     0.2287
+    ]
+   ],
+   [
+    [
+     0.7017,
+     -0.2016
+    ],
+    [
+     -0.2016,
+     0.3608
+    ]
+   ],
+   [
+    [
+     0.7332,
+     0.1553
+    ],
+    [
+     0.1553,
+     0.832
+    ]
+   ],
+   [
+    [
+     7.7507,
+     4.0309
+    ],
+    [
+     4.0309,
+     7.6923
+    ]
+   ],
+   [
+    [
+     0.8619,
+     0.3167
+    ],
+    [
+     0.3167,
+     0.6173
+    ]
+   ],
+   [
+    [
+     2.6964,
+     -0.3276
+    ],
+    [
+     -0.3276,
+     4.4784
+    ]
+   ],
+   [
+    [
+     1.9864,
+     0.2924
+    ],
+    [
+     0.2924,
+     2.3348
+    ]
+   ],
+   [
+    [
+     3.0484,
+     -0.8796
+    ],
+    [
+     -0.8796,
+     2.9971
+    ]
+   ],
+   [
+    [
+     1.4015,
+     0.3937
+    ],
+    [
+     0.3937,
+     1.2065
+    ]
+   ],
+   [
+    [
+     0.3971,
+     0.11
+    ],
+    [
+     0.11,
+     0.1589
+    ]
+   ],
+   [
+    [
+     0.3493,
+     0.0165
+    ],
+    [
+     0.0165,
+     0.1851
+    ]
+   ],
+   [
+    [
+     1.6169,
+     0.6056
+    ],
+    [
+     0.6056,
+     1.817
+    ]
+   ],
+   [
+    [
+     1.2616,
+     -0.4933
+    ],
+    [
+     -0.4933,
+     1.6559
+    ]
+   ],
+   [
+    [
+     0.8645,
+     0.2537
+    ],
+    [
+     0.2537,
+     0.7971
+    ]
+   ],
+   [
+    [
+     0.3367,
+     -0.0254
+    ],
+    [
+     -0.0254,
+     0.2569
+    ]
+   ],
+   [
+    [
+     2.1249,
+     0.0894
+    ],
+    [
+     0.0894,
+     3.3949
+    ]
+   ],
+   [
+    [
+     0.7056,
+     -0.1795
+    ],
+    [
+     -0.1795,
+     0.7701
+    ]
+   ],
+   [
+    [
+     0.3919,
+     0.0379
+    ],
+    [
+     0.0379,
+     0.2645
+    ]
+   ],
+   [
+    [
+     0.6619,
+     0.177
+    ],
+    [
+     0.177,
+     0.6507
+    ]
+   ],
+   [
+    [
+     0.3048,
+     0.0852
+    ],
+    [
+     0.0852,
+     0.882
+    ]
+   ],
+   [
+    [
+     0.6521,
+     0.504
+    ],
+    [
+     0.504,
+     1.4977
+    ]
+   ],
+   [
+    [
+     0.6163,
+     0.1867
+    ],
+    [
+     0.1867,
+     0.7238
+    ]
+   ],
+   [
+    [
+     1.1414,
+     0.3172
+    ],
+    [
+     0.3172,
+     1.9454
+    ]
+   ],
+   [
+    [
+     0.1784,
+     0.0033
+    ],
+    [
+     0.0033,
+     0.2017
+    ]
+   ],
+   [
+    [
+     0.2999,
+     -0.0003
+    ],
+    [
+     -0.0003,
+     0.169
+    ]
+   ],
+   [
+    [
+     0.3517,
+     -0.1032
+    ],
+    [
+     -0.1032,
+     0.3477
+    ]
+   ],
+   [
+    [
+     0.1436,
+     0.0152
+    ],
+    [
+     0.0152,
+     0.0846
+    ]
+   ],
+   [
+    [
+     0.4851,
+     -0.0482
+    ],
+    [
+     -0.0482,
+     0.2723
+    ]
+   ],
+   [
+    [
+     2.7911,
+     -1.1654
+    ],
+    [
+     -1.1654,
+     1.9946
+    ]
+   ],
+   [
+    [
+     1.6962,
+     -0.6975
+    ],
+    [
+     -0.6975,
+     2.8264
+    ]
+   ],
+   [
+    [
+     5.2332,
+     0.1148
+    ],
+    [
+     0.1148,
+     6.7601
+    ]
+   ],
+   [
+    [
+     0.4664,
+     0.1914
+    ],
+    [
+     0.1914,
+     0.7816
+    ]
+   ],
+   [
+    [
+     4.9773,
+     0.2788
+    ],
+    [
+     0.2788,
+     8.2034
+    ]
+   ],
+   [
+    [
+     0.5473,
+     0.1299
+    ],
+    [
+     0.1299,
+     0.1959
+    ]
+   ],
+   [
+    [
+     1.6529,
+     0.2066
+    ],
+    [
+     0.2066,
+     2.7746
+    ]
+   ],
+   [
+    [
+     3.2496,
+     -0.6471
+    ],
+    [
+     -0.6471,
+     3.5722
+    ]
+   ],
+   [
+    [
+     2.2595,
+     0.0941
+    ],
+    [
+     0.0941,
+     1.9816
+    ]
+   ],
+   [
+    [
+     1.4531,
+     -0.3097
+    ],
+    [
+     -0.3097,
+     1.3492
+    ]
+   ],
+   [
+    [
+     3.8274,
+     0.683
+    ],
+    [
+     0.683,
+     4.5833
+    ]
+   ],
+   [
+    [
+     1.2167,
+     -0.5602
+    ],
+    [
+     -0.5602,
+     1.1673
+    ]
+   ],
+   [
+    [
+     2.5401,
+     0.0033
+    ],
+    [
+     0.0033,
+     2.2742
+    ]
+   ],
+   [
+    [
+     1.5646,
+     0.6683
+    ],
+    [
+     0.6683,
+     3.0716
+    ]
+   ],
+   [
+    [
+     0.5923,
+     0.2029
+    ],
+    [
+     0.2029,
+     0.3937
+    ]
+   ],
+   [
+    [
+     0.5134,
+     0.3195
+    ],
+    [
+     0.3195,
+     1.2165
+    ]
+   ],
+   [
+    [
+     0.757,
+     0.1384
+    ],
+    [
+     0.1384,
+     0.283
+    ]
+   ],
+   [
+    [
+     2.4971,
+     -0.1762
+    ],
+    [
+     -0.1762,
+     2.8551
+    ]
+   ],
+   [
+    [
+     3.7759,
+     -0.2029
+    ],
+    [
+     -0.2029,
+     2.8892
+    ]
+   ],
+   [
+    [
+     1.4714,
+     -0.3154
+    ],
+    [
+     -0.3154,
+     2.9028
+    ]
+   ],
+   [
+    [
+     2.381,
+     0.0158
+    ],
+    [
+     0.0158,
+     2.1543
+    ]
+   ],
+   [
+    [
+     4.6431,
+     -1.1337
+    ],
+    [
+     -1.1337,
+     4.0923
+    ]
+   ],
+   [
+    [
+     0.1403,
+     -0.0263
+    ],
+    [
+     -0.0263,
+     0.1435
+    ]
+   ],
+   [
+    [
+     1.0661,
+     -0.2243
+    ],
+    [
+     -0.2243,
+     0.6266
+    ]
+   ],
+   [
+    [
+     0.4427,
+     0.2121
+    ],
+    [
+     0.2121,
+     1.3782
+    ]
+   ],
+   [
+    [
+     0.3008,
+     0.0935
+    ],
+    [
+     0.0935,
+     0.5075
+    ]
+   ],
+   [
+    [
+     0.5991,
+     -0.014
+    ],
+    [
+     -0.014,
+     0.532
+    ]
+   ],
+   [
+    [
+     3.3418,
+     -0.1497
+    ],
+    [
+     -0.1497,
+     4.2237
+    ]
+   ],
+   [
+    [
+     2.155,
+     -0.7351
+    ],
+    [
+     -0.7351,
+     3.6927
+    ]
+   ],
+   [
+    [
+     0.8741,
+     0.1319
+    ],
+    [
+     0.1319,
+     0.2972
+    ]
+   ],
+   [
+    [
+     0.4848,
+     0.0328
+    ],
+    [
+     0.0328,
+     0.2844
+    ]
+   ],
+   [
+    [
+     1.7954,
+     1.2526
+    ],
+    [
+     1.2526,
+     2.1912
+    ]
+   ],
+   [
+    [
+     9.9752,
+     1.2515
+    ],
+    [
+     1.2515,
+     5.7965
+    ]
+   ],
+   [
+    [
+     0.4028,
+     -0.0166
+    ],
+    [
+     -0.0166,
+     0.6304
+    ]
+   ],
+   [
+    [
+     0.4812,
+     -0.0837
+    ],
+    [
+     -0.0837,
+     0.3088
+    ]
+   ],
+   [
+    [
+     0.6024,
+     0.0236
+    ],
+    [
+     0.0236,
+     0.2257
+    ]
+   ],
+   [
+    [
+     0.7713,
+     -0.0114
+    ],
+    [
+     -0.0114,
+     0.396
+    ]
+   ],
+   [
+    [
+     0.2187,
+     0.0217
+    ],
+    [
+     0.0217,
+     0.1282
+    ]
+   ],
+   [
+    [
+     1.5889,
+     -0.024
+    ],
+    [
+     -0.024,
+     0.4829
+    ]
+   ],
+   [
+    [
+     0.4377,
+     -0.0416
+    ],
+    [
+     -0.0416,
+     0.3947
+    ]
+   ],
+   [
+    [
+     0.228,
+     0.0243
+    ],
+    [
+     0.0243,
+     0.1577
+    ]
+   ],
+   [
+    [
+     0.6752,
+     0.0651
+    ],
+    [
+     0.0651,
+     0.4
+    ]
+   ],
+   [
+    [
+     0.1792,
+     0.0191
+    ],
+    [
+     0.0191,
+     0.0904
+    ]
+   ],
+   [
+    [
+     0.3091,
+     -0.0551
+    ],
+    [
+     -0.0551,
+     0.3236
+    ]
+   ],
+   [
+    [
+     1.7719,
+     -0.1308
+    ],
+    [
+     -0.1308,
+     2.275
+    ]
+   ],
+   [
+    [
+     0.8464,
+     -0.1173
+    ],
+    [
+     -0.1173,
+     1.6982
+    ]
+   ],
+   [
+    [
+     1.2372,
+     0.3178
+    ],
+    [
+     0.3178,
+     1.2761
+    ]
+   ],
+   [
+    [
+     1.1374,
+     -0.1623
+    ],
+    [
+     -0.1623,
+     1.3601
+    ]
+   ],
+   [
+    [
+     1.5227,
+     0.1553
+    ],
+    [
+     0.1553,
+     0.8285
+    ]
+   ],
+   [
+    [
+     1.4337,
+     0.0257
+    ],
+    [
+     0.0257,
+     2.2561
+    ]
+   ]
+  ],
+  "sign_stable_dim2": [
+   0.75,
+   0.75,
+   0.7,
+   0.8833,
+   0.6167,
+   0.55,
+   0.9167,
+   0.6833,
+   0.8167,
+   0.6167,
+   0.7167,
+   0.8333,
+   0.95,
+   0.65,
+   0.6667,
+   0.6333,
+   0.9,
+   0.8667,
+   0.7667,
+   0.5167,
+   0.7667,
+   0.65,
+   0.85,
+   0.5,
+   0.6333,
+   0.5,
+   0.7,
+   0.5833,
+   0.6333,
+   0.8667,
+   0.7,
+   0.5167,
+   0.7333,
+   0.5333,
+   0.9167,
+   0.7333,
+   0.6667,
+   0.75,
+   0.6667,
+   0.9,
+   0.7167,
+   0.5667,
+   0.7333,
+   0.7,
+   0.9667,
+   0.75,
+   0.75,
+   0.7667,
+   0.7333,
+   0.75,
+   0.6,
+   0.6333,
+   0.6333,
+   0.5333,
+   0.5333,
+   0.7,
+   0.6167,
+   0.7167,
+   0.8167,
+   0.7333,
+   0.85,
+   0.85,
+   0.65,
+   0.4833,
+   0.8167,
+   0.75,
+   0.8667,
+   0.8167,
+   0.7333,
+   0.6833,
+   0.75,
+   0.5833,
+   0.65,
+   0.6,
+   0.9,
+   0.95,
+   0.8833,
+   0.7833,
+   0.7333,
+   0.5333,
+   0.7167,
+   0.6667,
+   0.5333,
+   0.5833,
+   0.85,
+   0.8,
+   0.4333,
+   0.5667,
+   0.7167,
+   0.6333,
+   0.6833,
+   0.4167,
+   0.5167,
+   0.6667,
+   0.9
+  ],
+  "median_sd_multi_source": [
+   0.7336,
+   0.5406,
+   0.6094
+  ],
+  "median_sd_single_source": [
+   1.0757,
+   1.1461,
+   0.936
+  ]
+ },
+ "slices": {
+  "by_task_type": [
+   {
+    "group": "classification",
+    "datasets": 22,
+    "mean": [
+     1.1996,
+     -0.1359,
+     0.2733
+    ],
+    "ci90": [
+     [
+      0.5999,
+      1.9738
+     ],
+     [
+      -0.5362,
+      0.5552
+     ],
+     [
+      -0.234,
+      0.7951
+     ]
+    ]
+   },
+   {
+    "group": "segmentation",
+    "datasets": 37,
+    "mean": [
+     0.853,
+     0.4842,
+     0.0298
+    ],
+    "ci90": [
+     [
+      0.2594,
+      1.4611
+     ],
+     [
+      0.0598,
+      0.6322
+     ],
+     [
+      -0.1107,
+      0.3463
+     ]
+    ]
+   },
+   {
+    "group": "regression",
+    "datasets": 24,
+    "mean": [
+     1.2535,
+     -0.2,
+     -0.0175
+    ],
+    "ci90": [
+     [
+      0.8972,
+      2.7558
+     ],
+     [
+      -1.444,
+      0.2852
+     ],
+     [
+      -0.6332,
+      0.5184
+     ]
+    ]
+   },
+   {
+    "group": "change detection",
+    "datasets": 9,
+    "mean": [
+     0.3968,
+     0.6579,
+     0.5203
+    ],
+    "ci90": [
+     [
+      -0.3537,
+      1.0007
+     ],
+     [
+      0.0721,
+      1.4923
+     ],
+     [
+      -0.3208,
+      1.1591
+     ]
+    ]
+   },
+   {
+    "group": "detection",
+    "datasets": 3,
+    "mean": [
+     1.3394,
+     0.613,
+     0.0591
+    ],
+    "ci90": [
+     [
+      0.3594,
+      3.6208
+     ],
+     [
+      -0.6037,
+      2.7257
+     ],
+     [
+      -1.2922,
+      2.1286
+     ]
+    ]
+   }
+  ],
+  "by_sensor": [
+   {
+    "group": "multispectral",
+    "datasets": 32,
+    "mean": [
+     1.1936,
+     -0.0804,
+     0.101
+    ],
+    "ci90": [
+     [
+      0.6928,
+      1.8681
+     ],
+     [
+      -0.5493,
+      0.2945
+     ],
+     [
+      -0.2133,
+      0.5577
+     ]
+    ]
+   },
+   {
+    "group": "SAR + optical",
+    "datasets": 28,
+    "mean": [
+     1.1475,
+     -0.157,
+     0.0844
+    ],
+    "ci90": [
+     [
+      0.6884,
+      2.2967
+     ],
+     [
+      -1.0411,
+      0.2257
+     ],
+     [
+      -0.7218,
+      0.3746
+     ]
+    ]
+   },
+   {
+    "group": "SAR",
+    "datasets": 6,
+    "mean": [
+     0.8934,
+     0.6875,
+     0.091
+    ],
+    "ci90": [
+     [
+      0.203,
+      1.9168
+     ],
+     [
+      -0.2785,
+      1.4071
+     ],
+     [
+      -0.7048,
+      0.8163
+     ]
+    ]
+   },
+   {
+    "group": "high-resolution optical",
+    "datasets": 15,
+    "mean": [
+     0.5544,
+     0.8435,
+     0.3088
+    ],
+    "ci90": [
+     [
+      -0.3597,
+      1.682
+     ],
+     [
+      0.1334,
+      1.6998
+     ],
+     [
+      -0.0478,
+      0.8334
+     ]
+    ]
+   },
+   {
+    "group": "other",
+    "datasets": 7,
+    "mean": [
+     0.3893,
+     0.8629,
+     0.0937
+    ],
+    "ci90": [
+     [
+      -0.9553,
+      0.9319
+     ],
+     [
+      -0.9041,
+      2.0079
+     ],
+     [
+      -0.7499,
+      1.5179
+     ]
+    ]
+   }
+  ]
+ },
+ "frozen_only": {
+  "matrix": {
+   "geofms": 85,
+   "tasks": 317,
+   "datasets": 79,
+   "fill": 0.1222
+  },
+  "cv_heldout_cells": {
+   "1": {
+    "pair_acc": 0.6646,
+    "pair_acc_se": 0.0066,
+    "rmse": 1.4667,
+    "n_heldout": 3140
+   },
+   "2": {
+    "pair_acc": 0.7361,
+    "pair_acc_se": 0.0064,
+    "rmse": 1.3585,
+    "n_heldout": 3140
+   },
+   "3": {
+    "pair_acc": 0.7465,
+    "pair_acc_se": 0.0047,
+    "rmse": 1.3709,
+    "n_heldout": 3140
+   },
+   "4": {
+    "pair_acc": 0.7447,
+    "pair_acc_se": 0.0043,
+    "rmse": 1.4073,
+    "n_heldout": 3140
+   },
+   "5": {
+    "pair_acc": 0.7418,
+    "pair_acc_se": 0.005,
+    "rmse": 1.4421,
+    "n_heldout": 3140
+   }
+  },
+  "similarity_map_r_with_all_protocols_multi_source": 0.5391,
+  "datasets_compared": 29,
+  "dimension_r": [
+   0.8094,
+   0.9533,
+   0.8192
+  ],
+  "loading": [
+   [
+    1.3303,
+    0.2785,
+    0.2469
+   ],
+   [
+    0.5572,
+    -0.1638,
+    0.1912
+   ],
+   [
+    0.8037,
+    -0.0464,
+    0.0224
+   ],
+   [
+    1.4759,
+    -1.0572,
+    -0.0675
+   ],
+   [
+    1.9111,
+    -0.0242,
+    0.9009
+   ],
+   [
+    1.6006,
+    -0.4038,
+    0.0975
+   ],
+   [
+    2.5272,
+    -0.9903,
+    0.2979
+   ],
+   [
+    1.7489,
+    -0.0486,
+    0.4728
+   ],
+   [
+    0.4321,
+    -1.4951,
+    -0.431
+   ],
+   [
+    0.9556,
+    0.178,
+    0.2687
+   ],
+   [
+    0.7557,
+    1.2604,
+    0.4951
+   ],
+   [
+    1.4962,
+    0.4055,
+    0.4972
+   ],
+   [
+    1.1989,
+    2.549,
+    0.2447
+   ],
+   [
+    1.2637,
+    0.6296,
+    -0.2062
+   ],
+   [
+    1.3956,
+    0.4711,
+    0.1768
+   ],
+   [
+    1.7764,
+    1.1552,
+    0.3542
+   ],
+   [
+    0.9561,
+    -0.6718,
+    0.5493
+   ],
+   [
+    0.6532,
+    -0.8875,
+    0.022
+   ],
+   [
+    1.2597,
+    -0.3068,
+    0.2094
+   ],
+   [
+    1.5659,
+    0.5214,
+    0.0501
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    0.7848,
+    0.3466,
+    0.1094
+   ],
+   [
+    0.5091,
+    1.0014,
+    0.9893
+   ],
+   [
+    0.9957,
+    -0.6318,
+    0.3906
+   ],
+   [
+    2.6356,
+    0.8489,
+    -0.3869
+   ],
+   [
+    1.8626,
+    0.7839,
+    -0.2945
+   ],
+   [
+    1.3777,
+    0.2026,
+    0.6884
+   ],
+   [
+    1.526,
+    0.2812,
+    0.312
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    1.2988,
+    1.0338,
+    1.3268
+   ],
+   [
+    1.9899,
+    0.7201,
+    0.487
+   ],
+   [
+    0.6931,
+    0.063,
+    0.0572
+   ],
+   [
+    -1.7373,
+    1.2199,
+    -1.3991
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    1.576,
+    1.099,
+    0.4356
+   ],
+   [
+    0.8925,
+    0.8369,
+    0.4075
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    2.4175,
+    2.2664,
+    -0.3204
+   ],
+   [
+    1.6223,
+    -0.5155,
+    1.3163
+   ],
+   [
+    0.8324,
+    2.4963,
+    0.8544
+   ],
+   [
+    0.2036,
+    0.0456,
+    0.151
+   ],
+   [
+    0.7769,
+    0.0331,
+    0.2955
+   ],
+   [
+    0.2224,
+    0.276,
+    0.4484
+   ],
+   [
+    0.7996,
+    0.2538,
+    0.1171
+   ],
+   [
+    0.656,
+    -0.7403,
+    0.1222
+   ],
+   [
+    -0.1235,
+    0.4494,
+    0.4249
+   ],
+   [
+    -0.0155,
+    0.5374,
+    0.2372
+   ],
+   [
+    1.7375,
+    1.9627,
+    -0.5859
+   ],
+   [
+    0.596,
+    0.7703,
+    0.4662
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    2.177,
+    0.5609,
+    -0.0668
+   ],
+   [
+    1.8696,
+    1.2834,
+    -0.2567
+   ],
+   [
+    1.447,
+    1.0042,
+    -0.9801
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    1.0829,
+    2.2168,
+    0.7707
+   ],
+   [
+    1.0205,
+    0.6571,
+    0.498
+   ],
+   [
+    0.9166,
+    -1.7496,
+    -0.0362
+   ],
+   [
+    1.3052,
+    0.3955,
+    0.4813
+   ],
+   [
+    2.5001,
+    -1.5967,
+    1.7615
+   ],
+   [
+    2.5499,
+    -1.3925,
+    1.2396
+   ],
+   [
+    2.9872,
+    -0.7694,
+    -1.3668
+   ],
+   [
+    2.2492,
+    -1.2545,
+    1.5815
+   ],
+   [
+    4.2578,
+    -0.4313,
+    -1.6217
+   ],
+   [
+    0.3971,
+    0.3885,
+    0.2161
+   ],
+   [
+    0.6274,
+    0.7534,
+    0.2845
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    2.1715,
+    0.0794,
+    -0.8078
+   ],
+   [
+    0.9113,
+    1.1394,
+    0.3831
+   ],
+   [
+    2.2164,
+    1.9922,
+    0.5623
+   ],
+   [
+    -0.2519,
+    3.1332,
+    -0.3659
+   ],
+   [
+    0.3981,
+    0.8835,
+    0.4208
+   ],
+   [
+    1.6037,
+    -0.0932,
+    0.4551
+   ],
+   [
+    0.4235,
+    0.5338,
+    -0.1134
+   ],
+   [
+    2.5252,
+    -0.3362,
+    0.7929
+   ],
+   [
+    1.2578,
+    0.4657,
+    -0.1374
+   ],
+   [
+    0.5481,
+    0.08,
+    0.2078
+   ],
+   [
+    1.0972,
+    0.7062,
+    0.8778
+   ],
+   [
+    0.7156,
+    0.3552,
+    0.0235
+   ],
+   [
+    null,
+    null,
+    null
+   ],
+   [
+    0.8081,
+    0.0954,
+    0.1055
+   ],
+   [
+    1.3179,
+    0.1937,
+    0.0317
+   ],
+   [
+    1.4701,
+    0.8151,
+    0.3151
+   ],
+   [
+    2.0362,
+    -0.4468,
+    2.0194
+   ],
+   [
+    0.5408,
+    -0.2926,
+    -0.66
+   ],
+   [
+    0.8885,
+    0.7258,
+    -0.3677
+   ],
+   [
+    2.0643,
+    0.8757,
+    0.4198
+   ],
+   [
+    0.7741,
+    2.4621,
+    0.7026
+   ]
+  ]
+ }
+}
