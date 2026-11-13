@@ -24,7 +24,7 @@ import dataset_benchmarking as db
 A = sys.argv; SRC = A[1]
 OUT = Path(A[A.index("--out") + 1]) if "--out" in A else ROOT / "data" / "note_explore.json"
 BOOT = int(A[A.index("--B") + 1]) if "--B" in A else 30
-K0 = 3; RIDGE = 3.0; t0 = time.time()
+K0 = int(A[A.index("--K") + 1]) if "--K" in A else 3; RIDGE = 3.0; t0 = time.time()
 def log(*a): print(f"[{time.time() - t0:6.0f}s]", *a, flush=True)
 r4 = lambda x: None if x is None or not np.isfinite(x) else round(float(x), 4)
 
@@ -32,7 +32,7 @@ def matrix(flags=()):
     src = (ROOT / "scripts" / "build_dataset_analysis.py").read_text()
     src = src[:src.index("# ============================================================================= 2. model-free tests")]
     g = {"__file__": str(ROOT / "scripts" / "build_dataset_analysis.py"), "__name__": "matrix"}
-    old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim", *flags]
+    old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim", *flags] + (["--merge-families"] if "--merge-families" in A else [])
     try:
         with contextlib.redirect_stdout(io.StringIO()): exec(compile(src, "build_prefix", "exec"), g)
     finally: sys.argv = old
@@ -116,7 +116,8 @@ for i, n in enumerate(names):
 out["uniqueness"] = uniq
 
 # ---- 4 pretraining group x dataset group (no latent axes)
-attrs = json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"]; pg = np.array([attrs.get(m, {}).get("pretraining") or "" for m in models])
+attrs = json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"]; _fp = {}; [_fp.setdefault(v_["family"], set()).add(v_.get("pretraining") or "") for v_ in attrs.values()]      # family unit -> pretraining group (units are "family" or "family|group")
+pg = np.array([m.split("|", 1)[1] if "|" in m else next(iter(_fp[m])) if "--merge-families" in A and m in _fp else attrs.get(m, {}).get("pretraining") or "" for m in models])
 PCT = np.full(Y.shape, np.nan)
 for t in range(T):
     o = np.where(mask[:, t])[0]

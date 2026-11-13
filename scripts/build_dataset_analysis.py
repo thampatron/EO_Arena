@@ -203,7 +203,9 @@ IMG = TINFO[(TINFO.input_kind == "eo_imagery") & (~TINFO.domain.isin(["composite
 lc = cell[cell.task.isin(IMG)]
 if PROTOCOL != "all": lc = lc[lc.task.map(TINFO.pf).values == PROTOCOL]
 if MERGE_FAM:                                            # variants of one family in one comparison are averaged (sd no longer a seed sd)
-    _fam = {m_: v_["family"] for m_, v_ in json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"].items()}
+    _att = json.loads((ROOT / "data" / "model_attributes.json").read_text())["models"]       # unit = family, split where variants of one family were pretrained on different imagery
+    _npre = {}; [_npre.setdefault(v_["family"], set()).add(v_.get("pretraining") or "") for v_ in _att.values()]
+    _fam = {m_: v_["family"] + ("|" + (v_.get("pretraining") or "unknown") if len(_npre[v_["family"]]) > 1 else "") for m_, v_ in _att.items()}
     lc = lc.assign(model_id=lc.model_id.map(lambda m_: _fam.get(m_, m_))).groupby(["task", "model_id"], as_index=False).agg(
         y=("y", "mean"), n_rows=("y", "size"), sd=("sd", lambda x: x.iloc[0] if len(x) == 1 else np.nan), n_reps=("n_reps", "max"), n_known=("n_known", "max"), selfrep=("selfrep", "max"))
 if MIN_MODEL_SOURCES > 1 or MERGE_FAM or PROTOCOL != "all":

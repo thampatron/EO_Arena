@@ -33,7 +33,7 @@ r4 = lambda x: None if x is None or not np.isfinite(x) else round(float(x), 4)
 src = (ROOT / "scripts" / "build_dataset_analysis.py").read_text()
 src = src[:src.index("# ============================================================================= 2. model-free tests")]
 g = {"__file__": str(ROOT / "scripts" / "build_dataset_analysis.py"), "__name__": "matrix"}
-old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim"]
+old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim"] + (["--merge-families"] if "--merge-families" in A else [])   # one unit per GeoFM family
 with contextlib.redirect_stdout(io.StringIO()): exec(compile(src, "build_prefix", "exec"), g)
 sys.argv = old
 Y, mask, tp, td, TI, models, G_ALL, FAM = g["Y"], g["mask"], g["tp"], g["td"], g["TI"], g["models"], g["G_ALL"], g["FAM"]

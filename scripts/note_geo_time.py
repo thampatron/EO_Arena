@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 ROOT = Path(__file__).resolve().parent.parent; sys.path.insert(0, str(ROOT / "scripts"))
 import dataset_benchmarking as db
-p = ROOT / "data" / "note_analysis.json"; d = json.loads(p.read_text()); gt = json.loads((ROOT / "data" / "dataset_geo_time.json").read_text())["datasets"]
+p = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data" / "note_analysis.json"; d = json.loads(p.read_text()); gt = json.loads((ROOT / "data" / "dataset_geo_time.json").read_text())["datasets"]
 names = list(d["datasets"]); Ld = np.array([d["datasets"][n]["loading"] for n in names]); multi = np.array([d["datasets"][n]["sources"] >= 2 for n in names])
 r4 = lambda v: round(float(v), 4) if isinstance(v, float) else v
 for key, lab in (("geography", "geography"), ("period", "time_period")):

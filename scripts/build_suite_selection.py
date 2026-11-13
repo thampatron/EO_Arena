@@ -26,14 +26,14 @@ SUB = None if "--bootstrap" in A else float(A[A.index("--subsample") + 1]) if "-
 # Refits use 80% of the GeoFMs drawn WITHOUT replacement by default. A bootstrap with replacement duplicates GeoFMs, which
 # shrinks the residual variance of thinly supported datasets and inflates their loadings (seen 2026-11-11: refit strength
 # about twice the full-fit strength for datasets with 3-7 comparisons), biasing the selection toward them.
-K0 = 3; RIDGE = 3.0; NMAX = 10; t0 = time.time()
+K0 = int(A[A.index("--K") + 1]) if "--K" in A else 3; RIDGE = 3.0; NMAX = 10; t0 = time.time()
 def log(*a): print(f"[{time.time() - t0:6.0f}s]", *a, flush=True)
 r4 = lambda x: None if x is None or not np.isfinite(x) else round(float(x), 4)
 
 src = (ROOT / "scripts" / "build_dataset_analysis.py").read_text()
 src = src[:src.index("# ============================================================================= 2. model-free tests")]
 g = {"__file__": str(ROOT / "scripts" / "build_dataset_analysis.py"), "__name__": "matrix"}
-old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim"]
+old = sys.argv; sys.argv = ["x", SRC, "--offset", "none", "--skip-sim"] + (["--merge-families"] if "--merge-families" in A else [])   # one unit per GeoFM family
 with contextlib.redirect_stdout(io.StringIO()): exec(compile(src, "build_prefix", "exec"), g)
 sys.argv = old
 Y, mask, tp, td, TI = g["Y"], g["mask"], g["tp"], g["td"], g["TI"]; M, T = Y.shape
