@@ -1,0 +1,342 @@
+{
+ "frozen_minus_finetuned_logsnr": [
+  0.41,
+  [
+   0.163,
+   0.681
+  ],
+  67
+ ],
+ "lowdata_minus_full_logsnr": [
+  -0.022,
+  [
+   -0.272,
+   0.163
+  ],
+  36
+ ],
+ "frozen_minus_finetuned_logsd": [
+  0.482,
+  [
+   0.363,
+   0.618
+  ],
+  67
+ ],
+ "lowdata_minus_full_logsd": [
+  0.101,
+  [
+   -0.042,
+   0.194
+  ],
+  36
+ ],
+ "frozen_minus_finetuned_expl": [
+  0.07,
+  [
+   0.027,
+   0.118
+  ],
+  67
+ ],
+ "lowdata_minus_full_expl": [
+  -0.003,
+  [
+   -0.044,
+   0.032
+  ],
+  36
+ ],
+ "spearman_headroom_snr": [
+  -0.102,
+  [
+   -0.198,
+   0.008
+  ]
+ ],
+ "spearman_headroom_sd": [
+  0.281,
+  [
+   0.146,
+   0.406
+  ]
+ ],
+ "spearman_headroom_expl": [
+  -0.102,
+  [
+   -0.198,
+   0.008
+  ]
+ ],
+ "spearman_nmodels_snr": [
+  -0.092,
+  [
+   -0.246,
+   0.103
+  ]
+ ],
+ "spearman_selfshare_snr": [
+  0.066,
+  [
+   -0.141,
+   0.246
+  ]
+ ],
+ "by_mean_score": [
+  {
+   "bin": "mean > 95",
+   "tasks": 21,
+   "median_sd_pts": 0.61,
+   "median_snr": 0.98,
+   "median_explained": 0.49
+  },
+  {
+   "bin": "85-95",
+   "tasks": 38,
+   "median_sd_pts": 2.82,
+   "median_snr": 1.49,
+   "median_explained": 0.6
+  },
+  {
+   "bin": "70-85",
+   "tasks": 80,
+   "median_sd_pts": 3.66,
+   "median_snr": 1.21,
+   "median_explained": 0.55
+  },
+  {
+   "bin": "50-70",
+   "tasks": 105,
+   "median_sd_pts": 4.0,
+   "median_snr": 1.16,
+   "median_explained": 0.54
+  },
+  {
+   "bin": "< 50",
+   "tasks": 183,
+   "median_sd_pts": 6.22,
+   "median_snr": 1.04,
+   "median_explained": 0.51
+  }
+ ],
+ "by_pf": [
+  {
+   "pf": "fine-tuned",
+   "tasks": 171,
+   "median_sd": 3.93,
+   "median_snr": 0.97,
+   "median_explained": 0.49
+  },
+  {
+   "pf": "frozen",
+   "tasks": 305,
+   "median_sd": 5.06,
+   "median_snr": 1.39,
+   "median_explained": 0.58
+  },
+  {
+   "pf": "kmeans_clustering",
+   "tasks": 3,
+   "median_sd": 1.44,
+   "median_snr": 2.4,
+   "median_explained": 0.71
+  }
+ ],
+ "by_task_type": [
+  {
+   "task_type": "change detection",
+   "tasks": 35,
+   "median_sd": 5.27,
+   "median_snr": 1.27,
+   "median_explained": 0.56
+  },
+  {
+   "task_type": "classification",
+   "tasks": 188,
+   "median_sd": 4.3,
+   "median_snr": 1.31,
+   "median_explained": 0.57
+  },
+  {
+   "task_type": "detection",
+   "tasks": 4,
+   "median_sd": 1.82,
+   "median_snr": 2.01,
+   "median_explained": 0.53
+  },
+  {
+   "task_type": "regression",
+   "tasks": 52,
+   "median_sd": 10.38,
+   "median_snr": 2.16,
+   "median_explained": 0.68
+  },
+  {
+   "task_type": "segmentation",
+   "tasks": 200,
+   "median_sd": 4.13,
+   "median_snr": 1.01,
+   "median_explained": 0.5
+  }
+ ],
+ "by_sensor": [
+  {
+   "sensor": "SAR",
+   "tasks": 21,
+   "median_sd": 5.06,
+   "median_snr": 1.89,
+   "median_explained": 0.65
+  },
+  {
+   "sensor": "SAR + optical",
+   "tasks": 156,
+   "median_sd": 7.22,
+   "median_snr": 1.39,
+   "median_explained": 0.58
+  },
+  {
+   "sensor": "high-resolution optical",
+   "tasks": 55,
+   "median_sd": 4.14,
+   "median_snr": 3.16,
+   "median_explained": 0.76
+  },
+  {
+   "sensor": "multispectral",
+   "tasks": 216,
+   "median_sd": 3.59,
+   "median_snr": 0.92,
+   "median_explained": 0.48
+  },
+  {
+   "sensor": "other",
+   "tasks": 10,
+   "median_sd": 7.93,
+   "median_snr": 3.07,
+   "median_explained": 0.75
+  },
+  {
+   "sensor": "unknown",
+   "tasks": 21,
+   "median_sd": 4.56,
+   "median_snr": 2.78,
+   "median_explained": 0.74
+  }
+ ],
+ "by_metric": [
+  {
+   "metric": "acc",
+   "tasks": 83,
+   "median_sd": 6.02,
+   "median_snr": 1.43,
+   "median_explained": 0.59
+  },
+  {
+   "metric": "acc_top1",
+   "tasks": 49,
+   "median_sd": 3.73,
+   "median_snr": 1.68,
+   "median_explained": 0.63
+  },
+  {
+   "metric": "f1",
+   "tasks": 45,
+   "median_sd": 3.16,
+   "median_snr": 0.96,
+   "median_explained": 0.49
+  },
+  {
+   "metric": "iou",
+   "tasks": 16,
+   "median_sd": 7.14,
+   "median_snr": 1.39,
+   "median_explained": 0.58
+  },
+  {
+   "metric": "l1",
+   "tasks": 3,
+   "median_sd": 44.76,
+   "median_snr": 1.86,
+   "median_explained": 0.65
+  },
+  {
+   "metric": "map",
+   "tasks": 20,
+   "median_sd": 3.25,
+   "median_snr": 1.51,
+   "median_explained": 0.6
+  },
+  {
+   "metric": "micro_f1",
+   "tasks": 7,
+   "median_sd": 5.94,
+   "median_snr": 0.95,
+   "median_explained": 0.49
+  },
+  {
+   "metric": "mijacc",
+   "tasks": 1,
+   "median_sd": 1.64,
+   "median_snr": 20.17,
+   "median_explained": 0.95
+  },
+  {
+   "metric": "miou",
+   "tasks": 194,
+   "median_sd": 4.59,
+   "median_snr": 0.99,
+   "median_explained": 0.5
+  },
+  {
+   "metric": "mse",
+   "tasks": 4,
+   "median_sd": 9.06,
+   "median_snr": 2.33,
+   "median_explained": 0.7
+  },
+  {
+   "metric": "oa",
+   "tasks": 10,
+   "median_sd": 2.13,
+   "median_snr": 0.62,
+   "median_explained": 0.38
+  },
+  {
+   "metric": "r2",
+   "tasks": 23,
+   "median_sd": 10.5,
+   "median_snr": 2.34,
+   "median_explained": 0.7
+  },
+  {
+   "metric": "rmse",
+   "tasks": 22,
+   "median_sd": 10.22,
+   "median_snr": 2.03,
+   "median_explained": 0.67
+  },
+  {
+   "metric": "segm_map",
+   "tasks": 2,
+   "median_sd": 2.19,
+   "median_snr": 0.28,
+   "median_explained": 0.18
+  }
+ ],
+ "by_lowdata": [
+  {
+   "lowdata": false,
+   "tasks": 392,
+   "median_sd": 4.89,
+   "median_snr": 1.31,
+   "median_explained": 0.57
+  },
+  {
+   "lowdata": true,
+   "tasks": 87,
+   "median_sd": 4.57,
+   "median_snr": 0.91,
+   "median_explained": 0.48
+  }
+ ]
+}

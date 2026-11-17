@@ -1,0 +1,246 @@
+{
+ "subdomain_within_domain": {
+  "n": 79,
+  "levels": 14,
+  "r2_subdomain": 0.225,
+  "r2_domain_same_datasets": 0.167,
+  "null_mean_within_domain": 0.236,
+  "p": 0.6388
+ },
+ "subdomain_within_domain_multi": {
+  "n": 20,
+  "levels": 6,
+  "r2_subdomain": 0.397,
+  "r2_domain": 0.341,
+  "null_mean_within_domain": 0.413,
+  "p": 0.5605
+ },
+ "partial_domain": {
+  "controls": [
+   "sensor",
+   "task_type"
+  ],
+  "n": 86,
+  "levels": 9,
+  "r2": 0.114,
+  "null_mean": 0.094,
+  "p": 0.2603
+ },
+ "partial_subdomain": {
+  "controls": [
+   "sensor",
+   "task_type"
+  ],
+  "n": 74,
+  "levels": 14,
+  "r2": 0.231,
+  "null_mean": 0.178,
+  "p": 0.1447
+ },
+ "partial_sensor": {
+  "controls": [
+   "task_type",
+   "domain"
+  ],
+  "n": 86,
+  "levels": 5,
+  "r2": 0.095,
+  "null_mean": 0.046,
+  "p": 0.047
+ },
+ "partial_task_type": {
+  "controls": [
+   "sensor",
+   "domain"
+  ],
+  "n": 86,
+  "levels": 5,
+  "r2": 0.094,
+  "null_mean": 0.046,
+  "p": 0.0417
+ },
+ "per_subdomain": [
+  {
+   "subdomain": "8.1 Settlements and buildings",
+   "domain": "8 \u00b7 Human systems",
+   "n": 7,
+   "multi_source": 2,
+   "centroid": [
+    0.84,
+    0.53
+   ],
+   "spread": 0.45,
+   "spread_random": 0.87,
+   "p_tighter": 0.017
+  },
+  {
+   "subdomain": "8.5 Socioeconomic conditions",
+   "domain": "8 \u00b7 Human systems",
+   "n": 2,
+   "multi_source": 0,
+   "centroid": [
+    0.6,
+    0.31
+   ],
+   "spread": 0.14,
+   "spread_random": 0.66,
+   "p_tighter": 0.056
+  },
+  {
+   "subdomain": "3.1 Surface water, rivers and wetlands",
+   "domain": "3 \u00b7 Inland water",
+   "n": 6,
+   "multi_source": 2,
+   "centroid": [
+    0.7,
+    0.78
+   ],
+   "spread": 0.64,
+   "spread_random": 0.85,
+   "p_tighter": 0.21
+  },
+  {
+   "subdomain": "8.3 Energy and industry",
+   "domain": "8 \u00b7 Human systems",
+   "n": 6,
+   "multi_source": 2,
+   "centroid": [
+    0.82,
+    0.44
+   ],
+   "spread": 0.67,
+   "spread_random": 0.86,
+   "p_tighter": 0.233
+  },
+  {
+   "subdomain": "2.4 Vegetation structure and species",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "n": 5,
+   "multi_source": 2,
+   "centroid": [
+    1.15,
+    0.12
+   ],
+   "spread": 0.64,
+   "spread_random": 0.84,
+   "p_tighter": 0.261
+  },
+  {
+   "subdomain": "2.2 Forest extent and change",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "n": 2,
+   "multi_source": 1,
+   "centroid": [
+    1.36,
+    0.03
+   ],
+   "spread": 0.41,
+   "spread_random": 0.7,
+   "p_tighter": 0.267
+  },
+  {
+   "subdomain": "4.4 Marine pollution",
+   "domain": "4 \u00b7 Oceans and coasts",
+   "n": 2,
+   "multi_source": 1,
+   "centroid": [
+    1.8,
+    -0.21
+   ],
+   "spread": 0.43,
+   "spread_random": 0.67,
+   "p_tighter": 0.304
+  },
+  {
+   "subdomain": "2.3 Biomass and carbon stocks",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "n": 5,
+   "multi_source": 1,
+   "centroid": [
+    1.33,
+    -0.39
+   ],
+   "spread": 0.74,
+   "spread_random": 0.85,
+   "p_tighter": 0.384
+  },
+  {
+   "subdomain": "2.6 Fire",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "n": 2,
+   "multi_source": 1,
+   "centroid": [
+    0.87,
+    -1.11
+   ],
+   "spread": 0.5,
+   "spread_random": 0.66,
+   "p_tighter": 0.399
+  },
+  {
+   "subdomain": "6.3 Clouds and smoke",
+   "domain": "6 \u00b7 Atmosphere",
+   "n": 3,
+   "multi_source": 1,
+   "centroid": [
+    0.51,
+    0.11
+   ],
+   "spread": 0.72,
+   "spread_random": 0.78,
+   "p_tighter": 0.495
+  },
+  {
+   "subdomain": "2.1 Land cover and land degradation",
+   "domain": "2 \u00b7 Terrestrial ecosystems",
+   "n": 15,
+   "multi_source": 6,
+   "centroid": [
+    1.27,
+    0.24
+   ],
+   "spread": 0.94,
+   "spread_random": 0.9,
+   "p_tighter": 0.635
+  },
+  {
+   "subdomain": "8.4 Objects and activity",
+   "domain": "8 \u00b7 Human systems",
+   "n": 6,
+   "multi_source": 1,
+   "centroid": [
+    1.25,
+    0.43
+   ],
+   "spread": 0.96,
+   "spread_random": 0.86,
+   "p_tighter": 0.674
+  },
+  {
+   "subdomain": "5.2 Glaciers and ice sheets",
+   "domain": "5 \u00b7 Cryosphere",
+   "n": 4,
+   "multi_source": 1,
+   "centroid": [
+    1.11,
+    0.82
+   ],
+   "spread": 1.07,
+   "spread_random": 0.83,
+   "p_tighter": 0.809
+  },
+  {
+   "subdomain": "1.1 Cropland and crop type",
+   "domain": "1 \u00b7 Agriculture",
+   "n": 14,
+   "multi_source": 6,
+   "centroid": [
+    1.24,
+    -0.44
+   ],
+   "spread": 1.09,
+   "spread_random": 0.9,
+   "p_tighter": 0.891
+  }
+ ]
+}

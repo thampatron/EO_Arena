@@ -1,0 +1,154 @@
+{
+ "all_pairs": {
+  "paper_pairs": 82,
+  "datasets": 13,
+  "median_rho": 0.38,
+  "share_rho_below_0": 0.18,
+  "share_rho_above_0_5": 0.39,
+  "median_abs_diff_pts": 15.33,
+  "median_between_geofm_sd_pts": 4.25
+ },
+ "same_protocol": {
+  "paper_pairs": 80,
+  "datasets": 13,
+  "median_rho": 0.46,
+  "share_rho_below_0": 0.14,
+  "share_rho_above_0_5": 0.44,
+  "median_abs_diff_pts": 15.33,
+  "median_between_geofm_sd_pts": 4.75
+ },
+ "different_protocol": {
+  "paper_pairs": 71,
+  "datasets": 12,
+  "median_rho": 0.23,
+  "share_rho_below_0": 0.28,
+  "share_rho_above_0_5": 0.27,
+  "median_abs_diff_pts": null,
+  "median_between_geofm_sd_pts": 4.34
+ },
+ "same_protocol_metric_trainfraction": {
+  "paper_pairs": 24,
+  "datasets": 9,
+  "median_rho": 0.68,
+  "share_rho_below_0": 0.0,
+  "share_rho_above_0_5": 0.58,
+  "median_abs_diff_pts": 15.33,
+  "median_between_geofm_sd_pts": 7.01
+ },
+ "different_dataset_different_paper_median_rho": 0.1,
+ "n_ref": 11940,
+ "datasets_lowest_agreement": [
+  {
+   "dataset": "Sen1Floods11",
+   "mean": -0.18,
+   "size": 31
+  },
+  {
+   "dataset": "Cashew plantation",
+   "mean": 0.18,
+   "size": 30
+  },
+  {
+   "dataset": "EuroSAT",
+   "mean": 0.2,
+   "size": 87
+  },
+  {
+   "dataset": "South Africa crop type",
+   "mean": 0.26,
+   "size": 30
+  },
+  {
+   "dataset": "Brick kilns",
+   "mean": 0.3,
+   "size": 50
+  },
+  {
+   "dataset": "Fields of The World",
+   "mean": 0.34,
+   "size": 16
+  }
+ ],
+ "datasets_highest_agreement": [
+  {
+   "dataset": "So2Sat LCZ42 (LCZ-S2)",
+   "mean": 0.42,
+   "size": 71
+  },
+  {
+   "dataset": "MADOS",
+   "mean": 0.52,
+   "size": 11
+  },
+  {
+   "dataset": "PASTIS / PASTIS-R",
+   "mean": 0.58,
+   "size": 32
+  },
+  {
+   "dataset": "BioMassters",
+   "mean": 0.73,
+   "size": 9
+  },
+  {
+   "dataset": "HLS Burn Scars",
+   "mean": 0.73,
+   "size": 3
+  },
+  {
+   "dataset": "ForestNet",
+   "mean": 0.8,
+   "size": 2
+  }
+ ],
+ "share_abs_z_gt_2_5": 0.0082,
+ "share_abs_z_gt_3": 0.0017,
+ "largest_residuals_by_paper": {
+  "geocross-bench": 8,
+  "olmoearth_v12": 6,
+  "pangea": 4,
+  "earthshift": 2,
+  "prithvi_v2": 2,
+  "galileo": 1,
+  "cryo-bench": 1,
+  "exe-bench": 1
+ },
+ "papers_with_most_large_residuals": [
+  {
+   "paper": "geocross-bench",
+   "mean": 0.019,
+   "sum": 10,
+   "size": 538
+  },
+  {
+   "paper": "olmoearth_v12",
+   "mean": 0.016,
+   "sum": 8,
+   "size": 487
+  },
+  {
+   "paper": "pangea",
+   "mean": 0.012,
+   "sum": 5,
+   "size": 408
+  },
+  {
+   "paper": "cryo-bench",
+   "mean": 0.015,
+   "sum": 3,
+   "size": 202
+  },
+  {
+   "paper": "earthshift",
+   "mean": 0.009,
+   "sum": 3,
+   "size": 320
+  },
+  {
+   "paper": "galileo",
+   "mean": 0.004,
+   "sum": 2,
+   "size": 552
+  }
+ ]
+}

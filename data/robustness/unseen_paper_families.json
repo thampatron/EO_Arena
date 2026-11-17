@@ -1,0 +1,183 @@
+{
+ "config": {
+  "main_text_only": false,
+  "leaderboard": true,
+  "regression": true,
+  "regression_scale": "log",
+  "ks": [
+   1,
+   2,
+   3
+  ],
+  "lopo_restarts": 3,
+  "min_model_sources": 1,
+  "protocol": "all",
+  "merge_families": true,
+  "offset": "none",
+  "ridge": 3.0,
+  "ridge_paper_offset": 3.0
+ },
+ "K": {
+  "chosen": 2,
+  "best": 3,
+  "rule": "smallest K not credibly worse than the best (paired bootstrap over sources); K is a floor",
+  "lopo_by_spec_and_K": {
+   "none": {
+    "1": {
+     "rho_struct": 0.0459,
+     "rho_board": 0.1885,
+     "rho_global": 0.014,
+     "rho_anch": 0.1179,
+     "rho_half_board": 0.1447,
+     "rho_anch_board": 0.0779,
+     "acc_struct": 0.5182,
+     "acc_board": 0.5722
+    },
+    "2": {
+     "rho_struct": 0.2465,
+     "rho_board": 0.1885,
+     "rho_global": 0.2486,
+     "rho_anch": 0.2064,
+     "rho_half_board": 0.1447,
+     "rho_anch_board": 0.0779,
+     "acc_struct": 0.5973,
+     "acc_board": 0.5722
+    },
+    "3": {
+     "rho_struct": 0.2925,
+     "rho_board": 0.1885,
+     "rho_global": 0.265,
+     "rho_anch": 0.173,
+     "rho_half_board": 0.1447,
+     "rho_anch_board": 0.0779,
+     "acc_struct": 0.6157,
+     "acc_board": 0.5722
+    }
+   }
+  },
+  "paired_vs_best": {
+   "1": {
+    "mean": -0.2466,
+    "ci90": [
+     -0.3631,
+     -0.1372
+    ],
+    "p_le_0": 1.0,
+    "n_tasks": 457,
+    "n_papers": 23
+   },
+   "2": {
+    "mean": -0.0461,
+    "ci90": [
+     -0.1003,
+     0.0079
+    ],
+    "p_le_0": 0.92,
+    "n_tasks": 457,
+    "n_papers": 23
+   }
+  },
+  "primary_criterion": "rho_struct",
+  "anchored": {
+   "best": 2,
+   "paired_vs_best": {
+    "1": {
+     "mean": -0.0884,
+     "ci90": [
+      -0.147,
+      -0.0232
+     ],
+     "p_le_0": 0.989,
+     "n_tasks": 388,
+     "n_papers": 17
+    },
+    "3": {
+     "mean": -0.0333,
+     "ci90": [
+      -0.0731,
+      0.0109
+     ],
+     "p_le_0": 0.8945,
+     "n_tasks": 388,
+     "n_papers": 17
+    }
+   }
+  }
+ },
+ "lopo_gain": {
+  "K1_vs_leaderboard": {
+   "mean": -0.1425,
+   "ci90": [
+    -0.3025,
+    0.0118
+   ],
+   "p_le_0": 0.9395,
+   "n_tasks": 457,
+   "n_papers": 23
+  },
+  "Kchosen_vs_leaderboard": {
+   "K": 2,
+   "mean": 0.058,
+   "ci90": [
+    -0.0389,
+    0.1481
+   ],
+   "p_le_0": 0.1615,
+   "n_tasks": 457,
+   "n_papers": 23
+  },
+  "bestK_vs_leaderboard": {
+   "K": 3,
+   "mean": 0.1041,
+   "ci90": [
+    0.0183,
+    0.1795
+   ],
+   "p_le_0": 0.0225,
+   "n_tasks": 457,
+   "n_papers": 23
+  },
+  "anchored_K1_vs_leaderboard_same_half": {
+   "mean": -0.0267,
+   "ci90": [
+    -0.1541,
+    0.1029
+   ],
+   "p_le_0": 0.618,
+   "n_tasks": 388,
+   "n_papers": 17
+  },
+  "anchored_bestK_vs_leaderboard_same_half": {
+   "K": 2,
+   "mean": 0.0617,
+   "ci90": [
+    -0.0448,
+    0.1674
+   ],
+   "p_le_0": 0.178,
+   "n_tasks": 388,
+   "n_papers": 17
+  },
+  "dataset_seen_in_other_sources (K=3, blocks vs own one-ordering)": {
+   "mean": 0.0496,
+   "ci90": [
+    -0.014,
+    0.1104
+   ],
+   "p_le_0": 0.0965,
+   "n_tasks": 306,
+   "n_papers": 17
+  },
+  "dataset_only_in_held_out_source (K=3, blocks vs own one-ordering)": {
+   "mean": -0.0175,
+   "ci90": [
+    -0.1047,
+    0.063
+   ],
+   "p_le_0": 0.6445,
+   "n_tasks": 151,
+   "n_papers": 17
+  }
+ },
+ "board_lopo_rho_real": 0.188
+}

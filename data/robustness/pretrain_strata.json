@@ -1,0 +1,355 @@
+{
+ "all GeoFMs, sensor part kept": {
+  "geofm_families": 56,
+  "tasks": 479,
+  "datasets": 94,
+  "scores": 4125,
+  "axis_share": [
+   0.657,
+   0.343
+  ],
+  "sensor": {
+   "r2": 0.212,
+   "chance": 0.047,
+   "p": 0.0003,
+   "n": 86,
+   "levels": 5
+  },
+  "task_type": {
+   "r2": 0.209,
+   "chance": 0.042,
+   "p": 0.0,
+   "n": 94,
+   "levels": 5
+  },
+  "domain": {
+   "r2": 0.208,
+   "chance": 0.086,
+   "p": 0.0017,
+   "n": 94,
+   "levels": 9
+  },
+  "subdomain": {
+   "r2": 0.225,
+   "chance": 0.165,
+   "p": 0.1017,
+   "n": 79,
+   "levels": 14
+  },
+  "domain | sensor, task type": {
+   "r2": 0.114,
+   "chance": 0.094,
+   "p": 0.2567,
+   "n": 86,
+   "levels": 9
+  },
+  "subdomain | sensor, task type": {
+   "r2": 0.231,
+   "chance": 0.178,
+   "p": 0.147,
+   "n": 74,
+   "levels": 14
+  },
+  "sensor | task type, domain": {
+   "r2": 0.095,
+   "chance": 0.047,
+   "p": 0.0437,
+   "n": 86,
+   "levels": 5
+  },
+  "task type | sensor, domain": {
+   "r2": 0.094,
+   "chance": 0.047,
+   "p": 0.0457,
+   "n": 86,
+   "levels": 5
+  },
+  "axis2_low": [
+   "xBD / xView2",
+   "CaFFe",
+   "Infra-Bench",
+   "MineNetCD",
+   "DeepGlobe Land Cover / DFC2022 (EarthShift)"
+  ],
+  "axis2_high": [
+   "NeuCo-Bench Crops",
+   "NeuCo-Bench Landcover",
+   "Live Fuel Moisture Content",
+   "MMEarth Biomass",
+   "BreizhCrops"
+  ],
+  "axis2_mean_by_sensor": {
+   "SAR": -0.87,
+   "SAR + optical": 0.14,
+   "high-resolution optical": -0.85,
+   "multispectral": 0.16,
+   "other": -1.03
+  }
+ },
+ "all GeoFMs": {
+  "geofm_families": 56,
+  "tasks": 479,
+  "datasets": 94,
+  "scores": 4125,
+  "axis_share": [
+   0.646,
+   0.354
+  ],
+  "sensor": {
+   "r2": 0.191,
+   "chance": 0.048,
+   "p": 0.0003,
+   "n": 86,
+   "levels": 5
+  },
+  "task_type": {
+   "r2": 0.191,
+   "chance": 0.043,
+   "p": 0.0,
+   "n": 94,
+   "levels": 5
+  },
+  "domain": {
+   "r2": 0.199,
+   "chance": 0.085,
+   "p": 0.0037,
+   "n": 94,
+   "levels": 9
+  },
+  "subdomain": {
+   "r2": 0.235,
+   "chance": 0.166,
+   "p": 0.077,
+   "n": 79,
+   "levels": 14
+  },
+  "domain | sensor, task type": {
+   "r2": 0.111,
+   "chance": 0.094,
+   "p": 0.2903,
+   "n": 86,
+   "levels": 9
+  },
+  "subdomain | sensor, task type": {
+   "r2": 0.238,
+   "chance": 0.18,
+   "p": 0.1363,
+   "n": 74,
+   "levels": 14
+  },
+  "sensor | task type, domain": {
+   "r2": 0.084,
+   "chance": 0.047,
+   "p": 0.086,
+   "n": 86,
+   "levels": 5
+  },
+  "task type | sensor, domain": {
+   "r2": 0.091,
+   "chance": 0.047,
+   "p": 0.059,
+   "n": 86,
+   "levels": 5
+  },
+  "axis2_low": [
+   "NeuCo-Bench Crops",
+   "NeuCo-Bench Landcover",
+   "MMEarth Biomass",
+   "Live Fuel Moisture Content",
+   "BreizhCrops"
+  ],
+  "axis2_high": [
+   "xBD / xView2",
+   "Infra-Bench",
+   "CaFFe",
+   "UrbanSARFloods",
+   "DeepGlobe Land Cover / DFC2022 (EarthShift)"
+  ],
+  "axis2_mean_by_sensor": {
+   "SAR": 0.78,
+   "SAR + optical": -0.28,
+   "high-resolution optical": 0.69,
+   "multispectral": -0.25,
+   "other": 0.87
+  }
+ },
+ "multi-sensor (SAR + optical)": {
+  "geofm_families": 22,
+  "tasks": 292,
+  "datasets": 57,
+  "scores": 1695,
+  "axis_share": [
+   0.756,
+   0.244
+  ],
+  "sensor": {
+   "r2": 0.164,
+   "chance": 0.076,
+   "p": 0.025,
+   "n": 54,
+   "levels": 5
+  },
+  "task_type": {
+   "r2": 0.085,
+   "chance": 0.073,
+   "p": 0.3053,
+   "n": 57,
+   "levels": 5
+  },
+  "domain": {
+   "r2": 0.118,
+   "chance": 0.109,
+   "p": 0.3643,
+   "n": 56,
+   "levels": 7
+  },
+  "subdomain": {
+   "r2": 0.219,
+   "chance": 0.201,
+   "p": 0.3507,
+   "n": 46,
+   "levels": 10
+  },
+  "domain | sensor, task type": {
+   "r2": 0.068,
+   "chance": 0.116,
+   "p": 0.8497,
+   "n": 53,
+   "levels": 7
+  },
+  "subdomain | sensor, task type": {
+   "r2": 0.131,
+   "chance": 0.215,
+   "p": 0.9167,
+   "n": 43,
+   "levels": 10
+  },
+  "sensor | task type, domain": {
+   "r2": 0.079,
+   "chance": 0.076,
+   "p": 0.3967,
+   "n": 54,
+   "levels": 5
+  },
+  "task type | sensor, domain": {
+   "r2": 0.008,
+   "chance": 0.058,
+   "p": 0.9897,
+   "n": 53,
+   "levels": 4
+  },
+  "axis2_low": [
+   "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+   "FLAIR / FLAIR 2",
+   "CaFFe",
+   "Kuro Siwo (Flood-S1)",
+   "fMoW"
+  ],
+  "axis2_high": [
+   "Nandi",
+   "BreizhCrops",
+   "Live Fuel Moisture Content",
+   "AWF",
+   "CropHarvest"
+  ],
+  "axis2_mean_by_sensor": {
+   "SAR": -0.63,
+   "SAR + optical": 0.2,
+   "high-resolution optical": -0.44,
+   "multispectral": 0.34,
+   "other": 0.08
+  }
+ },
+ "multispectral optical": {
+  "geofm_families": 11,
+  "tasks": 111,
+  "datasets": 49,
+  "scores": 656,
+  "axis_share": [
+   0.684,
+   0.316
+  ],
+  "sensor": {
+   "r2": 0.17,
+   "chance": 0.086,
+   "p": 0.0557,
+   "n": 48,
+   "levels": 5
+  },
+  "task_type": {
+   "r2": 0.08,
+   "chance": 0.062,
+   "p": 0.2547,
+   "n": 49,
+   "levels": 4
+  },
+  "domain": {
+   "r2": 0.181,
+   "chance": 0.128,
+   "p": 0.16,
+   "n": 48,
+   "levels": 7
+  },
+  "subdomain": {
+   "r2": 0.242,
+   "chance": 0.224,
+   "p": 0.3697,
+   "n": 41,
+   "levels": 10
+  },
+  "domain | sensor, task type": {
+   "r2": 0.16,
+   "chance": 0.132,
+   "p": 0.2787,
+   "n": 47,
+   "levels": 7
+  },
+  "subdomain | sensor, task type": {
+   "r2": 0.274,
+   "chance": 0.231,
+   "p": 0.2677,
+   "n": 40,
+   "levels": 10
+  },
+  "sensor | task type, domain": {
+   "r2": 0.064,
+   "chance": 0.084,
+   "p": 0.6067,
+   "n": 48,
+   "levels": 5
+  },
+  "task type | sensor, domain": {
+   "r2": 0.027,
+   "chance": 0.064,
+   "p": 0.86,
+   "n": 48,
+   "levels": 4
+  },
+  "axis2_low": [
+   "NeuCo-Bench Landcover",
+   "Kuro Siwo (Flood-S1)",
+   "PASTIS / PASTIS-R",
+   "NeuCo-Bench Clouds",
+   "NeuCo-Bench Crops"
+  ],
+  "axis2_high": [
+   "MADOS",
+   "CloudSEN12 (Cloud-S2)",
+   "NZ cattle",
+   "Chesapeake land cover",
+   "DSE"
+  ],
+  "axis2_mean_by_sensor": {
+   "SAR": -0.54,
+   "SAR + optical": -0.33,
+   "high-resolution optical": 0.37,
+   "multispectral": 0.18,
+   "other": 0.06
+  }
+ },
+ "high-resolution RGB": {
+  "geofm_families": 14,
+  "tasks_with_4plus": 1,
+  "tasks_with_3plus": 86
+ }
+}
