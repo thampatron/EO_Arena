@@ -1,0 +1,258 @@
+{
+ "supervised from scratch": {
+  "tasks": 51,
+  "datasets": 16,
+  "papers": 5,
+  "median_share_of_geofms_beating_baseline": 0.62,
+  "tasks_where_no_geofm_beats_it": 2,
+  "tasks_where_fewer_than_half_beat_it": 22,
+  "tasks_where_all_beat_it": 15,
+  "median_gain_points_metrics_pct_of_baseline_error": 4.8,
+  "by_protocol": {
+   "frozen": 0.62
+  },
+  "datasets_where_geofms_rarely_beat_it": [
+   {
+    "dataset": "TreeSatAI",
+    "tasks": 3,
+    "papers": 1,
+    "share_beating": 0.11,
+    "median_gain": -6.2
+   },
+   {
+    "dataset": "PASTIS / PASTIS-R",
+    "tasks": 3,
+    "papers": 1,
+    "share_beating": 0.19,
+    "median_gain": -7.19
+   },
+   {
+    "dataset": "Austrian Crop",
+    "tasks": 3,
+    "papers": 1,
+    "share_beating": 0.25,
+    "median_gain": -6.29
+   },
+   {
+    "dataset": "BioMassters",
+    "tasks": 3,
+    "papers": 1,
+    "share_beating": 0.27,
+    "median_gain": -5.63
+   },
+   {
+    "dataset": "Borneo Canopy Height",
+    "tasks": 3,
+    "papers": 1,
+    "share_beating": 0.28,
+    "median_gain": -4.64
+   },
+   {
+    "dataset": "Sen1Floods11",
+    "tasks": 2,
+    "papers": 1,
+    "share_beating": 0.38,
+    "median_gain": -4.57
+   },
+   {
+    "dataset": "RESISC45 / UCMerced (EarthShift)",
+    "tasks": 4,
+    "papers": 1,
+    "share_beating": 0.41,
+    "median_gain": -5.44
+   },
+   {
+    "dataset": "EuroSAT",
+    "tasks": 5,
+    "papers": 3,
+    "share_beating": 0.65,
+    "median_gain": 33.94
+   }
+  ],
+  "datasets_where_geofms_always_beat_it": [
+   "CloudSEN12 (Cloud-S2)",
+   "Kuro Siwo (Flood-S1)",
+   "So2Sat LCZ42 (LCZ-S2)"
+  ],
+  "refit_raw_vs_relative": {
+   "tasks": 51,
+   "similarity_map_agreement": NaN,
+   "pretrain_match_raw": 26.1,
+   "pretrain_match_relative": 26.1,
+   "axis2_share_raw": 0.18,
+   "axis2_share_relative": 0.08,
+   "sensor_p_raw": 0.07333333333333333,
+   "sensor_p_relative": 0.36333333333333334
+  }
+ },
+ "ImageNet-supervised": {
+  "tasks": 120,
+  "datasets": 27,
+  "papers": 4,
+  "median_share_of_geofms_beating_baseline": 0.33,
+  "tasks_where_no_geofm_beats_it": 23,
+  "tasks_where_fewer_than_half_beat_it": 79,
+  "tasks_where_all_beat_it": 7,
+  "median_gain_points_metrics_pct_of_baseline_error": -5.3,
+  "by_protocol": {
+   "fine-tuned": 0.22,
+   "frozen": 0.33
+  },
+  "datasets_where_geofms_rarely_beat_it": [
+   {
+    "dataset": "ForestNet",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -5.18
+   },
+   {
+    "dataset": "RESISC45 / UCMerced (EarthShift)",
+    "tasks": 8,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -469.61
+   },
+   {
+    "dataset": "GeoCrossBench Hurricane Harvey",
+    "tasks": 12,
+    "papers": 1,
+    "share_beating": 0.1,
+    "median_gain": -18.85
+   },
+   {
+    "dataset": "CaFFe",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.11,
+    "median_gain": -10.09
+   },
+   {
+    "dataset": "EuroSAT",
+    "tasks": 10,
+    "papers": 2,
+    "share_beating": 0.16,
+    "median_gain": -86.29
+   },
+   {
+    "dataset": "South Africa crop type",
+    "tasks": 6,
+    "papers": 1,
+    "share_beating": 0.17,
+    "median_gain": -2.95
+   },
+   {
+    "dataset": "CloudSEN12 (Cloud-S2)",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.22,
+    "median_gain": -3.82
+   },
+   {
+    "dataset": "SpaceNet 2",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.22,
+    "median_gain": -3.62
+   }
+  ],
+  "datasets_where_geofms_always_beat_it": [
+   "Kuro Siwo (Flood-S1)"
+  ],
+  "refit_raw_vs_relative": {
+   "tasks": 120,
+   "similarity_map_agreement": NaN,
+   "pretrain_match_raw": 10.1,
+   "pretrain_match_relative": 10.1,
+   "axis2_share_raw": 0.24,
+   "axis2_share_relative": 0.29,
+   "sensor_p_raw": 0.04,
+   "sensor_p_relative": 0.5766666666666667
+  }
+ },
+ "general vision models (DINOv2, DINOv3 web)": {
+  "tasks": 137,
+  "datasets": 41,
+  "papers": 6,
+  "median_share_of_geofms_beating_baseline": 0.22,
+  "tasks_where_no_geofm_beats_it": 31,
+  "tasks_where_fewer_than_half_beat_it": 101,
+  "tasks_where_all_beat_it": 5,
+  "median_gain_points_metrics_pct_of_baseline_error": -7.4,
+  "by_protocol": {
+   "fine-tuned": 0.22,
+   "frozen": 0.27
+  },
+  "datasets_where_geofms_rarely_beat_it": [
+   {
+    "dataset": "Chesapeake land cover",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -1.02
+   },
+   {
+    "dataset": "Digital Typhoon",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -32.57
+   },
+   {
+    "dataset": "EverWatch",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -2.14
+   },
+   {
+    "dataset": "Infra-Bench",
+    "tasks": 4,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -15.87
+   },
+   {
+    "dataset": "NZ cattle",
+    "tasks": 2,
+    "papers": 2,
+    "share_beating": 0.0,
+    "median_gain": -17.61
+   },
+   {
+    "dataset": "NeonTreeEvaluation",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -18.55
+   },
+   {
+    "dataset": "PV4GER",
+    "tasks": 2,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -96.36
+   },
+   {
+    "dataset": "RESISC45",
+    "tasks": 1,
+    "papers": 1,
+    "share_beating": 0.0,
+    "median_gain": -263.33
+   }
+  ],
+  "datasets_where_geofms_always_beat_it": [
+   "TropicalCyclone"
+  ],
+  "refit_raw_vs_relative": {
+   "tasks": 137,
+   "similarity_map_agreement": 0.098,
+   "pretrain_match_raw": 10.1,
+   "pretrain_match_relative": 10.1,
+   "axis2_share_raw": 0.31,
+   "axis2_share_relative": 0.27,
+   "sensor_p_raw": 0.46,
+   "sensor_p_relative": 0.056666666666666664
+  }
+ }
+}

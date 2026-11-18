@@ -1,0 +1,606 @@
+{
+ "groups": {
+  "application": {
+   "tasks_with_label": 479,
+   "levels": 9
+  },
+  "geography": {
+   "tasks_with_label": 446,
+   "levels": 8
+  },
+  "time": {
+   "tasks_with_label": 355,
+   "levels": 4
+  },
+  "sensor": {
+   "tasks_with_label": 464,
+   "levels": 26
+  },
+  "application x geography": {
+   "tasks_with_label": 446,
+   "levels": 26
+  },
+  "dataset": {
+   "tasks_with_label": 479,
+   "levels": 94
+  },
+  "protocol": {
+   "tasks_with_label": 479,
+   "levels": 3
+  }
+ },
+ "heldout_pair_accuracy": {
+  "free loadings (no structure)|1": {
+   "pair_acc": 0.6130065965853848,
+   "se": 0.010192163563419274
+  },
+  "free loadings (no structure)|2": {
+   "pair_acc": 0.6233598493761807,
+   "se": 0.007577855521017764
+  },
+  "free loadings (no structure)|3": {
+   "pair_acc": 0.6258701711269784,
+   "se": 0.009105248266999426
+  },
+  "Eq. 11 as written|1": {
+   "pair_acc": 0.6219823825024413,
+   "se": 0.00780653375899998
+  },
+  "Eq. 11 as written|2": {
+   "pair_acc": 0.6877997815581961,
+   "se": 0.004976072525960346
+  },
+  "Eq. 11 as written|3": {
+   "pair_acc": 0.6797436873387838,
+   "se": 0.006119155102309468
+  },
+  "Eq. 11 + protocol|1": {
+   "pair_acc": 0.6210736060892659,
+   "se": 0.008211139881911737
+  },
+  "Eq. 11 + protocol|2": {
+   "pair_acc": 0.689687213428837,
+   "se": 0.00591631453310473
+  },
+  "Eq. 11 + protocol|3": {
+   "pair_acc": 0.6841434639963553,
+   "se": 0.005051151689508292
+  },
+  "dataset + protocol + sensor (used so far)|1": {
+   "pair_acc": 0.6204654395252798,
+   "se": 0.006601378790748611
+  },
+  "dataset + protocol + sensor (used so far)|2": {
+   "pair_acc": 0.6844942937245211,
+   "se": 0.006665327979976869
+  },
+  "dataset + protocol + sensor (used so far)|3": {
+   "pair_acc": 0.690481820269895,
+   "se": 0.0071249845796378716
+  },
+  "Eq. 11 + protocol + dataset|1": {
+   "pair_acc": 0.6216919134037383,
+   "se": 0.005887112001557784
+  },
+  "Eq. 11 + protocol + dataset|2": {
+   "pair_acc": 0.6893768575375984,
+   "se": 0.006090305509993635
+  },
+  "Eq. 11 + protocol + dataset|3": {
+   "pair_acc": 0.6860909761160179,
+   "se": 0.006869075401610011
+  }
+ },
+ "drop_one_part_K2": {
+  "Eq. 11 + protocol, without application": {
+   "pair_acc": 0.6902002315052391,
+   "se": 0.005922988639003362
+  },
+  "Eq. 11 + protocol, without geography": {
+   "pair_acc": 0.6884528142148381,
+   "se": 0.0055658130983415235
+  },
+  "Eq. 11 + protocol, without time": {
+   "pair_acc": 0.6883078714773341,
+   "se": 0.0055288816513952965
+  },
+  "Eq. 11 + protocol, without sensor": {
+   "pair_acc": 0.6783451517572279,
+   "se": 0.006782919143009115
+  },
+  "Eq. 11 + protocol, without application x geography": {
+   "pair_acc": 0.6872574827961734,
+   "se": 0.005295515809751702
+  },
+  "Eq. 11 + protocol, without protocol": {
+   "pair_acc": 0.6877997815581961,
+   "se": 0.004976072525960346
+  }
+ },
+ "loading_share_by_part": {
+  "Eq. 11 as written": {
+   "full": {
+    "application": 0.3497032675147247,
+    "geography": 0.08785449147713498,
+    "time": 0.009976886308957211,
+    "sensor": 0.2536630564159037,
+    "application x geography": 0.08176866609614888,
+    "task-specific remainder": 0.21703363218713054
+   },
+   "leave_one_paper_out": [
+    {
+     "application": 0.34781082206360736,
+     "geography": 0.08787649438167555,
+     "time": 0.01148705677826731,
+     "sensor": 0.2540695429450057,
+     "application x geography": 0.08045774826555299,
+     "task-specific remainder": 0.21829833556589112
+    },
+    {
+     "application": 0.34640255131039693,
+     "geography": 0.08877733242879277,
+     "time": 0.009594577405111266,
+     "sensor": 0.25571660060664836,
+     "application x geography": 0.08330014779837312,
+     "task-specific remainder": 0.21620879045067753
+    },
+    {
+     "application": 0.36308852534984326,
+     "geography": 0.09282832970580494,
+     "time": 0.01025938898721853,
+     "sensor": 0.252440862192168,
+     "application x geography": 0.08552262365260475,
+     "task-specific remainder": 0.19586027011236043
+    },
+    {
+     "application": 0.3458842866850432,
+     "geography": 0.08654310736412524,
+     "time": 0.010266391752580619,
+     "sensor": 0.25643672643145193,
+     "application x geography": 0.08305441435292137,
+     "task-specific remainder": 0.21781507341387762
+    },
+    {
+     "application": 0.3474335893131725,
+     "geography": 0.09269339673731594,
+     "time": 0.015879812430094186,
+     "sensor": 0.2591941117038464,
+     "application x geography": 0.07429540268090332,
+     "task-specific remainder": 0.21050368713466772
+    },
+    {
+     "application": 0.36880251717280116,
+     "geography": 0.07995013160626292,
+     "time": 0.008526065666877051,
+     "sensor": 0.24474540220570076,
+     "application x geography": 0.07847899621517354,
+     "task-specific remainder": 0.21949688713318458
+    },
+    {
+     "application": 0.3275263402320259,
+     "geography": 0.0870319131750876,
+     "time": 0.009669487145809263,
+     "sensor": 0.2669704979417558,
+     "application x geography": 0.0815235369112987,
+     "task-specific remainder": 0.22727822459402272
+    },
+    {
+     "application": 0.2187935654515909,
+     "geography": 0.1335709327323817,
+     "time": 0.013160295784062873,
+     "sensor": 0.259752244245273,
+     "application x geography": 0.09078577467866882,
+     "task-specific remainder": 0.2839371871080227
+    },
+    {
+     "application": 0.34693661170454043,
+     "geography": 0.08945506788135346,
+     "time": 0.009294035080302774,
+     "sensor": 0.25633032833020153,
+     "application x geography": 0.08080360155763903,
+     "task-specific remainder": 0.21718035544596276
+    },
+    {
+     "application": 0.357434424934047,
+     "geography": 0.07215856325367152,
+     "time": 0.00688872922128631,
+     "sensor": 0.26715646264651954,
+     "application x geography": 0.09166932677699632,
+     "task-specific remainder": 0.20469249316747926
+    },
+    {
+     "application": 0.30717939175503006,
+     "geography": 0.11537491074467524,
+     "time": 0.013766485471225437,
+     "sensor": 0.2850289046363372,
+     "application x geography": 0.08384299666504084,
+     "task-specific remainder": 0.1948073107276913
+    },
+    {
+     "application": 0.30284778045678334,
+     "geography": 0.09147886601026088,
+     "time": 0.023364007921604462,
+     "sensor": 0.26320749525951426,
+     "application x geography": 0.10502139262849629,
+     "task-specific remainder": 0.21408045772334078
+    },
+    {
+     "application": 0.32204658867317526,
+     "geography": 0.11072140695421138,
+     "time": 0.009082254757089826,
+     "sensor": 0.25849915167053333,
+     "application x geography": 0.0808338866969813,
+     "task-specific remainder": 0.21881671124800886
+    },
+    {
+     "application": 0.33577826714698533,
+     "geography": 0.07601631729956024,
+     "time": 0.010236626398129127,
+     "sensor": 0.3014732759308974,
+     "application x geography": 0.07550352925319173,
+     "task-specific remainder": 0.20099198397123616
+    },
+    {
+     "application": 0.35502584503285955,
+     "geography": 0.07641209021142432,
+     "time": 0.011550369010113878,
+     "sensor": 0.2517598180490758,
+     "application x geography": 0.08323019641092402,
+     "task-specific remainder": 0.2220216812856024
+    },
+    {
+     "application": 0.3440917299946088,
+     "geography": 0.0724744969177924,
+     "time": 0.006708197783620841,
+     "sensor": 0.26720259282218567,
+     "application x geography": 0.09313028334389145,
+     "task-specific remainder": 0.21639269913790085
+    },
+    {
+     "application": 0.3548006616225956,
+     "geography": 0.02930295254552413,
+     "time": 0.015294935056400586,
+     "sensor": 0.29715739130004704,
+     "application x geography": 0.07476900688699788,
+     "task-specific remainder": 0.2286750525884347
+    },
+    {
+     "application": 0.4371923621697261,
+     "geography": 0.0831865929928536,
+     "time": 0.013708308628401628,
+     "sensor": 0.1933975245204073,
+     "application x geography": 0.0649963144518565,
+     "task-specific remainder": 0.20751889723675493
+    },
+    {
+     "application": 0.35224028743713515,
+     "geography": 0.07282137703394385,
+     "time": 0.00704588030219761,
+     "sensor": 0.251544730513917,
+     "application x geography": 0.07887714194278773,
+     "task-specific remainder": 0.2374705827700187
+    },
+    {
+     "application": 0.33184060147190864,
+     "geography": 0.08220116210391325,
+     "time": 0.00812732006997053,
+     "sensor": 0.2829032535662545,
+     "application x geography": 0.08194734164567474,
+     "task-specific remainder": 0.2129803211422783
+    },
+    {
+     "application": 0.33880544994617484,
+     "geography": 0.0998158730208685,
+     "time": 0.011715905122997874,
+     "sensor": 0.24584046297569204,
+     "application x geography": 0.09058677735408768,
+     "task-specific remainder": 0.21323553158017905
+    },
+    {
+     "application": 0.3430294219005436,
+     "geography": 0.08432555974596512,
+     "time": 0.009549459556777632,
+     "sensor": 0.263060678517,
+     "application x geography": 0.08076484977065647,
+     "task-specific remainder": 0.2192700305090572
+    },
+    {
+     "application": 0.341774883194258,
+     "geography": 0.0763665912001773,
+     "time": 0.009915732592878625,
+     "sensor": 0.2762016485670655,
+     "application x geography": 0.08535068594191732,
+     "task-specific remainder": 0.21039045850370333
+    },
+    {
+     "application": 0.33256518087286985,
+     "geography": 0.07767464517832971,
+     "time": 0.0035474650907637365,
+     "sensor": 0.27684157779161345,
+     "application x geography": 0.08102192244065923,
+     "task-specific remainder": 0.22834920862576405
+    },
+    {
+     "application": 0.33865542119687775,
+     "geography": 0.08961361796625635,
+     "time": 0.007580476766460096,
+     "sensor": 0.2748526588604311,
+     "application x geography": 0.08656511399684015,
+     "task-specific remainder": 0.2027327112131346
+    }
+   ],
+   "lopo_min": {
+    "application": 0.2187935654515909,
+    "geography": 0.02930295254552413,
+    "time": 0.0035474650907637365,
+    "sensor": 0.1933975245204073,
+    "application x geography": 0.0649963144518565,
+    "task-specific remainder": 0.1948073107276913
+   },
+   "lopo_max": {
+    "application": 0.4371923621697261,
+    "geography": 0.1335709327323817,
+    "time": 0.023364007921604462,
+    "sensor": 0.3014732759308974,
+    "application x geography": 0.10502139262849629,
+    "task-specific remainder": 0.2839371871080227
+   }
+  },
+  "Eq. 11 + protocol": {
+   "full": {
+    "application": 0.15928691175627993,
+    "geography": 0.06976859111928127,
+    "time": 0.016463829011044765,
+    "sensor": 0.2525061237329182,
+    "application x geography": 0.08303936229583876,
+    "protocol": 0.2001151241835865,
+    "task-specific remainder": 0.2188200579010505
+   },
+   "leave_one_paper_out": [
+    {
+     "application": 0.15922945739965688,
+     "geography": 0.07023109928360063,
+     "time": 0.019580318685015235,
+     "sensor": 0.25150944444787354,
+     "application x geography": 0.08137550454749189,
+     "protocol": 0.19888287012538403,
+     "task-specific remainder": 0.21919130551097774
+    },
+    {
+     "application": 0.1574348497521864,
+     "geography": 0.07079516044787218,
+     "time": 0.015799536194082437,
+     "sensor": 0.2538685126667374,
+     "application x geography": 0.08460508890809001,
+     "protocol": 0.19956812222066594,
+     "task-specific remainder": 0.21792872981036562
+    },
+    {
+     "application": 0.14339835362902367,
+     "geography": 0.06700183719096142,
+     "time": 0.01862523385627464,
+     "sensor": 0.24554729131831843,
+     "application x geography": 0.08619103929672497,
+     "protocol": 0.24701284002256382,
+     "task-specific remainder": 0.1922234046861331
+    },
+    {
+     "application": 0.15654780307271685,
+     "geography": 0.0686030019929013,
+     "time": 0.016823451463568867,
+     "sensor": 0.25492256576247163,
+     "application x geography": 0.08429687800649098,
+     "protocol": 0.19925233406348566,
+     "task-specific remainder": 0.21955396563836477
+    },
+    {
+     "application": 0.12264169264043695,
+     "geography": 0.06288465168494518,
+     "time": 0.02255976457941565,
+     "sensor": 0.24027385618092503,
+     "application x geography": 0.06922824823698609,
+     "protocol": 0.2803512073406121,
+     "task-specific remainder": 0.20206057933667898
+    },
+    {
+     "application": 0.18820362166101184,
+     "geography": 0.07136731304938662,
+     "time": 0.014656133516474988,
+     "sensor": 0.24900552063902548,
+     "application x geography": 0.08015071440940727,
+     "protocol": 0.17614133814827862,
+     "task-specific remainder": 0.2204753585764152
+    },
+    {
+     "application": 0.16048988873074677,
+     "geography": 0.07363921825445728,
+     "time": 0.014804745323361524,
+     "sensor": 0.2712369235452381,
+     "application x geography": 0.08158397554680974,
+     "protocol": 0.16794792667818237,
+     "task-specific remainder": 0.23029732192120428
+    },
+    {
+     "application": 0.10529174353849162,
+     "geography": 0.07568882520630874,
+     "time": 0.01772161020045148,
+     "sensor": 0.28284074912357604,
+     "application x geography": 0.09493751791062506,
+     "protocol": 0.1021612902703886,
+     "task-specific remainder": 0.3213582637501585
+    },
+    {
+     "application": 0.1511892406338237,
+     "geography": 0.07064583928777289,
+     "time": 0.015439343098729087,
+     "sensor": 0.25421511732951135,
+     "application x geography": 0.08169216377209243,
+     "protocol": 0.20866871178151233,
+     "task-specific remainder": 0.21814958409655824
+    },
+    {
+     "application": 0.13253475460461736,
+     "geography": 0.04870621730539008,
+     "time": 0.0086361093527809,
+     "sensor": 0.2695182663293278,
+     "application x geography": 0.09436861144575909,
+     "protocol": 0.2643510806949862,
+     "task-specific remainder": 0.18188496026713857
+    },
+    {
+     "application": 0.1303486086339423,
+     "geography": 0.1027860002947352,
+     "time": 0.019120281246220935,
+     "sensor": 0.27599230850238743,
+     "application x geography": 0.07993553964136928,
+     "protocol": 0.20101555978173202,
+     "task-specific remainder": 0.1908017018996129
+    },
+    {
+     "application": 0.16903843567167467,
+     "geography": 0.060083935411155295,
+     "time": 0.030656324849428845,
+     "sensor": 0.26159886893046747,
+     "application x geography": 0.0966805637323782,
+     "protocol": 0.18047562487246735,
+     "task-specific remainder": 0.20146624653242817
+    },
+    {
+     "application": 0.16855281205691555,
+     "geography": 0.08999245975912182,
+     "time": 0.014785083716907427,
+     "sensor": 0.2623013023925168,
+     "application x geography": 0.08250356867000211,
+     "protocol": 0.15829157392265142,
+     "task-specific remainder": 0.22357319948188484
+    },
+    {
+     "application": 0.13962793775285537,
+     "geography": 0.04482956497076808,
+     "time": 0.015801173112067943,
+     "sensor": 0.3098079871238503,
+     "application x geography": 0.07583311912016098,
+     "protocol": 0.21203792741438612,
+     "task-specific remainder": 0.20206229050591118
+    },
+    {
+     "application": 0.15678451869905685,
+     "geography": 0.06330615855780244,
+     "time": 0.01937177834101957,
+     "sensor": 0.25175051946299964,
+     "application x geography": 0.08530758699604765,
+     "protocol": 0.20035197294752424,
+     "task-specific remainder": 0.22312746499554958
+    },
+    {
+     "application": 0.16948363845520323,
+     "geography": 0.061275194899775495,
+     "time": 0.011291945859666676,
+     "sensor": 0.2689839532352146,
+     "application x geography": 0.09519237395831773,
+     "protocol": 0.17574711231002355,
+     "task-specific remainder": 0.21802578128179864
+    },
+    {
+     "application": 0.11947778166102614,
+     "geography": 0.029472177292791658,
+     "time": 0.016617494171107586,
+     "sensor": 0.2895398185150698,
+     "application x geography": 0.0696292287662883,
+     "protocol": 0.2578482124905277,
+     "task-specific remainder": 0.21741528710318872
+    },
+    {
+     "application": 0.17670165284934197,
+     "geography": 0.0802578769615563,
+     "time": 0.02020309237249962,
+     "sensor": 0.1894240299087372,
+     "application x geography": 0.06927751759710567,
+     "protocol": 0.2568819437859595,
+     "task-specific remainder": 0.20725388652479976
+    },
+    {
+     "application": 0.16505125919830316,
+     "geography": 0.07068489254058148,
+     "time": 0.012001600060514704,
+     "sensor": 0.2501243143083429,
+     "application x geography": 0.07780904396309132,
+     "protocol": 0.1893719702182834,
+     "task-specific remainder": 0.23495691971088306
+    },
+    {
+     "application": 0.1467291596353463,
+     "geography": 0.0642058088638479,
+     "time": 0.013959775049563226,
+     "sensor": 0.2830353776689024,
+     "application x geography": 0.08124923267883644,
+     "protocol": 0.1981831004602878,
+     "task-specific remainder": 0.21263754564321594
+    },
+    {
+     "application": 0.1461392847640622,
+     "geography": 0.07697587744915055,
+     "time": 0.01874541931028648,
+     "sensor": 0.24377010521105164,
+     "application x geography": 0.08985374625867441,
+     "protocol": 0.21163105079442712,
+     "task-specific remainder": 0.2128845162123476
+    },
+    {
+     "application": 0.14756116848883696,
+     "geography": 0.065754463355024,
+     "time": 0.01609990564927447,
+     "sensor": 0.2629699651848158,
+     "application x geography": 0.08062160238527903,
+     "protocol": 0.20863454425859088,
+     "task-specific remainder": 0.21835835067817885
+    },
+    {
+     "application": 0.15264502230631777,
+     "geography": 0.052150047546997556,
+     "time": 0.01591468647480651,
+     "sensor": 0.2782192474151194,
+     "application x geography": 0.08526697762581195,
+     "protocol": 0.20484844594053456,
+     "task-specific remainder": 0.21095557269041232
+    },
+    {
+     "application": 0.16201874412971598,
+     "geography": 0.06759870868032315,
+     "time": 0.0055282468914788045,
+     "sensor": 0.28168325685775786,
+     "application x geography": 0.08153993946711671,
+     "protocol": 0.17126529234495447,
+     "task-specific remainder": 0.2303658116286531
+    },
+    {
+     "application": 0.15122595520741475,
+     "geography": 0.06803974925748986,
+     "time": 0.012955916031422066,
+     "sensor": 0.2705537964862362,
+     "application x geography": 0.08705324979623429,
+     "protocol": 0.20759001619981937,
+     "task-specific remainder": 0.20258131702138346
+    }
+   ],
+   "lopo_min": {
+    "application": 0.10529174353849162,
+    "geography": 0.029472177292791658,
+    "time": 0.0055282468914788045,
+    "sensor": 0.1894240299087372,
+    "application x geography": 0.06922824823698609,
+    "protocol": 0.1021612902703886,
+    "task-specific remainder": 0.18188496026713857
+   },
+   "lopo_max": {
+    "application": 0.18820362166101184,
+    "geography": 0.1027860002947352,
+    "time": 0.030656324849428845,
+    "sensor": 0.3098079871238503,
+    "application x geography": 0.0966805637323782,
+    "protocol": 0.2803512073406121,
+    "task-specific remainder": 0.3213582637501585
+   }
+  }
+ }
+}

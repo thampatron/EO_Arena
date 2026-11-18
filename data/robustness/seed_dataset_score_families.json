@@ -1,0 +1,222 @@
+{
+ "tasks": 154,
+ "datasets": 34,
+ "papers": 6,
+ "papers_list": [
+  "earthshift",
+  "geobench_v2_leaderboard",
+  "geocross-bench",
+  "infra-bench",
+  "mmearth-bench",
+  "prithvi_v2"
+ ],
+ "median_score": 0.97,
+ "share_score_above_0_9": 0.74,
+ "share_score_below_0_5": 0.03,
+ "share_lower_bound_above_0_8": 0.49,
+ "median_sigma_points": 0.8,
+ "median_tau_points": 4.79,
+ "median_noise_share_of_leftover": 0.012,
+ "median_unexplained_stable_share": 0.43,
+ "by_protocol_median_score": {
+  "fine-tuned": 0.95,
+  "frozen": 0.98
+ },
+ "lowest": [
+  {
+   "dataset": "DynamicEarthNet",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.53,
+   "lo": 0.15,
+   "sigma": 3.42,
+   "tau": 3.55
+  },
+  {
+   "dataset": "CaFFe",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.82,
+   "lo": 0.58,
+   "sigma": 1.59,
+   "tau": 4.03
+  },
+  {
+   "dataset": "Infra-Bench",
+   "tasks": 4,
+   "papers": 1,
+   "score": 0.83,
+   "lo": 0.0,
+   "sigma": 1.56,
+   "tau": 6.82
+  },
+  {
+   "dataset": "OSCD",
+   "tasks": 6,
+   "papers": 1,
+   "score": 0.84,
+   "lo": 0.56,
+   "sigma": 2.36,
+   "tau": 8.03
+  },
+  {
+   "dataset": "SpaceNet 7",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.87,
+   "lo": 0.69,
+   "sigma": 0.67,
+   "tau": 1.82
+  },
+  {
+   "dataset": "ForestNet",
+   "tasks": 3,
+   "papers": 2,
+   "score": 0.87,
+   "lo": 0.47,
+   "sigma": 1.33,
+   "tau": 3.25
+  },
+  {
+   "dataset": "Cashew plantation",
+   "tasks": 7,
+   "papers": 2,
+   "score": 0.9,
+   "lo": 0.69,
+   "sigma": 0.9,
+   "tau": 7.16
+  },
+  {
+   "dataset": "PV4GER",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.91,
+   "lo": 0.74,
+   "sigma": 0.21,
+   "tau": 0.8
+  },
+  {
+   "dataset": "South Africa crop type",
+   "tasks": 7,
+   "papers": 2,
+   "score": 0.92,
+   "lo": 0.78,
+   "sigma": 0.81,
+   "tau": 4.09
+  },
+  {
+   "dataset": "EverWatch",
+   "tasks": 1,
+   "papers": 1,
+   "score": 0.92,
+   "lo": 0.33,
+   "sigma": 0.47,
+   "tau": 1.57
+  }
+ ],
+ "highest": [
+  {
+   "dataset": "MMEarth-Bench soil pH",
+   "tasks": 1,
+   "papers": 1,
+   "score": 0.98,
+   "lo": 0.72,
+   "sigma": 1.1,
+   "tau": 7.48
+  },
+  {
+   "dataset": "DeepGlobe Land Cover / DFC2022 (EarthShift)",
+   "tasks": 4,
+   "papers": 1,
+   "score": 0.98,
+   "lo": 0.72,
+   "sigma": 1.5,
+   "tau": 10.42
+  },
+  {
+   "dataset": "MMEarth-Bench Biomass",
+   "tasks": 1,
+   "papers": 1,
+   "score": 0.99,
+   "lo": 0.95,
+   "sigma": 0.94,
+   "tau": 9.79
+  },
+  {
+   "dataset": "MMEarth-Bench soil organic carbon",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.99,
+   "lo": 0.97,
+   "sigma": 1.26,
+   "tau": 19.04
+  },
+  {
+   "dataset": "BigEarthNet v1 / v2 (reBEN)",
+   "tasks": 13,
+   "papers": 4,
+   "score": 0.99,
+   "lo": 0.89,
+   "sigma": 0.47,
+   "tau": 6.01
+  },
+  {
+   "dataset": "HLS Burn Scars",
+   "tasks": 2,
+   "papers": 1,
+   "score": 0.99,
+   "lo": 0.53,
+   "sigma": 0.65,
+   "tau": 7.91
+  },
+  {
+   "dataset": "RESISC45 / UCMerced (EarthShift)",
+   "tasks": 8,
+   "papers": 1,
+   "score": 1.0,
+   "lo": 0.97,
+   "sigma": 0.78,
+   "tau": 19.28
+  },
+  {
+   "dataset": "EuroSAT",
+   "tasks": 11,
+   "papers": 3,
+   "score": 1.0,
+   "lo": 0.96,
+   "sigma": 0.99,
+   "tau": 18.14
+  }
+ ],
+ "by_mean_score": [
+  {
+   "bin": "mean over 95",
+   "tasks": 4,
+   "score": 0.84,
+   "sigma": 0.27,
+   "tau": 0.44
+  },
+  {
+   "bin": "85-95",
+   "tasks": 6,
+   "score": 0.99,
+   "sigma": 0.27,
+   "tau": 4.69
+  },
+  {
+   "bin": "70-85",
+   "tasks": 14,
+   "score": 1.0,
+   "sigma": 0.47,
+   "tau": 8.81
+  },
+  {
+   "bin": "under 70",
+   "tasks": 124,
+   "score": 0.95,
+   "sigma": 0.9,
+   "tau": 4.79
+  }
+ ],
+ "datasets_in_2plus_papers": 10
+}
