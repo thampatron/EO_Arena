@@ -18,7 +18,17 @@ SEED2 = float(sys.argv[6]) ** 2 if len(sys.argv) > 6 else 0.8 ** 2
 e_pts = vc['points']['e'] * float(__import__('os').environ.get('LAB_E_SCALE', '1'))   # sensitivity: 0 = no within-paper correction (pessimistic bound)
 L = L[(L.pclass != 'other') & L.pts & ~L.shifted].copy(); L['m'] = w.reindex(L.index).fillna(1.0).values
 L['yc'] = L.y - L.groupby('task').y.transform('mean')
-tau = L.groupby('task').agg(t2=('y', 'var'), n=('y', 'size'), ds=('canonical_dataset', 'first')); tau = tau[tau.n >= 4]
+import os
+UNIT = os.environ.get('LAB_UNIT', 'setting')        # 'paper': each paper x dataset enters once (its settings averaged into one table)
+MINP = int(os.environ.get('LAB_MIN_PAPERS', '3')); MINC = int(os.environ.get('LAB_MIN_CELLS', '4'))
+if UNIT == 'paper':
+    # one table per paper x dataset: family value = mean of its setting-centred scores over that paper's settings on the dataset;
+    # tau2 of the dataset = median over papers of the between-family variance in that paper's table (each paper counted once)
+    pt = L.groupby(['canonical_dataset', 'paper_key', 'family']).yc.mean().reset_index()
+    tau = pt.groupby(['canonical_dataset', 'paper_key']).agg(t2=('yc', 'var'), n=('yc', 'size')).reset_index().rename(columns={'canonical_dataset': 'ds'})
+    tau = tau[tau.n >= 4]
+else:
+    tau = L.groupby('task').agg(t2=('y', 'var'), n=('y', 'size'), ds=('canonical_dataset', 'first')); tau = tau[tau.n >= 4]
 pm = L.groupby(['canonical_dataset', 'family', 'paper_key']).agg(c=('yc', 'mean'), ns=('yc', 'size'), m=('m', 'mean')).reset_index()
 cel = pm.groupby(['canonical_dataset', 'family']).agg(v=('c', 'var'), k=('c', 'size'), inv_ns=('ns', lambda s: (1 / s).mean()), m=('m', 'mean')).reset_index()
 # within-paper variance across a paper's settings for one family on one dataset: per dataset where estimable (>= 5 groups with
@@ -42,7 +52,7 @@ def eb(D, col):
     om2 = max(0.0, (Q - (k - 1)) / (wv.sum() - (wv ** 2).sum() / wv.sum())); wr = 1 / (s2 + om2); mu = (wr * x).sum() / wr.sum()
     B = s2 / (s2 + om2); post = B * mu + (1 - B) * x; pv = (1 - B) * s2 + B ** 2 / wr.sum()
     return post, pv, {'mu': float(mu), 'omega2': float(om2), 'Q': float(Q), 'df': int(k - 1), 'p_het': float(stats.chi2.sf(Q, k - 1)), 'I2': float(max(0, (Q - (k - 1)) / Q)) if Q > 0 else 0.0}
-res = {'seed_sd': float(np.sqrt(SEED2)), 'e_points': e_pts, 'datasets': {}}
+res = {'seed_sd': float(np.sqrt(SEED2)), 'e_points': e_pts, 'unit': UNIT, 'min_papers': MINP, 'datasets': {}}
 for name, col in (('unadjusted', 'lab_raw'), ('reporter_adjusted', 'lab_adj')):
     post, pv, het = eb(D, col); res[name] = het
     lab_hat = np.exp(post) * D.tau2; lo = np.exp(post - 1.645 * np.sqrt(pv)) * D.tau2; hi = np.exp(post + 1.645 * np.sqrt(pv)) * D.tau2
@@ -51,7 +61,7 @@ for name, col in (('unadjusted', 'lab_raw'), ('reporter_adjusted', 'lab_adj')):
         sc = max(0.0, 1 - s2 / t2); sc_lo = max(0.0, 1 - (SEED2 + hi[d]) / t2); sc_hi = max(0.0, 1 - (SEED2 + lo[d]) / t2)
         tt = t2 - s2; nimp = 4 * s2 / tt if tt > 0 else float('inf')
         r = res['datasets'].setdefault(d, {'cells': int(D.cells[d]), 'papers': int(D.papers[d]), 'families': int(D.families[d]), 'settings': int(D.settings[d]),
-                                           'eligible': bool(D.papers[d] >= 3 and D.cells[d] >= 4 and D.families[d] >= 4), 'score_seed_only': float(max(0, 1 - SEED2 / t2))})
+                                           'eligible': bool(D.papers[d] >= MINP and D.cells[d] >= MINC and D.families[d] >= 4), 'score_seed_only': float(max(0, 1 - SEED2 / t2))})
         r[name] = {'score': sc, 'score90': [sc_lo, sc_hi], 'n_impl_08': nimp, 'lab_over_tau2': float(lab_hat[d] / t2)}
 E = pd.DataFrame({d: {'seed': v['score_seed_only'], 'u': v['unadjusted']['score'], 'a': v['reporter_adjusted']['score'], 'el': v['eligible']} for d, v in res['datasets'].items()}).T.astype({'seed': float, 'u': float, 'a': float})
 for k_ in ('u', 'a'):
