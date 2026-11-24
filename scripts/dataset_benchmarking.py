@@ -103,19 +103,22 @@ def _group_parts(B, groups, T, K, skip=None):
 
 
 def fit_structured(Y, mask, K, groups: dict | None = None, ridge_u=10.0, ridge_g: dict | None = None, ridge_theta=10.0,
-                   n_iter=400, tol=1e-7, seed=0, n_restarts=4, theta_init=None, task_weight=None, paper=None, ridge_pm=3.0, warm=False) -> StructuredFit:
+                   n_iter=400, tol=1e-7, seed=0, n_restarts=4, theta_init=None, task_weight=None, paper=None, ridge_pm=3.0, warm=False, cell_weight=None) -> StructuredFit:
     """Block-coordinate ridge (weighted) least squares on observed cells. Every block update solves its exact ridge
     subproblem, so the penalised objective decreases monotonically. groups=None or {} gives the free-loading model (the
     current EOArena fit). task_weight (T,) multiplies each task's squared residuals: pass 1/psi_t for the note's
     heteroskedastic residual variance (Eq. 1: eps ~ N(0, sigma_t^2)); see fit_heteroskedastic.
     paper (T,) int, optional: adds a ridge-shrunk offset c_{m,p} shared by all tasks a paper p reports for model m — the
     implementation effect of how that paper trained/evaluated m (note: 'differences in evaluation protocol' confound eta).
-    Without it, such paper x model structure is absorbed by extra latent factors and inflates K."""
+    Without it, such paper x model structure is absorbed by extra latent factors and inflates K.
+    cell_weight (M, T), optional (v5): multiplies each cell's squared residual, e.g. precision weights from the
+    heteroscedastic lab-effects model (scripts/v5/lab_effects.py). None leaves every result unchanged."""
     groups = {g: np.asarray(v, int) for g, v in (groups or {}).items()}
     ridge_g = {g: (ridge_g or {}).get(g, 1.0) for g in groups}
     M, T = Y.shape
     w_t = np.ones(Y.shape[1]) if task_weight is None else np.asarray(task_weight, float)
     W = mask.astype(float) * w_t[None, :]
+    if cell_weight is not None: W = W * np.asarray(cell_weight, float)
     WY = W * np.where(mask, Y, 0.0)
     nlev = {g: int(idx.max()) + 1 if (idx >= 0).any() else 0 for g, idx in groups.items()}
     rng = np.random.default_rng(seed)
