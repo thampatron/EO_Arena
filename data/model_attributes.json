@@ -600,6 +600,1749 @@
    "size_tier": null,
    "sar_pretrained": 0,
    "pretraining": "high-resolution RGB"
+  },
+  "a2mae_vitl": {
+   "family": "a2mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "agrifm": {
+   "family": "agrifm",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "alliance_vitb": {
+   "family": "alliance",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "aom_vitb": {
+   "family": "aom",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "bfm": {
+   "family": "bfm",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "caco_resnet18_unspecified": {
+   "family": "caco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "cgeartheye_vitb": {
+   "family": "cgeartheye",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cgeartheye_vitg": {
+   "family": "cgeartheye",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cgeartheye_vith": {
+   "family": "cgeartheye",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cgeartheye_vitl": {
+   "family": "cgeartheye",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cgeartheye_vits": {
+   "family": "cgeartheye",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "changen2_vitb": {
+   "family": "changen2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cmid_resnet50": {
+   "family": "cmid",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "compdv_b": {
+   "family": "compdv",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crisp": {
+   "family": "crisp",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crisp_aa": {
+   "family": "crisp_aa",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crisp_aug": {
+   "family": "crisp_aug",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crisp_m2o": {
+   "family": "crisp_m2o",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crisp_par": {
+   "family": "crisp_par",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "croma_kd_vitb": {
+   "family": "croma_kd",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "croma_vit_unspecified": {
+   "family": "croma",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "cross_scale_mae_vitl": {
+   "family": "crossscale_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "crossearth_sar_b": {
+   "family": "crossearth_sar",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "crossearth_sar_l": {
+   "family": "crossearth_sar",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "crossearth_sar_s": {
+   "family": "crossearth_sar",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "crossearth_vitl": {
+   "family": "crossearth",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ctxmim_swinb": {
+   "family": "ctxmim",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "cvsar_pirl_swinb": {
+   "family": "cvsar_pirl",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "deepandes": {
+   "family": "deepandes",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "deo": {
+   "family": "deo",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mc": {
+   "family": "dino_mc",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mc_resnet50": {
+   "family": "dino_mc",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mc_swint": {
+   "family": "dino_mc",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mc_vits": {
+   "family": "dino_mc",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mc_wrn50_2": {
+   "family": "dino_mc",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "dino_mm_vits": {
+   "family": "dino_mm",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "dinov2_sat_maxar_vitl": {
+   "family": "dinov2_sat_maxar",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "dinov3_kd_vitb": {
+   "family": "dinov3_kd",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "dinov3_vitl_vhr_continued": {
+   "family": "dinov3_vhr_continued",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "dofa_clip_b_224": {
+   "family": "dofa_clip",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "dofa_clip_l_384": {
+   "family": "dofa_clip",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "dynamicvis_b": {
+   "family": "dynamicvis",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "dynamicvis_l": {
+   "family": "dynamicvis",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "earthgpt": {
+   "family": "earthgpt",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "eosfm": {
+   "family": "eosfm",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "eosfm_small": {
+   "family": "eosfm",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "falcon": {
+   "family": "falcon",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "fgmae_ms_vitb": {
+   "family": "fgmae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "fgmae_sar": {
+   "family": "fgmae",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "fgmae_sar_vits": {
+   "family": "fgmae",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "fleximo": {
+   "family": "fleximo",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "fusmae_vitb": {
+   "family": "fusmae",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "gair_debias": {
+   "family": "gair_debias",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "geochat": {
+   "family": "geochat",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "geolink_vitl": {
+   "family": "geolink",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "geomixture_moe": {
+   "family": "geomixture_moe",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "geomixture_naive": {
+   "family": "geomixture_naive",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "geomixture_sum": {
+   "family": "geomixture_sum",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "gersp_resnet50": {
+   "family": "gersp",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "graft_vitb16": {
+   "family": "graft",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "hypersigma_spat_b": {
+   "family": "hypersigma_spat",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "hypersigma_spat_l": {
+   "family": "hypersigma_spat",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "hypersigma_vitb": {
+   "family": "hypersigma",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "less_vit_b": {
+   "family": "less",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "llava_1_5": {
+   "family": "llava",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ma3e": {
+   "family": "ma3e",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "ma3e_300ep": {
+   "family": "ma3e_300ep",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "maestro_b_cross_flair_hub": {
+   "family": "maestro_cross_flair_hub",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "maestro_b_cross_s2naip": {
+   "family": "maestro_cross_s2naip",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "maestro_b_intra_fhub": {
+   "family": "maestro_intra_fhub",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "maestro_b_intra_flair2": {
+   "family": "maestro_intra_flair2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "maestro_b_intra_pastis": {
+   "family": "maestro_intra_pastis",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "maestro_b_intra_tsai": {
+   "family": "maestro_intra_tsai",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "mapex": {
+   "family": "mapex",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "mapex_pruned_130m": {
+   "family": "mapex_pruned",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "minicpm_v": {
+   "family": "minicpm_v",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "minigptv2": {
+   "family": "minigptv2",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "momo_vitb": {
+   "family": "momo",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "momo_vitl": {
+   "family": "momo",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "momo_vits": {
+   "family": "momo",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "msgfm_swinb": {
+   "family": "msgfm",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "mtp_internimage_xl": {
+   "family": "mtp_internimage",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "mtp_vitb_rvsa": {
+   "family": "mtp_rvsa",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "mtp_vitl_rvsa": {
+   "family": "mtp_rvsa",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "neighbormae_vitl_fmow": {
+   "family": "neighbormae_fmow",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "neighbormae_vitl_satl": {
+   "family": "neighbormae_satl",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "omnisat_flair": {
+   "family": "omnisat_flair",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "omnisat_pastis_hd": {
+   "family": "omnisat_pastis_hd",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "omnisat_tsai": {
+   "family": "omnisat_tsai",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "oreole_hr_vitb_tiu_orb": {
+   "family": "oreole_hr_tiu_orb",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "oreole_hr_vith_tiu_orb": {
+   "family": "oreole_hr_tiu_orb",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "oreole_mr_vitb": {
+   "family": "oreole_mr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "oreole_mr_vite": {
+   "family": "oreole_mr_vite",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "oreole_mr_vitg": {
+   "family": "oreole_mr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "oreole_mr_vith": {
+   "family": "oreole_mr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "physwin_b": {
+   "family": "physwin",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "physwin_t": {
+   "family": "physwin",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "pievit_vitb": {
+   "family": "pievit",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "pis_r50": {
+   "family": "pis_r50",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "pis_swinb": {
+   "family": "pis",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "pis_vitb": {
+   "family": "pis",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "prithvi_v2_tiny": {
+   "family": "prithvi_v2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "qwen_vl_chat": {
+   "family": "qwen_vl_chat",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "range_plus": {
+   "family": "range_plus",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmamba_asscmamba": {
+   "family": "ringmamba_asscmamba",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "ringmamba_vmambab": {
+   "family": "ringmamba_vmambab",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "ringmo_agent": {
+   "family": "ringmo_agent",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmo_swinb": {
+   "family": "ringmo",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "ringmoe_ep_4p3b": {
+   "family": "ringmoe_ep_4p3b",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmoe_ka_1b": {
+   "family": "ringmoe_ka",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmoe_kc_1b": {
+   "family": "ringmoe_kc",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmoe_ks_1b": {
+   "family": "ringmoe_ks",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmoe_opt": {
+   "family": "ringmoe_opt",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "ringmogpt": {
+   "family": "ringmogpt",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "roma_mamba_b": {
+   "family": "roma_mamba",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "rs_vheat_b": {
+   "family": "rs_vheat",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "rsbuilding": {
+   "family": "rsbuilding",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "rsp_resnet50": {
+   "family": "rsp",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "rsp_vitaev2_s": {
+   "family": "rsp_vitaev2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "rvsa_vitae_b": {
+   "family": "rvsa_vitae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "rvsa_vitl": {
+   "family": "rvsa",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "s2mae_star_vitb": {
+   "family": "s2mae_star",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s2mae_star_vith": {
+   "family": "s2mae_star",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s2mae_star_vitl": {
+   "family": "s2mae_star",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s2mae_vitb": {
+   "family": "s2mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s2mae_vith": {
+   "family": "s2mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s2mae_vitl": {
+   "family": "s2mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "s4_africa": {
+   "family": "s4_africa",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "s4_pastis": {
+   "family": "s4_pastis",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "sar_jepa": {
+   "family": "sar_jepa",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "sarmae_s_vitb_sar1m30": {
+   "family": "sarmae_sar1m30",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "sarmae_vitb": {
+   "family": "sarmae",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "sarmae_vitl": {
+   "family": "sarmae",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "sat2cap": {
+   "family": "sat2cap",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "satclip_rn50_img": {
+   "family": "satclip_img",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "satclip_vits16_img": {
+   "family": "satclip_img",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "satdino_vitb16": {
+   "family": "satdino",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "satlas_s1_swinb_si": {
+   "family": "satlas_s1",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "satlas_swinb_mi": {
+   "family": "satlas_s2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "satlas_swinb_si": {
+   "family": "satlas_s2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "satmae_vit_sentinel_unspecified": {
+   "family": "satmae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "satswinmae": {
+   "family": "satswinmae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "satvit_v1": {
+   "family": "satvit_v1",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "seamo_vitb": {
+   "family": "seamo",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "seco_resnet_unspecified": {
+   "family": "seco_resnet_unspecified",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "seggpt": {
+   "family": "seggpt",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "selectivemae_vitb_13m": {
+   "family": "selectivemae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "selectivemae_vitb_4m": {
+   "family": "selectivemae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "selectivemae_vitl_13m": {
+   "family": "selectivemae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "selectivemae_vitl_4m": {
+   "family": "selectivemae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "sigmae_vit": {
+   "family": "sigmae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "skyclip50_base": {
+   "family": "skyclip50",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "skysense_pp": {
+   "family": "skysense_pp",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "skysense_swinh_optical": {
+   "family": "skysense",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "skysense_vitl_s2": {
+   "family": "skysense",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specrn50_dino": {
+   "family": "spectralearth_specrn50_dino",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specrn50_moco": {
+   "family": "spectralearth_specrn50_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvitb_mae": {
+   "family": "spectralearth_specvitb_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvitg_mae": {
+   "family": "spectralearth_specvitg_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvith_mae": {
+   "family": "spectralearth_specvith_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvitl_mae": {
+   "family": "spectralearth_specvitl_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvits_dino": {
+   "family": "spectralearth_specvits_dino",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvits_mae": {
+   "family": "spectralearth_specvits_mae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralearth_specvits_moco": {
+   "family": "spectralearth_specvits_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralgpt_unspecified": {
+   "family": "spectralgpt",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "spectralgpt_vitl_unspecified": {
+   "family": "spectralgpt",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_resnet18_moco": {
+   "family": "ssl4eo_etm_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_resnet18_simclr": {
+   "family": "ssl4eo_etm_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_resnet50_moco": {
+   "family": "ssl4eo_etm_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_resnet50_simclr": {
+   "family": "ssl4eo_etm_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_vits16_moco": {
+   "family": "ssl4eo_etm_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_sr_vits16_simclr": {
+   "family": "ssl4eo_etm_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_resnet18_moco": {
+   "family": "ssl4eo_etm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_resnet18_simclr": {
+   "family": "ssl4eo_etm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_resnet50_moco": {
+   "family": "ssl4eo_etm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_resnet50_simclr": {
+   "family": "ssl4eo_etm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_vits16_moco": {
+   "family": "ssl4eo_etm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_etm_toa_vits16_simclr": {
+   "family": "ssl4eo_etm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_resnet18_moco": {
+   "family": "ssl4eo_oli_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_resnet18_simclr": {
+   "family": "ssl4eo_oli_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_resnet50_moco": {
+   "family": "ssl4eo_oli_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_resnet50_simclr": {
+   "family": "ssl4eo_oli_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_vits16_moco": {
+   "family": "ssl4eo_oli_sr_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_sr_vits16_simclr": {
+   "family": "ssl4eo_oli_sr_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_resnet18_moco": {
+   "family": "ssl4eo_oli_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_resnet18_simclr": {
+   "family": "ssl4eo_oli_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_resnet50_moco": {
+   "family": "ssl4eo_oli_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_resnet50_simclr": {
+   "family": "ssl4eo_oli_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_vits16_moco": {
+   "family": "ssl4eo_oli_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_oli_toa_vits16_simclr": {
+   "family": "ssl4eo_oli_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_resnet18_moco": {
+   "family": "ssl4eo_tm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_resnet18_simclr": {
+   "family": "ssl4eo_tm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_resnet50_moco": {
+   "family": "ssl4eo_tm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_resnet50_simclr": {
+   "family": "ssl4eo_tm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_vits16_moco": {
+   "family": "ssl4eo_tm_toa_moco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_l_tm_toa_vits16_simclr": {
+   "family": "ssl4eo_tm_toa_simclr",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_resnet18_unspecified": {
+   "family": "ssl4eo_vits_unspecified",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_unspecified": {
+   "family": "ssl4eo_vits_unspecified",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "ssl4eo_vit_mae_unspecified": {
+   "family": "ssl4eo_mae_unspecified",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "swimdiff": {
+   "family": "swimdiff",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "t_jepa": {
+   "family": "jepa",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "tedi_vitb": {
+   "family": "tedi",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "tedi_vitb1024": {
+   "family": "tedi",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "tedi_vitl": {
+   "family": "tedi",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "tedi_vits": {
+   "family": "tedi",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "terraflow_base_rs": {
+   "family": "terraflow_rs",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "terraflow_base_tds": {
+   "family": "terraflow_tds",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "terraflow_tiny_rs": {
+   "family": "terraflow_rs",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "terraflow_tiny_tds": {
+   "family": "terraflow_tds",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "terramind_kd_vitb": {
+   "family": "terramind_kd",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "terramind_kd_vits": {
+   "family": "terramind_kd",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "terramind_kd_vitt": {
+   "family": "terramind_kd",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "terramind_v1b_unspecified": {
+   "family": "terramind_v1b_unspecified",
+   "size_tier": null,
+   "sar_pretrained": null,
+   "pretraining": null,
+   "source": "v5_rule"
+  },
+  "thor_base": {
+   "family": "thor",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "thor_large": {
+   "family": "thor",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "thor_small": {
+   "family": "thor",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "thor_tiny": {
+   "family": "thor",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "tile2vec_tilenet": {
+   "family": "tile2vec_tilenet",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "timo_base": {
+   "family": "timo",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "timo_huge": {
+   "family": "timo",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "timo_large": {
+   "family": "timo",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "universat_b": {
+   "family": "universat",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "multi-sensor (SAR + optical)",
+   "source": "v5_rule"
+  },
+  "usat_vitl": {
+   "family": "usat",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "vitp_vitl_rs": {
+   "family": "vitp_rs",
+   "size_tier": null,
+   "sar_pretrained": 1,
+   "pretraining": "SAR",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_imagenet": {
+   "family": "wildsat_imagenet",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_imagenet_v1": {
+   "family": "wildsat_imagenet_v1",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_mocov3": {
+   "family": "wildsat_mocov3",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_random": {
+   "family": "wildsat_random",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_satclip": {
+   "family": "wildsat_satclip",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_satlas": {
+   "family": "wildsat_satlas",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_rn50_seco": {
+   "family": "wildsat_seco",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_swinb_satlas": {
+   "family": "wildsat_satlas",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_swint_imagenet": {
+   "family": "wildsat_imagenet",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_swint_random": {
+   "family": "wildsat_random",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_swint_satlas": {
+   "family": "wildsat_satlas",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_taxabind": {
+   "family": "wildsat_taxabind",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_clip": {
+   "family": "wildsat_clip",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_imagenet": {
+   "family": "wildsat_imagenet",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_mocov3": {
+   "family": "wildsat_mocov3",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_prithvi": {
+   "family": "wildsat_prithvi",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_random": {
+   "family": "wildsat_random",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitb_satclip": {
+   "family": "wildsat_satclip",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "wildsat_vitl_satmae": {
+   "family": "wildsat_satmae",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "xstars_r50_s2ls": {
+   "family": "xstars_r50_s2ls",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "xstars_vitl_cont_ls_s6": {
+   "family": "xstars_cont_ls_s6",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "xstars_vitl_cont_s2_s6": {
+   "family": "xstars_cont_s2_s6",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "xstars_vitl_cont_scalemae_bdortho": {
+   "family": "xstars_cont_scalemae_bdortho",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "high-resolution RGB",
+   "source": "v5_rule"
+  },
+  "xstars_vitl_cont_scalemae_s2": {
+   "family": "xstars_cont_scalemae_s2",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
+  },
+  "xstars_vitl_s2ls": {
+   "family": "xstars_s2ls",
+   "size_tier": null,
+   "sar_pretrained": 0,
+   "pretraining": "multispectral optical",
+   "source": "v5_rule"
   }
  }
 }

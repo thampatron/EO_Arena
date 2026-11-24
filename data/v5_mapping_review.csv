@@ -1,0 +1,2159 @@
+kind,id,decision,rule
+scope,factorized_prior_l0025,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,factorized_prior_l01,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,factorized_prior_l05,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,gersp_resnet50,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,mae_vitb_fmow_abl_base,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,mae_vitb_satl_abl_base,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,rsp_resnet50,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,rsp_vitaev2_s,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,rvsa_vitl,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2_r18,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2_r18_100k,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2_r50,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2_r50_100k,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2tp_r18,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2tp_r18_100k,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2tp_r50,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seco_abl_mocov2tp_r50_100k,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,seggpt,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask50,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask60,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask70,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask75,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask80,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,ssl4eo_vits_mae_abl_mask90,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+scope,swimdiff,in (EO-pretrained baseline),baseline_pretrained + EO pretraining imagery
+D7,a2mae_abl_den_aam,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_den_gem,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_den_onehot,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_den_scale,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_den_tube,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_den_vanilla_mae,paper-internal variant in a2-mae,variant_kind=ablation
+D7,a2mae_abl_mask060,paper-internal variant in a2-mae,variant_kind=sweep
+D7,a2mae_abl_mask090,paper-internal variant in a2-mae,variant_kind=sweep
+D7,agrifm_abl_fixed_16_frames,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_lc_no_mt,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_no_mt_no_lc,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_no_temporal_downsampling,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_single_landsat,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_single_modis,paper-internal variant in agrifm,variant_kind=ablation
+D7,agrifm_abl_single_s2,paper-internal variant in agrifm,variant_kind=ablation
+D7,alliance_abl_1dfft_16_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_1dfft_16_4,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_1dfft_16_8,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_1dfft_4_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_1dfft_8_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_2dfft_16_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_2dfft_16_4,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_2dfft_4_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_2dfft_8_2,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_2dfft_8_4,paper-internal variant in alliance,variant_kind=sweep
+D7,alliance_abl_freq_token_only,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_freqemb,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_no_weight,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_progdec,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_apa,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_ba,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_ba_apa,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_ssci,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_ssci_apa,paper-internal variant in alliance,variant_kind=ablation
+D7,alliance_abl_tdsa_ssci_ba,paper-internal variant in alliance,variant_kind=ablation
+D7,alphaearth_abl_b0,paper-internal variant in alphaearth,variant_kind=sweep
+D7,anysat_abl_full,paper-internal variant in anysat,variant_kind=ablation
+D7,anysat_abl_no_contrastive,paper-internal variant in anysat,variant_kind=ablation
+D7,anysat_abl_random_token_dropping,paper-internal variant in anysat,variant_kind=ablation
+D7,aom_vitb_abl_mse_only,paper-internal variant in any-optical-model,variant_kind=ablation
+D7,aom_vitb_abl_wavelength_enc,paper-internal variant in any-optical-model,variant_kind=ablation
+D7,compdv_abl_k1024,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_k128,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_k256,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_k32,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_k512,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_k64,paper-internal variant in composition-aware-dynamicvis,variant_kind=sweep
+D7,compdv_abl_loss_cls_only,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_emd_cls,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_emd_mil,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_emd_mil_cls,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_emd_only,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_mil_cls,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,compdv_abl_loss_mil_only,paper-internal variant in composition-aware-dynamicvis,variant_kind=ablation
+D7,copernicusfm_abl_bandwidth,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_baseline_dynpatch,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_full,paper-internal variant in copernicus,variant_kind=replica
+D7,copernicusfm_abl_metadata,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_varenc_hash,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_varenc_spectroscopy,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_varhypernet,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_wo_metadata,paper-internal variant in copernicus,variant_kind=ablation
+D7,copernicusfm_abl_wo_varhypernet,paper-internal variant in copernicus,variant_kind=ablation
+D7,croma_vitb_abl_default,paper-internal variant in croma,variant_kind=ablation
+D7,crossearth_mtp_rvsa_abl,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_sar_abl_cpt_only,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_data40k_full,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_data40k_pseudo,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_data40k_real,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_desc_enl,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_desc_hde,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_desc_rlr,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_dinov2_cpt200k,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_k2,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_k3,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_lr1e4,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_lr1e5,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_lr6e5,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_moe_bc,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_moe_plain,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_moe_s,paper-internal variant in crossearth-sar,variant_kind=ablation
+D7,crossearth_sar_abl_n3,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_n4,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_sar_abl_n5,paper-internal variant in crossearth-sar,variant_kind=sweep
+D7,crossearth_vitl_abl_r10,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r11,paper-internal variant in crossearth,variant_kind=sweep
+D7,crossearth_vitl_abl_r12,paper-internal variant in crossearth,variant_kind=sweep
+D7,crossearth_vitl_abl_r13,paper-internal variant in crossearth,variant_kind=sweep
+D7,crossearth_vitl_abl_r14,paper-internal variant in crossearth,variant_kind=sweep
+D7,crossearth_vitl_abl_r15,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r16,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r2,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r3,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r4,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r5,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r6,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r7,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossearth_vitl_abl_r9,paper-internal variant in crossearth,variant_kind=ablation
+D7,crossscale_mae_abl_cl_both,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_cl_dec,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_cl_enc,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_cl_none,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_full_300ep,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ms_cc,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ms_cp,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ms_recon,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ns_both,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ns_dec,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_ns_none,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,crossscale_mae_abl_single_scale,paper-internal variant in cross-scalemae,variant_kind=ablation
+D7,csp_abl_locdim_1024,paper-internal variant in csp,variant_kind=sweep
+D7,csp_abl_locdim_128,paper-internal variant in csp,variant_kind=sweep
+D7,csp_abl_locdim_512,paper-internal variant in csp,variant_kind=sweep
+D7,csp_abl_locdim_64,paper-internal variant in csp,variant_kind=sweep
+D7,csp_abl_mc_b,paper-internal variant in csp,variant_kind=ablation
+D7,csp_abl_mc_bd,paper-internal variant in csp,variant_kind=ablation
+D7,csp_abl_mc_bl,paper-internal variant in csp,variant_kind=ablation
+D7,csp_abl_vit_inat,paper-internal variant in csp,variant_kind=ablation
+D7,csp_abl_vit_mse_inat,paper-internal variant in csp,variant_kind=ablation
+D7,csp_abl_vit_nce_bld_inat,paper-internal variant in csp,variant_kind=ablation
+D7,ctxmim_abl_no_ce,paper-internal variant in CtxMIM,variant_kind=ablation
+D7,decur_abl_cbam_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_cbam_sar,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_cross_da_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_cross_da_sar,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_da_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_da_sar,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_da_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_da_sar,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_decoup,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_decoup_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_intra,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_intra_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_intra_no_decoup,paper-internal variant in decur,variant_kind=ablation
+D7,decur_abl_no_intra_no_decoup_geonrw,paper-internal variant in decur,variant_kind=ablation
+D7,deo_abl_base_ms,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_cls_distill,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_highres_opt,paper-internal variant in deo,variant_kind=replica
+D7,deo_abl_mim,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_no_cr,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_opt_aug,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_patch_distill,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_sep_opt_path,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_shift,paper-internal variant in deo,variant_kind=ablation
+D7,deo_abl_swin_t,paper-internal variant in deo,variant_kind=replica
+D7,deo_abl_vit_s_p8,paper-internal variant in deo,variant_kind=ablation
+D7,dino_mc_abl_tp_resnet50,paper-internal variant in dino-mc,variant_kind=ablation
+D7,dino_mc_abl_tp_swint,paper-internal variant in dino-mc,variant_kind=ablation
+D7,dino_mc_abl_tp_vits,paper-internal variant in dino-mc,variant_kind=ablation
+D7,dino_mc_abl_tp_wrn50_2,paper-internal variant in dino-mc,variant_kind=ablation
+D7,dinov3_kd_vitb1024,paper-internal variant in tedi,variant_kind=ablation
+D7,dofa_abl_e20,paper-internal variant in dofa,variant_kind=sweep
+D7,dofa_abl_e40,paper-internal variant in dofa,variant_kind=sweep
+D7,dofa_abl_e60,paper-internal variant in dofa,variant_kind=sweep
+D7,dofa_abl_e80,paper-internal variant in dofa,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_0_0_0,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_1_0_0,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_1_1_0,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_1_1_1,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_2_05_05,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_2_0_0,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_loss_2_1_1,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m1_0p1,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m1_0p3,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m1_0p5,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m1_0p7,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_0p1,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_0p3,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_0p5,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_0p7,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_0p9,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_merge_m2_1p0,paper-internal variant in dofa-clip,variant_kind=sweep
+D7,dofa_clip_b_abl_mixed,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_others,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_others_nodistill_siglip_merge,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_others_siglip_merge,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_rgb,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_rgb_nodistill_siglip_merge,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dofa_clip_b_abl_rgb_siglip_merge,paper-internal variant in dofa-clip,variant_kind=ablation
+D7,dynamicvis_b_abl_ce_loss,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_dense,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_bal_explicit_loss,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_bal_fixed_0,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_bal_fixed_0p05,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_bal_fixed_0p1,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_bal_fixed_0p2,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_bal_fixed_0p4,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_global_head_tail,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_global_middle,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_global_none,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_r0,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_r1516_78_34_12,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_r3132_1516_78_34,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_r34_12_0_0,paper-internal variant in dynamicvis,variant_kind=sweep
+D7,dynamicvis_b_nomil_abl_route_channel_only,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_route_spatial_channel_parallel,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_route_spatial_channel_serial,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_scan_fwd_only,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_scan_fwd_rev_gate,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_scan_fwd_rev_shuffle_gate,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_b_nomil_abl_scan_fwd_rev_shuffle_mean,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_l_abl_ce_loss,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_l_dense,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,dynamicvis_l_nomil,paper-internal variant in dynamicvis,variant_kind=ablation
+D7,echosat_abl_linear_ft,paper-internal variant in echosat,variant_kind=ablation
+D7,echosat_abl_no_finetune,paper-internal variant in echosat,variant_kind=ablation
+D7,eosfm_small,paper-internal variant in eos-fm,variant_kind=replica
+D7,gair_abl_bicubic,paper-internal variant in gair,variant_kind=ablation
+D7,gair_abl_bilinear,paper-internal variant in gair,variant_kind=ablation
+D7,gair_abl_geonoise_kappa1,paper-internal variant in gair,variant_kind=sweep
+D7,gair_abl_geonoise_kappa100,paper-internal variant in gair,variant_kind=sweep
+D7,gair_abl_geonoise_kappa300,paper-internal variant in gair,variant_kind=sweep
+D7,gair_abl_input128,paper-internal variant in gair,variant_kind=sweep
+D7,gair_abl_mae,paper-internal variant in gair,variant_kind=ablation
+D7,gair_abl_patch16,paper-internal variant in gair,variant_kind=sweep
+D7,gair_abl_wo_loc,paper-internal variant in gair,variant_kind=ablation
+D7,gair_abl_wo_nili,paper-internal variant in gair,variant_kind=ablation
+D7,gair_abl_wo_nili_loc,paper-internal variant in gair,variant_kind=ablation
+D7,galileo_abl_combined_baseline,paper-internal variant in galileo,variant_kind=replica
+D7,galileo_abl_combined_globalloss_patchdiscb,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_localloss_patchdiscb,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_loss_mse,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_sharepred,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_targetctx_dec,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_targetctx_dec_globalpdb,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_combined_targetctx_decenc,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_dynamicworld,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_era5,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_landscan,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_location,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_ndvi,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_s1,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_srtm,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_terraclim,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_viirs,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_data_no_worldcereal,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_global_bs16,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_global_loss_mse,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_global_loss_patchdisc,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_global_mask_mixed,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_global_mask_random,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_global_only,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_global_targetdepth0,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_global_targetdepth12,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_global_targetdepth6,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_local_loss_mse,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_local_loss_patchdiscb,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_local_mask_mixed,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_local_mask_structured,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_local_only,paper-internal variant in galileo,variant_kind=ablation
+D7,galileo_abl_local_targetdepth12,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_local_targetdepth6,paper-internal variant in galileo,variant_kind=sweep
+D7,galileo_abl_local_targetdepth_varied,paper-internal variant in galileo,variant_kind=sweep
+D7,geoclip_abl_batchnoise0m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_batchnoise10m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_batchnoise150m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_batchnoise300m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_batchnoise500m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_batchnoise50m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_data10pct,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_data20pct,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_data5pct,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_eep_mlp,paper-internal variant in geoclip,variant_kind=ablation
+D7,geoclip_abl_eep_rff_noqueue,paper-internal variant in geoclip,variant_kind=ablation
+D7,geoclip_abl_hier2,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_hier4,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_hier5,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_mlp_baseline,paper-internal variant in geoclip,variant_kind=ablation
+D7,geoclip_abl_queue1024,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue16384,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue2048,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue32768,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue512,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue65536,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_queue8192,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_dq_no_noise,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_qnoise10000m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_qnoise25000m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_qnoise5000m,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_single,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma16_static_queue,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma1_single,paper-internal variant in geoclip,variant_kind=sweep
+D7,geoclip_abl_sigma256_single,paper-internal variant in geoclip,variant_kind=sweep
+D7,geolink_abl_gcn,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_kp_centroid,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_kp_poly5,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_lw_cont0p001,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_lw_cont0p1,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_lw_cst0p001,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_lw_cst0p1,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_no_fusion_pe,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_osm_complete50,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_osm_complete80,paper-internal variant in geolink,variant_kind=sweep
+D7,geolink_abl_osmmask15,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_osmmask25,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rec_300ep,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rec_60ep,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rec_cont,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rec_cst,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rsmask50,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rsmask80,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_rsmask90,paper-internal variant in geolink,variant_kind=ablation
+D7,geolink_abl_transformer,paper-internal variant in geolink,variant_kind=ablation
+D7,geomixture_moe_cos,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,geomixture_moe_mse,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,geomixture_naive_cos,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,geomixture_naive_mse,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,geomixture_sum_cos,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,geomixture_sum_mse,paper-internal variant in geomixture-and-pangea-latents,variant_kind=ablation
+D7,gfm_swinb_abl_both_init,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_distill_stage1,paper-internal variant in GFM,variant_kind=sweep
+D7,gfm_swinb_abl_distill_stage2,paper-internal variant in GFM,variant_kind=sweep
+D7,gfm_swinb_abl_distill_stage4,paper-internal variant in GFM,variant_kind=sweep
+D7,gfm_swinb_abl_geopile_dagger_200ep,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_geopile_dagger_800ep,paper-internal variant in GFM,variant_kind=sweep
+D7,gfm_swinb_abl_geopile_mimonly_200ep,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_seco100k_si,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_seco100k_tp,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_seco1m_si,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_sentinel2_100ep,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_curated_datasets,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_mim,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_mlrsnet,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_naip,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_patternnet,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_resisc45,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_teacher,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_abl_wo_whu_rsd46,paper-internal variant in GFM,variant_kind=ablation
+D7,gfm_swinb_random_init,paper-internal variant in GFM,variant_kind=ablation
+D7,less_vit_b_abl_ratio16_dec4,paper-internal variant in less-vit,variant_kind=sweep
+D7,less_vit_b_abl_ratio16_dec8,paper-internal variant in less-vit,variant_kind=sweep
+D7,less_vit_b_abl_ratio64_dec4,paper-internal variant in less-vit,variant_kind=sweep
+D7,less_vit_b_abl_ratio64_dec8,paper-internal variant in less-vit,variant_kind=sweep
+D7,ma3e_abl_a128_n1,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_a32_n1,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_a32_n4,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_a64_n1,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_a64_n2,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_a80_n1,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_mask_block,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_mask_r67_b67,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_mask_r67_b75,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_mask_r80_b75,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_mask_r80_b80,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_mask_uniform,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_ot_masked_only,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_pos_fixed,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_pos_selsearch,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_random_rotation,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_rot30,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_rot60,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_rot90,paper-internal variant in ma3e,variant_kind=sweep
+D7,ma3e_abl_scc,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_scc_ae,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_scc_ae_mask,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_scc_mask,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_scc_ot,paper-internal variant in ma3e,variant_kind=ablation
+D7,ma3e_abl_vits,paper-internal variant in ma3e,variant_kind=ablation
+D7,mae_vitb_fmow_abl_base,paper-internal variant in neighbormae,variant_kind=ablation
+D7,mae_vitb_satl_abl_base,paper-internal variant in neighbormae,variant_kind=ablation
+D7,maestro_b_intra_fhub_2xep,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_b_intra_flair2_2xep,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_b_intra_pastis_2xep,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_b_intra_tsai_2xep,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_all_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_group_all_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_group_all_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_group_s1_fhub,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_fhub20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_fhub5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_pastis_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_pastis_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_tsai_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1_tsai_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_group_s1s2_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_group_s1s2_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_group_s1s2_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_inter_group_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_jt_nonorm_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_jt_nonorm_pastis_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_nonorm_pastis_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_nonorm_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_jt_nonorm_tsai_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_nonorm_tsai_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_patchwise_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_jt_patchwise_pastis_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_patchwise_pastis_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_patchwise_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_jt_patchwise_tsai_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_jt_patchwise_tsai_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_mod_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_mod_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_mod_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_monotemp_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_monotemp_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_monotemp_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_aerial_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_aerial_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_aerial_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_demdsm_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_random_step_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_random_step_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_random_step_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s1_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s1_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s1_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s2_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s2_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_s2_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_temp_enc_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_temp_enc_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_no_temp_enc_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nomod_mask_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nomod_mask_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nomod_mask_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nospat_mask_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nospat_mask_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_nospat_mask_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_notemp_mask_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_notemp_mask_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_notemp_mask_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_s1bins1_fhub20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s1bins1_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s1bins1_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins1_fhub20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins1_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins1_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins4_fhub20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins4_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_s2bins4_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_shared_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_shared_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_shared_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_temp_mod_enc_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_temp_mod_enc_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_temp_mod_enc_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_token_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_token_pastis_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_token_pastis_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_token_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_token_tsai_frac20,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_token_tsai_frac5,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_b_unstructured_mask_fhub20,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_unstructured_mask_pastis,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_b_unstructured_mask_tsai,paper-internal variant in maestro,variant_kind=ablation
+D7,maestro_mae_l_group_s1_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_group_s1_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_jt_nonorm_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_jt_nonorm_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_jt_patchwise_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_jt_patchwise_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_token_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_l_token_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_group_s1_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_group_s1_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_jt_nonorm_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_jt_nonorm_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_jt_patchwise_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_jt_patchwise_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_token_pastis,paper-internal variant in maestro,variant_kind=sweep
+D7,maestro_mae_s_token_tsai,paper-internal variant in maestro,variant_kind=sweep
+D7,mapex_dropout_0,paper-internal variant in mapex,variant_kind=sweep
+D7,mapex_dropout_10,paper-internal variant in mapex,variant_kind=sweep
+D7,mapex_mm_1exp,paper-internal variant in mapex,variant_kind=ablation
+D7,mapex_routing_deterministic,paper-internal variant in mapex,variant_kind=ablation
+D7,mapex_routing_posembed,paper-internal variant in mapex,variant_kind=ablation
+D7,mapex_shared_expert,paper-internal variant in mapex,variant_kind=ablation
+D7,mapex_unimodal_rgb_1exp,paper-internal variant in mapex,variant_kind=ablation
+D7,mind_abl_nonnested_256,paper-internal variant in mind,variant_kind=ablation
+D7,mind_abl_nonnested_64,paper-internal variant in mind,variant_kind=ablation
+D7,mind_abl_nonnested_full,paper-internal variant in mind,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_imagem,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_mmearth100k,paper-internal variant in mmearth,variant_kind=sweep
+D7,mmearth_cnn_atto_abl_mmearth64,paper-internal variant in mmearth,variant_kind=sweep
+D7,mmearth_cnn_atto_abl_mmearth64_equal,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_pixelm,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_s2only,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_s2rgb_112,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_s2rgb_128,paper-internal variant in mmearth,variant_kind=ablation
+D7,mmearth_cnn_atto_abl_s2rgb_64,paper-internal variant in mmearth,variant_kind=ablation
+D7,momo_abl_eps_1e2,paper-internal variant in momo,variant_kind=sweep
+D7,momo_abl_eps_1e3,paper-internal variant in momo,variant_kind=sweep
+D7,momo_abl_evl_es,paper-internal variant in momo,variant_kind=ablation
+D7,momo_abl_evl_le,paper-internal variant in momo,variant_kind=ablation
+D7,momo_abl_incremental_h_c_t,paper-internal variant in momo,variant_kind=ablation
+D7,msgfm_abl_100ep,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_data_geopile,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_data_rgb,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_data_rgb_fmow,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_data_rgb_geolife,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_data_rgb_imagenet,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_distill_clip,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_distill_in22k,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_eva,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_moe_cross100,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_moe_nocross,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_noMoE_nocross,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_nomoe_cross50,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_pt_rgb,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_pt_s2,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_pt_sar,paper-internal variant in msGFM,variant_kind=ablation
+D7,msgfm_abl_pt_wo_rgb,paper-internal variant in msGFM,variant_kind=ablation
+D7,mtp_vitb_rvsa_scratch_abl,paper-internal variant in mtp,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_larger_size,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_loss_self0_cross0,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_loss_self0_cross1,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_loss_self1_cross1,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_mask_75_75,paper-internal variant in neighbormae,variant_kind=sweep
+D7,neighbormae_vitb_fmow_abl_mask_75_80,paper-internal variant in neighbormae,variant_kind=sweep
+D7,neighbormae_vitb_fmow_abl_mask_75_90,paper-internal variant in neighbormae,variant_kind=sweep
+D7,neighbormae_vitb_fmow_abl_mask_80_80,paper-internal variant in neighbormae,variant_kind=sweep
+D7,neighbormae_vitb_fmow_abl_mask_80_85,paper-internal variant in neighbormae,variant_kind=sweep
+D7,neighbormae_vitb_fmow_abl_mt_images,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_fmow_abl_mt_neighbors,paper-internal variant in neighbormae,variant_kind=replica
+D7,neighbormae_vitb_fmow_abl_neighbors,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_larger_size,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_loss_self0_cross0,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_loss_self0_cross1,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_loss_self1_cross1,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_mt_images,paper-internal variant in neighbormae,variant_kind=ablation
+D7,neighbormae_vitb_satl_abl_mt_neighbors,paper-internal variant in neighbormae,variant_kind=replica
+D7,neighbormae_vitb_satl_abl_neighbors,paper-internal variant in neighbormae,variant_kind=ablation
+D7,ofanet_abl_mae_single,paper-internal variant in ofa-net,variant_kind=ablation
+D7,olmoearth_v11_base_abl_linear_proj,paper-internal variant in olmoearth_v11,variant_kind=ablation
+D7,olmoearth_v11_base_abl_loss_v1,paper-internal variant in olmoearth_v11,variant_kind=ablation
+D7,olmoearth_v11_base_abl_masking_v1,paper-internal variant in olmoearth_v11,variant_kind=ablation
+D7,olmoearth_v11_base_abl_rmax0,paper-internal variant in olmoearth_v11,variant_kind=ablation
+D7,olmoearth_v12_base_abl_pe_2drope,paper-internal variant in olmoearth_v12,variant_kind=ablation
+D7,olmoearth_v12_base_abl_pe_2drope_mixed,paper-internal variant in olmoearth_v12,variant_kind=ablation
+D7,olmoearth_v12_base_abl_pe_3drope,paper-internal variant in olmoearth_v12,variant_kind=ablation
+D7,olmoearth_v12_base_abl_pe_ape,paper-internal variant in olmoearth_v12,variant_kind=ablation
+D7,olmoearth_v1_base_abl_contrastive_loss,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_dev_maps,paper-internal variant in olmoearth,variant_kind=sweep
+D7,olmoearth_v1_base_abl_final_300k,paper-internal variant in olmoearth,variant_kind=sweep
+D7,olmoearth_v1_base_abl_full_latent_mim,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_latent_mim_lite,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_mae,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_modality_masking,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_modality_patch_disc,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_no_agri_maps,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_no_inst_contrastive,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_no_maps,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_only_s2_data,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_patch_disc_loss,paper-internal variant in olmoearth,variant_kind=ablation
+D7,olmoearth_v1_base_abl_random_masking,paper-internal variant in olmoearth,variant_kind=ablation
+D7,omnisat_abl_abs_posenc,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_modality_masking,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_mono_s2_constant_tokens,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_multimodal_constant_tokens,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_naive_contrastive,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_no_contrastive,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_no_date_filtering,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_no_index_bypass,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_no_reconstruction,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_spatial_masking,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_vhr_linear_random,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_vhr_linear_scalemae,paper-internal variant in omnisat,variant_kind=ablation
+D7,omnisat_abl_vhr_vit,paper-internal variant in omnisat,variant_kind=ablation
+D7,oreole_hr_vitb_orb,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,oreole_hr_vitb_tiu,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,oreole_hr_vitb_tiu_mrinit,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,oreole_hr_vith_orb,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,oreole_hr_vith_tiu,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,oreole_hr_vith_tiu_orb_224px,paper-internal variant in oreole-fm,variant_kind=ablation
+D7,panopticon_abl_dattn_2304,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_full_ablbudget,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_no_chnattn,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_no_dinov2init,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_no_progressive,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_no_sensoraug,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_no_spectralcrop,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s1_fmow,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s1_fmow_mmearth,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s1_fmow_satlas_mmearth_spectralearth,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s1_mmearth,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s1_satlas,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s2_default,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s2_pe_coarse,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s2_pe_finestd,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s2_pe_none,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_s2_views_single,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_sipe,paper-internal variant in panopticon,variant_kind=ablation
+D7,panopticon_abl_spectralcrop_s13,paper-internal variant in panopticon,variant_kind=sweep
+D7,panopticon_abl_spectralcrop_s2,paper-internal variant in panopticon,variant_kind=sweep
+D7,panopticon_abl_spectralcrop_s4,paper-internal variant in panopticon,variant_kind=sweep
+D7,panopticon_abl_spectralcrop_s8,paper-internal variant in panopticon,variant_kind=sweep
+D7,physwin_abl_b_bound_only,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_emb_3dpatch,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_emb_ge_ours,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_emb_ge_satmae,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_emb_naive,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_mixmae,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_no_physics,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_simmim,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_b_smooth_only,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t15_full,paper-internal variant in physwin,variant_kind=replica
+D7,physwin_abl_t15_group_only,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t15_physics_only,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t15_refined_mixmae_only,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_default,paper-internal variant in physwin,variant_kind=replica
+D7,physwin_abl_t_ben_grp_vis_rededge_nir_swir,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_grp_visnir_rededge_swir,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_grp_visrededge_nir_swir,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_grp_visswir_rededge_nir,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_grp_visswir_rednir,paper-internal variant in physwin,variant_kind=ablation
+D7,physwin_abl_t_ben_lam01_beta005,paper-internal variant in physwin,variant_kind=sweep
+D7,physwin_abl_t_ben_lam05_beta02,paper-internal variant in physwin,variant_kind=sweep
+D7,physwin_abl_t_ben_mix67,paper-internal variant in physwin,variant_kind=sweep
+D7,physwin_abl_t_ben_mix75,paper-internal variant in physwin,variant_kind=sweep
+D7,physwin_abl_vitb_mae_physics,paper-internal variant in physwin,variant_kind=ablation
+D7,pievit_abl_5x5,paper-internal variant in pievit,variant_kind=sweep
+D7,pievit_abl_7x7,paper-internal variant in pievit,variant_kind=sweep
+D7,pievit_abl_avg,paper-internal variant in pievit,variant_kind=ablation
+D7,pievit_abl_no_gpc,paper-internal variant in pievit,variant_kind=ablation
+D7,pievit_abl_top2,paper-internal variant in pievit,variant_kind=sweep
+D7,pievit_abl_top4,paper-internal variant in pievit,variant_kind=sweep
+D7,pis_r50_abl_iv4_sp,paper-internal variant in pis,variant_kind=ablation
+D7,pis_r50_abl_nosp,paper-internal variant in pis,variant_kind=ablation
+D7,pis_swinb_abl_iv4_sp,paper-internal variant in pis,variant_kind=ablation
+D7,pis_swinb_abl_nosp,paper-internal variant in pis,variant_kind=ablation
+D7,presto_abl_mask_channelgroups,paper-internal variant in presto,variant_kind=ablation
+D7,presto_abl_mask_contiguous,paper-internal variant in presto,variant_kind=ablation
+D7,presto_abl_mask_timesteps,paper-internal variant in presto,variant_kind=ablation
+D7,presto_abl_scale_depth4,paper-internal variant in presto,variant_kind=sweep
+D7,presto_abl_scale_width256,paper-internal variant in presto,variant_kind=sweep
+D7,prithvi_v1_100m_abl_scratch,paper-internal variant in prithvi_v1,variant_kind=ablation
+D7,prithvi_v2_100m_abl,paper-internal variant in prithvi_v2,variant_kind=ablation
+D7,prithvi_v2_100m_tl_abl,paper-internal variant in prithvi_v2,variant_kind=ablation
+D7,ramen_late_fusion,paper-internal variant in ramen,variant_kind=ablation
+D7,remoteclip_abl_data_det10,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_data_det10ret3,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_data_ret3,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_data_seg4,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_data_seg4det10,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_data_seg4ret3,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_loss_barlowtwins,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_loss_marginranking,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_loss_npair,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_loss_siglip,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_ret3_aug_none,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_ret3_aug_rotation,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_ret3_aug_simclr,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_ret3_superres,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_bothscratch,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_imageonly_pretrained,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_init_barlowtwins,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_init_imagenet,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_init_swav,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_init_vicreg,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_rn50_textonly_pretrained,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_bothscratch,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_data_ret3,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_imageonly_pretrained,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_init_dinov2,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_init_imagenet,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_init_vitae_a,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_init_vitae_b,paper-internal variant in remoteclip,variant_kind=ablation
+D7,remoteclip_abl_vitb_textonly_pretrained,paper-internal variant in remoteclip,variant_kind=ablation
+D7,ringmamba_abl_asmamba,paper-internal variant in ringmamba,variant_kind=ablation
+D7,ringmamba_abl_rssp_asscmamba,paper-internal variant in ringmamba,variant_kind=ablation
+D7,ringmo_swinb_abl_100w_200e,paper-internal variant in ringmo,variant_kind=sweep
+D7,ringmo_swinb_abl_150w_100e,paper-internal variant in ringmo,variant_kind=sweep
+D7,ringmo_swinb_abl_150w_200e,paper-internal variant in ringmo,variant_kind=sweep
+D7,ringmo_swinb_abl_150w_200e_pimask,paper-internal variant in ringmo,variant_kind=ablation
+D7,ringmo_vitb_abl_100w_200e,paper-internal variant in ringmo,variant_kind=sweep
+D7,ringmo_vitb_abl_150w_200e,paper-internal variant in ringmo,variant_kind=sweep
+D7,ringmoe_ep_fixed0p1,paper-internal variant in ringmoe,variant_kind=sweep
+D7,ringmoe_ep_top50,paper-internal variant in ringmoe,variant_kind=sweep
+D7,ringmoe_ep_top75,paper-internal variant in ringmoe,variant_kind=sweep
+D7,ringmoe_no_collab_experts,paper-internal variant in ringmoe,variant_kind=ablation
+D7,ringmoe_no_modal_experts,paper-internal variant in ringmoe,variant_kind=ablation
+D7,ringmoe_no_sar_l1,paper-internal variant in ringmoe,variant_kind=ablation
+D7,ringmoe_no_shared_expert,paper-internal variant in ringmoe,variant_kind=ablation
+D7,ringmoe_pixel_loss,paper-internal variant in ringmoe,variant_kind=ablation
+D7,ringmoe_swin88m,paper-internal variant in ringmoe,variant_kind=sweep
+D7,roma_mamba_b_abl_are_only,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_arm_only_baseline,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_default,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_fd_hog,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_fd_wavelet,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_lambda0p01,paper-internal variant in roma,variant_kind=sweep
+D7,roma_mamba_b_abl_lambda1p0,paper-internal variant in roma,variant_kind=sweep
+D7,roma_mamba_b_abl_patch96,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_patch96_32,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_pixel_loss,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_scale2_4,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_scale2_4_6,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_scale4,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_scale4_6,paper-internal variant in roma,variant_kind=ablation
+D7,roma_mamba_b_abl_thr0p5,paper-internal variant in roma,variant_kind=sweep
+D7,roma_mamba_b_abl_thr1p5,paper-internal variant in roma,variant_kind=sweep
+D7,roma_mamba_b_abl_token_loss,paper-internal variant in roma,variant_kind=ablation
+D7,rs_vheat_b_abl_sdr_fdr,paper-internal variant in rs-vheat,variant_kind=ablation
+D7,rs_vheat_b_abl_sdr_only,paper-internal variant in rs-vheat,variant_kind=ablation
+D7,s2mae_abl_data_ben,paper-internal variant in s2mae,variant_kind=ablation
+D7,s2mae_abl_dec2,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_dec8,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_mask25,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_mask50,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_mask75,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_patch16,paper-internal variant in s2mae,variant_kind=sweep
+D7,s2mae_abl_pos_spatspec_sincos,paper-internal variant in s2mae,variant_kind=ablation
+D7,s2mae_abl_pos_vanilla_sincos,paper-internal variant in s2mae,variant_kind=ablation
+D7,s2mae_abl_target_raw,paper-internal variant in s2mae,variant_kind=ablation
+D7,s2mae_abl_target_std,paper-internal variant in s2mae,variant_kind=ablation
+D7,s4_abl_dl_pretrain,paper-internal variant in s4,variant_kind=ablation
+D7,s4_abl_lc_only,paper-internal variant in s4,variant_kind=ablation
+D7,s4_abl_lr_only,paper-internal variant in s4,variant_kind=ablation
+D7,s4_abl_single_modal,paper-internal variant in s4,variant_kind=ablation
+D7,s4_abl_single_modal_radar,paper-internal variant in s4,variant_kind=ablation
+D7,sar_jepa_abl_grgau,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sar_jepa_abl_hog,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sar_jepa_abl_lomar_sar,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sar_jepa_abl_lpf,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sar_jepa_abl_pgca,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sar_jepa_abl_sarhog,paper-internal variant in sar-jepa,variant_kind=ablation
+D7,sarmae_abl_denoise_bm3d,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_denoise_frost,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_denoise_lee,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_mae_gauss,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_mae_sar1m,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_optical_mae_teacher,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_sare,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_abl_sare_contrastive,paper-internal variant in sarmae,variant_kind=ablation
+D7,sarmae_s_vitb_sar1m30,paper-internal variant in sarmae,variant_kind=sweep
+D7,satclip_abl_resnet18_l10,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_abl_resnet18_l40,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_abl_resnet50_l10,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_abl_resnet50_l40,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_abl_vit16_l10,paper-internal variant in satclip,variant_kind=sweep
+D7,satclip_abl_vit16_l40,paper-internal variant in satclip,variant_kind=sweep
+D7,satclip_l10_csp_inat_fusion,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_l10_geoclip_fusion,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_l10_gps2vec_tag_fusion,paper-internal variant in satclip,variant_kind=ablation
+D7,satclip_l10_gps2vec_visual_fusion,paper-internal variant in satclip,variant_kind=ablation
+D7,satdifuser_abl_backbone_sdv21,paper-internal variant in satdifuser,variant_kind=ablation
+D7,satlas_swinb_abl_bigearthnet_pretrain,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satlas_swinb_abl_dota_pretrain,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satlas_swinb_abl_isaid_pretrain,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satlas_swinb_abl_millionaid_pretrain,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satlas_swinb_abl_moco,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satlas_swinb_abl_random_init,paper-internal variant in satlas-pretrain,variant_kind=ablation
+D7,satmae_pp_abl_2scale,paper-internal variant in satmae++,variant_kind=sweep
+D7,satmae_vitb_sentinel_abl_pretrain200,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_rgb_temporal_abl_consistent_mask,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_rgb_temporal_abl_indep_crop,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_rgb_temporal_abl_mask0.6,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_rgb_temporal_abl_mask0.9,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_rgb_temporal_abl_no_temporal_enc,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_rgb_temporal_abl_patch22,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_rgb_temporal_abl_patch32,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_sentinel_abl_consistent_mask,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_h,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_init_mae_imagenet,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_init_satmae_rgb,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_init_scratch,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_init_sup_imagenet,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_group_r,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_mask0.6,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_sentinel_abl_mask0.9,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_sentinel_abl_no_spectral_enc,paper-internal variant in satmae,variant_kind=ablation
+D7,satmae_vitl_sentinel_abl_patch16,paper-internal variant in satmae,variant_kind=sweep
+D7,satmae_vitl_sentinel_abl_pretrain200,paper-internal variant in satmae,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m50_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m75_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_ben500_m90_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m50_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m75_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s100k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s10k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s25k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s2p5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s50k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s5k,paper-internal variant in satvit,variant_kind=sweep
+D7,satvit_v1_tapt_peatland_m90_s75k,paper-internal variant in satvit,variant_kind=sweep
+D7,scalemae_vitb_abl_declayers1,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_declayers2,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_declayers4,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_declayers8,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_mae_lp,paper-internal variant in scale-mae,variant_kind=ablation
+D7,scalemae_vitb_abl_mask70,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_mask80,paper-internal variant in scale-mae,variant_kind=sweep
+D7,scalemae_vitb_abl_res_combined,paper-internal variant in scale-mae,variant_kind=ablation
+D7,scalemae_vitb_abl_res_highonly,paper-internal variant in scale-mae,variant_kind=ablation
+D7,scalemae_vitb_abl_res_lowonly,paper-internal variant in scale-mae,variant_kind=ablation
+D7,scalemae_vitb_abl_vanilla_mae,paper-internal variant in scale-mae,variant_kind=ablation
+D7,scalemae_vitb_abl_vanilla_mae_gsdpe,paper-internal variant in scale-mae,variant_kind=ablation
+D7,seamo_vitb_abl_crop_partial_25_100,paper-internal variant in seamo,variant_kind=ablation
+D7,seamo_vitb_abl_crop_same_location,paper-internal variant in seamo,variant_kind=ablation
+D7,seamo_vitb_abl_dec_blocks_2,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_dec_blocks_6,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_learnable_posenc,paper-internal variant in seamo,variant_kind=ablation
+D7,seamo_vitb_abl_mask_50,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_mask_90,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_no_target_norm,paper-internal variant in seamo,variant_kind=ablation
+D7,seamo_vitb_abl_no_tm_block,paper-internal variant in seamo,variant_kind=ablation
+D7,seamo_vitb_abl_tlen_1,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_tlen_2,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_tlen_3,paper-internal variant in seamo,variant_kind=sweep
+D7,seamo_vitb_abl_tm_decouple,paper-internal variant in seamo,variant_kind=ablation
+D7,seco_abl_mocov2_r18,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2_r18_100k,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2_r50,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2_r50_100k,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2tp_r18,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2tp_r18_100k,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2tp_r50,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_mocov2tp_r50_100k,paper-internal variant in seco,variant_kind=ablation
+D7,seco_abl_uniform_sampling,paper-internal variant in seco,variant_kind=ablation
+D7,seco_resnet18_100k,paper-internal variant in seco,variant_kind=replica
+D7,seco_resnet50_100k,paper-internal variant in seco,variant_kind=replica
+D7,selectivemae_vitb_millionaid_abl_adamae,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_euclid,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_farnear,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_hog,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_manhattan,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_partialrec_ats,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_partialrec_hog,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_partialrec_random,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_abl_swinb,paper-internal variant in selectivemae,variant_kind=ablation
+D7,selectivemae_vitb_millionaid_e1600_abl_dec4,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_millionaid_e1600_abl_default,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_millionaid_e1600_abl_farnear,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_millionaid_e1600_abl_mask95,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_millionaid_e1600_abl_reco15,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_opticalrs13m_e67_abl,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_opticalrs1m_e800_abl,paper-internal variant in selectivemae,variant_kind=sweep
+D7,selectivemae_vitb_opticalrs4m_e200_abl,paper-internal variant in selectivemae,variant_kind=sweep
+D7,sigmae_abl_mae_index_fusion,paper-internal variant in sigmae,variant_kind=ablation
+D7,sigmae_abl_no_gamma,paper-internal variant in sigmae,variant_kind=ablation
+D7,sigmae_abl_no_ssdtm,paper-internal variant in sigmae,variant_kind=ablation
+D7,sinr_abl_anfull_coords_10,paper-internal variant in sinr,variant_kind=sweep
+D7,sinr_abl_anfull_coords_100,paper-internal variant in sinr,variant_kind=sweep
+D7,sinr_abl_anfull_coords_all,paper-internal variant in sinr,variant_kind=sweep
+D7,sinr_abl_anfull_env_10,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_env_100,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_env_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_env_all,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_envcoords_10,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_envcoords_100,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_envcoords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anfull_envcoords_all,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anslds_coords_10,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anslds_coords_100,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anslds_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anslds_coords_all,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anssdl_coords_10,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anssdl_coords_100,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anssdl_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_anssdl_coords_all,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_gp_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_mefull_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_meslds_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sinr_abl_messdl_coords_1000,paper-internal variant in sinr,variant_kind=ablation
+D7,sits_scd_abl_d16,paper-internal variant in sits-scd,variant_kind=sweep
+D7,skysense_abl_baseline_hr,paper-internal variant in skysense,variant_kind=ablation
+D7,skysense_abl_mgcl_hr,paper-internal variant in skysense,variant_kind=ablation
+D7,skysense_abl_mgcl_mm,paper-internal variant in skysense,variant_kind=ablation
+D7,skysense_abl_mgcl_mm_cma,paper-internal variant in skysense,variant_kind=ablation
+D7,skysense_abl_simple_optical,paper-internal variant in skysense,variant_kind=ablation
+D7,skysense_swinh_optical,paper-internal variant in skysense,variant_kind=replica
+D7,skysense_swinl,paper-internal variant in skysense,variant_kind=sweep
+D7,skysense_v2_abl_20k_default,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_experts16,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_experts4,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_ita,paper-internal variant in skysense_v2,variant_kind=ablation
+D7,skysense_v2_abl_20k_moe_spread,paper-internal variant in skysense_v2,variant_kind=ablation
+D7,skysense_v2_abl_20k_moeblocks2,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_moeblocks4,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_moeblocks8,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_no_ita,paper-internal variant in skysense_v2,variant_kind=ablation
+D7,skysense_v2_abl_20k_queries24,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_queries4,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_abl_20k_queries8,paper-internal variant in skysense_v2,variant_kind=sweep
+D7,skysense_v2_wo_moe,paper-internal variant in skysense_v2,variant_kind=ablation
+D7,skysense_vitl_s2,paper-internal variant in skysense,variant_kind=replica
+D7,sled_abl_matryoshka,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_projection_head,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_sh_matryoshka,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_sh_projection_head,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_sirennet,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_spherical_harmonics,paper-internal variant in sled,variant_kind=ablation
+D7,sled_abl_unigeoclip_rff,paper-internal variant in sled,variant_kind=ablation
+D7,smarties_vitb_100ep,paper-internal variant in smarties,variant_kind=ablation
+D7,smarties_vitb_50ep,paper-internal variant in smarties,variant_kind=ablation
+D7,smarties_vitb_50ep_ben_only,paper-internal variant in smarties,variant_kind=ablation
+D7,smarties_vitb_50ep_fmow_only,paper-internal variant in smarties,variant_kind=ablation
+D7,smarties_vitb_50ep_nomixup,paper-internal variant in smarties,variant_kind=ablation
+D7,smarties_vitl_100ep,paper-internal variant in smarties,variant_kind=ablation
+D7,softcon_abl_pecp_base,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_bias,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_fullcp_vitl_mae,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_lora,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_prompt,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_randinit,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_scratch,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_pecp_supervised,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_contrastonly,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_init_imagenet,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_init_mocov3,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_lambda0p01,paper-internal variant in softcon,variant_kind=sweep
+D7,softcon_abl_rn50_lambda0p5,paper-internal variant in softcon,variant_kind=sweep
+D7,softcon_abl_rn50_lambda1p0,paper-internal variant in softcon,variant_kind=sweep
+D7,softcon_abl_rn50_noncontinual,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_softcononly,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_rn50_supcon,paper-internal variant in softcon,variant_kind=ablation
+D7,softcon_abl_vits_masking50,paper-internal variant in softcon,variant_kind=sweep
+D7,softcon_abl_vits_nomasking,paper-internal variant in softcon,variant_kind=sweep
+D7,softcon_rn50_sar,paper-internal variant in softcon,variant_kind=ablation
+D7,spectralearth_abl_resnet50_moco_no_adapter,paper-internal variant in spectralearth,variant_kind=ablation
+D7,spectralearth_abl_specrn50_dino_no_tp,paper-internal variant in spectralearth,variant_kind=ablation
+D7,spectralearth_abl_specvitb_mae_hyspecnet11k,paper-internal variant in spectralearth,variant_kind=ablation
+D7,spectralgpt_abl_ben_only,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_fmow_only,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_mask25,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_mask50,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_mask75,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_p16,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_random_p16,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_random_p8,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_recon_nonorm,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_recon_standardize,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_vith_fmow_only,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_vith_plus,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_vith_random,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,spectralgpt_abl_vitl_fmow_only,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_vitl_plus,paper-internal variant in spectralgpt,variant_kind=sweep
+D7,spectralgpt_abl_vitl_random,paper-internal variant in spectralgpt,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_data100k,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_resnet50_moco_abl_data250k,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_resnet50_moco_abl_data500k,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_resnet50_moco_abl_data750k,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_resnet50_moco_abl_mm,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_product_l1c,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_product_l1c_l2a,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_product_l2a,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_rgb,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_s1,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_season_augment,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_resnet50_moco_abl_season_fixed,paper-internal variant in ssl4eo,variant_kind=ablation
+D7,ssl4eo_vits_mae_abl_mask50,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_vits_mae_abl_mask60,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_vits_mae_abl_mask70,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_vits_mae_abl_mask75,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_vits_mae_abl_mask80,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,ssl4eo_vits_mae_abl_mask90,paper-internal variant in ssl4eo,variant_kind=sweep
+D7,t_jepa_abl_adjacent_pair,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_lambda_0p01,paper-internal variant in t-jepa,variant_kind=sweep
+D7,t_jepa_abl_lambda_0p1,paper-internal variant in t-jepa,variant_kind=sweep
+D7,t_jepa_abl_lambda_1p0,paper-internal variant in t-jepa,variant_kind=sweep
+D7,t_jepa_abl_lambda_5p0,paper-internal variant in t-jepa,variant_kind=sweep
+D7,t_jepa_abl_latent_latent,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_meta_only,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_no_meta_drop,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_pixel_pixel,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_pred_only,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_rollout,paper-internal variant in t-jepa,variant_kind=ablation
+D7,t_jepa_abl_symmetric_meta,paper-internal variant in t-jepa,variant_kind=ablation
+D7,taxabind_abl_parallel_patch,paper-internal variant in taxabind,variant_kind=ablation
+D7,taxabind_abl_patch_audio,paper-internal variant in taxabind,variant_kind=ablation
+D7,taxabind_abl_patch_env,paper-internal variant in taxabind,variant_kind=ablation
+D7,taxabind_abl_patch_loc,paper-internal variant in taxabind,variant_kind=ablation
+D7,taxabind_abl_patch_sat,paper-internal variant in taxabind,variant_kind=ablation
+D7,terrafm_abl_fusion_crossattn_q196,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_fusion_multi_student_teacher,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_fusion_q1,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_fusion_vit_patchemb,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_ss,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_ss_maug,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_ss_maug_fus,paper-internal variant in terrafm,variant_kind=ablation
+D7,terrafm_abl_ss_maug_fus_dc,paper-internal variant in terrafm,variant_kind=ablation
+D7,terramind_kd_vitb1024,paper-internal variant in tedi,variant_kind=ablation
+D7,terramind_latefusion_tokenizers,paper-internal variant in terramind,variant_kind=ablation
+D7,terramind_v1b_single_abl_dynamicworld_lulc,paper-internal variant in terramind,variant_kind=ablation
+D7,tessera_abl_no_mixup,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_abl_no_pretraining,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_abl_no_quantization,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_abl_no_sentinel1,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_abl_no_shuffling,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_abl_no_shuffling_mixup,paper-internal variant in tessera,variant_kind=ablation
+D7,tessera_v2_abl_arch_cloud_omnicloudmask,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_cloud_scl_default,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_encoder_cnn_gru,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_encoder_cnn_transformer_hybrid,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_encoder_transformer_qknorm,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_encoder_transformer_relu_ffn,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_encoder_transformer_swiglu,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_fusion_concat_mlp,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_fusion_cross_attn,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_fusion_summation,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_fusion_transformer,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_inputmod_s2_only,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_inputmod_s2_s1,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_inputmod_s2_s1_landsat,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_naive_4proj_avg,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_naive_multipath_summed,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_naive_segmented_proj,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_naive_sharedtrunk_summed,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_reprdecorr_prefix,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_mrl_reprdecorr_segmented,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_posenc_learned,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_posenc_none,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_posenc_sinusoidal_doy,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_projector_2layer_bn_mlp,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_projector_deep_bn_mlp,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_projector_linear,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_projector_wider_deep_mlp,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_sar_separate_ascdesc,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_sar_unified,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_temporal_agg_attention,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_temporal_agg_gru,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_temporal_agg_gru_attn,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_temporal_agg_ltae,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_temporal_agg_mean,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_tslen_l16,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_tslen_l32,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_tslen_l48,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_tslen_l64,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_arch_tslen_l8,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_abl_prelim_distilled,paper-internal variant in tessera_v2,variant_kind=ablation
+D7,tessera_v2_abl_prelim_naive_mrl,paper-internal variant in tessera_v2,variant_kind=ablation
+D7,tessera_v2_l_abl_distill_data_0p1b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_distill_data_0p2b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_distill_data_0p4b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_distill_data_0p6b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_distill_data_0p8b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_distill_data_1p0b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_from_scratch,paper-internal variant in tessera_v2,variant_kind=ablation
+D7,tessera_v2_l_abl_teacher1b,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,tessera_v2_l_abl_teacher500m,paper-internal variant in tessera_v2,variant_kind=sweep
+D7,timo_base_abl_fixed_sampling,paper-internal variant in timo,variant_kind=ablation
+D7,tte_3d_sites,paper-internal variant in tte,variant_kind=ablation
+D7,tte_coord_cond,paper-internal variant in tte,variant_kind=ablation
+D7,tte_fixed_sites,paper-internal variant in tte,variant_kind=ablation
+D7,tte_init_range,paper-internal variant in tte,variant_kind=ablation
+D7,tte_init_satclip,paper-internal variant in tte,variant_kind=ablation
+D7,tte_sym_soft_att,paper-internal variant in tte,variant_kind=ablation
+D7,tte_wo_align,paper-internal variant in tte,variant_kind=ablation
+D7,tte_wo_recon,paper-internal variant in tte,variant_kind=ablation
+D7,tte_wo_tokens,paper-internal variant in tte,variant_kind=ablation
+D7,universat_tiny_abl_fixed_res,paper-internal variant in universat,variant_kind=ablation
+D7,universat_tiny_abl_late_fusion,paper-internal variant in universat,variant_kind=ablation
+D7,universat_tiny_abl_no_contrastive,paper-internal variant in universat,variant_kind=ablation
+D7,universat_tiny_abl_no_skip,paper-internal variant in universat,variant_kind=ablation
+D7,universat_tiny_abl_upe_mlps,paper-internal variant in universat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp0_sg0_se0,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp0_sg0_se1,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp0_sg1_se0,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp0_sg1_se1,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp1_sg0_se0,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp1_sg0_se1,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp1_sg1_se0,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_abl_enc_sp1_sg1_se1,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_naiponly,paper-internal variant in usat,variant_kind=ablation
+D7,usat_vitl_s2only,paper-internal variant in usat,variant_kind=ablation
+D7,vitp_vitl_rs_abl_drop90,paper-internal variant in vitp,variant_kind=sweep
+D7,vitp_vitl_rs_abl_no_diversity,paper-internal variant in vitp,variant_kind=ablation
+D7,vitp_vitl_rs_abl_no_general,paper-internal variant in vitp,variant_kind=ablation
+D7,vitp_vitl_rs_abl_no_grounding,paper-internal variant in vitp,variant_kind=ablation
+D7,vitp_vitl_rs_abl_no_sar,paper-internal variant in vitp,variant_kind=ablation
+D7,vitp_vitl_rs_abl_no_vrl,paper-internal variant in vitp,variant_kind=ablation
+D7,wildsat_abl_rn50_imagenet_fullft,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_random_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_random_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_random_loc_env_txt,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_satlas_peft,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_img,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_img_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_img_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_img_txt,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_img_txt_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_locenc_nomodel_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_locenc_nomodel_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_locenc_nomodel_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_locenc_satclip_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_peft,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_txt,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_txt_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_rn50_seco_txt_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_clip_fullft,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_img,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_img_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_img_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_img_txt,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_img_txt_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_txt,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_txt_loc,paper-internal variant in wildsat,variant_kind=ablation
+D7,wildsat_abl_vitb_imagenet_txt_loc_env,paper-internal variant in wildsat,variant_kind=ablation
+D7,xstars_abl_combo_ls_s2_dino_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_ls_s2_dino_800,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_ls_s2_msad_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_ls_s6_dino_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_ls_s6_dino_800,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_ls_s6_msad_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_ls_s6_dino_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_ls_s6_dino_800,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_ls_s6_msad_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_s6_dino_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_s6_dino_800,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_combo_s2_s6_msad_400,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_ls_none,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_ls_to_ls,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_ls_to_s2,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_ls_to_s6,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s2_none,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s2_to_ls,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s2_to_s2,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s2_to_s6,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s6_none,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s6_to_ls,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s6_to_s2,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_kd_s6_to_s6,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_msad_full,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_msad_global,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_msad_ls,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_msad_none,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_msad_pw,paper-internal variant in x-stars,variant_kind=ablation
+D7,xstars_abl_res_train100,paper-internal variant in x-stars,variant_kind=sweep
+D7,xstars_abl_res_train224,paper-internal variant in x-stars,variant_kind=sweep
+D7,xstars_abl_res_train300,paper-internal variant in x-stars,variant_kind=sweep
+D7,xstars_abl_vitb_s2ls,paper-internal variant in x-stars,variant_kind=sweep
+D7,xstars_abl_vitt_s2ls,paper-internal variant in x-stars,variant_kind=sweep
+scope,a2mae_bl_satmae_den,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,a2mae_bl_sup_scratch_vitl,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,a2mae_vitl,a2mae | multispectral optical,new family (id without size tokens)
+scope,a2net,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,agrifm,agrifm | multispectral optical,new family (id without size tokens)
+scope,agrifm_bl_3dcnn,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,agrifm_bl_cnn,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,agrifm_bl_cnn_lstm,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,agrifm_bl_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,alliance_bl_cropmae_retrained,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,alliance_bl_mae_retrained,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,alliance_bl_satmae_retrained,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,alliance_bl_satmaepp_retrained,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,alliance_vitb,alliance | multispectral optical,new family (id without size tokens)
+scope,aom_bl_mae_single,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,aom_bl_random_init,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,aom_vitb,aom | multispectral optical,new family (id without size tokens)
+family,bfm,bfm | high-resolution RGB,new family (id without size tokens)
+family,caco_resnet18_unspecified,caco | multispectral optical,known family prefix 'caco'; pretraining inherited from family
+family,cgeartheye_vitb,cgeartheye | high-resolution RGB,new family (id without size tokens)
+family,cgeartheye_vitg,cgeartheye | high-resolution RGB,new family (id without size tokens)
+family,cgeartheye_vith,cgeartheye | high-resolution RGB,new family (id without size tokens)
+family,cgeartheye_vitl,cgeartheye | high-resolution RGB,new family (id without size tokens)
+family,cgeartheye_vits,cgeartheye | high-resolution RGB,new family (id without size tokens)
+family,changen2_vitb,changen2 | high-resolution RGB,new family (id without size tokens)
+family,cmid_resnet50,cmid | high-resolution RGB,known family prefix 'cmid'
+family,compdv_b,compdv | high-resolution RGB,new family (id without size tokens)
+family,crisp,crisp | high-resolution RGB,new family (id without size tokens)
+family,crisp_aa,crisp_aa | high-resolution RGB,new family (id without size tokens)
+family,crisp_aug,crisp_aug | high-resolution RGB,new family (id without size tokens)
+scope,crisp_bl_mae_nmv_ground,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_moco_v2_aa_ground,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_moco_v2_nmv_ground,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_random_gaussian,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_random_rn50_aerial,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_satmae_nmv_aerial,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_saumoco_aa_aerial,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_saumoco_nmv_aerial,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,crisp_bl_supervised_moe,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,crisp_m2o,crisp_m2o | high-resolution RGB,new family (id without size tokens)
+family,crisp_par,crisp_par | high-resolution RGB,new family (id without size tokens)
+family,croma_kd_vitb,croma_kd | multispectral optical,new family (id without size tokens)
+family,croma_vit_unspecified,croma | multi-sensor (SAR + optical),known family prefix 'croma'; pretraining inherited from family
+scope,cropyield_3d_convlstm,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,cropyield_s2_vegetation_indices,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,cross_scale_mae_vitl,crossscale_mae | high-resolution RGB,known family name 'crossscale_mae' (underscores ignored)
+family,crossearth_sar_b,crossearth_sar | SAR,new family (id without size tokens)
+family,crossearth_sar_l,crossearth_sar | SAR,new family (id without size tokens)
+family,crossearth_sar_s,crossearth_sar | SAR,new family (id without size tokens)
+family,crossearth_vitl,crossearth,new family (id without size tokens)
+scope,crossmae_vitb_opticalrs4m,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,ctxmim_swinb,ctxmim | high-resolution RGB,new family (id without size tokens)
+family,cvsar_pirl_swinb,cvsar_pirl | SAR,new family (id without size tokens)
+family,deepandes,deepandes | high-resolution RGB,new family (id without size tokens)
+scope,deepandes_bl_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,deo,deo | multispectral optical,new family (id without size tokens)
+family,dino_mc,dino_mc | multispectral optical (inherited),new family (id without size tokens)
+scope,dino_mc_bl_dino_resnet50,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,dino_mc_bl_dino_swint,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,dino_mc_bl_dino_vits,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,dino_mc_bl_dino_wrn50_2,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,dino_mc_resnet50,dino_mc | multispectral optical,new family (id without size tokens)
+family,dino_mc_swint,dino_mc | multispectral optical,new family (id without size tokens)
+family,dino_mc_vits,dino_mc | multispectral optical,new family (id without size tokens)
+family,dino_mc_wrn50_2,dino_mc | multispectral optical,new family (id without size tokens)
+family,dino_mm_vits,dino_mm | multi-sensor (SAR + optical),new family (id without size tokens)
+family,dinov2_sat_maxar_vitl,dinov2_sat_maxar | high-resolution RGB,new family (id without size tokens)
+family,dinov3_kd_vitb,dinov3_kd | high-resolution RGB,new family (id without size tokens)
+family,dinov3_vitl_vhr_continued,dinov3_vhr_continued | high-resolution RGB,new family (id without size tokens)
+family,dofa_clip_b_224,dofa_clip | multi-sensor (SAR + optical),new family (id without size tokens)
+family,dofa_clip_l_384,dofa_clip | multi-sensor (SAR + optical),new family (id without size tokens)
+family,dynamicvis_b,dynamicvis | high-resolution RGB,new family (id without size tokens)
+family,dynamicvis_l,dynamicvis | high-resolution RGB,new family (id without size tokens)
+family,earthgpt,earthgpt,new family (id without size tokens)
+family,eosfm,eosfm | multi-sensor (SAR + optical),new family (id without size tokens)
+family,eosfm_small,eosfm | multi-sensor (SAR + optical),variant/supersedes chain -> eosfm
+scope,esa_cci_biomass,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,falcon,falcon,new family (id without size tokens)
+family,fgmae_ms_vitb,fgmae | multispectral optical,known family prefix 'fgmae'
+family,fgmae_sar,fgmae | SAR,known family prefix 'fgmae'
+family,fgmae_sar_vits,fgmae | SAR,variant/supersedes chain -> fgmae_sar
+family,fleximo,fleximo,new family (id without size tokens)
+family,fusmae_vitb,fusmae | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,gair_bl_mae_streetscapes,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,gair_bl_mocov3_streetscapes,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,gair_debias,gair_debias | multispectral optical,new family (id without size tokens)
+family,geochat,geochat,new family (id without size tokens)
+scope,geoclip_bl_clip_geocell_hier,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,geolink_bl_scalemae_osm,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,geolink_vitl,geolink | multispectral optical,new family (id without size tokens)
+family,geomixture_moe,geomixture_moe | multi-sensor (SAR + optical),new family (id without size tokens)
+family,geomixture_naive,geomixture_naive | multi-sensor (SAR + optical),new family (id without size tokens)
+family,geomixture_sum,geomixture_sum | multi-sensor (SAR + optical),new family (id without size tokens)
+family,gersp_resnet50,gersp | high-resolution RGB,new family (id without size tokens)
+family,graft_vitb16,graft | multispectral optical,new family (id without size tokens)
+family,hypersigma_spat_b,hypersigma_spat | multispectral optical,new family (id without size tokens)
+family,hypersigma_spat_l,hypersigma_spat | multispectral optical,new family (id without size tokens)
+family,hypersigma_vitb,hypersigma | multispectral optical,new family (id without size tokens)
+scope,isns_repro_mp16_10pct,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,isns_repro_mp16_20pct,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,isns_repro_mp16_5pct,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,less_vit_b,less | multi-sensor (SAR + optical),new family (id without size tokens)
+family,llava_1_5,llava,new family (id without size tokens)
+family,ma3e,ma3e | high-resolution RGB,new family (id without size tokens)
+family,ma3e_300ep,ma3e_300ep | high-resolution RGB,new family (id without size tokens)
+scope,ma3e_bl_dino_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_lomar_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_mae_ma_1600,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_mae_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_mae_vits_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_mixmae_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_mocov3_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_satmae_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_scalemae_ma_300,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,ma3e_bl_simmim_ma_400,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_imagenet_baseline,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_millionaid_e800,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs13m_e100,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs13m_e200,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs13m_e67,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs13m_e800,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs1m_e800,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs2m_e400,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs3m_e267,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs4m_e200,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs4m_e800,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitb_opticalrs8m_e100,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitl_fmow_repro,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,mae_vitl_satl_repro,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,maestro_b_cross_flair_hub,maestro_cross_flair_hub | multi-sensor (SAR + optical),new family (id without size tokens)
+family,maestro_b_cross_s2naip,maestro_cross_s2naip | multi-sensor (SAR + optical),new family (id without size tokens)
+family,maestro_b_intra_fhub,maestro_intra_fhub | multi-sensor (SAR + optical),new family (id without size tokens)
+family,maestro_b_intra_flair2,maestro_intra_flair2 | multispectral optical,new family (id without size tokens)
+family,maestro_b_intra_pastis,maestro_intra_pastis | multi-sensor (SAR + optical),new family (id without size tokens)
+family,maestro_b_intra_tsai,maestro_intra_tsai | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,maestro_bl_vit_b_group_all,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_group_s1,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_group_s1s2,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_inter_group,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_mod,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_monotemp,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_aerial,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_demdsm,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_random_step,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_s1,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_s2,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_no_temp_enc,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_s1bins1,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_s2bins1,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_s2bins4,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_shared,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,maestro_bl_vit_b_temp_mod_enc,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,mapex,mapex | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,mapex_bl_supervised_fs,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,mapex_pruned_130m,mapex_pruned,new family (id without size tokens)
+family,minicpm_v,minicpm_v,new family (id without size tokens)
+family,minigptv2,minigptv2,new family (id without size tokens)
+scope,momo_bl_ctx,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,momo_bl_data_merge,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,momo_bl_hirise,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,momo_bl_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,momo_bl_themis,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,momo_vitb,momo,new family (id without size tokens)
+family,momo_vitl,momo,new family (id without size tokens)
+family,momo_vits,momo,new family (id without size tokens)
+scope,msgfm_bl_swinb_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,msgfm_swinb,msgfm | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,mtp_bl_internimage_xl_imp,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,mtp_internimage_xl,mtp_internimage | multispectral optical,new family (id without size tokens)
+family,mtp_vitb_rvsa,mtp_rvsa | multispectral optical,new family (id without size tokens)
+family,mtp_vitl_rvsa,mtp_rvsa | multispectral optical,new family (id without size tokens)
+family,neighbormae_vitl_fmow,neighbormae_fmow | multispectral optical,new family (id without size tokens)
+family,neighbormae_vitl_satl,neighbormae_satl | multispectral optical,new family (id without size tokens)
+scope,ofanet_bl_random_init,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_croma_pastis_hd,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_croma_tsai,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_no_pretraining,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_satmae_tsai,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_scalemae_flair,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_scalemae_pastis_hd,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_scalemae_tsai,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_scalemae_tsai_ts,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,omnisat_bl_vit_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,omnisat_flair,omnisat_flair | multispectral optical,new family (id without size tokens)
+family,omnisat_pastis_hd,omnisat_pastis_hd | multi-sensor (SAR + optical),new family (id without size tokens)
+family,omnisat_tsai,omnisat_tsai | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,oreole_bl_no_pretrain_vitb,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,oreole_hr_vitb_tiu_orb,oreole_hr_tiu_orb | high-resolution RGB,new family (id without size tokens)
+family,oreole_hr_vith_tiu_orb,oreole_hr_tiu_orb | high-resolution RGB,new family (id without size tokens)
+family,oreole_mr_vitb,oreole_mr | multispectral optical,new family (id without size tokens)
+family,oreole_mr_vite,oreole_mr_vite | multispectral optical,new family (id without size tokens)
+family,oreole_mr_vitg,oreole_mr | multispectral optical,new family (id without size tokens)
+family,oreole_mr_vith,oreole_mr | multispectral optical,new family (id without size tokens)
+scope,physwin_abl_t15_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,physwin_abl_t15_simmim,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,physwin_abl_vitb_mae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,physwin_b,physwin | multispectral optical,new family (id without size tokens)
+family,physwin_t,physwin | multispectral optical,new family (id without size tokens)
+scope,pievit_bl_dino_vitb,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,pievit_bl_ibot_vitb,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,pievit_bl_mae_vitb,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,pievit_vitb,pievit,new family (id without size tokens)
+family,pis_r50,pis_r50 | multispectral optical,new family (id without size tokens)
+family,pis_swinb,pis | multispectral optical,new family (id without size tokens)
+family,pis_vitb,pis | multispectral optical,new family (id without size tokens); pretraining inherited from family
+family,prithvi_v2_tiny,prithvi_v2 | multispectral optical,known family prefix 'prithvi_v2'; pretraining inherited from family
+family,qwen_vl_chat,qwen_vl_chat,new family (id without size tokens)
+family,range_plus,range_plus,new family (id without size tokens)
+scope,resnet101_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,resnet18_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,rf_landsat_features_baseline,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,ringmamba_asscmamba,ringmamba_asscmamba | multi-sensor (SAR + optical),new family (id without size tokens)
+family,ringmamba_vmambab,ringmamba_vmambab | multi-sensor (SAR + optical),new family (id without size tokens)
+family,ringmo_agent,ringmo_agent,new family (id without size tokens)
+family,ringmo_swinb,ringmo | high-resolution RGB,known family prefix 'ringmo'
+family,ringmoe_ep_4p3b,ringmoe_ep_4p3b,new family (id without size tokens)
+family,ringmoe_ka_1b,ringmoe_ka,new family (id without size tokens)
+family,ringmoe_kc_1b,ringmoe_kc,new family (id without size tokens)
+family,ringmoe_ks_1b,ringmoe_ks,new family (id without size tokens)
+family,ringmoe_opt,ringmoe_opt,new family (id without size tokens)
+family,ringmogpt,ringmogpt,new family (id without size tokens)
+scope,roma_bl_arm_mamba_b_repro,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,roma_bl_satmae_pp_vitl_repro,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,roma_mamba_b,roma_mamba | high-resolution RGB,new family (id without size tokens)
+family,rs_vheat_b,rs_vheat | multi-sensor (SAR + optical),new family (id without size tokens)
+family,rsbuilding,rsbuilding | high-resolution RGB,new family (id without size tokens)
+family,rsp_resnet50,rsp | high-resolution RGB,new family (id without size tokens)
+family,rsp_vitaev2_s,rsp_vitaev2 | high-resolution RGB,new family (id without size tokens)
+family,rvsa_vitae_b,rvsa_vitae | high-resolution RGB,new family (id without size tokens)
+family,rvsa_vitl,rvsa | high-resolution RGB,known family prefix 'rvsa'
+scope,s2mae_bl_vitb_random_p16,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s2mae_bl_vith_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s2mae_bl_vitl_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,s2mae_star_vitb,s2mae_star | multispectral optical,new family (id without size tokens)
+family,s2mae_star_vith,s2mae_star | multispectral optical,new family (id without size tokens)
+family,s2mae_star_vitl,s2mae_star | multispectral optical,new family (id without size tokens)
+family,s2mae_vitb,s2mae | multispectral optical,new family (id without size tokens)
+family,s2mae_vith,s2mae | multispectral optical,new family (id without size tokens)
+family,s2mae_vitl,s2mae | multispectral optical,new family (id without size tokens)
+family,s4_africa,s4_africa | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,s4_bl_caco_africa_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_caco_africa_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_caco_pastis_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_caco_pastis_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_gssl_africa_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_gssl_africa_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_gssl_pastis_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_gssl_pastis_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_mmf_africa,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_mmf_pastis,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_satmae_africa_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_satmae_africa_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_satmae_pastis_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_satmae_pastis_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_seco_africa_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_seco_africa_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_seco_pastis_optical,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,s4_bl_seco_pastis_radar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,s4_pastis,s4_pastis | multi-sensor (SAR + optical),new family (id without size tokens)
+family,sar_jepa,sar_jepa | SAR,new family (id without size tokens)
+scope,sar_jepa_bl_fgmae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sar_jepa_bl_ijepa,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sar_jepa_bl_lomar,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sar_jepa_bl_mae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,sarmae_s_vitb_sar1m30,sarmae_sar1m30 | SAR,new family (id without size tokens)
+family,sarmae_vitb,sarmae | SAR,new family (id without size tokens)
+family,sarmae_vitl,sarmae | SAR,new family (id without size tokens)
+family,sat2cap,sat2cap | high-resolution RGB,new family (id without size tokens)
+family,satclip_rn50_img,satclip_img | multispectral optical,new family (id without size tokens)
+family,satclip_vits16_img,satclip_img | multispectral optical,new family (id without size tokens)
+family,satdino_vitb16,satdino | high-resolution RGB,new family (id without size tokens)
+family,satlas_s1_swinb_si,satlas_s1 | SAR,known family prefix 'satlas_s1'
+family,satlas_swinb_mi,satlas_s2 | multispectral optical,variant/supersedes chain -> satlas_swinb
+family,satlas_swinb_si,satlas_s2 | multispectral optical,variant/supersedes chain -> satlas_swinb
+family,satmae_vit_sentinel_unspecified,satmae | high-resolution RGB,known family prefix 'satmae'; pretraining inherited from family
+scope,satmae_vitl_millionst,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,satswinmae,satswinmae | multispectral optical,new family (id without size tokens)
+family,satvit_v1,satvit_v1 | multi-sensor (SAR + optical),new family (id without size tokens)
+family,seamo_vitb,seamo | multi-sensor (SAR + optical),new family (id without size tokens)
+family,seco_resnet_unspecified,seco_resnet_unspecified,new family (id without size tokens)
+family,seggpt,seggpt | high-resolution RGB,new family (id without size tokens)
+family,selectivemae_vitb_13m,selectivemae | high-resolution RGB,new family (id without size tokens)
+family,selectivemae_vitb_4m,selectivemae | high-resolution RGB,new family (id without size tokens)
+family,selectivemae_vitl_13m,selectivemae | high-resolution RGB,new family (id without size tokens)
+family,selectivemae_vitl_4m,selectivemae | high-resolution RGB,new family (id without size tokens)
+family,sigmae_vit,sigmae | multispectral optical,new family (id without size tokens)
+scope,sinr_base_grid_all,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sinr_base_lr_coords_1000,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sinr_base_lr_env_1000,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sinr_base_lr_envcoords_1000,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,sits_scd_bl_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,skyclip50_base,skyclip50 | multispectral optical,new family (id without size tokens)
+scope,skysense_bl_random_init,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,skysense_pp,skysense_pp | multi-sensor (SAR + optical),new family (id without size tokens)
+family,skysense_swinh_optical,skysense | high-resolution RGB,variant/supersedes chain -> skysense
+scope,skysense_v2_bl_random_init,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,skysense_vitl_s2,skysense | multispectral optical,variant/supersedes chain -> skysense
+scope,spectralearth_bl_specrn50_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,spectralearth_bl_specvitb_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,spectralearth_bl_specvitg_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,spectralearth_bl_specvith_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,spectralearth_bl_specvitl_scratch,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,spectralearth_bl_specvits_random,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,spectralearth_specrn50_dino,spectralearth_specrn50_dino | multispectral optical,new family (id without size tokens)
+family,spectralearth_specrn50_moco,spectralearth_specrn50_moco | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvitb_mae,spectralearth_specvitb_mae | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvitg_mae,spectralearth_specvitg_mae | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvith_mae,spectralearth_specvith_mae | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvitl_mae,spectralearth_specvitl_mae | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvits_dino,spectralearth_specvits_dino | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvits_mae,spectralearth_specvits_mae | multispectral optical,new family (id without size tokens)
+family,spectralearth_specvits_moco,spectralearth_specvits_moco | multispectral optical,new family (id without size tokens)
+family,spectralgpt_unspecified,spectralgpt | multispectral optical,known family prefix 'spectralgpt'; pretraining inherited from family
+family,spectralgpt_vitl_unspecified,spectralgpt | multispectral optical,known family prefix 'spectralgpt'; pretraining inherited from family
+family,ssl4eo_l_etm_sr_resnet18_moco,ssl4eo_etm_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_sr_resnet18_simclr,ssl4eo_etm_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_sr_resnet50_moco,ssl4eo_etm_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_sr_resnet50_simclr,ssl4eo_etm_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_sr_vits16_moco,ssl4eo_etm_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_sr_vits16_simclr,ssl4eo_etm_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_resnet18_moco,ssl4eo_etm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_resnet18_simclr,ssl4eo_etm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_resnet50_moco,ssl4eo_etm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_resnet50_simclr,ssl4eo_etm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_vits16_moco,ssl4eo_etm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_etm_toa_vits16_simclr,ssl4eo_etm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_resnet18_moco,ssl4eo_oli_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_resnet18_simclr,ssl4eo_oli_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_resnet50_moco,ssl4eo_oli_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_resnet50_simclr,ssl4eo_oli_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_vits16_moco,ssl4eo_oli_sr_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_sr_vits16_simclr,ssl4eo_oli_sr_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_resnet18_moco,ssl4eo_oli_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_resnet18_simclr,ssl4eo_oli_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_resnet50_moco,ssl4eo_oli_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_resnet50_simclr,ssl4eo_oli_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_vits16_moco,ssl4eo_oli_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_oli_toa_vits16_simclr,ssl4eo_oli_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_resnet18_moco,ssl4eo_tm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_resnet18_simclr,ssl4eo_tm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_resnet50_moco,ssl4eo_tm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_resnet50_simclr,ssl4eo_tm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_vits16_moco,ssl4eo_tm_toa_moco | multispectral optical,new family (id without size tokens)
+family,ssl4eo_l_tm_toa_vits16_simclr,ssl4eo_tm_toa_simclr | multispectral optical,new family (id without size tokens)
+family,ssl4eo_resnet18_unspecified,ssl4eo_vits_unspecified | multispectral optical,same stem as known family 'ssl4eo_vits_unspecified' (sizes merged); pretraining inherited from family
+family,ssl4eo_unspecified,ssl4eo_vits_unspecified | multispectral optical,same stem as known family 'ssl4eo_vits_unspecified' (sizes merged); pretraining inherited from family
+family,ssl4eo_vit_mae_unspecified,ssl4eo_mae_unspecified,new family (id without size tokens)
+family,swimdiff,swimdiff | multispectral optical,new family (id without size tokens)
+family,t_jepa,jepa | multispectral optical,new family (id without size tokens)
+scope,t_jepa_bl_caco,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_ijepa,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_mae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_prithvi_tl,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_random_init,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_satmae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_seamo,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_seco,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_siammae,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,t_jepa_bl_vjepa,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,taxabind_imagebind,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,tedi_vitb,tedi | multispectral optical,new family (id without size tokens)
+family,tedi_vitb1024,tedi | multispectral optical,new family (id without size tokens)
+family,tedi_vitl,tedi | multispectral optical,new family (id without size tokens)
+family,tedi_vits,tedi | multispectral optical,new family (id without size tokens)
+scope,temporal_transformer_hplsp,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,terraflow_base_rs,terraflow_rs,new family (id without size tokens)
+family,terraflow_base_tds,terraflow_tds,new family (id without size tokens)
+scope,terraflow_bl_vit_base_random_ta,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,terraflow_bl_vit_tiny_random_ta,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,terraflow_tiny_rs,terraflow_rs,new family (id without size tokens)
+family,terraflow_tiny_tds,terraflow_tds,new family (id without size tokens)
+family,terramind_kd_vitb,terramind_kd | multispectral optical,new family (id without size tokens)
+family,terramind_kd_vits,terramind_kd | multispectral optical,new family (id without size tokens)
+family,terramind_kd_vitt,terramind_kd | multispectral optical,new family (id without size tokens)
+family,terramind_v1b_unspecified,terramind_v1b_unspecified,new family (id without size tokens)
+family,thor_base,thor | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,thor_bl_unet_snow,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,thor_large,thor | multi-sensor (SAR + optical),new family (id without size tokens)
+family,thor_small,thor | multi-sensor (SAR + optical),new family (id without size tokens)
+family,thor_tiny,thor | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,thsgr_hsi_baseline,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,tile2vec_tilenet,tile2vec_tilenet | high-resolution RGB,new family (id without size tokens)
+family,timo_base,timo | multispectral optical,new family (id without size tokens)
+family,timo_huge,timo | multispectral optical,new family (id without size tokens)
+family,timo_large,timo | multispectral optical,new family (id without size tokens)
+scope,tsscd,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,unet_naip_baseline,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,universat_b,universat | multi-sensor (SAR + optical),new family (id without size tokens)
+scope,usat_bl_random_init_vitl,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,usat_vitl,usat | multispectral optical,new family (id without size tokens)
+family,vitp_vitl_rs,vitp_rs | SAR,new family (id without size tokens)
+scope,vits16_imagenet,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,wildsat_bl_random_rn50,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,wildsat_bl_random_swint,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,wildsat_bl_random_vitb16,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,wildsat_rn50_imagenet,wildsat_imagenet | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_imagenet_v1,wildsat_imagenet_v1 | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_mocov3,wildsat_mocov3 | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_random,wildsat_random | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_satclip,wildsat_satclip | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_satlas,wildsat_satlas | multispectral optical,new family (id without size tokens)
+family,wildsat_rn50_seco,wildsat_seco | multispectral optical,new family (id without size tokens)
+family,wildsat_swinb_satlas,wildsat_satlas | multispectral optical,new family (id without size tokens)
+family,wildsat_swint_imagenet,wildsat_imagenet | multispectral optical,new family (id without size tokens)
+family,wildsat_swint_random,wildsat_random | multispectral optical,new family (id without size tokens)
+family,wildsat_swint_satlas,wildsat_satlas | multispectral optical,new family (id without size tokens)
+family,wildsat_taxabind,wildsat_taxabind | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_clip,wildsat_clip | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_imagenet,wildsat_imagenet | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_mocov3,wildsat_mocov3 | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_prithvi,wildsat_prithvi | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_random,wildsat_random | multispectral optical,new family (id without size tokens)
+family,wildsat_vitb_satclip,wildsat_satclip | multispectral optical,new family (id without size tokens)
+family,wildsat_vitl_satmae,wildsat_satmae | multispectral optical,new family (id without size tokens)
+scope,xgb_landsat_agbd_baseline,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,xstars_bl_dino_s2ls,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,xstars_bl_satmae_s2ls,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,xstars_bl_scalemae_s2ls,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,xstars_bl_scalemae_s6,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+scope,xstars_bl_supervised_imagenet,out (paper-internal baseline or reproduction),row_role=baseline or variant_kind=retrained_method
+family,xstars_r50_s2ls,xstars_r50_s2ls | multispectral optical,new family (id without size tokens)
+family,xstars_vitl_cont_ls_s6,xstars_cont_ls_s6 | high-resolution RGB,new family (id without size tokens)
+family,xstars_vitl_cont_s2_s6,xstars_cont_s2_s6 | high-resolution RGB,new family (id without size tokens)
+family,xstars_vitl_cont_scalemae_bdortho,xstars_cont_scalemae_bdortho | high-resolution RGB,new family (id without size tokens)
+family,xstars_vitl_cont_scalemae_s2,xstars_cont_scalemae_s2 | multispectral optical,new family (id without size tokens)
+family,xstars_vitl_s2ls,xstars_s2ls | multispectral optical,new family (id without size tokens)
+dataset,a2mae_bigearthnet,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_cropseg,Multi-Temporal Crop Classification (HLS) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_dynamicearthnet_cd,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_eurosat,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_oscd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_sen1floods11,Sen1Floods11 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,a2mae_spacenet,a2mae_spacenet [other],v5_corpus_family (new corpus)
+dataset,agbd_mt_lite,AGBD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,agrifm_ara_boundary,eurocrops [eo_imagery],v5_corpus_family (new corpus)
+dataset,agrifm_ara_cropland,eurocrops [eo_imagery],v5_corpus_family (new corpus)
+dataset,agrifm_ara_lulc16,eurocrops [eo_imagery],v5_corpus_family (new corpus)
+dataset,agrifm_paddy_rice_asia,agrifm_paddy_rice_asia [eo_imagery],v5_corpus_family (new corpus)
+dataset,agrifm_winter_wheat_asia,agrifm_winter_wheat_asia [eo_imagery],v5_corpus_family (new corpus)
+dataset,air_hsao_mot,air_hsao [eo_imagery],v5_corpus_family (new corpus)
+dataset,air_polsar_seg,air_polsar [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_bigearthnet_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,alliance_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,alliance_houston_hsi,houston2013 [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_oscd_cd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,alliance_paviau_hsi,pavia_university [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_quh_pingan_hsi,quh [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_quh_tangdaowan_hsi,quh [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_segmunich_seg,SegMunich [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,alliance_yellow_river_seg_w_gap,yellow_river [eo_imagery],v5_corpus_family (new corpus)
+dataset,alliance_yellow_river_seg_wo_gap,yellow_river [eo_imagery],v5_corpus_family (new corpus)
+dataset,atlantic_deforestation_seg,atlantic_forest_deforestation [eo_imagery],v5_corpus_family (new corpus)
+dataset,auto_arborist_genus_aerial,auto_arborist [eo_imagery],v5_corpus_family (new corpus)
+dataset,auto_arborist_genus_ground,auto_arborist [other],v5_corpus_family (new corpus)
+dataset,ben_500_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,benge8k_landcover,ben_ge [eo_imagery],v5_corpus_family (new corpus)
+dataset,benge8k_segmentation,ben_ge [eo_imagery],v5_corpus_family (new corpus)
+dataset,bigearthnet_mm_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,c2seg_bw_lulc_seg,c2seg [eo_imagery],v5_corpus_family (new corpus)
+dataset,c2smsfloods_seg,c2smsfloods [eo_imagery],v5_corpus_family (new corpus)
+dataset,cabuar_wildfire_seg,cabuar [eo_imagery],v5_corpus_family (new corpus)
+dataset,california_wildfire_s2,california_wildfire_s2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdd_change_detection,cdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_cd_ca,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_cd_ia,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_cd_mn,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_cd_nc,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_seg_ca,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_seg_ia,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_seg_mn,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cdl_regional_seg_nc,cdl_regional_shift [eo_imagery],v5_corpus_family (new corpus)
+dataset,cgeartheye_fmow_cls,fMoW [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,changen2_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,changen2_s2looking,s2looking [eo_imagery],v5_corpus_family (new corpus)
+dataset,changen2_second_scd,second_scd [eo_imagery],v5_corpus_family (new corpus)
+dataset,changen2_xview2_damage,xBD / xView2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,compdv_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,compdv_levirship_det,levir_ship [eo_imagery],v5_corpus_family (new corpus)
+dataset,compdv_nwpu_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,compdv_retrieval_aid,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,compdv_retrieval_fn12,ForestNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,compdv_retrieval_fn4,ForestNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,compdv_ucmerced_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,compdv_whu_building_seg,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,copernicusbench_bigearthnet_s2,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,croma_bigearthnet_abl,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,croma_dfc2020_s1,DFC2020 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,croma_dw_expert_120,dynamic_world [eo_imagery],v5_corpus_family (new corpus)
+dataset,cropyield_corn_county_gkf,cropyield_corn_county [eo_imagery],v5_corpus_family (new corpus)
+dataset,cropyield_corn_county_inseason,cropyield_corn_county [eo_imagery],v5_corpus_family (new corpus)
+dataset,cropyield_corn_county_loso,cropyield_corn_county [eo_imagery],v5_corpus_family (new corpus)
+dataset,cropyield_corn_county_loyo,cropyield_corn_county [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_a2s,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_a2s1,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_casid_sub2sub,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_sub2tem,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_sub2tms,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_sub2trf,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tem2sub,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tem2tem,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tem2tms,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tem2trf,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tms2sub,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tms2tem,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tms2tms,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_tms2trf,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_trf2sub,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_trf2tem,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_trf2tms,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_casid_trf2trf,casid [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_d2g,globalroadnet [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_d2m,Massachusetts Roads [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_pi2pr,potsdam [other],v5_corpus_family (new corpus)
+dataset,crossearth_pi2res,rescuenet [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_pi2v,ISPRS Vaihingen [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_pr2pi,potsdam [other],v5_corpus_family (new corpus)
+dataset,crossearth_pr2res,rescuenet [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_pr2v,ISPRS Vaihingen [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_r2u,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_s2a,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,crossearth_sar_200k_val,crossearth_sar_200k [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_a2f,fusar_map [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_a2s,sarbud [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_c2k,ddhr_sk [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_ci2r,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_cr2r,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_d2f,fusar_map [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_d2o,openearthmap_sar [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_d2w,whu_opt_sar [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_f2a,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_f2d,ddhr_sk [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_f2hh,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_f2vv,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_hh2f,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_k2c,ddhr_sk [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_n2s,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_o2d,ddhr_sk [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_r2ci,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_r2cr,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_s2a,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_s2n,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_vv2f,air_polsar_v2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_sar_w2d,ddhr_sk [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_u2oem,openearthmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_u2r,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,crossearth_v2pi,potsdam [other],v5_corpus_family (new corpus)
+dataset,crossearth_v2pr,potsdam [other],v5_corpus_family (new corpus)
+dataset,csmae_potsdam_seg,potsdam [other],v5_corpus_family (new corpus)
+dataset,csmae_vaihingen_seg,ISPRS Vaihingen [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,ctxmim_dota_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,ctxmim_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,ctxmim_nwpu_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,ctxmim_spacenet_lv_instseg,SpaceNet 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,ctxmim_spacenet_rio_seg,SpaceNet 1 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,deepandes_loci_classification,deepandes_loci [eo_imagery],v5_corpus_family (new corpus)
+dataset,deepandes_loci_retrieval,deepandes_loci [eo_imagery],v5_corpus_family (new corpus)
+dataset,deepandes_seg_active_buildings,deepandes_seg_active_buildings [eo_imagery],v5_corpus_family (new corpus)
+dataset,deepandes_seg_active_corrals,deepandes_seg_active_corrals [eo_imagery],v5_corpus_family (new corpus)
+dataset,deepandes_seg_archaeol_corrals,deepandes_seg_archaeol_corrals [eo_imagery],v5_corpus_family (new corpus)
+dataset,deo_abl3_ms_composite,nan [other],v5_corpus_family (new corpus)
+dataset,deo_abl3_optical_composite,nan [other],v5_corpus_family (new corpus)
+dataset,deo_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,deo_oscd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,deo_pastis,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,deo_seg4_ms_composite,nan [other],v5_corpus_family (new corpus)
+dataset,deo_seg4_optical_composite,nan [other],v5_corpus_family (new corpus)
+dataset,deo_sen1floods11,Sen1Floods11 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,deo_spacenetv1,SpaceNet 1 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dfc23_seg,dfc2023 [eo_imagery],v5_corpus_family (new corpus)
+dataset,dinomc_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dior_r_oriented_detection,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dota10_obb_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,dsifn_cd,DSIFN [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_mm_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_pla_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_s2_scs,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_s2_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_noshift_scd,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_noshift_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_spatial_scd,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_spatial_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_temporal_scd,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicearthnet_sits_temporal_seg,DynamicEarthNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_aid_cls,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_fmow_region_cls,fMoW [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_levirship_det,levir_ship [eo_imagery],v5_corpus_family (new corpus)
+dataset,dynamicvis_massachusetts_roads_seg,Massachusetts Roads [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_nwpu_instseg,nwpu_vhr10 [eo_imagery],v5_corpus_family (new corpus)
+dataset,dynamicvis_oscd_cd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_retrieval_be19,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_retrieval_be43,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_retrieval_fn12,ForestNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_retrieval_fn4,ForestNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_ssdd_instseg,ssdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,dynamicvis_ucmerced_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,dynamicvis_whu_building_seg,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,dynamicvis_whu_cd,whu_cd [eo_imagery],v5_corpus_family (new corpus)
+dataset,echosat_gedi_heldout,echosat_gedi_heldout [eo_imagery],v5_corpus_family (new corpus)
+dataset,ee_agbd_kibale_fi,ee_agbd_kibale_fi [eo_imagery],v5_corpus_family (new corpus)
+dataset,ee_augsburg_hsi_disjoint,augsburg_hsi [eo_imagery],v5_corpus_family (new corpus)
+dataset,ee_augsburg_hsi_random50,augsburg_hsi [eo_imagery],v5_corpus_family (new corpus)
+dataset,ee_soybean_yield_county,ee_soybean_yield_county [eo_imagery],v5_corpus_family (new corpus)
+dataset,ee_tree_crowns_naip,ee_tree_crowns_naip [eo_imagery],v5_corpus_family (new corpus)
+dataset,era5_dew_temp,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_precipitation,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_pressure,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_temp_max,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_temp_mean,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_temp_min,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_u_wind,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,era5_v_wind,range_era5 [coords_only],v5_corpus_family (new corpus)
+dataset,eurosat_12b_shapley_audit,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,fair1m_oriented_detection,fair1m [eo_imagery],v5_corpus_family (new corpus)
+dataset,fbp_seg,Five Billion Pixels [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,flair_multilabel_cls,FLAIR / FLAIR 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,flood3i_fewshot_seg,floodnet [eo_imagery],v5_corpus_family (new corpus)
+dataset,fsl_nwpu_resisc45,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,fsl_ucm,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,fsl_whu_rs19,WHU-RS19 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,fss_isaid,isaid [eo_imagery],v5_corpus_family (new corpus)
+dataset,fss_loveda,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,gair_locbench_birdsnap,birdsnap [other],v5_corpus_family (new corpus)
+dataset,gair_locbench_elev,mosaiks [eo_imagery],v5_corpus_family (new corpus)
+dataset,gair_locbench_forcov,mosaiks [eo_imagery],v5_corpus_family (new corpus)
+dataset,gair_locbench_inat17,inat2017 [other],v5_corpus_family (new corpus)
+dataset,gair_locbench_inat18,iNaturalist 2018 [other],v5_corpus_family (v4 canonical)
+dataset,gair_locbench_nabirds,nabirds [other],v5_corpus_family (new corpus)
+dataset,gair_locbench_nightlum,mosaiks [eo_imagery],v5_corpus_family (new corpus)
+dataset,gair_locbench_popden,mosaiks [eo_imagery],v5_corpus_family (new corpus)
+dataset,gair_sv_human_perception,global_streetscapes [other],v5_corpus_family (new corpus)
+dataset,gair_sv_imaging_platform,global_streetscapes [other],v5_corpus_family (new corpus)
+dataset,gair_sv_socioeconomic,fan2023_urban_visual_intelligence [other],v5_corpus_family (new corpus)
+dataset,gair_sv_view_direction,global_streetscapes [other],v5_corpus_family (new corpus)
+dataset,geoid_flood_water_s1_fusion,GEOID-Flood [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geoid_flood_water_s1s2_fusion,GEOID-Flood [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_airound_cls,AiRound [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_cls7_composite,geolink_cls7_composite [other],v5_corpus_family (new corpus)
+dataset,geolink_co2_reg,geolink_co2_reg [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_fivebillionpixels_seg,Five Billion Pixels [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_mlrsnet_cls,MLRSNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_optimal31_cls,OPTIMAL-31 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,geolink_pop_reg,geolink_pop_reg [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_ucmerced_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_ufz_seg,geolink_ufz_seg [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_uv_seg,geolink_uv_seg [eo_imagery],v5_corpus_family (new corpus)
+dataset,geolink_whu_rs19_cls,WHU-RS19 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,germany_crop_seg,germany_crop_russwurm [eo_imagery],v5_corpus_family (new corpus)
+dataset,gf12ms_whu_gf1_cloud,gf12ms_whu [eo_imagery],v5_corpus_family (new corpus)
+dataset,gfmbench_bigearthnet,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,gfmbench_dfc2020,DFC2020 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,gfmbench_eurosat,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,gfmbench_marida,MARIDA [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,gfmbench_nlcd_l,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,gfmbench_segmunich,SegMunich [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,gfmbench_so2sat,So2Sat LCZ42 (LCZ-S2) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,glh_water,glh_water [other],v5_corpus_family (new corpus)
+dataset,gvlm_landslide_seg,gvlm [other],v5_corpus_family (new corpus)
+dataset,hp_lsp_composite_t12,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_composite_t4,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_composite_t8,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_dormancy_t12,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_dormancy_t244,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_dormancy_t4,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_dormancy_t8,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_greenup_t12,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_greenup_t244,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_greenup_t4,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_greenup_t8,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_maturity_t12,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_maturity_t244,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_maturity_t4,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_maturity_t8,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_senescence_t12,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_senescence_t244,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_senescence_t4,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hp_lsp_senescence_t8,hp_lsp [eo_imagery],v5_corpus_family (new corpus)
+dataset,hrsc2016_det,hrsc2016 [other],v5_corpus_family (new corpus)
+dataset,hrsid_det,hrsid [eo_imagery],v5_corpus_family (new corpus)
+dataset,inat2018_geoprior,iNaturalist 2018 [other],v5_corpus_family (v4 canonical)
+dataset,isaid_seg,isaid [eo_imagery],v5_corpus_family (new corpus)
+dataset,isprs_potsdam_depth,potsdam [eo_imagery],v5_corpus_family (new corpus)
+dataset,isprs_vaihingen_depth,ISPRS Vaihingen [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,kenya_wildlife_det,kenya_aerial_wildlife_eikelboom [eo_imagery],v5_corpus_family (new corpus)
+dataset,kurosiwo_flood_seg_blackbench,Kuro Siwo (Flood-S1) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,loveda_seg,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,maestro_flair2,FLAIR / FLAIR 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,maestro_flair_hub,flair_hub [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_atmosdust_cls,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_boulder_seg,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_conequest_seg,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_crater_binary_seg,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_crater_multi_seg,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_domars16k_cls,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_frost_cls,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_landmark_cls,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,marsbench_mmls_seg,marsbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,millionaid_zs_cls,million_aid [eo_imagery],v5_corpus_family (new corpus)
+dataset,msgfm_bigearthnet_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,msgfm_sen12mscr_cloud,sen12ms_cr [eo_imagery],v5_corpus_family (new corpus)
+dataset,msgfm_vaihingen_seg,ISPRS Vaihingen [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_dior_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_dior_r_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_dota10_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_dota20_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_fair1m_det,fair1m [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_loveda_seg,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_oscd_cd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_spacenetv1_seg,SpaceNet 1 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,mtp_svcd_cd,cdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_whu_cd,whu_cd [eo_imagery],v5_corpus_family (new corpus)
+dataset,mtp_xview_det,xview [eo_imagery],v5_corpus_family (new corpus)
+dataset,muds_sits_noshift_scd,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,muds_sits_noshift_seg,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,muds_sits_spatial_scd,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,muds_sits_spatial_seg,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,muds_sits_temporal_scd,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,muds_sits_temporal_seg,SpaceNet 7 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,multicrop_hls_seg,Multi-Temporal Crop Classification (HLS) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,neighbormae_fbp_seg,Five Billion Pixels [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,neighbormae_firerisk_cls,firerisk [other],v5_corpus_family (new corpus)
+dataset,neighbormae_forestnet_cls,ForestNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,neighbormae_pastis_hd_seg,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,neighbormae_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,neighbormae_ucm_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,nmv_crop_type_tile2vec,tile2vec_naip_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,nmv_species_distribution_mapping,nature_multiview [eo_imagery],v5_corpus_family (new corpus)
+dataset,nmv_species_moe,nature_multiview [eo_imagery],v5_corpus_family (new corpus)
+dataset,nmv_species_recognition,nature_multiview [other],v5_corpus_family (new corpus)
+dataset,nuswide_geotagged_cls,nus_wide [other],v5_corpus_family (new corpus)
+dataset,orbital_net_bfe,orbital_net [eo_imagery],v5_corpus_family (new corpus)
+dataset,pangaea9_composite,nan [other],v5_corpus_family (new corpus)
+dataset,pangaea9_hr_composite,nan [other],v5_corpus_family (new corpus)
+dataset,pangaea9_ms_composite,nan [other],v5_corpus_family (new corpus)
+dataset,panopticon_saracc_composite,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,panopticon_simmap_composite,CORINE (Panopticon) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pastis_mm_seg,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,peatland_canada_cls,peatland_canada_cls [eo_imagery],v5_corpus_family (new corpus)
+dataset,physwin_bigearthnet_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,physwin_pangaea_bigearthnet_cls,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,physwin_pangaea_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,physwin_segmunich_seg,SegMunich [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pico_slats_bare_ground,slats [eo_imagery],v5_corpus_family (new corpus)
+dataset,pico_slats_dry_vegetation,slats [eo_imagery],v5_corpus_family (new corpus)
+dataset,pico_slats_green_vegetation,slats [eo_imagery],v5_corpus_family (new corpus)
+dataset,pico_treesatai_broadleaf_species,TreeSatAI [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pico_treesatai_conifer_species,TreeSatAI [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pico_treesatai_forest_cover,TreeSatAI [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pievit_dior_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pievit_levircd_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pievit_potsdam_seg,potsdam [other],v5_corpus_family (new corpus)
+dataset,pis_aid_cls,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pis_cdd_cd,cdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_dlrsd_seg,dlrsd [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_dota_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_eurosat_rgb_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pis_loveda_seg,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_nwpu_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_patternnet_cls,PatternNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,pis_potsdam_seg,potsdam [eo_imagery],v5_corpus_family (new corpus)
+dataset,pis_ucm_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,potsdam_seg,potsdam [eo_imagery],v5_corpus_family (new corpus)
+dataset,relearn_aurora_airpollution_04deg,nan [other],v5_corpus_family (new corpus)
+dataset,relearn_aurora_highres_01deg,nan [other],v5_corpus_family (new corpus)
+dataset,relearn_aurora_hres_t0_025deg,nan [other],v5_corpus_family (new corpus)
+dataset,relearn_aurora_wave_025deg,nan [other],v5_corpus_family (new corpus)
+dataset,relearn_bradd,bradd [eo_imagery],v5_corpus_family (new corpus)
+dataset,relearn_cifar10,cifar10 [other],v5_corpus_family (new corpus)
+dataset,relearn_flair2,FLAIR / FLAIR 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,relearn_flowers102,flowers102 [other],v5_corpus_family (new corpus)
+dataset,relearn_pets,oxford_pets [other],v5_corpus_family (new corpus)
+dataset,relearn_timematch,timematch [eo_imagery],v5_corpus_family (new corpus)
+dataset,relearn_voc,pascal_voc [other],v5_corpus_family (new corpus)
+dataset,rsvheat_aid_cls,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,rsvheat_air_polsar_seg,air_polsar [eo_imagery],v5_corpus_family (new corpus)
+dataset,rsvheat_dior_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,rsvheat_fair1m_det,fair1m [eo_imagery],v5_corpus_family (new corpus)
+dataset,rsvheat_isaid_seg,isaid [eo_imagery],v5_corpus_family (new corpus)
+dataset,rsvheat_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,rsvheat_nwpu_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,rsvheat_potsdam_seg,potsdam [other],v5_corpus_family (new corpus)
+dataset,rsvheat_sar_aircraft_det,sar_aircraft [eo_imagery],v5_corpus_family (new corpus)
+dataset,rsvheat_whu_opt_sar_seg,whu_opt_sar [eo_imagery],v5_corpus_family (new corpus)
+dataset,s1s2_water_s1,s1s2_water [eo_imagery],v5_corpus_family (new corpus)
+dataset,s1s2_water_s2,s1s2_water [eo_imagery],v5_corpus_family (new corpus)
+dataset,s4_africa_crop_seg,africa_crop_type_mapping [eo_imagery],v5_corpus_family (new corpus)
+dataset,s4_pastis_r_seg,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sar_aircraft_det,sar_aircraft [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarclsl1_psa_unsup,sarclsl1 [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarclsl1_sf_unsup,sarclsl1 [eo_imagery],v5_corpus_family (new corpus)
+dataset,sardet100k_det,sardet100k [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarjepa_fusarship_fewshot,fusar_ship [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarjepa_mstar_fewshot,mstar [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarjepa_saracd_fewshot,sar_acd [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarmae_air_polsar_water,air_polsar [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarmae_fusarship_30pct,fusar_ship [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarmae_mstar_30pct,mstar [other],v5_corpus_family (new corpus)
+dataset,sarmae_mstar_cls_unstated_split,mstar [other],v5_corpus_family (new corpus)
+dataset,sarmae_rsar_obbdet,rsar [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarmae_saracd_30pct,sar_acd [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarmae_ssdd_det,ssdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarsegl1_fss_1shot,sarsegl1 [eo_imagery],v5_corpus_family (new corpus)
+dataset,sarsegl1_seg,sarsegl1 [eo_imagery],v5_corpus_family (new corpus)
+dataset,satlas_naip_points_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_naip_polygons_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_naip_polylines_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_naip_properties_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_naip_regression_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_naip_segmentation_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_classification_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_points_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_polygons_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_polylines_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_properties_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_regression_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satlas_s2_segmentation_mi,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satpretrain_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satpretrain_patternnet_cls,PatternNet [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satpretrain_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,satpretrain_rsicd_cls,RSICD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,satpretrain_ucmerced_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,sen12flood_binary,sen12flood [eo_imagery],v5_corpus_family (new corpus)
+dataset,sigmae_eurosat_cls,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sigmae_fod_seg,floating_objects_s2 [eo_imagery],v5_corpus_family (new corpus)
+dataset,sigmae_oscd_cd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sigmae_segmunich_seg,SegMunich [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sigmae_wildfire_seg,burned_area_delineation_arnaudo [eo_imagery],v5_corpus_family (new corpus)
+dataset,sinr_geo_feature,sinr_geo_feature [coords_only],v5_corpus_family (new corpus)
+dataset,sinr_geo_prior,iNaturalist 2018 [coords_only],v5_corpus_family (v4 canonical)
+dataset,sinr_iucn_range,sinr_iucn_range [coords_only],v5_corpus_family (new corpus)
+dataset,sinr_snt_range,sinr_snt_range [coords_only],v5_corpus_family (new corpus)
+dataset,skyscript_roof_shape_zs,skyscript [eo_imagery],v5_corpus_family (new corpus)
+dataset,skyscript_smoothness_zs,skyscript [eo_imagery],v5_corpus_family (new corpus)
+dataset,skyscript_surface_zs,skyscript [eo_imagery],v5_corpus_family (new corpus)
+dataset,skyscript_zs_cls,skyscript [eo_imagery],v5_corpus_family (new corpus)
+dataset,sm_aid_cls,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sm_dior_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sm_dior_r_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sm_loveda_seg,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,sm_resisc45_cls,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,sm_spacenetv1_seg,SpaceNet 1 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_bigearthnet_mm,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_bigearthnet_s1,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_bigearthnet_s2,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_eurosat_s2,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_resisc45_rgb,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,smarties_sickle_crop,SICKLE (paddy classification) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,smarties_ucmerced,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,smarties_whu_rs19,WHU-RS19 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,sos_oil_spill_seg,sos_oil_spill [eo_imagery],v5_corpus_family (new corpus)
+dataset,sparcs_seg,sparcs [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_desis_cdl,desis_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_bdforet,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_bnetd,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_cdl,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_corine,CORINE (Panopticon) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,spectralearth_enmap_eurocrops,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_nlcd,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_enmap_treemap,spectralearth_enmap [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_eo1_cdl,eo1_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_hybiomass,hybiomass [eo_imagery],v5_corpus_family (new corpus)
+dataset,spectralearth_hyperview,Hyperview [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,ssl4eo_l_cdl_etm_sr,ssl4eo_l_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_cdl_etm_toa,ssl4eo_l_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_cdl_oli_sr,ssl4eo_l_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_cdl_oli_toa,ssl4eo_l_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_cdl_tm_toa,ssl4eo_l_cdl [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_l7_irish,l7_irish [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_l8_biome,l8_biome [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_nlcd_etm_sr,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_nlcd_etm_toa,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_nlcd_oli_sr,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_nlcd_oli_toa,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,ssl4eo_l_nlcd_tm_toa,ssl4eo_l_nlcd [eo_imagery],v5_corpus_family (new corpus)
+dataset,sysu_cd,sysu_cd [other],v5_corpus_family (new corpus)
+dataset,taxabind_bioclip_rare_zs,bioclip_rare [other],v5_corpus_family (new corpus)
+dataset,taxabind_biomes,Biomes [coords_only],v5_corpus_family (v4 canonical)
+dataset,taxabind_birdclef2022,birdclef2022 [other],v5_corpus_family (new corpus)
+dataset,taxabind_birdclef2023,birdclef2023 [other],v5_corpus_family (new corpus)
+dataset,taxabind_birdclef2024,birdclef2024 [other],v5_corpus_family (new corpus)
+dataset,taxabind_birds525_zs,birds525 [other],v5_corpus_family (new corpus)
+dataset,taxabind_cub200_zs,cub200 [other],v5_corpus_family (new corpus)
+dataset,taxabind_ecoregions,Ecoregions [coords_only],v5_corpus_family (v4 canonical)
+dataset,taxabind_geo_feature,sinr_geo_feature [coords_only],v5_corpus_family (new corpus)
+dataset,taxabind_geoplant,geoplant [coords_only],v5_corpus_family (new corpus)
+dataset,taxabind_inat2021_zs,inaturalist_2021 [other],v5_corpus_family (new corpus)
+dataset,taxabind_satbird_kenya,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,taxabind_satbird_usa_summer,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,taxabind_satbird_usa_winter,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,taxabind_taxabench8k_retrieval,taxabench8k [eo_imagery],v5_corpus_family (new corpus)
+dataset,taxabind_taxabench8k_zs,taxabench8k [other],v5_corpus_family (new corpus)
+dataset,terraflow_impactmesh_fire_risk,impactmesh [eo_imagery],v5_corpus_family (new corpus)
+dataset,terraflow_impactmesh_flood_risk,impactmesh [eo_imagery],v5_corpus_family (new corpus)
+dataset,terraflow_kurosiwo_flood_risk,Kuro Siwo (Flood-S1) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,thor_snow_cover_slstr,thor_snow_cover_slstr [eo_imagery],v5_corpus_family (new corpus)
+dataset,three_pollution_reg,three_pollution [eo_imagery],v5_corpus_family (new corpus)
+dataset,timo_kurosiwo,Kuro Siwo (Flood-S1) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,timo_mtlcc,mtlcc [eo_imagery],v5_corpus_family (new corpus)
+dataset,timo_multiearth,multiearth [eo_imagery],v5_corpus_family (new corpus)
+dataset,timo_multisenge,multisenge [eo_imagery],v5_corpus_family (new corpus)
+dataset,timo_sen12flood,sen12flood [eo_imagery],v5_corpus_family (new corpus)
+dataset,tjepa_bigearthnet_rgb,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,tjepa_dfc20_rgb_seg,DFC2020 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,tjepa_oscd_rgb_cd,OSCD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,tjepa_pastis_rgb_cls,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,tjepa_pastis_rgb_cls_t1,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,tjepa_pastis_rgb_seg,PASTIS / PASTIS-R [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,treesatai_ts_cls,TreeSatAI [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,treesatai_ts_multilabel,TreeSatAI [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,usat_bigearthnet_s2,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,usat_eurosat_s2,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,usat_meterml_naip,METER-ML [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,usat_meterml_s2,METER-ML [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,usat_usatlas_cls,SatlasPretrain (composite) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vegbench_alliance,vegbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,vegbench_whr13,vegbench [eo_imagery],v5_corpus_family (new corpus)
+dataset,vhrbench_everwatch,EverWatch [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vhrbench_flair2,FLAIR / FLAIR 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vhrbench_hotosm_buildings,hotosm_buildings [eo_imagery],v5_corpus_family (new corpus)
+dataset,vhrbench_m_pv4ger,PV4GER [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vhrbench_nz_cattle,NZ cattle [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vhrbench_open_canopy_small,open_canopy [eo_imagery],v5_corpus_family (new corpus)
+dataset,vhrbench_pureforest,pureforest [eo_imagery],v5_corpus_family (new corpus)
+dataset,vhrbench_spacenet2,SpaceNet 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vhrbench_spacenet3,spacenet3 [eo_imagery],v5_corpus_family (new corpus)
+dataset,vhrbench_xview2,xBD / xView2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vitp_dior_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vitp_dior_r_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vitp_dota2_det,dota [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_isaid_seg,isaid [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_levir_cd,LEVIR-CD [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vitp_loveda_seg,loveda [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_reobench_dior_r_det,DIOR [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,vitp_rsar_det,rsar [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_s2looking_cd,s2looking [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_sardet100k_det,sardet100k [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_ssdd_det,ssdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_ssdd_instseg,ssdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_svcd_cd,cdd [eo_imagery],v5_corpus_family (new corpus)
+dataset,vitp_uavid_seg,uavid [other],v5_corpus_family (new corpus)
+dataset,vitp_whu_cd,whu_cd [eo_imagery],v5_corpus_family (new corpus)
+dataset,whu_building_seg,WHU Aerial Building [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,whu_opt_sar_seg,whu_opt_sar [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_lp_aid,AID [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_lp_ben20k,BigEarthNet v1 / v2 (reBEN) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_lp_eurosat,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_lp_fmow,fMoW [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_lp_resisc45,nwpu_resisc45 [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_lp_so2sat20k,So2Sat LCZ42 (LCZ-S2) [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_lp_ucm,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_satbird_kenya,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_satbird_usa_summer,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_satbird_usa_winter,satbird [eo_imagery],v5_corpus_family (new corpus)
+dataset,wildsat_seg_cashew1k,Cashew plantation [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,wildsat_seg_sacrop3k,South Africa crop type [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xbd_damage_seg,xBD / xView2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_clc_seg,Chesapeake land cover [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_cvbrct_cls,CV-BrCT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_eurosat_rgb,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_eurosat_rgb_val,EuroSAT [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_flair_seg,FLAIR / FLAIR 2 [eo_imagery],v5_corpus_family (v4 canonical)
+dataset,xstars_sn8_seg,spacenet8 [eo_imagery],v5_corpus_family (new corpus)
+dataset,xstars_sn8_seg_val,spacenet8 [eo_imagery],v5_corpus_family (new corpus)
+dataset,xstars_ucmerced_cls,uc_merced [eo_imagery],v5_corpus_family (new corpus)
+dataset,xstars_worldstrat_cls,worldstrat [eo_imagery],v5_corpus_family (new corpus)
+dataset,xstars_worldstrat_cls_val,worldstrat [eo_imagery],v5_corpus_family (new corpus)
