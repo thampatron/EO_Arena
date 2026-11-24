@@ -2,7 +2,8 @@
 
 score[f,s] = setting (fixed) + F + FxD + FxP + FxDxP + FxC + e     (D dataset, P paper, C protocol class)
 Every random term contains the family, so V is block-diagonal by family; REML is evaluated exactly from the blocks.
-Lab variance = FxP + FxDxP. Reliability of one published score for a family x dataset effect = FD / (FD + FP + FDP + e);
+Lab variance = FxP + FxDxP. Note Eq. 6 analogue for one published score = (F + FD + FC) / (F + FD + FC + FP + FDP + e) (eq6_one_score);
+reliability of the dataset-specific effect alone = FD / (FD + FP + FDP + e) (rel_one_score, not Eq. 6);
 independent papers per cell for 0.8 = 4 (FP + FDP + e) / FD. Intervals: delete-a-group jackknife over papers (Kott 2001).
 Also used with per-score lab weights (heteroscedastic lab model, lab_effects.py) via `w_lab`.
 Usage: python3 -I variance_components.py <long.pkl> <out.json>     (writes aggregate statistics only)
@@ -54,7 +55,12 @@ def fit(L, col, x0=None, hetero=False):
 
 def summary(v):
     lab = v['FP'] + v['FDP']
-    return {**{k: float(x) for k, x in v.items()}, 'lab': float(lab), 'rel_one_score': float(v['FD'] / (v['FD'] + lab + v['e'])),
+    sig = v['F'] + v['FD'] + v['FC']   # note Eq. 3: tau^2 = Var_m(lambda_t' theta_m + gamma_mt) includes the shared (F) component
+    return {**{k: float(x) for k, x in v.items()}, 'lab': float(lab),
+            # note Eq. 6 analogue for one published score on one dataset (or task): stable between-family variance over itself plus noise
+            'eq6_one_score': float(sig / (sig + lab + v['e'])),
+            # reliability of the dataset-SPECIFIC part only (which families are relatively better on this dataset); not Eq. 6
+            'rel_one_score': float(v['FD'] / (v['FD'] + lab + v['e'])),
             'papers_for_08': float(4 * (lab + v['e']) / max(v['FD'], 1e-12)), 'lab_over_signal': float(lab / max(v['FD'], 1e-12))}
 
 def jackknife(L, col, x0, groups=10, seed=0):
@@ -68,6 +74,9 @@ def jackknife(L, col, x0, groups=10, seed=0):
 if __name__ == '__main__':
     L = pd.read_pickle(sys.argv[1]); out = {}
     L = L[L.pclass != 'other']
+    import os
+    if os.environ.get('VC_UNIT', 'dataset') == 'task':   # D = the note's task (cross-paper key, protocol.py), not the canonical dataset
+        L = L.assign(canonical_dataset=L.xtask)
     specs = [('points', L[L.pts], 'y'), ('z', L, 'z'), ('rank', L, 'rank')]
     for it in ('multispectral', 'SAR + optical', 'high-resolution optical'):
         specs += [(f'{it} | z', L[L.itype == it], 'z')]
@@ -77,7 +86,7 @@ if __name__ == '__main__':
         cells = d.groupby(['family', 'canonical_dataset']).paper_key.nunique(); rec['replicated_cells'] = int((cells >= 2).sum()); rec['cells_3plus'] = int((cells >= 3).sum())
         if name in ('points', 'z') or name.endswith('| z'):
             E = jackknife(d, col, x, groups=10); G = len(E)
-            for k in ('rel_one_score', 'papers_for_08', 'lab_over_signal', 'FD', 'lab', 'e'):
+            for k in ('eq6_one_score', 'rel_one_score', 'papers_for_08', 'lab_over_signal', 'FD', 'lab', 'e'):
                 m = E[k].mean(); se = np.sqrt((G - 1) / G * ((E[k] - m) ** 2).sum()); rec[k + '_jk90'] = [float(s[k] - 1.645 * se), float(s[k] + 1.645 * se)]
         out[name] = rec; print(name, {k: (round(x, 3) if isinstance(x, float) else x) for k, x in rec.items()}, flush=True)
     json.dump(out, open(sys.argv[2], 'w'), indent=1)

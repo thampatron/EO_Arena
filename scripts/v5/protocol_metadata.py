@@ -11,8 +11,7 @@ import os, sys, json, itertools, numpy as np, pandas as pd
 ROOT = sys.argv[1]; sys.path.insert(0, os.path.join(ROOT, 'scripts', 'robustness')); sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import robust_lib as R, prefix
 CSV = sys.argv[2]; OUTP = sys.argv[3]; rng = np.random.default_rng(0)
-PTS = {'miou', 'acc', 'f1', 'acc_top1', 'r2', 'iou', 'map', 'micro_f1', 'oa', 'segm_map', 'mijacc', 'bal_acc', 'weighted_f1', 'acc_avg', 'macro_f1'}
-def pclass(p): return 'ft' if p in ('FT', 'PFT') else 'dec' if p == 'frozen_dec' else 'pe' if p == 'PE' else 'other' if p == 'kmeans_clustering' else 'probe'
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from protocol import PTS, pclass   # shared definitions
 g = prefix.build(['--offset', 'none', '--skip-sim']); TI = g['TI']; lc = g['lc'].copy()
 lc = lc.join(TI, on='task'); lc['family_unit'] = lc.model_id.map(R.unit_of); lc['pclass'] = lc.evaluation_protocol.map(pclass)
 lc = lc[(lc.pclass != 'other') & lc.metric_s.isin(PTS) & (lc.canonical_dataset != '')].copy()

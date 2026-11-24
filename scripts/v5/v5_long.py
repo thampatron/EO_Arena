@@ -3,9 +3,8 @@ Shared by the v5 noise analyses. Run with EOARENA_WORKBOOK_DIR set; writes a loc
 import os, sys, numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(HERE, '..', 'robustness')); sys.path.insert(0, os.path.join(HERE, '..'))
 import robust_lib as R, prefix
-PTS = {'miou', 'acc', 'f1', 'acc_top1', 'r2', 'iou', 'map', 'micro_f1', 'oa', 'segm_map', 'mijacc', 'bal_acc', 'weighted_f1', 'acc_avg', 'macro_f1'}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from protocol import PTS, pclass, proto_norm, frac_norm, metric_norm, sensor_norm, xtask   # shared definitions (R^2 is not points)
 SHIFTED = {'no_overlap', 'superset', 'ood_test'}
-def pclass(p): return 'ft' if p in ('FT', 'PFT') else 'dec' if p == 'frozen_dec' else 'pe' if p == 'PE' else 'other' if p == 'kmeans_clustering' else 'probe'
 def build(out):
     g = prefix.build(['--offset', 'none', '--skip-sim', '--merge-families'])
     TI = g['TI'].reset_index(drop=True); Y, M = g['Y'], g['mask']; fams = list(g['models']); tasks = list(g['tasks'])
@@ -19,6 +18,8 @@ def build(out):
     meta = TI.assign(j=range(len(TI)))[['j', 'paper_key', 'benchmark_id', 'evaluation_protocol', 'pf', 'metric_s', 'train_fraction_norm', 'canonical_dataset', 'sensor', 'task_type', 'is_leaderboard', 'variant', 'location']]
     L = L.merge(meta, on='j'); L['task'] = L.j.map(dict(enumerate(tasks)))
     L['pts'] = L.metric_s.isin(PTS); L['pclass'] = L.evaluation_protocol.map(pclass); L['shifted'] = L.variant.isin(SHIFTED)
+    L['proto'] = L.evaluation_protocol.map(proto_norm); L['frac'] = L.train_fraction_norm.map(frac_norm); L['metric_n'] = L.metric_s.map(metric_norm)
+    L['xtask'] = L.apply(xtask, axis=1)   # cross-paper task key (note p. 4), see protocol.py
     # input type per dataset: the note analysis's own rule (build_note_analysis.norm_sensor, mode over the dataset's settings)
     def norm_sensor(s):
         s = str(s).lower()

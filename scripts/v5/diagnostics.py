@@ -11,7 +11,7 @@ L = L[L.evaluation_protocol != 'kmeans_clustering'].copy()
 import sys
 SCALE = sys.argv[1] if len(sys.argv) > 1 else 'pts'
 TAG = SCALE + ('' if len(sys.argv) <= 2 else '_' + sys.argv[2])
-PTS = {'miou','acc','f1','acc_top1','r2','iou','map','micro_f1','oa','segm_map','mijacc'}
+import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from protocol import PTS, pclass   # shared definitions
 L['pts'] = L.metric_s.isin(PTS)
 if SCALE == 'pts':
     L = L[L.pts].copy(); L['v'] = L.y
@@ -22,7 +22,7 @@ sys.path.insert(0,'/home/claude/repo/scripts/robustness'); import os; os.environ
 import robust_lib as R
 # itype comes with the v5 long table
 SENS = len(sys.argv) <= 2 or sys.argv[2] != 'nosensor'
-L['pclass'] = L.evaluation_protocol.map(lambda p: 'ft' if p in ('FT','PFT') else 'dec' if p=='frozen_dec' else 'pe' if p=='PE' else 'probe')
+L['pclass'] = L.evaluation_protocol.map(pclass)
 LAM = 10.0 if (len(__import__("sys").argv) <= 1 or __import__("sys").argv[1] == "pts") else 3.0   # ~ (FP+FDP+e)/FD: 43/4.5 on points, 0.66/0.21 in z
 
 def fit_additive(df):

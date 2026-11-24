@@ -1,4 +1,7 @@
-"""Dataset score (note Eq. 4-6) with a between-lab noise term, per dataset, with reporter adjustment and empirical-Bayes shrinkage.
+"""SUPERSEDED (2026-11-24) by ml_task_score.py: kept only to reproduce earlier drafts. Audit found the unit (dataset, not task),
+the table-mean centring, the double use of the within-paper term, the 0.05 floor and the DerSimonian-Laird step unsound.
+
+Dataset score (note Eq. 4-6) with a between-lab noise term, per dataset, with reporter adjustment and empirical-Bayes shrinkage.
 
 score_d = 1 - sigma2_d / tau2_obs,d   (the note's implementation: tau2_obs = observed between-family variance on the dataset's
 settings, points scale), sigma2_d = sigma2_seed + lab_d.

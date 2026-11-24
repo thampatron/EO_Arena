@@ -21,12 +21,16 @@ sys.path.insert(0, os.path.join(ROOT, 'scripts', 'robustness')); sys.path.insert
 import robust_lib as R, prefix
 from scipy.stats import spearmanr
 rng = np.random.default_rng(0); OUT = {}
+# raw printed values (copy matching), so r2 printed in percent is comparable here; analysis scales use protocol.PTS
 PTS = {'miou', 'acc', 'f1', 'acc_top1', 'r2', 'iou', 'map', 'micro_f1', 'oa', 'segm_map', 'mijacc', 'bal_acc', 'weighted_f1', 'acc_avg', 'macro_f1'}
 
 # ----------------------------------------------------------------------------------------------------------- 1. raw rows
 raw = pd.read_csv(RAWF, low_memory=False); src = pd.read_csv(SRCF, low_memory=False).drop_duplicates('paper_key').set_index('paper_key')
 raw['v'] = pd.to_numeric(raw.result_normalized, errors='coerce'); raw = raw[raw.v.notna()].copy()
-num = raw.raw_cell.astype(str).str.extract(r'(-?\d+(?:\.(\d+))?)')
+# printed precision = decimals of the first number in raw_cell; for per-seed lists ("seeds 0: 71.23, 1: ...") the first number is
+# a seed label, so read the first value after it instead
+_rc = raw.raw_cell.astype(str); _seedv = _rc.str.extract(r'seeds?\s+\d+:\s*(-?\d+(?:\.\d+)?)')[0]; _rc = _seedv.where(_seedv.notna(), _rc)
+num = _rc.str.extract(r'(-?\d+(?:\.(\d+))?)')
 raw['dec'] = num[1].fillna('').str.len(); first = pd.to_numeric(num[0], errors='coerce')
 scale = (raw.v / first).where((first.abs() > 0) & first.notna(), 1.0).abs()
 scale = scale.where(np.isclose(scale, 1) | np.isclose(scale, 100, rtol=1e-3) | np.isclose(scale, 0.01, rtol=1e-3), 1.0)
