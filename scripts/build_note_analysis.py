@@ -96,7 +96,7 @@ def norm_sensor(s):
     s = str(s).lower()
     if s in ("", "nan"): return ""
     sar = "s1" in s or "sar" in s; opt = any(k in s for k in ("s2", "landsat", "hls", "modis", "s3"))
-    return "SAR + optical" if sar and opt else "SAR" if sar else "multispectral" if opt else "high-resolution optical" if any(k in s for k in ("aerial", "rgb", "planet", "naip", "worldview", "vhr", "maxar", "spot", "google_earth", "google_static", "web_map", "gaofen", "jilin", "skysat", "pleiades", "geoeye", "quickbird", "ikonos", "superview"))   # v5 sensor codes added else "other"
+    return "SAR + optical" if sar and opt else "SAR" if sar else "multispectral" if opt else "high-resolution optical" if any(k in s for k in ("aerial", "rgb", "planet", "naip", "worldview", "vhr", "maxar", "spot", "google_earth", "google_static", "web_map", "gaofen", "jilin", "skysat", "pleiades", "geoeye", "quickbird", "ikonos", "superview")) else "other"   # v5 sensor codes added
 dmeta = TI.groupby("canonical_dataset").agg(domain=("domain", "first"), subdomain=("subdomain", "first"),
                                             task_type=("task_type", lambda s: s.map(norm_tt).mode().iat[0]), sensor=("sensor", lambda s: s.map(norm_sensor).mode().iat[0]),
                                             family=("family", lambda s: s.mode().iat[0])).reindex(names)
