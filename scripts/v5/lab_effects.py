@@ -16,7 +16,7 @@ rng = np.random.default_rng(0)
 
 def cells(L, col='z'):
     x = L.copy(); x['c'] = x[col] - x.groupby('task')[col].transform('mean')
-    c = x.groupby(['family', 'canonical_dataset', 'paper_key']).agg(c=('c', 'mean'), n=('c', 'size'), self=('selfrep', 'max'), shifted=('shifted', 'max')).reset_index()
+    c = x.groupby(['family', 'canonical_dataset', 'paper_key']).agg(c=('c', 'mean'), n=('c', 'size'), sr=('selfrep', 'max'), shifted=('shifted', 'max')).reset_index()
     g = c.groupby(['family', 'canonical_dataset'])
     c['k'] = g.paper_key.transform('size'); c['sum'] = g.c.transform('sum')
     c = c[c.k >= 2].copy(); c['loo'] = (c['sum'] - c.c) / (c.k - 1); c['q'] = (c.c - c.loo) ** 2; c['k_other'] = c.k - 1
@@ -81,5 +81,5 @@ if __name__ == '__main__':
             pd.Series(m, index=L.index, name='w_lab').to_pickle(sys.argv[3])
             # aggregate by evaluator type (allowed on the site: >= 5 papers per group)
             c2 = c.assign(m=predict(c, a0, a, b) / (1 + 1 / c.k_other))
-            res['by_type'] = {'self_reported_vs_third_party_mean_multiplier': c2.groupby('self').m.mean().rename(lambda s: 'self' if s else 'third_party').to_dict()}
+            res['by_type'] = {'self_reported_vs_third_party_mean_multiplier': c2.groupby('sr').m.mean().rename(lambda s: 'self' if s else 'third_party').to_dict()}
     json.dump(res, open(sys.argv[2], 'w'), indent=1, default=float)

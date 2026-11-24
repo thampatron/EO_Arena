@@ -11,7 +11,8 @@ cells (unweighted), so weighting cannot game the metric. Usage: python3 -I heldo
 import os, sys, json, numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(HERE, '..', 'robustness')); sys.path.insert(0, os.path.join(HERE, '..'))
 import robust_lib as R, ablation_lib as A, dataset_benchmarking as db
-L = pd.read_pickle(sys.argv[1]); w = pd.read_pickle(sys.argv[2]); vc = json.load(open(sys.argv[3]))['z']
+ARGS = list(sys.argv)                                   # prefix.build rewrites sys.argv
+L = pd.read_pickle(ARGS[1]); w = pd.read_pickle(ARGS[2]); vc = json.load(open(ARGS[3]))['z']
 D = R.load(); mi = {m: i for i, m in enumerate(D['models'])}
 mult = np.ones(D['mask'].shape)
 Lw = L.loc[w.index].assign(m=w.values)
@@ -28,4 +29,4 @@ for K in (1, 2):
     out[f'weighted_K{K}'] = cv(K, cell_weight=W); print(f'weighted K{K}', out[f'weighted_K{K}'], flush=True)
 out['offset_K2'] = cv(2, paper=pidx); print('offset K2', out['offset_K2'], flush=True)
 out['both_K2'] = cv(2, paper=pidx, cell_weight=W); print('both K2', out['both_K2'], flush=True)
-json.dump(out, open(sys.argv[4], 'w'), indent=1)
+json.dump(out, open(ARGS[4], 'w'), indent=1)
