@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOArena Latent Map (provisional)</title>
+<meta name="description" content="Provisional latent map of GeoFM evaluation tasks: each task placed by its weights on two latent capabilities fitted to published scores. A hypothesis, shown with its resampling uncertainty; no individual scores.">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.ctrl .grp{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:var(--fg-2)}
+.ctrl .slider{accent-color:var(--accent);width:150px}
+.ctrl .nv{font-variant-numeric:tabular-nums;font-weight:600;color:var(--fg);min-width:2ch;display:inline-block;text-align:right}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.prov{border-left:3px solid var(--warn);background:var(--warn-bg);padding:12px 16px;border-radius:0 var(--r-sm) var(--r-sm) 0;max-width:86ch;font-size:15px;display:grid;gap:6px}
+.prov b.k{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.defs .card{padding:14px 16px;font-size:14.5px;color:var(--fg-2)}
+.defs .card b{display:block;color:var(--fg);font-size:15px;margin-bottom:4px}
+.fig{padding:12px 12px 6px}
+.fig svg{display:block;width:100%;font-family:var(--sans)}
+#tfig svg{height:500px}#sfig svg{height:560px}#gfig svg{height:210px}
+.legend{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--fg-2);margin:0 0 6px}
+.legend div{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+.legend .k{font-size:11.5px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.04em;margin-right:2px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend svg{width:14px;height:14px;overflow:visible}
+.cap{font-size:13.5px;color:var(--fg-3);max-width:86ch}
+.count{font-size:13.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.prose{display:grid;gap:10px;max-width:78ch;color:var(--fg-2);font-size:15px}
+svg .gl{stroke:var(--line);stroke-width:1}
+svg .ax{stroke:var(--line-2);stroke-width:1}
+svg .zero{stroke:var(--fg-3);stroke-width:1;stroke-dasharray:3 4}
+svg .tk{fill:var(--fg-3);font-size:11px}
+svg .al{fill:var(--fg-2);font-size:12px}
+svg .gn{fill:var(--fg);font-size:13px}
+svg .pt{cursor:pointer}
+.tt{position:absolute;z-index:70;max-width:340px;background:var(--surface);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.16);padding:10px 12px;font-size:13px;line-height:1.4;pointer-events:none}
+.tt b{font-size:14px}
+.tt .ttsub{color:var(--fg-3);font-size:12px;margin:2px 0 6px}
+.tt dl{display:grid;grid-template-columns:auto auto;gap:2px 12px;margin:6px 0 0;font-variant-numeric:tabular-nums}
+.tt dt{color:var(--fg-3)}.tt dd{margin:0;text-align:right}
+@media (max-width:640px){#tfig svg{height:460px}#sfig svg{height:420px}.fig{padding:8px 6px 4px}.ctrl .search{flex-basis:100%}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in"><a class="brand" href="index.html">EOArena</a><span class="badge-draft">Draft v0.3</span><nav class="nav-links" aria-label="Site"><a href="index.html">Explorer</a><a href="map.html">Map</a><a href="benchmarks.html">Benchmark ranking</a><a href="evidence.html">Evidence map</a><a href="latent-map.html" aria-current="page">Latent map</a><a href="domains.html">Domains</a><a href="sensors.html">Sensors</a><a href="about.html">About</a><a href="https://github.com/thampatron/EO_Arena">GitHub</a></nav></div></header>
+<main class="page">
+  <section class="hero">
+    <h1>A provisional second capability separates multi-temporal, multi-sensor tasks from high-resolution optical tasks</h1>
+    <p class="sub">The latent factor model of the lab’s scoring note describes each GeoFM by a small number of hidden capabilities and each task by its weights on them. With one capability, GeoFMs fall on a single ranking. Allowing a second, the strongest additional pattern in the published scores runs from multi-temporal and SAR + optical tasks such as crop-type mapping, BioMassters and BreizhCrops to high-resolution optical tasks.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <div class="prov" role="note">
+    <b class="k">Provisional: a hypothesis, not a result</b>
+    <p>The primary analysis retains one capability (K<sub>final</sub> = 1). This page shows the K = 2 sensitivity fit. A second capability improves the held-out ordering of GeoFM pairs from 67.2% to 68.6%, but it is not stable when the set of GeoFMs is resampled: the correlation of the task geometry with the full fit is 0.32, against 0.317 at the 95th percentile of shuffled data and below every fixed stability threshold from 0.6 to 0.9. Of the 438 tasks evaluated on at least 9 GeoFMs, 53 have a 90% resampling interval for their capability-2 weight that excludes 0, close to the roughly 10% expected by chance.</p>
+  </div>
+
+  <section class="section">
+    <h2>Terms</h2>
+    <div class="defs">
+      <div class="card"><b>Task</b>One dataset evaluated under one adaptation protocol, label fraction, metric and input variant. Scores within a task are comparable across GeoFMs; scores from different tasks are not.</div>
+      <div class="card"><b>GeoFM family</b>One pretraining method with its size and version variants merged, since they share a recipe and would otherwise count the same method several times. Variants pretrained on different imagery are kept as separate families.</div>
+      <div class="card"><b>Weight on a capability</b>How strongly a task’s published scores follow a GeoFM’s position on that capability (the task’s loading). Capability 1 is the shared ranking; capability 2 is the next pattern once the shared ranking is removed.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Tasks along capability 2</h2>
+    <div class="ctrl" role="group" aria-label="Map controls">
+      <label class="grp">Group tasks by <select class="sel" id="grp"><option value="itype">input type</option><option value="ttype">task type</option><option value="dom">application</option><option value="proto">adaptation</option></select></label>
+      <label class="grp">At least <span class="nv" id="nv">9</span> GeoFMs per task <input class="slider" id="nmin" type="range" min="2" max="20" value="9" aria-label="Minimum number of GeoFMs per task"></label>
+      <div class="search"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Find a dataset" aria-label="Find a dataset"></div>
+      <button type="button" class="btn" id="boot" aria-pressed="false">Show resampling</button>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="card fig" id="tfig"><svg id="tsvg" role="img" aria-label="Tasks placed by their weight on capability 2, in rows by the chosen grouping"></svg></div>
+    <p class="cap">Each point is one task; its area grows with the number of GeoFMs evaluated on it. Vertical position within a row is random and carries no information. Left: negative weights, where multi-temporal and SAR + optical tasks predominate; right: positive weights, a more heterogeneous set that includes most high-resolution optical tasks. With resampling shown, faint points mark the task’s weight in each of <span id="nb">30</span> refits with resampled GeoFM families (tasks with at least 9 GeoFMs only).</p>
+  </section>
+
+  <section class="section">
+    <h2>Tasks on capabilities 1 and 2</h2>
+    <div class="legend" id="sleg"></div>
+    <div class="card fig" id="sfig"><svg id="ssvg" role="img" aria-label="Tasks placed by their weights on capability 1 (horizontal) and capability 2 (vertical), coloured by input type and shaped by task type"></svg></div>
+    <p class="cap" id="scap">The filters above apply here too.</p>
+  </section>
+
+  <section class="section">
+    <h2>GeoFM families, aggregated by pretraining imagery</h2>
+    <p class="lead small">GeoFM positions are shown only as group summaries: the median and interquartile interval of capability-2 positions for families with at least 5 tasks, by the imagery they were pretrained on. Groups with fewer than 10 families are omitted.</p>
+    <div class="card fig" id="gfig"><svg id="gsvg" role="img" aria-label="Median and interquartile interval of GeoFM family positions on capability 2, by pretraining imagery"></svg></div>
+    <p class="cap" id="gcap">Family positions and task weights are on different scales; only the sign is comparable. A family with a positive capability-2 position does relatively better on tasks with positive weights. The group medians differ in the same direction as the task groups, but the interquartile intervals overlap substantially.</p>
+  </section>
+
+  <section class="section">
+    <h2>Method and data</h2>
+    <div class="prose">
+      <p><b>Model.</b> The standardised score of GeoFM family <i>m</i> on task <i>t</i> is modelled as λ<sub>t</sub><sup>⊤</sup>θ<sub>m</sub> plus noise, with θ<sub>m</sub> the family’s capabilities and λ<sub>t</sub> the task’s weights (the latent factor model of S. Wang, <i>GeoFM Benchmark Scoring</i>, 2026). Task weights are hierarchical: they are shrunk towards shared group values, with ridge penalty 10. The number of capabilities was chosen by a pre-declared rule (held-out gain and resampling stability); it selects K<sub>final</sub> = 1. The map shows the K = 2 fit as a sensitivity analysis.</p>
+      <p><b>Axes.</b> The two capabilities are rotated to the principal axes of the task weights (each task weighted by the square root of its number of GeoFMs) and signed so that the average weight is positive. Any rotation fits equally well, so read positions relative to one another, not as absolute values. Resampling refits are aligned to the full fit by an orthogonal Procrustes rotation before plotting.</p>
+      <p><b>Data.</b> Published scores from the lab’s meta-analysis workbook, Stage 1 core table: 250 GeoFM families × 1,299 tasks, 9,348 scores from 122 papers. No individual scores are shown. Some dataset names are withheld where they coincide with the name of a GeoFM. Data file: <a href="data/latent_map_public.json"><code>data/latent_map_public.json</code></a>, built by <code>scripts/v5/export_latent_map_public.py</code>.</p>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div><span>EOArena task taxonomy · Earth Intelligence Lab, MIT</span><span>Data CC BY 4.0 · Code MIT · Datasets keep their providers' licences · <a href="https://github.com/thampatron/EO_Arena/issues">Report a correction</a></span></div></footer>
+<div class="tt" id="tt" hidden></div>
+<script>
+{
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(v,d=2)=>(v<0?'−':'')+Math.abs(v).toFixed(d);
+const INPUT=[['multispectral','multispectral','#1f66bf'],['SAR + optical','SAR + optical','#e0612a'],['high-resolution optical','high-resolution optical','#1f9e74'],['SAR','SAR','#7a55c9'],['other','other','#8a8a8a']];
+const ICOL=Object.fromEntries(INPUT.map(r=>[r[0],r[2]]));
+const PAL=['#1f66bf','#e0612a','#1f9e74','#7a55c9','#b8860b','#c2185b','#00838f','#8a8a8a'];
+const GCOL={'multispectral optical':'#1f66bf','multi-sensor (SAR + optical)':'#e0612a','high-resolution RGB':'#1f9e74','SAR':'#7a55c9','not EO / not coded':'#8a8a8a'};
+const SHAPE_OF=t=>({segmentation:'circle',instance_segmentation:'circle',classification:'square',multilabel_classification:'square',regression:'triangle',change_detection:'diamond',object_detection:'plus'})[t]||'ring';
+const SHAPES=[['circle','segmentation (incl. instance)'],['square','classification (incl. multi-label)'],['triangle','regression'],['diamond','change detection'],['plus','object detection'],['ring','other (forecasting, retrieval)']];
+const PROTO={FT:'full fine-tuning',PFT:'partial fine-tuning',PEFT:'parameter-efficient fine-tuning',frozen_dec:'frozen encoder + decoder',LP:'linear probe',MLP:'MLP probe',kNN:'k-NN probe',RF:'random forest on frozen features',XGB:'gradient boosting on frozen features',xgb:'gradient boosting on frozen features',EBM:'boosting machine on frozen features',frozen_probe:'unspecified frozen probe',PE:'prompt or embedding',few_shot:'few-shot',in_context_few_shot:'in-context few-shot',retrieval:'retrieval',zero_shot:'zero-shot',kmeans:'k-means clustering'};
+const pl=p=>PROTO[p]||p;
+const tl=t=>String(t).replace(/_/g,' ');
+const dl=d=>String(d).replace(/^\d · /,'');
+const GVAL={itype:t=>t.itype,ttype:t=>tl(t.ttype),dom:t=>dl(t.dom),proto:t=>pl(t.proto)};
+let D=null,boot=false;
+const tt=$('tt');
+function tip(e,html){tt.innerHTML=html;tt.hidden=false;const w=tt.offsetWidth,h=tt.offsetHeight;let x=e.pageX+14,y=e.pageY+14;if(x+w>scrollX+innerWidth-8)x=Math.max(scrollX+8,e.pageX-w-14);if(y+h>scrollY+innerHeight-8)y=e.pageY-h-14;tt.style.left=x+'px';tt.style.top=y+'px'}
+function untip(){tt.hidden=true}
+function q90(a){const v=[...a].sort((x,y)=>x-y),f=p=>{const k=(v.length-1)*p,l=Math.floor(k),h=Math.min(l+1,v.length-1);return v[l]+(v[h]-v[l])*(k-l)};return [f(.05),f(.95)]}
+function label(t){return [t.ds,pl(t.proto),t.frac&&t.frac!=='unspecified'?t.frac+' labels':'',t.metric,t.var].filter(Boolean).join(' · ')}
+function tipHtml(t){const iv=t.b.length?q90(t.b.map(p=>p[1])):null;
+  return `<b>${esc(t.ds)}</b><p class="ttsub">${esc([pl(t.proto),t.frac&&t.frac!=='unspecified'?t.frac+' labels':'label fraction unspecified',t.metric,t.var].filter(Boolean).join(' · '))}</p>${esc(t.itype)} · ${esc(tl(t.ttype))} · ${esc(dl(t.dom))}<dl><dt>GeoFMs evaluated</dt><dd>${t.n}</dd><dt>Weight on capability 1</dt><dd>${fmt(t.x)}</dd><dt>Weight on capability 2</dt><dd>${fmt(t.y)}</dd>${iv?`<dt>90% resampling interval</dt><dd>${fmt(iv[0])} to ${fmt(iv[1])}</dd>`:''}</dl>`}
+function mark(sh,x,y,r,c,attr){
+  if(sh==='square'){const d=r*.88;return `<rect ${attr} x="${(x-d).toFixed(1)}" y="${(y-d).toFixed(1)}" width="${(2*d).toFixed(1)}" height="${(2*d).toFixed(1)}" fill="${c}"/>`}
+  if(sh==='triangle'){const d=r*1.25;return `<polygon ${attr} points="${x.toFixed(1)},${(y-d).toFixed(1)} ${(x+d*.95).toFixed(1)},${(y+d*.62).toFixed(1)} ${(x-d*.95).toFixed(1)},${(y+d*.62).toFixed(1)}" fill="${c}"/>`}
+  if(sh==='diamond'){const d=r*1.22;return `<polygon ${attr} points="${x.toFixed(1)},${(y-d).toFixed(1)} ${(x+d).toFixed(1)},${y.toFixed(1)} ${x.toFixed(1)},${(y+d).toFixed(1)} ${(x-d).toFixed(1)},${y.toFixed(1)}" fill="${c}"/>`}
+  if(sh==='plus'){const d=r*1.15,w=r*.42;return `<path ${attr} d="M${(x-w).toFixed(1)},${(y-d).toFixed(1)}h${(2*w).toFixed(1)}v${(d-w).toFixed(1)}h${(d-w).toFixed(1)}v${(2*w).toFixed(1)}h${(w-d).toFixed(1)}v${(d-w).toFixed(1)}h${(-2*w).toFixed(1)}v${(w-d).toFixed(1)}h${(w-d).toFixed(1)}v${(-2*w).toFixed(1)}h${(d-w).toFixed(1)}z" fill="${c}"/>`}
+  if(sh==='ring')return `<circle ${attr.replace(/stroke="[^"]*"/,'')} cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(r*.85).toFixed(1)}" fill="var(--surface)" stroke="${c}" stroke-width="1.8"/>`;
+  return `<circle ${attr} cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}"/>`}
+function ticks(lo,hi,n){const st=Math.pow(10,Math.floor(Math.log10((hi-lo)/n||1))),m=[1,2,5,10].find(k=>(hi-lo)/(st*k)<=n)*st,out=[];for(let v=Math.ceil(lo/m)*m;v<=hi+1e-9;v+=m)out.push(+v.toFixed(6));return out}
+function extent(vals,trim){const v=[...vals].sort((a,b)=>a-b);if(!v.length)return [0,1];const f=p=>v[Math.min(v.length-1,Math.max(0,Math.floor(p*v.length)))];let lo=trim?f(.005):v[0],hi=trim?f(.995):v[v.length-1];if(hi-lo<1e-9){lo-=.5;hi+=.5}const pad=(hi-lo)*.04;return [lo-pad,hi+pad]}
+const rnd=i=>((Math.sin(i*12.9898+1.7)*43758.5453)%1+1)%1;
+function shown(){const n=+$('nmin').value;return D.tasks.filter(t=>t.n>=n)}
+function query(){return $('q').value.trim().toLowerCase()}
+function bind(svg,T){const by={};T.forEach(t=>by[t.i]=t);svg.querySelectorAll('.pt').forEach(c=>{const t=by[c.dataset.i];c.addEventListener('mousemove',e=>tip(e,tipHtml(t)));c.addEventListener('mouseleave',untip)})}
+function drawStrip(){
+  const s=$('tsvg'),W=s.clientWidth,H=s.clientHeight;if(!W)return;
+  const g=$('grp').value,gv=GVAL[g],T=shown(),q=query();
+  const cnt={};T.forEach(t=>{const k=gv(t);cnt[k]=(cnt[k]||0)+1});
+  let groups=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]),gof=t=>gv(t);
+  if(g==='itype')groups=INPUT.map(r=>r[0]).filter(k=>cnt[k]);
+  if(groups.length>8){const keep=groups.slice(0,7);gof=t=>keep.includes(gv(t))?gv(t):'other groups';groups=[...keep,'other groups']}
+  const gc=k=>g==='itype'?ICOL[k]:k==='other groups'?'#8a8a8a':PAL[groups.indexOf(k)%PAL.length];
+  const narrow=W<560,L=narrow?8:250,R=narrow?8:16,top=narrow?4:8,bot=46,rowH=(H-top-bot)/Math.max(1,groups.length);
+  const vals=T.map(t=>t.y);if(boot)T.forEach(t=>t.b.forEach(p=>vals.push(p[1])));
+  const [lo,hi]=extent(vals,boot),X=v=>L+(Math.max(lo,Math.min(hi,v))-lo)/(hi-lo)*(W-L-R);
+  const gcount=k=>T.filter(t=>gof(t)===k).length;
+  let h='';
+  ticks(lo,hi,narrow?4:8).forEach(v=>{h+=`<line class="gl" x1="${X(v)}" x2="${X(v)}" y1="${top}" y2="${H-bot}"/><text class="tk" x="${X(v)}" y="${H-bot+16}" text-anchor="middle">${fmt(v,1)}</text>`});
+  if(lo<0&&hi>0)h+=`<line class="zero" x1="${X(0)}" x2="${X(0)}" y1="${top}" y2="${H-bot}"/>`;
+  groups.forEach((k,i)=>{const y=top+rowH*(i+.5),nm=narrow&&k.length>40?k.slice(0,39)+'…':k;h+=`<line class="ax" x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" opacity=".5"/>`+(narrow?`<text class="gn" x="${L}" y="${top+rowH*i+12}" font-size="11.5"><title>${esc(k)}</title>${esc(nm)} <tspan fill="var(--fg-3)">(${gcount(k)})</tspan></text>`:`<text class="gn" x="${L-10}" y="${y+4}" text-anchor="end" font-size="13"><title>${esc(k)}</title>${esc(nm)} <tspan fill="var(--fg-3)">(${gcount(k)})</tspan></text>`)});
+  h+=`<text class="al" x="${L}" y="${H-6}">← negative weight</text><text class="al" x="${W-R}" y="${H-6}" text-anchor="end">positive weight →</text>`;
+  if(!narrow)h+=`<text class="al" x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle">weight on capability 2</text>`;
+  const yOf=t=>top+rowH*(groups.indexOf(gof(t))+.5)+(narrow?6:0)+(rnd(t.i)-.5)*rowH*(narrow?.5:.62);
+  if(boot)T.forEach(t=>{if(!t.b.length)return;const y=yOf(t),c=gc(gof(t));t.b.forEach(p=>h+=`<circle cx="${X(p[1]).toFixed(1)}" cy="${y.toFixed(1)}" r="1.5" fill="${c}" opacity=".22"/>`)});
+  const ord=[...T].sort((a,b)=>b.n-a.n);
+  ord.forEach(t=>{const hit=q&&t.ds.toLowerCase().includes(q),r=2.2+Math.sqrt(t.n)*.85,op=hit?1:q?.15:boot?.85:.72;
+    h+=`<circle class="pt" data-i="${t.i}" cx="${X(t.y).toFixed(1)}" cy="${yOf(t).toFixed(1)}" r="${r.toFixed(1)}" fill="${gc(gof(t))}" fill-opacity="${op}" stroke="${hit?'var(--fg)':'#fff'}" stroke-width="${hit?1.6:.8}"/>`});
+  s.innerHTML=h;bind(s,T);
+}
+function drawScatter(){
+  const s=$('ssvg'),W=s.clientWidth,H=s.clientHeight;if(!W)return;
+  const T=shown(),q=query(),narrow=W<560,PL=narrow?40:52,PR=14,PT=12,PB=narrow?44:48;
+  const IV={};if(boot)T.forEach(t=>{if(t.b.length)IV[t.i]=q90(t.b.map(p=>p[1]))});
+  const xs=T.map(t=>t.x),ys=T.map(t=>t.y);Object.values(IV).forEach(v=>ys.push(...v));
+  const [xl,xh]=extent(xs,false),[yl,yh]=extent(ys,false);
+  const X=v=>PL+(Math.max(xl,Math.min(xh,v))-xl)/(xh-xl)*(W-PL-PR),Y=v=>H-PB-(Math.max(yl,Math.min(yh,v))-yl)/(yh-yl)*(H-PT-PB);
+  let h='';
+  ticks(xl,xh,narrow?4:7).forEach(v=>{h+=`<line class="gl" x1="${X(v)}" x2="${X(v)}" y1="${PT}" y2="${H-PB}"/><text class="tk" x="${X(v)}" y="${H-PB+16}" text-anchor="middle">${fmt(v,(xh-xl)<.5?2:1)}</text>`});
+  ticks(yl,yh,6).forEach(v=>{h+=`<line class="gl" x1="${PL}" x2="${W-PR}" y1="${Y(v)}" y2="${Y(v)}"/><text class="tk" x="${PL-6}" y="${Y(v)+4}" text-anchor="end">${fmt(v,1)}</text>`});
+  if(yl<0&&yh>0)h+=`<line class="zero" x1="${PL}" x2="${W-PR}" y1="${Y(0)}" y2="${Y(0)}"/>`;
+  h+=`<text class="al" x="${W-PR}" y="${H-8}" text-anchor="end">weight on capability 1 (shared ranking) →</text><text class="al" transform="translate(${narrow?11:14},${PT}) rotate(-90)" text-anchor="end">weight on capability 2 →</text>`;
+  if(boot)T.forEach(t=>{const v=IV[t.i];if(!v)return;const x=X(t.x).toFixed(1);h+=`<line x1="${x}" x2="${x}" y1="${Y(v[0]).toFixed(1)}" y2="${Y(v[1]).toFixed(1)}" stroke="${ICOL[t.itype]||'#8a8a8a'}" stroke-width="1.2" opacity=".35"/>`});
+  [...T].sort((a,b)=>b.n-a.n).forEach(t=>{const hit=q&&t.ds.toLowerCase().includes(q),r=2.4+Math.sqrt(t.n)*.7,op=hit?1:q?.15:.8;
+    h+=mark(SHAPE_OF(t.ttype),X(t.x),Y(t.y),r,ICOL[t.itype]||'#8a8a8a',`class="pt" data-i="${t.i}" fill-opacity="${op}" stroke="${hit?'var(--fg)':'#fff'}" stroke-width="${hit?1.6:.8}" opacity="${hit||!q?1:.6}"`)});
+  s.innerHTML=h;bind(s,T);
+  if(T.length){const x0=Math.min(...T.map(t=>t.x)),x1=Math.max(...T.map(t=>t.x)),y0=Math.min(...T.map(t=>t.y)),y1=Math.max(...T.map(t=>t.y));
+    $('scap').innerHTML=`Each mark is one task; its size grows with the number of GeoFMs. The capability-1 axis spans a narrow interval: weights of the tasks shown lie between ${fmt(x0)} and ${fmt(x1)}, against ${fmt(y0)} to ${fmt(y1)} on capability 2, so the horizontal axis is stretched about ${Math.max(1,Math.round((y1-y0)/(x1-x0||1)))} times relative to the vertical. Nearly all tasks weight capability 1 similarly; tasks differ mainly in their capability-2 weight.`+(boot?' With resampling shown, vertical lines mark each task’s 90% resampling interval for its capability-2 weight (tasks with at least 9 GeoFMs). Capability-1 weights from the refits are not plotted: their overall scale differs between refits, because the alignment to the full fit is a rotation without rescaling.':'')+' The filters above apply here too.'}
+}
+function drawGroups(){
+  const s=$('gsvg'),W=s.clientWidth,H=s.clientHeight;if(!W||!D.family_groups)return;
+  const G=D.family_groups.groups,narrow=W<560,L=narrow?132:240,R=16,top=8,bot=40,rowH=(H-top-bot)/G.length;
+  const lo=Math.min(-.1,...G.map(g=>g.q25))-.05,hi=Math.max(.1,...G.map(g=>g.q75))+.05,X=v=>L+(v-lo)/(hi-lo)*(W-L-R);
+  let h='';
+  ticks(lo,hi,narrow?4:7).forEach(v=>{h+=`<line class="gl" x1="${X(v)}" x2="${X(v)}" y1="${top}" y2="${H-bot}"/><text class="tk" x="${X(v)}" y="${H-bot+16}" text-anchor="middle">${fmt(v,1)}</text>`});
+  h+=`<line class="zero" x1="${X(0)}" x2="${X(0)}" y1="${top}" y2="${H-bot}"/>`;
+  G.forEach((g,i)=>{const y=top+rowH*(i+.5),c=GCOL[g.group]||'#8a8a8a',nm=narrow&&g.group.length>17?g.group.replace('multi-sensor (SAR + optical)','SAR + optical').replace('not EO / not coded','not coded').replace('multispectral optical','multispectral').replace('high-resolution RGB','high-res. RGB'):g.group;
+    h+=`<text class="gn" x="${L-10}" y="${y+4}" text-anchor="end" font-size="${narrow?11.5:13}">${esc(nm)} <tspan fill="var(--fg-3)">(${g.n})</tspan></text><line x1="${X(g.q25)}" x2="${X(g.q75)}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="5" stroke-linecap="round" opacity=".45"/><circle cx="${X(g.median)}" cy="${y}" r="6" fill="${c}" stroke="#fff" stroke-width="1.2"><title>${esc(g.group)}: median ${fmt(g.median)}, interquartile interval ${fmt(g.q25)} to ${fmt(g.q75)} (${g.n} families)</title></circle>`});
+  h+=`<text class="al" x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle">${narrow?'position on capability 2':'family position on capability 2 (median and interquartile interval)'}</text>`;
+  s.innerHTML=h;
+}
+function groupNote(){const om=D.family_groups.omitted||[];if(om.length)$('gcap').insertAdjacentHTML('beforeend',` Omitted for having fewer than ${D.family_groups.min_families} families: ${om.map(esc).join(', ')}.`)}
+function legend(){const sw=(sh,c)=>`<svg viewBox="0 0 14 14" aria-hidden="true">${mark(sh,7,7,4.6,c,'stroke="#fff" stroke-width=".6"')}</svg>`;
+  $('sleg').innerHTML=`<div><span class="k">Colour: input type</span>${INPUT.map(r=>`<span>${sw('circle',r[2])}${esc(r[1])}</span>`).join('')}</div><div><span class="k">Shape: task type</span>${SHAPES.map(([sh,l])=>`<span>${sw(sh,'var(--fg-2)')}${esc(l)}</span>`).join('')}</div>`}
+function counts(){const n=+$('nmin').value,T=shown(),B=T.filter(t=>t.b.length),ex=B.filter(t=>{const [a,b]=q90(t.b.map(p=>p[1]));return a>0||b<0}).length,q=query(),hits=q?T.filter(t=>t.ds.toLowerCase().includes(q)).length:0;
+  $('count').textContent=`${T.length.toLocaleString('en')} tasks with at least ${n} GeoFMs`+(B.length?`; ${ex} of the ${B.length} with resampling refits have a 90% interval for the capability-2 weight that excludes 0`:'')+(q?`; ${hits} match “${$('q').value.trim()}”`:'')+'.'}
+function draw(){if(!D)return;untip();counts();drawStrip();drawScatter()}
+$('grp').addEventListener('change',drawStrip);
+$('nmin').addEventListener('input',()=>{$('nv').textContent=$('nmin').value;draw()});
+$('q').addEventListener('input',draw);
+$('boot').addEventListener('click',()=>{boot=!boot;$('boot').setAttribute('aria-pressed',boot);$('boot').textContent=boot?'Hide resampling':'Show resampling';draw()});
+let raf=0;const ro=new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{draw();if(D)drawGroups()})});
+fetch('data/latent_map_public.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{D=d;$('nb').textContent=d.n_boot;
+  $('stats').innerHTML=[['1,299','tasks'],['250','GeoFM families'],['9,348','published scores'],['122','papers']].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  legend();groupNote();draw();drawGroups();['tfig','sfig','gfig'].forEach(id=>ro.observe($(id)))})
+ .catch(()=>{document.querySelector('main').insertAdjacentHTML('afterbegin','<p class="lead" style="padding:24px 0">The map data could not be loaded. If you opened this page from disk, serve the folder instead: <code>python3 -m http.server</code>.</p>')});
+}
+</script>
+</body>
+</html>
