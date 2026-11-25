@@ -86,7 +86,7 @@ for cell, ts in by_cell.items():
 rows = []
 for t in D['tasks']:
     rows.append({'ds': ds_map[t['ds']], **{k: t[k] for k in TYPE_FIELDS}, 'var': var[id(t)], 'n': t['n'],
-                 'x': t['x'], 'y': t['y'], 'b': t['b'], 'c1': t['c1'], 'r1': t['r1'], 'r1nf': t['r1nf']})
+                 'x': t['x'], 'y': t['y'], 'b': t['b'], 'c1': t['c1'], 'r1s': t.get('r1s', {})})
 rows.sort(key=lambda r: (r['ds'].lower(), r['proto'], r['frac'], r['metric'], r['var'], r['itype']))
 for i, r in enumerate(rows):
     r['i'] = i
@@ -113,12 +113,13 @@ out = {
     'n_boot': D['n_boot'],
     'boot_min_geofms': 9,
     'family_groups': {'min_families': MIN_GROUP, 'axis': 'capability 2', 'groups': groups, 'omitted': omitted},
+    'fits': D.get('fits', {}),
     'tasks': rows,
 }
 
 # ---- confidentiality checks -------------------------------------------------------------------------------------
-ALLOWED_TASK = {'i', 'ds', 'proto', 'frac', 'metric', 'var', 'itype', 'ttype', 'dom', 'n', 'x', 'y', 'b', 'c1', 'r1', 'r1nf'}
-assert set(out) == {'about', 'n_boot', 'boot_min_geofms', 'family_groups', 'tasks'}
+ALLOWED_TASK = {'i', 'ds', 'proto', 'frac', 'metric', 'var', 'itype', 'ttype', 'dom', 'n', 'x', 'y', 'b', 'c1', 'r1s'}
+assert set(out) == {'about', 'n_boot', 'boot_min_geofms', 'family_groups', 'fits', 'tasks'}
 assert all(set(r) == ALLOWED_TASK for r in rows), 'unexpected task field'
 assert all(set(gr) == {'group', 'n', 'median', 'q25', 'q75'} and gr['n'] >= MIN_GROUP for gr in groups)
 strings = []
