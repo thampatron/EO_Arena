@@ -87,7 +87,7 @@ def summarise(mc, T):
     rhat = max(float(np.nanmax(v['r_hat'])) for v in diag.values()); ess = min(float(np.nanmin(v['n_eff'])) for v in diag.values())
     div = int(np.asarray(mc.get_extra_fields()['diverging']).sum())
     per = {x: {'score': float(np.median(sc[:, i])), 'score90': [float(np.percentile(sc[:, i], 5)), float(np.percentile(sc[:, i], 95))],
-               'omega_over_tau': float(np.median(om[:, i] / ta[:, i]))} for i, x in enumerate(T)}
+               'omega_over_tau': float(np.median(om[:, i] / ta[:, i])), 'tau_std': float(np.median(ta[:, i])), 'omega_std': float(np.median(om[:, i]))} for i, x in enumerate(T)}
     hyper = {k: [float(np.percentile(np.asarray(s[k]), q)) for q in (5, 50, 95)] for k in ('a', 's_a', 'b', 's_b')}   # 5/50/95%
     return per, {'max_rhat': rhat, 'min_ess': ess, 'divergences': div, 'hyper_5_50_95': hyper}
 
@@ -120,6 +120,10 @@ if __name__ == '__main__':
     import dataset_benchmarking as db
     xp = db.cross_paper_reproducibility(c.rename(columns={'xtask': 'group', 'paper_key': 'paper', 'family': 'model'})[['group', 'paper', 'model', 'y']], min_shared=3, min_df=3)
     xp = pd.DataFrame(xp) if not isinstance(xp, pd.DataFrame) else xp
+    task_sd = c.groupby('t').y.std(ddof=1)
+    for i, x in enumerate(T):   # back to the task's own units (metric points or log-error units) for plotting
+        per[x]['tau_units'] = per[x]['tau_std'] * float(task_sd[i]); per[x]['omega_units'] = per[x]['omega_std'] * float(task_sd[i])
+        per[x]['seed_units'] = float(seed_sd[i] * task_sd[i])
     for i, x in enumerate(T):
         g = c[c.t == i]; per[x].update({'dataset': x.split('|')[0], 'papers': int(g.paper_key.nunique()), 'families': int(g.family.nunique()),
                                          'replicated_families': int((g.groupby('family').paper_key.nunique() >= 2).sum()), 'seed_sd_measured': bool(seed_meas[i])})
