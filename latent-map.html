@@ -68,9 +68,24 @@ svg .pt{cursor:pointer}
 
   <section class="section">
     <h2>Tasks along capability 1: the shared ranking</h2>
-    <p class="lead small">Capability 1 is the single ranking of GeoFM families that best explains all published scores (the primary result, K = 1). For each task with at least 9 GeoFMs, excluding tasks evaluated with full fine-tuning, this view shows how closely the task’s own published ranking agrees with it. Grouping, search and the minimum-GeoFM filter below apply here too.</p>
+    <p class="lead small">Here the model is refitted without the tasks evaluated with full fine-tuning (694 tasks, 179 GeoFM families, 4,968 scores). Capability 1 is the single ranking of GeoFM families that best explains those scores. For each remaining task with at least 9 GeoFMs, this view shows how closely the task’s own published ranking agrees with it. Search and the minimum-GeoFM filter in the next section apply here too.</p>
+    <div class="card" style="padding:16px 20px;margin:4px 0 14px;overflow-x:auto">
+      <table style="border-collapse:collapse;font-size:14px;min-width:520px">
+        <thead><tr style="text-align:left;border-bottom:1px solid var(--line,#ddd)"><th style="padding:4px 14px 4px 0">Held-out predictions, without full fine-tuning</th><th style="padding:4px 14px">Error ↓</th><th style="padding:4px 14px">Likelihood ↑</th><th style="padding:4px 14px">Ranking accuracy ↑</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:4px 14px 4px 0">Plain leaderboard</td><td style="padding:4px 14px">–</td><td style="padding:4px 14px">–</td><td style="padding:4px 14px">67.2%</td></tr>
+          <tr><td style="padding:4px 14px 4px 0">1 capability</td><td style="padding:4px 14px">1.53</td><td style="padding:4px 14px"><b>−3.47</b></td><td style="padding:4px 14px">67.2%</td></tr>
+          <tr><td style="padding:4px 14px 4px 0">2 capabilities</td><td style="padding:4px 14px">1.53</td><td style="padding:4px 14px">−3.53</td><td style="padding:4px 14px"><b>71.3%</b></td></tr>
+          <tr><td style="padding:4px 14px 4px 0">3 capabilities</td><td style="padding:4px 14px">1.53</td><td style="padding:4px 14px">−3.59</td><td style="padding:4px 14px">71.3%</td></tr>
+        </tbody>
+      </table>
+      <p class="cap" style="margin:8px 0 0">20% of scores hidden, one resampling seed, 4,686 hidden GeoFM pairs. Gain from 1 to 2 capabilities, in standard errors: error 0.0, likelihood −2.1, ranking accuracy +5.1. Without full fine-tuning, a second capability orders hidden pairs clearly better (+4.1 points; +1.0 with all tasks), while error is unchanged. Its stability under resampling has not yet been checked for this fit.</p>
+    </div>
+    <div class="ctrl" role="group" aria-label="Capability 1 controls">
+      <label class="grp">Group tasks by <select class="sel" id="grp1"><option value="itype">input type</option><option value="ttype">task type</option><option value="dom">application</option><option value="proto">adaptation</option></select></label>
+    </div>
     <div class="card fig" id="cfig"><svg id="csvg" role="img" aria-label="Tasks placed by the rank correlation between their published ranking and the shared ranking, in rows by the chosen grouping"></svg></div>
-    <p class="cap" id="ccap">Each point is one task; its area grows with the number of GeoFMs evaluated on it. Horizontal position: Spearman rank correlation between the task’s published scores and the GeoFMs’ positions on capability 1 (1 = same order, 0 = unrelated, negative = reversed). Black ticks mark group medians. Tasks evaluated with full fine-tuning (157 of the 438) are not shown; partial fine-tuning is kept. The shared ranking is fitted on all scores, including the task’s own, so these agreements are optimistic. Every task’s weight on capability 1 is positive in the K = 1 fit: no task rewards the shared ranking in reverse.</p>
+    <p class="cap" id="ccap">Each point is one task; its area grows with the number of GeoFMs evaluated on it. Horizontal position: Spearman rank correlation between the task’s published scores and the GeoFMs’ positions on capability 1 (1 = same order, 0 = unrelated, negative = reversed). Black ticks mark group medians. Tasks evaluated with full fine-tuning are excluded from the fit and the view; partial fine-tuning is kept. The shared ranking is fitted on all remaining scores, including the task’s own, so these agreements are optimistic. Every task’s weight on capability 1 is positive: no task rewards the shared ranking in reverse.</p>
   </section>
 
   <section class="section">
@@ -134,7 +149,7 @@ function untip(){tt.hidden=true}
 function q90(a){const v=[...a].sort((x,y)=>x-y),f=p=>{const k=(v.length-1)*p,l=Math.floor(k),h=Math.min(l+1,v.length-1);return v[l]+(v[h]-v[l])*(k-l)};return [f(.05),f(.95)]}
 function label(t){return [t.ds,pl(t.proto),t.frac&&t.frac!=='unspecified'?t.frac+' labels':'',t.metric,t.var].filter(Boolean).join(' · ')}
 function tipHtml(t){const iv=t.b.length?q90(t.b.map(p=>p[1])):null;
-  return `<b>${esc(t.ds)}</b><p class="ttsub">${esc([pl(t.proto),t.frac&&t.frac!=='unspecified'?t.frac+' labels':'label fraction unspecified',t.metric,t.var].filter(Boolean).join(' · '))}</p>${esc(t.itype)} · ${esc(tl(t.ttype))} · ${esc(dl(t.dom))}<dl><dt>GeoFMs evaluated</dt><dd>${t.n}</dd>${t.r1!==null&&t.r1!==undefined?`<dt>Agreement with the shared ranking (ρ)</dt><dd>${fmt(t.r1,2)}</dd>`:''}<dt>Weight on capability 1 (K = 2 fit)</dt><dd>${fmt(t.x)}</dd><dt>Weight on capability 2</dt><dd>${fmt(t.y)}</dd>${iv?`<dt>90% resampling interval</dt><dd>${fmt(iv[0])} to ${fmt(iv[1])}</dd>`:''}</dl>`}
+  return `<b>${esc(t.ds)}</b><p class="ttsub">${esc([pl(t.proto),t.frac&&t.frac!=='unspecified'?t.frac+' labels':'label fraction unspecified',t.metric,t.var].filter(Boolean).join(' · '))}</p>${esc(t.itype)} · ${esc(tl(t.ttype))} · ${esc(dl(t.dom))}<dl><dt>GeoFMs evaluated</dt><dd>${t.n}</dd>${t.r1nf!==null&&t.r1nf!==undefined?`<dt>Agreement with the shared ranking, fit without full fine-tuning (ρ)</dt><dd>${fmt(t.r1nf,2)}</dd>`:''}<dt>Weight on capability 1 (K = 2 fit)</dt><dd>${fmt(t.x)}</dd><dt>Weight on capability 2</dt><dd>${fmt(t.y)}</dd>${iv?`<dt>90% resampling interval</dt><dd>${fmt(iv[0])} to ${fmt(iv[1])}</dd>`:''}</dl>`}
 function mark(sh,x,y,r,c,attr){
   if(sh==='square'){const d=r*.88;return `<rect ${attr} x="${(x-d).toFixed(1)}" y="${(y-d).toFixed(1)}" width="${(2*d).toFixed(1)}" height="${(2*d).toFixed(1)}" fill="${c}"/>`}
   if(sh==='triangle'){const d=r*1.25;return `<polygon ${attr} points="${x.toFixed(1)},${(y-d).toFixed(1)} ${(x+d*.95).toFixed(1)},${(y+d*.62).toFixed(1)} ${(x-d*.95).toFixed(1)},${(y+d*.62).toFixed(1)}" fill="${c}"/>`}
@@ -150,7 +165,7 @@ function query(){return $('q').value.trim().toLowerCase()}
 function bind(svg,T){const by={};T.forEach(t=>by[t.i]=t);svg.querySelectorAll('.pt').forEach(c=>{const t=by[c.dataset.i];c.addEventListener('mousemove',e=>tip(e,tipHtml(t)));c.addEventListener('mouseleave',untip)})}
 function drawCap1(){
   const s=$('csvg'),W=s.clientWidth,H=s.clientHeight;if(!W)return;
-  const g=$('grp').value,gv=GVAL[g],T=shown().filter(t=>t.r1!==null&&t.r1!==undefined&&t.proto!=='FT'),q=query();
+  const g=$('grp1').value,gv=GVAL[g],T=shown().filter(t=>t.r1nf!==null&&t.r1nf!==undefined&&t.proto!=='FT'),q=query();
   const cnt={};T.forEach(t=>{const k=gv(t);cnt[k]=(cnt[k]||0)+1});
   let groups=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]),gof=t=>gv(t);
   if(g==='itype')groups=INPUT.map(r=>r[0]).filter(k=>cnt[k]);
@@ -168,8 +183,8 @@ function drawCap1(){
   const yOf=t=>top+rowH*(groups.indexOf(gof(t))+.5)+(narrow?6:0)+(rnd(t.i)-.5)*rowH*(narrow?.5:.62);
   const ord=[...T].sort((a,b)=>b.n-a.n);
   ord.forEach(t=>{const hit=q&&t.ds.toLowerCase().includes(q),r=2.2+Math.sqrt(t.n)*.85,op=hit?1:q?.15:.72;
-    h+=`<circle class="pt" data-i="${t.i}" cx="${X(t.r1).toFixed(1)}" cy="${yOf(t).toFixed(1)}" r="${r.toFixed(1)}" fill="${gc(gof(t))}" fill-opacity="${op}" stroke="${hit?'var(--fg)':'#fff'}" stroke-width="${hit?1.6:.8}"/>`});
-  groups.forEach((k,i)=>{const v=T.filter(t=>gof(t)===k).map(t=>t.r1).sort((a,b)=>a-b);if(!v.length)return;const md=v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2,y=top+rowH*(i+.5);
+    h+=`<circle class="pt" data-i="${t.i}" cx="${X(t.r1nf).toFixed(1)}" cy="${yOf(t).toFixed(1)}" r="${r.toFixed(1)}" fill="${gc(gof(t))}" fill-opacity="${op}" stroke="${hit?'var(--fg)':'#fff'}" stroke-width="${hit?1.6:.8}"/>`});
+  groups.forEach((k,i)=>{const v=T.filter(t=>gof(t)===k).map(t=>t.r1nf).sort((a,b)=>a-b);if(!v.length)return;const md=v.length%2?v[(v.length-1)/2]:(v[v.length/2-1]+v[v.length/2])/2,y=top+rowH*(i+.5);
     h+=`<line x1="${X(md)}" x2="${X(md)}" y1="${y-rowH*.38}" y2="${y+rowH*.38}" stroke="var(--fg)" stroke-width="2.5"><title>median ${fmt(md,2)}</title></line>`});
   s.innerHTML=h;bind(s,T);
 }
@@ -235,7 +250,7 @@ function legend(){const sw=(sh,c)=>`<svg viewBox="0 0 14 14" aria-hidden="true">
 function counts(){const n=+$('nmin').value,T=shown(),B=T.filter(t=>t.b.length),ex=B.filter(t=>{const [a,b]=q90(t.b.map(p=>p[1]));return a>0||b<0}).length,q=query(),hits=q?T.filter(t=>t.ds.toLowerCase().includes(q)).length:0;
   $('count').textContent=`${T.length.toLocaleString('en')} tasks with at least ${n} GeoFMs`+(B.length?`; ${ex} of the ${B.length} with resampling refits have a 90% interval for the capability-2 weight that excludes 0`:'')+(q?`; ${hits} match “${$('q').value.trim()}”`:'')+'.'}
 function draw(){if(!D)return;untip();counts();drawCap1();drawStrip();drawScatter()}
-$('grp').addEventListener('change',()=>{drawCap1();drawStrip()});
+$('grp').addEventListener('change',drawStrip);$('grp1').addEventListener('change',drawCap1);
 $('nmin').addEventListener('input',()=>{$('nv').textContent=$('nmin').value;draw()});
 $('q').addEventListener('input',draw);
 $('boot').addEventListener('click',()=>{boot=!boot;$('boot').setAttribute('aria-pressed',boot);$('boot').textContent=boot?'Hide resampling':'Show resampling';draw()});
