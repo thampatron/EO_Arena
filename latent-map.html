@@ -68,9 +68,9 @@ svg .pt{cursor:pointer}
 
   <section class="section">
     <h2>Tasks along capability 1: the shared ranking</h2>
-    <p class="lead small">Capability 1 is the single ranking of GeoFM families that best explains all published scores (the primary result, K = 1). For each task with at least 9 GeoFMs, this view shows how closely the task’s own published ranking agrees with it. Grouping, search and the minimum-GeoFM filter below apply here too.</p>
+    <p class="lead small">Capability 1 is the single ranking of GeoFM families that best explains all published scores (the primary result, K = 1). For each task with at least 9 GeoFMs, excluding tasks evaluated with full fine-tuning, this view shows how closely the task’s own published ranking agrees with it. Grouping, search and the minimum-GeoFM filter below apply here too.</p>
     <div class="card fig" id="cfig"><svg id="csvg" role="img" aria-label="Tasks placed by the rank correlation between their published ranking and the shared ranking, in rows by the chosen grouping"></svg></div>
-    <p class="cap" id="ccap">Each point is one task; its area grows with the number of GeoFMs evaluated on it. Horizontal position: Spearman rank correlation between the task’s published scores and the GeoFMs’ positions on capability 1 (1 = same order, 0 = unrelated, negative = reversed). Black ticks mark group medians. The shared ranking is fitted on all scores, including the task’s own, so these agreements are optimistic. Every task’s weight on capability 1 is positive in the K = 1 fit: no task rewards the shared ranking in reverse.</p>
+    <p class="cap" id="ccap">Each point is one task; its area grows with the number of GeoFMs evaluated on it. Horizontal position: Spearman rank correlation between the task’s published scores and the GeoFMs’ positions on capability 1 (1 = same order, 0 = unrelated, negative = reversed). Black ticks mark group medians. Tasks evaluated with full fine-tuning (157 of the 438) are not shown; partial fine-tuning is kept. The shared ranking is fitted on all scores, including the task’s own, so these agreements are optimistic. Every task’s weight on capability 1 is positive in the K = 1 fit: no task rewards the shared ranking in reverse.</p>
   </section>
 
   <section class="section">
@@ -150,7 +150,7 @@ function query(){return $('q').value.trim().toLowerCase()}
 function bind(svg,T){const by={};T.forEach(t=>by[t.i]=t);svg.querySelectorAll('.pt').forEach(c=>{const t=by[c.dataset.i];c.addEventListener('mousemove',e=>tip(e,tipHtml(t)));c.addEventListener('mouseleave',untip)})}
 function drawCap1(){
   const s=$('csvg'),W=s.clientWidth,H=s.clientHeight;if(!W)return;
-  const g=$('grp').value,gv=GVAL[g],T=shown().filter(t=>t.r1!==null&&t.r1!==undefined),q=query();
+  const g=$('grp').value,gv=GVAL[g],T=shown().filter(t=>t.r1!==null&&t.r1!==undefined&&t.proto!=='FT'),q=query();
   const cnt={};T.forEach(t=>{const k=gv(t);cnt[k]=(cnt[k]||0)+1});
   let groups=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]),gof=t=>gv(t);
   if(g==='itype')groups=INPUT.map(r=>r[0]).filter(k=>cnt[k]);
